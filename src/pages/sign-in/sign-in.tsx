@@ -1,11 +1,13 @@
 import React from 'react';
 import {Box,Typography,Button} from '@mui/material';
-import {Auth} from 'aws-amplify';
-import { CognitoIdentityProvider } from '../../configs/aws';
+import {useDispatch} from 'react-redux';
+import { signIn } from '../../features';
+import { AppDispatch } from '../../store';
 
 export const SignIn = ()=>{
+  const dispatch = useDispatch<AppDispatch>();
   const handleClickSignIn = ()=> {
-    Auth.federatedSignIn({customProvider:CognitoIdentityProvider});
+    dispatch(signIn());
   };
 
   return(
