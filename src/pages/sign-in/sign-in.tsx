@@ -1,19 +1,19 @@
-import React from 'react';
-import {Box,Typography,Button} from '@mui/material';
-import {useDispatch} from 'react-redux';
-import { signIn } from '../../features';
-import { AppDispatch } from '../../store';
+import React from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../features";
+import { AppDispatch } from "../../store";
 
-export const SignIn = ()=>{
+export const SignIn = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const handleClickSignIn = ()=> {
+  const handleClickSignIn = () => {
     dispatch(signIn());
   };
 
-  return(
+  return (
     <Box>
       <Typography>SignIn screen</Typography>
       <Button onClick={handleClickSignIn}>Sign in</Button>
     </Box>
-  )
-}
+  );
+};

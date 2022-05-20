@@ -1,20 +1,19 @@
-import { useEffect } from 'react';
-import {useDispatch} from 'react-redux';
-import{Box,Typography} from '@mui/material';
-import { AppDispatch } from '../../store';
-import { signInCallback } from '../../features';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Box, Typography } from "@mui/material";
+import { AppDispatch } from "../../store";
+import { signInCallback } from "../../features";
 
-export const CognitoSignInCallback = ()=>{
+export const CognitoSignInCallback = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(signInCallback());
-  },[])
+  }, []);
 
-  return  (
+  return (
     <Box>
       <Typography>Validating user...</Typography>
     </Box>
-
-  )
-}
+  );
+};

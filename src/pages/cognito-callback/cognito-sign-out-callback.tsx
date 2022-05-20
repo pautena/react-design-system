@@ -1,19 +1,19 @@
-import { useEffect } from 'react';
-import {useDispatch} from 'react-redux';
-import{Box,Typography} from '@mui/material';
-import { AppDispatch } from '../../store';
-import { signOutCallback } from '../../features';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Box, Typography } from "@mui/material";
+import { AppDispatch } from "../../store";
+import { signOutCallback } from "../../features";
 
-export const CognitoSignOutCallback = ()=>{
+export const CognitoSignOutCallback = () => {
   const dispatch = useDispatch<AppDispatch>();
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(signOutCallback());
-  },[])
+  }, []);
 
   return (
     <Box>
       <Typography>Signin out...</Typography>
     </Box>
-  )
-}
+  );
+};
