@@ -16,15 +16,26 @@ export const signInCallback = createAsyncThunk(
     const userInfo = await Auth.currentUserInfo();
     return userInfo;
   }
+);
+
+export const signOut = createAsyncThunk(
+  'auth/signOutStatus',
+  async ()=> {
+    return await Auth.signOut();
+  }
 )
 
 export interface AuthState {
-  isAuthenticated: boolean,
-  profile: Profile|null,
+  signInInProgress: boolean;
+  signOutInProgress: boolean;
+  isAuthenticated: boolean;
+  profile: Profile|null;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
+  signInInProgress:false,
+  signOutInProgress:false,
   profile:null,
 }
 
@@ -32,13 +43,29 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
+    signOutCallback: (state)=>{
+      state.profile = null;
+      state.isAuthenticated = false;
+      state.signOutInProgress =false;
+    }
   },
   extraReducers: (builder)=> {
-    builder.addCase(signInCallback.fulfilled, (state, action) => {
-      state.profile = action.payload;
+    builder.addCase(signIn.pending, (state) => {
+      state.signInInProgress=true;
+    }).addCase(signInCallback.fulfilled, (state, action) => {
+      const {id,username,attributes} = action.payload;
+      state.profile = {
+        id,
+        username,
+        email:attributes.email
+      };
       state.isAuthenticated=true;
+      state.signInInProgress=false;
+    }).addCase(signOut.pending, (state) => {
+      state.signOutInProgress=true;
     })
   }
 })
 
+export const {signOutCallback} = authSlice.actions;
 export const authReducer = authSlice.reducer;

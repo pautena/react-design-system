@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BrowserRouter,
 } from "react-router-dom";
+import './app.css'
 import { RootNavigator } from './navigators/root-navigator';
 import {Auth} from 'aws-amplify';
 import { CognitoAuthConfig } from './configs/aws';

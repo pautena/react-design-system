@@ -4,7 +4,7 @@ import{Box,Typography} from '@mui/material';
 import { AppDispatch } from '../../store';
 import { signInCallback } from '../../features';
 
-export const CognitoCallback = ()=>{
+export const CognitoSignInCallback = ()=>{
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(()=>{
