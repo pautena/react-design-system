@@ -1,29 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { styled, Theme, CSSObject, useTheme } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import { styled, Theme, CSSObject } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { Home, SignIn, CognitoSignInCallback, CognitoSignOutCallback } from "../../pages";
 import { AppBar, AppBarProps, Drawer } from "../../components";
-import { Project, selectProject, signOut } from "../../features";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
+import { Environment, Project, selectProject, signOut,selectEnvironment } from "../../features";
 import CssBaseline from "@mui/material/CssBaseline";
-import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 
 const drawerWidth = 240;
 
@@ -93,6 +77,10 @@ const AuthenticatedNavigator = () => {
   const selectedProject = useSelector<RootState, Project | undefined>(
     (state) => state.projects.selectedProject,
   );
+  const environments = useSelector<RootState, Environment[]>((state) => state.environments.environments);
+  const selectedEnvironment = useSelector<RootState, Environment | undefined>(
+    (state) => state.environments.selectedEnvironment,
+  );
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -104,7 +92,11 @@ const AuthenticatedNavigator = () => {
   };
 
   const handleChangeSelectedProject = (project: Project | undefined) => {
-    dispatch(selectProject(project));
+    project && dispatch(selectProject(project));
+  };
+
+  const handleChangeSelectedEnvironment = (environment: Environment | undefined) => {
+    environment && dispatch(selectEnvironment(environment));
   };
 
   return (
@@ -120,9 +112,12 @@ const AuthenticatedNavigator = () => {
         variant="permanent"
         projects={projects}
         selectedProject={selectedProject}
+        environments={environments}
+        selectedEnvironment={selectedEnvironment}
         open={open}
         onDrawerClose={handleDrawerClose}
         onChangeSelectedProject={handleChangeSelectedProject}
+        onChangeSelectedEnvironment={handleChangeSelectedEnvironment}
       />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />

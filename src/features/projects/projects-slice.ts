@@ -16,7 +16,7 @@ export const projectsSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {
-    selectProject: (state, action: PayloadAction<Project | undefined>) => {
+    selectProject: (state, action: PayloadAction<Project>) => {
       state.selectedProject = action.payload;
     },
   },

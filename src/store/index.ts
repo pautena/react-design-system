@@ -1,6 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { authReducer, authSlice, projectsReducer, projectsSlice } from "../features";
+import { authReducer, authSlice, projectsReducer, projectsSlice,environmentsReducer,environmentsSlice } from "../features";
+import logger from "redux-logger";
 import {
   persistStore,
   persistReducer,
@@ -16,6 +17,7 @@ import storage from "redux-persist/lib/storage";
 const rootReducer = combineReducers({
   [authSlice.name]: authReducer,
   [projectsSlice.name]: projectsReducer,
+  [environmentsSlice.name]: environmentsReducer,
 });
 
 const persistedReducer = persistReducer(
@@ -29,12 +31,18 @@ const persistedReducer = persistReducer(
 
 export const store = configureStore({
   reducer: persistedReducer,
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) => {
+    const middleware = getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    });
+
+    if(process.env.NODE_ENV === "development"){
+      return middleware.concat(logger)
+    }
+    return middleware;
+  },
 });
 
 export const persistor = persistStore(store);

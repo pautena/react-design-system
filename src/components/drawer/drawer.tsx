@@ -18,7 +18,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { Project } from "../../features";
+import { Environment, Project } from "../../features";
 
 const drawerWidth = 240;
 
@@ -55,7 +55,10 @@ export interface DrawerProps extends MuiDrawerProps {
   open: boolean;
   projects: Project[];
   selectedProject?: Project;
+  environments:Environment[];
+  selectedEnvironment?:Environment;
   onChangeSelectedProject: (project: Project | undefined) => void;
+  onChangeSelectedEnvironment: (environment:Environment|undefined)=> void;
   onDrawerClose: () => void;
 }
 
@@ -63,7 +66,10 @@ export const Drawer = ({
   open,
   projects,
   selectedProject,
+  environments,
+  selectedEnvironment,
   onChangeSelectedProject,
+  onChangeSelectedEnvironment,
   onDrawerClose,
   ...rest
 }: DrawerProps) => {
@@ -93,14 +99,16 @@ export const Drawer = ({
             ))}
           </Select>
           <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            label="Age"
+            value={selectedEnvironment?.id}
+            label="Environment"
             size="small"
+            onChange={(e) => onChangeSelectedEnvironment(environments.find((i) => i.id === e.target.value))}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {environments.map((environment) => (
+              <MenuItem key={environment.id} value={environment.id}>
+                {environment.name}
+              </MenuItem>
+            ))}
           </Select>
         </Box>
       )}
