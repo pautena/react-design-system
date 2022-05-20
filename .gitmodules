@@ -1,0 +1,6 @@
+[submodule "protobuf/protobuf-emerald"]
+	path = protobuf/protobuf-emerald
+	url = git@github.com:socialpoint/emerald-sparta-protobuf.git
+[submodule "protobuf/protobuf-sem"]
+	path = protobuf/protobuf-sem
+	url = git@github.com:socialpoint/sp-protobuf-socialempiresmerge.git
