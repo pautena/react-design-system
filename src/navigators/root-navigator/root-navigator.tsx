@@ -5,9 +5,10 @@ import { Box } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { Home, SignIn, CognitoSignInCallback, CognitoSignOutCallback } from "../../pages";
-import { AppBar, AppBarProps, Drawer } from "../../components";
+import { AppBar, AppBarProps, Drawer, Tool } from "../../components";
 import { Environment, Project, selectProject, signOut,selectEnvironment } from "../../features";
 import CssBaseline from "@mui/material/CssBaseline";
+import { ResourcesHistory } from "../../tools";
 
 const drawerWidth = 240;
 
@@ -73,6 +74,7 @@ const CustomDrawer = styled(Drawer)(({ theme, open }) => ({
 
 const AuthenticatedNavigator = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const projects = useSelector<RootState, Project[]>((state) => state.projects.projects);
   const selectedProject = useSelector<RootState, Project | undefined>(
     (state) => state.projects.selectedProject,
@@ -99,6 +101,10 @@ const AuthenticatedNavigator = () => {
     environment && dispatch(selectEnvironment(environment));
   };
 
+  const handleClickTool = (tool:Tool) =>{
+    navigate(tool.url);
+  }
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -118,11 +124,13 @@ const AuthenticatedNavigator = () => {
         onDrawerClose={handleDrawerClose}
         onChangeSelectedProject={handleChangeSelectedProject}
         onChangeSelectedEnvironment={handleChangeSelectedEnvironment}
+        onClickTool={handleClickTool}
       />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/resources-history" element={<ResourcesHistory />} />
           <Route path="callback/cognito" element={<CognitoSignInCallback />} />
           <Route path="logout" element={<CognitoSignOutCallback />} />
         </Routes>

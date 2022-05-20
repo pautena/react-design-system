@@ -19,29 +19,27 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Environment, Project } from "../../features";
+import DiamondIcon from '@mui/icons-material/Diamond';
 
 const drawerWidth = 240;
 
-const openedMixin = (theme: Theme): CSSObject => ({
-  width: drawerWidth,
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.enteringScreen,
-  }),
-  overflowX: "hidden",
-});
+const ToolsIcons = {
+  'diamond': ()=> <DiamondIcon/>,
+}
 
-const closedMixin = (theme: Theme): CSSObject => ({
-  transition: theme.transitions.create("width", {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
-});
+export interface Tool {
+  id:string;
+  name:string;
+  icon: keyof typeof ToolsIcons;
+  url:string;
+}
+
+const Tools:Tool[] = [{
+  id:'resources-history',
+  name:"Resources History",
+  icon:'diamond',
+  url:'/resources-history'
+}]
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -59,6 +57,7 @@ export interface DrawerProps extends MuiDrawerProps {
   selectedEnvironment?:Environment;
   onChangeSelectedProject: (project: Project | undefined) => void;
   onChangeSelectedEnvironment: (environment:Environment|undefined)=> void;
+  onClickTool: (tool:Tool)=>void;
   onDrawerClose: () => void;
 }
 
@@ -70,6 +69,7 @@ export const Drawer = ({
   selectedEnvironment,
   onChangeSelectedProject,
   onChangeSelectedEnvironment,
+  onClickTool,
   onDrawerClose,
   ...rest
 }: DrawerProps) => {
@@ -138,9 +138,10 @@ export const Drawer = ({
       </List>
       <Divider />
       <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
+        {Tools.map((tool) => (
+          <ListItem key={tool.id} disablePadding sx={{ display: "block" }}>
             <ListItemButton
+            onClick={()=>onClickTool(tool)}
               sx={{
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
@@ -154,9 +155,9 @@ export const Drawer = ({
                   justifyContent: "center",
                 }}
               >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {ToolsIcons[tool.icon]()}
               </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary={tool.name} sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
         ))}
