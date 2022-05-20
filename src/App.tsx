@@ -1,11 +1,12 @@
 import React from 'react';
-import {Box,Typography} from '@mui/material';
 import {
   BrowserRouter,
-  Routes,
-  Route,
 } from "react-router-dom";
 import { RootNavigator } from './navigators/root-navigator';
+import {Auth} from 'aws-amplify';
+import { CognitoAuthConfig } from './configs/aws';
+
+Auth.configure(CognitoAuthConfig);
 
 function App() {
   return (

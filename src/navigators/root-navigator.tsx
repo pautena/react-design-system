@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { Home, SignIn } from '../pages';
+import { Home, SignIn,CognitoCallback } from '../pages';
 
 
 export const RootNavigator = ()=> {
@@ -11,6 +11,7 @@ export const RootNavigator = ()=> {
     <Routes>
       <Route path="/" element={<Home />}/>
         <Route path="sign-in" element={<SignIn />} />
+        <Route path="callback/cognito" element={<CognitoCallback />} />
     </Routes>
   )
 }

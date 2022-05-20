@@ -1,10 +1,17 @@
 import React from 'react';
-import {Box,Typography} from '@mui/material';
+import {Box,Typography,Button} from '@mui/material';
+import {Auth} from 'aws-amplify';
+import { CognitoIdentityProvider } from '../../configs/aws';
 
 export const SignIn = ()=>{
-    return(
-        <Box>
-            <Typography>SignIn screen</Typography>
-        </Box>
-    )
+  const handleClickSignIn = ()=> {
+    Auth.federatedSignIn({customProvider:CognitoIdentityProvider});
+  };
+
+  return(
+    <Box>
+      <Typography>SignIn screen</Typography>
+      <Button onClick={handleClickSignIn}>Sign in</Button>
+    </Box>
+  )
 }
