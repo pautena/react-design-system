@@ -1,11 +1,17 @@
 import React from 'react';
 import {Box,Typography} from '@mui/material';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
+import { RootNavigator } from './navigators/root-navigator';
 
 function App() {
   return (
-    <Box>
-      <Typography variant="h1">Shapers toolbox</Typography>
-    </Box>
+    <BrowserRouter>
+      <RootNavigator/>
+    </BrowserRouter>
   );
 }
 
