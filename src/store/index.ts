@@ -1,6 +1,13 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { authReducer, authSlice, projectsReducer, projectsSlice,environmentsReducer,environmentsSlice } from "../features";
+import {
+  authReducer,
+  authSlice,
+  projectsReducer,
+  projectsSlice,
+  environmentsReducer,
+  environmentsSlice,
+} from "../features";
 import logger from "redux-logger";
 import {
   persistStore,
@@ -38,8 +45,8 @@ export const store = configureStore({
       },
     });
 
-    if(process.env.NODE_ENV === "development"){
-      return middleware.concat(logger)
+    if (process.env.NODE_ENV === "development") {
+      return middleware.concat(logger);
     }
     return middleware;
   },

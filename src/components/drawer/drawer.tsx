@@ -19,27 +19,29 @@ import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Environment, Project } from "../../features";
-import DiamondIcon from '@mui/icons-material/Diamond';
+import DiamondIcon from "@mui/icons-material/Diamond";
 
 const drawerWidth = 240;
 
 const ToolsIcons = {
-  'diamond': ()=> <DiamondIcon/>,
-}
+  diamond: () => <DiamondIcon />,
+};
 
 export interface Tool {
-  id:string;
-  name:string;
+  id: string;
+  name: string;
   icon: keyof typeof ToolsIcons;
-  url:string;
+  url: string;
 }
 
-const Tools:Tool[] = [{
-  id:'resources-history',
-  name:"Resources History",
-  icon:'diamond',
-  url:'/resources-history'
-}]
+const Tools: Tool[] = [
+  {
+    id: "resources-history",
+    name: "Resources History",
+    icon: "diamond",
+    url: "/resources-history",
+  },
+];
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -53,11 +55,11 @@ export interface DrawerProps extends MuiDrawerProps {
   open: boolean;
   projects: Project[];
   selectedProject?: Project;
-  environments:Environment[];
-  selectedEnvironment?:Environment;
+  environments: Environment[];
+  selectedEnvironment?: Environment;
   onChangeSelectedProject: (project: Project | undefined) => void;
-  onChangeSelectedEnvironment: (environment:Environment|undefined)=> void;
-  onClickTool: (tool:Tool)=>void;
+  onChangeSelectedEnvironment: (environment: Environment | undefined) => void;
+  onClickTool: (tool: Tool) => void;
   onDrawerClose: () => void;
 }
 
@@ -102,7 +104,9 @@ export const Drawer = ({
             value={selectedEnvironment?.id}
             label="Environment"
             size="small"
-            onChange={(e) => onChangeSelectedEnvironment(environments.find((i) => i.id === e.target.value))}
+            onChange={(e) =>
+              onChangeSelectedEnvironment(environments.find((i) => i.id === e.target.value))
+            }
           >
             {environments.map((environment) => (
               <MenuItem key={environment.id} value={environment.id}>
@@ -141,7 +145,7 @@ export const Drawer = ({
         {Tools.map((tool) => (
           <ListItem key={tool.id} disablePadding sx={{ display: "block" }}>
             <ListItemButton
-            onClick={()=>onClickTool(tool)}
+              onClick={() => onClickTool(tool)}
               sx={{
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",

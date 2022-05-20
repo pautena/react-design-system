@@ -1,2 +1,2 @@
-export * from './environments-slice'
-export * from './environments.types'
+export * from "./environments-slice";
+export * from "./environments.types";

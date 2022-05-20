@@ -7,6 +7,8 @@ import { CognitoAuthConfig } from "./configs/aws";
 import { Provider } from "react-redux";
 import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 Auth.configure(CognitoAuthConfig);
 
@@ -16,12 +18,14 @@ function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <BrowserRouter>
-            <RootNavigator />
-          </BrowserRouter>
-        </ThemeProvider>
+        <LocalizationProvider dateAdapter={AdapterMoment}>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <BrowserRouter>
+              <RootNavigator />
+            </BrowserRouter>
+          </ThemeProvider>
+        </LocalizationProvider>
       </PersistGate>
     </Provider>
   );

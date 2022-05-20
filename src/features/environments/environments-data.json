@@ -1,7 +1,10 @@
-[{
-  "id":"pro",
-  "name":"Production"
-},{
-  "id":"stable",
-  "name":"Stable"
-}]
+[
+  {
+    "id": "pro",
+    "name": "Production"
+  },
+  {
+    "id": "stable",
+    "name": "Stable"
+  }
+]
