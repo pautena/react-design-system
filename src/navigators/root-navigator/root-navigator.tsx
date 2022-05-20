@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { Home, SignIn, CognitoSignInCallback, CognitoSignOutCallback } from "../../pages";
 import { AppBar, AppBarProps, Drawer } from "../../components";
-import { signOut } from "../../features";
+import { Project, selectProject, signOut } from "../../features";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -89,7 +89,10 @@ const CustomDrawer = styled(Drawer)(({ theme, open }) => ({
 
 const AuthenticatedNavigator = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const theme = useTheme();
+  const projects = useSelector<RootState, Project[]>((state) => state.projects.projects);
+  const selectedProject = useSelector<RootState, Project | undefined>(
+    (state) => state.projects.selectedProject,
+  );
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -98,6 +101,10 @@ const AuthenticatedNavigator = () => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleChangeSelectedProject = (project: Project | undefined) => {
+    dispatch(selectProject(project));
   };
 
   return (
@@ -109,7 +116,14 @@ const AuthenticatedNavigator = () => {
         onClickDrawerMenu={handleDrawerOpen}
         onClickSignOut={() => dispatch(signOut())}
       />
-      <CustomDrawer variant="permanent" open={open} onDrawerClose={handleDrawerClose} />
+      <CustomDrawer
+        variant="permanent"
+        projects={projects}
+        selectedProject={selectedProject}
+        open={open}
+        onDrawerClose={handleDrawerClose}
+        onChangeSelectedProject={handleChangeSelectedProject}
+      />
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Routes>

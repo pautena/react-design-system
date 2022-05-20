@@ -1,11 +1,21 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { authReducer, authSlice } from "../features";
-import { persistStore,persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
-import storage from 'redux-persist/lib/storage'
+import { authReducer, authSlice, projectsReducer, projectsSlice } from "../features";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
   [authSlice.name]: authReducer,
+  [projectsSlice.name]: projectsReducer,
 });
 
 const persistedReducer = persistReducer(

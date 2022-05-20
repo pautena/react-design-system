@@ -1,17 +1,24 @@
-import * as React from "react";
+import React from "react";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import MuiDrawer, { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
+import {
+  Drawer as MuiDrawer,
+  DrawerProps as MuiDrawerProps,
+  List,
+  Divider,
+  IconButton,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Select,
+  MenuItem,
+  Box,
+} from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { Project } from "../../features";
 
 const drawerWidth = 240;
 
@@ -41,16 +48,25 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   alignItems: "center",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
 export interface DrawerProps extends MuiDrawerProps {
   open: boolean;
+  projects: Project[];
+  selectedProject?: Project;
+  onChangeSelectedProject: (project: Project | undefined) => void;
   onDrawerClose: () => void;
 }
 
-export const Drawer = ({ open, onDrawerClose, ...rest }: DrawerProps) => {
+export const Drawer = ({
+  open,
+  projects,
+  selectedProject,
+  onChangeSelectedProject,
+  onDrawerClose,
+  ...rest
+}: DrawerProps) => {
   const theme = useTheme();
 
   return (
@@ -61,6 +77,33 @@ export const Drawer = ({ open, onDrawerClose, ...rest }: DrawerProps) => {
         </IconButton>
       </DrawerHeader>
       <Divider />
+      {open && (
+        <Box px={2} pt={1} display="flex" flexDirection="column">
+          <Select
+            value={selectedProject?.id}
+            label="Project"
+            size="small"
+            onChange={(e) => onChangeSelectedProject(projects.find((p) => p.id === e.target.value))}
+            sx={{ mb: 1 }}
+          >
+            {projects.map((project) => (
+              <MenuItem key={project.id} value={project.id}>
+                {project.name}
+              </MenuItem>
+            ))}
+          </Select>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Age"
+            size="small"
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </Box>
+      )}
       <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem key={text} disablePadding sx={{ display: "block" }}>
