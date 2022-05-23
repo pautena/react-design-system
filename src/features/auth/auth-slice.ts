@@ -3,14 +3,24 @@ import { Auth } from "aws-amplify";
 import { CognitoIdentityProvider } from "../../configs/aws";
 import { Profile } from "./auth.types";
 
-export const signIn = createAsyncThunk("auth/signInStatus", async () => {
-  return await Auth.federatedSignIn({ customProvider: CognitoIdentityProvider });
+export const signIn = createAsyncThunk("auth/signInStatus", async (_, { rejectWithValue }) => {
+  try {
+    return await Auth.federatedSignIn({ customProvider: CognitoIdentityProvider });
+  } catch (e) {
+    rejectWithValue(e as Error);
+  }
 });
 
-export const signInCallback = createAsyncThunk("auth/signInCallbackStatus", async () => {
-  const userInfo = await Auth.currentUserInfo();
-  return userInfo;
-});
+export const signInCallback = createAsyncThunk(
+  "auth/signInCallbackStatus",
+  async (_, { rejectWithValue }) => {
+    try {
+      return await Auth.currentUserInfo();
+    } catch (e) {
+      rejectWithValue(e as Error);
+    }
+  },
+);
 
 export const signOut = createAsyncThunk("auth/signOutStatus", async () => {
   return await Auth.signOut();
@@ -20,14 +30,13 @@ export interface AuthState {
   signInInProgress: boolean;
   signOutInProgress: boolean;
   isAuthenticated: boolean;
-  profile: Profile | null;
+  profile?: Profile;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
   signInInProgress: false,
   signOutInProgress: false,
-  profile: null,
 };
 
 export const authSlice = createSlice({
@@ -35,18 +44,19 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     signOutCallback: (state) => {
-      state.profile = null;
+      state.profile = undefined;
       state.isAuthenticated = false;
       state.signOutInProgress = false;
     },
   },
   extraReducers: (builder) => {
-    builder
+    return builder
       .addCase(signIn.pending, (state) => {
         state.signInInProgress = true;
+        state.isAuthenticated = false;
+        state.profile = undefined;
       })
-      .addCase(signInCallback.fulfilled, (state, action) => {
-        const { id, username, attributes } = action.payload;
+      .addCase(signInCallback.fulfilled, (state, { payload: { id, username, attributes } }) => {
         state.profile = {
           id,
           username,
@@ -57,6 +67,9 @@ export const authSlice = createSlice({
       })
       .addCase(signOut.pending, (state) => {
         state.signOutInProgress = true;
+      })
+      .addCase(signOut.fulfilled, (state) => {
+        state.signOutInProgress = false;
       });
   },
 });

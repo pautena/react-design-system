@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BrainConfig } from "../../configs/brain";
 import { Auth } from "aws-amplify";
-import axios from "axios";
 import { ProxyBrainRequest } from "../../services/bs-proxy/bs-proxy.model";
 import { Project } from "../projects";
 import moment from "moment";
@@ -15,35 +14,43 @@ interface GetUserResourceArgs {
 
 export const userResourcesApi = createApi({
   reducerPath: "userResourcesApi",
-  baseQuery: async ({ queryAlias, queryAliases, params }, { signal, dispatch, getState }) => {
+  baseQuery: async ({ queryAlias, queryAliases, params }, { getState }) => {
     const session = await Auth.currentSession();
     const project = (getState() as any).projects.selectedProject as Project;
-    const config = {
-      headers: {
-        Authorization: `Bearer ${session.getIdToken().getJwtToken()}`,
-      },
+    const headers = {
+      Authorization: `Bearer ${session.getIdToken().getJwtToken()}`,
+      Accept: "application/json",
+      "Content-Type": "application/json",
     };
 
     try {
       if (queryAlias) {
         const data = new ProxyBrainRequest(project.id, queryAlias, params);
-        const response = await axios.post(BrainConfig.baseUrl, data, config);
+        const response = await fetch(BrainConfig.baseUrl, {
+          method: "post",
+          body: JSON.stringify(data),
+          headers,
+        });
         return { data: response };
       } else {
         const response = await Promise.all(
           queryAliases.map((q: string) => {
             const data = new ProxyBrainRequest(project.id, q, params);
-            return axios.post(BrainConfig.baseUrl, data, config);
+            return fetch(BrainConfig.baseUrl, {
+              method: "post",
+              body: JSON.stringify(data),
+              headers,
+            }).then((r) => r.json());
           }),
         );
-        return { data: response.map((r) => r.data.result).flat() };
+        return { data: response.map((r) => r.result).flat() };
       }
     } catch (error) {
       return { error };
     }
   },
   endpoints: (builder) => ({
-    getUserResource: builder.query<ResourceEntry[], GetUserResourceArgs>({
+    getUserResources: builder.query<ResourceEntry[], GetUserResourceArgs>({
       query: ({ userId, start, end }) => ({
         queryAliases: Resources,
         params: [
@@ -65,4 +72,4 @@ export const userResourcesApi = createApi({
   }),
 });
 
-export const { useLazyGetUserResourceQuery } = userResourcesApi;
+export const { useLazyGetUserResourcesQuery } = userResourcesApi;

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Box, Typography, Paper, TextField, Button } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import moment from "moment";
-import { useLazyGetUserResourceQuery } from "../../features";
+import { useLazyGetUserResourcesQuery } from "../../features";
 import { ResourcesHistoryTable } from "../../components";
 
 export const ResourcesHistory = () => {
-  const [trigger, result] = useLazyGetUserResourceQuery();
+  const [trigger, result] = useLazyGetUserResourcesQuery();
   const [userId, setUserId] = useState<string | undefined>();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,7 +27,7 @@ export const ResourcesHistory = () => {
   };
 
   return (
-    <>
+    <Box data-testid="UserResourcesPage">
       <Typography variant="h4">User Resources</Typography>
       <Paper sx={{ p: 2, mt: 3 }}>
         <Box component="form" onSubmit={handleSubmit} display="flex" alignItems="center">
@@ -68,6 +68,6 @@ export const ResourcesHistory = () => {
           {result.isSuccess && <ResourcesHistoryTable resourceEntries={result.data} />}
         </Box>
       )}
-    </>
+    </Box>
   );
 };

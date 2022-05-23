@@ -5,9 +5,9 @@ import { Box, Typography } from "@mui/material";
 import { Profile } from "../../features";
 
 export const Home = () => {
-  const profile = useSelector<RootState, Profile | null>((state) => state.auth.profile);
+  const profile = useSelector<RootState, Profile | undefined>((state) => state.auth.profile);
   return (
-    <Box>
+    <Box data-testid="HomePage">
       <Typography>Home screen. profile: {profile?.email}</Typography>
     </Box>
   );

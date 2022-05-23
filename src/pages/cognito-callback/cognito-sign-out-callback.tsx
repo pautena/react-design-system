@@ -13,7 +13,7 @@ export const CognitoSignOutCallback = () => {
 
   return (
     <Box>
-      <Typography>Signin out...</Typography>
+      <Typography>Sign out...</Typography>
     </Box>
   );
 };

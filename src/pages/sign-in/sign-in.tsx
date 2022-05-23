@@ -11,8 +11,8 @@ export const SignIn = () => {
   };
 
   return (
-    <Box>
-      <Typography>SignIn screen</Typography>
+    <Box data-testid="SignInPage">
+      <Typography>Sign In screen</Typography>
       <Button onClick={handleClickSignIn}>Sign in</Button>
     </Box>
   );

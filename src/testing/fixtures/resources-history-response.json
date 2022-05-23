@@ -1,0 +1,29 @@
+{
+  "game": "wl",
+  "query": "SELECT \"datetime\", 'ticket' AS resource, -operation_amount AS operation_amount, operation_current_amount, operation_category, operation_subcategory FROM log_economy_ticket_spending WHERE user_id = '3490372662197718489' AND datetime BETWEEN '2020-05-23T00:00:00' AND '2022-05-23T00:00:00';",
+  "header": [
+    "datetime",
+    "resource",
+    "operation_amount",
+    "operation_current_amount",
+    "operation_category",
+    "operation_subcategory"
+  ],
+  "result": [
+    ["2021-07-04T10:41:08Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-05T19:57:39Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-05T21:57:28Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-05T21:58:08Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-07T10:07:46Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-09T09:01:10Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-10T09:30:18Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-11T20:59:13Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-16T20:53:54Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-16T20:54:49Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-07-20T21:44:06Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-08-05T18:29:19Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-08-06T18:39:17Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2021-08-09T17:39:14Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
+    ["2022-03-25T08:53:10Z", "ticket", "-1", "0", "spinning_wheel", "Free"]
+  ]
+}

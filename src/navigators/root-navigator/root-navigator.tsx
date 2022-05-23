@@ -72,7 +72,7 @@ const CustomDrawer = styled(Drawer)(({ theme, open }) => ({
   }),
 }));
 
-const AuthenticatedNavigator = () => {
+const AppNavigator = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const projects = useSelector<RootState, Project[]>((state) => state.projects.projects);
@@ -131,10 +131,8 @@ const AuthenticatedNavigator = () => {
       <Container component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/resources-history" element={<ResourcesHistory />} />
-          <Route path="callback/cognito" element={<CognitoSignInCallback />} />
-          <Route path="logout" element={<CognitoSignOutCallback />} />
+          <Route path="/" element={<Home />} />
         </Routes>
       </Container>
     </Box>
@@ -158,10 +156,13 @@ export const RootNavigator = () => {
       }
     }
   }, [isAuthenticated, signInInProgress, signOutInProgress]);
+
   return (
     <Routes>
-      <Route path="sign-in" element={<SignIn />} />
-      <Route path="/*" element={<AuthenticatedNavigator />} />
+      <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/callback/cognito" element={<CognitoSignInCallback />} />
+      <Route path="/logout" element={<CognitoSignOutCallback />} />
+      <Route path="/*" element={<AppNavigator />} />
     </Routes>
   );
 };

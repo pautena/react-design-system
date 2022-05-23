@@ -1,5 +1,5 @@
 import React from "react";
-import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import {
   Drawer as MuiDrawer,
   DrawerProps as MuiDrawerProps,
@@ -34,7 +34,7 @@ export interface Tool {
   url: string;
 }
 
-const Tools: Tool[] = [
+export const Tools: Tool[] = [
   {
     id: "resources-history",
     name: "Resources History",
@@ -90,8 +90,13 @@ export const Drawer = ({
           <Select
             value={selectedProject?.id}
             label="Project"
+            placeholder="Project"
+            inputProps={{ "data-testid": "ProjectSelector" }}
             size="small"
-            onChange={(e) => onChangeSelectedProject(projects.find((p) => p.id === e.target.value))}
+            onChange={(e) => {
+              console.log("change project", e.target.value);
+              onChangeSelectedProject(projects.find((p) => p.id === e.target.value));
+            }}
             sx={{ mb: 1 }}
           >
             {projects.map((project) => (
@@ -103,6 +108,8 @@ export const Drawer = ({
           <Select
             value={selectedEnvironment?.id}
             label="Environment"
+            placeholder="Environment"
+            inputProps={{ "data-testid": "EnvironmentSelector" }}
             size="small"
             onChange={(e) =>
               onChangeSelectedEnvironment(environments.find((i) => i.id === e.target.value))

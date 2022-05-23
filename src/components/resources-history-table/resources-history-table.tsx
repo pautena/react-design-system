@@ -1,4 +1,4 @@
-import { ResourceEntry } from "../../features/user-resources/user-resources.types";
+import { ResourceEntry } from "../../features";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
 
@@ -22,15 +22,11 @@ const columns: GridColDef[] = [
 ];
 
 export const ResourcesHistoryTable = ({ resourceEntries }: Props) => {
-  const rows = resourceEntries.map((entry,index)=> ({...entry,id:index}));
+  const rows = resourceEntries.map((entry, index) => ({ ...entry, id: index }));
 
   return (
     <Box style={{ height: 650, width: "100%" }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={10}
-      />
+      <DataGrid rows={rows} columns={columns} pageSize={10} />
     </Box>
   );
 };
