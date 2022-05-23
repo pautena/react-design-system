@@ -7,6 +7,7 @@ import {
   projectsSlice,
   environmentsReducer,
   environmentsSlice,
+  userResourcesApi,
 } from "../features";
 import logger from "redux-logger";
 import {
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   [authSlice.name]: authReducer,
   [projectsSlice.name]: projectsReducer,
   [environmentsSlice.name]: environmentsReducer,
+  [userResourcesApi.reducerPath]: userResourcesApi.reducer,
 });
 
 const persistedReducer = persistReducer(
@@ -46,9 +48,9 @@ export const store = configureStore({
     });
 
     if (process.env.NODE_ENV === "development") {
-      return middleware.concat(logger);
+      return middleware.concat(logger).concat(userResourcesApi.middleware);
     }
-    return middleware;
+    return middleware.concat(userResourcesApi.middleware);
   },
 });
 
