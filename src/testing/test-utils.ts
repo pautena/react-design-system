@@ -1,8 +1,8 @@
 import { act, fireEvent, screen } from "./testing-library";
 import userEvent from "@testing-library/user-event";
 import { signInCallback, signOutCallback } from "../features";
-import projectsData from "../features/projects/projects-data.json";
-import environmentsData from "../features/environments/environments-data.json";
+import projectsData from "../features/projects/projects-slice/projects-data.json";
+import environmentsData from "../features/environments/environments-slice/environments-data.json";
 import { Auth } from "aws-amplify";
 
 export const Fixtures = {

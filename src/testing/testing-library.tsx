@@ -11,7 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
 import { authReducer, environmentsReducer, projectsReducer, userResourcesApi } from "../features";
-import { RootState } from "../store";
+import { RootState } from "../app/store";
 
 function createMockTheme() {
   return createTheme();
