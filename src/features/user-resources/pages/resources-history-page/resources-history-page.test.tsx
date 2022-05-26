@@ -7,7 +7,7 @@ import resourcesHistoryResponse from "../../../../testing/fixtures/resources-his
 import { Resources } from "../../user-resources.types";
 
 const MockResponseData = JSON.stringify(resourcesHistoryResponse);
-const MockEmptyResponseData = JSON.stringify({result:[]});
+const MockEmptyResponseData = JSON.stringify({ result: [] });
 
 describe("ResourcesHistoryPage", () => {
   const renderInstance = ({ data, error }: { data?: string; error?: Error } = {}) => {
@@ -25,9 +25,9 @@ describe("ResourcesHistoryPage", () => {
   };
 
   const assertResourcesAreDisplayed = async ({ start, end }: { start: number; end: number }) => {
-    const resources = resourcesHistoryResponse.result.slice(start, end)
+    const resources = resourcesHistoryResponse.result.slice(start, end);
 
-    for(let [date, resource, amount, increment, category, subcategory] of resources) {
+    for (let [date, resource, amount, increment, category, subcategory] of resources) {
       expect(await screen.findAllByText(date)).toBeTruthy();
       expect(await screen.findAllByText(resource)).toBeTruthy();
       expect(await screen.findAllByText(`${amount} (${increment})`)).toBeTruthy();
@@ -55,7 +55,6 @@ describe("ResourcesHistoryPage", () => {
     Actions.typeDate(screen.getByLabelText(/end date/i), "20/04/2022");
     await userEvent.click(screen.getByText(/search/i));
 
-
     expect(fetch.mock.calls.length).toEqual(Resources.length);
     Resources.forEach((_, index) => {
       expect(fetch.mock.calls[index][0]).toEqual(
@@ -65,7 +64,7 @@ describe("ResourcesHistoryPage", () => {
   });
 
   it("it should show the first 10 user resources", async () => {
-    const {container} =renderInstance({ data: MockResponseData });
+    const { container } = renderInstance({ data: MockResponseData });
 
     await userEvent.type(screen.getByLabelText(/user id/i), "user-id");
     Actions.typeDate(screen.getByLabelText(/start date/i), "20/04/2020");
@@ -86,11 +85,11 @@ describe("ResourcesHistoryPage", () => {
     await userEvent.click(screen.getByText(/search/i));
 
     await Actions.waitForLoadingIndicatorDisappear();
-    await waitFor(async ()=>{
+    await waitFor(async () => {
       await userEvent.click(screen.getByRole("button", { name: /next page/i }));
-    })
+    });
 
-   await assertResourcesAreDisplayed({ start: 10, end: 15 });
+    await assertResourcesAreDisplayed({ start: 10, end: 15 });
   });
 
   it("it should show a message if there is no result", async () => {

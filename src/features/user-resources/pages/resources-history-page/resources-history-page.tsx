@@ -58,7 +58,10 @@ export const ResourcesHistoryPage = () => {
       </Paper>
       {!result.isUninitialized && !result.isError && (
         <Box sx={{ pt: 2 }}>
-          <ResourcesHistoryTable resourceEntries={result.currentData || []} loading={result.isFetching} />
+          <ResourcesHistoryTable
+            resourceEntries={result.currentData || []}
+            loading={result.isFetching}
+          />
         </Box>
       )}
       <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={result.isError}>

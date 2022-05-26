@@ -1,4 +1,4 @@
-import { act, fireEvent, screen,waitForElementToBeRemoved } from "./testing-library";
+import { act, fireEvent, screen, waitForElementToBeRemoved } from "./testing-library";
 import userEvent from "@testing-library/user-event";
 import { signInCallback, signOutCallback } from "../features";
 import projectsData from "../features/projects/projects-slice/projects-data.json";
@@ -88,9 +88,12 @@ export const Mocks = {
 export const Actions = {
   openDrawer: async () => await userEvent.click(screen.getByTestId("MenuIcon")),
   closeDrawer: async () => await userEvent.click(screen.getByTestId("ChevronLeftIcon")),
-  selectOption: (selector: HTMLElement, value: string | number) => fireEvent.change(selector, { target: { value } }),
-  typeDate: (selector: HTMLElement, value: string) => fireEvent.change(selector, { target: { value } }),
-  waitForLoadingIndicatorDisappear: async () => await waitForElementToBeRemoved(()=>screen.getByRole("progressbar"))
+  selectOption: (selector: HTMLElement, value: string | number) =>
+    fireEvent.change(selector, { target: { value } }),
+  typeDate: (selector: HTMLElement, value: string) =>
+    fireEvent.change(selector, { target: { value } }),
+  waitForLoadingIndicatorDisappear: async () =>
+    await waitForElementToBeRemoved(() => screen.getByRole("progressbar")),
 };
 
 export const Assertions = {
