@@ -14,6 +14,7 @@ interface GetUserResourceArgs {
 
 export const userResourcesApi = createApi({
   reducerPath: "userResourcesApi",
+  keepUnusedDataFor:0,
   baseQuery: async ({ queryAlias, queryAliases, params }, { getState }) => {
     const session = await Auth.currentSession();
     const project = (getState() as any).projects.selectedProject as Project;

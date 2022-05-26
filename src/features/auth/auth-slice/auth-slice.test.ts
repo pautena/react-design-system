@@ -4,8 +4,6 @@ import { Auth } from "aws-amplify";
 import { CognitoIdentityProvider } from "../../../configs/aws";
 import { Fixtures, StoreFixtures } from "../../../testing/test-utils";
 
-jest.mock("aws-amplify");
-
 describe("Auth slice", () => {
   describe("signIn", () => {
     describe("when is dispatched", () => {

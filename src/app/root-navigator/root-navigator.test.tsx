@@ -12,8 +12,6 @@ import {
 } from "../../testing/test-utils";
 import { Tools } from "../../common/components";
 
-jest.mock("aws-amplify");
-
 const renderInstance = ({
   preloadedState = StoreFixtures.initializedStore,
 }: { preloadedState?: MockPreloadedState } = {}) => {

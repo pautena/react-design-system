@@ -5,15 +5,6 @@ import resourcesHistoryResponse from "../../../testing/fixtures/resources-histor
 import { Resources } from "../user-resources.types";
 import { StoreFixtures } from "../../../testing/test-utils";
 
-jest.mock("aws-amplify", () => ({
-  Auth: {
-    currentSession: () => ({
-      getIdToken: () => ({
-        getJwtToken: () => "fake-jwt-token",
-      }),
-    }),
-  },
-}));
 const MockResponseData = JSON.stringify(resourcesHistoryResponse);
 
 describe("User resources API", () => {
@@ -48,6 +39,7 @@ describe("User resources API", () => {
         const [_, result] = renderResult.result.current;
 
         expect(result.isLoading).toBeTruthy();
+        expect(result.isFetching).toBeTruthy();
       });
 
       it("makes one http call to brain for each Resource", async () => {

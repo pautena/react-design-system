@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Typography, Paper, TextField, Button } from "@mui/material";
+import { Box, Typography, Paper, TextField, Button, Snackbar, Alert } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import moment from "moment";
 import { useLazyGetUserResourcesQuery } from "../../..";
@@ -7,20 +7,18 @@ import { ResourcesHistoryTable } from "../../../../common/components";
 
 export const ResourcesHistoryPage = () => {
   const [trigger, result] = useLazyGetUserResourcesQuery();
-  const [userId, setUserId] = useState<string | undefined>();
+  const [userId, setUserId] = useState<string>("");
+  const [startDate, setStartDate] = useState<Date | null>(moment().subtract(1, "month").toDate());
+  const [endDate, setEndDate] = useState<Date | null>(moment().toDate());
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const userId = data.get("userId")?.toString();
-    const start = data.get("start")?.toString();
-    const end = data.get("end")?.toString();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-    if (userId && start && end) {
+    if (userId && startDate && endDate) {
       trigger({
         userId,
-        start,
-        end,
+        start: startDate.toString(),
+        end: endDate.toString(),
       });
       setUserId(userId);
     }
@@ -36,38 +34,38 @@ export const ResourcesHistoryPage = () => {
             label="User ID"
             variant="outlined"
             name="userId"
-            value="3490372662197718489"
+            value={userId}
+            onChange={(e) => setUserId(e.target.value)}
           />
           <DatePicker
             label="Start Date"
-            value={moment().subtract(2, "year")}
-            onChange={() => {}}
+            inputFormat="DD/MM/YYYY"
+            value={startDate}
+            onChange={setStartDate}
             renderInput={(params) => <TextField {...params} name="start" sx={{ mx: 2 }} />}
           />
           <DatePicker
             label="End Date"
-            value={moment()}
-            onChange={() => {}}
+            inputFormat="DD/MM/YYYY"
+            value={endDate}
+            onChange={setEndDate}
             renderInput={(params) => <TextField name="end" {...params} />}
           />
-          <Button variant="contained" type="submit" sx={{ ml: 2 }}>
+          <Button variant="contained" type="submit" sx={{ ml: 2 }} disabled={!userId}>
             Search
           </Button>
         </Box>
       </Paper>
-      {userId && (
+      {!result.isUninitialized && !result.isError && (
         <Box sx={{ pt: 2 }}>
-          <Typography variant="h6">User: {userId}</Typography>
-          <Typography>
-            Query status: {result.isUninitialized && `Uninitialized`}
-            {result.isLoading && `loading`}
-            {result.isSuccess && `success`}
-            {result.isError && `error`}
-          </Typography>
-          {result.isError && <Typography>Query error: {JSON.stringify(result.error)}</Typography>}
-          {result.isSuccess && <ResourcesHistoryTable resourceEntries={result.data} />}
+          <ResourcesHistoryTable resourceEntries={result.currentData || []} loading={result.isFetching} />
         </Box>
       )}
+      <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={result.isError}>
+        <Alert severity="error" sx={{ width: "100%" }}>
+          {(result.error as Error)?.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

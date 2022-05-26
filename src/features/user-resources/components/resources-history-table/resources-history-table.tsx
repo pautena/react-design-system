@@ -1,9 +1,10 @@
-import { ResourceEntry } from "../../..";
+import { ResourceEntry } from "../../user-resources.types";
 import { DataGrid, GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
 import { Box } from "@mui/material";
 
 interface Props {
   resourceEntries: ResourceEntry[];
+  loading: boolean;
 }
 
 const columns: GridColDef[] = [
@@ -21,12 +22,20 @@ const columns: GridColDef[] = [
   { field: "subcategory", headerName: "Subcategory", width: 200 },
 ];
 
-export const ResourcesHistoryTable = ({ resourceEntries }: Props) => {
+export const ResourcesHistoryTable = ({ resourceEntries, loading }: Props) => {
   const rows = resourceEntries.map((entry, index) => ({ ...entry, id: index }));
 
   return (
     <Box style={{ height: 650, width: "100%" }}>
-      <DataGrid rows={rows} columns={columns} pageSize={10} />
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={10}
+        loading={loading}
+        rowsPerPageOptions={[10]}
+        columnBuffer={columns.length}
+        rowBuffer={10}
+      />
     </Box>
   );
 };

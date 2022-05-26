@@ -11,19 +11,19 @@
   ],
   "result": [
     ["2021-07-04T10:41:08Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-05T19:57:39Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-05T21:57:28Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-05T21:58:08Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-07T10:07:46Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-09T09:01:10Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-10T09:30:18Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-11T20:59:13Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-16T20:53:54Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-16T20:54:49Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-07-20T21:44:06Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-08-05T18:29:19Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-08-06T18:39:17Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2021-08-09T17:39:14Z", "ticket", "-1", "0", "spinning_wheel", "Free"],
-    ["2022-03-25T08:53:10Z", "ticket", "-1", "0", "spinning_wheel", "Free"]
+    ["2021-07-05T19:57:39Z", "ticket", "1", "15", "spinning_wheel", "Free"],
+    ["2021-07-06T21:57:28Z", "ticket", "-2", "16", "spinning_wheel", "Free"],
+    ["2021-07-07T21:58:08Z", "ticket", "-3", "17", "spinning_wheel", "Free"],
+    ["2021-07-08T10:07:46Z", "ticket", "-4", "18", "spinning_wheel", "Free"],
+    ["2021-07-09T09:01:10Z", "ticket", "-5", "19", "spinning_wheel", "Free"],
+    ["2021-07-10T09:30:18Z", "ticket", "-6", "20", "spinning_wheel", "Free"],
+    ["2021-07-11T20:59:13Z", "ticket", "-7", "21", "spinning_wheel", "Free"],
+    ["2021-07-16T20:53:54Z", "ticket", "-8", "22", "spinning_wheel", "Free"],
+    ["2021-07-17T20:54:49Z", "ticket", "-9", "23", "spinning_wheel", "Free"],
+    ["2021-07-20T21:44:06Z", "ticket", "-10", "24", "spinning_wheel", "Free"],
+    ["2021-08-05T18:29:19Z", "ticket", "-11", "25", "spinning_wheel", "Free"],
+    ["2021-08-06T18:39:17Z", "ticket", "-12", "26", "spinning_wheel", "Free"],
+    ["2021-08-09T17:39:14Z", "ticket", "-13", "27", "spinning_wheel", "Free"],
+    ["2022-03-25T08:53:10Z", "ticket", "-14", "28", "spinning_wheel", "Free"]
   ]
 }

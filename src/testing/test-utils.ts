@@ -1,4 +1,4 @@
-import { act, fireEvent, screen } from "./testing-library";
+import { act, fireEvent, screen,waitForElementToBeRemoved } from "./testing-library";
 import userEvent from "@testing-library/user-event";
 import { signInCallback, signOutCallback } from "../features";
 import projectsData from "../features/projects/projects-slice/projects-data.json";
@@ -19,6 +19,10 @@ export const Fixtures = {
     id: "test-user-id",
     username: "testUser",
     email: "test@example.com",
+  },
+  errorUserNotFound: {
+    name: "user-not-found",
+    message: "There is no user with that id",
   },
 };
 
@@ -84,9 +88,9 @@ export const Mocks = {
 export const Actions = {
   openDrawer: async () => await userEvent.click(screen.getByTestId("MenuIcon")),
   closeDrawer: async () => await userEvent.click(screen.getByTestId("ChevronLeftIcon")),
-  selectOption: (selector: HTMLElement, value: string | number) => {
-    fireEvent.change(selector, { target: { value } });
-  },
+  selectOption: (selector: HTMLElement, value: string | number) => fireEvent.change(selector, { target: { value } }),
+  typeDate: (selector: HTMLElement, value: string) => fireEvent.change(selector, { target: { value } }),
+  waitForLoadingIndicatorDisappear: async () => await waitForElementToBeRemoved(()=>screen.getByRole("progressbar"))
 };
 
 export const Assertions = {
@@ -101,4 +105,5 @@ export const Assertions = {
     expect(screen.getByText(/inbox/i)).not.toBeVisible();
     expect(screen.getByTestId("MenuIcon")).toBeVisible();
   },
+  loadingIndicatorIsVisible: () => expect(screen.getByRole("progressbar")).toBeVisible(),
 };
