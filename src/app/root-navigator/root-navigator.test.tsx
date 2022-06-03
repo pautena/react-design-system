@@ -1,4 +1,4 @@
-import { RootNavigator } from "./root-navigator";
+import { RootNavigator,tools } from "./root-navigator";
 import { MockPreloadedState, render, screen, waitFor } from "../../testing/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Auth } from "aws-amplify";
@@ -10,7 +10,6 @@ import {
   Fixtures,
   Mocks,
 } from "../../testing/test-utils";
-import { Tools } from "../../common/components";
 
 const renderInstance = ({
   preloadedState = StoreFixtures.initializedStore,
@@ -102,7 +101,7 @@ describe("Navigation drawer", () => {
   });
 
   describe("tools list items", () => {
-    it.each(Tools.map((tool) => [tool.url, tool.name]))(
+    it.each(tools.flat().map((tool) => [tool.url, tool.name]))(
       "should redirect to %s page when the %s tool item is clicked",
       async (url: string, name: string) => {
         const { history } = renderInstance();

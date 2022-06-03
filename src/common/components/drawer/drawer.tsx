@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import {
   Drawer as MuiDrawer,
@@ -18,13 +18,15 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { Environment, Project } from "../../../features";
+import { Environment, Project } from "features";
 import DiamondIcon from "@mui/icons-material/Diamond";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const drawerWidth = 240;
 
 const ToolsIcons = {
   diamond: () => <DiamondIcon />,
+  book: ()=> <MenuBookIcon/>
 };
 
 export interface Tool {
@@ -33,15 +35,6 @@ export interface Tool {
   icon: keyof typeof ToolsIcons;
   url: string;
 }
-
-export const Tools: Tool[] = [
-  {
-    id: "resources-history",
-    name: "Resources History",
-    icon: "diamond",
-    url: "/resources-history",
-  },
-];
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -53,6 +46,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export interface DrawerProps extends MuiDrawerProps {
   open: boolean;
+  tools: Tool[][];
   projects: Project[];
   selectedProject?: Project;
   environments: Environment[];
@@ -66,6 +60,7 @@ export interface DrawerProps extends MuiDrawerProps {
 export const Drawer = ({
   open,
   projects,
+  tools,
   selectedProject,
   environments,
   selectedEnvironment,
@@ -123,56 +118,36 @@ export const Drawer = ({
           </Select>
         </Box>
       )}
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {Tools.map((tool) => (
-          <ListItem key={tool.id} disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              onClick={() => onClickTool(tool)}
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                }}
-              >
-                {ToolsIcons[tool.icon]()}
-              </ListItemIcon>
-              <ListItemText primary={tool.name} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      {tools.map((toolsGroup, index) => (
+        <List key={index}>
+          {toolsGroup.map((tool, toolIndex) => (
+            <Fragment key={tool.id}>
+              <ListItem disablePadding sx={{ display: "block" }}>
+                <ListItemButton
+                  onClick={() => onClickTool(tool)}
+                  sx={{
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
+                  }}
+                >
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {ToolsIcons[tool.icon]()}
+                  </ListItemIcon>
+                  <ListItemText primary={tool.name} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+              {toolIndex === toolsGroup.length - 1 && <Divider />}
+            </Fragment>
+          ))}
+        </List>
+      ))}
     </MuiDrawer>
   );
 };

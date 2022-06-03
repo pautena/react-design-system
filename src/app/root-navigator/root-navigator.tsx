@@ -3,18 +3,41 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../store";
-import { AppBar, AppBarProps, Drawer, Tool } from "../../common/components";
-import { Environment, Project, selectProject, signOut, selectEnvironment } from "../../features";
+import { AppDispatch, RootState } from "app/store";
+import { AppBar, AppBarProps, Drawer, Tool } from "common/components";
+import { Project, selectProject } from "features/projects";
+import { Environment, selectEnvironment } from "features";
+import { signOut } from "features/auth";
 import CssBaseline from "@mui/material/CssBaseline";
-import { HomePage } from "../../common/pages/home-page";
-import { ResourcesHistoryPage } from "../../features/user-resources/pages/resources-history-page";
+import { HomePage } from "common/pages/home-page";
+import { ResourcesHistoryPage } from "features/user-resources";
 import {
   CognitoSignInCallbackPage,
   CognitoSignOutCallbackPage,
   SignInGooglePage,
   SignInPage,
-} from "../../features/auth/pages";
+} from "features/auth/pages";
+import { GamedexPage } from "features/gamedex";
+
+const toolsGroup1: Tool[] = [
+  {
+    id: "gamedex",
+    name: "Gamedex",
+    icon: "book",
+    url: "/gamedex",
+  },
+];
+
+const toolsGroup2: Tool[] = [
+  {
+    id: "resources-history",
+    name: "Resources History",
+    icon: "diamond",
+    url: "/resources-history",
+  },
+];
+
+export const tools: Tool[][] = [toolsGroup1, toolsGroup2];
 
 const drawerWidth = 240;
 
@@ -124,6 +147,7 @@ const AppNavigator = () => {
       />
       <CustomDrawer
         variant="permanent"
+        tools={tools}
         projects={projects}
         selectedProject={selectedProject}
         environments={environments}
@@ -138,6 +162,7 @@ const AppNavigator = () => {
         <DrawerHeader />
         <Routes>
           <Route path="/resources-history" element={<ResourcesHistoryPage />} />
+          <Route path="/gamedex" element={<GamedexPage />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
       </Container>
