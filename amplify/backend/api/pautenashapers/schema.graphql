@@ -1,0 +1,74 @@
+input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
+
+type Project @model {
+  id: ID!
+  title: String!
+  codeName: String!
+  studio: String!
+  status: ProjectStatus!
+  users: [Users]!
+  repository: String!
+  configRepo: String
+  repoStatus: RepoStatus!
+  mainLibrary: MainLibrary!
+  configManager: String!
+  grpc: Grpc!
+  services: Services!
+  deploy: Deploy!
+  notes: String
+}
+
+type Services {
+  sprocket: Boolean!
+  sqs: Boolean!
+  tournaments: Boolean!
+  hermes: Boolean!
+  leaderboard: Boolean!
+  friends: Boolean!
+  presence: Boolean!
+  teams: Boolean!
+  groups: Boolean!
+  auth: Boolean!
+  devCharts: Boolean!
+}
+
+enum ProjectStatus {
+  Worldlaunched
+  Development
+  TBKilledKissflowWIP
+  TBKilled
+  Killed
+}
+
+enum Users {
+  IOS
+  Android
+  Amazon
+  Windows
+  GameJam
+}
+
+enum RepoStatus {
+  Internal
+  Private
+  InternalArchived
+  NotKnown
+}
+
+enum MainLibrary {
+  Base
+  RdBackendPhp
+  Emerald
+}
+
+enum Grpc {
+  None
+  Mixed
+  Full
+}
+
+enum Deploy {
+  Postman
+  GithubActions
+  Concourse
+}

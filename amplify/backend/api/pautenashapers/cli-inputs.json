@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "pautenashapers",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/pau.tena/Workspace/backend-services-shapers-toolbox/amplify/backend/api/pautenashapers/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authpautenashapers7191dad6"
+    }
+  }
+}

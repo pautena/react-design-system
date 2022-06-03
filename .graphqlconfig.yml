@@ -1,0 +1,12 @@
+projects:
+  pautenashapers:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/app/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/app/api.ts
+        docsFilePath: src/app/graphql
