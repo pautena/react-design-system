@@ -1,5 +1,12 @@
 import { createMockStore, waitFor } from "../../../testing/testing-library";
-import { signIn, signInCallback, signOut, signOutCallback } from "./auth-slice";
+import {
+  setGoogleAccessToken,
+  setSignInGoogleError,
+  signIn,
+  signInCallback,
+  signOut,
+  signOutCallback,
+} from "./auth-slice";
 import { Auth } from "aws-amplify";
 import { CognitoIdentityProvider } from "../../../configs/aws";
 import { Fixtures, StoreFixtures } from "../../../testing/test-utils";
@@ -99,6 +106,32 @@ describe("Auth slice", () => {
       expect(store.getState().auth.profile).toBeUndefined();
       expect(store.getState().auth.isAuthenticated).toBeFalsy();
       expect(store.getState().auth.signOutInProgress).toBeFalsy();
+    });
+  });
+
+  describe("setGoogleAccessToken", () => {
+    it("changes the state correctly", () => {
+      const store = createMockStore({
+        preloadedState: StoreFixtures.initializedGoogleUnauthenticatedStore,
+      });
+      store.dispatch(setGoogleAccessToken("google-access-token"));
+
+      expect(store.getState().auth.isGoogleAuthenticated).toBeTruthy();
+      expect(store.getState().auth.googleAccessToken).toBe("google-access-token");
+      expect(store.getState().auth.signInGoogleError).toBeUndefined();
+    });
+  });
+
+  describe("setSignInGoogleError", () => {
+    it("changes the state correctly", () => {
+      const store = createMockStore({
+        preloadedState: StoreFixtures.initializedGoogleUnauthenticatedStore,
+      });
+      store.dispatch(setSignInGoogleError(Fixtures.dummyError));
+
+      expect(store.getState().auth.isGoogleAuthenticated).toBeFalsy();
+      expect(store.getState().auth.googleAccessToken).toBeUndefined();
+      expect(store.getState().auth.signInGoogleError).toStrictEqual(Fixtures.dummyError);
     });
   });
 });

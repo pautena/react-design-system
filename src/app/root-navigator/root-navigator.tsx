@@ -12,6 +12,7 @@ import { ResourcesHistoryPage } from "../../features/user-resources/pages/resour
 import {
   CognitoSignInCallbackPage,
   CognitoSignOutCallbackPage,
+  SignInGooglePage,
   SignInPage,
 } from "../../features/auth/pages";
 
@@ -147,6 +148,9 @@ const AppNavigator = () => {
 export const RootNavigator = () => {
   const navigate = useNavigate();
   const isAuthenticated = useSelector<RootState, boolean>((state) => state.auth.isAuthenticated);
+  const isGoogleAuthenticated = useSelector<RootState, boolean>(
+    (state) => state.auth.isGoogleAuthenticated,
+  );
   const signInInProgress = useSelector<RootState, boolean>((state) => state.auth.signInInProgress);
   const signOutInProgress = useSelector<RootState, boolean>(
     (state) => state.auth.signOutInProgress,
@@ -160,11 +164,16 @@ export const RootNavigator = () => {
         navigate("/sign-in");
       }
     }
-  }, [isAuthenticated, signInInProgress, signOutInProgress]);
+
+    if (isAuthenticated && !isGoogleAuthenticated) {
+      navigate("/sign-in/google");
+    }
+  }, [isAuthenticated, signInInProgress, signOutInProgress, isGoogleAuthenticated]);
 
   return (
     <Routes>
       <Route path="/sign-in" element={<SignInPage />} />
+      <Route path="/sign-in/google" element={<SignInGooglePage />} />
       <Route path="/callback/cognito" element={<CognitoSignInCallbackPage />} />
       <Route path="/logout" element={<CognitoSignOutCallbackPage />} />
       <Route path="/*" element={<AppNavigator />} />

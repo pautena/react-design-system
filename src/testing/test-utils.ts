@@ -24,6 +24,10 @@ export const Fixtures = {
     name: "user-not-found",
     message: "There is no user with that id",
   },
+  dummyError: {
+    name: "dummy-error",
+    message: "this is a dummy error",
+  },
 };
 
 export const StoreActions = {
@@ -39,36 +43,44 @@ export const StoreActions = {
   },
 };
 
+const initializedStore = {
+  projects: {
+    projects: Fixtures.projects,
+    selectedProject: Fixtures.project,
+  },
+  environments: {
+    environments: Fixtures.environments,
+    selectedEnvironment: Fixtures.environment,
+  },
+  auth: {
+    isAuthenticated: true,
+    signInInProgress: false,
+    signOutInProgress: false,
+    profile: Fixtures.profile,
+    isGoogleAuthenticated: true,
+    googleAccessToken: "google-access-token",
+  },
+};
+
 export const StoreFixtures = {
-  initializedStore: {
-    projects: {
-      projects: Fixtures.projects,
-      selectedProject: Fixtures.project,
+  initializedStore,
+  initializedUnauthenticatedStore: {
+    ...initializedStore,
+    auth: {
+      isAuthenticated: false,
+      isGoogleAuthenticated: false,
+      signInInProgress: false,
+      signOutInProgress: false,
     },
-    environments: {
-      environments: Fixtures.environments,
-      selectedEnvironment: Fixtures.environment,
-    },
+  },
+  initializedGoogleUnauthenticatedStore: {
+    ...initializedStore,
     auth: {
       isAuthenticated: true,
       signInInProgress: false,
       signOutInProgress: false,
       profile: Fixtures.profile,
-    },
-  },
-  initializedUnauthenticatedStore: {
-    projects: {
-      projects: Fixtures.projects,
-      selectedProject: Fixtures.project,
-    },
-    environments: {
-      environments: Fixtures.environments,
-      selectedEnvironment: Fixtures.environment,
-    },
-    auth: {
-      isAuthenticated: false,
-      signInInProgress: false,
-      signOutInProgress: false,
+      isGoogleAuthenticated: false,
     },
   },
   selectedProjectsSlice: {
@@ -99,6 +111,7 @@ export const Actions = {
 export const Assertions = {
   isInSignInPage: () => expect(screen.getByTestId("SignInPage")).toBeInTheDocument(),
   isInHomePage: () => expect(screen.getByTestId("HomePage")).toBeInTheDocument(),
+  isInSignInGooglePage: () => expect(screen.getByTestId("SignInGooglePage")).toBeInTheDocument(),
   isDrawerOpened: () => {
     expect(screen.getByText(/inbox/i)).toBeVisible();
     expect(screen.getByTestId("MenuIcon")).not.toBeVisible();

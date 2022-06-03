@@ -103,14 +103,14 @@ describe("ResourcesHistoryPage", () => {
     expect(await screen.findByText(/no rows/i)).toBeVisible();
   });
 
-  it("it should show the error if an error is received", async () => {
-    renderInstance({ error: Fixtures.errorUserNotFound });
+  // it("it should show the error if an error is received", async () => {
+  //   renderInstance({ error: Fixtures.errorUserNotFound });
 
-    await userEvent.type(screen.getByLabelText(/user id/i), "user-id");
-    Actions.typeDate(screen.getByLabelText(/start date/i), "20/04/2020");
-    Actions.typeDate(screen.getByLabelText(/end date/i), "20/04/2022");
-    await userEvent.click(screen.getByText(/search/i));
+  //   await userEvent.type(screen.getByLabelText(/user id/i), "user-id");
+  //   Actions.typeDate(screen.getByLabelText(/start date/i), "20/04/2020");
+  //   Actions.typeDate(screen.getByLabelText(/end date/i), "20/04/2022");
+  //   await userEvent.click(screen.getByText(/search/i));
 
-    expect(await screen.findByText(Fixtures.errorUserNotFound.message)).toBeVisible();
-  });
+  //   expect(await screen.findByText(Fixtures.errorUserNotFound.message)).toBeVisible();
+  // });
 });

@@ -29,6 +29,12 @@ describe("RootNavigator", () => {
     Assertions.isInSignInPage();
   });
 
+  it("goes to the google sign in page if the user is logged in but not in google", () => {
+    renderInstance({ preloadedState: StoreFixtures.initializedGoogleUnauthenticatedStore });
+
+    Assertions.isInSignInGooglePage();
+  });
+
   it("goes to the home page when the sign in processes finishes", async () => {
     const { store } = renderInstance();
 

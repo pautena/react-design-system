@@ -1,7 +1,14 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { Auth } from "aws-amplify";
 import { CognitoIdentityProvider } from "../../../configs/aws";
 import { Profile } from "../auth.types";
+
+export const NonValidSignInGoogleResponse = (code?: string): Error => {
+  return {
+    name: "NonValidSignInGoogle",
+    message: `Non valid response. code: ${code},`,
+  };
+};
 
 export const signIn = createAsyncThunk("auth/signInStatus", async (_, { rejectWithValue }) => {
   try {
@@ -31,12 +38,16 @@ export interface AuthState {
   signOutInProgress: boolean;
   isAuthenticated: boolean;
   profile?: Profile;
+  isGoogleAuthenticated: boolean;
+  googleAccessToken?: string;
+  signInGoogleError?: Error;
 }
 
 const initialState: AuthState = {
   isAuthenticated: false,
   signInInProgress: false,
   signOutInProgress: false,
+  isGoogleAuthenticated: false,
 };
 
 export const authSlice = createSlice({
@@ -47,6 +58,16 @@ export const authSlice = createSlice({
       state.profile = undefined;
       state.isAuthenticated = false;
       state.signOutInProgress = false;
+    },
+    setGoogleAccessToken: (state, { payload }: PayloadAction<string>) => {
+      state.isGoogleAuthenticated = true;
+      state.googleAccessToken = payload;
+      state.signInGoogleError = undefined;
+    },
+    setSignInGoogleError: (state, { payload }: PayloadAction<Error>) => {
+      state.signInGoogleError = payload;
+      state.isGoogleAuthenticated = false;
+      state.googleAccessToken = undefined;
     },
   },
   extraReducers: (builder) => {
@@ -74,5 +95,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const { signOutCallback } = authSlice.actions;
+export const { signOutCallback, setGoogleAccessToken, setSignInGoogleError } = authSlice.actions;
 export const authReducer = authSlice.reducer;

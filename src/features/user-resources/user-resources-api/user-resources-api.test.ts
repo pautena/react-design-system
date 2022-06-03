@@ -86,7 +86,10 @@ describe("User resources API", () => {
       await waitFor(() => {
         const [_, result] = renderResult.result.current;
         expect(result.isError).toBeTruthy();
-        expect(result.error).toStrictEqual(error);
+        expect(result.error).toStrictEqual({
+          error: error.message,
+          status: "FETCH_ERROR",
+        });
       });
     });
   });
