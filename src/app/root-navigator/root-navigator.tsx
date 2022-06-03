@@ -5,19 +5,18 @@ import { Box, Container } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "app/store";
 import { AppBar, AppBarProps, Drawer, Tool } from "common/components";
-import { Project, selectProject } from "features/projects";
+import { Project, selectProject,ProjectsListPage,AddProjectPage } from "features/projects";
 import { Environment, selectEnvironment } from "features";
 import CssBaseline from "@mui/material/CssBaseline";
 import { HomePage } from "common/pages/home-page";
 import { ResourcesHistoryPage } from "features/user-resources";
-import { GamedexPage } from "features/gamedex";
 
 const toolsGroup1: Tool[] = [
   {
     id: "gamedex",
     name: "Gamedex",
     icon: "book",
-    url: "/gamedex",
+    url: "/projects",
   },
 ];
 
@@ -157,7 +156,8 @@ const AppNavigator = () => {
         <DrawerHeader />
         <Routes>
           <Route path="/resources-history" element={<ResourcesHistoryPage />} />
-          <Route path="/gamedex" element={<GamedexPage />} />
+          <Route path="/projects" element={<ProjectsListPage />} />
+          <Route path="/projects/add" element={<AddProjectPage />} />
           <Route path="/" element={<HomePage />} />
         </Routes>
       </Container>
