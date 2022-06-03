@@ -38,11 +38,7 @@ export const getProject = /* GraphQL */ `
   }
 `;
 export const listProjects = /* GraphQL */ `
-  query ListProjects(
-    $filter: ModelProjectFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListProjects($filter: ModelProjectFilterInput, $limit: Int, $nextToken: String) {
     listProjects(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id

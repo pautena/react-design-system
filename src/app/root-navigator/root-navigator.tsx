@@ -5,7 +5,7 @@ import { Box, Container } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "app/store";
 import { AppBar, AppBarProps, Drawer, Tool } from "common/components";
-import { Project, selectProject,ProjectsListPage,AddProjectPage } from "features/projects";
+import { Project, selectProject, ProjectsListPage, AddProjectPage } from "features/projects";
 import { Environment, selectEnvironment } from "features";
 import CssBaseline from "@mui/material/CssBaseline";
 import { HomePage } from "common/pages/home-page";

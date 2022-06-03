@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const ProjectsListPage = () => {
   const navigate = useNavigate();
 
-  const handleNewProject = ()=> navigate('/projects/add');
+  const handleNewProject = () => navigate("/projects/add");
   return (
     <Box>
       <Typography variant="h4">ProjectsListPage</Typography>
