@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import { Box, Container } from "@mui/material";
@@ -7,16 +7,9 @@ import { AppDispatch, RootState } from "app/store";
 import { AppBar, AppBarProps, Drawer, Tool } from "common/components";
 import { Project, selectProject } from "features/projects";
 import { Environment, selectEnvironment } from "features";
-import { signOut } from "features/auth";
 import CssBaseline from "@mui/material/CssBaseline";
 import { HomePage } from "common/pages/home-page";
 import { ResourcesHistoryPage } from "features/user-resources";
-import {
-  CognitoSignInCallbackPage,
-  CognitoSignOutCallbackPage,
-  SignInGooglePage,
-  SignInPage,
-} from "features/auth/pages";
 import { GamedexPage } from "features/gamedex";
 
 const toolsGroup1: Tool[] = [
@@ -143,7 +136,9 @@ const AppNavigator = () => {
         position="fixed"
         open={open}
         onClickDrawerMenu={handleDrawerOpen}
-        onClickSignOut={() => dispatch(signOut())}
+        onClickSignOut={() => {
+          /* TODO */
+        }}
       />
       <CustomDrawer
         variant="permanent"
@@ -172,35 +167,9 @@ const AppNavigator = () => {
 
 export const RootNavigator = () => {
   const navigate = useNavigate();
-  const isAuthenticated = useSelector<RootState, boolean>((state) => state.auth.isAuthenticated);
-  const isGoogleAuthenticated = useSelector<RootState, boolean>(
-    (state) => state.auth.isGoogleAuthenticated,
-  );
-  const signInInProgress = useSelector<RootState, boolean>((state) => state.auth.signInInProgress);
-  const signOutInProgress = useSelector<RootState, boolean>(
-    (state) => state.auth.signOutInProgress,
-  );
-
-  useEffect(() => {
-    if (!signInInProgress && !signOutInProgress) {
-      if (isAuthenticated) {
-        navigate("/");
-      } else {
-        navigate("/sign-in");
-      }
-    }
-
-    if (isAuthenticated && !isGoogleAuthenticated) {
-      navigate("/sign-in/google");
-    }
-  }, [isAuthenticated, signInInProgress, signOutInProgress, isGoogleAuthenticated]);
 
   return (
     <Routes>
-      <Route path="/sign-in" element={<SignInPage />} />
-      <Route path="/sign-in/google" element={<SignInGooglePage />} />
-      <Route path="/callback/cognito" element={<CognitoSignInCallbackPage />} />
-      <Route path="/logout" element={<CognitoSignOutCallbackPage />} />
       <Route path="/*" element={<AppNavigator />} />
     </Routes>
   );

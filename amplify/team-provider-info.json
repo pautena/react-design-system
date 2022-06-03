@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-pautenashapers-dev-114727-authRole",
+      "UnauthRoleArn": "arn:aws:iam::040076155069:role/amplify-pautenashapers-dev-114727-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::040076155069:role/amplify-pautenashapers-dev-114727-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-pautenashapers-dev-114727-deployment",
+      "UnauthRoleName": "amplify-pautenashapers-dev-114727-unauthRole",
+      "StackName": "amplify-pautenashapers-dev-114727",
+      "StackId": "arn:aws:cloudformation:us-east-1:040076155069:stack/amplify-pautenashapers-dev-114727/2f4e3310-e322-11ec-bf55-0e88c4b1d3cf",
+      "AmplifyAppId": "d25eh83oryc7jl"
+    },
+    "categories": {
+      "auth": {
+        "pautenashapers7191dad6": {}
+      }
+    }
+  }
+}

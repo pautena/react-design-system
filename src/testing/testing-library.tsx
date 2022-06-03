@@ -1,16 +1,16 @@
 import { render, RenderOptions } from "@testing-library/react";
-import { MemoryRouter, Router } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { createMemoryHistory, MemoryHistory } from "history";
 import React, { PropsWithChildren, ReactElement, useLayoutEffect, useState } from "react";
 import { ThemeProvider } from "@emotion/react";
-import { Theme, createTheme } from "@mui/material";
+import { createTheme } from "@mui/material";
 import { renderHook } from "@testing-library/react-hooks";
-import { CombinedState, configureStore, PreloadedState } from "@reduxjs/toolkit";
+import { configureStore, PreloadedState } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 
-import { authReducer, environmentsReducer, projectsReducer, userResourcesApi } from "../features";
+import { environmentsReducer, projectsReducer, userResourcesApi } from "../features";
 import { RootState } from "../app/store";
 
 function createMockTheme() {
@@ -23,7 +23,6 @@ export function createMockStore({
 }: { preloadedState?: MockPreloadedState } = {}) {
   const store = configureStore({
     reducer: {
-      auth: authReducer,
       environments: environmentsReducer,
       projects: projectsReducer,
       [userResourcesApi.reducerPath]: userResourcesApi.reducer,

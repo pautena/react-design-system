@@ -1,6 +1,5 @@
 import { act, fireEvent, screen, waitForElementToBeRemoved } from "./testing-library";
 import userEvent from "@testing-library/user-event";
-import { signInCallback, signOutCallback } from "../features";
 import projectsData from "../features/projects/projects-slice/projects-data.json";
 import environmentsData from "../features/environments/environments-slice/environments-data.json";
 import { Auth } from "aws-amplify";
@@ -15,11 +14,6 @@ export const Fixtures = {
     username: "testUser",
     attributes: { email: "test@example.com" },
   },
-  profile: {
-    id: "test-user-id",
-    username: "testUser",
-    email: "test@example.com",
-  },
   errorUserNotFound: {
     name: "user-not-found",
     message: "There is no user with that id",
@@ -27,19 +21,6 @@ export const Fixtures = {
   dummyError: {
     name: "dummy-error",
     message: "this is a dummy error",
-  },
-};
-
-export const StoreActions = {
-  signIn: async (store: any) => {
-    await act(() => {
-      store.dispatch(signInCallback());
-    });
-  },
-  signOut: async (store: any) => {
-    await act(() => {
-      store.dispatch(signOutCallback());
-    });
   },
 };
 
@@ -52,37 +33,10 @@ const initializedStore = {
     environments: Fixtures.environments,
     selectedEnvironment: Fixtures.environment,
   },
-  auth: {
-    isAuthenticated: true,
-    signInInProgress: false,
-    signOutInProgress: false,
-    profile: Fixtures.profile,
-    isGoogleAuthenticated: true,
-    googleAccessToken: "google-access-token",
-  },
 };
 
 export const StoreFixtures = {
   initializedStore,
-  initializedUnauthenticatedStore: {
-    ...initializedStore,
-    auth: {
-      isAuthenticated: false,
-      isGoogleAuthenticated: false,
-      signInInProgress: false,
-      signOutInProgress: false,
-    },
-  },
-  initializedGoogleUnauthenticatedStore: {
-    ...initializedStore,
-    auth: {
-      isAuthenticated: true,
-      signInInProgress: false,
-      signOutInProgress: false,
-      profile: Fixtures.profile,
-      isGoogleAuthenticated: false,
-    },
-  },
   selectedProjectsSlice: {
     projects: Fixtures.projects,
     selectedProject: Fixtures.project,

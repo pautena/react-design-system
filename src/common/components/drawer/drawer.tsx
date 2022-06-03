@@ -20,13 +20,13 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import { Environment, Project } from "features";
 import DiamondIcon from "@mui/icons-material/Diamond";
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 const drawerWidth = 240;
 
 const ToolsIcons = {
   diamond: () => <DiamondIcon />,
-  book: ()=> <MenuBookIcon/>
+  book: () => <MenuBookIcon />,
 };
 
 export interface Tool {

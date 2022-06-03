@@ -1,8 +1,6 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import {
-  authReducer,
-  authSlice,
   projectsReducer,
   projectsSlice,
   environmentsReducer,
@@ -23,7 +21,6 @@ import {
 import storage from "redux-persist/lib/storage";
 
 const rootReducer = combineReducers({
-  [authSlice.name]: authReducer,
   [projectsSlice.name]: projectsReducer,
   [environmentsSlice.name]: environmentsReducer,
   [userResourcesApi.reducerPath]: userResourcesApi.reducer,

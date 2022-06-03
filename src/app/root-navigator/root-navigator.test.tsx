@@ -1,15 +1,8 @@
-import { RootNavigator,tools } from "./root-navigator";
+import { RootNavigator, tools } from "./root-navigator";
 import { MockPreloadedState, render, screen, waitFor } from "../../testing/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Auth } from "aws-amplify";
-import {
-  Actions,
-  Assertions,
-  StoreActions,
-  StoreFixtures,
-  Fixtures,
-  Mocks,
-} from "../../testing/test-utils";
+import { Actions, Assertions, StoreFixtures, Fixtures, Mocks } from "../../testing/test-utils";
 
 const renderInstance = ({
   preloadedState = StoreFixtures.initializedStore,
@@ -20,38 +13,6 @@ const renderInstance = ({
     preloadedState,
   });
 };
-
-describe("RootNavigator", () => {
-  it("goes to the sign in page if the user is not logged in", () => {
-    renderInstance({ preloadedState: StoreFixtures.initializedUnauthenticatedStore });
-
-    Assertions.isInSignInPage();
-  });
-
-  it("goes to the google sign in page if the user is logged in but not in google", () => {
-    renderInstance({ preloadedState: StoreFixtures.initializedGoogleUnauthenticatedStore });
-
-    Assertions.isInSignInGooglePage();
-  });
-
-  it("goes to the home page when the sign in processes finishes", async () => {
-    const { store } = renderInstance();
-
-    await StoreActions.signIn(store);
-
-    Assertions.isInHomePage();
-  });
-
-  it("goes to the sign in page if the user sign out again", async () => {
-    const { store } = renderInstance();
-
-    await StoreActions.signIn(store);
-    Assertions.isInHomePage();
-
-    await StoreActions.signOut(store);
-    Assertions.isInSignInPage();
-  });
-});
 
 describe("Navigation drawer", () => {
   it("opens the drawer if I press the menu button", async () => {
