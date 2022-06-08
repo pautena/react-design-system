@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-pautenashapers-dev-114727-authRole",
-      "UnauthRoleArn": "arn:aws:iam::040076155069:role/amplify-pautenashapers-dev-114727-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::040076155069:role/amplify-pautenashapers-dev-114727-authRole",
+      "AuthRoleName": "amplify-pautenashaperstest-dev-90042-authRole",
+      "UnauthRoleArn": "arn:aws:iam::040076155069:role/amplify-pautenashaperstest-dev-90042-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::040076155069:role/amplify-pautenashaperstest-dev-90042-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-pautenashapers-dev-114727-deployment",
-      "UnauthRoleName": "amplify-pautenashapers-dev-114727-unauthRole",
-      "StackName": "amplify-pautenashapers-dev-114727",
-      "StackId": "arn:aws:cloudformation:us-east-1:040076155069:stack/amplify-pautenashapers-dev-114727/2f4e3310-e322-11ec-bf55-0e88c4b1d3cf",
-      "AmplifyAppId": "d25eh83oryc7jl"
+      "DeploymentBucketName": "amplify-pautenashaperstest-dev-90042-deployment",
+      "UnauthRoleName": "amplify-pautenashaperstest-dev-90042-unauthRole",
+      "StackName": "amplify-pautenashaperstest-dev-90042",
+      "StackId": "arn:aws:cloudformation:us-east-1:040076155069:stack/amplify-pautenashaperstest-dev-90042/b7d41450-e6f8-11ec-be9a-0a5ac2f0e289",
+      "AmplifyAppId": "d298s2r6f85hk9"
     },
     "categories": {
       "auth": {
-        "pautenashapers7191dad6": {}
+        "pautenashaperstestc727daa8": {}
       }
     }
   }

@@ -1,8 +1,0 @@
-{
-  "AppSyncApiName": "pautenashapers",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false,
-  "AuthCognitoUserPoolId": {
-    "Fn::GetAtt": ["authpautenashapers7191dad6", "Outputs.UserPoolId"]
-  }
-}

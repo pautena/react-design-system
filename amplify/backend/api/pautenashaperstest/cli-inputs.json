@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "pautenashaperstest",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/pau.tena/Workspace/backend-services-shapers-toolbox/amplify/backend/api/pautenashaperstest/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authpautenashaperstestc727daa8"
+    },
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2022-06-15T09:11:42.663Z",
+        "keyDescription": "api key pau tena shapers"
+      }
+    ],
+    "conflictResolution": {}
+  }
+}

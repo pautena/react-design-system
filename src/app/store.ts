@@ -6,6 +6,7 @@ import {
   environmentsReducer,
   environmentsSlice,
   userResourcesApi,
+  projectsApi,
 } from "../features";
 import logger from "redux-logger";
 import {
@@ -23,6 +24,7 @@ import storage from "redux-persist/lib/storage";
 const rootReducer = combineReducers({
   [projectsSlice.name]: projectsReducer,
   [environmentsSlice.name]: environmentsReducer,
+  [projectsApi.reducerPath]: projectsApi.reducer,
   [userResourcesApi.reducerPath]: userResourcesApi.reducer,
 });
 
@@ -45,9 +47,12 @@ export const store = configureStore({
     });
 
     if (process.env.NODE_ENV === "development") {
-      return middleware.concat(logger).concat(userResourcesApi.middleware);
+      return middleware
+        .concat(logger)
+        .concat(userResourcesApi.middleware)
+        .concat(projectsApi.middleware);
     }
-    return middleware.concat(userResourcesApi.middleware);
+    return middleware.concat(userResourcesApi.middleware).concat(projectsApi.middleware);
   },
 });
 

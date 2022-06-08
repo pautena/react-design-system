@@ -8,7 +8,7 @@ import { store, persistor } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import awsExports from "./aws-exports";
+import awsExports from "../aws-exports";
 import { Authenticator } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 

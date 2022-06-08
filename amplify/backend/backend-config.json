@@ -1,6 +1,6 @@
 {
   "auth": {
-    "pautenashapers7191dad6": {
+    "pautenashaperstestc727daa8": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
@@ -20,13 +20,13 @@
     }
   },
   "api": {
-    "pautenashapers": {
+    "pautenashaperstest": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
           "category": "auth",
-          "resourceName": "pautenashapers7191dad6",
+          "resourceName": "pautenashaperstestc727daa8",
           "attributes": ["UserPoolId"]
         }
       ],
@@ -35,10 +35,19 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authpautenashapers7191dad6"
+              "userPoolId": "authpautenashaperstestc727daa8"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 7,
+                "apiKeyExpirationDate": "2022-06-15T09:11:42.663Z",
+                "description": "api key pau tena shapers"
+              }
+            }
+          ]
         }
       }
     }

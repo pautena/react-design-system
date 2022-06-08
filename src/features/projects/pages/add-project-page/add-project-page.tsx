@@ -1,11 +1,13 @@
 import { Container, Box, Typography } from "@mui/material";
-import { Project } from "app/graphql/api.types";
+import { Project } from "app/base-api";
 import { ProjectForm } from "features/projects/components";
+import { useAddProjectMutation } from "features/projects/projects-api";
+import { useDispatch } from "react-redux";
 
 export const AddProjectPage = () => {
-
-  const handleSubmitProject = (project:Project) =>{
-    console.log("project: ",project);
+  const [addProject, result] = useAddProjectMutation();
+  const handleSubmitProject = (project: Project) => {
+    addProject(project);
   };
 
   return (

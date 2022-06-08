@@ -13,17 +13,18 @@ import {
 } from "@mui/material";
 import {
   ProjectStatus,
-  Users,
   MainLibrary,
+  Users,
   Grpc,
   Deploy,
   Project,
-  RepoStatus,
   Services,
-} from "app/graphql/api.types";
+  RepoStatus,
+} from "app/base-api";
 import { FormEvent, useState } from "react";
 
 const projectStatuses = Object.keys(ProjectStatus);
+const repoStatuses = Object.keys(RepoStatus);
 const libraries = Object.keys(MainLibrary);
 const users = Object.keys(Users);
 const grpcs = Object.keys(Grpc);
@@ -51,6 +52,7 @@ export const ProjectForm = ({ onSubmitProject }: Props) => {
   const [deploy, setDeploy] = useState(deploys[0]);
   const [library, setLibrary] = useState(libraries[0]);
   const [status, setStatus] = useState(projectStatuses[0]);
+  const [repoStatus, setRepoStatus] = useState(repoStatuses[0]);
   const [selectedUsers, setSelectedUsers] = useState<string[]>([]);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
 
@@ -65,6 +67,7 @@ export const ProjectForm = ({ onSubmitProject }: Props) => {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
+    console.log("form data: ", data);
 
     const services: Services = {
       __typename: "Services",
@@ -85,7 +88,7 @@ export const ProjectForm = ({ onSubmitProject }: Props) => {
       __typename: "Project",
       id: data.get("id")?.toString() || "",
       title: data.get("title")?.toString() || "",
-      codeName: data.get("codename")?.toString() || "",
+      codeName: data.get("codeName")?.toString() || "",
       studio: data.get("studio")?.toString() || "",
       status: (data.get("status")?.toString() as ProjectStatus) || "",
       users: selectedUsers as Users[],
@@ -242,13 +245,25 @@ export const ProjectForm = ({ onSubmitProject }: Props) => {
           />
         </Grid>
         <Grid item xs={6}>
-          <TextField
-            name="repoStatus"
-            label="Status repository"
-            variant="outlined"
-            required
-            fullWidth
-          />
+          <FormControl fullWidth>
+            <InputLabel required id="repo-status-label">
+              Repository status
+            </InputLabel>
+            <Select
+              labelId="repo-status-label"
+              name="repoStatus"
+              value={repoStatus}
+              label="Repository status"
+              required
+              onChange={(value) => setRepoStatus(value.target.value)}
+            >
+              {repoStatuses.map((repoStatus) => (
+                <MenuItem key={repoStatus} value={repoStatus}>
+                  {repoStatus}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </Grid>
         <Grid item xs={6}>
           <TextField

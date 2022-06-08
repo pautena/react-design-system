@@ -10,3 +10,17 @@ projects:
         codeGenTarget: typescript
         generatedFileName: src/app/api.ts
         docsFilePath: src/app/graphql
+  pautenashaperstest:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/app/base-api/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/app/base-api/base-api.ts
+        docsFilePath: src/app/base-api/graphql
+extensions:
+  amplify:
+    version: 3
