@@ -7,15 +7,23 @@
       "customAuth": false,
       "frontendAuthConfig": {
         "socialProviders": [],
-        "usernameAttributes": ["EMAIL"],
-        "signupAttributes": ["EMAIL"],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
           "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
-        "mfaTypes": ["SMS"],
-        "verificationMechanisms": ["EMAIL"]
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
       }
     }
   },
@@ -27,7 +35,9 @@
         {
           "category": "auth",
           "resourceName": "pautenashaperstestc727daa8",
-          "attributes": ["UserPoolId"]
+          "attributes": [
+            "UserPoolId"
+          ]
         }
       ],
       "output": {
@@ -50,6 +60,12 @@
           ]
         }
       }
+    }
+  },
+  "hosting": {
+    "S3AndCloudFront": {
+      "service": "S3AndCloudFront",
+      "providerPlugin": "awscloudformation"
     }
   }
 }

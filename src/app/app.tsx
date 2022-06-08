@@ -23,7 +23,7 @@ function App() {
         <LocalizationProvider dateAdapter={AdapterMoment}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <Authenticator>
+            <Authenticator hideSignUp>
               <BrowserRouter>
                 <RootNavigator />
               </BrowserRouter>

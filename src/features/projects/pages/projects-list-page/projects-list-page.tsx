@@ -1,4 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
+import { Project } from "app/base-api";
+import { Header } from "common/components";
+import { ProjectsList } from "features/projects/components";
 import { useGetProjectsQuery } from "features/projects/projects-api";
 import { useNavigate } from "react-router-dom";
 
@@ -7,13 +10,25 @@ export const ProjectsListPage = () => {
   const { isFetching, currentData, error, isError } = useGetProjectsQuery();
 
   const handleNewProject = () => navigate("/projects/add");
+
   return (
     <Box>
-      <Typography variant="h4">ProjectsListPage</Typography>
-      <p>isFetching: {JSON.stringify(isFetching)}</p>
-      {isError && <p>error: {JSON.stringify(error)}</p>}
-      <p>currentData: {JSON.stringify(currentData)}</p>
-      <Button onClick={handleNewProject}>New project</Button>
+      <Header
+        title="Gamedex"
+        actions={[
+          {
+            id: "add-project",
+            text: "Add project",
+            onClick: handleNewProject,
+          },
+        ]}
+      />
+      {currentData && (
+        <ProjectsList
+          loading={isFetching}
+          projects={currentData}
+        />
+      )}
     </Box>
   );
 };

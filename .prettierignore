@@ -2,3 +2,4 @@ node_modules
 protobuf
 **/**/grpc
 coverage
+amplify

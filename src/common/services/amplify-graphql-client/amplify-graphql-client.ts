@@ -7,20 +7,23 @@ type QueryArgs = {
   input?: object | void;
   variables?: object | void;
   authMode?: keyof typeof GRAPHQL_AUTH_MODE;
+  getDataFromResponse?: (data: any) => any;
 };
 
 export const createQuery = <T extends object | void, P extends object | void>({
   query,
   input,
   variables,
-  authMode
+  authMode,
+  getDataFromResponse,
 }: {
   query: string;
   input?: T;
   variables?: P;
   authMode?: keyof typeof GRAPHQL_AUTH_MODE;
+  getDataFromResponse?: (data: any) => any;
 }): QueryArgs => {
-  return { query, input, variables, authMode };
+  return { query, input, variables, authMode, getDataFromResponse };
 };
 
 export const amplifyGraphqlBaseQuery =
@@ -30,6 +33,7 @@ export const amplifyGraphqlBaseQuery =
     input = {},
     variables = {},
     authMode = GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
+    getDataFromResponse = (data: any) => data,
   }) => {
     try {
       const data = await API.graphql({
@@ -40,7 +44,7 @@ export const amplifyGraphqlBaseQuery =
         },
         authMode,
       });
-      return { data };
+      return { data: getDataFromResponse(data) };
     } catch (error) {
       console.error("error fetching api: ", error);
       return {

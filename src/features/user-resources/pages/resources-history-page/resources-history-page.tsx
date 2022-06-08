@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Box, Typography, Paper, TextField, Button, Snackbar, Alert } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import moment from "moment";
-import { useLazyGetUserResourcesQuery } from "../../..";
-import { ResourcesHistoryTable } from "../../../../common/components";
+import { useLazyGetUserResourcesQuery } from "features/user-resources/user-resources-api";
+import { ResourcesHistoryTable } from "features/user-resources/components";
 
 export const ResourcesHistoryPage = () => {
   const [trigger, result] = useLazyGetUserResourcesQuery();
