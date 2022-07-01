@@ -13,7 +13,7 @@ export const DataTableLayout = ({headerProps,dataGridProps:{height,...restDataGr
   return (
     <Box>
       <Header {...headerProps} />
-      <Container component="main">
+      <Container component="main" sx={{py:3}}>
         <DataGrid {...restDataGridProps} sx={{height}}/>
       </Container>
     </Box>

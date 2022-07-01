@@ -67,7 +67,7 @@ export interface AppBarProps extends MuiAppBarProps {
   onClickSignOut: () => void;
 }
 
-export const AppBar = ({ open,search,title,menu,profile, onClickSignOut, onClickDrawerMenu, ...rest }: AppBarProps) => {
+export const AppBar = ({ open=false,search=false,title,menu=false,profile, onClickSignOut, onClickDrawerMenu, ...rest }: AppBarProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {

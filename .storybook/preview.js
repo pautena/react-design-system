@@ -24,9 +24,7 @@ addDecorator((Story) => {
   return (
     <ThemeProvider theme={themes[theme]}>
       <CssBaseline />
-      <Box px={2} py={3}>
-        <Story />
-      </Box>
+      <Story />
     </ThemeProvider>
   )
 });

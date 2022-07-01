@@ -2,14 +2,28 @@ import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { DataTableLayout } from "./data-table";
 import { useDemoData } from '@mui/x-data-grid-generator';
+import { withRouter } from "storybook-addon-react-router-v6";
 
 
 const maxColumns = 7;
 const editable = true;
+const breadcrumbs = [
+  {
+    id: "list",
+    text: "Items",
+    link: "/items",
+  },
+  {
+    id: "item",
+    text: "Item 1",
+    link: "/items/1",
+  },
+];
 
 export default {
   title: "Layouts/DataTableLayout",
   component: DataTableLayout,
+  decorators:[withRouter],
   parameters: {
     layout: "fullscreen",
   },
@@ -28,9 +42,15 @@ const Template = createTemplate(({loading,dataSetType,size, dataGridProps,...res
 export const Default = Template.bind({});
 Default.args = {
   size: 100,
+  dataSetType:'Commodity',
   headerProps: {
-    title:"Lorem ipsum",
-    dataSetType:'Commodity'
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    breadcrumbs,
+    actions:[{
+      id:'new',
+      text:"Add",
+    }]
   },
   dataGridProps: {
     height: 500
@@ -40,9 +60,9 @@ Default.args = {
 export const Loading = Template.bind({});
 Loading.args = {
   size: 100,
+  dataSetType:'Commodity',
   headerProps: {
-    title:"Lorem ipsum",
-    dataSetType:'Commodity'
+    title:"Lorem ipsum"
   },
   dataGridProps: {
     height: 500
