@@ -2,7 +2,7 @@ import React from "react";
 import { Breadcrumbs, Typography, Container } from "@mui/material";
 import { Link } from "../link";
 
-interface Props {
+export interface HeaderProps {
   title: string;
   breadcrumbs?: {
     id: string;
@@ -11,7 +11,7 @@ interface Props {
   }[];
 }
 
-export const Header = ({ title, breadcrumbs }: Props) => {
+export const Header = ({ title, breadcrumbs }: HeaderProps) => {
   return (
     <Container sx={{ paddingY: 3 }}>
       <Typography variant="h4">{title}</Typography>
