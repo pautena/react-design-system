@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
-import { DataTableLayout } from "./data-table";
+import { DataTableLayout } from "./data-table-layout";
 import { useDemoData } from '@mui/x-data-grid-generator';
 import { withRouter } from "storybook-addon-react-router-v6";
 
