@@ -31,17 +31,27 @@ export const SkeletonCard = ({width="100%",animation=false}:SkeletonCardProps)=>
   );
 }
 
+interface SkeletonGridProps {
+  size?:number;
+}
+
+export const SkeletonGrid = ({size=20}:SkeletonGridProps)=> {
+  return (
+    <Grid container spacing={2}>
+      {newArrayWithSize(size,0).map((_,i)=>(
+        <Grid item key={i} xs={4}>
+          <SkeletonCard width={1}/>
+        </Grid>
+      ))}
+    </Grid>
+  )
+}
+
 
 export const ContentPlaceholder = ()=> {
   return (
     <Container component="main">
-      <Grid container spacing={2}>
-        {newArrayWithSize(20,0).map((_,i)=>(
-          <Grid item key={i} xs={4}>
-            <SkeletonCard width={1}/>
-          </Grid>
-        ))}
-        </Grid>
+      <SkeletonGrid/>
     </Container>
   )
 }

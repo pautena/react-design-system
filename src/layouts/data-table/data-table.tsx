@@ -3,6 +3,7 @@ import {Box} from '@mui/material'
 import { Header, HeaderProps } from '../../components';
 import { Container } from '@mui/system';
 import { DataGrid, DataGridProps } from '@mui/x-data-grid';
+import { HeaderLayout } from '../header-layout';
 
 interface Props  {
   headerProps: HeaderProps;
@@ -11,11 +12,8 @@ interface Props  {
 
 export const DataTableLayout = ({headerProps,dataGridProps:{height,...restDataGridProps}}:Props)=> {
   return (
-    <Box>
-      <Header {...headerProps} />
-      <Container component="main" sx={{py:3}}>
-        <DataGrid {...restDataGridProps} sx={{height}}/>
-      </Container>
-    </Box>
+    <HeaderLayout headerProps={headerProps}>
+      <DataGrid {...restDataGridProps} sx={{height}}/>
+    </HeaderLayout>
     )
 }
