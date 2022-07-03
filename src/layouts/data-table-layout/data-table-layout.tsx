@@ -1,7 +1,5 @@
 import React from 'react';
-import {Box} from '@mui/material'
-import { Header, HeaderProps } from '../../components';
-import { Container } from '@mui/system';
+import { HeaderProps } from '../../components';
 import { DataGrid, DataGridProps } from '@mui/x-data-grid';
 import { HeaderLayout } from '../header-layout';
 
