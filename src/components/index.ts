@@ -7,3 +7,4 @@ export * from './table';
 export * from './app-bar-with-drawer';
 export * from './app-bar';
 export * from './drawer';
+export * from './table-list'

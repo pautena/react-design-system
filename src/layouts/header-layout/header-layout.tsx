@@ -12,7 +12,7 @@ export const HeaderLayout = ({headerProps,children}:PropsWithChildren<Props>)=> 
   return (
     <Box>
       <TabContextProvider value={tab}>
-        <Header {...headerProps} onChangeTab={(_,index)=>setTab(index)}/>
+        <Header {...headerProps} selectedTab={tab} onChangeTab={(_,index)=>setTab(index)}/>
         <Container component="main" sx={{py:3}}>
           {children}
         </Container>

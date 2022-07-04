@@ -3,8 +3,6 @@ import { createTemplate } from "../../storybook";
 import { Header,HeaderAction,HeaderTab,HeaderBreadcrumb } from "./header";
 import {withRouter} from 'storybook-addon-react-router-v6';
 import {action} from '@storybook/addon-actions';
-import EditIcon from '@mui/icons-material/Edit';
-import PlusOneIcon from '@mui/icons-material/PlusOne';
 
 const breadcrumbs:HeaderBreadcrumb[] = [
   {
@@ -70,6 +68,7 @@ ColorInherit.args = {
   color:"inherit",
   breadcrumbs,
   tabs,
+  selectedTab:2,
   actions,
 };
 
@@ -80,6 +79,7 @@ ColorPrimary.args = {
   color:"primary",
   breadcrumbs,
   tabs,
+  selectedTab:2,
   actions,
 };
 
@@ -90,6 +90,7 @@ ColorSecondary.args = {
   color:"secondary",
   breadcrumbs,
   tabs,
+  selectedTab:2,
   actions,
 };
 
@@ -100,6 +101,7 @@ ColorDefault.args = {
   color:"default",
   breadcrumbs,
   tabs,
+  selectedTab:2,
   actions,
 };
 
@@ -110,6 +112,7 @@ ColorTransparent.args = {
   color:"transparent",
   breadcrumbs,
   tabs,
+  selectedTab:2,
   actions,
 };
 
@@ -141,6 +144,7 @@ WithTabs.args = {
   subtitle: "Dolor sit amet",
   color:"default",
   breadcrumbs,
-  tabs
+  tabs,
+  selectedTab:2,
 };
 

@@ -28,9 +28,11 @@ export function EnhancedTableHead({ order, orderBy, headCells, onRequestSort }: 
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
+            variant="head"
             key={String(headCell.id)}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
+            sx={{fontWeight:'bold'}}
           >
             {headCell.sort ? (
               <TableSortLabel
