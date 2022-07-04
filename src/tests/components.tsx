@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import { Typography,Container, Skeleton,Grid,Box } from "@mui/material"
 import { loremIpsum } from "lorem-ipsum";
 import { newArrayWithSize } from '../utils';
@@ -47,11 +47,16 @@ export const SkeletonGrid = ({size=20}:SkeletonGridProps)=> {
   )
 }
 
+type ContentPlaceholderProps = PropsWithChildren<{
+  size?:number;
+  p?:number;
+}>
 
-export const ContentPlaceholder = ()=> {
+export const ContentPlaceholder = ({size=20,children,p}:ContentPlaceholderProps)=> {
   return (
-    <Container component="main">
-      <SkeletonGrid/>
+    <Container component="main" sx={{p}}>
+      {children}
+      <SkeletonGrid size={size}/>
     </Container>
   )
 }
