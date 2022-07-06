@@ -3,13 +3,14 @@ import { BasicData, HeaderProps, TableList, TableListProps } from '../../compone
 import { HeaderLayout } from '../header-layout';
 
 export interface ListLayoutProps<T extends BasicData> {
+  loading?:boolean;
   headerProps: HeaderProps;
   listProps:TableListProps<T>;
 }
 
-export const ListLayout = <T extends BasicData,>({headerProps,listProps}:ListLayoutProps<T>)=> {
+export const ListLayout = <T extends BasicData,>({loading,headerProps,listProps}:ListLayoutProps<T>)=> {
   return (
-    <HeaderLayout headerProps={headerProps}>
+    <HeaderLayout loading={loading} headerProps={headerProps}>
       <TableList {...listProps} />
     </HeaderLayout>
   )

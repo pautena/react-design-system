@@ -30,7 +30,7 @@ export default {
 } as ComponentMeta<typeof ListLayout>;
 
 const Template = createTemplate(({loading,dataSetType,size, listProps,...rest})=>{
-  const { loading: demoLoading, data } = useDemoData({
+  const { data } = useDemoData({
     dataSet: dataSetType,
     rowLength: size,
     maxColumns,
@@ -44,11 +44,32 @@ const Template = createTemplate(({loading,dataSetType,size, listProps,...rest})=
     sort:true,
   }))
 
-  return <ListLayout listProps={{ ...listProps, loading: demoLoading || loading, data:rows, columns }} {...rest}/>
+  return <ListLayout loading={loading} listProps={{ ...listProps, data:rows, columns }} {...rest}/>
 });
 
 export const Default = Template.bind({});
 Default.args = {
+  size: 100,
+  dataSetType:'Commodity',
+  headerProps: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    breadcrumbs,
+    actions:[{
+      id:'new',
+      text:"Add",
+    }]
+  },
+  listProps: {
+    search: true
+  }
+};
+
+
+
+export const Loading = Template.bind({});
+Loading.args = {
+  loading:true,
   size: 100,
   dataSetType:'Commodity',
   headerProps: {
