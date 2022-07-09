@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from "react";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
 import { AppBar } from "../app-bar";
-import { Drawer, Item } from "../drawer";
+import { Drawer, Nav } from "../drawer";
 import { Box, AppBarProps } from "@mui/material";
 
 const drawerWidth = 240;
@@ -69,7 +69,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 interface Props {
   drawerProps: {
-    items: Item[];
+    nav: Nav;
   };
   appBarProps: Partial<AppBarProps> & {
     onClickSignOut: () => void;

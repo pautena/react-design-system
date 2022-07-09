@@ -14,13 +14,8 @@ import {
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-
-
-export interface Item {
-  id: string;
-  name: string;
-  icon: ReactElement;
-}
+import { Nav } from "./drawer.types";
+import { DrawerContent } from "./drawer-content";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -32,13 +27,13 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export interface DrawerProps extends MuiDrawerProps {
   open: boolean;
-  items: Item[];
+  nav: Nav;
   onDrawerClose: () => void;
 }
 
 export const Drawer = ({
   open,
-  items,
+  nav,
   onDrawerClose,
   ...rest
 }: DrawerProps) => {
@@ -52,30 +47,7 @@ export const Drawer = ({
         </IconButton>
       </DrawerHeader>
       <Divider />
-      {items.map((item, index) => (
-        <List key={index}>
-          <ListItem disablePadding sx={{ display: "block" }}>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-              }}
-            >
-              <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {item.icon}
-              </ListItemIcon>
-              <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      ))}
+      <DrawerContent nav={nav} open={open}/>
     </MuiDrawer>
   );
 };
