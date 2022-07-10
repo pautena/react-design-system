@@ -34,14 +34,11 @@ export interface  Nav {
 
 export interface DrawerContentProps {
   nav: Nav;
-  open:boolean;
 }
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;
 export type DrawerContentElement = ReactElement<DrawerContentProps,DrawerContentComponent>;
 
 export interface DrawerProps extends MuiDrawerProps {
-  open: boolean;
-  onDrawerClose: () => void;
   children: DrawerContentElement;
 }
 

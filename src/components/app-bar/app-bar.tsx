@@ -6,13 +6,13 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { AppBarComponent } from "./app-bar.types";
+import { useDrawer } from "../drawer/drawer.context";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -54,8 +54,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const AppBar:AppBarComponent = ({ open=false,search=false,title,menu=false,profile, onClickSignOut, onClickDrawerMenu, ...rest }) => {
+export const AppBar:AppBarComponent = ({ search=false,title,menu=false,profile, onClickSignOut, ...rest }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const {isOpen,open}= useDrawer();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -72,11 +73,11 @@ export const AppBar:AppBarComponent = ({ open=false,search=false,title,menu=fals
           <IconButton
             color="inherit"
             aria-label="open drawer"
-            onClick={onClickDrawerMenu}
+            onClick={open}
             edge="start"
             sx={{
               marginRight: 5,
-              ...(open && { display: "none" }),
+              ...(isOpen && { display: "none" }),
             }}
           >
             <MenuIcon />

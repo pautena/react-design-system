@@ -7,8 +7,8 @@ import {
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { DrawerContent } from "./drawer-content";
 import { DrawerComponent } from "./drawer.types";
+import { useDrawer } from "./drawer.context";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -19,17 +19,16 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export const Drawer:DrawerComponent = ({
-  open,
   children,
-  onDrawerClose,
   ...rest
 }) => {
   const theme = useTheme();
+  const {isOpen,close} = useDrawer();
 
   return (
-    <MuiDrawer open={open} {...rest}>
+    <MuiDrawer open={isOpen} {...rest}>
       <DrawerHeader>
-        <IconButton onClick={onDrawerClose}>
+        <IconButton onClick={close}>
           {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
         </IconButton>
       </DrawerHeader>

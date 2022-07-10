@@ -3,6 +3,7 @@ import { createTemplate } from "../../../storybook";
 import { MiniDrawer } from "../mini-drawer";
 import {mockNav} from '../drawer.mock'
 import { DrawerContent } from "../drawer-content";
+import {DrawerProvider} from '../drawer.provider'
 
 export default {
   title: "Components/MiniDrawer",
@@ -13,9 +14,11 @@ export default {
 } as ComponentMeta<typeof MiniDrawer>;
 
 const Template = createTemplate(({nav,open})=>(
-  <MiniDrawer open={open} onDrawerClose={()=>null}>
-    <DrawerContent nav={nav} open={open}/>
-  </MiniDrawer>
+  <DrawerProvider initialOpen={open}>
+    <MiniDrawer onDrawerClose={()=>null}>
+      <DrawerContent nav={nav}/>
+    </MiniDrawer>
+  </DrawerProvider>
 ));
 
 export const Default = Template.bind({});

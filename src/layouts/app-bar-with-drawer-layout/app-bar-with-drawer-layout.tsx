@@ -3,6 +3,7 @@ import { styled } from "@mui/material/styles";
 import { AppBarComponent } from "../../components/app-bar";
 import { DrawerElement } from "../../components/drawer";
 import { Box, AppBarProps } from "@mui/material";
+import { DrawerProvider } from "../../components/drawer/drawer.provider";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -20,12 +21,14 @@ interface Props {
 export const AppBarWithDrawerLayout = ({drawer,appBar,children}:PropsWithChildren<Props>)=>{
   return (
     <Box sx={{ display: "flex" }}>
-      {appBar}
-      {drawer}
-      <Box sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        {children}
-      </Box>
+      <DrawerProvider>
+        {appBar}
+        {drawer}
+        <Box sx={{ flexGrow: 1, p: 3 }}>
+          <DrawerHeader />
+          {children}
+        </Box>
+      </DrawerProvider>
     </Box>
   )
 }

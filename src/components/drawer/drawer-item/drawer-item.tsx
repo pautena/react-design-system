@@ -2,14 +2,15 @@ import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListIte
 import React from 'react';
 import { Bullet } from '../../bullet';
 import { Label } from '../../label';
+import { useDrawer } from '../drawer.context';
 import { NavItem } from '../drawer.types';
 
 export interface DrawerItemProps {
   item: NavItem;
-  open:boolean;
 }
 
-export const DrawerItem = ({item,open}:DrawerItemProps)=> {
+export const DrawerItem = ({item}:DrawerItemProps)=> {
+  const {isOpen} = useDrawer();
 
   return (
     <ListItem 
@@ -19,7 +20,7 @@ export const DrawerItem = ({item,open}:DrawerItemProps)=> {
       <ListItemButton
         sx={{
           minHeight: 48,
-          justifyContent: open ? "initial" : "center",
+          justifyContent: isOpen ? "initial" : "center",
           px: 2.5,
         }}
       >
@@ -27,7 +28,7 @@ export const DrawerItem = ({item,open}:DrawerItemProps)=> {
         <ListItemIcon
           sx={{
             minWidth: 0,
-            mr: open ? 3 : "auto",
+            mr: isOpen ? 3 : "auto",
             justifyContent: "center",
           }}
         >
@@ -39,11 +40,11 @@ export const DrawerItem = ({item,open}:DrawerItemProps)=> {
           <Avatar alt={item.avatar.alt} src={item.avatar.src} />
         </ListItemAvatar>
       )}
-      <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
-      {item.label && open && (
+      <ListItemText primary={item.name} sx={{ opacity: isOpen ? 1 : 0 }} />
+      {item.label && isOpen && (
         <Label text={item.label.text} variant={item.label.variant}/>
       )}
-      {item.bullet && open && (
+      {item.bullet && isOpen && (
         <Bullet variant={item.bullet.variant}/>
       )}
     </ListItemButton>

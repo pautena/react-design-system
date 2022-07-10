@@ -6,12 +6,10 @@ export interface AppBarProfile {
 }
 
 export interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
   menu?: boolean;
   title?:string;
   search?:boolean;
   profile?:AppBarProfile;
-  onClickDrawerMenu: () => void;
   onClickSignOut: () => void;
 }
 
