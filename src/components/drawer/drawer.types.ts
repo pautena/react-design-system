@@ -6,7 +6,11 @@ import { LabelVariant } from "../label";
 export interface NavItem {
   id: string;
   name: string;
-  icon: ReactElement;
+  icon?: ReactElement;
+  avatar?:{
+    src: string;
+    alt: string;
+  };
   label?:{
     text:string;
     variant:LabelVariant;

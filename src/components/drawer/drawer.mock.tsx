@@ -48,5 +48,22 @@ export const mockNav:Nav = {
         variant:"info"
       },
     }]
+  },{
+    title: 'Section avatar',
+    items:[{
+      id:'item.a.1',
+      name:"Avatar 1",
+      avatar: {
+        src:"https://c.pxhere.com/images/f6/e0/022ab77c391925931fe227c97ab4-1447675.jpg!d",
+        alt:"Avatar 1",
+      }
+    },{
+      id:"item.a.2",
+      name:"Avatar 2",
+      avatar: {
+        src:"https://www.publicdomainpictures.net/pictures/270000/velka/avatar-people-person-business-u-15354603894rE.jpg",
+        alt:"Avatar 2",
+      }
+    }]
   }]
 }

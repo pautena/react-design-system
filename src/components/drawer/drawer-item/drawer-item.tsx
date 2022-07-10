@@ -1,4 +1,4 @@
-import { ListItem, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, Typography } from '@mui/material';
+import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, Typography } from '@mui/material';
 import React from 'react';
 import { Bullet } from '../../bullet';
 import { Label } from '../../label';
@@ -23,15 +23,22 @@ export const DrawerItem = ({item,open}:DrawerItemProps)=> {
           px: 2.5,
         }}
       >
-      <ListItemIcon
-            sx={{
-              minWidth: 0,
-              mr: open ? 3 : "auto",
-              justifyContent: "center",
-            }}
-          >
+      {item.icon && (
+        <ListItemIcon
+          sx={{
+            minWidth: 0,
+            mr: open ? 3 : "auto",
+            justifyContent: "center",
+          }}
+        >
           {item.icon}
-      </ListItemIcon>
+        </ListItemIcon>
+      )}
+      {item.avatar && (
+        <ListItemAvatar>
+          <Avatar alt={item.avatar.alt} src={item.avatar.src} />
+        </ListItemAvatar>
+      )}
       <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
       {item.label && open && (
         <Label text={item.label.text} variant={item.label.variant}/>
