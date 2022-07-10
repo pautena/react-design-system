@@ -15,30 +15,18 @@ export default {
   },
 } as ComponentMeta<typeof AppBarWithDrawerLayout>;
 
-export const MiniDrawerStory = ()=>{
-  const [open, setOpen] = useState(false);
-  
-  return (
-    <AppBarWithDrawerLayout 
-      drawer={<MiniDrawer
-        variant="permanent"
-        open={open}
-        onDrawerClose={()=>setOpen(false)}
-      >
-        <DrawerContent nav={mockNav} open={open}/>
-      </MiniDrawer>
-      } 
-      appBar={<MiniAppBar
-        title="Lorem ipsum"
-        position="fixed"
-        menu
-        open={open}
-        onClickDrawerMenu={()=>setOpen(true)}
-        onClickSignOut={()=> null}
-      />}
-    >
-      <ContentPlaceholder/>
-    </AppBarWithDrawerLayout>
-  );
-};
+export const MiniDrawerStory = ()=> (
+  <AppBarWithDrawerLayout 
+    drawer={<MiniDrawer>
+      <DrawerContent nav={mockNav}/>
+    </MiniDrawer>
+    } 
+    appBar={<MiniAppBar
+      title="Lorem ipsum"
+      onClickSignOut={()=> null}
+    />}
+  >
+    <ContentPlaceholder/>
+  </AppBarWithDrawerLayout>
+);
 MiniDrawerStory.storyName = "Mini drawer"

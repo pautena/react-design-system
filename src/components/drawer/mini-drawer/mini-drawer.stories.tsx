@@ -15,7 +15,7 @@ export default {
 
 const Template = createTemplate(({nav,open})=>(
   <DrawerProvider initialOpen={open}>
-    <MiniDrawer onDrawerClose={()=>null}>
+    <MiniDrawer>
       <DrawerContent nav={nav}/>
     </MiniDrawer>
   </DrawerProvider>

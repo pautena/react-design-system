@@ -26,3 +26,8 @@ export const MiniAppBar:AppBarComponent = styled(AppBar)<AppBarProps>(({ theme }
     }),
   })
 });
+
+MiniAppBar.defaultProps = {
+  position:"fixed",
+  menu:true
+}

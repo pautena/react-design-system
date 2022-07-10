@@ -22,3 +22,7 @@ export const MiniDrawer = styled(Drawer)(({ theme }) => {
     }),
   };
 });
+
+MiniDrawer.defaultProps = {
+  variant:"permanent"
+}
