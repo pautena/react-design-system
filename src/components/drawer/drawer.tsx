@@ -1,21 +1,14 @@
-import React, { ReactElement } from "react";
+import React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import {
   Drawer as MuiDrawer,
-  DrawerProps as MuiDrawerProps,
-  List,
   Divider,
   IconButton,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  ListItemIcon,
-  SvgIcon
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Nav } from "./drawer.types";
 import { DrawerContent } from "./drawer-content";
+import { DrawerComponent } from "./drawer.types";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -25,18 +18,12 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export interface DrawerProps extends MuiDrawerProps {
-  open: boolean;
-  nav: Nav;
-  onDrawerClose: () => void;
-}
-
-export const Drawer = ({
+export const Drawer:DrawerComponent = ({
   open,
   nav,
   onDrawerClose,
   ...rest
-}: DrawerProps) => {
+}) => {
   const theme = useTheme();
 
   return (

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
+import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -12,6 +12,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
+import { AppBarComponent } from "./app-bar.types";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,21 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export interface AppBarProfile { 
-  name: string;
-}
-
-export interface AppBarProps extends MuiAppBarProps {
-  open?: boolean;
-  menu?: boolean;
-  title?:string;
-  search?:boolean;
-  profile?:AppBarProfile;
-  onClickDrawerMenu: () => void;
-  onClickSignOut: () => void;
-}
-
-export const AppBar = ({ open=false,search=false,title,menu=false,profile, onClickSignOut, onClickDrawerMenu, ...rest }: AppBarProps) => {
+export const AppBar:AppBarComponent = ({ open=false,search=false,title,menu=false,profile, onClickSignOut, onClickDrawerMenu, ...rest }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {

@@ -1,6 +1,9 @@
-import { ReactElement } from "react";
+import { FunctionComponent, ReactElement } from "react";
 import { BulletVariant } from "../bullet";
 import { LabelVariant } from "../label";
+import {
+  DrawerProps as MuiDrawerProps,
+} from "@mui/material";
 
 
 export interface NavItem {
@@ -28,3 +31,11 @@ export interface NavSection {
 export interface  Nav {
   items: NavSection[];
 };
+
+export interface DrawerProps extends MuiDrawerProps {
+  open: boolean;
+  nav: Nav;
+  onDrawerClose: () => void;
+}
+
+export type DrawerComponent = FunctionComponent<DrawerProps>
