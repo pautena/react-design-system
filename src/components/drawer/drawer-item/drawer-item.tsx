@@ -1,5 +1,7 @@
 import { ListItem, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, Typography } from '@mui/material';
 import React from 'react';
+import { Bullet } from '../../bullet';
+import { Label } from '../../label';
 import { NavItem } from '../drawer.types';
 
 export interface DrawerItemProps {
@@ -12,7 +14,6 @@ export const DrawerItem = ({item,open}:DrawerItemProps)=> {
   return (
     <ListItem 
     disablePadding
-        disabled
     sx={{ display: "block" }}
     >
       <ListItemButton
@@ -32,7 +33,12 @@ export const DrawerItem = ({item,open}:DrawerItemProps)=> {
           {item.icon}
       </ListItemIcon>
       <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
-      
+      {item.label && open && (
+        <Label text={item.label.text} variant={item.label.variant}/>
+      )}
+      {item.bullet && open && (
+        <Bullet variant={item.bullet.variant}/>
+      )}
     </ListItemButton>
   </ListItem>
   )

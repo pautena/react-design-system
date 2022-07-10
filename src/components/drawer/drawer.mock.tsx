@@ -17,22 +17,36 @@ export const mockNav:Nav = {
     },{
       id:'item1.3',
       name:"Item 3",
-      icon: <DiamondIcon/>
+      icon: <DiamondIcon/>,
+      bullet: {
+        variant: 'secondary'
+      }
     },{
       id:'item1.4',
       name:"Item 4",
-      icon: <DiamondIcon/>
+      icon: <DiamondIcon/>,
+      bullet: {
+        variant: 'error'
+      }
     }]
   },{
     title: 'Section 2',
     items:[{
       id:'item2.1',
       name:"Item 1",
-      icon: <DiamondIcon/>
+      icon: <DiamondIcon/>,
+      label:{
+        text:"10",
+        variant:'error'
+      },
     },{
       id:"item2.2",
       name:"Item 2",
-      icon: <MenuBookIcon/>
+      icon: <MenuBookIcon/>,
+      label:{
+        text:"new",
+        variant:"info"
+      },
     }]
   }]
 }

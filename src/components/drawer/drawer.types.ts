@@ -1,10 +1,19 @@
 import { ReactElement } from "react";
+import { BulletVariant } from "../bullet";
+import { LabelVariant } from "../label";
 
 
 export interface NavItem {
   id: string;
   name: string;
   icon: ReactElement;
+  label?:{
+    text:string;
+    variant:LabelVariant;
+  };
+  bullet?: {
+    variant: BulletVariant;
+  }
 }
 
 export interface NavSection {
