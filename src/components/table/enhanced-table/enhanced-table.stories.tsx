@@ -3,7 +3,7 @@ import { createTemplate } from "../../../storybook";
 import { TestTable, columns, data } from "./enhanced-table.dummy";
 
 export default {
-  title: "Components/Table",
+  title: "Tables/Table",
   component: TestTable,
   parameters: {
     layout: "fullscreen",

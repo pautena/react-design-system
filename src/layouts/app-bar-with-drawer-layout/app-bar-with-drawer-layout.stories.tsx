@@ -1,11 +1,9 @@
 import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../storybook";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
 import {ContentPlaceholder} from '../../tests';
 import { mockNav } from "../../components/drawer/drawer.mock";
 import { MiniAppBar } from "../../components/app-bar";
-import { useState } from "react";
-import { DrawerContent, MiniDrawer } from "../../components/drawer";
+import { DrawerContent, MiniDrawer } from "../../components";
 
 export default {
   title: "Layouts/AppBarWithDrawer",

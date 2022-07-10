@@ -5,7 +5,7 @@ import { createTemplate } from "../../../storybook";
 import { DummyTabs, TabCardDummy } from "./tab-card.dummy";
 
 export default {
-  title: "Components/Tab card",
+  title: "Cards/Tab card",
   component: TabCard,
   parameters: {
     layout: "fullscreen",

@@ -5,7 +5,7 @@ import { createTemplate } from "../../storybook";
 import { SignInCenterContainer } from "./sign-in-container";
 
 export default {
-  title: "Components/Sign In",
+  title: "Forms/Sign In",
   component: SignIn,
   parameters: {
     layout: "fullscreen",

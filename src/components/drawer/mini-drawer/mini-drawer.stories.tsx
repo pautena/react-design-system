@@ -2,11 +2,11 @@ import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../../storybook";
 import { MiniDrawer } from "../mini-drawer";
 import {mockNav} from '../drawer.mock'
-import { DrawerContent } from "../drawer-content";
+import { DrawerContent } from "../../drawer-content";
 import {DrawerProvider} from '../drawer.provider'
 
 export default {
-  title: "Components/MiniDrawer",
+  title: "Drawers/MiniDrawer",
   component: MiniDrawer,
   parameters: {
     layout: "fullscreen",

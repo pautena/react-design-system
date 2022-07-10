@@ -6,7 +6,7 @@ import { TableList } from "./table-list";
 const maxColumns = 3;
 
 export default {
-  title: "Components/TableList",
+  title: "Tables/TableList",
   component: TableList,
   parameters: {
     layout: "fullscreen",

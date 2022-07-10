@@ -1,8 +1,8 @@
 import { List, ListSubheader } from '@mui/material';
 import React from 'react';
 import { DrawerItem } from '../drawer-item';
-import { useDrawer } from '../drawer.context';
-import { NavSection } from '../drawer.types';
+import { useDrawer } from '../drawer/drawer.context';
+import { NavSection } from '../drawer/drawer.types';
 
 export interface DrawerSectionProps {
   section:NavSection;

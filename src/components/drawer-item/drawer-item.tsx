@@ -1,9 +1,9 @@
 import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, Typography } from '@mui/material';
 import React from 'react';
-import { Bullet } from '../../bullet';
-import { Label } from '../../label';
-import { useDrawer } from '../drawer.context';
-import { NavItem } from '../drawer.types';
+import { Bullet } from '../bullet';
+import { Label } from '../label';
+import { useDrawer } from '../drawer/drawer.context';
+import { NavItem } from '../drawer/drawer.types';
 
 export interface DrawerItemProps {
   item: NavItem;

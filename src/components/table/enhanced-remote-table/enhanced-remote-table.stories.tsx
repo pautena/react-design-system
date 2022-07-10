@@ -5,7 +5,7 @@ import { columns, data } from "../enhanced-table/enhanced-table.dummy";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.dummy";
 
 export default {
-  title: "Components/Enhanced remote table",
+  title: "Tables/Enhanced remote table",
   component: EnhancedRemoteTable,
   parameters: {
     layout: "fullscreen",

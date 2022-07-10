@@ -4,7 +4,7 @@ import { AppBar } from "./app-bar";
 import {DrawerProvider} from '../drawer';
 
 export default {
-  title: "Components/AppBar",
+  title: "AppBars/AppBar",
   component: AppBar,
   parameters: {
     layout: "fullscreen",
