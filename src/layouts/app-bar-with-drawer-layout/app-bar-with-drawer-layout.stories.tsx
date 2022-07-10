@@ -5,7 +5,7 @@ import {ContentPlaceholder} from '../../tests';
 import { mockNav } from "../../components/drawer/drawer.mock";
 import { MiniAppBar } from "../../components/app-bar";
 import { useState } from "react";
-import { MiniDrawer } from "../../components/drawer";
+import { DrawerContent, MiniDrawer } from "../../components/drawer";
 
 export default {
   title: "Layouts/AppBarWithDrawer",
@@ -15,7 +15,7 @@ export default {
   },
 } as ComponentMeta<typeof AppBarWithDrawerLayout>;
 
-const Template = createTemplate(({drawerProps,appBarProps})=> {
+export const MiniDrawerStory = ()=>{
   const [open, setOpen] = useState(false);
   
   return (
@@ -24,26 +24,21 @@ const Template = createTemplate(({drawerProps,appBarProps})=> {
         variant="permanent"
         open={open}
         onDrawerClose={()=>setOpen(false)}
-        {...drawerProps}
-      />} 
+      >
+        <DrawerContent nav={mockNav} open={open}/>
+      </MiniDrawer>
+      } 
       appBar={<MiniAppBar
+        title="Lorem ipsum"
         position="fixed"
         menu
         open={open}
         onClickDrawerMenu={()=>setOpen(true)}
-        {...appBarProps}
+        onClickSignOut={()=> null}
       />}
     >
       <ContentPlaceholder/>
     </AppBarWithDrawerLayout>
   );
-});
-
-export const Default = Template.bind({});
-Default.args = {
-  drawerProps: {nav:mockNav},
-  appBarProps: {
-    title:"Lorem ipsum"
-  }
 };
-
+MiniDrawerStory.storyName = "Mini drawer"

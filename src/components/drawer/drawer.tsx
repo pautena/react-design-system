@@ -20,7 +20,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export const Drawer:DrawerComponent = ({
   open,
-  nav,
+  children,
   onDrawerClose,
   ...rest
 }) => {
@@ -34,7 +34,7 @@ export const Drawer:DrawerComponent = ({
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <DrawerContent nav={nav} open={open}/>
+      {children}
     </MuiDrawer>
   );
 };

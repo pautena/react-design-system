@@ -32,10 +32,20 @@ export interface  Nav {
   items: NavSection[];
 };
 
+export interface DrawerContentProps {
+  nav: Nav;
+  open:boolean;
+}
+export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;
+export type DrawerContentElement = ReactElement<DrawerContentProps,DrawerContentComponent>;
+
 export interface DrawerProps extends MuiDrawerProps {
   open: boolean;
-  nav: Nav;
   onDrawerClose: () => void;
+  children: DrawerContentElement;
 }
 
-export type DrawerComponent = FunctionComponent<DrawerProps>
+export type DrawerComponent = FunctionComponent<DrawerProps>;
+export type DrawerElement = ReactElement<DrawerProps,DrawerComponent>;
+
+
