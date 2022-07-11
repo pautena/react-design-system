@@ -3,7 +3,6 @@ import { createTemplate } from "../../storybook";
 import { DrawerContent } from "./drawer-content";
 import {mockNav} from '../drawer/drawer.mock'
 import { Box } from "@mui/material";
-import { DrawerProvider } from "../drawer/drawer.provider";
 
 export default {
   title: "Drawers/DrawerContent",
@@ -20,11 +19,7 @@ export default {
   },
 } as ComponentMeta<typeof DrawerContent>;
 
-const Template = createTemplate((args)=> (
-  <DrawerProvider initialOpen>
-    <DrawerContent {...args}/>
-  </DrawerProvider>
-));
+const Template = createTemplate(DrawerContent);
 
 export const Default = Template.bind({});
 Default.args = {

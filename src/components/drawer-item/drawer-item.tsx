@@ -1,4 +1,4 @@
-import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemSecondaryAction, ListItemText, Typography } from '@mui/material';
+import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Typography } from '@mui/material';
 import React from 'react';
 import { Bullet } from '../bullet';
 import { Label } from '../label';
@@ -10,28 +10,14 @@ export interface DrawerItemProps {
 }
 
 export const DrawerItem = ({item}:DrawerItemProps)=> {
-  const {isOpen} = useDrawer();
-
   return (
     <ListItem 
     disablePadding
     sx={{ display: "block" }}
     >
-      <ListItemButton
-        sx={{
-          minHeight: 48,
-          justifyContent: isOpen ? "initial" : "center",
-          px: 2.5,
-        }}
-      >
+      <ListItemButton>
       {item.icon && (
-        <ListItemIcon
-          sx={{
-            minWidth: 0,
-            mr: isOpen ? 3 : "auto",
-            justifyContent: "center",
-          }}
-        >
+        <ListItemIcon>
           {item.icon}
         </ListItemIcon>
       )}
@@ -40,11 +26,11 @@ export const DrawerItem = ({item}:DrawerItemProps)=> {
           <Avatar alt={item.avatar.alt} src={item.avatar.src} />
         </ListItemAvatar>
       )}
-      <ListItemText primary={item.name} sx={{ opacity: isOpen ? 1 : 0 }} />
-      {item.label && isOpen && (
+      <ListItemText primary={item.name}/>
+      {item.label && (
         <Label text={item.label.text} variant={item.label.variant}/>
       )}
-      {item.bullet && isOpen && (
+      {item.bullet && (
         <Bullet variant={item.bullet.variant}/>
       )}
     </ListItemButton>

@@ -3,6 +3,10 @@ import React, { ReactElement } from 'react';
 
 export type LabelVariant = "primary" | "secondary" | "default" | "info" | "warning" | "error";
 
+export const labelClasses = {
+  root: "RdsLabel-root",
+}
+
 export interface LabelProps {
   text: string;
   variant?:LabelVariant;
@@ -30,7 +34,7 @@ export const Label  = ({text, variant = "default"}:LabelProps)=> {
   };
   
   return (
-    <Box px={1} sx={{backgroundColor:backgroundColor[variant]}} borderRadius={1} color={textColor[variant]}>
+    <Box px={1} sx={{backgroundColor:backgroundColor[variant]}} borderRadius={1} color={textColor[variant]} className={labelClasses.root}>
       <Typography variant="caption" fontWeight={700}>{text.toUpperCase()}</Typography>
     </Box>
   )

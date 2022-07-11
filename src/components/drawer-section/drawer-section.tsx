@@ -1,7 +1,6 @@
 import { List, ListSubheader } from '@mui/material';
 import React from 'react';
 import { DrawerItem } from '../drawer-item';
-import { useDrawer } from '../drawer/drawer.context';
 import { NavSection } from '../drawer/drawer.types';
 
 export interface DrawerSectionProps {
@@ -9,10 +8,9 @@ export interface DrawerSectionProps {
 }
 
 export const DrawerSection = ({section}:DrawerSectionProps)=> {
-  const {isOpen} = useDrawer();
   return (
     <>
-      {section.title && isOpen && <ListSubheader>{section.title}</ListSubheader>}
+      {section.title && <ListSubheader>{section.title}</ListSubheader>}
       <List>
         {section.items.map((item,j)=>(
           <DrawerItem item={item} key={j}/>
