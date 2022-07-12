@@ -8,7 +8,7 @@ export default {
   title: "Forms/Sign In",
   component: SignIn,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
 } as ComponentMeta<typeof SignIn>;
 

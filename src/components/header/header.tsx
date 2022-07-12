@@ -27,11 +27,11 @@ export type HeaderProps ={
   subtitle?:string;
   color: ColorPreset;
   breadcrumbs?: HeaderBreadcrumb[];
-  actionsVariant:'text' | 'outlined' | 'contained';
+  actionsVariant?:'text' | 'outlined' | 'contained';
   actions?:HeaderAction[];
-  selectedTab:number;
-  tabs:HeaderTab[];
-  onChangeTab: (tab:HeaderTab,index:number)=>void;
+  selectedTab?:number;
+  tabs?:HeaderTab[];
+  onChangeTab?: (tab:HeaderTab,index:number)=>void;
 }
 
 export const Header = ({ title,subtitle, color="default",actionsVariant="outlined", breadcrumbs,actions,tabs,selectedTab,onChangeTab }: HeaderProps) => {

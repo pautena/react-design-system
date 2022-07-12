@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "tests";
+import { render, screen } from "../../tests";
 import userEvent from "@testing-library/user-event";
 import { Header } from "./header";
 
@@ -7,6 +7,7 @@ function renderInstance() {
   return render(
     <Header
       title="lorem ipsum"
+      color="default"
       breadcrumbs={[
         {
           id: "level-1",

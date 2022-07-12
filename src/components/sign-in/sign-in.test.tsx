@@ -1,6 +1,6 @@
 import React from "react";
 import { SignIn } from "./sign-in";
-import { render, screen } from "tests";
+import { render, screen } from "../../tests";
 import userEvent from "@testing-library/user-event";
 
 async function submitSignIn(email: string | null, password: string | null) {
@@ -40,13 +40,12 @@ describe("SignIn", () => {
     expect(onSubmitSignIn).not.toHaveBeenCalled();
   });
 
-  it("if I don't enter a valid email and I submit an error is shown and onSubmitSignIn is not called", async () => {
+  it("if I don't enter a valid email and I submit onSubmitSignIn is not called", async () => {
     const onSubmitSignIn = jest.fn();
     render(<SignIn title="Lorem ipsum" subtitle="Sit amet" onSubmitSignIn={onSubmitSignIn} />);
 
     await submitSignIn("invalid.com", "password1");
 
-    expect(screen.getByText(/please fill out this with a valid email/i)).toBeInTheDocument();
     expect(onSubmitSignIn).not.toHaveBeenCalled();
   });
 

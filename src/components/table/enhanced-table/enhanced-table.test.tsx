@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "tests";
+import { render } from "../../../tests";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { TestTable, columns, data } from "./enhanced-table.dummy";

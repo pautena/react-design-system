@@ -1,7 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { Stack, Box, TextField, Typography, Alert } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
-import { isValidEmail } from "../../utils";
 
 interface Props {
   title: string;
@@ -24,11 +23,6 @@ export function SignIn({ title, subtitle, loading, error, onSubmitSignIn }: Prop
     const email = data.get("email")?.toString();
     const password = data.get("password")?.toString();
 
-    const isValid = email && isValidEmail(email);
-    if (!isValid) {
-      setEmailError("Please fill out this with a valid email");
-    }
-
     if (!email) {
       setEmailError("Please fill out this field");
     }
@@ -37,7 +31,7 @@ export function SignIn({ title, subtitle, loading, error, onSubmitSignIn }: Prop
       setPasswordError("Please fill out this field");
     }
 
-    if (email && password && isValid) {
+    if (email && password) {
       onSubmitSignIn(email, password);
     }
   }
