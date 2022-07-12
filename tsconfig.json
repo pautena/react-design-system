@@ -5,7 +5,7 @@
     "skipLibCheck": true,
     "jsx": "react",
     "lib": ["ES2016"],
-    "module": "ESNext",  
+    "module": "ESNext",
     "declaration": true,
     "declarationDir": "types",
     "sourceMap": true,
@@ -16,14 +16,12 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["jest"]
   },
-  "include": [
-    "./jest.setup.ts"
-  ],
+  "include": ["./jest.setup.ts"],
   "exclude": [
     "dist",
     "node_modules",
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx",
     "src/storybook.tsx"
-  ],
+  ]
 }

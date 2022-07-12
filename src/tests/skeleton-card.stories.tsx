@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../storybook";
-import {SkeletonCard} from './components';
+import { SkeletonCard } from "./components";
 
 export default {
   title: "Test/SkeletonCard",
@@ -14,7 +14,5 @@ const Template = createTemplate(SkeletonCard);
 
 export const Default = Template.bind({});
 Default.args = {
-  width:250
+  width: 250,
 };
-
-

@@ -1,10 +1,10 @@
+import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { TabLayout } from "./tab-layout";
 import { withRouter } from "storybook-addon-react-router-v6";
 import { Typography } from "@mui/material";
 import { HeaderTab, TabPanel } from "../../components";
-import { useState } from "react";
 
 const breadcrumbs = [
   {
@@ -19,35 +19,40 @@ const breadcrumbs = [
   },
 ];
 
-const tabs:HeaderTab[] = [{
-  id:"tab1",
-  label:"Tab 1",
-},{
-  id:"tab2.1",
-  label:"Tab 2.1",
-},{
-  id:"tab2.2",
-  label:"Tab 2.2",
-},{
-  id:"tab3",
-  label:"Tab 3",
-  disabled:true,
-},{
-  id:"tab4",
-  label:"Tab 4",
-}];
+const tabs: HeaderTab[] = [
+  {
+    id: "tab1",
+    label: "Tab 1",
+  },
+  {
+    id: "tab2.1",
+    label: "Tab 2.1",
+  },
+  {
+    id: "tab2.2",
+    label: "Tab 2.2",
+  },
+  {
+    id: "tab3",
+    label: "Tab 3",
+    disabled: true,
+  },
+  {
+    id: "tab4",
+    label: "Tab 4",
+  },
+];
 
 export default {
   title: "Layouts/TabLayout",
   component: TabLayout,
-  decorators:[withRouter],
+  decorators: [withRouter],
   parameters: {
     layout: "fullscreen",
   },
 } as ComponentMeta<typeof TabLayout>;
 
-const Template = createTemplate((args)=>{
-  
+const Template = createTemplate((args) => {
   return (
     <TabLayout {...args}>
       <TabPanel index={0}>
@@ -63,7 +68,7 @@ const Template = createTemplate((args)=>{
         <Typography>Panel 4</Typography>
       </TabPanel>
     </TabLayout>
-  )
+  );
 });
 
 export const Default = Template.bind({});
@@ -73,10 +78,11 @@ Default.args = {
     subtitle: "Dolor sit amet",
     breadcrumbs,
     tabs,
-    actions:[{
-      id:'new',
-      text:"Add",
-    }]
+    actions: [
+      {
+        id: "new",
+        text: "Add",
+      },
+    ],
   },
 };
-

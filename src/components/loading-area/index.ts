@@ -1,1 +1,1 @@
-export * from './loading-area'
+export * from "./loading-area";

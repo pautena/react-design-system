@@ -4,7 +4,6 @@ import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
 import { ThemeProvider } from "@emotion/react";
 import { Theme, createTheme } from "@mui/material";
-import { renderHook } from "@testing-library/react-hooks";
 
 function createMockTheme() {
   return createTheme();

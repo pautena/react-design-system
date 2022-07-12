@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../storybook";
-import {ContentPlaceholder} from './components';
+import { ContentPlaceholder } from "./components";
 
 export default {
   title: "Test/ContentPlaceholder",
@@ -13,7 +13,4 @@ export default {
 const Template = createTemplate(ContentPlaceholder);
 
 export const Default = Template.bind({});
-Default.args = {
-};
-
-
+Default.args = {};

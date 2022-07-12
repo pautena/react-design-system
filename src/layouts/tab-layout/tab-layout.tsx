@@ -1,16 +1,11 @@
+import React, { PropsWithChildren } from "react";
+import { HeaderProps } from "../../components";
+import { HeaderLayout } from "../header-layout";
 
-import React, { PropsWithChildren } from 'react';
-import { Header, HeaderProps } from '../../components';
-import { HeaderLayout } from '../header-layout';
-
-interface Props  {
+interface Props {
   headerProps: HeaderProps;
 }
 
-export const TabLayout = ({headerProps,children}:PropsWithChildren<Props>)=> {
-  return (
-    <HeaderLayout headerProps={headerProps}>
-      {children}
-    </HeaderLayout>
-  );
-}
+export const TabLayout = ({ headerProps, children }: PropsWithChildren<Props>) => {
+  return <HeaderLayout headerProps={headerProps}>{children}</HeaderLayout>;
+};

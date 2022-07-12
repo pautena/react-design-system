@@ -32,7 +32,7 @@ export function EnhancedTableHead({ order, orderBy, headCells, onRequestSort }: 
             key={String(headCell.id)}
             padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
-            sx={{fontWeight:'bold'}}
+            sx={{ fontWeight: "bold" }}
           >
             {headCell.sort ? (
               <TableSortLabel

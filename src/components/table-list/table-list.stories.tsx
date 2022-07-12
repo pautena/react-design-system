@@ -1,3 +1,4 @@
+import React from "react";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
@@ -13,42 +14,40 @@ export default {
   },
 } as ComponentMeta<typeof TableList>;
 
-const Template = createTemplate(({loading,dataSetType,size, dataGridProps,...rest})=>{
+const Template = createTemplate(({ dataSetType, size, dataGridProps, ...rest }) => {
   const { data } = useDemoData({
     dataSet: dataSetType,
     rowLength: size,
     maxColumns,
   });
-  const {rows} = data;
-  const columns = data.columns.map(({field,headerName})=>({
-    id:field,
-    label:headerName,
-    sort:true,
-  }))
+  const { rows } = data;
+  const columns = data.columns.map(({ field, headerName }) => ({
+    id: field,
+    label: headerName,
+    sort: true,
+  }));
 
-  return (
-    <TableList {...rest} columns={columns} data={rows}/>
-  )
+  return <TableList {...rest} columns={columns} data={rows} />;
 });
 
 export const Default = Template.bind({});
 Default.args = {
   size: 40,
-  dataSetType:'Commodity',
-  search:true,
+  dataSetType: "Commodity",
+  search: true,
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
   size: 40,
-  dataSetType:'Commodity',
-  search:true,
-  loading:true
+  dataSetType: "Commodity",
+  search: true,
+  loading: true,
 };
 
 export const WihtoutSearch = Template.bind({});
 WihtoutSearch.args = {
   size: 40,
-  dataSetType:'Commodity',
-  search:false
+  dataSetType: "Commodity",
+  search: false,
 };

@@ -6,11 +6,10 @@ import { drawerWidth } from "../../drawer/drawer.mixins";
 import { AppBarComponent } from "../app-bar.types";
 import { useDrawer } from "../../drawer/drawer.context";
 
+export const MiniAppBar: AppBarComponent = styled(AppBar)<AppBarProps>(({ theme }) => {
+  const { isOpen } = useDrawer();
 
-export const MiniAppBar:AppBarComponent = styled(AppBar)<AppBarProps>(({ theme }) => {
-  const {isOpen} = useDrawer();
-  
-  return ({
+  return {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
@@ -24,10 +23,10 @@ export const MiniAppBar:AppBarComponent = styled(AppBar)<AppBarProps>(({ theme }
         duration: theme.transitions.duration.enteringScreen,
       }),
     }),
-  })
+  };
 });
 
 MiniAppBar.defaultProps = {
-  position:"fixed",
-  menu:true
-}
+  position: "fixed",
+  menu: true,
+};

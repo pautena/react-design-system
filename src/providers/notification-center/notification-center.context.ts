@@ -1,5 +1,5 @@
-import { AlertColor } from '@mui/material';
-import * as React from 'react';
+import { AlertColor } from "@mui/material";
+import React from "react";
 
 export type SnackbarContentType =
   | React.ReactElement<any, any>
@@ -9,7 +9,7 @@ export type SnackbarActionType = React.ReactNode | ((key: string) => React.React
 
 export interface Notification {
   severity: AlertColor;
-  title:string;
+  title: string;
   message: string;
 }
 
@@ -17,9 +17,11 @@ export interface NotificationCenterProps {
   show(notification: Notification): void;
 }
 
-export const NotificationCenterContext = React.createContext<NotificationCenterProps | undefined>(undefined);
+export const NotificationCenterContext = React.createContext<NotificationCenterProps | undefined>(
+  undefined,
+);
 
-export const useNotificationCenter = ()=> {
+export const useNotificationCenter = () => {
   const context = React.useContext(NotificationCenterContext);
 
   if (context === undefined) {
@@ -27,4 +29,4 @@ export const useNotificationCenter = ()=> {
   }
 
   return context;
-}
+};

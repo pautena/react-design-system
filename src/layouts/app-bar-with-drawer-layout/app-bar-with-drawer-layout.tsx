@@ -14,11 +14,11 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 interface Props {
-  drawer:DrawerElement;
-  appBar: ReactElement<AppBarProps,AppBarComponent>;
+  drawer: DrawerElement;
+  appBar: ReactElement<AppBarProps, AppBarComponent>;
 }
 
-export const AppBarWithDrawerLayout = ({drawer,appBar,children}:PropsWithChildren<Props>)=>{
+export const AppBarWithDrawerLayout = ({ drawer, appBar, children }: PropsWithChildren<Props>) => {
   return (
     <Box sx={{ display: "flex" }}>
       <DrawerProvider>
@@ -30,5 +30,5 @@ export const AppBarWithDrawerLayout = ({drawer,appBar,children}:PropsWithChildre
         </Box>
       </DrawerProvider>
     </Box>
-  )
-}
+  );
+};

@@ -14,30 +14,30 @@ const Template = createTemplate(Bullet);
 
 export const Default = Template.bind({});
 Default.args = {
-  variant:'default'
+  variant: "default",
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
-  variant:'primary'
+  variant: "primary",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  variant:'secondary'
+  variant: "secondary",
 };
 
 export const Info = Template.bind({});
 Info.args = {
-  variant:'info'
+  variant: "info",
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
-  variant:'warning'
+  variant: "warning",
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  variant:'error'
+  variant: "error",
 };

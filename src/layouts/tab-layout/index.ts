@@ -1,1 +1,1 @@
-export * from './tab-layout'
+export * from "./tab-layout";

@@ -1,9 +1,10 @@
+import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { HeaderLayout } from "./header-layout";
 import { withRouter } from "storybook-addon-react-router-v6";
-import {SkeletonGrid} from '../../tests'
-import {withFullHeight} from '../../storybook/utils'
+import { SkeletonGrid } from "../../tests";
+import { withFullHeight } from "../../storybook/utils";
 
 const breadcrumbs = [
   {
@@ -21,21 +22,18 @@ const breadcrumbs = [
 export default {
   title: "Layouts/HeaderLayout",
   component: HeaderLayout,
-  decorators:[
-    withRouter,
-    withFullHeight
-  ],
+  decorators: [withRouter, withFullHeight],
   parameters: {
     layout: "fullscreen",
   },
 } as ComponentMeta<typeof HeaderLayout>;
 
-const Template = createTemplate((args)=>{
+const Template = createTemplate((args) => {
   return (
     <HeaderLayout {...args}>
-      <SkeletonGrid/>
+      <SkeletonGrid />
     </HeaderLayout>
-  )
+  );
 });
 
 export const Default = Template.bind({});
@@ -44,13 +42,14 @@ Default.args = {
     title: "Lorem ipsum",
     subtitle: "Dolor sit amet",
     breadcrumbs,
-    actions:[{
-      id:'new',
-      text:"Add",
-    }]
+    actions: [
+      {
+        id: "new",
+        text: "Add",
+      },
+    ],
   },
 };
-
 
 export const Loading = Template.bind({});
 Loading.args = {
@@ -59,10 +58,11 @@ Loading.args = {
     title: "Lorem ipsum",
     subtitle: "Dolor sit amet",
     breadcrumbs,
-    actions:[{
-      id:'new',
-      text:"Add",
-    }]
+    actions: [
+      {
+        id: "new",
+        text: "Add",
+      },
+    ],
   },
 };
-

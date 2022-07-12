@@ -1,3 +1,4 @@
+import React from "react";
 import { Box } from "@mui/material";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
@@ -11,15 +12,13 @@ export default {
   },
 } as ComponentMeta<typeof LoadingArea>;
 
-const Template = createTemplate((args)=>{
-
+const Template = createTemplate((args) => {
   return (
     <Box height={300} border="solid 1px black">
-      <LoadingArea {...args}/>
+      <LoadingArea {...args} />
     </Box>
-  )
+  );
 });
 
 export const Default = Template.bind({});
-Default.args = {
-};
+Default.args = {};

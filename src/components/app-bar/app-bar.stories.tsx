@@ -1,7 +1,8 @@
+import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { AppBar } from "./app-bar";
-import {DrawerProvider} from '../drawer';
+import { DrawerProvider } from "../drawer";
 
 export default {
   title: "AppBars/AppBar",
@@ -11,19 +12,18 @@ export default {
   },
 } as ComponentMeta<typeof AppBar>;
 
-const Template = createTemplate((args)=>{
-
+const Template = createTemplate((args) => {
   return (
     <DrawerProvider>
-      <AppBar {...args}/>
+      <AppBar {...args} />
     </DrawerProvider>
-  )
+  );
 });
 
 export const Default = Template.bind({});
 Default.args = {
   title: "Lorem ipsum",
-  menu: true
+  menu: true,
 };
 
 export const WithSearch = Template.bind({});
@@ -38,11 +38,10 @@ WithoutTitle.args = {
   menu: true,
 };
 
-
 export const WihtoutMenu = Template.bind({});
 WihtoutMenu.args = {
   title: "Lorem ipsum",
-  menu: false
+  menu: false,
 };
 
 export const WithProfile = Template.bind({});
@@ -50,8 +49,6 @@ WithProfile.args = {
   title: "Lorem ipsum",
   menu: true,
   profile: {
-    name: "Test user"
-  }
+    name: "Test user",
+  },
 };
-
-

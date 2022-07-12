@@ -1,17 +1,22 @@
-import React from 'react';
+import React from "react";
 import { Drawer } from "../drawer";
 import { styled } from "@mui/material/styles";
-import { drawerWidth,openedMixin,closedMixin } from '../drawer.mixins';
-import { useDrawer } from '../drawer.context';
-import { listItemButtonClasses, listItemIconClasses, listItemTextClasses, listSubheaderClasses } from '@mui/material';
-import { labelClasses } from '../../label';
-import { bulletClasses } from '../../bullet';
+import { drawerWidth, openedMixin, closedMixin } from "../drawer.mixins";
+import { useDrawer } from "../drawer.context";
+import {
+  listItemButtonClasses,
+  listItemIconClasses,
+  listItemTextClasses,
+  listSubheaderClasses,
+} from "@mui/material";
+import { labelClasses } from "../../label";
+import { bulletClasses } from "../../bullet";
 
 export const MiniDrawer = styled(Drawer)(({ theme }) => {
-  const {isOpen} = useDrawer();
+  const { isOpen } = useDrawer();
 
   const hideIfClosed = !isOpen && {
-    "display":'none',
+    display: "none",
   };
 
   return {
@@ -22,26 +27,30 @@ export const MiniDrawer = styled(Drawer)(({ theme }) => {
     [`& .${listItemIconClasses.root}`]: {
       minWidth: 0,
       justifyContent: "center",
-      ...(isOpen? {
-        marginRight: theme.spacing(3),
-      }:{
-        marginRight: "auto"
-      })
+      ...(isOpen
+        ? {
+            marginRight: theme.spacing(3),
+          }
+        : {
+            marginRight: "auto",
+          }),
     },
-    [`& .${listItemButtonClasses.root}`]:{
+    [`& .${listItemButtonClasses.root}`]: {
       minHeight: 48,
-      paddingHorizontal:theme.spacing(2.5),
-      ...(isOpen?{
-        justifyContent:"initial",
-      }:{
-        justifyContent: "center",
-      }),
+      paddingHorizontal: theme.spacing(2.5),
+      ...(isOpen
+        ? {
+            justifyContent: "initial",
+          }
+        : {
+            justifyContent: "center",
+          }),
     },
     [`& .${labelClasses.root}`]: hideIfClosed,
     [`& .${bulletClasses.root}`]: hideIfClosed,
     [`& .${listSubheaderClasses.root}`]: hideIfClosed,
     [`& .${listItemTextClasses.root}`]: {
-      opacity: isOpen ? 1:0,
+      opacity: isOpen ? 1 : 0,
     },
     ...(isOpen && {
       ...openedMixin(theme),
@@ -55,5 +64,5 @@ export const MiniDrawer = styled(Drawer)(({ theme }) => {
 });
 
 MiniDrawer.defaultProps = {
-  variant:"permanent"
-}
+  variant: "permanent",
+};

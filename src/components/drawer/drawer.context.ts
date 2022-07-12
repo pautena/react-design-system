@@ -1,5 +1,4 @@
-import {useContext,createContext} from 'react';
-
+import { useContext, createContext } from "react";
 
 export interface DrawerContextProps {
   isOpen: boolean;
@@ -9,7 +8,7 @@ export interface DrawerContextProps {
 
 export const DrawerContext = createContext<DrawerContextProps | undefined>(undefined);
 
-export const useDrawer = ()=> {
+export const useDrawer = () => {
   const context = useContext(DrawerContext);
 
   if (context === undefined) {
@@ -17,4 +16,4 @@ export const useDrawer = ()=> {
   }
 
   return context;
-}
+};

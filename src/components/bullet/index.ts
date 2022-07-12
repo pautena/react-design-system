@@ -1,1 +1,1 @@
-export * from './bullet'
+export * from "./bullet";

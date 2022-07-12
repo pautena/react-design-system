@@ -54,9 +54,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export const AppBar:AppBarComponent = ({ search=false,title,menu=false,profile, onClickSignOut, ...rest }) => {
+export const AppBar: AppBarComponent = ({
+  search = false,
+  title,
+  menu = false,
+  profile,
+  onClickSignOut,
+  ...rest
+}) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const {isOpen,open}= useDrawer();
+  const { isOpen, open } = useDrawer();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

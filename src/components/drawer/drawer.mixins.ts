@@ -1,4 +1,3 @@
-
 import { Theme, CSSObject } from "@mui/material/styles";
 
 export const drawerWidth = 240;

@@ -15,35 +15,35 @@ const Template = createTemplate(Label);
 export const Default = Template.bind({});
 Default.args = {
   text: "lorem",
-  variant:'default'
+  variant: "default",
 };
 
 export const Primary = Template.bind({});
 Primary.args = {
   text: "lorem",
-  variant:'primary'
+  variant: "primary",
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   text: "lorem",
-  variant:'secondary'
+  variant: "secondary",
 };
 
 export const Info = Template.bind({});
 Info.args = {
   text: "lorem",
-  variant:'info'
+  variant: "info",
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   text: "lorem",
-  variant:'warning'
+  variant: "warning",
 };
 
 export const Error = Template.bind({});
 Error.args = {
   text: "lorem",
-  variant:'error'
+  variant: "error",
 };

@@ -1,1 +1,1 @@
-export * from './notification-center'
+export * from "./notification-center";
