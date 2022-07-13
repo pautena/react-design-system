@@ -5,12 +5,10 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Typography,
 } from "@mui/material";
 import React from "react";
 import { Bullet } from "../bullet";
 import { Label } from "../label";
-import { useDrawer } from "../drawer/drawer.context";
 import { NavItem } from "../drawer/drawer.types";
 
 export interface DrawerItemProps {

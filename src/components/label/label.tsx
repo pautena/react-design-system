@@ -1,5 +1,5 @@
 import { Box, Typography, useTheme } from "@mui/material";
-import React, { ReactElement } from "react";
+import React from "react";
 
 export type LabelVariant = "primary" | "secondary" | "default" | "info" | "warning" | "error";
 

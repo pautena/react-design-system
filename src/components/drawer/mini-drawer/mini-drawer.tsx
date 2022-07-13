@@ -1,4 +1,3 @@
-import React from "react";
 import { Drawer } from "../drawer";
 import { styled } from "@mui/material/styles";
 import { drawerWidth, openedMixin, closedMixin } from "../drawer.mixins";

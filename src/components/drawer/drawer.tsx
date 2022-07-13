@@ -3,7 +3,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import { Drawer as MuiDrawer, Divider, IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { DrawerComponent } from "./drawer.types";
+import { DrawerComponent, DrawerProps } from "./drawer.types";
 import { useDrawer } from "./drawer.context";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -14,7 +14,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export const Drawer: DrawerComponent = ({ children, ...rest }) => {
+export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
   const { isOpen, close } = useDrawer();
 

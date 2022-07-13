@@ -3,6 +3,7 @@ import { Link as RouterLink, LinkProps as RouterLinkProps } from "react-router-d
 import { forwardRef } from "react";
 import { LinkProps, Link as MuiLink } from "@mui/material";
 
+// eslint-disable-next-line react/display-name, @typescript-eslint/no-explicit-any
 export const LinkBehaviour = forwardRef<
   any,
   Omit<RouterLinkProps, "to"> & { href: RouterLinkProps["to"] }

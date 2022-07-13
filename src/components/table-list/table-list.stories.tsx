@@ -14,7 +14,7 @@ export default {
   },
 } as ComponentMeta<typeof TableList>;
 
-const Template = createTemplate(({ dataSetType, size, dataGridProps, ...rest }) => {
+const Template = createTemplate(({ dataSetType, size, ...rest }) => {
   const { data } = useDemoData({
     dataSet: dataSetType,
     rowLength: size,

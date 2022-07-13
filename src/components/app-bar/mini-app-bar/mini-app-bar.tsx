@@ -1,4 +1,3 @@
-import React from "react";
 import { styled } from "@mui/material/styles";
 import { AppBar } from "../app-bar";
 import { AppBarProps } from "@mui/material";

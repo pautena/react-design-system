@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { Box, Typography, SvgIcon, useTheme, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 
 type IconColor =
   | "inherit"

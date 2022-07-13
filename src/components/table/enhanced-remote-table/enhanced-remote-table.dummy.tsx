@@ -15,7 +15,7 @@ interface DummyProps<T> {
 export function EnhancedRemoteDummyTable<T>(props: DummyProps<T>) {
   return (
     <EnhancedRemoteTable {...props}>
-      {(d: any) => (
+      {(d: unknown) => (
         <TableRow key={d.id}>
           <TableCell>{d.name}</TableCell>
           <TableCell>{d.id}</TableCell>

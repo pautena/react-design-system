@@ -3,7 +3,7 @@ import { Snackbar, Alert } from "@mui/material";
 import React, { PropsWithChildren } from "react";
 import { Notification, NotificationCenterContext } from "./notification-center.context";
 
-export const NotificationCenterProvider = ({ children }: PropsWithChildren<{}>) => {
+export const NotificationCenterProvider = ({ children }: PropsWithChildren) => {
   const [notification, setNotification] = useState<Notification | undefined>(undefined);
   const [open, setOpen] = useState(false);
   const show = (notification: Notification) => {

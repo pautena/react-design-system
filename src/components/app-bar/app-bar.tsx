@@ -11,7 +11,7 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
-import { AppBarComponent } from "./app-bar.types";
+import { AppBarComponent, AppBarProps } from "./app-bar.types";
 import { useDrawer } from "../drawer/drawer.context";
 
 const Search = styled("div")(({ theme }) => ({
@@ -61,7 +61,7 @@ export const AppBar: AppBarComponent = ({
   profile,
   onClickSignOut,
   ...rest
-}) => {
+}: AppBarProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const { isOpen, open } = useDrawer();
 

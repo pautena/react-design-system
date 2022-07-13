@@ -1,8 +1,8 @@
 import React from "react";
 import { DrawerSection } from "../drawer-section";
-import { DrawerContentComponent } from "../drawer/drawer.types";
+import { DrawerContentComponent, DrawerContentProps } from "../drawer/drawer.types";
 
-export const DrawerContent: DrawerContentComponent = ({ nav }) => {
+export const DrawerContent: DrawerContentComponent = ({ nav }: DrawerContentProps) => {
   const { items } = nav;
 
   return (
