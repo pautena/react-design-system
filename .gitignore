@@ -1,6 +1,7 @@
 # Nodejs files
 node_modules
 yarn-error.log
+types/
 
 # Build folders
 dist
