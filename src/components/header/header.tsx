@@ -12,12 +12,16 @@ import {
 import { Link } from "../link";
 import { PropTypes } from "@mui/material";
 
-type ColorPreset = PropTypes.Color | "transparent";
+export type HeaderPreset = PropTypes.Color | "transparent";
+export type HeaderActionVariant = "text" | "outlined" | "contained";
 
 export type HeaderAction = {
   id: string;
   text: string;
-} & ({ href: string } | { onClick: () => void });
+  disabled?: boolean;
+  href?: string;
+  onClick?: () => void;
+};
 
 export interface HeaderBreadcrumb {
   id: string;
@@ -32,46 +36,79 @@ export interface HeaderTab {
 }
 
 export type HeaderProps = {
+  /**
+   * Title of the header
+   */
   title: string;
+  /**
+   * Subtitle of the header
+   */
   subtitle?: string;
-  color: ColorPreset;
+  /**
+   * Color palete used to render the component
+   */
+  preset: HeaderPreset;
+  /**
+   * List of breadcumbs to represent the path to reach
+   * the page that we are
+   */
   breadcrumbs?: HeaderBreadcrumb[];
-  actionsVariant?: "text" | "outlined" | "contained";
+  /**
+   * List of actions that can be performed by the user.
+   * Each action will be a button in the header.
+   */
   actions?: HeaderAction[];
-  selectedTab?: number;
+  /**
+   * Variant used to render the actions
+   */
+  actionsVariant?: HeaderActionVariant;
+  /**
+   * If is set, a list of tabs is dispayed at the bottom
+   */
   tabs?: HeaderTab[];
+  /**
+   * Tab that has to be marked as selected
+   */
+  selectedTab?: number;
+  /**
+   * Callback executed when the user click a tab
+   */
   onChangeTab?: (tab: HeaderTab, index: number) => void;
 };
 
+/**
+ * Section used to explain give basic information about the page
+ * and put the main actions
+ */
 export const Header = ({
   title,
   subtitle,
-  color = "default",
+  preset = "default",
   actionsVariant = "outlined",
   breadcrumbs,
   actions,
   tabs,
   selectedTab,
-  onChangeTab,
+  onChangeTab = () => null,
 }: HeaderProps) => {
   const { palette } = useTheme();
 
-  const bgColorPresets: Record<ColorPreset, string> = {
+  const bgColorPresets: Record<HeaderPreset, string> = {
     default: palette.mode === "light" ? palette.grey[100] : palette.grey[900],
     primary: palette.primary.main,
     secondary: palette.secondary.main,
     inherit: "inherit",
     transparent: "transparent",
   };
-  const bgColor = bgColorPresets[color];
-  const textColorPresets: Record<ColorPreset, string> = {
+  const bgColor = bgColorPresets[preset];
+  const textColorPresets: Record<HeaderPreset, string> = {
     default: palette.getContrastText(bgColorPresets.default),
     primary: palette.primary.contrastText,
     secondary: palette.secondary.contrastText,
     inherit: "inherit",
     transparent: palette.text.primary,
   };
-  const textColor = textColorPresets[color];
+  const textColor = textColorPresets[preset];
 
   return (
     <Box bgcolor={bgColor} color={textColor}>
@@ -86,35 +123,45 @@ export const Header = ({
                 sx={{ marginTop: 1 }}
               >
                 {breadcrumbs.map(({ id, link, text }) => (
-                  <Link key={id} underline="hover" color="inherit" href={link} variant="body2">
+                  <Link
+                    key={id}
+                    underline="hover"
+                    color="inherit"
+                    href={link}
+                    variant="body2"
+                    role="link"
+                  >
                     {text}
                   </Link>
                 ))}
               </Breadcrumbs>
             )}
-            <Typography variant="h4">{title}</Typography>
-            {subtitle && <Typography variant="body1">{subtitle}</Typography>}
+            <Typography variant="h4" role="heading" aria-level={1}>
+              {title}
+            </Typography>
+            {subtitle && (
+              <Typography variant="body1" role="heading" aria-level={2}>
+                {subtitle}
+              </Typography>
+            )}
           </Box>
           {actions && (
             <Box>
-              {actions.map((action, i) => {
-                const href = "href" in action && action.href;
-                const onClick = "onClick" in action && action.onClick;
-
-                return (
-                  <Button
-                    color="inherit"
-                    key={action.id}
-                    variant={actionsVariant}
-                    size="small"
-                    href={href}
-                    onClick={onClick}
-                    sx={{ mr: i != actions.length - 1 ? 1 : 0 }}
-                  >
-                    {action.text}
-                  </Button>
-                );
-              })}
+              {actions.map(({ disabled, id, href, onClick, text }, i) => (
+                <Button
+                  role="button"
+                  color="inherit"
+                  disabled={disabled}
+                  key={id}
+                  variant={actionsVariant}
+                  size="small"
+                  href={href}
+                  onClick={onClick}
+                  sx={{ mr: i != actions.length - 1 ? 1 : 0 }}
+                >
+                  {text}
+                </Button>
+              ))}
             </Box>
           )}
         </Box>

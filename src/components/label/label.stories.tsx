@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
-import { Label, LabelProps } from "./label";
+import { Label } from "./label";
 
 export default {
   title: "Data Display/Label",
