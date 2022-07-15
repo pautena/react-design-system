@@ -8,10 +8,19 @@ export const labelClasses = {
 };
 
 export interface LabelProps {
+  /**
+   * Content of the component
+   */
   text: string;
+  /**
+   * Color palette used to draw the component
+   */
   variant?: LabelVariant;
 }
 
+/**
+ * Compact element to represent a text
+ */
 export const Label = ({ text, variant = "default" }: LabelProps) => {
   const { palette } = useTheme();
 
@@ -40,6 +49,7 @@ export const Label = ({ text, variant = "default" }: LabelProps) => {
       borderRadius={1}
       color={textColor[variant]}
       className={labelClasses.root}
+      aria-label={variant}
     >
       <Typography variant="caption" fontWeight={700}>
         {text.toUpperCase()}

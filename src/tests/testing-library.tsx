@@ -3,10 +3,14 @@ import { Router } from "react-router-dom";
 import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
 import { ThemeProvider } from "@emotion/react";
-import { Theme, createTheme } from "@mui/material";
+import { Theme, createTheme, PaletteMode } from "@mui/material";
 
-function createMockTheme() {
-  return createTheme();
+function createMockTheme(mode: PaletteMode) {
+  return createTheme({
+    palette: {
+      mode,
+    },
+  });
 }
 
 function createMockHistory(): MemoryHistory {
@@ -26,12 +30,20 @@ const createWrapper =
     );
   };
 
-const customRender = (ui: React.ReactElement, options: RenderOptions = {}) => {
+interface CustomRenderOptions {
+  renderOptions?: RenderOptions;
+  mode?: PaletteMode;
+}
+
+const customRender = (ui: React.ReactElement, options: CustomRenderOptions = {}) => {
+  const renderOptions = options.renderOptions || {};
+  const mode = options.mode || "light";
+
   const history = createMockHistory();
-  const theme = createMockTheme();
+  const theme = createMockTheme(mode);
   const wrapper = createWrapper(history, theme);
 
-  const instance = render(ui, { wrapper, ...options });
+  const instance = render(ui, { wrapper, ...renderOptions });
   return { ...instance, history };
 };
 

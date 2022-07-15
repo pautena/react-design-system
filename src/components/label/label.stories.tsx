@@ -1,9 +1,9 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
-import { Label } from "./label";
+import { Label, LabelProps } from "./label";
 
 export default {
-  title: "Components/Label",
+  title: "Data Display/Label",
   component: Label,
   parameters: {
     layout: "centered",

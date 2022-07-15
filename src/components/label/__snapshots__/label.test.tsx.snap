@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label renders correctly with variant default 1`] = `
+<div>
+  <div
+    aria-label="default"
+    class="RdsLabel-root MuiBox-root css-125klzf"
+  >
+    <span
+      class="MuiTypography-root MuiTypography-caption css-sfqsx-MuiTypography-root"
+    >
+      LOREM IPSUM
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Label renders correctly with variant error 1`] = `
+<div>
+  <div
+    aria-label="error"
+    class="RdsLabel-root MuiBox-root css-hr30l5"
+  >
+    <span
+      class="MuiTypography-root MuiTypography-caption css-sfqsx-MuiTypography-root"
+    >
+      LOREM IPSUM
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Label renders correctly with variant info 1`] = `
+<div>
+  <div
+    aria-label="info"
+    class="RdsLabel-root MuiBox-root css-xsokld"
+  >
+    <span
+      class="MuiTypography-root MuiTypography-caption css-sfqsx-MuiTypography-root"
+    >
+      LOREM IPSUM
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Label renders correctly with variant primary 1`] = `
+<div>
+  <div
+    aria-label="primary"
+    class="RdsLabel-root MuiBox-root css-1kqxb18"
+  >
+    <span
+      class="MuiTypography-root MuiTypography-caption css-sfqsx-MuiTypography-root"
+    >
+      LOREM IPSUM
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Label renders correctly with variant secondary 1`] = `
+<div>
+  <div
+    aria-label="secondary"
+    class="RdsLabel-root MuiBox-root css-akwe60"
+  >
+    <span
+      class="MuiTypography-root MuiTypography-caption css-sfqsx-MuiTypography-root"
+    >
+      LOREM IPSUM
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Label renders correctly with variant warning 1`] = `
+<div>
+  <div
+    aria-label="warning"
+    class="RdsLabel-root MuiBox-root css-pe0lg2"
+  >
+    <span
+      class="MuiTypography-root MuiTypography-caption css-sfqsx-MuiTypography-root"
+    >
+      LOREM IPSUM
+    </span>
+  </div>
+</div>
+`;
