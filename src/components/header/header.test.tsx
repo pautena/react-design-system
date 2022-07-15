@@ -115,14 +115,13 @@ describe("Header", () => {
       expect(screen.getByRole("button", { name: /disabled/i })).toBeDisabled();
     });
 
-    // TODO: the pathname is not changing after the click
-    // it("would redirect to the expected url when click an action with an href", async () => {
-    //   const { history } = renderInstance({ actions });
+    it("would redirect to the expected url when click an action with an href", async () => {
+      const { history } = renderInstance({ actions });
 
-    //   await userEvent.click(screen.getByRole("button", { name: /add/i }));
+      await userEvent.click(screen.getByRole("button", { name: /add/i }));
 
-    //   expect(history.location.pathname).toBe("/items/add");
-    // });
+      expect(history.location.pathname).toBe("/items/add");
+    });
   });
 
   describe("tabs", () => {

@@ -4,7 +4,7 @@ import { createTemplate } from "../../storybook";
 import { HeaderLayout } from "./header-layout";
 import { withRouter } from "storybook-addon-react-router-v6";
 import { SkeletonGrid } from "../../tests";
-import { withFullHeight } from "../../storybook/utils";
+import { withFullHeight } from "../../storybook";
 
 const breadcrumbs = [
   {

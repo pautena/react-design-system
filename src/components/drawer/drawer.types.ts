@@ -3,21 +3,28 @@ import { BulletVariant } from "../bullet";
 import { LabelVariant } from "../label";
 import { DrawerProps as MuiDrawerProps } from "@mui/material";
 
+export interface NavItemAvatar {
+  src: string;
+  alt: string;
+}
+
+export interface NavItemLabel {
+  text: string;
+  variant: LabelVariant;
+}
+
+export interface NavItemBullet {
+  variant: BulletVariant;
+}
+
 export interface NavItem {
   id: string;
-  name: string;
+  text: string;
+  href: string;
   icon?: ReactElement;
-  avatar?: {
-    src: string;
-    alt: string;
-  };
-  label?: {
-    text: string;
-    variant: LabelVariant;
-  };
-  bullet?: {
-    variant: BulletVariant;
-  };
+  avatar?: NavItemAvatar;
+  label?: NavItemLabel;
+  bullet?: NavItemBullet;
 }
 
 export interface NavSection {

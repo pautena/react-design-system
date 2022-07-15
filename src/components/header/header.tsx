@@ -149,6 +149,7 @@ export const Header = ({
             <Box>
               {actions.map(({ disabled, id, href, onClick, text }, i) => (
                 <Button
+                  component={href ? Link : "button"}
                   role="button"
                   color="inherit"
                   disabled={disabled}

@@ -12,8 +12,16 @@ export const DrawerSection = ({ section }: DrawerSectionProps) => {
     <>
       {section.title && <ListSubheader>{section.title}</ListSubheader>}
       <List>
-        {section.items.map((item, j) => (
-          <DrawerItem item={item} key={j} />
+        {section.items.map(({ id, text, icon, avatar, label, bullet, href }) => (
+          <DrawerItem
+            key={id}
+            text={text}
+            icon={icon}
+            avatar={avatar}
+            label={label}
+            bullet={bullet}
+            href={href}
+          />
         ))}
       </List>
     </>
