@@ -22,9 +22,8 @@ describe("Label", () => {
   it.each([["primary"], ["secondary"], ["default"], ["info"], ["warning"], ["error"]])(
     "renders correctly with variant %s",
     (variant: string) => {
-      const { container } = renderComponent(variant as LabelVariant);
+      renderComponent(variant as LabelVariant);
 
-      expect(container).toMatchSnapshot();
       expect(screen.getByRole("label")).toHaveAttribute("aria-describedby", variant);
     },
   );

@@ -16,9 +16,8 @@ describe("Bullet", () => {
   it.each([["primary"], ["secondary"], ["default"], ["info"], ["warning"], ["error"]])(
     "renders correctly with variant %s",
     (variant: string) => {
-      const { container } = renderComponent(variant as BulletVariant);
+      renderComponent(variant as BulletVariant);
 
-      expect(container).toMatchSnapshot();
       expect(screen.getByRole("bullet")).toHaveAttribute("aria-describedby", variant);
     },
   );
