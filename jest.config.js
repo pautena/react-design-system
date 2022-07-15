@@ -6,7 +6,7 @@ module.exports = {
     "!src/**/*.stories.tsx",
     "!src/**/*.dummy.ts",
     "!src/**/*.test.tsx",
-    "!src/storybook.ts",
+    "!src/storybook.tsx",
     "!src/tests/**",
     "!src/**/__snapshots__/**",
   ],
