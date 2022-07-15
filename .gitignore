@@ -6,6 +6,7 @@ types/
 # Build folders
 dist
 storybook-static
+coverage
 
 # Logs
 logs

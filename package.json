@@ -7,6 +7,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "jest",
+    "coverage": "jest --coverage",
     "storybook": "start-storybook -p 6006",
     "storybook:build": "build-storybook",
     "storybook:deploy": "gh-pages -d storybook-static",
