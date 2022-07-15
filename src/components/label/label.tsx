@@ -49,7 +49,8 @@ export const Label = ({ text, variant = "default" }: LabelProps) => {
       borderRadius={1}
       color={textColor[variant]}
       className={labelClasses.root}
-      aria-label={variant}
+      role="label"
+      aria-describedby={variant}
     >
       <Typography variant="caption" fontWeight={700}>
         {text.toUpperCase()}

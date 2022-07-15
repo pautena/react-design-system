@@ -1,4 +1,4 @@
-import { Badge } from "@mui/material";
+import { Badge, Box } from "@mui/material";
 import React from "react";
 
 export type BulletVariant = "primary" | "secondary" | "default" | "info" | "warning" | "error";
@@ -8,9 +8,23 @@ export const bulletClasses = {
 };
 
 export interface BulletProps {
+  /**
+   * Color palette used to draw the component
+   */
   variant?: BulletVariant;
 }
 
+/**
+ * Dot to attract the user attention
+ */
 export const Bullet = ({ variant = "primary" }: BulletProps) => {
-  return <Badge color={variant} variant="dot" className={bulletClasses.root} />;
+  return (
+    <Badge
+      color={variant}
+      variant="dot"
+      className={bulletClasses.root}
+      role="bullet"
+      aria-describedby={variant}
+    />
+  );
 };

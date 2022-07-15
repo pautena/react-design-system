@@ -3,7 +3,7 @@ import { createTemplate } from "../../storybook";
 import { Bullet } from "./bullet";
 
 export default {
-  title: "Components/Bullet",
+  title: "Data Display/Bullet",
   component: Bullet,
   parameters: {
     layout: "centered",
@@ -11,11 +11,6 @@ export default {
 } as ComponentMeta<typeof Bullet>;
 
 const Template = createTemplate(Bullet);
-
-export const Default = Template.bind({});
-Default.args = {
-  variant: "default",
-};
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -25,6 +20,11 @@ Primary.args = {
 export const Secondary = Template.bind({});
 Secondary.args = {
   variant: "secondary",
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  variant: "default",
 };
 
 export const Info = Template.bind({});
