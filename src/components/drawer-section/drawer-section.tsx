@@ -1,18 +1,19 @@
 import { List, ListSubheader } from "@mui/material";
 import React from "react";
 import { DrawerItem } from "../drawer-item";
-import { NavSection } from "../drawer/drawer.types";
+import { NavItem } from "../drawer/drawer.types";
 
 export interface DrawerSectionProps {
-  section: NavSection;
+  title?: string;
+  items: NavItem[];
 }
 
-export const DrawerSection = ({ section }: DrawerSectionProps) => {
+export const DrawerSection = ({ title, items }: DrawerSectionProps) => {
   return (
     <>
-      {section.title && <ListSubheader>{section.title}</ListSubheader>}
+      {title && <ListSubheader role="heading">{title}</ListSubheader>}
       <List>
-        {section.items.map(({ id, text, icon, avatar, label, bullet, href }) => (
+        {items.map(({ id, text, icon, avatar, label, bullet, href }) => (
           <DrawerItem
             key={id}
             text={text}
