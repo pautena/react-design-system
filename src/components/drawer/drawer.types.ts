@@ -37,6 +37,9 @@ export interface Nav {
 }
 
 export interface DrawerContentProps {
+  /**
+   * Object with the content that has to be rendered
+   */
   nav: Nav;
 }
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;

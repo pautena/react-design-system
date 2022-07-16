@@ -9,19 +9,19 @@ export const mockNav: Nav = {
       items: [
         {
           id: "item1.1",
-          text: "Item 1",
+          text: "Item 1.1",
           icon: <DiamondIcon />,
           href: "/items/1-1",
         },
         {
           id: "item1.2",
-          text: "Item 2",
+          text: "Item 1.2",
           href: "/items/1-2",
           icon: <DiamondIcon />,
         },
         {
           id: "item1.3",
-          text: "Item 3",
+          text: "Item 1.3",
           href: "/items/1-3",
           icon: <DiamondIcon />,
           bullet: {
@@ -30,7 +30,7 @@ export const mockNav: Nav = {
         },
         {
           id: "item1.4",
-          text: "Item 4",
+          text: "Item 1.4",
           href: "/items/1-4",
           icon: <DiamondIcon />,
           bullet: {
@@ -44,7 +44,7 @@ export const mockNav: Nav = {
       items: [
         {
           id: "item2.1",
-          text: "Item 1",
+          text: "Item 2.1",
           href: "/items/2-1",
           icon: <DiamondIcon />,
           label: {
@@ -54,7 +54,7 @@ export const mockNav: Nav = {
         },
         {
           id: "item2.2",
-          text: "Item 2",
+          text: "Item 2.2",
           href: "/items/2-2",
           icon: <MenuBookIcon />,
           label: {
