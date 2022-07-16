@@ -1,7 +1,8 @@
 import React from "react";
-import { Nav } from "./drawer.types";
+import { DrawerContentComponent, DrawerContentProps, Nav } from "./drawer.types";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { Box, Typography } from "@mui/material";
 
 export const mockNav: Nav = {
   items: [
@@ -88,4 +89,12 @@ export const mockNav: Nav = {
       ],
     },
   ],
+};
+
+export const DummyDrawerContent: DrawerContentComponent = ({}: DrawerContentProps) => {
+  return (
+    <Box>
+      <Typography variant="h6">Dummy Drawer Content</Typography>
+    </Box>
+  );
 };
