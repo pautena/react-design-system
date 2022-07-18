@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import React from "react";
-||||||| parent of cb6ba35 (Test drawer item)
-=======
 import React, { ReactElement } from "react";
->>>>>>> cb6ba35 (Test drawer item)
 import {
   Avatar,
   ListItem,
