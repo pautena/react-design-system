@@ -1,22 +1,9 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
-import { Placeholder, PlaceholderAction, PlaceholderIconArgs } from "./placeholder";
+import { Placeholder, PlaceholderIconArgs } from "./placeholder";
 import SearchIcon from "@mui/icons-material/Search";
-import { action } from "@storybook/addon-actions";
-
-const actions: PlaceholderAction[] = [
-  {
-    id: "add",
-    text: "Add",
-    href: "/placeholders/add",
-  },
-  {
-    id: "edit",
-    text: "Edit",
-    onClick: action("on click edit action"),
-  },
-];
+import { actions } from "./placeholder.mock";
 
 export default {
   title: "Components/Placeholder",

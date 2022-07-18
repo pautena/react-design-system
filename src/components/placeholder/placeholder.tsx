@@ -12,10 +12,12 @@ type IconColor =
   | "success"
   | "warning";
 
-export type PlaceholderAction = {
+export interface PlaceholderAction {
   id: string;
   text: string;
-} & ({ href: string } | { onClick: () => void });
+  href?: string;
+  onClick?: () => void;
+}
 
 export interface PlaceholderIconArgs {
   size: number;
@@ -46,8 +48,10 @@ export const Placeholder = ({
       textAlign="center"
     >
       {icon && icon({ size: iconSize, color: "primary" })}
-      <Typography variant="h4">{title}</Typography>
-      <Typography variant="subtitle1" sx={{ mt: 2 }}>
+      <Typography variant="h4" role="heading" aria-level={1}>
+        {title}
+      </Typography>
+      <Typography variant="subtitle1" role="heading" aria-level={2} sx={{ mt: 2 }}>
         {subtitle}
       </Typography>
       {actions && (
@@ -55,6 +59,7 @@ export const Placeholder = ({
           {actions.map(({ id, text, href, onClick }, index) => (
             <Button
               key={id}
+              role="button"
               variant="contained"
               href={href}
               onClick={onClick}
