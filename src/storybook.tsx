@@ -27,3 +27,13 @@ export const withContainer =
       </Box>
     );
   };
+
+export const withPadding =
+  (padding = 2) =>
+  (Story: FunctionComponent) => {
+    return (
+      <Box padding={padding}>
+        <Story />
+      </Box>
+    );
+  };

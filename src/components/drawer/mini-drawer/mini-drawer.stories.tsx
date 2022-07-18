@@ -6,6 +6,7 @@ import { MiniDrawer } from "../mini-drawer";
 import { mockNav } from "../drawer.mock";
 import { DrawerContent } from "../../drawer-content";
 import { DrawerProvider } from "../drawer.provider";
+import { Nav } from "../drawer.types";
 
 export default {
   title: "Drawers/MiniDrawer",
@@ -16,7 +17,12 @@ export default {
   },
 } as ComponentMeta<typeof MiniDrawer>;
 
-export const Default = ({ nav, open }) => (
+interface Props {
+  open: boolean;
+  nav: Nav;
+}
+
+export const Default = ({ nav, open }: Props) => (
   <DrawerProvider initialOpen={open}>
     <MiniDrawer>
       <DrawerContent nav={nav} />

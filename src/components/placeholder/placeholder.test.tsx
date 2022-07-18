@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { render, screen } from "../../tests";
-import userEvent from '@testing-library/user-event'
+import userEvent from "@testing-library/user-event";
 import { Placeholder, PlaceholderAction } from "./placeholder";
 import { actions as actionData } from "./placeholder.mock";
 import SearchIcon from "@mui/icons-material/Search";
@@ -65,13 +65,12 @@ describe("Placeholder", () => {
       expect(screen.queryByRole("button", { name: /edit/i })).toBeInTheDocument();
     });
 
-    it('would call onClick if a button is clicked',async ()=>{
+    it("would call onClick if a button is clicked", async () => {
       renderComponent({ actions });
 
-      await userEvent.click(screen.getByRole("button", { name: /edit/i }))
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(actions[1].onClick).toHaveBeenCalledTimes(1);
-
-    })
+    });
   });
 });

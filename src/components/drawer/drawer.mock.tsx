@@ -91,7 +91,7 @@ export const mockNav: Nav = {
   ],
 };
 
-export const DummyDrawerContent: DrawerContentComponent = ({}: DrawerContentProps) => {
+export const DummyDrawerContent: DrawerContentComponent = () => {
   return (
     <Box>
       <Typography variant="h6">Dummy Drawer Content</Typography>
