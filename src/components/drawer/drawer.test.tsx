@@ -6,7 +6,7 @@ import { DummyDrawerContent, mockNav } from "./drawer.mock";
 import { Box, Button, createTheme } from "@mui/material";
 import { useDrawer } from "./drawer.context";
 import userEvent from "@testing-library/user-event";
-import {openedMixin,closedMixin} from './drawer.mixins'
+import { openedMixin, closedMixin } from "./drawer.mixins";
 
 describe("Drawer", () => {
   const renderComponent = ({ initialOpen = undefined }: { initialOpen?: boolean } = {}) => {
@@ -61,18 +61,18 @@ describe("Drawer", () => {
   });
 });
 
-describe("mixins",()=>{
-  describe('openedMixin',()=>{
-    it('would match a snapshot',()=>{
+describe("mixins", () => {
+  describe("openedMixin", () => {
+    it("would match a snapshot", () => {
       const theme = createTheme();
       expect(openedMixin(theme)).toMatchSnapshot();
-    })
-  })
+    });
+  });
 
-  describe('closedMixin',()=>{
-    it('would match a snapshot',()=>{
+  describe("closedMixin", () => {
+    it("would match a snapshot", () => {
       const theme = createTheme();
       expect(closedMixin(theme)).toMatchSnapshot();
-    })
-  })
-})
+    });
+  });
+});
