@@ -7,12 +7,13 @@ export interface DrawerContextProps {
 }
 
 export const DrawerContext = createContext<DrawerContextProps | undefined>(undefined);
+export const UndefinedProvider = new Error("DrawerContext.Provider is required and was undefined");
 
 export const useDrawer = () => {
   const context = useContext(DrawerContext);
 
   if (context === undefined) {
-    throw new Error("DrawerContext.Provider is required and was undefined");
+    throw UndefinedProvider;
   }
 
   return context;

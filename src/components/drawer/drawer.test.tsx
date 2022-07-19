@@ -4,22 +4,23 @@ import { render, screen } from "../../tests";
 import { DrawerProvider } from "./drawer.provider";
 import { DummyDrawerContent, mockNav } from "./drawer.mock";
 import { Box, Button, createTheme } from "@mui/material";
-import { useDrawer } from "./drawer.context";
+import { UndefinedProvider, useDrawer } from "./drawer.context";
 import userEvent from "@testing-library/user-event";
 import { openedMixin, closedMixin } from "./drawer.mixins";
 
+const TestContent = () => {
+  const { open, close } = useDrawer();
+
+  return (
+    <Box>
+      <Button onClick={close}>close</Button>
+      <Button onClick={open}>open</Button>
+    </Box>
+  );
+};
+
 describe("Drawer", () => {
   const renderComponent = ({ initialOpen = undefined }: { initialOpen?: boolean } = {}) => {
-    const TestContent = () => {
-      const { open, close } = useDrawer();
-
-      return (
-        <Box>
-          <Button onClick={close}>close</Button>
-          <Button onClick={open}>open</Button>
-        </Box>
-      );
-    };
     return render(
       <DrawerProvider initialOpen={initialOpen}>
         <Box>
@@ -58,6 +59,24 @@ describe("Drawer", () => {
     await userEvent.click(screen.getByText(/close/i));
 
     expect(screen.queryByRole("menu", { hidden: true })).not.toBeInTheDocument();
+  });
+});
+
+describe("DrawerContext", () => {
+  it("would throw an error if no Provider is defined", () => {
+    try {
+      render(
+        <Box>
+          <Drawer>
+            <DummyDrawerContent nav={mockNav} />
+          </Drawer>
+          <TestContent />
+        </Box>,
+      );
+      fail("No error has been thrown");
+    } catch (e) {
+      expect(e).toStrictEqual(UndefinedProvider);
+    }
   });
 });
 
