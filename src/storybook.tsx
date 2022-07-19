@@ -19,10 +19,17 @@ export const withFullHeight = (Story: FunctionComponent) => {
 };
 
 export const withContainer =
-  ({ width, height }: { width?: number; height?: number }) =>
+  ({ width, height, bordered }: { width?: number; height?: number; bordered?: boolean }) =>
   (Story: FunctionComponent) => {
+    let sx = {};
+    if (bordered) {
+      sx = {
+        ...sx,
+        border: "solid 1px black",
+      };
+    }
     return (
-      <Box width={width} height={height}>
+      <Box width={width} height={height} sx={sx}>
         <Story />
       </Box>
     );

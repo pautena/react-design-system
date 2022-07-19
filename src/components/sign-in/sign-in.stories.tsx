@@ -2,7 +2,6 @@ import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { SignIn } from "./sign-in";
 import { createTemplate } from "../../storybook";
-import { SignInCenterContainer } from "./sign-in-container";
 
 export default {
   title: "Forms/Sign In",
@@ -35,15 +34,4 @@ Loading.args = {
   title: "Sign in into Garmin Workouts",
   subtitle: "Enter your details below",
   loading: true,
-};
-
-const ContainerTemplate = createTemplate((args) => (
-  <SignInCenterContainer>
-    <SignIn {...args} />
-  </SignInCenterContainer>
-));
-export const CenteredContainer = ContainerTemplate.bind({});
-ContainerTemplate.args = {
-  title: "Sign in into Garmin Workouts",
-  subtitle: "Enter your details below",
 };

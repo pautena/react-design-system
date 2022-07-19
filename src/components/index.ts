@@ -13,3 +13,4 @@ export * from "./bullet";
 export * from "./drawer-content";
 export * from "./drawer-section";
 export * from "./drawer-item";
+export * from "./center-container";
