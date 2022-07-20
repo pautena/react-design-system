@@ -1,8 +1,8 @@
 import React from "react";
 import { screen, render } from "@testing-library/react";
-import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.dummy";
+import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 import userEvent from "@testing-library/user-event";
-import { columns, data } from "../enhanced-table/enhanced-table.dummy";
+import { columns, data } from "../enhanced-table/enhanced-table.mock";
 
 function renderInstance({
   defaultSort = "startDate",

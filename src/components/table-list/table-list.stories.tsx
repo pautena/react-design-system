@@ -3,6 +3,7 @@ import { useDemoData } from "@mui/x-data-grid-generator";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { TableList } from "./table-list";
+import { action } from "@storybook/addon-actions";
 
 const maxColumns = 3;
 
@@ -25,9 +26,11 @@ const Template = createTemplate(({ dataSetType, size, ...rest }) => {
     id: field,
     label: headerName,
     sort: true,
+    disablePadding: false,
+    numeric: false,
   }));
 
-  return <TableList {...rest} columns={columns} data={rows} />;
+  return <TableList {...rest} columns={columns} data={rows} onClick={action("onClick row")} />;
 });
 
 export const Default = Template.bind({});

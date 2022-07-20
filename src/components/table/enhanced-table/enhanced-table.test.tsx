@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "../../../tests";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
-import { TestTable, columns, data } from "./enhanced-table.dummy";
+import { TestTable, columns, data } from "./enhanced-table.mock";
 
 function renderInstance({
   defaultSort = "startDate",
@@ -19,8 +19,8 @@ function renderInstance({
   );
 }
 
-describe("Table", () => {
-  it("all items are rendered in the correct", async () => {
+describe("EnhancedTable", () => {
+  it("all items are rendered in the correct order", async () => {
     renderInstance();
 
     expect(screen.getByText("Tabata")).toBeInTheDocument();

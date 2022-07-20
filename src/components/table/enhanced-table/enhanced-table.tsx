@@ -88,6 +88,7 @@ export const EnhancedTable = <T,>({
               fullWidth
               placeholder="Search"
               InputProps={{
+                role: "search",
                 startAdornment: (
                   <InputAdornment position="start">
                     <Search />

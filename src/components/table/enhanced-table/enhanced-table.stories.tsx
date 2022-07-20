@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../../storybook";
-import { TestTable, columns, data } from "./enhanced-table.dummy";
+import { TestTable, columns, data } from "./enhanced-table.mock";
 
 export default {
   title: "Tables/Table",

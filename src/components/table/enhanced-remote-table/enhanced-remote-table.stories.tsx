@@ -1,8 +1,8 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../../storybook";
 import { EnhancedRemoteTable } from "./enhanced-remote-table";
-import { columns, data } from "../enhanced-table/enhanced-table.dummy";
-import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.dummy";
+import { columns, data } from "../enhanced-table/enhanced-table.mock";
+import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 
 export default {
   title: "Tables/Enhanced remote table",

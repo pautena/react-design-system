@@ -45,7 +45,7 @@ export const TableList = <T extends BasicData>({
             sx={{ cursor: "pointer" }}
           >
             {columns.map(({ id }, j) => (
-              <TableCell scope="row" key={id} aria-rowindex={i} aria-colindex={j}>
+              <TableCell role="cell" scope="row" key={id} aria-rowindex={i} aria-colindex={j}>
                 {row[id]}
               </TableCell>
             ))}
