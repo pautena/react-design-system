@@ -93,15 +93,17 @@ export const AppBar: AppBarComponent = ({
         {title && (
           <Typography
             variant="h6"
+            component="h1"
+            role="heading"
+            aria-level={1}
             noWrap
-            component="div"
             sx={{ display: { xs: "none", sm: "block" } }}
           >
             {title}
           </Typography>
         )}
         {search && (
-          <Search>
+          <Search role="search">
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -113,9 +115,11 @@ export const AppBar: AppBarComponent = ({
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
+              aria-label="menu button"
+              role="button"
+              aria-expanded={Boolean(anchorEl)}
               onClick={handleMenu}
               color="inherit"
             >
