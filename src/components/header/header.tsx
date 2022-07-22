@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { Link } from "../link";
 import { PropTypes } from "@mui/material";
+import { useGetDefaultThemeColor } from "../../utils";
 
 export type HeaderPreset = PropTypes.Color | "transparent";
 export type HeaderActionVariant = "text" | "outlined" | "contained";
@@ -92,9 +93,10 @@ export const Header = ({
   onChangeTab = () => null,
 }: HeaderProps) => {
   const { palette } = useTheme();
+  const defaultColor = useGetDefaultThemeColor();
 
   const bgColorPresets: Record<HeaderPreset, string> = {
-    default: palette.mode === "light" ? palette.grey[100] : palette.grey[900],
+    default: defaultColor,
     primary: palette.primary.main,
     secondary: palette.secondary.main,
     inherit: "inherit",
