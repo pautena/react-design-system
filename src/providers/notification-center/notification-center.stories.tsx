@@ -26,7 +26,7 @@ export default {
 } as ComponentMeta<typeof ContentPlaceholder>;
 
 export const Default = () => {
-  const { show } = useNotificationCenter();
+  const { show, hide } = useNotificationCenter();
 
   return (
     <ContentPlaceholder size={3} p={2}>
@@ -42,6 +42,9 @@ export const Default = () => {
         </Button>
         <Button onClick={() => show({ ...DummyError, severity: "error" })} variant="contained">
           Show error
+        </Button>
+        <Button onClick={hide} variant="contained">
+          hide
         </Button>
       </Box>
     </ContentPlaceholder>

@@ -1,9 +1,16 @@
 import { useState } from "react";
-import { Snackbar, Alert } from "@mui/material";
+import { Snackbar, Alert, AlertTitle } from "@mui/material";
 import React, { PropsWithChildren } from "react";
 import { Notification, NotificationCenterContext } from "./notification-center.context";
 
-export const NotificationCenterProvider = ({ children }: PropsWithChildren) => {
+export type NotificationCenterProviderProps = PropsWithChildren<{
+  autoHideDuration?: number;
+}>;
+
+export const NotificationCenterProvider = ({
+  children,
+  autoHideDuration = 6000,
+}: NotificationCenterProviderProps) => {
   const [notification, setNotification] = useState<Notification | undefined>(undefined);
   const [open, setOpen] = useState(false);
   const show = (notification: Notification) => {
@@ -11,7 +18,7 @@ export const NotificationCenterProvider = ({ children }: PropsWithChildren) => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const hide = () => {
     setOpen(false);
   };
 
@@ -19,15 +26,22 @@ export const NotificationCenterProvider = ({ children }: PropsWithChildren) => {
     <NotificationCenterContext.Provider
       value={{
         show,
+        hide,
       }}
     >
       <Snackbar
         open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
+        autoHideDuration={autoHideDuration}
+        onClose={hide}
         anchorOrigin={{ vertical: "top", horizontal: "right" }}
       >
-        <Alert onClose={handleClose} severity={notification?.severity} sx={{ width: "100%" }}>
+        <Alert
+          onClose={hide}
+          severity={notification?.severity}
+          aria-label={notification?.severity}
+          sx={{ width: "100%" }}
+        >
+          <AlertTitle>{notification?.title}</AlertTitle>
           {notification?.message}
         </Alert>
       </Snackbar>
