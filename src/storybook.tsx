@@ -3,6 +3,8 @@ import React, { FunctionComponent } from "react";
 import { ComponentStory } from "@storybook/react";
 import { JSXElementConstructor } from "react";
 import { Box } from "@mui/material";
+import { useDemoData } from "@mui/x-data-grid-generator";
+import { DetailValue } from "./generators/object-details/object-details";
 
 export function createTemplate<P>(
   C: JSXElementConstructor<P>,
@@ -44,3 +46,29 @@ export const withPadding =
       </Box>
     );
   };
+
+declare type DataSet = 'Commodity' | 'Employee';
+export const useDemoDataObject = ({maxColumns,dataSet="Commodity"}:{maxColumns:number,dataSet?:DataSet})=> {
+
+  const { data:{rows:[row],columns},loading } = useDemoData({
+    dataSet,
+    rowLength: 1,
+    maxColumns: maxColumns,
+  });
+
+  let object:DetailValue[] = [];
+  row && columns.forEach(({field,headerName,description,type})=>{
+    object.push({
+      field,
+      type:type||"",
+      description:description||"",
+      name:headerName||"",
+      value:row[field],
+    });
+  })
+
+
+  return {object,loading}
+  
+
+}
