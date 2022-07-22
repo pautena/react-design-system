@@ -1,1 +1,1 @@
-export * from './object-details'
+export * from "./object-details";

@@ -1,20 +1,18 @@
-import { useDemoData } from "@mui/x-data-grid-generator";
+import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { useDemoDataObject } from "../../storybook";
 import { ObjectDetails } from "./object-details";
+import { details } from "./object-details.mock";
+import { withPadding } from "../../storybook";
 
 export default {
   title: "Generators/ObjectDetails",
   component: ObjectDetails,
+  decorators: [withPadding()],
   parameters: {
     layout: "fullscreen",
   },
 } as ComponentMeta<typeof ObjectDetails>;
 
 export const Default = () => {
-  const { object } = useDemoDataObject({
-    maxColumns:20,
-  });
-
-  return <ObjectDetails details={object} />;
+  return <ObjectDetails details={details} />;
 };
