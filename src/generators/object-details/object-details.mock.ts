@@ -1,4 +1,4 @@
-import { DetailValue } from "./object-details";
+import { DetailValue } from "./object-details.types";
 
 export const details: DetailValue[] = [
   {
@@ -7,13 +7,19 @@ export const details: DetailValue[] = [
     description: "Lorem ipsum",
     name: "Hello world",
     value: "Lorem ipsum sit amet",
+    xs: 12,
+    sm: 3,
+    md: 12,
   },
   {
     field: "quantity",
-    type: "string",
+    type: "number",
     description: "Lorem ipsum",
-    name: "Quantity",
-    value: 200533,
+    name: "Q",
+    value: 1,
+    xs: 12,
+    sm: 3,
+    md: 1,
   },
   {
     field: "status",
@@ -21,6 +27,8 @@ export const details: DetailValue[] = [
     description: "Lorem ipsum",
     name: "Status",
     value: "Open",
+    xs: 12,
+    sm: 3,
   },
   {
     field: "currency",
@@ -28,6 +36,8 @@ export const details: DetailValue[] = [
     description: "Lorem ipsum",
     name: "Unit Price Currency",
     value: "MXN",
+    xs: 12,
+    sm: 3,
   },
   {
     field: "tradeDate",
@@ -35,5 +45,7 @@ export const details: DetailValue[] = [
     description: "Lorem ipsum",
     name: "Trade date",
     value: "Thu Jul 21 2022 22:44:10 GMT+0200 (Central European Summer Time)",
+    xs: 12,
+    sm: 3,
   },
 ];
