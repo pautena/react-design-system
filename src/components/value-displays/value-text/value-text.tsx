@@ -1,7 +1,7 @@
 import { Box, Tooltip, Typography } from "@mui/material";
 import React from "react";
 
-export interface ValueCardProps {
+export interface ValueTextProps {
   /**
    * Name of the displayed value
    */
@@ -15,7 +15,7 @@ export interface ValueCardProps {
 /**
  * Displays a string value with a label
  */
-export const ValueText = ({ label, value }: ValueCardProps) => {
+export const ValueText = ({ label, value }: ValueTextProps) => {
   return (
     <Box>
       <Typography variant="subtitle2" role="label">

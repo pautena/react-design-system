@@ -18,7 +18,7 @@ export const details: DetailValue[] = [
     name: "Q",
     value: 1,
     xs: 12,
-    sm: 3,
+    sm: 2,
     md: 1,
   },
   {
@@ -29,6 +29,15 @@ export const details: DetailValue[] = [
     value: "Open",
     xs: 12,
     sm: 3,
+  },
+  {
+    field: "enabled",
+    type: "boolean",
+    description: "Lorem ipsum",
+    name: "Enabled",
+    value: true,
+    xs: 12,
+    sm: 2,
   },
   {
     field: "currency",

@@ -11,9 +11,14 @@ describe("ObjectDetails", () => {
   it("would render a label/value pair for each detail", () => {
     renderComponent();
 
-    details.forEach(({ name, value }) => {
+    details.forEach(({ name, value, type }) => {
       expect(screen.getByRole("label", { name })).toBeInTheDocument();
-      expect(screen.getByText(value)).toBeInTheDocument();
+
+      if (type === "boolean") {
+        expect(screen.getByTestId(value ? "CheckIcon" : "CloseIcon")).toBeInTheDocument();
+      } else {
+        expect(screen.getByText(value)).toBeInTheDocument();
+      }
     });
   });
 });

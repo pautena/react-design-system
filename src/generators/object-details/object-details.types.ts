@@ -22,6 +22,11 @@ type NumberValue = {
   value: number;
 };
 
-type Values = StringValue | NumberValue;
+type BooleanValue = {
+  type: "boolean";
+  value: boolean;
+};
+
+type Values = StringValue | NumberValue | BooleanValue;
 
 export type DetailValue = Base & Breakpoints & Values;
