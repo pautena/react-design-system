@@ -27,6 +27,13 @@ type BooleanValue = {
   value: boolean;
 };
 
-type Values = StringValue | NumberValue | BooleanValue;
+type SingleValues = StringValue | NumberValue | BooleanValue;
+
+export type GroupValue = {
+  type: "group";
+  value: (Base & Breakpoints & SingleValues)[];
+};
+
+type Values = SingleValues | GroupValue;
 
 export type DetailValue = Base & Breakpoints & Values;
