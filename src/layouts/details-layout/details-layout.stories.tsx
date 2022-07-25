@@ -1,13 +1,8 @@
-import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { DetailsLayout } from "./details-layout";
-import { useDemoData } from "@mui/x-data-grid-generator";
 import { withRouter } from "storybook-addon-react-router-v6";
-import { details } from "../../generators/object-details/object-details.mock";
 
-const maxColumns = 3;
-const editable = true;
 const breadcrumbs = [
   {
     id: "list",
@@ -35,9 +30,7 @@ const args = {
       },
     ],
   },
-  objectDetailsProps: {
-    details,
-  },
+  objectDetailsProps: {},
 };
 
 export default {

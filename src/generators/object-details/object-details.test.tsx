@@ -1,21 +1,27 @@
 import React from "react";
 import { render, screen } from "../../tests";
+import { mockModel, createModelInstance } from "../generators.mock";
+import { ModelField } from "../generators.model";
 import { ObjectDetails } from "./object-details";
-import { details } from "./object-details.mock";
-import { DetailValue } from "./object-details.types";
 
 describe("ObjectDetails", () => {
   const renderComponent = () => {
-    return render(<ObjectDetails details={details} />);
+    const instance = createModelInstance(mockModel);
+    return {
+      ...render(<ObjectDetails model={mockModel} instance={instance} />),
+      instance,
+      model: mockModel,
+    };
   };
 
-  const assertDetail = (detail: DetailValue) => {
-    const { type, value, name, description } = detail;
+  const assertField = (field: ModelField, instance: object) => {
+    const { id, type, name, description } = field;
+    const value = instance[id];
 
     if (type === "group") {
       expect(screen.getByRole("heading", { level: 1, name }));
       expect(screen.getByRole("heading", { level: 2, name: description }));
-      value.forEach((groupValue) => assertDetail(groupValue));
+      field.value.forEach((groupValue) => assertField(groupValue, value));
       return;
     }
 
@@ -28,10 +34,8 @@ describe("ObjectDetails", () => {
   };
 
   it("would render a label/value pair for each detail", () => {
-    renderComponent();
+    const { instance, model } = renderComponent();
 
-    details.forEach((detail) => {
-      assertDetail(detail);
-    });
+    model.fields.forEach((detail) => assertField(detail, instance));
   });
 });

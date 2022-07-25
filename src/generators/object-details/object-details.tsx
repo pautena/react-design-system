@@ -7,9 +7,10 @@ import {
   ValueCard,
   ValueText,
 } from "../../components";
-import { DetailValue, GroupValue } from "./object-details.types";
+import { ModelField, GroupField, Model } from "../generators.model";
 
-const singleDetailValueFactory = ({ name, type, value }: DetailValue) => {
+const singleDetailValueFactory = ({ id, name, type }: ModelField, instance: object) => {
+  const value = instance[id];
   if (type === "boolean") {
     return <ValueBoolean label={name} value={value} />;
   }
@@ -17,42 +18,50 @@ const singleDetailValueFactory = ({ name, type, value }: DetailValue) => {
 };
 
 interface ObjectDetailGroupProps {
-  detail: GroupValue;
+  detail: GroupField;
+  instance: object;
 }
 
-const ObjectDetailGroup = ({ detail: { name, description, value } }: ObjectDetailGroupProps) => {
+const ObjectDetailGroup = ({
+  detail: { name, description, value },
+  instance,
+}: ObjectDetailGroupProps) => {
   return (
     <GroupValueCard title={name} subtitle={description}>
-      {value.map(({ field, xs, sm, md, lg, xl, ...rest }) => (
-        <GroupValueItem key={field} xs={xs} sm={sm} md={md} lg={lg} xl={lg}>
-          {singleDetailValueFactory(rest)}
-        </GroupValueItem>
-      ))}
+      {value.map((field) => {
+        const { id, xs, sm, md, lg, xl } = field;
+        return (
+          <GroupValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+            {singleDetailValueFactory(field, instance)}
+          </GroupValueItem>
+        );
+      })}
     </GroupValueCard>
   );
 };
 
 export interface ObjectDetailsProps {
-  details: DetailValue[];
+  model: Model;
+  instance: object;
 }
 
-export const ObjectDetails = ({ details }: ObjectDetailsProps) => {
+export const ObjectDetails = ({ model, instance }: ObjectDetailsProps) => {
   return (
     <Grid container spacing={2}>
-      {details.map((detail) => {
-        const { field, type, xs = 3, sm, md, lg, xl } = detail;
+      {model.fields.map((field) => {
+        const { id, type, xs = 3, sm, md, lg, xl } = field;
 
         if (type === "group") {
           return (
-            <Grid item key={field} xs={12}>
-              <ObjectDetailGroup detail={detail} />
+            <Grid item key={id} xs={12}>
+              <ObjectDetailGroup detail={field} instance={instance[id]} />
             </Grid>
           );
         }
 
         return (
-          <Grid item key={field} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
-            <ValueCard>{singleDetailValueFactory(detail)}</ValueCard>
+          <Grid item key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+            <ValueCard>{singleDetailValueFactory(field, instance)}</ValueCard>
           </Grid>
         );
       })}

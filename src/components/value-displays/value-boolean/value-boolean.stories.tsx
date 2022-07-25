@@ -1,7 +1,6 @@
-import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { ValueBoolean } from "./value-boolean";
-import { createTemplate, withContainer } from "../../../storybook";
+import { createTemplate } from "../../../storybook";
 
 export default {
   title: "Value displays/ValueBoolean",

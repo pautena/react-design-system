@@ -1,7 +1,7 @@
 import React from "react";
 import { ValueBoolean } from "../value-boolean/value-boolean";
 import { ValueText } from "../value-text";
-import { GroupValueCard, GroupValueCardProps, GroupValueItem } from "./group-value-card";
+import { GroupValueCard, GroupValueItem } from "./group-value-card";
 
 export const GroupValueCardDummy = (props) => {
   return (
