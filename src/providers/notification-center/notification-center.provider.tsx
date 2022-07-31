@@ -41,7 +41,7 @@ export const NotificationCenterProvider = ({
           aria-label={notification?.severity}
           sx={{ width: "100%" }}
         >
-          <AlertTitle>{notification?.title}</AlertTitle>
+          {notification?.title && <AlertTitle>{notification?.title}</AlertTitle>}
           {notification?.message}
         </Alert>
       </Snackbar>

@@ -2,6 +2,7 @@ type Base = {
   id: string;
   description: string;
   name: string;
+  listable?: boolean;
 };
 
 type Breakpoints = {

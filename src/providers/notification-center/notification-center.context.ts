@@ -13,7 +13,7 @@ export type SnackbarActionType = React.ReactNode | ((key: string) => React.React
 
 export interface Notification {
   severity: AlertColor;
-  title: string;
+  title?: string;
   message: string;
 }
 

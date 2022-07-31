@@ -11,6 +11,7 @@ export const mockModel: Model = {
       xs: 12,
       sm: 6,
       md: 4,
+      listable: true,
     },
     {
       id: "middleName",
@@ -20,6 +21,7 @@ export const mockModel: Model = {
       xs: 12,
       sm: 6,
       md: 4,
+      listable: true,
     },
     {
       id: "lastName",
@@ -29,6 +31,7 @@ export const mockModel: Model = {
       xs: 12,
       sm: 6,
       md: 4,
+      listable: true,
     },
     {
       id: "gender",
@@ -47,6 +50,7 @@ export const mockModel: Model = {
       xs: 12,
       sm: 6,
       md: 3,
+      listable: true,
     },
     {
       id: "birthDate",
@@ -56,6 +60,7 @@ export const mockModel: Model = {
       xs: 12,
       sm: 6,
       md: 6,
+      listable: true,
     },
     {
       id: "car",
