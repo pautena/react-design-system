@@ -1,8 +1,8 @@
 import React from "react";
 import { render } from "../../tests";
-import { screen } from "@testing-library/react";
+import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
-import { BasicData, TableList } from "./table-list";
+import { BasicData, TableRowOption, TableList } from "./table-list";
 import { HeadCell } from "../table/enhanced-table";
 
 const columns: HeadCell[] = [
@@ -56,28 +56,52 @@ const data: BasicData[] = [
   },
 ];
 
-function renderInstance({
-  search = false,
-  defaultSort = "value",
-  loading = false,
-}: { defaultSort?: string; loading?: boolean; search?: boolean } = {}) {
-  const onClick = jest.fn();
-  const instance = render(
-    <TableList
-      search={search}
-      data={data}
-      columns={columns}
-      defaultSort={defaultSort}
-      defaultOrder="asc"
-      loading={loading}
-      onClick={onClick}
-    />,
-  );
-
-  return { ...instance, onClick };
-}
+const options = [
+  {
+    id: "edit",
+    label: "Edit",
+    onClick: jest.fn(),
+  },
+  {
+    id: "remove",
+    label: "Remove",
+    onClick: jest.fn(),
+  },
+];
 
 describe("TableList", () => {
+  const renderInstance = ({
+    search = false,
+    defaultSort = "value",
+    loading = false,
+    options = undefined,
+  }: {
+    defaultSort?: string;
+    loading?: boolean;
+    search?: boolean;
+    options?: TableRowOption<any>[];
+  } = {}) => {
+    const onClick = jest.fn();
+    const instance = render(
+      <TableList
+        search={search}
+        data={data}
+        columns={columns}
+        defaultSort={defaultSort}
+        defaultOrder="asc"
+        loading={loading}
+        options={options}
+        onClick={onClick}
+      />,
+    );
+
+    return { ...instance, onClick };
+  };
+
+  const openOptionsMenu = async (index = 0) => {
+    await userEvents.click(screen.getAllByTestId("MoreVertIcon")[index]);
+  };
+
   it("would render all items and its values", () => {
     renderInstance();
 
@@ -194,5 +218,66 @@ describe("TableList", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith(data[2]);
+  });
+
+  describe("options menu", () => {
+    it("would render a button to open the menu if doesn't have options", () => {
+      renderInstance({ options: undefined });
+
+      expect(screen.queryByTestId("MoreVertIcon")).not.toBeInTheDocument();
+    });
+
+    it("would render a button to open the menu if has options", () => {
+      renderInstance({ options });
+
+      screen.getAllByTestId("MoreVertIcon");
+    });
+
+    it("would render a menu if has options", async () => {
+      renderInstance({ options });
+
+      await openOptionsMenu();
+
+      expect(await screen.findByRole("menu")).toBeInTheDocument();
+    });
+
+    it.each([
+      [/edit/i, 0],
+      [/remove/i, 1],
+    ])("would call the option onClick with the row if %s option is clicked", async (name, i) => {
+      const index = 1;
+      const item = data[index];
+      const option = options[i];
+
+      renderInstance({ options });
+
+      await openOptionsMenu(index);
+
+      await userEvents.click(screen.getByRole("menuitem", { name }));
+
+      expect(option.onClick).toHaveBeenCalledTimes(1);
+      expect(option.onClick).toHaveBeenCalledWith(item);
+    });
+
+    it("would close the menu when an option is clicked", async () => {
+      const index = 1;
+
+      renderInstance({ options });
+
+      await openOptionsMenu(index);
+      await userEvents.click(screen.getByRole("menuitem", { name: /edit/i }));
+
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+    });
+
+    it("wouldn't call the component onClick if an option if clicked", async () => {
+      const { onClick } = renderInstance({ options });
+
+      await openOptionsMenu();
+
+      await userEvents.click(screen.getByRole("menuitem", { name: /edit/i }));
+
+      expect(onClick).not.toHaveBeenCalled();
+    });
   });
 });

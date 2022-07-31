@@ -54,3 +54,22 @@ WihtoutSearch.args = {
   dataSetType: "Commodity",
   search: false,
 };
+
+export const WithOptions = Template.bind({});
+WithOptions.args = {
+  size: 40,
+  dataSetType: "Commodity",
+  search: false,
+  options: [
+    {
+      id: "edit",
+      label: "Edit",
+      onClick: action("Option edit"),
+    },
+    {
+      id: "remove",
+      label: "Remove",
+      onClick: action("Option remove"),
+    },
+  ],
+};
