@@ -34,14 +34,26 @@ export default {
 const Template = createTemplate((args: any) => {
   const [data, setData] = useState(args.list.data || []);
   const [addRequestState, setAddRequestState] = useState<RequestState>({ idle: true });
+  const [removeRequestState, setRemoveRequestState] = useState<RequestState>({ idle: true });
 
   const onSubmitAddAction = action("Submit add form");
+  const onRequestRemoveAction = action("click remove item option");
 
   const props = mergeAll([
     args,
     {
       list: {
         data,
+        removeRequestState,
+        onClickRemoveItem: (item) => {
+          setRemoveRequestState({ idle: false, loading: true });
+          onRequestRemoveAction(item);
+
+          setTimeout(() => {
+            setData((d) => [...d.filter((d) => d !== item)]);
+            setRemoveRequestState({ idle: true, loading: false, success: true });
+          }, 2000);
+        },
       },
       add: {
         request: addRequestState,

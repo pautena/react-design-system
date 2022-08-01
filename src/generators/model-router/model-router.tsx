@@ -1,7 +1,7 @@
 import { Box, Button, ButtonGroup, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { BasicData } from "../../components";
+import { BasicData, TableRowOption } from "../../components";
 import { ListLayout, ListLayoutProps, FormLayout, FormLayoutProps } from "../../layouts";
 import { useNotificationCenter } from "../../providers/notification-center/notification-center.context";
 import { Model } from "../generators.model";
@@ -57,7 +57,8 @@ const getAddPropsFromModel = ({ model, modelName, add }: ModelRouterProps): Form
 
 const getListPropsFromModel = <T extends BasicData>(
   { model, modelName, list }: ModelRouterProps,
-  onClickListItem?: (d: T) => void,
+  onClickListItem: (d: T) => void,
+  onClickListOption: (optionId: "edit" | "remove", item: T) => void,
 ): ListLayoutProps<T> => {
   return {
     loading: list.loading,
@@ -89,6 +90,18 @@ const getListPropsFromModel = <T extends BasicData>(
       data: list.data,
       defaultSort: model.fields[0].id,
       onClick: onClickListItem,
+      options: [
+        {
+          id: "edit",
+          label: "Edit",
+          onClick: (item) => onClickListOption("edit", item),
+        },
+        {
+          id: "remove",
+          label: "Remove",
+          onClick: (item) => onClickListOption("remove", item),
+        },
+      ],
     },
   };
 };
@@ -106,6 +119,8 @@ export interface ModelRouterProps {
   list: {
     loading?: boolean;
     data: any[];
+    onClickRemoveItem: (item: any) => void;
+    requestDelete: RequestState;
   };
   add: {
     onSubmit: (obj: object) => void;
@@ -120,6 +135,14 @@ export const ModelRouter = (props: ModelRouterProps) => {
 
   const handleClickListItem = (item: any) => {
     navigate(`/${item.id}`);
+  };
+
+  const handleClickListOption = (optionId: "edit" | "remove", item: BasicData) => {
+    if (optionId === "edit") {
+      navigate(`/${item.id}/update`);
+    } else {
+      props.list.onClickRemoveItem(item);
+    }
   };
 
   useEffect(() => {
@@ -139,7 +162,11 @@ export const ModelRouter = (props: ModelRouterProps) => {
     <Routes>
       <Route
         path="/"
-        element={<ListLayout {...getListPropsFromModel(props, handleClickListItem)} />}
+        element={
+          <ListLayout
+            {...getListPropsFromModel(props, handleClickListItem, handleClickListOption)}
+          />
+        }
       />
       <Route path="/add" element={<FormLayout {...getAddPropsFromModel(props)} />} />
       <Route path="/:id" element={<DummyTestComponent title="detail" />} />

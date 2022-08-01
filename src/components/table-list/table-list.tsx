@@ -110,7 +110,7 @@ export const TableList = <T extends BasicData>({
         >
           {options.map(({ id, label, onClick }) => (
             <MenuItem
-              id={id}
+              key={id}
               onClick={() => {
                 if (anchorMenuEl) {
                   onClick(anchorMenuEl?.item);
