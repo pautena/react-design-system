@@ -67,6 +67,7 @@ describe("ModelForm", () => {
   it("would call onSubmit if I fullfill all inputs and press the submit button", async () => {
     const { onSubmit } = renderComponent();
 
+    await userEvent.type(screen.getByRole("textbox", { name: "Id" }), "id1");
     await userEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
     await userEvent.type(screen.getByRole("textbox", { name: /middle name/i }), "Noah");
     await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
@@ -94,6 +95,7 @@ describe("ModelForm", () => {
 
     expect(onSubmit).toHaveBeenCalledTimes(1);
     expect(onSubmit).toHaveBeenCalledWith({
+      id: "id1",
       firstName: "Karianne",
       middleName: "Noah",
       lastName: "Gorczany",

@@ -1,6 +1,6 @@
 import React from "react";
 import { HeaderProps, Placeholder, PlaceholderProps } from "../../components";
-import { Model, ObjectDetails, ObjectDetailsProps } from "../../generators";
+import { Model, ObjectDetails } from "../../generators";
 import { HeaderLayout } from "../header-layout";
 
 export interface DetailsLayoutProps {

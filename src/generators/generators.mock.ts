@@ -4,6 +4,16 @@ import { faker } from "@faker-js/faker";
 export const mockModel: Model = {
   fields: [
     {
+      id: "id",
+      type: "string",
+      description: "Identifier uuid",
+      name: "Id",
+      xs: 12,
+      sm: 6,
+      md: 4,
+      listable: false,
+    },
+    {
       id: "firstName",
       type: "string",
       description: "User first name",
@@ -155,6 +165,7 @@ export const mockModel: Model = {
 };
 
 const mockFieldValue = {
+  id: () => faker.datatype.number({ min: 1000, max: 1000000 }).toString(),
   firstName: faker.name.firstName,
   middleName: faker.name.middleName,
   lastName: faker.name.lastName,

@@ -36,7 +36,10 @@ const Template = createTemplate((args: any) => {
   const [data, setData] = useState(args.list.data || []);
   const [addRequestState, setAddRequestState] = useState<RequestState>({ idle: true });
   const [removeRequestState, setRemoveRequestState] = useState<RequestState>({ idle: true });
+  const [detailRequestState, setDetailRequestState] = useState<RequestState>({ idle: true });
+  const [detailInstance, setDetailInstance] = useState(undefined);
 
+  const onDetailsScreenMount = action("Details screen mount");
   const onSubmitAddAction = action("Submit add form");
   const onRequestRemoveAction = action("click remove item option");
 
@@ -65,6 +68,20 @@ const Template = createTemplate((args: any) => {
           setTimeout(() => {
             setData((d) => [...d, obj]);
             setAddRequestState({ idle: true, loading: false, success: true });
+          }, 2000);
+        },
+      },
+      detail: {
+        request: detailRequestState,
+        instance: detailInstance,
+        onScreenMount: (id: string) => {
+          setDetailInstance(undefined);
+          setDetailRequestState({ idle: false, loading: true });
+          onDetailsScreenMount(id);
+
+          setTimeout(() => {
+            setDetailInstance(data.find((d) => d.id === id));
+            setDetailRequestState({ idle: true, loading: false, success: true });
           }, 2000);
         },
       },

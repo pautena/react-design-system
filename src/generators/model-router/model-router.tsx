@@ -1,10 +1,18 @@
 import { Box, Button, ButtonGroup, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { BasicData, TableRowOption } from "../../components";
-import { ListLayout, ListLayoutProps, FormLayout, FormLayoutProps } from "../../layouts";
+import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
+import { BasicData, PlaceholderIconArgs, TableRowOption } from "../../components";
+import {
+  ListLayout,
+  ListLayoutProps,
+  FormLayout,
+  FormLayoutProps,
+  DetailsLayout,
+  DetailsLayoutProps,
+} from "../../layouts";
 import { useNotificationCenter } from "../../providers/notification-center/notification-center.context";
 import { Model } from "../generators.model";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const DummyTestComponent = ({ title }: { title: string }) => {
   return (
@@ -26,6 +34,42 @@ const DummyTestComponent = ({ title }: { title: string }) => {
       </ul>
     </Box>
   );
+};
+
+const getDetailsPropsFromModel = (
+  { modelName, model, detail }: ModelRouterProps,
+  id: string,
+): DetailsLayoutProps => {
+  return {
+    loading: detail.request.loading,
+    headerProps: {
+      title: id,
+      preset: "default",
+      breadcrumbs: [
+        {
+          id: "list",
+          text: modelName,
+          link: "/",
+        },
+        {
+          id: "detail",
+          text: id,
+          link: `/${id}`,
+        },
+      ],
+    },
+    objectDetailsProps: {
+      model,
+      instance: detail.instance,
+    },
+    notFoundPlaceholderProps: {
+      title: "Not found",
+      subtitle: "There is no item with that id",
+      icon: ({ size, color }: PlaceholderIconArgs) => (
+        <SentimentVeryDissatisfiedIcon color={color} sx={{ fontSize: size }} />
+      ),
+    },
+  };
 };
 
 const getAddPropsFromModel = ({ model, modelName, add }: ModelRouterProps): FormLayoutProps => {
@@ -126,8 +170,23 @@ export interface ModelRouterProps {
     onSubmit: (obj: object) => void;
     request: RequestState;
   };
-  loading?: { list?: boolean };
+  detail: {
+    onScreenMount?: (id: string) => void;
+    request: RequestState;
+    instance?: any;
+  };
 }
+
+const DetailsScreen = (props: ModelRouterProps) => {
+  const onScreenMount = props.detail.onScreenMount;
+  const { id = "" } = useParams();
+
+  useEffect(() => {
+    onScreenMount && onScreenMount(id);
+  }, [id]);
+
+  return <DetailsLayout {...getDetailsPropsFromModel(props, id)} />;
+};
 
 export const ModelRouter = (props: ModelRouterProps) => {
   const navigate = useNavigate();
@@ -169,7 +228,7 @@ export const ModelRouter = (props: ModelRouterProps) => {
         }
       />
       <Route path="/add" element={<FormLayout {...getAddPropsFromModel(props)} />} />
-      <Route path="/:id" element={<DummyTestComponent title="detail" />} />
+      <Route path="/:id" element={<DetailsScreen {...props} />} />
       <Route path="/:id/update" element={<DummyTestComponent title="update" />} />
     </Routes>
   );
