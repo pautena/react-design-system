@@ -1,7 +1,11 @@
+import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { DetailsLayout } from "./details-layout";
 import { withRouter } from "storybook-addon-react-router-v6";
+import { mockModel, createModelInstance } from "../../generators/generators.mock";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { PlaceholderIconArgs } from "../../components";
 
 const breadcrumbs = [
   {
@@ -30,7 +34,13 @@ const args = {
       },
     ],
   },
-  objectDetailsProps: {},
+  notFoundPlaceholderProps: {
+    title: "Not found",
+    subtitle: "There is no item with that id",
+    icon: ({ size, color }: PlaceholderIconArgs) => (
+      <SentimentVeryDissatisfiedIcon color={color} sx={{ fontSize: size }} />
+    ),
+  },
 };
 
 export default {
@@ -47,10 +57,25 @@ const Template = createTemplate(DetailsLayout);
 export const Default = Template.bind({});
 Default.args = {
   ...args,
+  objectDetailsProps: {
+    model: mockModel,
+    instance: createModelInstance(mockModel),
+  },
 };
 
 export const Loading = Template.bind({});
 Loading.args = {
   ...args,
   loading: true,
+  objectDetailsProps: {
+    model: mockModel,
+  },
+};
+
+export const NotFound = Template.bind({});
+NotFound.args = {
+  ...args,
+  objectDetailsProps: {
+    model: mockModel,
+  },
 };
