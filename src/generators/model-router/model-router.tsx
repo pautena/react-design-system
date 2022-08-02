@@ -1,22 +1,16 @@
 import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
-import { BasicData, PlaceholderIconArgs, TableRowOption } from "../../components";
+import { Routes, Route, Link, useParams } from "react-router-dom";
+import { BasicData, PlaceholderIconArgs } from "../../components";
 import {
-  ListLayout,
   ListLayoutProps,
-  FormLayout,
   FormLayoutProps,
   DetailsLayout,
   DetailsLayoutProps,
 } from "../../layouts";
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-import { BasicData } from "../../components";
-import { ListLayout, ListLayoutProps, FormLayout, FormLayoutProps } from "../../layouts";
-import { useNotificationCenter } from "../../providers/notification-center/notification-center.context";
 import { Model } from "../generators.model";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
-import { UpdateScreen } from "./screens";
+import { AddScreen, ListScreen, UpdateScreen } from "./screens";
 
 const DummyTestComponent = ({ title }: { title: string }) => {
   return (
@@ -76,84 +70,6 @@ const getDetailsPropsFromModel = (
   };
 };
 
-const getAddPropsFromModel = ({ model, modelName, add }: ModelRouterProps): FormLayoutProps => {
-  return {
-    loading: add.request.loading,
-    headerProps: {
-      title: `Add ${modelName}`,
-      preset: "default",
-      breadcrumbs: [
-        {
-          id: "list",
-          text: modelName,
-          link: "/",
-        },
-        {
-          id: "add",
-          text: `Add new ${modelName}`,
-          link: "/add",
-        },
-      ],
-    },
-    modelFormProps: {
-      model,
-      saveButtonText: "Save",
-      onSubmit: add.onSubmit,
-    },
-  };
-};
-
-const getListPropsFromModel = <T extends BasicData>(
-  { model, modelName, list }: ModelRouterProps,
-  onClickListItem: (d: T) => void,
-  onClickListOption: (optionId: "edit" | "remove", item: T) => void,
-): ListLayoutProps<T> => {
-  return {
-    loading: list.loading,
-    headerProps: {
-      title: modelName,
-      preset: "default",
-      actions: [
-        {
-          id: "add",
-          text: "Add",
-          href: "/add",
-        },
-      ],
-    },
-    emptyPlaceholderProps: {
-      title: `There is no ${modelName}`,
-      subtitle: `There is no item right now`,
-    },
-    listProps: {
-      columns: model.fields
-        .filter(({ listable }) => listable)
-        .map(({ id, name, type }) => ({
-          disablePadding: false,
-          id,
-          label: name,
-          numeric: type === "number",
-          sort: false,
-        })),
-      data: list.data,
-      defaultSort: model.fields[0].id,
-      onClick: onClickListItem,
-      options: [
-        {
-          id: "edit",
-          label: "Edit",
-          onClick: (item) => onClickListOption("edit", item),
-        },
-        {
-          id: "remove",
-          label: "Remove",
-          onClick: (item) => onClickListOption("remove", item),
-        },
-      ],
-    },
-  };
-};
-
 export interface RequestState {
   idle?: boolean;
   loading?: boolean;
@@ -200,46 +116,11 @@ const DetailsScreen = (props: ModelRouterProps) => {
 };
 
 export const ModelRouter = (props: ModelRouterProps) => {
-  const navigate = useNavigate();
-  const { show } = useNotificationCenter();
-
-  const handleClickListItem = (item: any) => {
-    navigate(`/${item.id}`);
-  };
-
-  const handleClickListOption = (optionId: "edit" | "remove", item: BasicData) => {
-    if (optionId === "edit") {
-      navigate(`/${item.id}/update`);
-    } else {
-      props.list.onClickRemoveItem(item);
-    }
-  };
-
-  useEffect(() => {
-    if (props.add.request.success) {
-      show({ message: "Item added successfully", severity: "success" });
-      navigate("/");
-    }
-  }, [props.add.request.success]);
-
-  useEffect(() => {
-    if (props.add.request.error) {
-      show({ title: "We had an error", message: props.add.request.error, severity: "error" });
-    }
-  }, [props.add.request.error]);
-
   return (
     <Routes>
-      <Route
-        path="/"
-        element={
-          <ListLayout
-            {...getListPropsFromModel(props, handleClickListItem, handleClickListOption)}
-          />
-        }
-      />
-      <Route path="/add" element={<FormLayout {...getAddPropsFromModel(props)} />} />
-      <Route path="/:id" element={<DetailsScreen {...props} />} />
+      <Route path="/" element={<ListScreen {...props} />} />
+      <Route path="/add" element={<AddScreen {...props} />} />
+      <Route path="/:id" element={<DummyTestComponent title="detail" />} />
       <Route path="/:id/update" element={<UpdateScreen {...props} />} />
     </Routes>
   );

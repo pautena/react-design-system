@@ -9,6 +9,8 @@ import { mergeAll } from "ramda";
 import { useState } from "react";
 import { NotificationCenterProvider } from "../../providers";
 
+const REQUEST_TIMEOUT = 2000;
+
 const data = [
   createModelInstance(mockModel, 100),
   createModelInstance(mockModel, 101),
@@ -63,7 +65,7 @@ const Template = createTemplate((args: any) => {
           setTimeout(() => {
             setData((d) => [...d.filter((d) => d !== item)]);
             setRemoveRequestState({ idle: true, loading: false, success: true });
-          }, 2000);
+          }, REQUEST_TIMEOUT);
         },
       },
       add: {
@@ -75,7 +77,7 @@ const Template = createTemplate((args: any) => {
           setTimeout(() => {
             setData((d) => [...d, obj]);
             setAddRequestState({ idle: true, loading: false, success: true });
-          }, 2000);
+          }, REQUEST_TIMEOUT);
         },
       },
       detail: {
@@ -103,7 +105,7 @@ const Template = createTemplate((args: any) => {
           setTimeout(() => {
             setUpdateInstance(data.find((d) => d.id === id));
             setUpdateInstanceRequestState({ idle: true, loading: false, success: true });
-          }, 2000);
+          }, REQUEST_TIMEOUT);
         },
         onSubmit: (obj: any) => {
           setUpdateRequestState({ idle: false, loading: true });
@@ -119,7 +121,7 @@ const Template = createTemplate((args: any) => {
               }),
             ]);
             setUpdateRequestState({ idle: true, loading: false, success: true });
-          }, 2000);
+          }, REQUEST_TIMEOUT);
         },
       },
     },
