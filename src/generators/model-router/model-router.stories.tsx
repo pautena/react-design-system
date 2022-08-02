@@ -34,13 +34,20 @@ export default {
 
 const Template = createTemplate((args: any) => {
   const [data, setData] = useState(args.list.data || []);
+  const [updateInstance, setUpdateInstance] = useState<any>(undefined);
   const [addRequestState, setAddRequestState] = useState<RequestState>({ idle: true });
+  const [updateRequestState, setUpdateRequestState] = useState<RequestState>({ idle: true });
+  const [updateInstanceRequestState, setUpdateInstanceRequestState] = useState<RequestState>({
+    idle: true,
+  });
   const [removeRequestState, setRemoveRequestState] = useState<RequestState>({ idle: true });
   const [detailRequestState, setDetailRequestState] = useState<RequestState>({ idle: true });
   const [detailInstance, setDetailInstance] = useState(undefined);
 
   const onDetailsScreenMount = action("Details screen mount");
   const onSubmitAddAction = action("Submit add form");
+  const onRequestUpdateInstanceAction = action("Request update instance");
+  const onSubmitUpdateAction = action("Submit update form");
   const onRequestRemoveAction = action("click remove item option");
 
   const props = mergeAll([
@@ -82,6 +89,36 @@ const Template = createTemplate((args: any) => {
           setTimeout(() => {
             setDetailInstance(data.find((d) => d.id === id));
             setDetailRequestState({ idle: true, loading: false, success: true });
+          }, 2000);
+        },
+      },
+      update: {
+        request: updateRequestState,
+        requestInstance: updateInstanceRequestState,
+        instance: updateInstance,
+        onRequestInstance: (id: string) => {
+          setUpdateInstanceRequestState({ idle: false, loading: true });
+          onRequestUpdateInstanceAction(id);
+
+          setTimeout(() => {
+            setUpdateInstance(data.find((d) => d.id === id));
+            setUpdateInstanceRequestState({ idle: true, loading: false, success: true });
+          }, 2000);
+        },
+        onSubmit: (obj: any) => {
+          setUpdateRequestState({ idle: false, loading: true });
+          onSubmitUpdateAction(obj);
+
+          setTimeout(() => {
+            setData((d) => [
+              ...d.map((item) => {
+                if (item === obj) {
+                  return obj;
+                }
+                return item;
+              }),
+            ]);
+            setUpdateRequestState({ idle: true, loading: false, success: true });
           }, 2000);
         },
       },

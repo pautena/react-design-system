@@ -1,4 +1,4 @@
-import { Box, Button, ButtonGroup, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { Routes, Route, Link, useNavigate, useParams } from "react-router-dom";
 import { BasicData, PlaceholderIconArgs, TableRowOption } from "../../components";
@@ -10,9 +10,13 @@ import {
   DetailsLayout,
   DetailsLayoutProps,
 } from "../../layouts";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BasicData } from "../../components";
+import { ListLayout, ListLayoutProps, FormLayout, FormLayoutProps } from "../../layouts";
 import { useNotificationCenter } from "../../providers/notification-center/notification-center.context";
 import { Model } from "../generators.model";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { UpdateScreen } from "./screens";
 
 const DummyTestComponent = ({ title }: { title: string }) => {
   return (
@@ -175,6 +179,13 @@ export interface ModelRouterProps {
     request: RequestState;
     instance?: any;
   };
+  update: {
+    onSubmit: (obj: object) => void;
+    request: RequestState;
+    requestInstance: RequestState;
+    onRequestInstance: (id: string) => void;
+    instance?: any;
+  };
 }
 
 const DetailsScreen = (props: ModelRouterProps) => {
@@ -229,7 +240,7 @@ export const ModelRouter = (props: ModelRouterProps) => {
       />
       <Route path="/add" element={<FormLayout {...getAddPropsFromModel(props)} />} />
       <Route path="/:id" element={<DetailsScreen {...props} />} />
-      <Route path="/:id/update" element={<DummyTestComponent title="update" />} />
+      <Route path="/:id/update" element={<UpdateScreen {...props} />} />
     </Routes>
   );
 };
