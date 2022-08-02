@@ -5,7 +5,7 @@ import { ModelRouter, RequestState } from "./model-router";
 import { mockModel, createModelInstance } from "../generators.mock";
 import { BrowserRouter } from "react-router-dom";
 import { action } from "@storybook/addon-actions";
-import { mergeAll } from "ramda";
+import { mergeDeepLeft } from "ramda";
 import { useState } from "react";
 import { NotificationCenterProvider } from "../../providers";
 
@@ -52,15 +52,13 @@ const Template = createTemplate((args: any) => {
   const onSubmitUpdateAction = action("Submit update form");
   const onRequestRemoveAction = action("click remove item option");
 
-  const props = mergeAll([
-    args,
-    {
-      list: {
-        data,
-        removeRequestState,
-        onClickRemoveItem: (item) => {
-          setRemoveRequestState({ idle: false, loading: true });
-          onRequestRemoveAction(item);
+  const props = mergeDeepLeft(args, {
+    list: {
+      data,
+      removeRequestState,
+      onClickRemoveItem: (item) => {
+        setRemoveRequestState({ idle: false, loading: true });
+        onRequestRemoveAction(item);
 
           setTimeout(() => {
             setData((d) => [...d.filter((d) => d !== item)]);
@@ -124,8 +122,7 @@ const Template = createTemplate((args: any) => {
           }, REQUEST_TIMEOUT);
         },
       },
-    },
-  ]);
+    });
 
   return (
     <NotificationCenterProvider>

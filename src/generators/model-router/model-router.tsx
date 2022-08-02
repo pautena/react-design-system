@@ -118,10 +118,10 @@ const DetailsScreen = (props: ModelRouterProps) => {
 export const ModelRouter = (props: ModelRouterProps) => {
   return (
     <Routes>
-      <Route path="/" element={<ListScreen {...props} />} />
-      <Route path="/add" element={<AddScreen {...props} />} />
-      <Route path="/:id" element={<DummyTestComponent title="detail" />} />
-      <Route path="/:id/update" element={<UpdateScreen {...props} />} />
+      <Route path="add" element={<AddScreen {...props} />} />
+      <Route path=":id/update" element={<UpdateScreen {...props} />} />
+      <Route path=":id" element={<DummyTestComponent title="detail" />} />
+      <Route path="" element={<ListScreen {...props} />} />
     </Routes>
   );
 };
