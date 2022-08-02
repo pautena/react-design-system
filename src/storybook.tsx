@@ -3,12 +3,22 @@ import React, { FunctionComponent } from "react";
 import { ComponentStory } from "@storybook/react";
 import { JSXElementConstructor } from "react";
 import { Box } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
 
 export function createTemplate<P>(
   C: JSXElementConstructor<P>,
 ): ComponentStory<JSXElementConstructor<P>> {
   return (args) => <C {...args} />;
 }
+
+export const withBrowserRouter =
+  (basename = "iframe.html") =>
+  (Story) =>
+    (
+      <BrowserRouter basename={basename}>
+        <Story />
+      </BrowserRouter>
+    );
 
 export const withFullHeight = (Story: FunctionComponent) => {
   return (

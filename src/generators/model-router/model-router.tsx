@@ -1,13 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
-import { Routes, Route, Link, useParams } from "react-router-dom";
-import { BasicData, PlaceholderIconArgs } from "../../components";
+import { PlaceholderIconArgs } from "../../components";
 import {
-  ListLayoutProps,
-  FormLayoutProps,
   DetailsLayout,
   DetailsLayoutProps,
 } from "../../layouts";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import { Model } from "../generators.model";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { AddScreen, ListScreen, UpdateScreen } from "./screens";
@@ -116,6 +114,8 @@ const DetailsScreen = (props: ModelRouterProps) => {
 };
 
 export const ModelRouter = (props: ModelRouterProps) => {
+  const location = useLocation();
+  console.log("location: ", location);
   return (
     <Routes>
       <Route path="add" element={<AddScreen {...props} />} />

@@ -1,9 +1,8 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../storybook";
+import { createTemplate, withBrowserRouter } from "../../storybook";
 import { ModelRouter, RequestState } from "./model-router";
 import { mockModel, createModelInstance } from "../generators.mock";
-import { BrowserRouter } from "react-router-dom";
 import { action } from "@storybook/addon-actions";
 import { mergeDeepLeft } from "ramda";
 import { useState } from "react";
@@ -22,13 +21,7 @@ const data = [
 export default {
   title: "Generators/ModelRouter",
   component: ModelRouter,
-  decorators: [
-    (Story) => (
-      <BrowserRouter>
-        <Story />
-      </BrowserRouter>
-    ),
-  ],
+  decorators: [withBrowserRouter()],
   parameters: {
     layout: "fullscreen",
   },
