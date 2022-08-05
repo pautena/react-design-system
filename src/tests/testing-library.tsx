@@ -1,9 +1,11 @@
 import { render, RenderOptions } from "@testing-library/react";
-import { Router } from "react-router-dom";
+import { BrowserRouter, Router } from "react-router-dom";
 import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
 import { ThemeProvider } from "@emotion/react";
 import { Theme, createTheme, PaletteMode } from "@mui/material";
+
+export type TestRouter = "browser" | "memory";
 
 function createMockTheme(mode: PaletteMode) {
   return createTheme({
@@ -18,14 +20,21 @@ function createMockHistory(): MemoryHistory {
 }
 
 const createWrapper =
-  (history: MemoryHistory, theme: Theme) =>
+  (history: MemoryHistory, theme: Theme, router: TestRouter) =>
   // eslint-disable-next-line react/display-name
   ({ children }: { children: React.ReactElement }) => {
+    const isMemoryRouter = router === "memory";
+
+    const R = isMemoryRouter ? Router : BrowserRouter;
+    const routerArgs = isMemoryRouter
+      ? {
+          location: history.location,
+          navigator: history,
+        }
+      : {};
     return (
       <ThemeProvider theme={theme}>
-        <Router location={history.location} navigator={history}>
-          {children}
-        </Router>
+        <R {...routerArgs}>{children}</R>
       </ThemeProvider>
     );
   };
@@ -33,15 +42,17 @@ const createWrapper =
 interface CustomRenderOptions {
   renderOptions?: RenderOptions;
   mode?: PaletteMode;
+  router?: TestRouter;
 }
 
 const customRender = (ui: React.ReactElement, options: CustomRenderOptions = {}) => {
   const renderOptions = options.renderOptions || {};
   const mode = options.mode || "light";
+  const router = options.router || "memory";
 
   const history = createMockHistory();
   const theme = createMockTheme(mode);
-  const wrapper = createWrapper(history, theme);
+  const wrapper = createWrapper(history, theme, router);
 
   const instance = render(ui, { wrapper, ...renderOptions });
   return { ...instance, history };

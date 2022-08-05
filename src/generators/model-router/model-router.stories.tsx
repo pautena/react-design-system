@@ -27,7 +27,7 @@ export default {
   },
 } as ComponentMeta<typeof ModelRouter>;
 
-const Template = createTemplate((args: any) => {
+const DummyModelRouter = createTemplate((args: any) => {
   const [data, setData] = useState(args.list.data || []);
   const [updateInstance, setUpdateInstance] = useState<any>(undefined);
   const [addRequestState, setAddRequestState] = useState<RequestState>({ idle: true });
@@ -124,8 +124,8 @@ const Template = createTemplate((args: any) => {
   );
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const DefaultModelRouter = DummyModelRouter.bind({});
+DefaultModelRouter.args = {
   modelName: "Items",
   model: mockModel,
   list: {
