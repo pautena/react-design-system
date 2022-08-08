@@ -3,6 +3,8 @@ import React from "react";
 import { EnhancedTable, HeadCell, Order } from "../table/enhanced-table";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 
+const OptionsId = "__options";
+
 export interface BasicData {
   id: string;
   [key: string]: any;
@@ -39,9 +41,9 @@ export const TableList = <T extends BasicData>({
   const [anchorMenuEl, setAnchorMenuEl] = React.useState<null | { item: T; anchor: HTMLElement }>(
     null,
   );
-  if (options) {
+  if (options && !columns.some((c) => c.id === OptionsId)) {
     columns.push({
-      id: "__options",
+      id: OptionsId,
       label: "",
       disablePadding: false,
       numeric: false,
@@ -77,6 +79,7 @@ export const TableList = <T extends BasicData>({
                 {options && (
                   <TableCell>
                     <IconButton
+                      data-testid={`options-${row.id}`}
                       onClick={(event) => {
                         event.stopPropagation();
                         setAnchorMenuEl({

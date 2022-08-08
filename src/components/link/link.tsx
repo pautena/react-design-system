@@ -12,6 +12,6 @@ export const LinkBehaviour = forwardRef<
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
-export function Link(props: LinkProps) {
+export const Link = forwardRef<any, LinkProps>((props, _) => {
   return <MuiLink {...props} component={LinkBehaviour} />;
-}
+});

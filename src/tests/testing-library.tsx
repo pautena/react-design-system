@@ -1,11 +1,11 @@
 import { render, RenderOptions } from "@testing-library/react";
-import { BrowserRouter, Router } from "react-router-dom";
+import { MemoryRouter, Router } from "react-router-dom";
 import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
 import { ThemeProvider } from "@emotion/react";
 import { Theme, createTheme, PaletteMode } from "@mui/material";
 
-export type TestRouter = "browser" | "memory";
+export type TestRouter = "router" | "memory";
 
 function createMockTheme(mode: PaletteMode) {
   return createTheme({
@@ -25,13 +25,13 @@ const createWrapper =
   ({ children }: { children: React.ReactElement }) => {
     const isMemoryRouter = router === "memory";
 
-    const R = isMemoryRouter ? Router : BrowserRouter;
+    const R = isMemoryRouter ? MemoryRouter : Router;
     const routerArgs = isMemoryRouter
-      ? {
+      ? {}
+      : {
           location: history.location,
           navigator: history,
-        }
-      : {};
+        };
     return (
       <ThemeProvider theme={theme}>
         <R {...routerArgs}>{children}</R>
@@ -48,7 +48,7 @@ interface CustomRenderOptions {
 const customRender = (ui: React.ReactElement, options: CustomRenderOptions = {}) => {
   const renderOptions = options.renderOptions || {};
   const mode = options.mode || "light";
-  const router = options.router || "memory";
+  const router = options.router || "router";
 
   const history = createMockHistory();
   const theme = createMockTheme(mode);

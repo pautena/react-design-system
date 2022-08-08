@@ -21,5 +21,6 @@ module.exports = {
   plugins: ["react", "@typescript-eslint"],
   rules: {
     "prettier/prettier": "error",
+    "react/display-name": "off",
   },
 };
