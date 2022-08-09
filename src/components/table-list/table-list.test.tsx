@@ -237,7 +237,6 @@ describe("TableList", () => {
     it("would render a menu if has options", async () => {
       renderInstance({ options });
 
-      //generate error
       await openOptionsMenu();
 
       expect(await screen.findByRole("menu")).toBeInTheDocument();
@@ -253,13 +252,12 @@ describe("TableList", () => {
 
       renderInstance({ options });
 
-      //generate error
-      // await openOptionsMenu(index);
+      await openOptionsMenu(index);
 
-      // await userEvents.click(screen.getByRole("menuitem", { name }));
+      await userEvents.click(screen.getByRole("menuitem", { name }));
 
-      // expect(option.onClick).toHaveBeenCalledTimes(1);
-      // expect(option.onClick).toHaveBeenCalledWith(item);
+      expect(option.onClick).toHaveBeenCalledTimes(1);
+      expect(option.onClick).toHaveBeenCalledWith(item);
     });
 
     it("would close the menu when an option is clicked", async () => {
@@ -267,22 +265,20 @@ describe("TableList", () => {
 
       renderInstance({ options });
 
-      //generate error
-      // await openOptionsMenu(index);
-      // await userEvents.click(screen.getByRole("menuitem", { name: /edit/i }));
+      await openOptionsMenu(index);
+      await userEvents.click(screen.getByRole("menuitem", { name: /edit/i }));
 
-      // expect(screen.queryByRole("menu")).not.toBeInTheDocument();
+      expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
     it("wouldn't call the component onClick if an option if clicked", async () => {
       const { onClick } = renderInstance({ options });
 
-      //generate error
-      // await openOptionsMenu();
+      await openOptionsMenu();
 
-      // await userEvents.click(screen.getByRole("menuitem", { name: /edit/i }));
+      await userEvents.click(screen.getByRole("menuitem", { name: /edit/i }));
 
-      // expect(onClick).not.toHaveBeenCalled();
+      expect(onClick).not.toHaveBeenCalled();
     });
   });
 });

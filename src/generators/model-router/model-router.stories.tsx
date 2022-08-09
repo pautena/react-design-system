@@ -28,6 +28,8 @@ export default {
 } as ComponentMeta<typeof ModelRouter>;
 
 const DummyModelRouter = createTemplate((args: any) => {
+  const { requestTimeout } = args.requestTimeout;
+
   const [data, setData] = useState(args.list.data || []);
   const [updateInstance, setUpdateInstance] = useState<any>(undefined);
   const [addRequestState, setAddRequestState] = useState<RequestState>({ idle: true });
@@ -56,7 +58,7 @@ const DummyModelRouter = createTemplate((args: any) => {
         setTimeout(() => {
           setData((d) => [...d.filter((d) => d !== item)]);
           setRemoveRequestState({ idle: true, loading: false, success: true });
-        }, REQUEST_TIMEOUT);
+        }, requestTimeout);
       },
     },
     add: {
@@ -68,7 +70,7 @@ const DummyModelRouter = createTemplate((args: any) => {
         setTimeout(() => {
           setData((d) => [...d, obj]);
           setAddRequestState({ idle: true, loading: false, success: true });
-        }, REQUEST_TIMEOUT);
+        }, requestTimeout);
       },
     },
     detail: {
@@ -82,7 +84,7 @@ const DummyModelRouter = createTemplate((args: any) => {
         setTimeout(() => {
           setDetailInstance(data.find((d) => d.id === id));
           setDetailRequestState({ idle: true, loading: false, success: true });
-        }, 2000);
+        }, requestTimeout);
       },
     },
     update: {
@@ -96,7 +98,7 @@ const DummyModelRouter = createTemplate((args: any) => {
         setTimeout(() => {
           setUpdateInstance(data.find((d) => d.id === id));
           setUpdateInstanceRequestState({ idle: true, loading: false, success: true });
-        }, REQUEST_TIMEOUT);
+        }, requestTimeout);
       },
       onSubmit: (obj: any) => {
         setUpdateRequestState({ idle: false, loading: true });
@@ -112,7 +114,7 @@ const DummyModelRouter = createTemplate((args: any) => {
             }),
           ]);
           setUpdateRequestState({ idle: true, loading: false, success: true });
-        }, REQUEST_TIMEOUT);
+        }, requestTimeout);
       },
     },
   });
@@ -128,6 +130,7 @@ export const DefaultModelRouter = DummyModelRouter.bind({});
 DefaultModelRouter.args = {
   modelName: "Items",
   model: mockModel,
+  requestTimeout: REQUEST_TIMEOUT,
   list: {
     data,
   },

@@ -3,6 +3,9 @@ import { DefaultModelRouter } from "./model-router.stories";
 import { render, screen, TestRouter } from "../../tests";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
+import { Model } from "../generators.model";
+
+const REQUEST_TIMEOUT = 100;
 
 describe("ModelRouter", () => {
   const assertions = {
@@ -26,6 +29,15 @@ describe("ModelRouter", () => {
         name: `Edit ${id}`,
         level: 1,
       }),
+    expectListItems: async ({ data, model }: { data: any[]; model: Model }) => {
+      for (let i = 0; i < model.fields.length; ++i) {
+        const { id, listable } = model.fields[i];
+
+        if (listable) {
+          expect(await screen.findAllByRole("cell", { name: data[id] })).toBeTruthy();
+        }
+      }
+    },
   };
 
   const actions = {
@@ -46,11 +58,11 @@ describe("ModelRouter", () => {
 
   const renderComponent = ({ router = "memory" }: { router?: TestRouter } = {}) => {
     const args = DefaultModelRouter.args;
-    const instance = render(<DefaultModelRouter {...args} />, {
+    const instance = render(<DefaultModelRouter {...args} requestTimeout={REQUEST_TIMEOUT} />, {
       router,
     });
 
-    return { ...instance, data: args.list.data };
+    return { ...instance, data: args.list.data, model: args.model };
   };
 
   describe("router screens", () => {
@@ -123,6 +135,52 @@ describe("ModelRouter", () => {
       } = getRandomItem<any>(data);
 
       await actions.navigateToDetailScreen({ name: firstName });
+
+      expect(history.location.pathname).toBe(`/${id}`);
+    });
+  });
+
+  describe("list screen", () => {
+    it("would render a title", () => {
+      renderComponent();
+
+      expect(
+        screen.getByRole("heading", {
+          name: "Items",
+          level: 1,
+        }),
+      ).toBeInTheDocument();
+    });
+
+    describe("add button", () => {
+      it("would render an add button", () => {
+        renderComponent();
+
+        expect(screen.getByRole("button", { name: /add/i })).toBeInTheDocument();
+      });
+
+      it("would navigate to the add screen if I press the add button", async () => {
+        const { history } = renderComponent({ router: "router" });
+
+        await userEvent.click(screen.getByRole("button", { name: /add/i }));
+
+        expect(history.location.pathname).toBe("/add");
+      });
+    });
+
+    it("would render a list with the data", async () => {
+      const { data, model } = renderComponent();
+
+      await assertions.expectListItems({ data, model });
+    });
+
+    it("would navigate to the detail screen if an item is clicked", async () => {
+      const { data, history } = renderComponent({ router: "router" });
+      const {
+        item: { id, firstName },
+      } = getRandomItem<any>(data);
+
+      await userEvent.click(screen.getByRole("cell", { name: firstName }));
 
       expect(history.location.pathname).toBe(`/${id}`);
     });
