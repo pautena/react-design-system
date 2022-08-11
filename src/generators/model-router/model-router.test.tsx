@@ -1,6 +1,6 @@
 import React from "react";
-import { DefaultModelRouter } from "./model-router.stories";
-import { render, screen, TestRouter } from "../../tests";
+import { DummyModelRouter } from "./model-router.stories";
+import { render, screen, TestRouter, waitForElementToBeRemoved } from "../../tests";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
@@ -38,6 +38,12 @@ describe("ModelRouter", () => {
         }
       }
     },
+    expectLoadingIndicator: async () => {
+      await screen.findByRole("progressbar");
+    },
+    expectLoadingIndicatorToBeRemoved: async () => {
+      await waitForElementToBeRemoved(() => screen.getByRole("progressbar"));
+    },
   };
 
   const actions = {
@@ -49,7 +55,7 @@ describe("ModelRouter", () => {
       await userEvent.click(screen.getByRole("menuitem", { name: /edit/i }));
     },
     navigateToDetailScreen: async ({ name }: { name: string }) => {
-      await userEvent.click(screen.getByRole("cell", { name }));
+      await userEvent.click(await screen.findByRole("cell", { name }));
     },
     openItemOptions: async ({ id }: { id: number }) => {
       await userEvent.click(await screen.findByTestId(`options-${id}`));
@@ -57,12 +63,20 @@ describe("ModelRouter", () => {
   };
 
   const renderComponent = ({ router = "memory" }: { router?: TestRouter } = {}) => {
-    const args = DefaultModelRouter.args;
-    const instance = render(<DefaultModelRouter {...args} requestTimeout={REQUEST_TIMEOUT} />, {
-      router,
-    });
+    const requestList = jest.fn();
+    const args = DummyModelRouter.args;
+    const instance = render(
+      <DummyModelRouter
+        {...args}
+        requestTimeout={REQUEST_TIMEOUT}
+        requestListAction={requestList}
+      />,
+      {
+        router,
+      },
+    );
 
-    return { ...instance, data: args.list.data, model: args.model };
+    return { ...instance, data: args.initialData, model: args.model, requestList };
   };
 
   describe("router screens", () => {
@@ -141,6 +155,19 @@ describe("ModelRouter", () => {
   });
 
   describe("list screen", () => {
+    it("would call requestList when is mounted", () => {
+      const { requestList } = renderComponent();
+
+      expect(requestList).toHaveBeenCalledTimes(1);
+    });
+
+    it("would render a loading indicator until the data is ready", async () => {
+      renderComponent();
+
+      await assertions.expectLoadingIndicator();
+      await assertions.expectLoadingIndicatorToBeRemoved();
+    });
+
     it("would render a title", () => {
       renderComponent();
 
@@ -180,7 +207,7 @@ describe("ModelRouter", () => {
         item: { id, firstName },
       } = getRandomItem<any>(data);
 
-      await userEvent.click(screen.getByRole("cell", { name: firstName }));
+      await userEvent.click(await screen.findByRole("cell", { name: firstName }));
 
       expect(history.location.pathname).toBe(`/${id}`);
     });

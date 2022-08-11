@@ -13,21 +13,26 @@ export interface RequestState {
 export interface ModelRouterProps {
   modelName: string;
   model: Model;
+  //list screen
+  requestList?: () => void;
   list: {
-    loading?: boolean;
     data: any[];
     onClickRemoveItem: (item: any) => void;
+    listRequest: RequestState;
     requestDelete: RequestState;
   };
+  //add screen
   add: {
     onSubmit: (obj: object) => void;
     request: RequestState;
   };
+  //detail screen
   detail: {
     onScreenMount?: (id: string) => void;
     request: RequestState;
     instance?: any;
   };
+  //update screen
   update: {
     onSubmit: (obj: object) => void;
     request: RequestState;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BasicData } from "../../../components";
 import { ListLayoutProps, ListLayout } from "../../../layouts";
@@ -10,7 +10,7 @@ const getListPropsFromModel = <T extends BasicData>(
   onClickListOption: (optionId: "edit" | "remove", item: T) => void,
 ): ListLayoutProps<T> => {
   return {
-    loading: list.loading,
+    loading: list.listRequest.loading,
     headerProps: {
       title: modelName,
       preset: "default",
@@ -56,7 +56,12 @@ const getListPropsFromModel = <T extends BasicData>(
 };
 
 export const ListScreen = (props: ModelRouterProps) => {
+  const { requestList = () => null } = props;
   const navigate = useNavigate();
+
+  useEffect(() => {
+    requestList();
+  }, []);
 
   const handleClickListItem = (item: any) => {
     navigate(`/${item.id}`);

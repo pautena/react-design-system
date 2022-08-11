@@ -27,11 +27,14 @@ export default {
   },
 } as ComponentMeta<typeof ModelRouter>;
 
-const DummyModelRouter = createTemplate((args: any) => {
-  const { requestTimeout } = args.requestTimeout;
+const requestListAction = action("Request list data");
 
-  const [data, setData] = useState(args.list.data || []);
+export const DummyModelRouter = (args: any) => {
+  const { requestTimeout, initialData, requestListAction } = args;
+
+  const [data, setData] = useState<any[]>([]);
   const [updateInstance, setUpdateInstance] = useState<any>(undefined);
+  const [listRequestState, setListRequestState] = useState<RequestState>({ idle: true });
   const [addRequestState, setAddRequestState] = useState<RequestState>({ idle: true });
   const [updateRequestState, setUpdateRequestState] = useState<RequestState>({ idle: true });
   const [updateInstanceRequestState, setUpdateInstanceRequestState] = useState<RequestState>({
@@ -47,9 +50,19 @@ const DummyModelRouter = createTemplate((args: any) => {
   const onSubmitUpdateAction = action("Submit update form");
   const onRequestRemoveAction = action("click remove item option");
 
-  const props = mergeDeepLeft(args, {
+  const props = {
+    ...args,
+    requestList: () => {
+      requestListAction();
+      setListRequestState({ idle: false, loading: true });
+      setTimeout(() => {
+        setData(initialData);
+        setListRequestState({ idle: true, loading: false, success: true });
+      }, requestTimeout);
+    },
     list: {
       data,
+      listRequest: listRequestState,
       removeRequestState,
       onClickRemoveItem: (item) => {
         setRemoveRequestState({ idle: false, loading: true });
@@ -82,7 +95,7 @@ const DummyModelRouter = createTemplate((args: any) => {
         onDetailsScreenMount(id);
 
         setTimeout(() => {
-          setDetailInstance(data.find((d) => d.id === id));
+          setDetailInstance(data?.find((d) => d.id === id));
           setDetailRequestState({ idle: true, loading: false, success: true });
         }, requestTimeout);
       },
@@ -96,7 +109,7 @@ const DummyModelRouter = createTemplate((args: any) => {
         onRequestUpdateInstanceAction(id);
 
         setTimeout(() => {
-          setUpdateInstance(data.find((d) => d.id === id));
+          setUpdateInstance(data?.find((d) => d.id === id));
           setUpdateInstanceRequestState({ idle: true, loading: false, success: true });
         }, requestTimeout);
       },
@@ -106,7 +119,7 @@ const DummyModelRouter = createTemplate((args: any) => {
 
         setTimeout(() => {
           setData((d) => [
-            ...d.map((item) => {
+            ...(d || []).map((item) => {
               if (item === obj) {
                 return obj;
               }
@@ -117,21 +130,19 @@ const DummyModelRouter = createTemplate((args: any) => {
         }, requestTimeout);
       },
     },
-  });
+  };
 
   return (
     <NotificationCenterProvider>
       <ModelRouter {...props} />
     </NotificationCenterProvider>
   );
-});
+};
 
-export const DefaultModelRouter = DummyModelRouter.bind({});
-DefaultModelRouter.args = {
+DummyModelRouter.args = {
   modelName: "Items",
   model: mockModel,
   requestTimeout: REQUEST_TIMEOUT,
-  list: {
-    data,
-  },
+  initialData: data,
+  requestListAction,
 };
