@@ -44,6 +44,9 @@ describe("ModelRouter", () => {
     expectLoadingIndicatorToBeRemoved: async () => {
       await waitForElementToBeRemoved(() => screen.getByRole("progressbar"));
     },
+    expectMenuOption: async ({ id }: { id: number }) => {
+      await screen.findByTestId(`options-${id}`);
+    },
   };
 
   const actions = {
@@ -210,6 +213,39 @@ describe("ModelRouter", () => {
       await userEvent.click(await screen.findByRole("cell", { name: firstName }));
 
       expect(history.location.pathname).toBe(`/${id}`);
+    });
+
+    describe("item options", () => {
+      it("would have a options button for each item", async () => {
+        const { data } = renderComponent();
+
+        for (let i = 0; i < data.length; ++i) {
+          const id = (data[i] as any).id;
+          await assertions.expectMenuOption({ id });
+        }
+      });
+
+      it("would render an option to edit", async () => {
+        const { data } = renderComponent({ router: "router" });
+        const {
+          item: { id },
+        } = getRandomItem<any>(data);
+
+        await actions.openItemOptions({ id });
+
+        expect(screen.getByRole("menuitem", { name: /edit/i })).toBeInTheDocument();
+      });
+
+      it("would render an option to delete", async () => {
+        const { data } = renderComponent({ router: "router" });
+        const {
+          item: { id },
+        } = getRandomItem<any>(data);
+
+        await actions.openItemOptions({ id });
+
+        expect(screen.getByRole("menuitem", { name: /remove/i })).toBeInTheDocument();
+      });
     });
   });
 });
