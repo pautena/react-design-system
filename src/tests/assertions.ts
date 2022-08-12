@@ -14,6 +14,26 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
   });
 };
 
+export const expectModelFieldValue = (field: ModelField, instance: object) => {
+  const { id, type, name, description } = field;
+  const value = instance[id];
+
+  if (type === "group") {
+    expect(screen.getByRole("heading", { level: 1, name }));
+    expect(screen.getByRole("heading", { level: 2, name: description }));
+    field.value.forEach((groupValue) => expectModelFieldValue(groupValue, value));
+    return;
+  }
+
+  expect(screen.getByRole("label", { name: name })).toBeInTheDocument();
+  if (type === "boolean") {
+    expect(screen.getByTestId(value ? "CheckIcon" : "CloseIcon")).toBeInTheDocument();
+  } else {
+    expect(screen.getByLabelText(name)).toHaveTextContent(value);
+    //expect(screen.getByText(value)).toBeInTheDocument();
+  }
+};
+
 export const expectProgressIndicator = () => {
   expect(screen.getByRole("progressbar")).toBeInTheDocument();
 };

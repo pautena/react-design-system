@@ -8,6 +8,7 @@ import {
   screen,
   TestRouter,
   expectAlert,
+  expectModelFieldValue,
 } from "../../tests";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
@@ -97,7 +98,7 @@ describe("ModelRouter", () => {
   const renderComponent = async ({
     router = "memory",
     screen = "initial",
-  }: { router?: TestRouter; screen?: "initial" | "add" } = {}) => {
+  }: { router?: TestRouter; screen?: "initial" | "add" | "details" } = {}) => {
     const requestList = jest.fn();
     const onSubmitAdd = jest.fn();
     const args = DummyModelRouter.args;
@@ -113,11 +114,22 @@ describe("ModelRouter", () => {
       },
     );
 
+    const randomItem = getRandomItem<any>(args.initialData);
+
     if (screen === "add") {
       await actions.navigateToAddScreen();
+    } else if (screen === "details") {
+      await actions.navigateToDetailScreen({ name: randomItem.item.firstName });
     }
 
-    return { ...instance, data: args.initialData, model: args.model, requestList, onSubmitAdd };
+    return {
+      ...instance,
+      data: args.initialData,
+      model: args.model,
+      randomItem,
+      requestList,
+      onSubmitAdd,
+    };
   };
 
   describe("router screens", () => {
@@ -375,5 +387,48 @@ describe("ModelRouter", () => {
 
     //   await assertions.expectListScreen();
     // });
+  });
+
+  describe("details screen", () => {
+    it("would render a title", async () => {
+      const {
+        randomItem: {
+          item: { id },
+        },
+      } = await renderComponent({ screen: "details" });
+
+      expect(
+        screen.getByRole("heading", {
+          name: id,
+          level: 1,
+        }),
+      );
+    });
+
+    it("would be able to go back to the list screen", async () => {
+      await renderComponent({ screen: "details" });
+
+      await userEvent.click(
+        screen.getByRole("link", {
+          name: /items/i,
+        }),
+      );
+
+      await assertions.expectListScreen();
+    });
+
+    it("would show a loading indicator when the request is in progress", async () => {
+      await renderComponent({ screen: "details" });
+
+      expectProgressIndicator();
+    });
+
+    it("would show the details of an instance", async () => {
+      const { model, randomItem } = await renderComponent({ screen: "details" });
+
+      await waitForProgressIndicatorToBeRemoved();
+
+      model.fields.forEach((detail) => expectModelFieldValue(detail, randomItem.item));
+    });
   });
 });

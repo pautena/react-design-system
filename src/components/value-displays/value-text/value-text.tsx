@@ -16,13 +16,14 @@ export interface ValueTextProps {
  * Displays a string value with a label
  */
 export const ValueText = ({ label, value }: ValueTextProps) => {
+  const id = `label-${label.replace(/ /g, "-")}`;
   return (
     <Box>
-      <Typography variant="subtitle2" role="label">
+      <Typography variant="subtitle2" role="label" id={id}>
         {label}
       </Typography>
       <Tooltip title={value} placement="top" enterDelay={2000}>
-        <Typography variant="h5" noWrap>
+        <Typography variant="h5" noWrap aria-labelledby={id}>
           {value}
         </Typography>
       </Tooltip>
