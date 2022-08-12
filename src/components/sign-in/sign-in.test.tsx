@@ -1,6 +1,6 @@
 import React from "react";
 import { SignIn } from "./sign-in";
-import { render, screen } from "../../tests";
+import { expectProgressIndicator, render, screen } from "../../tests";
 import userEvent from "@testing-library/user-event";
 
 async function submitSignIn(email: string | null, password: string | null) {
@@ -89,7 +89,7 @@ describe("SignIn", () => {
         <SignIn loading title="Lorem ipsum" subtitle="Sit amet" onSubmitSignIn={() => null} />,
       );
 
-      expect(screen.getByRole("progressbar")).toBeInTheDocument();
+      expectProgressIndicator();
     });
   });
 });

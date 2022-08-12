@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "../../../tests";
+import { expectProgressIndicator, render } from "../../../tests";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { TestTable, columns, data } from "./enhanced-table.mock";
@@ -33,7 +33,7 @@ describe("EnhancedTable", () => {
   it("loading is true a loading indicator is displayed", () => {
     renderInstance({ loading: true });
 
-    expect(screen.getByRole("progressbar")).toBeInTheDocument();
+    expectProgressIndicator();
   });
 
   it("all items are sorted by the default sort field", () => {

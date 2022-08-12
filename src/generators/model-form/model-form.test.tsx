@@ -1,6 +1,6 @@
 import React from "react";
 import { ModelForm } from "./model-form";
-import { render, screen } from "../../tests";
+import { expectModelFieldInputExist, render, screen } from "../../tests";
 import { createModelInstance, mockModel } from "../generators.mock";
 import { ModelField } from "../generators.model";
 import userEvent from "@testing-library/user-event";
@@ -18,18 +18,6 @@ describe("ModelForm", () => {
     );
 
     return { ...instance, onSubmit };
-  };
-
-  const assertInputsExist = (fields: ModelField[]) => {
-    fields.forEach((field) => {
-      if (field.type === "group") {
-        assertInputsExist(field.value);
-      } else if (field.type === "number") {
-        expect(screen.getByRole("spinbutton", { name: field.name })).toBeInTheDocument();
-      } else {
-        expect(screen.getByRole("textbox", { name: field.name })).toBeInTheDocument();
-      }
-    });
   };
 
   const assertInputsValues = (fields: ModelField[], initialValues: object) => {
@@ -54,7 +42,7 @@ describe("ModelForm", () => {
   it("would render an input for each model", () => {
     renderComponent();
 
-    assertInputsExist(mockModel.fields);
+    expectModelFieldInputExist(mockModel.fields);
   });
 
   it("would render the initial value if initialValues is provided", () => {

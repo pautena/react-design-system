@@ -3,6 +3,7 @@ import { screen, render } from "@testing-library/react";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 import userEvent from "@testing-library/user-event";
 import { columns, data } from "../enhanced-table/enhanced-table.mock";
+import { expectProgressIndicator } from "../../../tests";
 
 function renderInstance({
   defaultSort = "startDate",
@@ -36,7 +37,7 @@ describe("Table", () => {
   it("loading is true a loading indicator is displayed", () => {
     renderInstance({ loading: true });
 
-    expect(screen.getByRole("progressbar")).toBeInTheDocument();
+    expectProgressIndicator();
   });
 
   it("the defaultSort is indicated", () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { QueryContainer, QueryContainerError, QueryContainerSuccess } from "./query-container";
-import { render, screen } from "../../tests";
+import { expectProgressIndicator, render, screen } from "../../tests";
 import { Typography } from "@mui/material";
 
 describe("QueryContainer", () => {
@@ -23,7 +23,7 @@ describe("QueryContainer", () => {
   it("would render a loading indicator if isFetching is true", () => {
     renderComponent({ isFetching: true });
 
-    expect(screen.getByRole("progressbar")).toBeInTheDocument();
+    expectProgressIndicator();
   });
 
   describe("error", () => {

@@ -28,9 +28,23 @@ export default {
 } as ComponentMeta<typeof ModelRouter>;
 
 const requestListAction = action("Request list data");
+const onSubmitAddAction = action("Submit add form");
+const onDetailsScreenMount = action("Details screen mount");
+const onRequestUpdateInstanceAction = action("Request update instance");
+const onSubmitUpdateAction = action("Submit update form");
+const onRequestRemoveAction = action("click remove item option");
 
 export const DummyModelRouter = (args: any) => {
-  const { requestTimeout, initialData, requestListAction } = args;
+  const {
+    requestTimeout,
+    initialData,
+    requestListAction,
+    onSubmitAddAction,
+    onDetailsScreenMount,
+    onRequestUpdateInstanceAction,
+    onSubmitUpdateAction,
+    onRequestRemoveAction,
+  } = args;
 
   const [data, setData] = useState<any[]>([]);
   const [updateInstance, setUpdateInstance] = useState<any>(undefined);
@@ -43,12 +57,6 @@ export const DummyModelRouter = (args: any) => {
   const [removeRequestState, setRemoveRequestState] = useState<RequestState>({ idle: true });
   const [detailRequestState, setDetailRequestState] = useState<RequestState>({ idle: true });
   const [detailInstance, setDetailInstance] = useState(undefined);
-
-  const onDetailsScreenMount = action("Details screen mount");
-  const onSubmitAddAction = action("Submit add form");
-  const onRequestUpdateInstanceAction = action("Request update instance");
-  const onSubmitUpdateAction = action("Submit update form");
-  const onRequestRemoveAction = action("click remove item option");
 
   const props = {
     ...args,
@@ -145,4 +153,9 @@ DummyModelRouter.args = {
   requestTimeout: REQUEST_TIMEOUT,
   initialData: data,
   requestListAction,
+  onSubmitAddAction,
+  onDetailsScreenMount,
+  onRequestUpdateInstanceAction,
+  onSubmitUpdateAction,
+  onRequestRemoveAction,
 };

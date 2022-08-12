@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "../../tests";
+import { expectProgressIndicator, render } from "../../tests";
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { BasicData, TableRowOption, TableList } from "./table-list";
@@ -127,7 +127,7 @@ describe("TableList", () => {
   it("loading is true a loading indicator is displayed", () => {
     renderInstance({ loading: true });
 
-    expect(screen.getByRole("progressbar")).toBeInTheDocument();
+    expectProgressIndicator();
   });
 
   describe("search", () => {

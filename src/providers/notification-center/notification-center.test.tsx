@@ -1,7 +1,7 @@
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { AlertColor, Box, Button } from "@mui/material";
-import { render, screen, waitForElementToBeRemoved } from "../../tests";
+import { render, screen, waitForElementToBeRemoved, expectAlert } from "../../tests";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import {
   NotificationCenterProviderUndefinedError,
@@ -43,9 +43,11 @@ describe("NotificationCenterProvider", () => {
 
     await userEvent.click(screen.getByRole("button", { name: /info/i }));
 
-    expect(screen.getByRole("alert")).toBeInTheDocument();
-    expect(screen.getByText(/an alert/i)).toBeInTheDocument();
-    expect(screen.getByText(/lorem ipsum sit amet/i)).toBeInTheDocument();
+    await expectAlert({
+      title: /an alert/i,
+      message: /lorem ipsum sit amet/i,
+      severity: "info",
+    });
   });
 
   it("would hide the notification if close is called", async () => {
