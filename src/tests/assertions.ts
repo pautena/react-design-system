@@ -14,6 +14,19 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
   });
 };
 
+export const expectModelFieldInputValue = (fields: ModelField[], initialValues: object) => {
+  fields.forEach((field) => {
+    const value = initialValues[field.id];
+    if (field.type === "group") {
+      expectModelFieldInputValue(field.value, value);
+    } else if (field.type === "number") {
+      expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
+    } else {
+      expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
+    }
+  });
+};
+
 export const expectModelFieldValue = (field: ModelField, instance: object) => {
   const { id, type, name, description } = field;
   const value = instance[id];

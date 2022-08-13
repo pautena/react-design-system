@@ -1,6 +1,11 @@
 import React from "react";
 import { ModelForm } from "./model-form";
-import { expectModelFieldInputExist, render, screen } from "../../tests";
+import {
+  expectModelFieldInputExist,
+  expectModelFieldInputValue,
+  render,
+  screen,
+} from "../../tests";
 import { createModelInstance, mockModel } from "../generators.mock";
 import { ModelField } from "../generators.model";
 import userEvent from "@testing-library/user-event";
@@ -20,19 +25,6 @@ describe("ModelForm", () => {
     return { ...instance, onSubmit };
   };
 
-  const assertInputsValues = (fields: ModelField[], initialValues: object) => {
-    fields.forEach((field) => {
-      const value = initialValues[field.id];
-      if (field.type === "group") {
-        assertInputsValues(field.value, value);
-      } else if (field.type === "number") {
-        expect(screen.getByDisplayValue(value)).toBeInTheDocument();
-      } else {
-        expect(screen.getByDisplayValue(value)).toBeInTheDocument();
-      }
-    });
-  };
-
   it("would render a button", () => {
     renderComponent();
 
@@ -49,7 +41,7 @@ describe("ModelForm", () => {
     const initialValues = createModelInstance(mockModel);
     renderComponent({ initialValues });
 
-    assertInputsValues(mockModel.fields, initialValues);
+    expectModelFieldInputValue(mockModel.fields, initialValues);
   });
 
   it("would call onSubmit if I fullfill all inputs and press the submit button", async () => {

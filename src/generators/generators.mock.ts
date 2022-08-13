@@ -184,7 +184,7 @@ const mockFieldValue = {
   tradeDate: () => "Thu Jul 21 2022 22:44:10 GMT+0200 (Central European Summer Time)",
 };
 
-export const createModelInstance = (model: Model, seed = 100) => {
+export const createModelInstance = (model: Model, seed = 100): any => {
   faker.seed(seed);
   const obj = {};
 

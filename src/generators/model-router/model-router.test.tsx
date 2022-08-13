@@ -7,12 +7,13 @@ import {
   render,
   screen,
   TestRouter,
-  expectAlert,
   expectModelFieldValue,
+  expectModelFieldInputValue,
 } from "../../tests";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
+import { createModelInstance } from "../generators.mock";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -50,6 +51,30 @@ describe("ModelRouter", () => {
     expectMenuOption: async ({ id }: { id: number }) => {
       await screen.findByTestId(`options-${id}`);
     },
+    expectSubmitInstanceCall: (mockFn: jest.Mock, instance: any) => {
+      expect(mockFn).toHaveBeenCalledTimes(1);
+      expect(mockFn).toHaveBeenCalledWith({
+        id: instance.id,
+        firstName: instance.firstName,
+        middleName: instance.middleName,
+        lastName: instance.lastName,
+        gender: instance.gender,
+        age: instance.age.toString(),
+        birthDate: instance.birthDate,
+        car: {
+          model: instance.car.model,
+          manufacturer: instance.car.manufacturer,
+          color: instance.car.color,
+          type: instance.car.type,
+          vin: instance.car.vin,
+          vrm: instance.car.vrm,
+        },
+        quantity: instance.quantity.toString(),
+        available: instance.available.toString(),
+        currency: instance.currency,
+        tradeDate: instance.tradeDate,
+      });
+    },
   };
 
   const actions = {
@@ -66,41 +91,85 @@ describe("ModelRouter", () => {
     openItemOptions: async ({ id }: { id: number }) => {
       await userEvent.click(await screen.findByTestId(`options-${id}`));
     },
-    fullfillModelForm: async () => {
-      await userEvent.type(screen.getByRole("textbox", { name: "Id" }), "Id-1");
-      await userEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
-      await userEvent.type(screen.getByRole("textbox", { name: /middle name/i }), "Noah");
-      await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
-      await userEvent.type(screen.getByRole("textbox", { name: /gender/i }), "Cis Man");
-      await userEvent.type(screen.getByRole("spinbutton", { name: /age/i }), "37");
-      await userEvent.type(
-        screen.getByRole("textbox", { name: /birth date/i }),
-        "Tue Nov 26 2047 12:14:19",
-      );
-      await userEvent.type(screen.getByRole("textbox", { name: /model/i }), "Spyder");
-      await userEvent.type(screen.getByRole("textbox", { name: /manufacturer/i }), "Bugatti");
-      await userEvent.type(screen.getByRole("textbox", { name: /color/i }), "red");
-      await userEvent.type(screen.getByRole("textbox", { name: /type/i }), "Convertible");
-      await userEvent.type(screen.getByRole("textbox", { name: /vin/i }), "46N6UE4VJ2XL28828");
-      await userEvent.type(screen.getByRole("textbox", { name: /vrm/i }), "NE51AFH");
-      await userEvent.type(screen.getByRole("spinbutton", { name: /q/i }), "9");
-      await userEvent.type(screen.getByRole("textbox", { name: /available/i }), "true");
-      await userEvent.type(screen.getByRole("textbox", { name: /currency/i }), "mxn");
-      await userEvent.type(
-        screen.getByRole("textbox", { name: /trade date/i }),
-        "Thu Jul 21 2022 22:44:10",
-      );
+    fullfillModelForm: async ({
+      model,
+      submit,
+      clear,
+    }: {
+      model: Model;
+      submit?: boolean;
+      clear?: boolean;
+    }) => {
+      const instance = createModelInstance(model);
 
-      await userEvent.click(screen.getByRole("button", { name: /save/i }));
+      const idElement = screen.getByRole("textbox", { name: "Id" });
+      const firstNameElement = screen.getByRole("textbox", { name: /first name/i });
+      const middleNameElement = screen.getByRole("textbox", { name: /middle name/i });
+      const lastNameElement = screen.getByRole("textbox", { name: /last name/i });
+      const genderElement = screen.getByRole("textbox", { name: /gender/i });
+      const ageElement = screen.getByRole("spinbutton", { name: /age/i });
+      const birthDateElement = screen.getByRole("textbox", { name: /birth date/i });
+      const manufacturerElement = screen.getByRole("textbox", { name: /manufacturer/i });
+      const modelElement = screen.getByRole("textbox", { name: /model/i });
+      const colorElement = screen.getByRole("textbox", { name: /color/i });
+      const typeElement = screen.getByRole("textbox", { name: /type/i });
+      const vinElement = screen.getByRole("textbox", { name: /vin/i });
+      const vrmElement = screen.getByRole("textbox", { name: /vrm/i });
+      const quantityElement = screen.getByRole("spinbutton", { name: /q/i });
+      const availableElement = screen.getByRole("textbox", { name: /available/i });
+      const currencyElement = screen.getByRole("textbox", { name: /currency/i });
+      const tradeDateElement = screen.getByRole("textbox", { name: /trade date/i });
+
+      if (clear) {
+        await userEvent.clear(idElement);
+        await userEvent.clear(firstNameElement);
+        await userEvent.clear(middleNameElement);
+        await userEvent.clear(lastNameElement);
+        await userEvent.clear(genderElement);
+        await userEvent.clear(ageElement);
+        await userEvent.clear(birthDateElement);
+        await userEvent.clear(manufacturerElement);
+        await userEvent.clear(modelElement);
+        await userEvent.clear(colorElement);
+        await userEvent.clear(typeElement);
+        await userEvent.clear(vinElement);
+        await userEvent.clear(vrmElement);
+        await userEvent.clear(quantityElement);
+        await userEvent.clear(availableElement);
+        await userEvent.clear(currencyElement);
+        await userEvent.clear(tradeDateElement);
+      }
+      await userEvent.type(idElement, instance.id);
+      await userEvent.type(firstNameElement, instance.firstName);
+      await userEvent.type(middleNameElement, instance.middleName);
+      await userEvent.type(lastNameElement, instance.lastName);
+      await userEvent.type(genderElement, instance.gender);
+      await userEvent.type(ageElement, instance.age.toString());
+      await userEvent.type(birthDateElement, instance.birthDate);
+      await userEvent.type(modelElement, instance.car.model);
+      await userEvent.type(manufacturerElement, instance.car.manufacturer);
+      await userEvent.type(colorElement, instance.car.color);
+      await userEvent.type(typeElement, instance.car.type);
+      await userEvent.type(vinElement, instance.car.vin);
+      await userEvent.type(vrmElement, instance.car.vrm);
+      await userEvent.type(quantityElement, instance.quantity.toString());
+      await userEvent.type(availableElement, instance.available.toString());
+      await userEvent.type(currencyElement, instance.currency);
+      await userEvent.type(tradeDateElement, instance.tradeDate);
+
+      submit && (await userEvent.click(screen.getByRole("button", { name: /save/i })));
+
+      return instance;
     },
   };
 
   const renderComponent = async ({
     router = "memory",
     screen = "initial",
-  }: { router?: TestRouter; screen?: "initial" | "add" | "details" } = {}) => {
+  }: { router?: TestRouter; screen?: "initial" | "add" | "details" | "update" } = {}) => {
     const requestList = jest.fn();
     const onSubmitAdd = jest.fn();
+    const onSubmitUpdate = jest.fn();
     const args = DummyModelRouter.args;
     const instance = render(
       <DummyModelRouter
@@ -108,6 +177,7 @@ describe("ModelRouter", () => {
         requestTimeout={REQUEST_TIMEOUT}
         requestListAction={requestList}
         onSubmitAddAction={onSubmitAdd}
+        onSubmitUpdateAction={onSubmitUpdate}
       />,
       {
         router,
@@ -120,6 +190,8 @@ describe("ModelRouter", () => {
       await actions.navigateToAddScreen();
     } else if (screen === "details") {
       await actions.navigateToDetailScreen({ name: randomItem.item.firstName });
+    } else if (screen === "update") {
+      await actions.navigateToUpdateScreen({ id: randomItem.item.id });
     }
 
     return {
@@ -129,6 +201,7 @@ describe("ModelRouter", () => {
       randomItem,
       requestList,
       onSubmitAdd,
+      onSubmitUpdate,
     };
   };
 
@@ -332,39 +405,26 @@ describe("ModelRouter", () => {
       expectModelFieldInputExist(model.fields);
     });
 
+    it("would be able to fullfill the form", async () => {
+      const { model } = await renderComponent({ screen: "add" });
+
+      const newInstance = await actions.fullfillModelForm({ model, submit: false });
+
+      expectModelFieldInputValue(model.fields, newInstance);
+    });
+
     it("would make a request when the form is submitted", async () => {
-      const { onSubmitAdd } = await renderComponent({ screen: "add" });
+      const { onSubmitAdd, model } = await renderComponent({ screen: "add" });
 
-      await actions.fullfillModelForm();
+      const newInstance = await actions.fullfillModelForm({ model, submit: true });
 
-      expect(onSubmitAdd).toHaveBeenCalledTimes(1);
-      expect(onSubmitAdd).toHaveBeenCalledWith({
-        id: "Id-1",
-        firstName: "Karianne",
-        middleName: "Noah",
-        lastName: "Gorczany",
-        gender: "Cis Man",
-        age: "37",
-        birthDate: "Tue Nov 26 2047 12:14:19",
-        car: {
-          model: "Spyder",
-          manufacturer: "Bugatti",
-          color: "red",
-          type: "Convertible",
-          vin: "46N6UE4VJ2XL28828",
-          vrm: "NE51AFH",
-        },
-        quantity: "9",
-        available: "true",
-        currency: "mxn",
-        tradeDate: "Thu Jul 21 2022 22:44:10",
-      });
+      assertions.expectSubmitInstanceCall(onSubmitAdd, newInstance);
     });
 
     it("would show a loading indicator when the request is in progress", async () => {
-      await renderComponent({ screen: "add" });
+      const { model } = await renderComponent({ screen: "add" });
 
-      await actions.fullfillModelForm();
+      await actions.fullfillModelForm({ model, submit: true });
 
       expectProgressIndicator();
     });
@@ -429,6 +489,98 @@ describe("ModelRouter", () => {
       await waitForProgressIndicatorToBeRemoved();
 
       model.fields.forEach((detail) => expectModelFieldValue(detail, randomItem.item));
+    });
+  });
+
+  describe("update screen", () => {
+    it("would render a title", async () => {
+      const {
+        randomItem: {
+          item: { id },
+        },
+      } = await renderComponent({ screen: "update" });
+
+      expect(
+        screen.getByRole("heading", {
+          name: `Edit ${id}`,
+          level: 1,
+        }),
+      ).toBeInTheDocument();
+    });
+
+    it("would render the navigation path", async () => {
+      const {
+        randomItem: {
+          item: { id },
+        },
+      } = await renderComponent({ screen: "update" });
+
+      expect(
+        screen.getByRole("link", {
+          name: /items/i,
+        }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("link", {
+          name: `Edit ${id}`,
+        }),
+      ).toBeInTheDocument();
+    });
+
+    it("would be able to go back to the list screen", async () => {
+      await renderComponent({ screen: "update" });
+
+      await userEvent.click(
+        screen.getByRole("link", {
+          name: /Items/i,
+        }),
+      );
+
+      await assertions.expectListScreen();
+    });
+
+    it("would show a loading indicator while the instance is requested", async () => {
+      await renderComponent({ screen: "update" });
+
+      await expectProgressIndicator();
+    });
+
+    it("would render a form with the instance values", async () => {
+      const {
+        model,
+        randomItem: { item },
+      } = await renderComponent({ screen: "update" });
+
+      await waitForProgressIndicatorToBeRemoved();
+
+      expectModelFieldInputValue(model.fields, item);
+    });
+
+    it("would make a request with the new values when the form is submitted", async () => {
+      const { model } = await renderComponent({ screen: "update" });
+
+      await waitForProgressIndicatorToBeRemoved();
+      const newInstance = await actions.fullfillModelForm({ model, clear: true });
+
+      expectModelFieldInputValue(model.fields, newInstance);
+    });
+
+    it("would show a loading indicator while the submit request is in progress", async () => {
+      const { model } = await renderComponent({ screen: "update" });
+
+      await waitForProgressIndicatorToBeRemoved();
+      await actions.fullfillModelForm({ model, submit: true });
+
+      expectProgressIndicator();
+    });
+
+    it("would navigate to the list screen when the submit request finish", async () => {
+      const { model, onSubmitUpdate } = await renderComponent({ screen: "update" });
+
+      await waitForProgressIndicatorToBeRemoved();
+      const newInstance = await actions.fullfillModelForm({ model, submit: true, clear: true });
+
+      assertions.expectSubmitInstanceCall(onSubmitUpdate, newInstance);
     });
   });
 });
