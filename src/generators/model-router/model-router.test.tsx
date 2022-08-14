@@ -170,6 +170,7 @@ describe("ModelRouter", () => {
     const requestList = jest.fn();
     const onSubmitAdd = jest.fn();
     const onSubmitUpdate = jest.fn();
+    const onRequestDelete = jest.fn();
     const args = DummyModelRouter.args;
     const instance = render(
       <DummyModelRouter
@@ -178,6 +179,7 @@ describe("ModelRouter", () => {
         requestListAction={requestList}
         onSubmitAddAction={onSubmitAdd}
         onSubmitUpdateAction={onSubmitUpdate}
+        onRequestDeleteAction={onRequestDelete}
       />,
       {
         router,
@@ -202,6 +204,7 @@ describe("ModelRouter", () => {
       requestList,
       onSubmitAdd,
       onSubmitUpdate,
+      onRequestDelete,
     };
   };
 
@@ -581,6 +584,50 @@ describe("ModelRouter", () => {
       const newInstance = await actions.fullfillModelForm({ model, submit: true, clear: true });
 
       assertions.expectSubmitInstanceCall(onSubmitUpdate, newInstance);
+    });
+  });
+
+  describe("delete item", () => {
+    it("would make a request when we try to delete an option", async () => {
+      const { data, onRequestDelete } = await renderComponent();
+
+      const { item } = getRandomItem<any>(data);
+      const { id, firstName } = item;
+
+      await screen.findByRole("cell", { name: firstName });
+
+      await actions.openItemOptions({ id });
+
+      await userEvent.click(screen.getByRole("menuitem", { name: /remove/i }));
+
+      expect(onRequestDelete).toHaveBeenCalledTimes(1);
+      expect(onRequestDelete).toHaveBeenCalledWith(item);
+    });
+
+    it("would show a loading indicator while the request is in progress", async () => {
+      const { data } = await renderComponent();
+
+      const { item } = getRandomItem<any>(data);
+      const { id, firstName } = item;
+
+      await screen.findByRole("cell", { name: firstName });
+      await actions.openItemOptions({ id });
+      await userEvent.click(screen.getByRole("menuitem", { name: /remove/i }));
+
+      expectProgressIndicator();
+    });
+
+    it("would remove the item from the list when the request finish", async () => {
+      const { data } = await renderComponent();
+      const { item } = getRandomItem<any>(data);
+      const { id, firstName } = item;
+
+      await screen.findByRole("cell", { name: firstName });
+      await actions.openItemOptions({ id });
+      await userEvent.click(screen.getByRole("menuitem", { name: /remove/i }));
+      await waitForProgressIndicatorToBeRemoved();
+
+      expect(screen.queryByRole("cell", { name: firstName })).not.toBeInTheDocument();
     });
   });
 });

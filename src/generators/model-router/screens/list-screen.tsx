@@ -10,7 +10,7 @@ const getListPropsFromModel = <T extends BasicData>(
   onClickListOption: (optionId: "edit" | "remove", item: T) => void,
 ): ListLayoutProps<T> => {
   return {
-    loading: list.listRequest.loading,
+    loading: list.listRequest.loading || list.requestDelete.loading,
     headerProps: {
       title: modelName,
       preset: "default",

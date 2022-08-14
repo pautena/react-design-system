@@ -1,10 +1,9 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { createTemplate, withBrowserRouter } from "../../storybook";
+import { withBrowserRouter } from "../../storybook";
 import { ModelRouter, RequestState } from "./model-router";
 import { mockModel, createModelInstance } from "../generators.mock";
 import { action } from "@storybook/addon-actions";
-import { mergeDeepLeft } from "ramda";
 import { useState } from "react";
 import { NotificationCenterProvider } from "../../providers";
 
@@ -32,7 +31,7 @@ const onSubmitAddAction = action("Submit add form");
 const onDetailsScreenMount = action("Details screen mount");
 const onRequestUpdateInstanceAction = action("Request update instance");
 const onSubmitUpdateAction = action("Submit update form");
-const onRequestRemoveAction = action("click remove item option");
+const onRequestDeleteAction = action("click delete item option");
 
 export const DummyModelRouter = (args: any) => {
   const {
@@ -43,7 +42,7 @@ export const DummyModelRouter = (args: any) => {
     onDetailsScreenMount,
     onRequestUpdateInstanceAction,
     onSubmitUpdateAction,
-    onRequestRemoveAction,
+    onRequestDeleteAction,
   } = args;
 
   const [data, setData] = useState<any[]>([]);
@@ -71,10 +70,10 @@ export const DummyModelRouter = (args: any) => {
     list: {
       data,
       listRequest: listRequestState,
-      removeRequestState,
+      requestDelete: removeRequestState,
       onClickRemoveItem: (item) => {
         setRemoveRequestState({ idle: false, loading: true });
-        onRequestRemoveAction(item);
+        onRequestDeleteAction(item);
 
         setTimeout(() => {
           setData((d) => [...d.filter((d) => d !== item)]);
@@ -157,5 +156,5 @@ DummyModelRouter.args = {
   onDetailsScreenMount,
   onRequestUpdateInstanceAction,
   onSubmitUpdateAction,
-  onRequestRemoveAction,
+  onRequestDeleteAction,
 };
