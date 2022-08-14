@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, expectProgressIndicator } from "../../tests";
+import { render, expectProgressIndicator } from "../../tests";
 import { LoadingArea } from "./loading-area";
 
 describe("LoadingArea", () => {

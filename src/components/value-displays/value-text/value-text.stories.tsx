@@ -1,4 +1,3 @@
-import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { ValueText } from "./value-text";
 import { createTemplate, withContainer } from "../../../storybook";

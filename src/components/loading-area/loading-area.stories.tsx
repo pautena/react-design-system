@@ -1,5 +1,3 @@
-import React from "react";
-import { Box } from "@mui/material";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate, withContainer } from "../../storybook";
 import { LoadingArea } from "./loading-area";

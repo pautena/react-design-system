@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { Bullet } from "../bullet";
 import { Label } from "../label";
-import { NavItem, NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer/drawer.types";
+import { NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer/drawer.types";
 import { Link } from "../link";
 
 export interface DrawerItemProps {

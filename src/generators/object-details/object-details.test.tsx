@@ -1,7 +1,6 @@
 import React from "react";
-import { expectModelFieldValue, render, screen } from "../../tests";
+import { expectModelFieldValue, render } from "../../tests";
 import { mockModel, createModelInstance } from "../generators.mock";
-import { ModelField } from "../generators.model";
 import { ObjectDetails } from "./object-details";
 
 describe("ObjectDetails", () => {

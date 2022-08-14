@@ -4,7 +4,7 @@
     "strict": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "module": "ESNext",  
+    "module": "ESNext",
     "declaration": true,
     "declarationDir": "types",
     "sourceMap": true,
@@ -22,5 +22,5 @@
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx",
     "src/storybook.tsx"
-  ],
+  ]
 }

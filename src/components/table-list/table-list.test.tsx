@@ -1,10 +1,9 @@
 import React from "react";
 import { expectProgressIndicator, render } from "../../tests";
-import { screen, waitForElementToBeRemoved } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { BasicData, TableRowOption, TableList } from "./table-list";
 import { HeadCell } from "../table/enhanced-table";
-import { act } from "react-dom/test-utils";
 
 const columns: HeadCell[] = [
   {

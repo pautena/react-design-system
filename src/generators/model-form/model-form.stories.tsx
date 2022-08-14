@@ -1,4 +1,3 @@
-import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { ModelForm } from "./model-form";
 import { createTemplate, withPadding } from "../../storybook";

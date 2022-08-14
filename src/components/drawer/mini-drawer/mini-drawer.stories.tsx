@@ -1,6 +1,5 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
 import { withRouter } from "storybook-addon-react-router-v6";
 import { MiniDrawer } from "../mini-drawer";
 import { mockNav } from "../drawer.mock";

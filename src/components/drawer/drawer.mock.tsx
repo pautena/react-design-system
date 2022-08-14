@@ -1,5 +1,5 @@
 import React from "react";
-import { DrawerContentComponent, DrawerContentProps, Nav } from "./drawer.types";
+import { DrawerContentComponent, Nav } from "./drawer.types";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { Box, Typography } from "@mui/material";

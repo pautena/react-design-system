@@ -7,7 +7,6 @@ import {
   screen,
 } from "../../tests";
 import { createModelInstance, mockModel } from "../generators.mock";
-import { ModelField } from "../generators.model";
 import userEvent from "@testing-library/user-event";
 
 describe("ModelForm", () => {
