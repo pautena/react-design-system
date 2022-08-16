@@ -1,14 +1,25 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FormLayout } from "../../../layouts";
-import { useNotificationCenter } from "../../../providers/notification-center/notification-center.context";
-import type { ModelRouterProps } from "../model-router";
+import { useNotificationCenter } from "../../../providers";
+import { RequestState } from "../model-router.types";
+import { BaseScreenProps } from "./screens.types";
+
+export interface UpdateScreenProps extends BaseScreenProps {
+  update: {
+    onSubmit: (obj: object) => void;
+    request: RequestState;
+    requestInstance: RequestState;
+    onRequestInstance: (id: string) => void;
+    instance?: any;
+  };
+}
 
 export const UpdateScreen = ({
   model,
   modelName,
   update: { instance, onSubmit, requestInstance, request, onRequestInstance = () => null },
-}: ModelRouterProps) => {
+}: UpdateScreenProps) => {
   const { id = "" } = useParams();
   const navigate = useNavigate();
   const { show } = useNotificationCenter();

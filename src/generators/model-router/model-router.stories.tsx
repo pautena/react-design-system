@@ -1,7 +1,8 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { withBrowserRouter } from "../../storybook";
-import { ModelRouter, RequestState } from "./model-router";
+import { ModelRouter, ModelRouterProps } from "./model-router";
+import { RequestState } from "./model-router.types";
 import { mockModel, createModelInstance } from "../generators.mock";
 import { action } from "@storybook/addon-actions";
 import { useState } from "react";
@@ -57,91 +58,89 @@ export const DummyModelRouter = (args: any) => {
   const [detailRequestState, setDetailRequestState] = useState<RequestState>({ idle: true });
   const [detailInstance, setDetailInstance] = useState(undefined);
 
-  const props = {
-    ...args,
-    requestList: () => {
-      requestListAction();
-      setListRequestState({ idle: false, loading: true });
-      setTimeout(() => {
-        setData(initialData);
-        setListRequestState({ idle: true, loading: false, success: true });
-      }, requestTimeout);
-    },
-    list: {
-      data,
-      listRequest: listRequestState,
-      requestDelete: removeRequestState,
-      onClickRemoveItem: (item) => {
-        setRemoveRequestState({ idle: false, loading: true });
-        onRequestDeleteAction(item);
-
-        setTimeout(() => {
-          setData((d) => [...d.filter((d) => d !== item)]);
-          setRemoveRequestState({ idle: true, loading: false, success: true });
-        }, requestTimeout);
-      },
-    },
-    add: {
-      request: addRequestState,
-      onSubmit: (obj: any) => {
-        setAddRequestState({ idle: false, loading: true });
-        onSubmitAddAction(obj);
-
-        setTimeout(() => {
-          setData((d) => [...d, obj]);
-          setAddRequestState({ idle: true, loading: false, success: true });
-        }, requestTimeout);
-      },
-    },
-    detail: {
-      request: detailRequestState,
-      instance: detailInstance,
-      onScreenMount: (id: string) => {
-        setDetailInstance(undefined);
-        setDetailRequestState({ idle: false, loading: true });
-        onDetailsScreenMount(id);
-
-        setTimeout(() => {
-          setDetailInstance(data?.find((d) => d.id === id));
-          setDetailRequestState({ idle: true, loading: false, success: true });
-        }, requestTimeout);
-      },
-    },
-    update: {
-      request: updateRequestState,
-      requestInstance: updateInstanceRequestState,
-      instance: updateInstance,
-      onRequestInstance: (id: string) => {
-        setUpdateInstanceRequestState({ idle: false, loading: true });
-        onRequestUpdateInstanceAction(id);
-
-        setTimeout(() => {
-          setUpdateInstance(data?.find((d) => d.id === id));
-          setUpdateInstanceRequestState({ idle: true, loading: false, success: true });
-        }, requestTimeout);
-      },
-      onSubmit: (obj: any) => {
-        setUpdateRequestState({ idle: false, loading: true });
-        onSubmitUpdateAction(obj);
-
-        setTimeout(() => {
-          setData((d) => [
-            ...(d || []).map((item) => {
-              if (item === obj) {
-                return obj;
-              }
-              return item;
-            }),
-          ]);
-          setUpdateRequestState({ idle: true, loading: false, success: true });
-        }, requestTimeout);
-      },
-    },
-  };
-
   return (
     <NotificationCenterProvider>
-      <ModelRouter {...props} />
+      <ModelRouter
+        {...args}
+        requestList={() => {
+          requestListAction();
+          setListRequestState({ idle: false, loading: true });
+          setTimeout(() => {
+            setData(initialData);
+            setListRequestState({ idle: true, loading: false, success: true });
+          }, requestTimeout);
+        }}
+        list={{
+          data,
+          listRequest: listRequestState,
+          requestDelete: removeRequestState,
+          onClickRemoveItem: (item) => {
+            setRemoveRequestState({ idle: false, loading: true });
+            onRequestDeleteAction(item);
+
+            setTimeout(() => {
+              setData((d) => [...d.filter((d) => d !== item)]);
+              setRemoveRequestState({ idle: true, loading: false, success: true });
+            }, requestTimeout);
+          },
+        }}
+        add={{
+          request: addRequestState,
+          onSubmit: (obj: any) => {
+            setAddRequestState({ idle: false, loading: true });
+            onSubmitAddAction(obj);
+
+            setTimeout(() => {
+              setData((d) => [...d, obj]);
+              setAddRequestState({ idle: true, loading: false, success: true });
+            }, requestTimeout);
+          },
+        }}
+        detail={{
+          request: detailRequestState,
+          instance: detailInstance,
+          onScreenMount: (id: string) => {
+            setDetailInstance(undefined);
+            setDetailRequestState({ idle: false, loading: true });
+            onDetailsScreenMount(id);
+
+            setTimeout(() => {
+              setDetailInstance(data?.find((d) => d.id === id));
+              setDetailRequestState({ idle: true, loading: false, success: true });
+            }, requestTimeout);
+          },
+        }}
+        update={{
+          request: updateRequestState,
+          requestInstance: updateInstanceRequestState,
+          instance: updateInstance,
+          onRequestInstance: (id: string) => {
+            setUpdateInstanceRequestState({ idle: false, loading: true });
+            onRequestUpdateInstanceAction(id);
+
+            setTimeout(() => {
+              setUpdateInstance(data?.find((d) => d.id === id));
+              setUpdateInstanceRequestState({ idle: true, loading: false, success: true });
+            }, requestTimeout);
+          },
+          onSubmit: (obj: any) => {
+            setUpdateRequestState({ idle: false, loading: true });
+            onSubmitUpdateAction(obj);
+
+            setTimeout(() => {
+              setData((d) => [
+                ...(d || []).map((item) => {
+                  if (item === obj) {
+                    return obj;
+                  }
+                  return item;
+                }),
+              ]);
+              setUpdateRequestState({ idle: true, loading: false, success: true });
+            }, requestTimeout);
+          },
+        }}
+      />
     </NotificationCenterProvider>
   );
 };

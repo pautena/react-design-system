@@ -2,14 +2,25 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { BasicData } from "../../../components";
 import { ListLayout } from "../../../layouts";
-import type { ModelRouterProps } from "../model-router";
+import { RequestState } from "../model-router.types";
+import { BaseScreenProps } from "./screens.types";
+
+export interface ListScreenProps extends BaseScreenProps {
+  requestList?: () => void;
+  list: {
+    data: any[];
+    onClickRemoveItem: (item: any) => void;
+    listRequest: RequestState;
+    requestDelete: RequestState;
+  };
+}
 
 export const ListScreen = ({
   model,
   modelName,
   list,
   requestList = () => null,
-}: ModelRouterProps) => {
+}: ListScreenProps) => {
   const navigate = useNavigate();
 
   useEffect(() => {
