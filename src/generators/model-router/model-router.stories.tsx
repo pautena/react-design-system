@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { withBrowserRouter } from "../../storybook";
+import { withBrowserRouter, withMemoryRouter } from "../../storybook";
 import { ModelRouter, ModelRouterProps } from "./model-router";
 import { RequestState } from "./model-router.types";
 import { mockModel, createModelInstance } from "../generators.mock";
@@ -21,7 +21,7 @@ const data = [
 export default {
   title: "Generators/ModelRouter",
   component: ModelRouter,
-  decorators: [withBrowserRouter()],
+  decorators: [withMemoryRouter],
   parameters: {
     layout: "fullscreen",
   },
