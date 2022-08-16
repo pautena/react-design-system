@@ -13,7 +13,8 @@ import {
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
-import { createModelInstance } from "../generators.mock";
+import { createModelInstance, mockModel } from "../generators.mock";
+import { NotificationCenterProvider } from "../../providers";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -173,14 +174,16 @@ describe("ModelRouter", () => {
     const onRequestDelete = jest.fn();
     const args = DummyModelRouter.args;
     const instance = render(
-      <DummyModelRouter
-        {...args}
-        requestTimeout={REQUEST_TIMEOUT}
-        requestListAction={requestList}
-        onSubmitAddAction={onSubmitAdd}
-        onSubmitUpdateAction={onSubmitUpdate}
-        onRequestDeleteAction={onRequestDelete}
-      />,
+      <NotificationCenterProvider>
+        <DummyModelRouter
+          {...args}
+          requestTimeout={REQUEST_TIMEOUT}
+          requestListAction={requestList}
+          onSubmitAddAction={onSubmitAdd}
+          onSubmitUpdateAction={onSubmitUpdate}
+          onRequestDeleteAction={onRequestDelete}
+        />
+      </NotificationCenterProvider>,
       {
         router,
       },
@@ -199,7 +202,7 @@ describe("ModelRouter", () => {
     return {
       ...instance,
       data: args.initialData,
-      model: args.model,
+      model: mockModel,
       randomItem,
       requestList,
       onSubmitAdd,

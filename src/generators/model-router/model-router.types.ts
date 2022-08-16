@@ -4,3 +4,7 @@ export interface RequestState {
   error?: string;
   success?: boolean;
 }
+
+export const IdleRequest = {
+  idle: true,
+};

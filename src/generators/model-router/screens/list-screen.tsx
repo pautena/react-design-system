@@ -6,6 +6,10 @@ import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
 export interface ListScreenProps extends BaseScreenProps {
+  /**
+   * Callback executed each time the list screen
+   * requests for a data update
+   */
   requestList?: () => void;
   list: {
     data: any[];

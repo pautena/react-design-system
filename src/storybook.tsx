@@ -3,7 +3,8 @@ import React, { FunctionComponent } from "react";
 import { ComponentStory } from "@storybook/react";
 import { JSXElementConstructor } from "react";
 import { Box } from "@mui/material";
-import { BrowserRouter, MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router-dom";
+import { NotificationCenterProvider } from "./providers";
 
 export function createTemplate<P>(
   C: JSXElementConstructor<P>,
@@ -16,6 +17,14 @@ export const withMemoryRouter = (Story) => (
     <Story />
   </MemoryRouter>
 );
+
+export const withNotificationCenter = (Story) => {
+  return (
+    <NotificationCenterProvider>
+      <Story />
+    </NotificationCenterProvider>
+  );
+};
 
 export const withFullHeight = (Story: FunctionComponent) => {
   return (
