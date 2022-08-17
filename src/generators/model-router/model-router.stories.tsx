@@ -29,8 +29,7 @@ export default {
 
 const ModelRouterTemplate = createTemplate(ModelRouter);
 
-export const ListScreenLoading = ModelRouterTemplate.bind({});
-ListScreenLoading.args = {
+const baseArgs = {
   modelName: "Items",
   model: mockModel,
   requestList: () => null,
@@ -55,6 +54,21 @@ ListScreenLoading.args = {
     instance: item1,
     onRequestInstance: () => null,
     onSubmit: () => null,
+  },
+};
+
+export const ListScreenLoading = ModelRouterTemplate.bind({});
+ListScreenLoading.args = {
+  ...baseArgs,
+};
+
+export const DetailScreenLoading = ModelRouterTemplate.bind({});
+DetailScreenLoading.args = {
+  ...baseArgs,
+  initialEntries: [`/${item1.id}`],
+  detail: {
+    ...baseArgs.detail,
+    request: { loading: true },
   },
 };
 
