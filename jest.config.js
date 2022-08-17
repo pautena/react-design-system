@@ -11,4 +11,7 @@ module.exports = {
     "!src/tests/**",
     "!src/**/__snapshots__/**",
   ],
+  moduleNameMapper: {
+    "~/(.*)": "<rootDir>/src/$1",
+  },
 };

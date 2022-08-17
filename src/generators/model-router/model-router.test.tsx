@@ -9,9 +9,9 @@ import {
   TestRouter,
   expectModelFieldValue,
   expectModelFieldInputValue,
-} from "../../tests";
+} from "~/tests";
 import userEvent from "@testing-library/user-event";
-import { getRandomItem } from "../../utils";
+import { getRandomItem } from "~/utils";
 import { Model } from "../generators.model";
 import { createModelInstance, mockModel } from "../generators.mock";
 import { NotificationCenterProvider } from "../../providers";
