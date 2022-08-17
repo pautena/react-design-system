@@ -4,7 +4,7 @@
     "strict": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "lib": ["ES2016"],
+    "lib": ["ES2016", "dom"],
     "module": "ESNext",
     "declaration": true,
     "declarationDir": "types",
@@ -20,12 +20,6 @@
       "~/*": ["src/*"]
     }
   },
-  "include": ["./jest.setup.ts"],
-  "exclude": [
-    "dist",
-    "node_modules",
-    "src/**/*.test.tsx",
-    "src/**/*.stories.tsx",
-    "src/storybook.tsx"
-  ]
+  "include": ["./jest.setup.ts", "src/*"],
+  "exclude": ["dist", "node_modules"]
 }

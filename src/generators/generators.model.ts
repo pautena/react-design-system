@@ -30,11 +30,12 @@ type SingleFields = StringField | NumberField | BooleanField;
 export type GroupField = {
   type: "group";
   value: (Base & Breakpoints & SingleFields)[];
-};
+} & Base;
 
 type Fields = SingleFields | GroupField;
 
 export type ModelField = Base & Breakpoints & Fields;
+export type ModelInstance = Record<string, any>;
 
 export type Model = {
   fields: ModelField[];

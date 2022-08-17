@@ -10,13 +10,11 @@ export const groupValueItemClasses = {
   root: "RdsGroupValueItem-root",
 };
 
-const defaultThemeColorOpts = { lightWeight: 200, darkWeight: 800 };
-
 export const GroupValueItem: GroupValueItemComponent = ({
   children,
   ...rest
 }: GroupValueItemProps) => {
-  const defaultColor = useGetDefaultThemeColor(defaultThemeColorOpts);
+  const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
   return (
     <Grid item className={groupValueItemClasses.root} {...rest}>
@@ -39,7 +37,7 @@ export interface GroupValueCardProps {
 }
 
 export const GroupValueCard = ({ title, subtitle, children }: GroupValueCardProps) => {
-  const defaultColor = useGetDefaultThemeColor(defaultThemeColorOpts);
+  const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
   return (
     <Paper

@@ -7,9 +7,9 @@ import {
   ValueCard,
   ValueText,
 } from "../../components";
-import { ModelField, GroupField, Model } from "../generators.model";
+import { ModelField, ModelInstance, GroupField, Model } from "../generators.model";
 
-const singleDetailValueFactory = ({ id, name, type }: ModelField, instance: object) => {
+const singleDetailValueFactory = ({ id, name, type }: ModelField, instance: ModelInstance) => {
   const value = instance[id];
   if (type === "boolean") {
     return <ValueBoolean label={name} value={value} />;
@@ -18,12 +18,12 @@ const singleDetailValueFactory = ({ id, name, type }: ModelField, instance: obje
 };
 
 interface ObjectDetailGroupProps {
-  detail: GroupField;
+  field: GroupField;
   instance: object;
 }
 
 const ObjectDetailGroup = ({
-  detail: { name, description, value },
+  field: { name, description, value },
   instance,
 }: ObjectDetailGroupProps) => {
   return (
@@ -42,7 +42,7 @@ const ObjectDetailGroup = ({
 
 export interface ObjectDetailsProps {
   model: Model;
-  instance: object;
+  instance: ModelInstance;
 }
 
 export const ObjectDetails = ({ model, instance }: ObjectDetailsProps) => {
@@ -54,7 +54,7 @@ export const ObjectDetails = ({ model, instance }: ObjectDetailsProps) => {
         if (type === "group") {
           return (
             <Grid item key={id} xs={12}>
-              <ObjectDetailGroup detail={field} instance={instance[id]} />
+              <ObjectDetailGroup field={field} instance={instance[id]} />
             </Grid>
           );
         }

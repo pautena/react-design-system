@@ -41,6 +41,8 @@ export interface DrawerItemProps {
   bullet?: NavItemBullet;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const DrawerItemLink = styled(Link)(({ theme }) => {
   return {
     color: theme.palette.text.primary,

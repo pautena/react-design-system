@@ -1,17 +1,15 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 import { useGetDefaultThemeColor } from "../../utils/theme";
-import { Model, ModelField } from "../generators.model";
+import { Model, ModelField, ModelInstance } from "../generators.model";
 
 export interface ModelFormProps {
   model: Model;
-  initialValues?: object;
+  initialValues?: ModelInstance;
   saveButtonText: string;
-  onSubmit: (values: object) => void;
+  onSubmit: (values: ModelInstance) => void;
 }
-
-const defaultThemeColorOpts = { lightWeight: 200, darkWeight: 800 };
 
 export const ModelForm = ({
   model,
@@ -21,11 +19,13 @@ export const ModelForm = ({
 }: ModelFormProps) => {
   const [values, setValues] = useState(initialValues);
 
-  const handleInputChange = (e, key: string | undefined) => {
+  const handleInputChange = (e: ChangeEvent<any>, key: string | undefined) => {
     e.preventDefault();
 
+    e.target;
+
     setValues((v) => {
-      const n = {};
+      const n: Record<string, object> = {};
       if (key) {
         n[key] = {
           ...v[key],
@@ -39,13 +39,13 @@ export const ModelForm = ({
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(values);
   };
 
   const renderField = (field: ModelField, key: string | undefined = undefined) => {
-    const defaultColor = useGetDefaultThemeColor(defaultThemeColorOpts);
+    const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
     const { id, type, name, description, xs, sm, md, lg, xl } = field;
     if (type === "group") {

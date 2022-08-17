@@ -12,13 +12,13 @@ export function createTemplate<P>(
   return (args) => <C {...args} />;
 }
 
-export const withMemoryRouter = (Story) => (
+export const withMemoryRouter = (Story: FunctionComponent) => (
   <MemoryRouter>
     <Story />
   </MemoryRouter>
 );
 
-export const withNotificationCenter = (Story) => {
+export const withNotificationCenter = (Story: FunctionComponent) => {
   return (
     <NotificationCenterProvider>
       <Story />

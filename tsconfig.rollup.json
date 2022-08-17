@@ -17,6 +17,8 @@
   },
   "exclude": [
     "dist",
+    "types",
+    "storybook-static",
     "node_modules",
     "src/tests",
     "src/**/*.test.tsx",
