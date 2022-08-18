@@ -1,5 +1,5 @@
 import React from "react";
-import { DummyModelRouter } from "./model-router.stories";
+import { DummyModelRouter } from "./stories/model-router.stories";
 import {
   expectModelFieldInputExist,
   expectProgressIndicator,

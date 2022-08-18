@@ -1,79 +1,21 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { createTemplate, withMemoryRouter, withNotificationCenter } from "../../storybook";
-import { ModelRouter } from "./model-router";
-import { RequestState, IdleRequest, LoadingRequest } from "./model-router.types";
-import { mockModel, createModelInstance } from "../generators.mock";
+import { withMemoryRouter, withNotificationCenter } from "../../../storybook";
+import { ModelRouter } from "../model-router";
+import { RequestState } from "../model-router.types";
+import { mockModel } from "../../generators.mock";
 import { action } from "@storybook/addon-actions";
 import { useState } from "react";
-
-const REQUEST_TIMEOUT = 2000;
-
-const item1 = createModelInstance(mockModel, 100);
-const data = [
-  item1,
-  createModelInstance(mockModel, 101),
-  createModelInstance(mockModel, 102),
-  createModelInstance(mockModel, 103),
-  createModelInstance(mockModel, 104),
-];
+import { data, REQUEST_TIMEOUT } from "./templates";
 
 export default {
   title: "Generators/ModelRouter",
   component: ModelRouter,
-  decorators: [withMemoryRouter, withNotificationCenter],
+  decorators: [withMemoryRouter(), withNotificationCenter],
   parameters: {
     layout: "fullscreen",
   },
 } as ComponentMeta<typeof ModelRouter>;
-
-const ModelRouterTemplate = createTemplate(ModelRouter);
-
-const baseArgs = {
-  modelName: "Items",
-  model: mockModel,
-  // List
-  requestList: () => null,
-  listData: data,
-  listRequest: IdleRequest,
-  deleteRequest: IdleRequest,
-  // delete
-  onClickDeleteItem: () => null,
-
-  //Add
-  add: {
-    request: IdleRequest,
-    onSubmit: () => null,
-  },
-  detail: {
-    request: IdleRequest,
-    instance: item1,
-    onScreenMount: () => null,
-  },
-  update: {
-    request: IdleRequest,
-    requestInstance: item1,
-    instance: item1,
-    onRequestInstance: () => null,
-    onSubmit: () => null,
-  },
-};
-
-export const ListScreenLoading = ModelRouterTemplate.bind({});
-ListScreenLoading.args = {
-  ...baseArgs,
-  listRequest: LoadingRequest,
-};
-
-export const DetailScreenLoading = ModelRouterTemplate.bind({});
-DetailScreenLoading.args = {
-  ...baseArgs,
-  initialEntries: [`/${item1.id}`],
-  detail: {
-    ...baseArgs.detail,
-    request: { loading: true },
-  },
-};
 
 const requestListAction = action("Request list data");
 const onSubmitAddAction = action("Submit add form");

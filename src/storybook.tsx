@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 import React, { FunctionComponent } from "react";
-import { ComponentStory, StoryContext } from "@storybook/react";
+import { ComponentStory } from "@storybook/react";
 import { JSXElementConstructor } from "react";
 import { Box } from "@mui/material";
 import { MemoryRouter } from "react-router-dom";
@@ -12,13 +12,15 @@ export function createTemplate<P>(
   return (args) => <C {...args} />;
 }
 
-export const withMemoryRouter = (Story: FunctionComponent, context: StoryContext) => {
-  return (
-    <MemoryRouter initialEntries={context.args.initialEntries || ["/"]}>
-      <Story />
-    </MemoryRouter>
-  );
-};
+export const withMemoryRouter =
+  (initialEntries = ["/"]) =>
+  (Story: FunctionComponent) => {
+    return (
+      <MemoryRouter initialEntries={initialEntries}>
+        <Story />
+      </MemoryRouter>
+    );
+  };
 
 export const withNotificationCenter = (Story: FunctionComponent) => {
   return (
