@@ -8,15 +8,6 @@ import { action, HandlerFunction } from "@storybook/addon-actions";
 import { useState } from "react";
 import { data, REQUEST_TIMEOUT } from "./templates";
 
-export default {
-  title: "Generators/ModelRouter",
-  component: ModelRouter,
-  decorators: [withMemoryRouter(), withNotificationCenter],
-  parameters: {
-    layout: "fullscreen",
-  },
-} as ComponentMeta<typeof ModelRouter>;
-
 const onRequestListAction = action("Request list data");
 const onSubmitNewItemAction = action("Submit new item");
 const onRequestItem = action("Details screen mount");
@@ -160,3 +151,12 @@ const args: DummyModelRouterProps = {
 };
 
 DummyModelRouter.args = args;
+
+export default {
+  title: "Generators/ModelRouter",
+  component: DummyModelRouter,
+  decorators: [withMemoryRouter(), withNotificationCenter],
+  parameters: {
+    layout: "fullscreen",
+  },
+} as ComponentMeta<typeof DummyModelRouter>;
