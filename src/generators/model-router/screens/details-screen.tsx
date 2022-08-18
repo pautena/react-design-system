@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RequestState } from "../model-router.types";
-import { BasicData, PlaceholderIconArgs } from "~/components";
+import { PlaceholderIconArgs } from "~/components";
 import { DetailsLayout } from "~/layouts";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { BaseScreenProps } from "./screens.types";
+import { BasicModelInstance } from "~/generators";
 
-export interface DetailsScreenProps<T extends BasicData> extends BaseScreenProps {
+export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**
    * Callback executed each time we want
    * the details information of an item
@@ -25,7 +26,7 @@ export interface DetailsScreenProps<T extends BasicData> extends BaseScreenProps
   detailsItem?: T;
 }
 
-export const DetailsScreen = <T extends BasicData>({
+export const DetailsScreen = <T extends BasicModelInstance>({
   model,
   modelName,
   requestItem,

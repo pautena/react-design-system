@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { BasicData } from "~/components";
+import { BasicModelInstance } from "../generators.model";
 import {
   AddScreen,
   AddScreenProps,
@@ -12,12 +12,12 @@ import {
   UpdateScreenProps,
 } from "./screens";
 
-export type ModelRouterProps<T extends BasicData> = DetailsScreenProps<T> &
+export type ModelRouterProps<T extends BasicModelInstance> = DetailsScreenProps<T> &
   ListScreenProps<T> &
   AddScreenProps<T> &
   UpdateScreenProps<T>;
 
-export const ModelRouter = <T extends BasicData>(props: ModelRouterProps<T>) => {
+export const ModelRouter = <T extends BasicModelInstance>(props: ModelRouterProps<T>) => {
   return (
     <Routes>
       <Route path="" element={<ListScreen {...props} />} />

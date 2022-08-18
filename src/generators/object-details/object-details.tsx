@@ -1,16 +1,15 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import {
-  BasicData,
   GroupValueCard,
   GroupValueItem,
   ValueBoolean,
   ValueCard,
   ValueText,
 } from "../../components";
-import { ModelField, GroupField, Model } from "../generators.model";
+import { ModelField, GroupField, Model, BasicModelInstance } from "../generators.model";
 
-const singleDetailValueFactory = <T extends BasicData>(
+const singleDetailValueFactory = <T extends BasicModelInstance>(
   { id, name, type }: ModelField,
   instance: T,
 ) => {
@@ -21,12 +20,12 @@ const singleDetailValueFactory = <T extends BasicData>(
   return <ValueText label={name} value={value?.toString()} />;
 };
 
-interface ObjectDetailGroupProps<T extends BasicData> {
+interface ObjectDetailGroupProps<T extends BasicModelInstance> {
   field: GroupField;
   instance: T;
 }
 
-const ObjectDetailGroup = <T extends BasicData>({
+const ObjectDetailGroup = <T extends BasicModelInstance>({
   field: { name, description, value },
   instance,
 }: ObjectDetailGroupProps<T>) => {
@@ -44,12 +43,15 @@ const ObjectDetailGroup = <T extends BasicData>({
   );
 };
 
-export interface ObjectDetailsProps<T extends BasicData> {
+export interface ObjectDetailsProps<T extends BasicModelInstance> {
   model: Model;
   instance: T;
 }
 
-export const ObjectDetails = <T extends BasicData>({ model, instance }: ObjectDetailsProps<T>) => {
+export const ObjectDetails = <T extends BasicModelInstance>({
+  model,
+  instance,
+}: ObjectDetailsProps<T>) => {
   return (
     <Grid container spacing={2}>
       {model.fields.map((field) => {

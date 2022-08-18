@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { BasicData } from "~/components";
+import { BasicModelInstance } from "~/generators";
 import { FormLayout } from "../../../layouts";
-import { useNotificationCenter } from "../../../providers/notification-center/notification-center.context";
+import { useNotificationCenter } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
-export interface AddScreenProps<T extends BasicData> extends BaseScreenProps {
+export interface AddScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**
    * Callback executed when the user whants to
    * adda new item
@@ -20,7 +20,7 @@ export interface AddScreenProps<T extends BasicData> extends BaseScreenProps {
   newItemRequest: RequestState;
 }
 
-export const AddScreen = <T extends BasicData>({
+export const AddScreen = <T extends BasicModelInstance>({
   model,
   modelName,
   onSubmitNewItem,

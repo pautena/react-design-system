@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { BasicData } from "~/components";
+import { BasicModelInstance } from "~/generators";
 import { FormLayout } from "../../../layouts";
 import { useNotificationCenter } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
-export interface UpdateScreenProps<T extends BasicData> extends BaseScreenProps {
+export interface UpdateScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   onSubmitUpdateItem: (obj: T) => void;
   submitUpdateItemRequest: RequestState;
   updateItemRequest: RequestState;
@@ -14,7 +14,7 @@ export interface UpdateScreenProps<T extends BasicData> extends BaseScreenProps 
   updateItem?: T;
 }
 
-export const UpdateScreen = <T extends BasicData>({
+export const UpdateScreen = <T extends BasicModelInstance>({
   model,
   modelName,
   submitUpdateItemRequest,

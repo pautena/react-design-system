@@ -15,7 +15,6 @@ import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
 import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import { NotificationCenterProvider } from "../../providers";
-import { BasicData } from "../../components";
 
 const REQUEST_TIMEOUT = 20;
 

@@ -1,6 +1,6 @@
 import React from "react";
+import { BasicModelInstance } from "~/generators";
 import {
-  BasicData,
   HeaderProps,
   Placeholder,
   PlaceholderProps,
@@ -9,14 +9,14 @@ import {
 } from "../../components";
 import { HeaderLayout } from "../header-layout";
 
-export interface ListLayoutProps<T extends BasicData> {
+export interface ListLayoutProps<T extends BasicModelInstance> {
   loading?: boolean;
   headerProps: HeaderProps;
   listProps: TableListProps<T>;
   emptyPlaceholderProps: PlaceholderProps;
 }
 
-export const ListLayout = <T extends BasicData>({
+export const ListLayout = <T extends BasicModelInstance>({
   loading,
   headerProps,
   emptyPlaceholderProps,

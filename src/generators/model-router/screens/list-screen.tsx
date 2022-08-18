@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { BasicData } from "../../../components";
+import { BasicModelInstance } from "~/generators";
 import { ListLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
-export interface ListScreenProps<T extends BasicData> extends BaseScreenProps {
+export interface ListScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**
    * Callback executed each time the list screen
    * requests for a data update
@@ -36,7 +36,7 @@ export interface ListScreenProps<T extends BasicData> extends BaseScreenProps {
   deleteRequest: RequestState;
 }
 
-export const ListScreen = <T extends BasicData>({
+export const ListScreen = <T extends BasicModelInstance>({
   model,
   modelName,
   listData,

@@ -2,21 +2,17 @@ import { TableRow, TableCell, IconButton, MenuItem, Menu } from "@mui/material";
 import React from "react";
 import { EnhancedTable, HeadCell, Order } from "../table/enhanced-table";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { BasicModelInstance } from "~/generators";
 
 const OptionsId = "__options";
 
-export interface BasicData {
-  id: string;
-  [key: string]: any;
-}
-
-export interface TableRowOption<T extends BasicData> {
+export interface TableRowOption<T extends BasicModelInstance> {
   id: string;
   label: string;
   onClick: (item: T) => void;
 }
 
-export interface TableListProps<T extends BasicData> {
+export interface TableListProps<T extends BasicModelInstance> {
   columns: HeadCell[];
   data: T[];
   search?: boolean;
@@ -27,7 +23,7 @@ export interface TableListProps<T extends BasicData> {
   onClick?: (d: T) => void;
 }
 
-export const TableList = <T extends BasicData>({
+export const TableList = <T extends BasicModelInstance>({
   columns: columnsProp,
   options,
   data,

@@ -39,3 +39,8 @@ export type ModelField = Base & Breakpoints & Fields;
 export type Model = {
   fields: ModelField[];
 };
+
+export interface BasicModelInstance {
+  id: string;
+  [key: string]: any;
+}
