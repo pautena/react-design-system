@@ -1,33 +1,46 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RequestState } from "../model-router.types";
-import { PlaceholderIconArgs } from "~/components";
+import { BasicData, PlaceholderIconArgs } from "~/components";
 import { DetailsLayout } from "~/layouts";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 import { BaseScreenProps } from "./screens.types";
 
-export interface DetailsScreenProps extends BaseScreenProps {
-  detail: {
-    onScreenMount?: (id: string) => void;
-    request: RequestState;
-    instance?: any;
-  };
+export interface DetailsScreenProps<T extends BasicData> extends BaseScreenProps {
+  /**
+   * Callback executed each time we want
+   * the details information of an item
+   */
+  requestItem: (id: string) => void;
+
+  /**
+   * Current status of the request to retrieve
+   * an item
+   */
+  itemRequest: RequestState;
+
+  /**
+   * Item to be displayed
+   */
+  detailsItem?: T;
 }
 
-export const DetailsScreen = ({
+export const DetailsScreen = <T extends BasicData>({
   model,
   modelName,
-  detail: { request, onScreenMount, instance },
-}: DetailsScreenProps) => {
+  requestItem,
+  itemRequest,
+  detailsItem,
+}: DetailsScreenProps<T>) => {
   const { id = "" } = useParams();
 
   useEffect(() => {
-    onScreenMount && onScreenMount(id);
+    requestItem(id);
   }, [id]);
 
   return (
     <DetailsLayout
-      loading={request.loading}
+      loading={itemRequest.loading}
       headerProps={{
         title: id,
         preset: "default",
@@ -46,7 +59,7 @@ export const DetailsScreen = ({
       }}
       objectDetailsProps={{
         model,
-        instance,
+        instance: detailsItem,
       }}
       notFoundPlaceholderProps={{
         title: "Not found",

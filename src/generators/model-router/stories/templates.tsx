@@ -1,17 +1,17 @@
 import { ModelRouter } from "..";
 import { createTemplate } from "../../../storybook";
-import { createModelInstance, mockModel } from "../../generators.mock";
+import { createModelInstance, MockInstance, mockModel } from "../../generators.mock";
 import { IdleRequest } from "../model-router.types";
 
 export const REQUEST_TIMEOUT = 2000;
 
-export const item1 = createModelInstance(mockModel, 100);
+export const item1 = createModelInstance<MockInstance>(mockModel, 100);
 export const data = [
   item1,
-  createModelInstance(mockModel, 101),
-  createModelInstance(mockModel, 102),
-  createModelInstance(mockModel, 103),
-  createModelInstance(mockModel, 104),
+  createModelInstance<MockInstance>(mockModel, 101),
+  createModelInstance<MockInstance>(mockModel, 102),
+  createModelInstance<MockInstance>(mockModel, 103),
+  createModelInstance<MockInstance>(mockModel, 104),
 ];
 
 export const ModelRouterTemplate = createTemplate(ModelRouter);

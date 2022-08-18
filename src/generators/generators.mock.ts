@@ -1,5 +1,6 @@
 import { Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
+import { BasicData } from "../components";
 
 export const mockModel: Model = {
   fields: [
@@ -164,6 +165,28 @@ export const mockModel: Model = {
   ],
 };
 
+export interface MockInstance {
+  id: string;
+  firstName: string;
+  middleName: string;
+  lastName: string;
+  gender: string;
+  age: number;
+  birthDate: string;
+  car: {
+    model: string;
+    manufacturer: string;
+    color: string;
+    type: string;
+    vin: string;
+    vrm: string;
+  };
+  quantity: number;
+  available: boolean;
+  currency: string;
+  tradeDate: string;
+}
+
 const mockFieldValue = {
   id: () => faker.datatype.number({ min: 1000, max: 100000 }).toString(),
   firstName: faker.name.firstName,
@@ -184,7 +207,7 @@ const mockFieldValue = {
   tradeDate: () => "Thu Jul 21 2022 22:44:10 GMT+0200 (Central European Summer Time)",
 };
 
-export const createModelInstance = (model: Model, seed = 100): any => {
+export const createModelInstance = <T extends BasicData>(model: Model, seed = 100): T => {
   faker.seed(seed);
   const obj = {};
 
@@ -202,7 +225,7 @@ export const createModelInstance = (model: Model, seed = 100): any => {
     obj[field.id] = value;
   });
 
-  return obj;
+  return obj as T;
 };
 
 const getModelFieldValue = ({ id, type }: ModelField) => {

@@ -3,8 +3,8 @@ import { ComponentMeta } from "@storybook/react";
 import { withMemoryRouter, withNotificationCenter } from "../../../storybook";
 import { ModelRouter } from "../model-router";
 import { RequestState } from "../model-router.types";
-import { mockModel } from "../../generators.mock";
-import { action } from "@storybook/addon-actions";
+import { MockInstance, mockModel } from "../../generators.mock";
+import { action, HandlerFunction } from "@storybook/addon-actions";
 import { useState } from "react";
 import { data, REQUEST_TIMEOUT } from "./templates";
 
@@ -17,27 +17,38 @@ export default {
   },
 } as ComponentMeta<typeof ModelRouter>;
 
-const requestListAction = action("Request list data");
+const onRequestListAction = action("Request list data");
 const onSubmitAddAction = action("Submit add form");
-const onDetailsScreenMount = action("Details screen mount");
+const onRequestItem = action("Details screen mount");
 const onRequestUpdateInstanceAction = action("Request update instance");
 const onSubmitUpdateAction = action("Submit update form");
 const onRequestDeleteAction = action("click delete item option");
 
-export const DummyModelRouter = (args: any) => {
+interface DummyModelRouterProps {
+  requestTimeout: number;
+  initialData: MockInstance[];
+  onRequestListAction: HandlerFunction;
+  onSubmitAddAction: HandlerFunction;
+  onRequestItem: HandlerFunction;
+  onRequestUpdateInstanceAction: HandlerFunction;
+  onSubmitUpdateAction: HandlerFunction;
+  onRequestDeleteAction: HandlerFunction;
+}
+
+export const DummyModelRouter = (args: DummyModelRouterProps) => {
   const {
     requestTimeout,
     initialData,
-    requestListAction,
+    onRequestListAction,
     onSubmitAddAction,
-    onDetailsScreenMount,
+    onRequestItem,
     onRequestUpdateInstanceAction,
     onSubmitUpdateAction,
     onRequestDeleteAction,
   } = args;
 
-  const [data, setData] = useState<any[]>([]);
-  const [updateInstance, setUpdateInstance] = useState<any>(undefined);
+  const [data, setData] = useState<MockInstance[]>([]);
+  const [updateInstance, setUpdateInstance] = useState<MockInstance | undefined>(undefined);
   const [listRequestState, setListRequestState] = useState<RequestState>({ idle: true });
   const [addRequestState, setAddRequestState] = useState<RequestState>({ idle: true });
   const [updateRequestState, setUpdateRequestState] = useState<RequestState>({ idle: true });
@@ -46,10 +57,10 @@ export const DummyModelRouter = (args: any) => {
   });
   const [removeRequestState, setRemoveRequestState] = useState<RequestState>({ idle: true });
   const [detailRequestState, setDetailRequestState] = useState<RequestState>({ idle: true });
-  const [detailInstance, setDetailInstance] = useState(undefined);
+  const [detailInstance, setDetailInstance] = useState<MockInstance | undefined>(undefined);
 
   const handleRequestList = () => {
-    requestListAction();
+    onRequestListAction();
     setListRequestState({ idle: false, loading: true });
     setTimeout(() => {
       setData(initialData);
@@ -77,10 +88,10 @@ export const DummyModelRouter = (args: any) => {
     }, requestTimeout);
   };
 
-  const handleDetailScreenMount = (id: string) => {
+  const handleRequestItem = (id: string) => {
     setDetailInstance(undefined);
     setDetailRequestState({ idle: false, loading: true });
-    onDetailsScreenMount(id);
+    onRequestItem(id);
 
     setTimeout(() => {
       setDetailInstance(data?.find((d) => d.id === id));
@@ -125,14 +136,12 @@ export const DummyModelRouter = (args: any) => {
       listRequest={listRequestState}
       deleteRequest={removeRequestState}
       onClickDeleteItem={handleClickDeleteItem}
+      itemRequest={detailRequestState}
+      detailsItem={detailInstance}
+      requestItem={handleRequestItem}
       add={{
         request: addRequestState,
         onSubmit: handleAddSubmit,
-      }}
-      detail={{
-        request: detailRequestState,
-        instance: detailInstance,
-        onScreenMount: handleDetailScreenMount,
       }}
       update={{
         request: updateRequestState,
@@ -145,13 +154,15 @@ export const DummyModelRouter = (args: any) => {
   );
 };
 
-DummyModelRouter.args = {
+const args: DummyModelRouterProps = {
   requestTimeout: REQUEST_TIMEOUT,
   initialData: data,
-  requestListAction,
+  onRequestListAction,
   onSubmitAddAction,
-  onDetailsScreenMount,
+  onRequestItem,
   onRequestUpdateInstanceAction,
   onSubmitUpdateAction,
   onRequestDeleteAction,
 };
+
+DummyModelRouter.args = args;

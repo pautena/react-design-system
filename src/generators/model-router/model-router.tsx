@@ -12,7 +12,7 @@ import {
   UpdateScreenProps,
 } from "./screens";
 
-export type ModelRouterProps<T extends BasicData> = DetailsScreenProps &
+export type ModelRouterProps<T extends BasicData> = DetailsScreenProps<T> &
   ListScreenProps<T> &
   AddScreenProps &
   UpdateScreenProps;

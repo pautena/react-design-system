@@ -11,10 +11,11 @@ import {
   expectModelFieldInputValue,
 } from "~/tests";
 import userEvent from "@testing-library/user-event";
-import { getRandomItem } from "~/utils";
+import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
-import { createModelInstance, mockModel } from "../generators.mock";
+import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import { NotificationCenterProvider } from "../../providers";
+import { BasicData } from "../../components";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -40,7 +41,7 @@ describe("ModelRouter", () => {
         name: `Edit ${id}`,
         level: 1,
       }),
-    expectListItems: async ({ data, model }: { data: any[]; model: Model }) => {
+    expectListItems: async ({ data, model }: { data: MockInstance[]; model: Model }) => {
       for (let i = 0; i < model.fields.length; ++i) {
         const { id, listable } = model.fields[i];
 
@@ -49,10 +50,10 @@ describe("ModelRouter", () => {
         }
       }
     },
-    expectMenuOption: async ({ id }: { id: number }) => {
+    expectMenuOption: async ({ id }: { id: string }) => {
       await screen.findByTestId(`options-${id}`);
     },
-    expectSubmitInstanceCall: (mockFn: jest.Mock, instance: any) => {
+    expectSubmitInstanceCall: (mockFn: jest.Mock, instance: MockInstance) => {
       expect(mockFn).toHaveBeenCalledTimes(1);
       expect(mockFn).toHaveBeenCalledWith({
         id: instance.id,
@@ -82,14 +83,14 @@ describe("ModelRouter", () => {
     navigateToAddScreen: async () => {
       await userEvent.click(screen.getByRole("button", { name: /add/i }));
     },
-    navigateToUpdateScreen: async ({ id }: { id: number }) => {
+    navigateToUpdateScreen: async ({ id }: { id: string }) => {
       await actions.openItemOptions({ id });
       await userEvent.click(screen.getByRole("menuitem", { name: /edit/i }));
     },
     navigateToDetailScreen: async ({ name }: { name: string }) => {
       await userEvent.click(await screen.findByRole("cell", { name }));
     },
-    openItemOptions: async ({ id }: { id: number }) => {
+    openItemOptions: async ({ id }: { id: string }) => {
       await userEvent.click(await screen.findByTestId(`options-${id}`));
     },
     fullfillModelForm: async ({
@@ -168,7 +169,8 @@ describe("ModelRouter", () => {
     router = "memory",
     screen = "initial",
   }: { router?: TestRouter; screen?: "initial" | "add" | "details" | "update" } = {}) => {
-    const requestList = jest.fn();
+    const onRequestList = jest.fn();
+    const onRequestItem = jest.fn();
     const onSubmitAdd = jest.fn();
     const onSubmitUpdate = jest.fn();
     const onRequestDelete = jest.fn();
@@ -178,7 +180,8 @@ describe("ModelRouter", () => {
         <DummyModelRouter
           {...args}
           requestTimeout={REQUEST_TIMEOUT}
-          requestListAction={requestList}
+          onRequestListAction={onRequestList}
+          onRequestItem={onRequestItem}
           onSubmitAddAction={onSubmitAdd}
           onSubmitUpdateAction={onSubmitUpdate}
           onRequestDeleteAction={onRequestDelete}
@@ -189,7 +192,7 @@ describe("ModelRouter", () => {
       },
     );
 
-    const randomItem = getRandomItem<any>(args.initialData);
+    const randomItem = getRandomItem(args.initialData);
 
     if (screen === "add") {
       await actions.navigateToAddScreen();
@@ -204,7 +207,8 @@ describe("ModelRouter", () => {
       data: args.initialData,
       model: mockModel,
       randomItem,
-      requestList,
+      onRequestList,
+      onRequestItem,
       onSubmitAdd,
       onSubmitUpdate,
       onRequestDelete,
@@ -228,7 +232,7 @@ describe("ModelRouter", () => {
 
     it("would render the update screen if we navigate there", async () => {
       const { data } = await renderComponent();
-      const { item } = getRandomItem<any>(data);
+      const { item } = getRandomItem<MockInstance>(data);
       const { id } = item;
 
       await actions.navigateToUpdateScreen({ id });
@@ -240,7 +244,7 @@ describe("ModelRouter", () => {
       const { data } = await renderComponent();
       const {
         item: { id, firstName },
-      } = getRandomItem<any>(data);
+      } = getRandomItem<MockInstance>(data);
 
       await actions.navigateToDetailScreen({ name: firstName });
 
@@ -267,7 +271,7 @@ describe("ModelRouter", () => {
       const { history, data } = await renderComponent({ router: "router" });
       const {
         item: { id },
-      } = getRandomItem<any>(data);
+      } = getRandomItem<MockInstance>(data);
 
       await actions.navigateToUpdateScreen({ id });
 
@@ -278,7 +282,7 @@ describe("ModelRouter", () => {
       const { history, data } = await renderComponent({ router: "router" });
       const {
         item: { id, firstName },
-      } = getRandomItem<any>(data);
+      } = getRandomItem<MockInstance>(data);
 
       await actions.navigateToDetailScreen({ name: firstName });
 
@@ -287,10 +291,10 @@ describe("ModelRouter", () => {
   });
 
   describe("list screen", () => {
-    it("would call requestList when is mounted", async () => {
-      const { requestList } = await renderComponent();
+    it("would call onRequestList when is mounted", async () => {
+      const { onRequestList } = await renderComponent();
 
-      expect(requestList).toHaveBeenCalledTimes(1);
+      expect(onRequestList).toHaveBeenCalledTimes(1);
     });
 
     it("would render a loading indicator until the data is ready", async () => {
@@ -337,7 +341,7 @@ describe("ModelRouter", () => {
       const { data, history } = await renderComponent({ router: "router" });
       const {
         item: { id, firstName },
-      } = getRandomItem<any>(data);
+      } = getRandomItem<MockInstance>(data);
 
       await userEvent.click(await screen.findByRole("cell", { name: firstName }));
 
@@ -349,7 +353,7 @@ describe("ModelRouter", () => {
         const { data } = await renderComponent();
 
         for (let i = 0; i < data.length; ++i) {
-          const id = (data[i] as any).id;
+          const id = data[i].id;
           await assertions.expectMenuOption({ id });
         }
       });
@@ -358,7 +362,7 @@ describe("ModelRouter", () => {
         const { data } = await renderComponent({ router: "router" });
         const {
           item: { id },
-        } = getRandomItem<any>(data);
+        } = getRandomItem<MockInstance>(data);
 
         await actions.openItemOptions({ id });
 
@@ -369,7 +373,7 @@ describe("ModelRouter", () => {
         const { data } = await renderComponent({ router: "router" });
         const {
           item: { id },
-        } = getRandomItem<any>(data);
+        } = getRandomItem<MockInstance>(data);
 
         await actions.openItemOptions({ id });
 
@@ -483,6 +487,18 @@ describe("ModelRouter", () => {
       await assertions.expectListScreen();
     });
 
+    it("would call onRequestItem when is mounted", async () => {
+      const {
+        onRequestItem,
+        randomItem: {
+          item: { id },
+        },
+      } = await renderComponent({ screen: "details" });
+
+      expect(onRequestItem).toHaveBeenCalledTimes(1);
+      expect(onRequestItem).toHaveBeenCalledWith(id);
+    });
+
     it("would show a loading indicator when the request is in progress", async () => {
       await renderComponent({ screen: "details" });
 
@@ -594,7 +610,7 @@ describe("ModelRouter", () => {
     it("would make a request when we try to delete an option", async () => {
       const { data, onRequestDelete } = await renderComponent();
 
-      const { item } = getRandomItem<any>(data);
+      const { item } = getRandomItem<MockInstance>(data);
       const { id, firstName } = item;
 
       await screen.findByRole("cell", { name: firstName });
@@ -610,7 +626,7 @@ describe("ModelRouter", () => {
     it("would show a loading indicator while the request is in progress", async () => {
       const { data } = await renderComponent();
 
-      const { item } = getRandomItem<any>(data);
+      const { item } = getRandomItem<MockInstance>(data);
       const { id, firstName } = item;
 
       await screen.findByRole("cell", { name: firstName });
@@ -622,7 +638,7 @@ describe("ModelRouter", () => {
 
     it("would remove the item from the list when the request finish", async () => {
       const { data } = await renderComponent();
-      const { item } = getRandomItem<any>(data);
+      const { item } = getRandomItem<MockInstance>(data);
       const { id, firstName } = item;
 
       await screen.findByRole("cell", { name: firstName });
