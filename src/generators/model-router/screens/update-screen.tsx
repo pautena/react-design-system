@@ -1,36 +1,39 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { BasicData } from "~/components";
 import { FormLayout } from "../../../layouts";
 import { useNotificationCenter } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
-export interface UpdateScreenProps extends BaseScreenProps {
-  update: {
-    onSubmit: (obj: object) => void;
-    request: RequestState;
-    requestInstance: RequestState;
-    onRequestInstance: (id: string) => void;
-    instance?: any;
-  };
+export interface UpdateScreenProps<T extends BasicData> extends BaseScreenProps {
+  onSubmitUpdateItem: (obj: T) => void;
+  submitUpdateItemRequest: RequestState;
+  updateItemRequest: RequestState;
+  requestUpdateItem: (id: string) => void;
+  updateItem?: T;
 }
 
-export const UpdateScreen = ({
+export const UpdateScreen = <T extends BasicData>({
   model,
   modelName,
-  update: { instance, onSubmit, requestInstance, request, onRequestInstance = () => null },
-}: UpdateScreenProps) => {
+  submitUpdateItemRequest,
+  updateItemRequest,
+  updateItem,
+  onSubmitUpdateItem,
+  requestUpdateItem,
+}: UpdateScreenProps<T>) => {
   const { id = "" } = useParams();
   const navigate = useNavigate();
   const { show } = useNotificationCenter();
-  const loading = request.loading || requestInstance.loading;
+  const loading = updateItemRequest.loading || submitUpdateItemRequest.loading;
 
   useEffect(() => {
-    onRequestInstance(id);
+    requestUpdateItem(id);
   }, [id]);
 
   useEffect(() => {
-    if (request.success) {
+    if (submitUpdateItemRequest.success) {
       show({
         title: "Item updated",
         message: `The item ${id} has been updated successfully`,
@@ -38,7 +41,7 @@ export const UpdateScreen = ({
       });
       navigate("/");
     }
-  }, [request.success]);
+  }, [submitUpdateItemRequest.success]);
 
   return (
     <FormLayout
@@ -61,9 +64,9 @@ export const UpdateScreen = ({
       }}
       modelFormProps={{
         model,
-        initialValues: instance,
+        initialValues: updateItem,
         saveButtonText: "Save",
-        onSubmit: onSubmit,
+        onSubmit: onSubmitUpdateItem,
       }}
     />
   );

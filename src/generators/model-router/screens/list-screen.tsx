@@ -21,7 +21,7 @@ export interface ListScreenProps<T extends BasicData> extends BaseScreenProps {
    * Callback executed when the user clicks an option
    * to delete an item
    */
-  onClickDeleteItem: (item: any) => void;
+  onClickDeleteItem: (item: T) => void;
 
   /**
    * Current status of the request to retrieve
@@ -51,11 +51,11 @@ export const ListScreen = <T extends BasicData>({
     requestList();
   }, []);
 
-  const handleClickListItem = (item: any) => {
+  const handleClickListItem = (item: T) => {
     navigate(`/${item.id}`);
   };
 
-  const handleClickListOption = (optionId: "edit" | "remove", item: BasicData) => {
+  const handleClickListOption = (optionId: "edit" | "remove", item: T) => {
     if (optionId === "edit") {
       navigate(`/${item.id}/update`);
     } else {

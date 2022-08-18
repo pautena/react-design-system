@@ -20,7 +20,7 @@ export default {
 const onRequestListAction = action("Request list data");
 const onSubmitNewItemAction = action("Submit new item");
 const onRequestItem = action("Details screen mount");
-const onRequestUpdateInstanceAction = action("Request update instance");
+const onRequestUpdateItemAction = action("Request update instance");
 const onSubmitUpdateAction = action("Submit update form");
 const onRequestDeleteAction = action("click delete item option");
 
@@ -30,7 +30,7 @@ interface DummyModelRouterProps {
   onRequestListAction: HandlerFunction;
   onSubmitNewItemAction: HandlerFunction;
   onRequestItem: HandlerFunction;
-  onRequestUpdateInstanceAction: HandlerFunction;
+  onRequestUpdateItemAction: HandlerFunction;
   onSubmitUpdateAction: HandlerFunction;
   onRequestDeleteAction: HandlerFunction;
 }
@@ -42,19 +42,19 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
     onRequestListAction,
     onSubmitNewItemAction,
     onRequestItem,
-    onRequestUpdateInstanceAction,
+    onRequestUpdateItemAction,
     onSubmitUpdateAction,
     onRequestDeleteAction,
   } = args;
 
   const [data, setData] = useState<MockInstance[]>([]);
-  const [updateInstance, setUpdateInstance] = useState<MockInstance | undefined>(undefined);
+  const [updateItem, setUpdateItem] = useState<MockInstance | undefined>(undefined);
   const [listRequestState, setListRequestState] = useState(IdleRequest);
   const [newItemRequestState, setNewItemRequestState] = useState(IdleRequest);
-  const [updateRequestState, setUpdateRequestState] = useState(IdleRequest);
+  const [submitUpdateItemRequestState, setSubmitUpdateItemRequestState] = useState(IdleRequest);
   const [removeRequestState, setRemoveRequestState] = useState(IdleRequest);
   const [detailRequestState, setDetailRequestState] = useState(IdleRequest);
-  const [updateInstanceRequestState, setUpdateInstanceRequestState] = useState(IdleRequest);
+  const [updateItemRequestState, setUpdateItemRequestState] = useState(IdleRequest);
   const [detailInstance, setDetailInstance] = useState<MockInstance | undefined>(undefined);
 
   const handleRequestList = () => {
@@ -97,18 +97,18 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
     }, requestTimeout);
   };
 
-  const handleRequestUpdateInstance = (id: string) => {
-    setUpdateInstanceRequestState({ idle: false, loading: true });
-    onRequestUpdateInstanceAction(id);
+  const handleRequestUpdateItem = (id: string) => {
+    setUpdateItemRequestState({ idle: false, loading: true });
+    onRequestUpdateItemAction(id);
 
     setTimeout(() => {
-      setUpdateInstance(data?.find((d) => d.id === id));
-      setUpdateInstanceRequestState({ idle: true, loading: false, success: true });
+      setUpdateItem(data?.find((d) => d.id === id));
+      setUpdateItemRequestState({ idle: true, loading: false, success: true });
     }, requestTimeout);
   };
 
-  const handleUpdateSubmit = (obj: any) => {
-    setUpdateRequestState({ idle: false, loading: true });
+  const handleSubmitUpdateItem = (obj: MockInstance) => {
+    setSubmitUpdateItemRequestState({ idle: false, loading: true });
     onSubmitUpdateAction(obj);
 
     setTimeout(() => {
@@ -120,7 +120,7 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
           return item;
         }),
       ]);
-      setUpdateRequestState({ idle: true, loading: false, success: true });
+      setSubmitUpdateItemRequestState({ idle: true, loading: false, success: true });
     }, requestTimeout);
   };
 
@@ -139,13 +139,11 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
       requestItem={handleRequestItem}
       newItemRequest={newItemRequestState}
       onSubmitNewItem={handleSubmitNewItem}
-      update={{
-        request: updateRequestState,
-        requestInstance: updateInstanceRequestState,
-        instance: updateInstance,
-        onRequestInstance: handleRequestUpdateInstance,
-        onSubmit: handleUpdateSubmit,
-      }}
+      submitUpdateItemRequest={submitUpdateItemRequestState}
+      updateItemRequest={updateItemRequestState}
+      updateItem={updateItem}
+      requestUpdateItem={handleRequestUpdateItem}
+      onSubmitUpdateItem={handleSubmitUpdateItem}
     />
   );
 };
@@ -156,7 +154,7 @@ const args: DummyModelRouterProps = {
   onRequestListAction,
   onSubmitNewItemAction,
   onRequestItem,
-  onRequestUpdateInstanceAction,
+  onRequestUpdateItemAction,
   onSubmitUpdateAction,
   onRequestDeleteAction,
 };

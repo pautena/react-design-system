@@ -102,7 +102,7 @@ describe("ModelRouter", () => {
       submit?: boolean;
       clear?: boolean;
     }) => {
-      const instance = createModelInstance(model);
+      const instance = createModelInstance<MockInstance>(model);
 
       const idElement = screen.getByRole("textbox", { name: "Id" });
       const firstNameElement = screen.getByRole("textbox", { name: /first name/i });
@@ -172,6 +172,7 @@ describe("ModelRouter", () => {
     const onRequestList = jest.fn();
     const onRequestItem = jest.fn();
     const onSubmitNewItem = jest.fn();
+    const onRequestUpdateItem = jest.fn();
     const onSubmitUpdate = jest.fn();
     const onRequestDelete = jest.fn();
     const args = DummyModelRouter.args;
@@ -183,6 +184,7 @@ describe("ModelRouter", () => {
           onRequestListAction={onRequestList}
           onRequestItem={onRequestItem}
           onSubmitNewItemAction={onSubmitNewItem}
+          onRequestUpdateItemAction={onRequestUpdateItem}
           onSubmitUpdateAction={onSubmitUpdate}
           onRequestDeleteAction={onRequestDelete}
         />
@@ -210,6 +212,7 @@ describe("ModelRouter", () => {
       onRequestList,
       onRequestItem,
       onSubmitNewItem,
+      onRequestUpdateItem,
       onSubmitUpdate,
       onRequestDelete,
     };
@@ -559,6 +562,18 @@ describe("ModelRouter", () => {
       );
 
       await assertions.expectListScreen();
+    });
+
+    it("would make a request to retrive the instance to update", async () => {
+      const {
+        onRequestUpdateItem,
+        randomItem: {
+          item: { id },
+        },
+      } = await renderComponent({ screen: "update" });
+
+      expect(onRequestUpdateItem).toHaveBeenCalledTimes(1);
+      expect(onRequestUpdateItem).toHaveBeenCalledWith(id);
     });
 
     it("would show a loading indicator while the instance is requested", async () => {
