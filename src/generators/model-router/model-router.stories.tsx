@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate, withMemoryRouter, withNotificationCenter } from "../../storybook";
 import { ModelRouter } from "./model-router";
-import { RequestState, IdleRequest } from "./model-router.types";
+import { RequestState, IdleRequest, LoadingRequest } from "./model-router.types";
 import { mockModel, createModelInstance } from "../generators.mock";
 import { action } from "@storybook/addon-actions";
 import { useState } from "react";
@@ -32,13 +32,15 @@ const ModelRouterTemplate = createTemplate(ModelRouter);
 const baseArgs = {
   modelName: "Items",
   model: mockModel,
+  // List
   requestList: () => null,
-  list: {
-    data,
-    listRequest: IdleRequest,
-    requestDelete: IdleRequest,
-    onClickRemoveItem: () => null,
-  },
+  listData: data,
+  listRequest: IdleRequest,
+  deleteRequest: IdleRequest,
+  // delete
+  onClickDeleteItem: () => null,
+
+  //Add
   add: {
     request: IdleRequest,
     onSubmit: () => null,
@@ -60,6 +62,7 @@ const baseArgs = {
 export const ListScreenLoading = ModelRouterTemplate.bind({});
 ListScreenLoading.args = {
   ...baseArgs,
+  listRequest: LoadingRequest,
 };
 
 export const DetailScreenLoading = ModelRouterTemplate.bind({});
@@ -112,7 +115,7 @@ export const DummyModelRouter = (args: any) => {
     }, requestTimeout);
   };
 
-  const handleClickRemoveItem = (item) => {
+  const handleClickDeleteItem = (item) => {
     setRemoveRequestState({ idle: false, loading: true });
     onRequestDeleteAction(item);
 
@@ -176,12 +179,10 @@ export const DummyModelRouter = (args: any) => {
       modelName="Items"
       model={mockModel}
       requestList={handleRequestList}
-      list={{
-        data,
-        listRequest: listRequestState,
-        requestDelete: removeRequestState,
-        onClickRemoveItem: handleClickRemoveItem,
-      }}
+      listData={data}
+      listRequest={listRequestState}
+      deleteRequest={removeRequestState}
+      onClickDeleteItem={handleClickDeleteItem}
       add={{
         request: addRequestState,
         onSubmit: handleAddSubmit,

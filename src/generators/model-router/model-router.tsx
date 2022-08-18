@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { BasicData } from "~/components";
 import {
   AddScreen,
   AddScreenProps,
@@ -11,37 +12,18 @@ import {
   UpdateScreenProps,
 } from "./screens";
 
-export type ModelRouterProps = DetailsScreenProps &
-  ListScreenProps &
+export type ModelRouterProps<T extends BasicData> = DetailsScreenProps &
+  ListScreenProps<T> &
   AddScreenProps &
   UpdateScreenProps;
 
-export const ModelRouter = ({
-  model,
-  modelName,
-  detail,
-  add,
-  update,
-  list,
-  requestList,
-}: ModelRouterProps) => {
+export const ModelRouter = <T extends BasicData>(props: ModelRouterProps<T>) => {
   return (
     <Routes>
-      <Route
-        path=""
-        element={
-          <ListScreen model={model} modelName={modelName} list={list} requestList={requestList} />
-        }
-      />
-      <Route
-        path=":id"
-        element={<DetailsScreen model={model} modelName={modelName} detail={detail} />}
-      />
-      <Route path="add" element={<AddScreen model={model} modelName={modelName} add={add} />} />
-      <Route
-        path=":id/update"
-        element={<UpdateScreen model={model} modelName={modelName} update={update} />}
-      />
+      <Route path="" element={<ListScreen {...props} />} />
+      <Route path=":id" element={<DetailsScreen {...props} />} />
+      <Route path="add" element={<AddScreen {...props} />} />
+      <Route path=":id/update" element={<UpdateScreen {...props} />} />
     </Routes>
   );
 };

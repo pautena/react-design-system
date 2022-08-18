@@ -5,26 +5,46 @@ import { ListLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
-export interface ListScreenProps extends BaseScreenProps {
+export interface ListScreenProps<T extends BasicData> extends BaseScreenProps {
   /**
    * Callback executed each time the list screen
    * requests for a data update
    */
-  requestList?: () => void;
-  list: {
-    data: any[];
-    onClickRemoveItem: (item: any) => void;
-    listRequest: RequestState;
-    requestDelete: RequestState;
-  };
+  requestList: () => void;
+
+  /**
+   * List of items to be displayed in the list screen
+   */
+  listData: T[];
+
+  /**
+   * Callback executed when the user clicks an option
+   * to delete an item
+   */
+  onClickDeleteItem: (item: any) => void;
+
+  /**
+   * Current status of the request to retrieve
+   * the list items
+   */
+  listRequest: RequestState;
+
+  /**
+   * Current status of the request to delete
+   * an item
+   */
+  deleteRequest: RequestState;
 }
 
-export const ListScreen = ({
+export const ListScreen = <T extends BasicData>({
   model,
   modelName,
-  list,
-  requestList = () => null,
-}: ListScreenProps) => {
+  listData,
+  requestList,
+  onClickDeleteItem,
+  listRequest,
+  deleteRequest,
+}: ListScreenProps<T>) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,13 +59,13 @@ export const ListScreen = ({
     if (optionId === "edit") {
       navigate(`/${item.id}/update`);
     } else {
-      list.onClickRemoveItem(item);
+      onClickDeleteItem(item);
     }
   };
 
   return (
     <ListLayout
-      loading={list.listRequest.loading || list.requestDelete.loading}
+      loading={listRequest.loading || deleteRequest.loading}
       headerProps={{
         title: modelName,
         preset: "default",
@@ -71,7 +91,7 @@ export const ListScreen = ({
             numeric: type === "number",
             sort: false,
           })),
-        data: list.data,
+        data: listData,
         defaultSort: model.fields[0].id,
         onClick: handleClickListItem,
         options: [

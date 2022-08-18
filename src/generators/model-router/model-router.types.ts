@@ -5,6 +5,10 @@ export interface RequestState {
   success?: boolean;
 }
 
-export const IdleRequest = {
+export const IdleRequest: RequestState = {
   idle: true,
+};
+
+export const LoadingRequest: RequestState = {
+  loading: true,
 };
