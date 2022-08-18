@@ -2,7 +2,7 @@ import React from "react";
 import { HeaderProps, Placeholder, PlaceholderProps } from "../../components";
 import { BasicModelInstance, Model } from "../../generators/generators.model";
 import { ObjectDetails } from "../../generators/object-details";
-import { HeaderLayout } from "../header-layout";
+import { DeprecatedHeaderLayout } from "../depr-header-layout";
 
 export interface DetailsLayoutProps<T extends BasicModelInstance> {
   loading?: boolean;
@@ -23,12 +23,12 @@ export const DetailsLayout = <T extends BasicModelInstance>({
   const notFound = !loading && !instance;
 
   return (
-    <HeaderLayout loading={loading} headerProps={headerProps}>
+    <DeprecatedHeaderLayout loading={loading} headerProps={headerProps}>
       {!notFound && instance ? (
         <ObjectDetails model={model} instance={instance} />
       ) : (
         <Placeholder {...notFoundPlaceholderProps} />
       )}
-    </HeaderLayout>
+    </DeprecatedHeaderLayout>
   );
 };

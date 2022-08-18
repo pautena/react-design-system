@@ -1,7 +1,7 @@
 import React from "react";
 import { HeaderProps, Placeholder, PlaceholderProps } from "../../components";
 import { DataGrid, DataGridProps } from "@mui/x-data-grid";
-import { HeaderLayout } from "../header-layout";
+import { DeprecatedHeaderLayout } from "../depr-header-layout";
 
 interface Props {
   loading?: boolean;
@@ -19,12 +19,12 @@ export const DataTableLayout = ({
   const isEmpty = rows.length === 0;
 
   return (
-    <HeaderLayout loading={loading} headerProps={headerProps}>
+    <DeprecatedHeaderLayout loading={loading} headerProps={headerProps}>
       {!isEmpty ? (
         <DataGrid rows={rows} {...restDataGridProps} sx={{ height }} />
       ) : (
         <Placeholder {...emptyPlaceholderProps} />
       )}
-    </HeaderLayout>
+    </DeprecatedHeaderLayout>
   );
 };

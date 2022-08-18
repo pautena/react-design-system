@@ -1,7 +1,7 @@
 import React from "react";
 import { HeaderProps } from "../../components";
 import { ModelFormProps, ModelForm, BasicModelInstance } from "../../generators";
-import { HeaderLayout } from "../header-layout";
+import { DeprecatedHeaderLayout } from "../depr-header-layout";
 
 export interface FormLayoutProps<T extends BasicModelInstance> {
   loading?: boolean;
@@ -15,8 +15,8 @@ export const FormLayout = <T extends BasicModelInstance>({
   modelFormProps,
 }: FormLayoutProps<T>) => {
   return (
-    <HeaderLayout loading={loading} headerProps={headerProps}>
+    <DeprecatedHeaderLayout loading={loading} headerProps={headerProps}>
       <ModelForm {...modelFormProps} />
-    </HeaderLayout>
+    </DeprecatedHeaderLayout>
   );
 };

@@ -7,7 +7,7 @@ import {
   TableList,
   TableListProps,
 } from "../../components";
-import { HeaderLayout } from "../header-layout";
+import { DeprecatedHeaderLayout } from "../depr-header-layout";
 
 export interface ListLayoutProps<T extends BasicModelInstance> {
   loading?: boolean;
@@ -25,12 +25,12 @@ export const ListLayout = <T extends BasicModelInstance>({
   const isEmpty = data.length === 0;
 
   return (
-    <HeaderLayout loading={loading} headerProps={headerProps}>
+    <DeprecatedHeaderLayout loading={loading} headerProps={headerProps}>
       {!isEmpty ? (
         <TableList data={data} {...restListProps} />
       ) : (
         <Placeholder {...emptyPlaceholderProps} />
       )}
-    </HeaderLayout>
+    </DeprecatedHeaderLayout>
   );
 };

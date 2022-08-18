@@ -3,12 +3,12 @@ import React, { PropsWithChildren, useState } from "react";
 import { Header, HeaderProps, TabContextProvider } from "../../components";
 import { LoadingArea } from "../../components/loading-area";
 
-interface Props {
+type Props = PropsWithChildren<{
   loading?: boolean;
   headerProps: HeaderProps;
-}
+}>;
 
-export const HeaderLayout = ({ loading, headerProps, children }: PropsWithChildren<Props>) => {
+export const DeprecatedHeaderLayout = ({ loading, headerProps, children }: Props) => {
   const [tab, setTab] = useState(0);
 
   return (

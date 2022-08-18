@@ -4,7 +4,7 @@ import { withMemoryRouter, withNotificationCenter } from "../../../storybook";
 import { ModelRouter } from "../model-router";
 import { IdleRequest } from "../model-router.types";
 import { MockInstance, mockModel } from "../../generators.mock";
-import { action, HandlerFunction } from "@storybook/addon-actions";
+import { HandlerFunction } from "@storybook/addon-actions";
 import { useState } from "react";
 import {
   data,

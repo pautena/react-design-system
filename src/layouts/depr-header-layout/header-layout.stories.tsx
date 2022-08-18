@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
-import { HeaderLayout } from "./header-layout";
+import { DeprecatedHeaderLayout } from "./header-layout";
 import { withRouter } from "storybook-addon-react-router-v6";
 import { SkeletonGrid } from "../../tests";
 import { withFullHeight } from "../../storybook";
@@ -20,19 +20,19 @@ const breadcrumbs = [
 ];
 
 export default {
-  title: "Layouts/HeaderLayout",
-  component: HeaderLayout,
+  title: "Layouts/DeprecatedHeaderLayout",
+  component: DeprecatedHeaderLayout,
   decorators: [withRouter, withFullHeight],
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof HeaderLayout>;
+} as ComponentMeta<typeof DeprecatedHeaderLayout>;
 
 const Template = createTemplate((args) => {
   return (
-    <HeaderLayout {...args}>
+    <DeprecatedHeaderLayout {...args}>
       <SkeletonGrid />
-    </HeaderLayout>
+    </DeprecatedHeaderLayout>
   );
 });
 
