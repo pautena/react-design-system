@@ -35,7 +35,6 @@ export type GroupField = {
 type Fields = SingleFields | GroupField;
 
 export type ModelField = Base & Breakpoints & Fields;
-export type ModelInstance = Record<string, any>;
 
 export type Model = {
   fields: ModelField[];

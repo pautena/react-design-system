@@ -1,15 +1,19 @@
 import React from "react";
 import { Grid } from "@mui/material";
 import {
+  BasicData,
   GroupValueCard,
   GroupValueItem,
   ValueBoolean,
   ValueCard,
   ValueText,
 } from "../../components";
-import { ModelField, ModelInstance, GroupField, Model } from "../generators.model";
+import { ModelField, GroupField, Model } from "../generators.model";
 
-const singleDetailValueFactory = ({ id, name, type }: ModelField, instance: ModelInstance) => {
+const singleDetailValueFactory = <T extends BasicData>(
+  { id, name, type }: ModelField,
+  instance: T,
+) => {
   const value = instance[id];
   if (type === "boolean") {
     return <ValueBoolean label={name} value={value} />;
@@ -17,15 +21,15 @@ const singleDetailValueFactory = ({ id, name, type }: ModelField, instance: Mode
   return <ValueText label={name} value={value?.toString()} />;
 };
 
-interface ObjectDetailGroupProps {
+interface ObjectDetailGroupProps<T extends BasicData> {
   field: GroupField;
-  instance: object;
+  instance: T;
 }
 
-const ObjectDetailGroup = ({
+const ObjectDetailGroup = <T extends BasicData>({
   field: { name, description, value },
   instance,
-}: ObjectDetailGroupProps) => {
+}: ObjectDetailGroupProps<T>) => {
   return (
     <GroupValueCard title={name} subtitle={description}>
       {value.map((field) => {
@@ -40,12 +44,12 @@ const ObjectDetailGroup = ({
   );
 };
 
-export interface ObjectDetailsProps {
+export interface ObjectDetailsProps<T extends BasicData> {
   model: Model;
-  instance: ModelInstance;
+  instance: T;
 }
 
-export const ObjectDetails = ({ model, instance }: ObjectDetailsProps) => {
+export const ObjectDetails = <T extends BasicData>({ model, instance }: ObjectDetailsProps<T>) => {
   return (
     <Grid container spacing={2}>
       {model.fields.map((field) => {

@@ -1,23 +1,24 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import React, { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
+import { BasicData } from "~/components";
 import { useGetDefaultThemeColor } from "../../utils/theme";
-import { Model, ModelField, ModelInstance } from "../generators.model";
+import { Model, ModelField } from "../generators.model";
 
-export interface ModelFormProps {
+export interface ModelFormProps<T extends BasicData> {
   model: Model;
-  initialValues?: ModelInstance;
+  initialValues?: T;
   saveButtonText: string;
-  onSubmit: (values: ModelInstance) => void;
+  onSubmit: (values: T) => void;
 }
 
-export const ModelForm = ({
+export const ModelForm = <T extends BasicData>({
   model,
   saveButtonText,
   onSubmit,
-  initialValues = {},
-}: ModelFormProps) => {
-  const [values, setValues] = useState(initialValues);
+  initialValues,
+}: ModelFormProps<T>) => {
+  const [values, setValues] = useState<T>(initialValues || ({} as T));
 
   const handleInputChange = (e: ChangeEvent<any>, key: string | undefined) => {
     e.preventDefault();

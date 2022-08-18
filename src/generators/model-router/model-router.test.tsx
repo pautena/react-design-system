@@ -171,7 +171,7 @@ describe("ModelRouter", () => {
   }: { router?: TestRouter; screen?: "initial" | "add" | "details" | "update" } = {}) => {
     const onRequestList = jest.fn();
     const onRequestItem = jest.fn();
-    const onSubmitAdd = jest.fn();
+    const onSubmitNewItem = jest.fn();
     const onSubmitUpdate = jest.fn();
     const onRequestDelete = jest.fn();
     const args = DummyModelRouter.args;
@@ -182,7 +182,7 @@ describe("ModelRouter", () => {
           requestTimeout={REQUEST_TIMEOUT}
           onRequestListAction={onRequestList}
           onRequestItem={onRequestItem}
-          onSubmitAddAction={onSubmitAdd}
+          onSubmitNewItemAction={onSubmitNewItem}
           onSubmitUpdateAction={onSubmitUpdate}
           onRequestDeleteAction={onRequestDelete}
         />
@@ -209,7 +209,7 @@ describe("ModelRouter", () => {
       randomItem,
       onRequestList,
       onRequestItem,
-      onSubmitAdd,
+      onSubmitNewItem,
       onSubmitUpdate,
       onRequestDelete,
     };
@@ -424,11 +424,11 @@ describe("ModelRouter", () => {
     });
 
     it("would make a request when the form is submitted", async () => {
-      const { onSubmitAdd, model } = await renderComponent({ screen: "add" });
+      const { onSubmitNewItem, model } = await renderComponent({ screen: "add" });
 
       const newInstance = await actions.fullfillModelForm({ model, submit: true });
 
-      assertions.expectSubmitInstanceCall(onSubmitAdd, newInstance);
+      assertions.expectSubmitInstanceCall(onSubmitNewItem, newInstance);
     });
 
     it("would show a loading indicator when the request is in progress", async () => {

@@ -6,11 +6,13 @@ import {
   render,
   screen,
 } from "../../tests";
-import { createModelInstance, mockModel } from "../generators.mock";
+import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import userEvent from "@testing-library/user-event";
 
 describe("ModelForm", () => {
-  const renderComponent = ({ initialValues = undefined }: { initialValues?: object } = {}) => {
+  const renderComponent = ({
+    initialValues = undefined,
+  }: { initialValues?: MockInstance } = {}) => {
     const onSubmit = jest.fn();
     const instance = render(
       <ModelForm
@@ -37,7 +39,7 @@ describe("ModelForm", () => {
   });
 
   it("would render the initial value if initialValues is provided", () => {
-    const initialValues = createModelInstance(mockModel);
+    const initialValues = createModelInstance<MockInstance>(mockModel);
     renderComponent({ initialValues });
 
     expectModelFieldInputValue(mockModel.fields, initialValues);

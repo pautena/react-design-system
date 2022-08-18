@@ -14,7 +14,7 @@ import {
 
 export type ModelRouterProps<T extends BasicData> = DetailsScreenProps<T> &
   ListScreenProps<T> &
-  AddScreenProps &
+  AddScreenProps<T> &
   UpdateScreenProps;
 
 export const ModelRouter = <T extends BasicData>(props: ModelRouterProps<T>) => {

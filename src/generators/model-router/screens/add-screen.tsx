@@ -1,37 +1,50 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { BasicData } from "~/components";
 import { FormLayout } from "../../../layouts";
 import { useNotificationCenter } from "../../../providers/notification-center/notification-center.context";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
-export interface AddScreenProps extends BaseScreenProps {
-  add: {
-    onSubmit: (obj: object) => void;
-    request: RequestState;
-  };
+export interface AddScreenProps<T extends BasicData> extends BaseScreenProps {
+  /**
+   * Callback executed when the user whants to
+   * adda new item
+   */
+  onSubmitNewItem: (obj: T) => void;
+
+  /**
+   * Current status of the request to retrieve
+   * add a new item
+   */
+  newItemRequest: RequestState;
 }
 
-export const AddScreen = ({ model, modelName, add }: AddScreenProps) => {
+export const AddScreen = <T extends BasicData>({
+  model,
+  modelName,
+  onSubmitNewItem,
+  newItemRequest,
+}: AddScreenProps<T>) => {
   const navigate = useNavigate();
   const { show } = useNotificationCenter();
 
   useEffect(() => {
-    if (add.request.success) {
+    if (newItemRequest.success) {
       show({ message: "Item added successfully", severity: "success" });
       navigate("/");
     }
-  }, [add.request.success]);
+  }, [newItemRequest.success]);
 
   useEffect(() => {
-    if (add.request.error) {
-      show({ title: "We had an error", message: add.request.error, severity: "error" });
+    if (newItemRequest.error) {
+      show({ title: "We had an error", message: newItemRequest.error, severity: "error" });
     }
-  }, [add.request.error]);
+  }, [newItemRequest.error]);
 
   return (
     <FormLayout
-      loading={add.request.loading}
+      loading={newItemRequest.loading}
       headerProps={{
         title: `Add ${modelName}`,
         preset: "default",
@@ -51,7 +64,7 @@ export const AddScreen = ({ model, modelName, add }: AddScreenProps) => {
       modelFormProps={{
         model,
         saveButtonText: "Save",
-        onSubmit: add.onSubmit,
+        onSubmit: onSubmitNewItem,
       }}
     />
   );

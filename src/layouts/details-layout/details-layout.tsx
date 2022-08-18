@@ -1,25 +1,25 @@
 import React from "react";
-import { HeaderProps, Placeholder, PlaceholderProps } from "../../components";
+import { BasicData, HeaderProps, Placeholder, PlaceholderProps } from "../../components";
 import { Model } from "../../generators/generators.model";
 import { ObjectDetails } from "../../generators/object-details";
 import { HeaderLayout } from "../header-layout";
 
-export interface DetailsLayoutProps {
+export interface DetailsLayoutProps<T extends BasicData> {
   loading?: boolean;
   headerProps: HeaderProps;
   objectDetailsProps: {
     model: Model;
-    instance?: object;
+    instance?: T;
   };
   notFoundPlaceholderProps: PlaceholderProps;
 }
 
-export const DetailsLayout = ({
+export const DetailsLayout = <T extends BasicData>({
   loading,
   headerProps,
   notFoundPlaceholderProps,
   objectDetailsProps: { model, instance },
-}: DetailsLayoutProps) => {
+}: DetailsLayoutProps<T>) => {
   const notFound = !loading && !instance;
 
   return (

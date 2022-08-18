@@ -1,15 +1,19 @@
 import React from "react";
-import { HeaderProps } from "../../components";
+import { BasicData, HeaderProps } from "../../components";
 import { ModelFormProps, ModelForm } from "../../generators";
 import { HeaderLayout } from "../header-layout";
 
-export interface FormLayoutProps {
+export interface FormLayoutProps<T extends BasicData> {
   loading?: boolean;
   headerProps: HeaderProps;
-  modelFormProps: ModelFormProps;
+  modelFormProps: ModelFormProps<T>;
 }
 
-export const FormLayout = ({ loading, headerProps, modelFormProps }: FormLayoutProps) => {
+export const FormLayout = <T extends BasicData>({
+  loading,
+  headerProps,
+  modelFormProps,
+}: FormLayoutProps<T>) => {
   return (
     <HeaderLayout loading={loading} headerProps={headerProps}>
       <ModelForm {...modelFormProps} />
