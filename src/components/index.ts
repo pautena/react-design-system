@@ -15,3 +15,4 @@ export * from "./drawer-section";
 export * from "./drawer-item";
 export * from "./center-container";
 export * from "./value-displays";
+export * from "./content";
