@@ -6,14 +6,16 @@ import { IdleRequest } from "../model-router.types";
 import { MockInstance, mockModel } from "../../generators.mock";
 import { action, HandlerFunction } from "@storybook/addon-actions";
 import { useState } from "react";
-import { data, REQUEST_TIMEOUT } from "./templates";
-
-const onRequestListAction = action("Request list data");
-const onSubmitNewItemAction = action("Submit new item");
-const onRequestItem = action("Details screen mount");
-const onRequestUpdateItemAction = action("Request update instance");
-const onSubmitUpdateAction = action("Submit update form");
-const onRequestDeleteAction = action("click delete item option");
+import {
+  data,
+  onRequestDeleteAction,
+  onRequestItem,
+  onRequestListAction,
+  onRequestUpdateItemAction,
+  onSubmitNewItemAction,
+  onSubmitUpdateAction,
+  REQUEST_TIMEOUT,
+} from "./templates";
 
 interface DummyModelRouterProps {
   requestTimeout: number;
@@ -120,20 +122,20 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
       {...args}
       modelName="Items"
       model={mockModel}
-      requestList={handleRequestList}
+      onRequestList={handleRequestList}
       listData={data}
       listRequest={listRequestState}
       deleteRequest={removeRequestState}
       onClickDeleteItem={handleClickDeleteItem}
       itemRequest={detailRequestState}
       detailsItem={detailInstance}
-      requestItem={handleRequestItem}
+      onRequestItem={handleRequestItem}
       newItemRequest={newItemRequestState}
       onSubmitNewItem={handleSubmitNewItem}
       submitUpdateItemRequest={submitUpdateItemRequestState}
       updateItemRequest={updateItemRequestState}
       updateItem={updateItem}
-      requestUpdateItem={handleRequestUpdateItem}
+      onRequestUpdateItem={handleRequestUpdateItem}
       onSubmitUpdateItem={handleSubmitUpdateItem}
     />
   );

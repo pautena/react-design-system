@@ -1,7 +1,15 @@
-import { ModelRouter } from "..";
+import { action } from "@storybook/addon-actions";
+import { ModelRouter } from "../model-router";
 import { createTemplate } from "../../../storybook";
 import { createModelInstance, MockInstance, mockModel } from "../../generators.mock";
 import { IdleRequest } from "../model-router.types";
+
+export const onRequestListAction = action("Request list data");
+export const onSubmitNewItemAction = action("Submit new item");
+export const onRequestItem = action("Details screen mount");
+export const onRequestUpdateItemAction = action("Request update instance");
+export const onSubmitUpdateAction = action("Submit update form");
+export const onRequestDeleteAction = action("click delete item option");
 
 export const REQUEST_TIMEOUT = 2000;
 
@@ -19,29 +27,13 @@ export const ModelRouterTemplate = createTemplate(ModelRouter);
 export const baseArgs = {
   modelName: "Items",
   model: mockModel,
-  // List
-  requestList: () => null,
   listData: data,
   listRequest: IdleRequest,
   deleteRequest: IdleRequest,
-  // delete
-  onClickDeleteItem: () => null,
-
-  //Add
-  add: {
-    request: IdleRequest,
-    onSubmit: () => null,
-  },
-  detail: {
-    request: IdleRequest,
-    instance: item1,
-    onScreenMount: () => null,
-  },
-  update: {
-    request: IdleRequest,
-    requestInstance: item1,
-    instance: item1,
-    onRequestInstance: () => null,
-    onSubmit: () => null,
-  },
+  newItemRequest: IdleRequest,
+  updateItemRequest: IdleRequest,
+  submitUpdateItemRequest: IdleRequest,
+  itemRequest: IdleRequest,
+  // onRequestList:onRequestListAction,
+  // onRequestUpdateItem: onRequestUpdateItemAction,
 };

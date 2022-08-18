@@ -3,14 +3,38 @@ import React, { FunctionComponent } from "react";
 import { ComponentStory } from "@storybook/react";
 import { JSXElementConstructor } from "react";
 import { Box } from "@mui/material";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Router, Navigator, Route, Routes } from "react-router-dom";
 import { NotificationCenterProvider } from "./providers";
+import { action } from "@storybook/addon-actions";
 
 export function createTemplate<P>(
   C: JSXElementConstructor<P>,
 ): ComponentStory<JSXElementConstructor<P>> {
   return (args) => <C {...args} />;
 }
+
+const replaceAction = action("navigator/replace");
+const goAction = action("navigator/go");
+const pushAction = action("navigator/push");
+
+export const withActionRouter =
+  ({ location = "/", path = "/" }: { location?: string; path?: string } = {}) =>
+  (Story: FunctionComponent) => {
+    const navigator: Navigator = {
+      replace: (args) => replaceAction(args),
+      go: (args) => goAction(args),
+      push: (args) => pushAction(args),
+      createHref: () => "",
+    };
+
+    return (
+      <Router location={location} navigator={navigator}>
+        <Routes>
+          <Route path={path} element={<Story />} />
+        </Routes>
+      </Router>
+    );
+  };
 
 export const withMemoryRouter =
   (initialEntries = ["/"]) =>

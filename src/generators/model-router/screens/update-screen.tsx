@@ -7,10 +7,31 @@ import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
 export interface UpdateScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
+  /**
+   * Callback executed when the user wants to update
+   * an item
+   */
   onSubmitUpdateItem: (obj: T) => void;
+  /**
+   * Current status of the request to update an item
+   */
   submitUpdateItemRequest: RequestState;
+
+  /**
+   * Current status of the request to retrieve
+   * the item to be updated
+   */
   updateItemRequest: RequestState;
-  requestUpdateItem: (id: string) => void;
+
+  /**
+   * Callback executed to retrive the item that
+   * has to going tobe updated
+   */
+  onRequestUpdateItem: (id: string) => void;
+
+  /**
+   * Item that is going to be updated
+   */
   updateItem?: T;
 }
 
@@ -21,7 +42,7 @@ export const UpdateScreen = <T extends BasicModelInstance>({
   updateItemRequest,
   updateItem,
   onSubmitUpdateItem,
-  requestUpdateItem,
+  onRequestUpdateItem,
 }: UpdateScreenProps<T>) => {
   const { id = "" } = useParams();
   const navigate = useNavigate();
@@ -29,7 +50,7 @@ export const UpdateScreen = <T extends BasicModelInstance>({
   const loading = updateItemRequest.loading || submitUpdateItemRequest.loading;
 
   useEffect(() => {
-    requestUpdateItem(id);
+    onRequestUpdateItem(id);
   }, [id]);
 
   useEffect(() => {

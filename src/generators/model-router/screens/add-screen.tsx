@@ -8,8 +8,8 @@ import { BaseScreenProps } from "./screens.types";
 
 export interface AddScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**
-   * Callback executed when the user whants to
-   * adda new item
+   * Callback executed when the user wants to
+   * add a new item
    */
   onSubmitNewItem: (obj: T) => void;
 

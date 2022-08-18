@@ -10,7 +10,7 @@ export interface ListScreenProps<T extends BasicModelInstance> extends BaseScree
    * Callback executed each time the list screen
    * requests for a data update
    */
-  requestList: () => void;
+  onRequestList: () => void;
 
   /**
    * List of items to be displayed in the list screen
@@ -40,7 +40,7 @@ export const ListScreen = <T extends BasicModelInstance>({
   model,
   modelName,
   listData,
-  requestList,
+  onRequestList,
   onClickDeleteItem,
   listRequest,
   deleteRequest,
@@ -48,7 +48,7 @@ export const ListScreen = <T extends BasicModelInstance>({
   const navigate = useNavigate();
 
   useEffect(() => {
-    requestList();
+    onRequestList();
   }, []);
 
   const handleClickListItem = (item: T) => {

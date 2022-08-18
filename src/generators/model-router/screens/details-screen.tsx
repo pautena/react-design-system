@@ -12,7 +12,7 @@ export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseSc
    * Callback executed each time we want
    * the details information of an item
    */
-  requestItem: (id: string) => void;
+  onRequestItem: (id: string) => void;
 
   /**
    * Current status of the request to retrieve
@@ -29,14 +29,14 @@ export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseSc
 export const DetailsScreen = <T extends BasicModelInstance>({
   model,
   modelName,
-  requestItem,
+  onRequestItem,
   itemRequest,
   detailsItem,
 }: DetailsScreenProps<T>) => {
   const { id = "" } = useParams();
 
   useEffect(() => {
-    requestItem(id);
+    onRequestItem(id);
   }, [id]);
 
   return (
