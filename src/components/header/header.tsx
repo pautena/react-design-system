@@ -12,76 +12,14 @@ import {
 import { Link } from "../link";
 import { PropTypes } from "@mui/material";
 import { useGetDefaultThemeColor } from "../../utils";
-
-export type HeaderPreset = PropTypes.Color | "transparent";
-export type HeaderActionVariant = "text" | "outlined" | "contained";
-
-export type HeaderAction = {
-  id: string;
-  text: string;
-  disabled?: boolean;
-  href?: string;
-  onClick?: () => void;
-};
-
-export interface HeaderBreadcrumb {
-  id: string;
-  text: string;
-  link: string;
-}
-
-export interface HeaderTab {
-  id: string;
-  label: string;
-  disabled?: boolean;
-}
-
-export type HeaderProps = {
-  /**
-   * Title of the header
-   */
-  title: string;
-  /**
-   * Subtitle of the header
-   */
-  subtitle?: string;
-  /**
-   * Color palete used to render the component
-   */
-  preset: HeaderPreset;
-  /**
-   * List of breadcumbs to represent the path to reach
-   * the page that we are
-   */
-  breadcrumbs?: HeaderBreadcrumb[];
-  /**
-   * List of actions that can be performed by the user.
-   * Each action will be a button in the header.
-   */
-  actions?: HeaderAction[];
-  /**
-   * Variant used to render the actions
-   */
-  actionsVariant?: HeaderActionVariant;
-  /**
-   * If is set, a list of tabs is dispayed at the bottom
-   */
-  tabs?: HeaderTab[];
-  /**
-   * Tab that has to be marked as selected
-   */
-  selectedTab?: number;
-  /**
-   * Callback executed when the user click a tab
-   */
-  onChangeTab?: (tab: HeaderTab, index: number) => void;
-};
+import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
+import { useTab } from "~/providers";
 
 /**
  * Section used to explain give basic information about the page
  * and put the main actions
  */
-export const Header = ({
+export const Header: HeaderComponent = ({
   title,
   subtitle,
   preset = "default",
@@ -89,11 +27,10 @@ export const Header = ({
   breadcrumbs,
   actions,
   tabs,
-  selectedTab,
-  onChangeTab = () => null,
 }: HeaderProps) => {
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
+  const [selectedTab, setSelectedTab] = useTab();
 
   const bgColorPresets: Record<HeaderPreset, string> = {
     default: defaultColor,
@@ -172,7 +109,7 @@ export const Header = ({
           <Tabs
             value={selectedTab}
             textColor="inherit"
-            onChange={(_, index) => onChangeTab(tabs[index], index)}
+            onChange={(_, index) => setSelectedTab(index)}
           >
             {tabs.map(({ id, label, disabled }) => (
               <Tab key={id} label={label} disabled={disabled} />

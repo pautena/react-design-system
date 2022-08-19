@@ -4,8 +4,8 @@ import { screen, render } from "../../../tests";
 import userEvent from "@testing-library/user-event";
 
 describe("TabCard", () => {
-  function renderInstance(initialTab = 0) {
-    return render(<TabCardDummy tabs={DummyTabs} initialTab={initialTab} />);
+  function renderInstance(initialValue = 0) {
+    return render(<TabCardDummy tabs={DummyTabs} initialTab={initialValue} />);
   }
 
   it('initialTab is not set the "panel 1" is displayed', () => {

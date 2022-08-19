@@ -1,6 +1,6 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { useTab } from "../tab.context";
+import { useTab } from "~/providers";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -8,7 +8,7 @@ interface TabPanelProps {
 }
 
 export function TabPanel({ children, index }: TabPanelProps) {
-  const value = useTab();
+  const [value] = useTab();
   let isTab = value === index;
   if (Array.isArray(index)) {
     isTab = index.includes(value);

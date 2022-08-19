@@ -1,14 +1,14 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { TabPanel } from "./tab-panel";
-import { TabContextProvider } from "../tab.context";
+import { TabProvider } from "../../../providers";
 
 describe("TabPanel", () => {
-  function renderInstance(value: number) {
+  function renderInstance(initialValue: number) {
     render(
-      <TabContextProvider value={value}>
+      <TabProvider initialValue={initialValue}>
         <TabPanel index={0}>Panel content</TabPanel>
-      </TabContextProvider>,
+      </TabProvider>,
     );
   }
 
