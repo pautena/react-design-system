@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Content, Header, TableList } from "~/components";
 import { BasicModelInstance } from "~/generators";
-import { ListLayout } from "../../../layouts";
+import { HeaderLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
@@ -64,49 +65,46 @@ export const ListScreen = <T extends BasicModelInstance>({
   };
 
   return (
-    <ListLayout
-      loading={listRequest.loading || deleteRequest.loading}
-      headerProps={{
-        title: modelName,
-        preset: "default",
-        actions: [
+    <HeaderLayout loading={listRequest.loading || deleteRequest.loading}>
+      <Header
+        title={modelName}
+        preset="default"
+        actions={[
           {
             id: "add",
             text: "Add",
             href: "/add",
           },
-        ],
-      }}
-      emptyPlaceholderProps={{
-        title: `There is no ${modelName}`,
-        subtitle: `There is no item right now`,
-      }}
-      listProps={{
-        columns: model.fields
-          .filter(({ listable }) => listable)
-          .map(({ id, name, type }) => ({
-            disablePadding: false,
-            id,
-            label: name,
-            numeric: type === "number",
-            sort: false,
-          })),
-        data: listData,
-        defaultSort: model.fields[0].id,
-        onClick: handleClickListItem,
-        options: [
-          {
-            id: "edit",
-            label: "Edit",
-            onClick: (item) => handleClickListOption("edit", item),
-          },
-          {
-            id: "remove",
-            label: "Remove",
-            onClick: (item) => handleClickListOption("remove", item),
-          },
-        ],
-      }}
-    />
+        ]}
+      />
+      <Content>
+        <TableList
+          columns={model.fields
+            .filter(({ listable }) => listable)
+            .map(({ id, name, type }) => ({
+              disablePadding: false,
+              id,
+              label: name,
+              numeric: type === "number",
+              sort: false,
+            }))}
+          data={listData}
+          defaultSort={model.fields[0].id}
+          onClick={handleClickListItem}
+          options={[
+            {
+              id: "edit",
+              label: "Edit",
+              onClick: (item) => handleClickListOption("edit", item),
+            },
+            {
+              id: "remove",
+              label: "Remove",
+              onClick: (item) => handleClickListOption("remove", item),
+            },
+          ]}
+        />
+      </Content>
+    </HeaderLayout>
   );
 };

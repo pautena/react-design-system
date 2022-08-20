@@ -5,8 +5,9 @@ import { HeaderLayout } from "./header-layout";
 import { withRouter } from "storybook-addon-react-router-v6";
 import { SkeletonGrid } from "../../tests";
 import { withFullHeight } from "../../storybook";
-import { Content, Header, HeaderProps, HeaderTab, TabPanel } from "../../components";
+import { Content, Header, HeaderProps, HeaderTab, TableList, TabPanel } from "../../components";
 import { Box, Typography } from "@mui/material";
+import { useDemoData } from "@mui/x-data-grid-generator";
 
 const breadcrumbs = [
   {
@@ -78,6 +79,37 @@ Skeleton.args = {
     actions,
   },
   contentChildren: <SkeletonGrid />,
+};
+
+const ListContent = () => {
+  const { data } = useDemoData({
+    dataSet: "Commodity",
+    rowLength: 100,
+    maxColumns: 3,
+    editable: true,
+  });
+
+  const { rows } = data;
+  const columns = data.columns.map(({ field, headerName }) => ({
+    id: field,
+    label: headerName || "",
+    sort: true,
+    disablePadding: false,
+    numeric: false,
+  }));
+
+  return <TableList data={rows} columns={columns} defaultSort={columns[0].id} defaultOrder="asc" />;
+};
+
+export const List = Template.bind({});
+List.args = {
+  headerProps: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    breadcrumbs,
+    actions,
+  },
+  contentChildren: <ListContent />,
 };
 
 export const Tabs = Template.bind({});
