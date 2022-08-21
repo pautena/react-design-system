@@ -11,6 +11,7 @@ import { useDemoData } from "@mui/x-data-grid-generator";
 import { ModelForm, ObjectDetails } from "../../generators";
 import { mockModel, createModelInstance } from "../../generators/generators.mock";
 import { action } from "@storybook/addon-actions";
+import { DataGrid } from "@mui/x-data-grid";
 
 const breadcrumbs = [
   {
@@ -142,6 +143,28 @@ Form.args = {
       onSubmit={action("Save form data")}
     />
   ),
+};
+
+const DataTableContent = () => {
+  const { data } = useDemoData({
+    dataSet: "Commodity",
+    rowLength: 100,
+    maxColumns: 7,
+    editable: true,
+  });
+
+  return <DataGrid rows={data.rows} columns={data.columns} pagination sx={{ height: 400 }} />;
+};
+
+export const DataTable = Template.bind({});
+DataTable.args = {
+  headerProps: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    breadcrumbs,
+    actions,
+  },
+  contentChildren: <DataTableContent />,
 };
 
 export const Tabs = Template.bind({});
