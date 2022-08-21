@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { BasicModelInstance } from "~/generators";
-import { FormLayout } from "../../../layouts";
+import { Header, Content } from "~/components";
+import { BasicModelInstance, ModelForm } from "~/generators";
+import { HeaderLayout } from "../../../layouts";
 import { useNotificationCenter } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
@@ -43,12 +44,11 @@ export const AddScreen = <T extends BasicModelInstance>({
   }, [newItemRequest.error]);
 
   return (
-    <FormLayout
-      loading={newItemRequest.loading}
-      headerProps={{
-        title: `Add ${modelName}`,
-        preset: "default",
-        breadcrumbs: [
+    <HeaderLayout loading={newItemRequest.loading}>
+      <Header
+        title={`Add ${modelName}`}
+        preset="default"
+        breadcrumbs={[
           {
             id: "list",
             text: modelName,
@@ -59,13 +59,11 @@ export const AddScreen = <T extends BasicModelInstance>({
             text: `Add new ${modelName}`,
             link: "/add",
           },
-        ],
-      }}
-      modelFormProps={{
-        model,
-        saveButtonText: "Save",
-        onSubmit: onSubmitNewItem,
-      }}
-    />
+        ]}
+      />
+      <Content>
+        <ModelForm model={model} saveButtonText="Save" onSubmit={onSubmitNewItem} />
+      </Content>
+    </HeaderLayout>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { BasicModelInstance } from "~/generators";
-import { FormLayout } from "../../../layouts";
+import { Content, Header } from "~/components";
+import { BasicModelInstance, ModelForm } from "~/generators";
+import { HeaderLayout } from "../../../layouts";
 import { useNotificationCenter } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
@@ -65,12 +66,11 @@ export const UpdateScreen = <T extends BasicModelInstance>({
   }, [submitUpdateItemRequest.success]);
 
   return (
-    <FormLayout
-      loading={loading}
-      headerProps={{
-        title: `Edit ${id}`,
-        preset: "default",
-        breadcrumbs: [
+    <HeaderLayout loading={loading}>
+      <Header
+        title={`Edit ${id}`}
+        preset="default"
+        breadcrumbs={[
           {
             id: "list",
             text: modelName,
@@ -81,14 +81,16 @@ export const UpdateScreen = <T extends BasicModelInstance>({
             text: `Edit ${id}`,
             link: `/${id}/update`,
           },
-        ],
-      }}
-      modelFormProps={{
-        model,
-        initialValues: updateItem,
-        saveButtonText: "Save",
-        onSubmit: onSubmitUpdateItem,
-      }}
-    />
+        ]}
+      />
+      <Content>
+        <ModelForm
+          model={model}
+          initialValues={updateItem}
+          saveButtonText="Save"
+          onSubmit={onSubmitUpdateItem}
+        />
+      </Content>
+    </HeaderLayout>
   );
 };

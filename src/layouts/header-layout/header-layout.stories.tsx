@@ -8,8 +8,9 @@ import { withFullHeight } from "../../storybook";
 import { Content, Header, HeaderProps, HeaderTab, TableList, TabPanel } from "../../components";
 import { Box, Typography } from "@mui/material";
 import { useDemoData } from "@mui/x-data-grid-generator";
-import { ObjectDetails } from "../../generators";
+import { ModelForm, ObjectDetails } from "../../generators";
 import { mockModel, createModelInstance } from "../../generators/generators.mock";
+import { action } from "@storybook/addon-actions";
 
 const breadcrumbs = [
   {
@@ -123,6 +124,24 @@ Details.args = {
     actions,
   },
   contentChildren: <ObjectDetails model={mockModel} instance={createModelInstance(mockModel)} />,
+};
+
+export const Form = Template.bind({});
+Form.args = {
+  headerProps: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    breadcrumbs,
+    actions,
+  },
+  contentChildren: (
+    <ModelForm
+      model={mockModel}
+      initialValues={createModelInstance(mockModel)}
+      saveButtonText="Save"
+      onSubmit={action("Save form data")}
+    />
+  ),
 };
 
 export const Tabs = Template.bind({});
