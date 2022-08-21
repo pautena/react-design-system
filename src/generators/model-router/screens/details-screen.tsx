@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RequestState } from "../model-router.types";
-import { PlaceholderIconArgs } from "~/components";
-import { DetailsLayout } from "~/layouts";
-import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { Content, Header } from "~/components";
+import { HeaderLayout } from "~/layouts";
 import { BaseScreenProps } from "./screens.types";
-import { BasicModelInstance } from "~/generators";
+import { BasicModelInstance, ObjectDetails } from "~/generators";
 
 export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**
@@ -40,12 +39,11 @@ export const DetailsScreen = <T extends BasicModelInstance>({
   }, [id]);
 
   return (
-    <DetailsLayout
-      loading={itemRequest.loading}
-      headerProps={{
-        title: id,
-        preset: "default",
-        breadcrumbs: [
+    <HeaderLayout loading={itemRequest.loading}>
+      <Header
+        title={id}
+        preset="default"
+        breadcrumbs={[
           {
             id: "list",
             text: modelName,
@@ -56,19 +54,9 @@ export const DetailsScreen = <T extends BasicModelInstance>({
             text: id,
             link: `/${id}`,
           },
-        ],
-      }}
-      objectDetailsProps={{
-        model,
-        instance: detailsItem,
-      }}
-      notFoundPlaceholderProps={{
-        title: "Not found",
-        subtitle: "There is no item with that id",
-        icon: ({ size, color }: PlaceholderIconArgs) => (
-          <SentimentVeryDissatisfiedIcon color={color} sx={{ fontSize: size }} />
-        ),
-      }}
-    />
+        ]}
+      />
+      <Content>{detailsItem && <ObjectDetails model={model} instance={detailsItem} />}</Content>
+    </HeaderLayout>
   );
 };

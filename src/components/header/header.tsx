@@ -10,7 +10,6 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "../link";
-import { PropTypes } from "@mui/material";
 import { useGetDefaultThemeColor } from "../../utils";
 import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
 import { useTab } from "~/providers";

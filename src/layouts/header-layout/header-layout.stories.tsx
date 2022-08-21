@@ -8,6 +8,8 @@ import { withFullHeight } from "../../storybook";
 import { Content, Header, HeaderProps, HeaderTab, TableList, TabPanel } from "../../components";
 import { Box, Typography } from "@mui/material";
 import { useDemoData } from "@mui/x-data-grid-generator";
+import { ObjectDetails } from "../../generators";
+import { mockModel, createModelInstance } from "../../generators/generators.mock";
 
 const breadcrumbs = [
   {
@@ -110,6 +112,17 @@ List.args = {
     actions,
   },
   contentChildren: <ListContent />,
+};
+
+export const Details = Template.bind({});
+Details.args = {
+  headerProps: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    breadcrumbs,
+    actions,
+  },
+  contentChildren: <ObjectDetails model={mockModel} instance={createModelInstance(mockModel)} />,
 };
 
 export const Tabs = Template.bind({});
