@@ -5,24 +5,23 @@ import { ContentPlaceholder } from "../../tests";
 import { mockNav } from "../../components/drawer/drawer.mock";
 import { MiniAppBar } from "../../components/app-bar";
 import { DrawerContent, MiniDrawer } from "../../components";
+import { withRouter } from "storybook-addon-react-router-v6";
 
 export default {
   title: "Layouts/AppBarWithDrawer",
   component: AppBarWithDrawerLayout,
+  decorators: [withRouter],
   parameters: {
     layout: "fullscreen",
   },
 } as ComponentMeta<typeof AppBarWithDrawerLayout>;
 
 export const MiniDrawerStory = () => (
-  <AppBarWithDrawerLayout
-    drawer={
-      <MiniDrawer>
-        <DrawerContent nav={mockNav} />
-      </MiniDrawer>
-    }
-    appBar={<MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />}
-  >
+  <AppBarWithDrawerLayout>
+    <MiniDrawer>
+      <DrawerContent nav={mockNav} />
+    </MiniDrawer>
+    <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
     <ContentPlaceholder />
   </AppBarWithDrawerLayout>
 );

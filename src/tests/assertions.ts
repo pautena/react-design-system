@@ -2,6 +2,10 @@ import { AlertColor } from "@mui/material";
 import { ModelField } from "../generators";
 import { screen, waitForElementToBeRemoved } from "./testing-library";
 
+export const expectContentPlaceholder = async () => {
+  expect(await screen.findByTestId(/content-placeholder-test/i)).toBeInTheDocument();
+};
+
 export const expectModelFieldInputExist = (fields: ModelField[]) => {
   fields.forEach((field) => {
     if (field.type === "group") {

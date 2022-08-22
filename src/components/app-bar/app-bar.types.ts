@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, ReactElement } from "react";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
 
 export interface AppBarProfile {
@@ -14,3 +14,4 @@ export interface AppBarProps extends MuiAppBarProps {
 }
 
 export type AppBarComponent = FunctionComponent<AppBarProps>;
+export type AppBarElement = ReactElement<AppBarProps, AppBarComponent>;

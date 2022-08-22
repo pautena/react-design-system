@@ -52,7 +52,7 @@ type ContentPlaceholderProps = PropsWithChildren<{
 
 export const ContentPlaceholder = ({ size = 20, children, p }: ContentPlaceholderProps) => {
   return (
-    <Container component="main" sx={{ p }}>
+    <Container component="main" sx={{ p }} data-testid="content-placeholder-test">
       {children}
       <SkeletonGrid size={size} />
     </Container>

@@ -1,8 +1,8 @@
-import React, { PropsWithChildren, ReactElement } from "react";
+import React, { ReactNode } from "react";
 import { styled } from "@mui/material/styles";
-import { AppBarComponent } from "../../components/app-bar";
+import { AppBarElement } from "../../components/app-bar";
 import { DrawerElement } from "../../components/drawer";
-import { Box, AppBarProps } from "@mui/material";
+import { Box } from "@mui/material";
 import { DrawerProvider } from "../../components/drawer/drawer.provider";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -13,12 +13,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-interface Props {
-  drawer: DrawerElement;
-  appBar: ReactElement<AppBarProps, AppBarComponent>;
+export interface AppBarWithDrawerLayoutProps {
+  children: [DrawerElement, AppBarElement, ReactNode];
 }
 
-export const AppBarWithDrawerLayout = ({ drawer, appBar, children }: PropsWithChildren<Props>) => {
+export const AppBarWithDrawerLayout = ({
+  children: childrenProps,
+}: AppBarWithDrawerLayoutProps) => {
+  const [appBar, drawer, children] = childrenProps;
+
   return (
     <Box sx={{ display: "flex" }}>
       <DrawerProvider>
