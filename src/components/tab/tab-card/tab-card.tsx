@@ -1,6 +1,6 @@
 import { Paper, Tabs, Tab, styled, tabsClasses } from "@mui/material";
-import React, { PropsWithChildren, useState } from "react";
-import { TabProvider, useTab } from "~/providers";
+import React, { PropsWithChildren } from "react";
+import { useTab } from "~/providers";
 
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   [`&.${tabsClasses.root}`]: {

@@ -167,7 +167,12 @@ describe("ModelRouter", () => {
   const renderComponent = async ({
     router = "memory",
     screen = "initial",
-  }: { router?: TestRouter; screen?: "initial" | "add" | "details" | "update" } = {}) => {
+    deleteFeature,
+  }: {
+    router?: TestRouter;
+    screen?: "initial" | "add" | "details" | "update";
+    deleteFeature?: boolean;
+  } = {}) => {
     const onRequestList = jest.fn();
     const onRequestItem = jest.fn();
     const onSubmitNewItem = jest.fn();
@@ -179,6 +184,7 @@ describe("ModelRouter", () => {
       <NotificationCenterProvider>
         <DummyModelRouter
           {...args}
+          deleteFeature={deleteFeature}
           requestTimeout={REQUEST_TIMEOUT}
           onRequestListAction={onRequestList}
           onRequestItem={onRequestItem}
@@ -661,6 +667,22 @@ describe("ModelRouter", () => {
       await waitForProgressIndicatorToBeRemoved();
 
       expect(screen.queryByRole("cell", { name: firstName })).not.toBeInTheDocument();
+    });
+  });
+
+  describe("modifying enabled features", () => {
+    describe("deleteFeature disabled", () => {
+      it("wouldn't have an option to remove an item from the list", async () => {
+        const { data } = await renderComponent({ deleteFeature: false });
+        const {
+          item: { id, firstName },
+        } = getRandomItem<MockInstance>(data);
+
+        await screen.findByRole("cell", { name: firstName });
+        await actions.openItemOptions({ id });
+
+        expect(screen.queryByRole("menuitem", { name: /remove/i })).not.toBeInTheDocument();
+      });
     });
   });
 });

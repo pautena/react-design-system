@@ -33,8 +33,6 @@ function renderInstance({
   tabs?: HeaderTab[];
   selectedTab?: number;
 }) {
-  const onChangeTab = jest.fn();
-
   const instance = render(
     <TabProvider initialValue={selectedTab}>
       <Header
@@ -49,7 +47,7 @@ function renderInstance({
     </TabProvider>,
   );
 
-  return { ...instance, onChangeTab };
+  return { ...instance };
 }
 
 describe("Header", () => {
@@ -149,21 +147,13 @@ describe("Header", () => {
     });
 
     it("would change the selected tab when a tab is clicked", async () => {
-      const { onChangeTab } = renderInstance({ tabs, selectedTab: 0 });
+      renderInstance({ tabs, selectedTab: 0 });
 
       await userEvent.click(screen.getByRole("tab", { name: /tab 3/i }));
 
       expect(screen.getByRole("tab", { name: /tab 1/i, selected: false })).toBeInTheDocument();
       expect(screen.getByRole("tab", { name: /tab 2/i, selected: false })).toBeInTheDocument();
       expect(screen.getByRole("tab", { name: /tab 3/i, selected: true })).toBeInTheDocument();
-    });
-
-    it("wouldn't call onChangeTab when the clicked tab is the selectedTab", async () => {
-      const { onChangeTab } = renderInstance({ tabs, selectedTab: 2 });
-
-      await userEvent.click(screen.getByRole("tab", { name: /tab 3/i }));
-
-      expect(onChangeTab).not.toHaveBeenCalled();
     });
   });
 });

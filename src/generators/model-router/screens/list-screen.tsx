@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Content, Header, TableList } from "~/components";
+import { Content, Header, TableList, TableRowOption } from "~/components";
 import { BasicModelInstance } from "~/generators";
 import { HeaderLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";
@@ -35,16 +35,22 @@ export interface ListScreenProps<T extends BasicModelInstance> extends BaseScree
    * an item
    */
   deleteRequest: RequestState;
+
+  /**
+   * If true delete features are enabled
+   */
+  deleteFeature?: boolean;
 }
 
 export const ListScreen = <T extends BasicModelInstance>({
   model,
   modelName,
   listData,
-  onRequestList,
-  onClickDeleteItem,
   listRequest,
   deleteRequest,
+  deleteFeature = true,
+  onRequestList,
+  onClickDeleteItem,
 }: ListScreenProps<T>) => {
   const navigate = useNavigate();
 
@@ -63,6 +69,21 @@ export const ListScreen = <T extends BasicModelInstance>({
       onClickDeleteItem(item);
     }
   };
+
+  const options: TableRowOption<T>[] = [
+    {
+      id: "edit",
+      label: "Edit",
+      onClick: (item: T) => handleClickListOption("edit", item),
+    },
+  ];
+
+  deleteFeature &&
+    options.push({
+      id: "remove",
+      label: "Remove",
+      onClick: (item: T) => handleClickListOption("remove", item),
+    });
 
   return (
     <HeaderLayout loading={listRequest.loading || deleteRequest.loading}>
@@ -91,18 +112,7 @@ export const ListScreen = <T extends BasicModelInstance>({
           data={listData}
           defaultSort={model.fields[0].id}
           onClick={handleClickListItem}
-          options={[
-            {
-              id: "edit",
-              label: "Edit",
-              onClick: (item) => handleClickListOption("edit", item),
-            },
-            {
-              id: "remove",
-              label: "Remove",
-              onClick: (item) => handleClickListOption("remove", item),
-            },
-          ]}
+          options={options}
         />
       </Content>
     </HeaderLayout>
