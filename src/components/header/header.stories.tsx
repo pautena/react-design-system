@@ -1,13 +1,13 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { Header } from "./header";
-import { withRouter } from "storybook-addon-react-router-v6";
+import { withMemoryRouter } from "~/storybook";
 import { breadcrumbs, tabs, actions } from "./header.dummy";
 
 export default {
   title: "Sections/Header",
   component: Header,
-  decorators: [withRouter],
+  decorators: [withMemoryRouter()],
   parameters: {
     layout: "fullscreen",
   },

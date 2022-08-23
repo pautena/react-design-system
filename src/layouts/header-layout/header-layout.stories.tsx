@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { HeaderLayout } from "./header-layout";
-import { withRouter } from "storybook-addon-react-router-v6";
+import { withMemoryRouter } from "~/storybook";
 import { SkeletonGrid } from "../../tests";
 import { withFullHeight } from "../../storybook";
 import { Content, Header, HeaderProps, HeaderTab, TableList, TabPanel } from "../../components";
@@ -52,7 +52,7 @@ const tabs: HeaderTab[] = [
 export default {
   title: "Layouts/HeaderLayout",
   component: HeaderLayout,
-  decorators: [withRouter, withFullHeight],
+  decorators: [withMemoryRouter(), withFullHeight],
   parameters: {
     layout: "fullscreen",
   },

@@ -1,16 +1,16 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { withRouter } from "storybook-addon-react-router-v6";
 import { MiniDrawer } from "../mini-drawer";
 import { mockNav } from "../drawer.mock";
 import { DrawerContent } from "../../drawer-content";
 import { DrawerProvider } from "../drawer.provider";
 import { Nav } from "../drawer.types";
+import { withMemoryRouter } from "../../../storybook";
 
 export default {
   title: "Drawers/MiniDrawer",
   component: MiniDrawer,
-  decorators: [withRouter],
+  decorators: [withMemoryRouter()],
   parameters: {
     layout: "fullscreen",
   },

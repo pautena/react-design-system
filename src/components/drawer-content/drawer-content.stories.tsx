@@ -4,13 +4,13 @@ import { createTemplate } from "../../storybook";
 import { DrawerContent } from "./drawer-content";
 import { mockNav } from "../drawer/drawer.mock";
 import { Box } from "@mui/material";
-import { withRouter } from "storybook-addon-react-router-v6";
+import { withMemoryRouter } from "~/storybook";
 
 export default {
   title: "Drawers/DrawerContent",
   component: DrawerContent,
   decorators: [
-    withRouter,
+    withMemoryRouter(),
     (Story) => {
       return <Box maxWidth={300}>{<Story />}</Box>;
     },

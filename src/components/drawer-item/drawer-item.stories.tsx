@@ -4,12 +4,12 @@ import { createTemplate } from "../../storybook";
 import { DrawerItem } from "./drawer-item";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import { withContainer } from "../../storybook";
-import { withRouter } from "storybook-addon-react-router-v6";
+import { withMemoryRouter } from "~/storybook";
 
 export default {
   title: "Drawers/DrawerItem",
   component: DrawerItem,
-  decorators: [withRouter, withContainer({ width: 250 })],
+  decorators: [withMemoryRouter(), withContainer({ width: 250 })],
   parameters: {
     layout: "centered",
   },

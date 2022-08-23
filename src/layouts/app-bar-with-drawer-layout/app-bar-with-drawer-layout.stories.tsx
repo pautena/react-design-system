@@ -5,12 +5,12 @@ import { ContentPlaceholder } from "../../tests";
 import { mockNav } from "../../components/drawer/drawer.mock";
 import { MiniAppBar } from "../../components/app-bar";
 import { DrawerContent, MiniDrawer } from "../../components";
-import { withRouter } from "storybook-addon-react-router-v6";
+import { withMemoryRouter } from "~/storybook";
 
 export default {
   title: "Layouts/AppBarWithDrawer",
   component: AppBarWithDrawerLayout,
-  decorators: [withRouter],
+  decorators: [withMemoryRouter()],
   parameters: {
     layout: "fullscreen",
   },

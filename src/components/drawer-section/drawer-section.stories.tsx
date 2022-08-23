@@ -2,13 +2,13 @@ import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { DrawerSection } from "./drawer-section";
 import { withContainer } from "../../storybook";
-import { withRouter } from "storybook-addon-react-router-v6";
+import { withMemoryRouter } from "~/storybook";
 import { SectionItems } from "./drawer-section.mock";
 
 export default {
   title: "Drawers/DrawerSection",
   component: DrawerSection,
-  decorators: [withRouter, withContainer({ width: 250 })],
+  decorators: [withMemoryRouter(), withContainer({ width: 250 })],
   parameters: {
     layout: "centered",
   },
