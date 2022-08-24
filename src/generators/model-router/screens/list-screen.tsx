@@ -35,11 +35,6 @@ export interface ListScreenProps<T extends BasicModelInstance> extends BaseScree
    * an item
    */
   deleteRequest: RequestState;
-
-  /**
-   * If true delete features are enabled
-   */
-  deleteFeature?: boolean;
 }
 
 export const ListScreen = <T extends BasicModelInstance>({
@@ -49,6 +44,7 @@ export const ListScreen = <T extends BasicModelInstance>({
   listRequest,
   deleteRequest,
   deleteFeature = true,
+  updateFeature = true,
   onRequestList,
   onClickDeleteItem,
 }: ListScreenProps<T>) => {
@@ -70,13 +66,14 @@ export const ListScreen = <T extends BasicModelInstance>({
     }
   };
 
-  const options: TableRowOption<T>[] = [
-    {
+  const options: TableRowOption<T>[] = [];
+
+  updateFeature &&
+    options.push({
       id: "edit",
       label: "Edit",
       onClick: (item: T) => handleClickListOption("edit", item),
-    },
-  ];
+    });
 
   deleteFeature &&
     options.push({
@@ -112,7 +109,7 @@ export const ListScreen = <T extends BasicModelInstance>({
           data={listData}
           defaultSort={model.fields[0].id}
           onClick={handleClickListItem}
-          options={options}
+          options={options.length > 0 ? options : undefined}
         />
       </Content>
     </HeaderLayout>

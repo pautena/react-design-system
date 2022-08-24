@@ -53,3 +53,24 @@ WithoutDeleteFeature.args = {
   deleteRequest: IdleRequest,
   deleteFeature: false,
 };
+
+export const WithoutUpdateFeature = Template.bind({});
+WithoutUpdateFeature.args = {
+  modelName: "Items",
+  model: mockModel,
+  listData: data,
+  listRequest: IdleRequest,
+  deleteRequest: IdleRequest,
+  updateFeature: false,
+};
+
+export const WithoutDeleteAndUpdateFeature = Template.bind({});
+WithoutDeleteAndUpdateFeature.args = {
+  modelName: "Items",
+  model: mockModel,
+  listData: data,
+  listRequest: IdleRequest,
+  deleteRequest: IdleRequest,
+  deleteFeature: false,
+  updateFeature: false,
+};

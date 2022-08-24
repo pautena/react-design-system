@@ -15,6 +15,9 @@ import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
 import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import { NotificationCenterProvider } from "../../providers";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -40,6 +43,13 @@ describe("ModelRouter", () => {
         name: `Edit ${id}`,
         level: 1,
       }),
+    expectNotToBeInUpdateScreen: ({ id }: { id: string }) =>
+      expect(
+        screen.queryByRole("heading", {
+          name: `Edit ${id}`,
+          level: 1,
+        }),
+      ).not.toBeInTheDocument(),
     expectListItems: async ({ data, model }: { data: MockInstance[]; model: Model }) => {
       for (let i = 0; i < model.fields.length; ++i) {
         const { id, listable } = model.fields[i];
@@ -51,6 +61,9 @@ describe("ModelRouter", () => {
     },
     expectMenuOption: async ({ id }: { id: string }) => {
       await screen.findByTestId(`options-${id}`);
+    },
+    expectNotToHaveMenuOption: ({ id }: { id: string }) => {
+      expect(screen.queryByTestId(`options-${id}`)).not.toBeInTheDocument();
     },
     expectSubmitInstanceCall: (mockFn: jest.Mock, instance: MockInstance) => {
       expect(mockFn).toHaveBeenCalledTimes(1);
@@ -85,6 +98,9 @@ describe("ModelRouter", () => {
     navigateToUpdateScreen: async ({ id }: { id: string }) => {
       await actions.openItemOptions({ id });
       await userEvent.click(screen.getByRole("menuitem", { name: /edit/i }));
+    },
+    forceNavigateUpdateScreen: async () => {
+      await userEvent.click(screen.getByRole("button", { name: /force update/i }));
     },
     navigateToDetailScreen: async ({ name }: { name: string }) => {
       await userEvent.click(await screen.findByRole("cell", { name }));
@@ -167,11 +183,13 @@ describe("ModelRouter", () => {
   const renderComponent = async ({
     router = "memory",
     screen = "initial",
-    deleteFeature,
+    deleteFeature = true,
+    updateFeature = true,
   }: {
     router?: TestRouter;
     screen?: "initial" | "add" | "details" | "update";
     deleteFeature?: boolean;
+    updateFeature?: boolean;
   } = {}) => {
     const onRequestList = jest.fn();
     const onRequestItem = jest.fn();
@@ -180,11 +198,24 @@ describe("ModelRouter", () => {
     const onSubmitUpdate = jest.fn();
     const onRequestDelete = jest.fn();
     const args = DummyModelRouter.args;
+    const randomItem = getRandomItem(args.initialData);
+
+    const ForceNavigationComponent = ({ id }: { id: string }) => {
+      const navigate = useNavigate();
+
+      return (
+        <Box>
+          <Button onClick={() => navigate(`/${id}/update`)}>Force update</Button>
+        </Box>
+      );
+    };
+
     const instance = render(
       <NotificationCenterProvider>
         <DummyModelRouter
           {...args}
           deleteFeature={deleteFeature}
+          updateFeature={updateFeature}
           requestTimeout={REQUEST_TIMEOUT}
           onRequestListAction={onRequestList}
           onRequestItem={onRequestItem}
@@ -193,13 +224,12 @@ describe("ModelRouter", () => {
           onSubmitUpdateAction={onSubmitUpdate}
           onRequestDeleteAction={onRequestDelete}
         />
+        <ForceNavigationComponent id={randomItem.item.id} />
       </NotificationCenterProvider>,
       {
         router,
       },
     );
-
-    const randomItem = getRandomItem(args.initialData);
 
     if (screen === "add") {
       await actions.navigateToAddScreen();
@@ -682,6 +712,45 @@ describe("ModelRouter", () => {
         await actions.openItemOptions({ id });
 
         expect(screen.queryByRole("menuitem", { name: /remove/i })).not.toBeInTheDocument();
+      });
+    });
+
+    describe("updateFeature disabled", () => {
+      it("wouldn't have an option to remove an item from the list", async () => {
+        const { data } = await renderComponent({ updateFeature: false });
+        const {
+          item: { id, firstName },
+        } = getRandomItem<MockInstance>(data);
+
+        await screen.findByRole("cell", { name: firstName });
+        await actions.openItemOptions({ id });
+
+        expect(screen.queryByRole("menuitem", { name: /edit/i })).not.toBeInTheDocument();
+      });
+
+      it("wouldn't have a path to navigate to edit an item", async () => {
+        const {
+          randomItem: {
+            item: { id },
+          },
+        } = await renderComponent({
+          updateFeature: false,
+        });
+
+        await actions.forceNavigateUpdateScreen();
+
+        assertions.expectNotToBeInUpdateScreen({ id });
+      });
+    });
+
+    describe("deleteFeature and updateFeature disabled", () => {
+      it("wouldn't render an options button in the list", async () => {
+        const { data } = await renderComponent({ deleteFeature: false, updateFeature: false });
+        const {
+          item: { id },
+        } = getRandomItem<MockInstance>(data);
+
+        assertions.expectNotToHaveMenuOption({ id });
       });
     });
   });
