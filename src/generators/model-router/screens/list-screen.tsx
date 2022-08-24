@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Content, Header, TableList, TableRowOption } from "~/components";
+import { Content, Header, HeaderAction, TableList, TableRowOption } from "~/components";
 import { BasicModelInstance } from "~/generators";
 import { HeaderLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";
@@ -45,6 +45,7 @@ export const ListScreen = <T extends BasicModelInstance>({
   deleteRequest,
   deleteFeature = true,
   updateFeature = true,
+  addFeature = true,
   onRequestList,
   onClickDeleteItem,
 }: ListScreenProps<T>) => {
@@ -82,18 +83,21 @@ export const ListScreen = <T extends BasicModelInstance>({
       onClick: (item: T) => handleClickListOption("remove", item),
     });
 
+  const actions: HeaderAction[] = [];
+
+  addFeature &&
+    actions.push({
+      id: "add",
+      text: "Add",
+      href: "/add",
+    });
+
   return (
     <HeaderLayout loading={listRequest.loading || deleteRequest.loading}>
       <Header
         title={modelName}
         preset="default"
-        actions={[
-          {
-            id: "add",
-            text: "Add",
-            href: "/add",
-          },
-        ]}
+        actions={actions.length > 0 ? actions : undefined}
       />
       <Content>
         <TableList

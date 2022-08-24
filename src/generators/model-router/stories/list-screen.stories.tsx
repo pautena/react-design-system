@@ -74,3 +74,13 @@ WithoutDeleteAndUpdateFeature.args = {
   deleteFeature: false,
   updateFeature: false,
 };
+
+export const WithoutAddFeature = Template.bind({});
+WithoutAddFeature.args = {
+  modelName: "Items",
+  model: mockModel,
+  listData: data,
+  listRequest: IdleRequest,
+  deleteRequest: IdleRequest,
+  addFeature: false,
+};

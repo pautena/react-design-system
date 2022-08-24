@@ -22,6 +22,7 @@ interface DummyModelRouterProps {
   initialData: MockInstance[];
   deleteFeature?: boolean;
   updateFeature?: boolean;
+  addFeature?: boolean;
   onRequestListAction: HandlerFunction;
   onSubmitNewItemAction: HandlerFunction;
   onRequestItem: HandlerFunction;
@@ -34,8 +35,9 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
   const {
     requestTimeout,
     initialData,
-    deleteFeature,
-    updateFeature,
+    deleteFeature = true,
+    updateFeature = true,
+    addFeature = true,
     onRequestListAction,
     onSubmitNewItemAction,
     onRequestItem,
@@ -128,6 +130,7 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
       model={mockModel}
       deleteFeature={deleteFeature}
       updateFeature={updateFeature}
+      addFeature={addFeature}
       onRequestList={handleRequestList}
       listData={data}
       listRequest={listRequestState}

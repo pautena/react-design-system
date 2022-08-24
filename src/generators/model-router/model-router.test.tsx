@@ -33,6 +33,14 @@ describe("ModelRouter", () => {
         name: "Add Items",
         level: 1,
       }),
+    expectNotToBeInAddScreen: () => {
+      expect(
+        screen.queryByRole("heading", {
+          name: "Add Items",
+          level: 1,
+        }),
+      ).not.toBeInTheDocument();
+    },
     expectDetailScreen: async ({ id }: { id: string }) =>
       await screen.findByRole("heading", {
         name: id,
@@ -93,13 +101,16 @@ describe("ModelRouter", () => {
 
   const actions = {
     navigateToAddScreen: async () => {
-      await userEvent.click(screen.getByRole("button", { name: /add/i }));
+      await userEvent.click(screen.getByRole("button", { name: "Add" }));
+    },
+    forceNavigateToAddScreen: async () => {
+      await userEvent.click(screen.getByRole("button", { name: /force add/i }));
     },
     navigateToUpdateScreen: async ({ id }: { id: string }) => {
       await actions.openItemOptions({ id });
       await userEvent.click(screen.getByRole("menuitem", { name: /edit/i }));
     },
-    forceNavigateUpdateScreen: async () => {
+    forceNavigateToUpdateScreen: async () => {
       await userEvent.click(screen.getByRole("button", { name: /force update/i }));
     },
     navigateToDetailScreen: async ({ name }: { name: string }) => {
@@ -185,11 +196,13 @@ describe("ModelRouter", () => {
     screen = "initial",
     deleteFeature = true,
     updateFeature = true,
+    addFeature = true,
   }: {
     router?: TestRouter;
     screen?: "initial" | "add" | "details" | "update";
     deleteFeature?: boolean;
     updateFeature?: boolean;
+    addFeature?: boolean;
   } = {}) => {
     const onRequestList = jest.fn();
     const onRequestItem = jest.fn();
@@ -206,6 +219,7 @@ describe("ModelRouter", () => {
       return (
         <Box>
           <Button onClick={() => navigate(`/${id}/update`)}>Force update</Button>
+          <Button onClick={() => navigate("/add")}>Force add</Button>
         </Box>
       );
     };
@@ -216,6 +230,7 @@ describe("ModelRouter", () => {
           {...args}
           deleteFeature={deleteFeature}
           updateFeature={updateFeature}
+          addFeature={addFeature}
           requestTimeout={REQUEST_TIMEOUT}
           onRequestListAction={onRequestList}
           onRequestItem={onRequestItem}
@@ -357,13 +372,13 @@ describe("ModelRouter", () => {
       it("would render an add button", async () => {
         await renderComponent();
 
-        expect(screen.getByRole("button", { name: /add/i })).toBeInTheDocument();
+        expect(screen.getByRole("button", { name: "Add" })).toBeInTheDocument();
       });
 
       it("would navigate to the add screen if I press the add button", async () => {
         const { history } = await renderComponent({ router: "router" });
 
-        await userEvent.click(screen.getByRole("button", { name: /add/i }));
+        await userEvent.click(screen.getByRole("button", { name: "Add" }));
 
         expect(history.location.pathname).toBe("/add");
       });
@@ -737,7 +752,7 @@ describe("ModelRouter", () => {
           updateFeature: false,
         });
 
-        await actions.forceNavigateUpdateScreen();
+        await actions.forceNavigateToUpdateScreen();
 
         assertions.expectNotToBeInUpdateScreen({ id });
       });
@@ -751,6 +766,24 @@ describe("ModelRouter", () => {
         } = getRandomItem<MockInstance>(data);
 
         assertions.expectNotToHaveMenuOption({ id });
+      });
+    });
+
+    describe("addFeature disabled", () => {
+      it("wouldn't render a button to navigate to the add screen", async () => {
+        await renderComponent({ addFeature: false });
+
+        expect(screen.queryByRole("button", { name: "Add" })).not.toBeInTheDocument();
+      });
+
+      it("wouldn't have a path to navigate to the add screen", async () => {
+        await renderComponent({
+          addFeature: false,
+        });
+
+        await actions.forceNavigateToAddScreen();
+
+        assertions.expectNotToBeInAddScreen();
       });
     });
   });
