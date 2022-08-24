@@ -27,7 +27,7 @@ export const AppBarWithDrawerLayout = ({
       <DrawerProvider>
         {appBar}
         {drawer}
-        <Box sx={{ flexGrow: 1, p: 3 }}>
+        <Box sx={{ flexGrow: 1 }}>
           <DrawerHeader />
           {children}
         </Box>

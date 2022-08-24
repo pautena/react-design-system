@@ -22,7 +22,7 @@ export const MiniDrawerStory = () => (
       <DrawerContent nav={mockNav} />
     </MiniDrawer>
     <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
-    <ContentPlaceholder />
+    <ContentPlaceholder p={3} />
   </AppBarWithDrawerLayout>
 );
 MiniDrawerStory.storyName = "Mini drawer";
