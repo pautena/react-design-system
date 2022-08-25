@@ -18,7 +18,7 @@ export type ModelRouterProps<T extends BasicModelInstance> = DetailsScreenProps<
   UpdateScreenProps<T>;
 
 export const ModelRouter = <T extends BasicModelInstance>(props: ModelRouterProps<T>) => {
-  const { updateFeature, addFeature, detailsFeature } = props;
+  const { updateFeature = true, addFeature = true, detailsFeature = true } = props;
   return (
     <Routes>
       <Route path="" element={<ListScreen {...props} />} />

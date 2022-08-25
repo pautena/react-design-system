@@ -1,5 +1,5 @@
 import React from "react";
-import { DummyModelRouter } from "./stories/model-router.stories";
+import { DummyModelRouter, InternalModelRouter } from "./stories/model-router.stories";
 import {
   expectModelFieldInputExist,
   expectProgressIndicator,
@@ -10,6 +10,7 @@ import {
   expectModelFieldValue,
   expectModelFieldInputValue,
 } from "~/tests";
+import { data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
@@ -17,7 +18,7 @@ import { createModelInstance, MockInstance, mockModel } from "../generators.mock
 import { NotificationCenterProvider } from "../../providers";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -109,7 +110,7 @@ describe("ModelRouter", () => {
 
   const actions = {
     navigateToAddScreen: async () => {
-      await userEvent.click(screen.getByRole("button", { name: "Add" }));
+      await userEvent.click(await screen.findByRole("button", { name: "Add" }));
     },
     forceNavigateToAddScreen: async () => {
       await userEvent.click(screen.getByRole("button", { name: /force add/i }));
@@ -123,6 +124,9 @@ describe("ModelRouter", () => {
     },
     navigateToDetailScreen: async ({ name }: { name: string }) => {
       await userEvent.click(await screen.findByRole("cell", { name }));
+    },
+    navigateToInternal: async () => {
+      await userEvent.click(screen.getByRole("button", { name: /go to internal/i }));
     },
     forceNavigateToDetailsScreen: async () => {
       await userEvent.click(screen.getByRole("button", { name: /force details/i }));
@@ -205,10 +209,10 @@ describe("ModelRouter", () => {
   const renderComponent = async ({
     router = "memory",
     screen = "initial",
-    deleteFeature = true,
-    updateFeature = true,
-    addFeature = true,
-    detailsFeature = true,
+    deleteFeature,
+    updateFeature,
+    addFeature,
+    detailsFeature,
   }: {
     router?: TestRouter;
     screen?: "initial" | "add" | "details" | "update";
@@ -283,6 +287,15 @@ describe("ModelRouter", () => {
     };
   };
 
+  const renderComponentInsideRouter = () => {
+    render(
+      <NotificationCenterProvider>
+        <InternalModelRouter />
+      </NotificationCenterProvider>,
+      { router: "memory" },
+    );
+  };
+
   describe("router screens", () => {
     it("would render the list screen by default", async () => {
       await renderComponent();
@@ -355,6 +368,41 @@ describe("ModelRouter", () => {
       await actions.navigateToDetailScreen({ name: firstName });
 
       expect(history.location.pathname).toBe(`/${id}`);
+    });
+  });
+
+  describe("inside another router", () => {
+    it("would navigate to the add screen", async () => {
+      renderComponentInsideRouter();
+
+      await actions.navigateToInternal();
+      await actions.navigateToAddScreen();
+
+      await assertions.expectAddScreen();
+    });
+
+    it("would navigate to the detail screen", async () => {
+      renderComponentInsideRouter();
+      const {
+        item: { id, firstName },
+      } = getRandomItem<MockInstance>(mockData);
+
+      await actions.navigateToInternal();
+      await actions.navigateToDetailScreen({ name: firstName });
+
+      await assertions.expectDetailScreen({ id });
+    });
+
+    it("would navigate to the update screen", async () => {
+      renderComponentInsideRouter();
+      const {
+        item: { id },
+      } = getRandomItem<MockInstance>(mockData);
+
+      await actions.navigateToInternal();
+      await actions.navigateToUpdateScreen({ id });
+
+      await assertions.expectUpdateScreen({ id });
     });
   });
 

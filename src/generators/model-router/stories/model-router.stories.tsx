@@ -16,10 +16,13 @@ import {
   onSubmitUpdateAction,
   REQUEST_TIMEOUT,
 } from "./templates";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
 
 interface DummyModelRouterProps {
   requestTimeout: number;
   initialData: MockInstance[];
+  basePath?: string;
   deleteFeature?: boolean;
   updateFeature?: boolean;
   addFeature?: boolean;
@@ -36,6 +39,7 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
   const {
     requestTimeout,
     initialData,
+    basePath = "",
     deleteFeature = true,
     updateFeature = true,
     addFeature = true,
@@ -130,6 +134,7 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
       {...args}
       modelName="Items"
       model={mockModel}
+      basePath={basePath}
       deleteFeature={deleteFeature}
       updateFeature={updateFeature}
       addFeature={addFeature}
@@ -163,8 +168,50 @@ const args: DummyModelRouterProps = {
   onSubmitUpdateAction,
   onRequestDeleteAction,
 };
-
 DummyModelRouter.args = args;
+
+export const InternalModelRouter = () => {
+  const navigate = useNavigate();
+
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Box>
+            <Typography>Internal model route</Typography>
+            <Button variant="contained" onClick={() => navigate("/internal")}>
+              Go to Internal
+            </Button>
+          </Box>
+        }
+      />
+      <Route
+        path="/internal/*"
+        element={
+          <ModelRouter
+            modelName="Items"
+            model={mockModel}
+            basePath="/internal"
+            onRequestItem={() => null}
+            itemRequest={IdleRequest}
+            onRequestList={() => null}
+            listData={data}
+            onClickDeleteItem={() => null}
+            listRequest={IdleRequest}
+            deleteRequest={IdleRequest}
+            onSubmitNewItem={() => null}
+            newItemRequest={IdleRequest}
+            onSubmitUpdateItem={() => null}
+            submitUpdateItemRequest={IdleRequest}
+            updateItemRequest={IdleRequest}
+            onRequestUpdateItem={() => null}
+          />
+        }
+      />
+    </Routes>
+  );
+};
 
 export default {
   title: "Generators/ModelRouter",
