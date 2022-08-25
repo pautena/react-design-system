@@ -12,6 +12,11 @@ export interface BaseScreenProps {
   model: Model;
 
   /**
+   * Path to attach before each internal ModelRouter path
+   */
+  basePath?: string;
+
+  /**
    * If true delete features are enabled
    */
   deleteFeature?: boolean;

@@ -39,6 +39,7 @@ export interface UpdateScreenProps<T extends BasicModelInstance> extends BaseScr
 export const UpdateScreen = <T extends BasicModelInstance>({
   model,
   modelName,
+  basePath = "",
   submitUpdateItemRequest,
   updateItemRequest,
   updateItem,
@@ -61,7 +62,7 @@ export const UpdateScreen = <T extends BasicModelInstance>({
         message: `The item ${id} has been updated successfully`,
         severity: "success",
       });
-      navigate("/");
+      navigate(`${basePath}/`);
     }
   }, [submitUpdateItemRequest.success]);
 

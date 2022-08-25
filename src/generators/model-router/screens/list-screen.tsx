@@ -43,6 +43,7 @@ export const ListScreen = <T extends BasicModelInstance>({
   listData,
   listRequest,
   deleteRequest,
+  basePath = "",
   deleteFeature = true,
   updateFeature = true,
   addFeature = true,
@@ -58,13 +59,13 @@ export const ListScreen = <T extends BasicModelInstance>({
 
   const handleClickListItem = detailsFeature
     ? (item: T) => {
-        navigate(`/${item.id}`);
+        navigate(`${basePath}/${item.id}`);
       }
     : undefined;
 
   const handleClickListOption = (optionId: "edit" | "remove", item: T) => {
     if (optionId === "edit") {
-      navigate(`/${item.id}/update`);
+      navigate(`${basePath}/${item.id}/update`);
     } else {
       onClickDeleteItem(item);
     }
@@ -92,7 +93,7 @@ export const ListScreen = <T extends BasicModelInstance>({
     actions.push({
       id: "add",
       text: "Add",
-      href: "/add",
+      href: `${basePath}/add`,
     });
 
   return (

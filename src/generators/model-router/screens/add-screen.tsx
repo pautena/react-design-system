@@ -24,6 +24,7 @@ export interface AddScreenProps<T extends BasicModelInstance> extends BaseScreen
 export const AddScreen = <T extends BasicModelInstance>({
   model,
   modelName,
+  basePath = "",
   onSubmitNewItem,
   newItemRequest,
 }: AddScreenProps<T>) => {
@@ -33,7 +34,7 @@ export const AddScreen = <T extends BasicModelInstance>({
   useEffect(() => {
     if (newItemRequest.success) {
       show({ message: "Item added successfully", severity: "success" });
-      navigate("/");
+      navigate(`${basePath}/`);
     }
   }, [newItemRequest.success]);
 
