@@ -46,6 +46,7 @@ export const ListScreen = <T extends BasicModelInstance>({
   deleteFeature = true,
   updateFeature = true,
   addFeature = true,
+  detailsFeature = true,
   onRequestList,
   onClickDeleteItem,
 }: ListScreenProps<T>) => {
@@ -55,9 +56,11 @@ export const ListScreen = <T extends BasicModelInstance>({
     onRequestList();
   }, []);
 
-  const handleClickListItem = (item: T) => {
-    navigate(`/${item.id}`);
-  };
+  const handleClickListItem = detailsFeature
+    ? (item: T) => {
+        navigate(`/${item.id}`);
+      }
+    : undefined;
 
   const handleClickListOption = (optionId: "edit" | "remove", item: T) => {
     if (optionId === "edit") {

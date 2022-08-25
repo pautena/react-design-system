@@ -46,6 +46,14 @@ describe("ModelRouter", () => {
         name: id,
         level: 1,
       }),
+    expectNotToBeInDetailsScreen: ({ id }: { id: string }) => {
+      expect(
+        screen.queryByRole("heading", {
+          name: id,
+          level: 1,
+        }),
+      ).not.toBeInTheDocument();
+    },
     expectUpdateScreen: async ({ id }: { id: string }) =>
       await screen.findByRole("heading", {
         name: `Edit ${id}`,
@@ -115,6 +123,9 @@ describe("ModelRouter", () => {
     },
     navigateToDetailScreen: async ({ name }: { name: string }) => {
       await userEvent.click(await screen.findByRole("cell", { name }));
+    },
+    forceNavigateToDetailsScreen: async () => {
+      await userEvent.click(screen.getByRole("button", { name: /force details/i }));
     },
     openItemOptions: async ({ id }: { id: string }) => {
       await userEvent.click(await screen.findByTestId(`options-${id}`));
@@ -197,12 +208,14 @@ describe("ModelRouter", () => {
     deleteFeature = true,
     updateFeature = true,
     addFeature = true,
+    detailsFeature = true,
   }: {
     router?: TestRouter;
     screen?: "initial" | "add" | "details" | "update";
     deleteFeature?: boolean;
     updateFeature?: boolean;
     addFeature?: boolean;
+    detailsFeature?: boolean;
   } = {}) => {
     const onRequestList = jest.fn();
     const onRequestItem = jest.fn();
@@ -220,6 +233,7 @@ describe("ModelRouter", () => {
         <Box>
           <Button onClick={() => navigate(`/${id}/update`)}>Force update</Button>
           <Button onClick={() => navigate("/add")}>Force add</Button>
+          <Button onClick={() => navigate(`/${id}`)}>Force details</Button>
         </Box>
       );
     };
@@ -231,6 +245,7 @@ describe("ModelRouter", () => {
           deleteFeature={deleteFeature}
           updateFeature={updateFeature}
           addFeature={addFeature}
+          detailsFeature={detailsFeature}
           requestTimeout={REQUEST_TIMEOUT}
           onRequestListAction={onRequestList}
           onRequestItem={onRequestItem}
@@ -784,6 +799,32 @@ describe("ModelRouter", () => {
         await actions.forceNavigateToAddScreen();
 
         assertions.expectNotToBeInAddScreen();
+      });
+    });
+
+    describe("detailsFeature disabled", () => {
+      it("wouldn't navigate to the details screen if I click a row item", async () => {
+        const {
+          randomItem: {
+            item: { id, firstName },
+          },
+        } = await renderComponent({ detailsFeature: false });
+
+        await userEvent.click(await screen.findByRole("cell", { name: firstName }));
+
+        assertions.expectNotToBeInDetailsScreen({ id });
+      });
+
+      it("wouldn't have a path to navigate to the details screen", async () => {
+        const {
+          randomItem: {
+            item: { id },
+          },
+        } = await renderComponent({ detailsFeature: false });
+
+        await actions.forceNavigateToDetailsScreen();
+
+        assertions.expectNotToBeInDetailsScreen({ id });
       });
     });
   });

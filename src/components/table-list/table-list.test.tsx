@@ -76,13 +76,14 @@ describe("TableList", () => {
     defaultSort = "value",
     loading = false,
     options = undefined,
+    onClick = jest.fn(),
   }: {
     defaultSort?: string;
     loading?: boolean;
     search?: boolean;
     options?: TableRowOption<any>[];
+    onClick?: jest.Mock;
   } = {}) => {
-    const onClick = jest.fn();
     const instance = render(
       <TableList
         search={search}
@@ -219,6 +220,12 @@ describe("TableList", () => {
 
     expect(onClick).toHaveBeenCalledTimes(1);
     expect(onClick).toHaveBeenCalledWith(data[2]);
+  });
+
+  it("would continue working if onClick is not defined and we click a row", async () => {
+    renderInstance({ onClick: undefined });
+
+    await userEvents.click(screen.getByRole("row", { name: /item 3/i }));
   });
 
   describe("options menu", () => {

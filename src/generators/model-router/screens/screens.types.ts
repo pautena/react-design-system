@@ -25,4 +25,9 @@ export interface BaseScreenProps {
    * If true add features are enabled
    */
   addFeature?: boolean;
+
+  /**
+   * If true details features are enabled
+   */
+  detailsFeature?: boolean;
 }

@@ -18,11 +18,11 @@ export type ModelRouterProps<T extends BasicModelInstance> = DetailsScreenProps<
   UpdateScreenProps<T>;
 
 export const ModelRouter = <T extends BasicModelInstance>(props: ModelRouterProps<T>) => {
-  const { updateFeature, addFeature } = props;
+  const { updateFeature, addFeature, detailsFeature } = props;
   return (
     <Routes>
       <Route path="" element={<ListScreen {...props} />} />
-      <Route path=":id" element={<DetailsScreen {...props} />} />
+      {detailsFeature && <Route path=":id" element={<DetailsScreen {...props} />} />}
       {addFeature && <Route path="add" element={<AddScreen {...props} />} />}
       {updateFeature && <Route path=":id/update" element={<UpdateScreen {...props} />} />}
     </Routes>

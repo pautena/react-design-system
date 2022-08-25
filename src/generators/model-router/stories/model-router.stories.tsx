@@ -23,6 +23,7 @@ interface DummyModelRouterProps {
   deleteFeature?: boolean;
   updateFeature?: boolean;
   addFeature?: boolean;
+  detailsFeature?: boolean;
   onRequestListAction: HandlerFunction;
   onSubmitNewItemAction: HandlerFunction;
   onRequestItem: HandlerFunction;
@@ -38,6 +39,7 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
     deleteFeature = true,
     updateFeature = true,
     addFeature = true,
+    detailsFeature = true,
     onRequestListAction,
     onSubmitNewItemAction,
     onRequestItem,
@@ -131,6 +133,7 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
       deleteFeature={deleteFeature}
       updateFeature={updateFeature}
       addFeature={addFeature}
+      detailsFeature={detailsFeature}
       onRequestList={handleRequestList}
       listData={data}
       listRequest={listRequestState}

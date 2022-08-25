@@ -27,7 +27,7 @@ export const TableList = <T extends BasicModelInstance>({
   columns: columnsProp,
   options,
   data,
-  onClick = () => null,
+  onClick,
   search,
   defaultSort,
   defaultOrder,
@@ -62,10 +62,10 @@ export const TableList = <T extends BasicModelInstance>({
             return (
               <TableRow
                 key={row.id}
-                onClick={() => onClick(row)}
+                onClick={() => onClick && onClick(row)}
                 role="row"
                 aria-rowindex={i}
-                sx={{ cursor: "pointer" }}
+                sx={{ cursor: onClick && "pointer" }}
               >
                 {columns.map(({ id }, j) => (
                   <TableCell role="cell" scope="row" key={id} aria-rowindex={i} aria-colindex={j}>
