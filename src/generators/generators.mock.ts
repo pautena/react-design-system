@@ -1,6 +1,5 @@
-import { Model, ModelField } from "./generators.model";
+import { BasicModelInstance, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
-import { BasicData } from "../components";
 
 export const mockModel: Model = {
   fields: [
@@ -46,7 +45,8 @@ export const mockModel: Model = {
     },
     {
       id: "gender",
-      type: "string",
+      type: "enum",
+      value: faker.definitions.name?.gender || [],
       description: "User gender",
       name: "Gender",
       xs: 12,
@@ -78,10 +78,12 @@ export const mockModel: Model = {
       type: "group",
       description: "Information about the user car",
       name: "User car",
+      xs: 12,
       value: [
         {
           id: "model",
-          type: "string",
+          type: "enum",
+          value: faker.definitions.vehicle?.model || [],
           description: "Lorem ipsum",
           name: "Model",
           xs: 12,
@@ -89,7 +91,8 @@ export const mockModel: Model = {
         },
         {
           id: "manufacturer",
-          type: "string",
+          type: "enum",
+          value: faker.definitions.vehicle?.manufacturer || [],
           description: "Lorem ipsum",
           name: "Manufacturer",
           xs: 12,
@@ -105,7 +108,8 @@ export const mockModel: Model = {
         },
         {
           id: "type",
-          type: "string",
+          type: "enum",
+          value: faker.definitions.vehicle?.type || [],
           description: "Lorem ipsum",
           name: "Type",
           xs: 12,
@@ -207,7 +211,7 @@ const mockFieldValue = {
   tradeDate: () => "Thu Jul 21 2022 22:44:10 GMT+0200 (Central European Summer Time)",
 };
 
-export const createModelInstance = <T extends BasicData>(model: Model, seed = 100): T => {
+export const createModelInstance = <T extends BasicModelInstance>(model: Model, seed = 100): T => {
   faker.seed(seed);
   const obj = {};
 

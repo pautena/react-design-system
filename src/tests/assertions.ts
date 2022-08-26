@@ -14,6 +14,10 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
       expect(screen.getByRole("spinbutton", { name: field.name })).toBeInTheDocument();
     } else if (field.type === "boolean") {
       expect(screen.getByRole("checkbox", { name: field.name })).toBeInTheDocument();
+    } else if (field.type === "enum") {
+      expect(
+        screen.getByRole("button", { name: new RegExp(field.name.toLowerCase(), "i") }),
+      ).toBeInTheDocument();
     } else {
       expect(screen.getByRole("textbox", { name: field.name })).toBeInTheDocument();
     }

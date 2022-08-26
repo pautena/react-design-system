@@ -9,6 +9,7 @@ import {
   TestRouter,
   expectModelFieldValue,
   expectModelFieldInputValue,
+  selectOption,
 } from "~/tests";
 import { data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
@@ -149,13 +150,13 @@ describe("ModelRouter", () => {
       const firstNameElement = screen.getByRole("textbox", { name: /first name/i });
       const middleNameElement = screen.getByRole("textbox", { name: /middle name/i });
       const lastNameElement = screen.getByRole("textbox", { name: /last name/i });
-      const genderElement = screen.getByRole("textbox", { name: /gender/i });
+      const genderElement = screen.getByRole("button", { name: /gender/i });
       const ageElement = screen.getByRole("spinbutton", { name: /age/i });
       const birthDateElement = screen.getByRole("textbox", { name: /birth date/i });
-      const manufacturerElement = screen.getByRole("textbox", { name: /manufacturer/i });
-      const modelElement = screen.getByRole("textbox", { name: /model/i });
+      const manufacturerElement = screen.getByRole("button", { name: /manufacturer/i });
+      const modelElement = screen.getByRole("button", { name: /model/i });
       const colorElement = screen.getByRole("textbox", { name: /color/i });
-      const typeElement = screen.getByRole("textbox", { name: /type/i });
+      const typeElement = screen.getByRole("button", { name: /type/i });
       const vinElement = screen.getByRole("textbox", { name: /vin/i });
       const vrmElement = screen.getByRole("textbox", { name: /vrm/i });
       const quantityElement = screen.getByRole("spinbutton", { name: /q/i });
@@ -168,13 +169,9 @@ describe("ModelRouter", () => {
         await userEvent.clear(firstNameElement);
         await userEvent.clear(middleNameElement);
         await userEvent.clear(lastNameElement);
-        await userEvent.clear(genderElement);
         await userEvent.clear(ageElement);
         await userEvent.clear(birthDateElement);
-        await userEvent.clear(manufacturerElement);
-        await userEvent.clear(modelElement);
         await userEvent.clear(colorElement);
-        await userEvent.clear(typeElement);
         await userEvent.clear(vinElement);
         await userEvent.clear(vrmElement);
         await userEvent.clear(quantityElement);
@@ -186,17 +183,19 @@ describe("ModelRouter", () => {
       await userEvent.type(firstNameElement, instance.firstName);
       await userEvent.type(middleNameElement, instance.middleName);
       await userEvent.type(lastNameElement, instance.lastName);
-      await userEvent.type(genderElement, instance.gender);
+      await selectOption(genderElement, instance.gender);
       await userEvent.type(ageElement, instance.age.toString());
       await userEvent.type(birthDateElement, instance.birthDate);
-      await userEvent.type(modelElement, instance.car.model);
-      await userEvent.type(manufacturerElement, instance.car.manufacturer);
+      await selectOption(modelElement, instance.car.model);
+      await selectOption(manufacturerElement, instance.car.manufacturer);
       await userEvent.type(colorElement, instance.car.color);
-      await userEvent.type(typeElement, instance.car.type);
+      await selectOption(typeElement, instance.car.type);
       await userEvent.type(vinElement, instance.car.vin);
       await userEvent.type(vrmElement, instance.car.vrm);
       await userEvent.type(quantityElement, instance.quantity.toString());
-      instance.available && (await userEvent.click(availableElement));
+      if (instance.available && !availableElement.checked) {
+        await userEvent.click(availableElement);
+      }
       await userEvent.type(currencyElement, instance.currency);
       await userEvent.type(tradeDateElement, instance.tradeDate);
 

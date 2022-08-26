@@ -25,7 +25,17 @@ type BooleanField = {
   type: "boolean";
 };
 
-type SingleFields = StringField | NumberField | BooleanField;
+type EnumField = {
+  type: "enum";
+  value: string[];
+};
+
+type MultiEnumField = {
+  type: "multienum";
+  value: string[];
+};
+
+type SingleFields = StringField | NumberField | BooleanField | EnumField | MultiEnumField;
 
 export type GroupField = {
   type: "group";
@@ -44,3 +54,5 @@ export interface BasicModelInstance {
   id: string;
   [key: string]: any;
 }
+
+export type ModelFieldTypes = "string" | "number" | "boolean" | "enum" | "multienum";

@@ -2,17 +2,21 @@ import {
   Box,
   Button,
   Checkbox,
+  FormControl,
   FormControlLabel,
-  FormGroup,
   Grid,
+  InputLabel,
+  MenuItem,
   Paper,
+  Select,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from "@mui/material";
 import React, { ChangeEvent, FormEvent, ReactElement } from "react";
 import { useState } from "react";
 import { useGetDefaultThemeColor } from "../../utils/theme";
-import { Model, ModelField, BasicModelInstance } from "../generators.model";
+import { Model, ModelField, BasicModelInstance, ModelFieldTypes } from "../generators.model";
 
 export interface ModelFormProps<T extends BasicModelInstance> {
   model: Model;
@@ -29,33 +33,44 @@ export const ModelForm = <T extends BasicModelInstance>({
 }: ModelFormProps<T>) => {
   const [values, setValues] = useState<T>(initialValues || ({} as T));
 
-  const handleInputChange = (
-    e: ChangeEvent<any>,
-    key: string | undefined,
-    type: "string" | "number" | "boolean",
-  ) => {
-    e.preventDefault();
-
-    let value = e.target.value;
-    if (type === "boolean") {
-      value = e.target.checked;
-    } else if (type === "number") {
-      value = parseInt(e.target.value);
-    }
-
+  const setKeyValue = (name: string, key: string | undefined, value: any) => {
     setValues((v) => {
       const n: Record<string, object> = {};
       if (key) {
         n[key] = {
           ...v[key],
-          [e.target.name]: value,
+          [name]: value,
         };
       } else {
-        n[e.target.name] = value;
+        n[name] = value;
       }
 
       return { ...v, ...n };
     });
+  };
+
+  const handleCheckboxChange = (e: ChangeEvent<any>, key: string | undefined) => {
+    e.preventDefault();
+    setKeyValue(e.target.name, key, e.target.checked);
+  };
+
+  const handleSelectChange = (e: SelectChangeEvent<any>, key: string | undefined) => {
+    e.preventDefault();
+    setKeyValue(e.target.name, key, e.target.value);
+  };
+
+  const handleInputChange = (
+    e: ChangeEvent<any>,
+    key: string | undefined,
+    type: ModelFieldTypes,
+  ) => {
+    e.preventDefault();
+
+    let value = e.target.value;
+    if (type === "number") {
+      value = parseInt(e.target.value);
+    }
+    setKeyValue(e.target.name, key, value);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -69,6 +84,7 @@ export const ModelForm = <T extends BasicModelInstance>({
     const { id, type, name, description, xs, sm, md, lg, xl } = field;
 
     let fieldInput: ReactElement;
+    const value = key && key in values ? values[key][id] : values[id];
     if (type === "group") {
       fieldInput = (
         <Paper>
@@ -87,18 +103,35 @@ export const ModelForm = <T extends BasicModelInstance>({
       );
     } else if (type === "boolean") {
       fieldInput = (
-        <FormGroup>
+        <Box sx={{ height: 1, display: "flex", alignItems: "center" }}>
           <FormControlLabel
             control={
-              <Checkbox
-                name={id}
-                onChange={(e) => handleInputChange(e, key, type)}
-                checked={key && key in values ? values[key][id] : values[id]}
-              />
+              <Checkbox name={id} onChange={(e) => handleCheckboxChange(e, key)} checked={value} />
             }
             label={name}
           />
-        </FormGroup>
+        </Box>
+      );
+    } else if (type === "enum") {
+      fieldInput = (
+        <FormControl fullWidth>
+          <InputLabel id={`${id}-select-label`}>{name}</InputLabel>
+          <Select
+            labelId={`${id}-select-label`}
+            id={`${id}-simple-select`}
+            value={value}
+            label={name}
+            name={id}
+            onChange={(e) => handleSelectChange(e, key)}
+            required
+          >
+            {field.value.map((value) => (
+              <MenuItem key={value} value={value}>
+                {value}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       );
     } else {
       fieldInput = (
@@ -109,7 +142,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           name={id}
           variant="outlined"
           fullWidth
-          value={key && key in values ? values[key][id] : values[id]}
+          value={value}
           onChange={(e) => handleInputChange(e, key, type)}
         />
       );

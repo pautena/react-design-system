@@ -5,6 +5,7 @@ import {
   expectModelFieldInputValue,
   render,
   screen,
+  selectOption,
 } from "../../tests";
 import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import userEvent from "@testing-library/user-event";
@@ -52,16 +53,16 @@ describe("ModelForm", () => {
     await userEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
     await userEvent.type(screen.getByRole("textbox", { name: /middle name/i }), "Noah");
     await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
-    await userEvent.type(screen.getByRole("textbox", { name: /gender/i }), "Cis Man");
+    await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis Man");
     await userEvent.type(screen.getByRole("spinbutton", { name: /age/i }), "37");
     await userEvent.type(
       screen.getByRole("textbox", { name: /birth date/i }),
       "Tue Nov 26 2047 12:14:19",
     );
-    await userEvent.type(screen.getByRole("textbox", { name: /model/i }), "Spyder");
-    await userEvent.type(screen.getByRole("textbox", { name: /manufacturer/i }), "Bugatti");
+    await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
+    await selectOption(screen.getByRole("button", { name: /manufacturer/i }), "Bugatti");
     await userEvent.type(screen.getByRole("textbox", { name: /color/i }), "red");
-    await userEvent.type(screen.getByRole("textbox", { name: /type/i }), "Convertible");
+    await selectOption(screen.getByRole("button", { name: /type/i }), "Convertible");
     await userEvent.type(screen.getByRole("textbox", { name: /vin/i }), "46N6UE4VJ2XL28828");
     await userEvent.type(screen.getByRole("textbox", { name: /vrm/i }), "NE51AFH");
     await userEvent.type(screen.getByRole("spinbutton", { name: /q/i }), "9");
