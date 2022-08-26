@@ -12,6 +12,8 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
       expectModelFieldInputExist(field.value);
     } else if (field.type === "number") {
       expect(screen.getByRole("spinbutton", { name: field.name })).toBeInTheDocument();
+    } else if (field.type === "boolean") {
+      expect(screen.getByRole("checkbox", { name: field.name })).toBeInTheDocument();
     } else {
       expect(screen.getByRole("textbox", { name: field.name })).toBeInTheDocument();
     }
@@ -25,6 +27,10 @@ export const expectModelFieldInputValue = (fields: ModelField[], initialValues: 
       expectModelFieldInputValue(field.value, value);
     } else if (field.type === "number") {
       expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
+    } else if (field.type === "boolean") {
+      expect(
+        screen.getByRole("checkbox", { name: field.name, checked: value }),
+      ).toBeInTheDocument();
     } else {
       expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
     }

@@ -18,7 +18,7 @@ import { createModelInstance, MockInstance, mockModel } from "../generators.mock
 import { NotificationCenterProvider } from "../../providers";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -90,7 +90,7 @@ describe("ModelRouter", () => {
         middleName: instance.middleName,
         lastName: instance.lastName,
         gender: instance.gender,
-        age: instance.age.toString(),
+        age: instance.age,
         birthDate: instance.birthDate,
         car: {
           model: instance.car.model,
@@ -100,8 +100,8 @@ describe("ModelRouter", () => {
           vin: instance.car.vin,
           vrm: instance.car.vrm,
         },
-        quantity: instance.quantity.toString(),
-        available: instance.available.toString(),
+        quantity: instance.quantity,
+        available: instance.available,
         currency: instance.currency,
         tradeDate: instance.tradeDate,
       });
@@ -159,7 +159,7 @@ describe("ModelRouter", () => {
       const vinElement = screen.getByRole("textbox", { name: /vin/i });
       const vrmElement = screen.getByRole("textbox", { name: /vrm/i });
       const quantityElement = screen.getByRole("spinbutton", { name: /q/i });
-      const availableElement = screen.getByRole("textbox", { name: /available/i });
+      const availableElement = screen.getByRole("checkbox", { name: /available/i });
       const currencyElement = screen.getByRole("textbox", { name: /currency/i });
       const tradeDateElement = screen.getByRole("textbox", { name: /trade date/i });
 
@@ -196,7 +196,7 @@ describe("ModelRouter", () => {
       await userEvent.type(vinElement, instance.car.vin);
       await userEvent.type(vrmElement, instance.car.vrm);
       await userEvent.type(quantityElement, instance.quantity.toString());
-      await userEvent.type(availableElement, instance.available.toString());
+      instance.available && (await userEvent.click(availableElement));
       await userEvent.type(currencyElement, instance.currency);
       await userEvent.type(tradeDateElement, instance.tradeDate);
 
@@ -707,12 +707,12 @@ describe("ModelRouter", () => {
     });
 
     it("would make a request with the new values when the form is submitted", async () => {
-      const { model } = await renderComponent({ screen: "update" });
+      const { model, onSubmitUpdate } = await renderComponent({ screen: "update" });
 
       await waitForProgressIndicatorToBeRemoved();
-      const newInstance = await actions.fullfillModelForm({ model, clear: true });
+      const newInstance = await actions.fullfillModelForm({ model, clear: true, submit: true });
 
-      expectModelFieldInputValue(model.fields, newInstance);
+      assertions.expectSubmitInstanceCall(onSubmitUpdate, newInstance);
     });
 
     it("would show a loading indicator while the submit request is in progress", async () => {
@@ -724,14 +724,14 @@ describe("ModelRouter", () => {
       expectProgressIndicator();
     });
 
-    it("would navigate to the list screen when the submit request finish", async () => {
-      const { model, onSubmitUpdate } = await renderComponent({ screen: "update" });
+    // it("would navigate to the list screen when the submit request finish", async () => {
+    //   const { model } = await renderComponent({ screen: "update" });
 
-      await waitForProgressIndicatorToBeRemoved();
-      const newInstance = await actions.fullfillModelForm({ model, submit: true, clear: true });
+    //   await waitForProgressIndicatorToBeRemoved();
+    //   await actions.fullfillModelForm({ model, submit: true, clear: true });
 
-      assertions.expectSubmitInstanceCall(onSubmitUpdate, newInstance);
-    });
+    //   await assertions.expectListScreen();
+    // });
   });
 
   describe("delete item", () => {

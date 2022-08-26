@@ -65,7 +65,7 @@ describe("ModelForm", () => {
     await userEvent.type(screen.getByRole("textbox", { name: /vin/i }), "46N6UE4VJ2XL28828");
     await userEvent.type(screen.getByRole("textbox", { name: /vrm/i }), "NE51AFH");
     await userEvent.type(screen.getByRole("spinbutton", { name: /q/i }), "9");
-    await userEvent.type(screen.getByRole("textbox", { name: /available/i }), "true");
+    await userEvent.click(screen.getByRole("checkbox", { name: /available/i }));
     await userEvent.type(screen.getByRole("textbox", { name: /currency/i }), "mxn");
     await userEvent.type(
       screen.getByRole("textbox", { name: /trade date/i }),
@@ -81,7 +81,7 @@ describe("ModelForm", () => {
       middleName: "Noah",
       lastName: "Gorczany",
       gender: "Cis Man",
-      age: "37",
+      age: 37,
       birthDate: "Tue Nov 26 2047 12:14:19",
       car: {
         model: "Spyder",
@@ -91,8 +91,8 @@ describe("ModelForm", () => {
         vin: "46N6UE4VJ2XL28828",
         vrm: "NE51AFH",
       },
-      quantity: "9",
-      available: "true",
+      quantity: 9,
+      available: true,
       currency: "mxn",
       tradeDate: "Thu Jul 21 2022 22:44:10",
     });
