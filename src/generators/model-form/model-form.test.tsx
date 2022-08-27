@@ -6,6 +6,7 @@ import {
   render,
   screen,
   selectOption,
+  selectOptions,
 } from "../../tests";
 import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import userEvent from "@testing-library/user-event";
@@ -62,7 +63,11 @@ describe("ModelForm", () => {
     await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
     await selectOption(screen.getByRole("button", { name: /manufacturer/i }), "Bugatti");
     await userEvent.type(screen.getByRole("textbox", { name: /color/i }), "red");
-    await selectOption(screen.getByRole("button", { name: /type/i }), "Convertible");
+    await selectOptions(screen.getByRole("button", { name: /type/i }), [
+      "Coupe",
+      "Hatchback",
+      "Minivan",
+    ]);
     await userEvent.type(screen.getByRole("textbox", { name: /vin/i }), "46N6UE4VJ2XL28828");
     await userEvent.type(screen.getByRole("textbox", { name: /vrm/i }), "NE51AFH");
     await userEvent.type(screen.getByRole("spinbutton", { name: /q/i }), "9");
@@ -88,7 +93,7 @@ describe("ModelForm", () => {
         model: "Spyder",
         manufacturer: "Bugatti",
         color: "red",
-        type: "Convertible",
+        type: ["Coupe", "Hatchback", "Minivan"],
         vin: "46N6UE4VJ2XL28828",
         vrm: "NE51AFH",
       },

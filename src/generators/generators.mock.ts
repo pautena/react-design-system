@@ -1,5 +1,6 @@
 import { BasicModelInstance, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
+import { newArrayWithSize } from "../utils";
 
 export const mockModel: Model = {
   fields: [
@@ -108,7 +109,7 @@ export const mockModel: Model = {
         },
         {
           id: "type",
-          type: "enum",
+          type: "multienum",
           value: faker.definitions.vehicle?.type || [],
           description: "Lorem ipsum",
           name: "Type",
@@ -181,7 +182,7 @@ export interface MockInstance {
     model: string;
     manufacturer: string;
     color: string;
-    type: string;
+    type: string[];
     vin: string;
     vrm: string;
   };
@@ -202,7 +203,11 @@ const mockFieldValue = {
   model: faker.vehicle.model,
   manufacturer: faker.vehicle.manufacturer,
   color: faker.vehicle.color,
-  type: faker.vehicle.type,
+  type: () => {
+    const array = newArrayWithSize(faker.datatype.number({ min: 2, max: 5 }), 0);
+    const result = array.map(() => faker.vehicle.type());
+    return [...new Set(result)];
+  },
   vin: faker.vehicle.vin,
   vrm: faker.vehicle.vrm,
   quantity: () => faker.datatype.number({ min: 1, max: 9 }),

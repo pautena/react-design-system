@@ -20,6 +20,7 @@ import { NotificationCenterProvider } from "../../providers";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { clearCheckbox, clearMultiSelect, selectOptions } from "../../tests";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -178,6 +179,8 @@ describe("ModelRouter", () => {
         await userEvent.clear(availableElement);
         await userEvent.clear(currencyElement);
         await userEvent.clear(tradeDateElement);
+        await clearCheckbox(availableElement);
+        await clearMultiSelect(typeElement);
       }
       await userEvent.type(idElement, instance.id);
       await userEvent.type(firstNameElement, instance.firstName);
@@ -189,11 +192,11 @@ describe("ModelRouter", () => {
       await selectOption(modelElement, instance.car.model);
       await selectOption(manufacturerElement, instance.car.manufacturer);
       await userEvent.type(colorElement, instance.car.color);
-      await selectOption(typeElement, instance.car.type);
+      await selectOptions(typeElement, instance.car.type);
       await userEvent.type(vinElement, instance.car.vin);
       await userEvent.type(vrmElement, instance.car.vrm);
       await userEvent.type(quantityElement, instance.quantity.toString());
-      if (instance.available && !availableElement.checked) {
+      if (instance.available) {
         await userEvent.click(availableElement);
       }
       await userEvent.type(currencyElement, instance.currency);

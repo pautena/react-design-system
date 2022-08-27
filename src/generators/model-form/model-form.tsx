@@ -6,6 +6,7 @@ import {
   FormControlLabel,
   Grid,
   InputLabel,
+  ListItemText,
   MenuItem,
   Paper,
   Select,
@@ -13,10 +14,52 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent, FormEvent, ReactElement } from "react";
+import React, { ChangeEvent, FormEvent, ReactElement, useMemo } from "react";
 import { useState } from "react";
 import { useGetDefaultThemeColor } from "../../utils/theme";
 import { Model, ModelField, BasicModelInstance, ModelFieldTypes } from "../generators.model";
+
+const InitialStateZeroValue: Record<string, any> = {
+  string: undefined,
+  number: undefined,
+  boolean: false,
+  enum: undefined,
+  multienum: [],
+  group: {},
+};
+
+const getFieldInitialState = <T extends BasicModelInstance>(
+  field: ModelField,
+  initialValues: T | undefined,
+) => {
+  return initialValues ? initialValues[field.id] : InitialStateZeroValue[field.type];
+};
+
+const getValuesInitialState = <T extends BasicModelInstance>(
+  model: Model,
+  initialValues: T | undefined,
+): T => {
+  const obj = {} as any;
+
+  model.fields.forEach((field) => {
+    let value: any;
+    if (field.type === "group") {
+      value = {};
+      field.value.forEach((groupField) => {
+        value[groupField.id] = getFieldInitialState(
+          groupField,
+          initialValues && initialValues[field.id],
+        );
+      });
+    } else {
+      value = getFieldInitialState(field, initialValues);
+    }
+
+    obj[field.id] = value;
+  });
+
+  return obj;
+};
 
 export interface ModelFormProps<T extends BasicModelInstance> {
   model: Model;
@@ -31,7 +74,11 @@ export const ModelForm = <T extends BasicModelInstance>({
   onSubmit,
   initialValues,
 }: ModelFormProps<T>) => {
-  const [values, setValues] = useState<T>(initialValues || ({} as T));
+  const valuesInitialState = useMemo(
+    () => getValuesInitialState<T>(model, initialValues),
+    [model, initialValues],
+  );
+  const [values, setValues] = useState<T>(valuesInitialState);
 
   const setKeyValue = (name: string, key: string | undefined, value: any) => {
     setValues((v) => {
@@ -59,6 +106,13 @@ export const ModelForm = <T extends BasicModelInstance>({
     setKeyValue(e.target.name, key, e.target.value);
   };
 
+  const handleMultiSelectChange = (e: SelectChangeEvent<any>, key: string | undefined) => {
+    e.preventDefault();
+    const { value } = e.target;
+    const newValue = typeof value === "string" ? value.split(",") : value;
+    setKeyValue(e.target.name, key, newValue);
+  };
+
   const handleInputChange = (
     e: ChangeEvent<any>,
     key: string | undefined,
@@ -84,7 +138,7 @@ export const ModelForm = <T extends BasicModelInstance>({
     const { id, type, name, description, xs, sm, md, lg, xl } = field;
 
     let fieldInput: ReactElement;
-    const value = key && key in values ? values[key][id] : values[id];
+    const value = key ? values[key][id] : values[id];
     if (type === "group") {
       fieldInput = (
         <Paper>
@@ -118,16 +172,40 @@ export const ModelForm = <T extends BasicModelInstance>({
           <InputLabel id={`${id}-select-label`}>{name}</InputLabel>
           <Select
             labelId={`${id}-select-label`}
-            id={`${id}-simple-select`}
+            id={`${id}-select`}
             value={value}
             label={name}
             name={id}
             onChange={(e) => handleSelectChange(e, key)}
             required
           >
-            {field.value.map((value) => (
-              <MenuItem key={value} value={value}>
-                {value}
+            {field.value.map((fieldValue) => (
+              <MenuItem key={fieldValue} value={fieldValue}>
+                {fieldValue}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      );
+    } else if (type === "multienum") {
+      fieldInput = (
+        <FormControl fullWidth>
+          <InputLabel id={`${id}-select-label`}>{name}</InputLabel>
+          <Select
+            labelId={`${id}-select-label`}
+            id={`${id}-select`}
+            value={value || []}
+            renderValue={(selected) => selected.join(", ")}
+            label={name}
+            name={id}
+            onChange={(e) => handleMultiSelectChange(e, key)}
+            required
+            multiple
+          >
+            {field.value.map((fieldValue) => (
+              <MenuItem key={fieldValue} value={fieldValue}>
+                <Checkbox checked={(value || []).includes(fieldValue)} />
+                <ListItemText primary={fieldValue} />
               </MenuItem>
             ))}
           </Select>
