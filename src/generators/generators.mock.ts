@@ -3,7 +3,8 @@ import { faker } from "@faker-js/faker";
 import { newArrayWithSize } from "../utils";
 
 export const BirthDateFormat = "dd/MM/yyyy";
-export const ReturnTimeFormat = "hh:mm";
+export const ReturnTimeFormat = "HH:mm";
+export const TradeDateFormat = "dd/MM/yyyy HH:mm";
 export const mockModel: Model = {
   fields: [
     {
@@ -175,11 +176,13 @@ export const mockModel: Model = {
     },
     {
       id: "tradeDate",
-      type: "string",
+      type: "datetime",
+      format: TradeDateFormat,
+      default: new Date(2022, 8, 12, 9, 0),
       description: "Lorem ipsum",
       name: "Trade date",
       xs: 12,
-      sm: 3,
+      sm: 5,
     },
   ],
 };
@@ -204,7 +207,7 @@ export interface MockInstance {
   quantity: number;
   available: boolean;
   currency: string;
-  tradeDate: string;
+  tradeDate: Date;
 }
 
 const mockFieldValue = {
@@ -240,7 +243,7 @@ const mockFieldValue = {
   quantity: () => faker.datatype.number({ min: 1, max: 9 }),
   available: faker.datatype.boolean,
   currency: () => "MXN",
-  tradeDate: () => "Thu Jul 21 2022 22:44:10 GMT+0200 (Central European Summer Time)",
+  tradeDate: faker.date.recent,
 };
 
 export const createModelInstance = <T extends BasicModelInstance>(model: Model, seed = 100): T => {

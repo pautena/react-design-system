@@ -15,7 +15,7 @@ const singleDetailValueFactory = <T extends BasicModelInstance>(field: ModelFiel
   const value = instance[id];
   if (type === "boolean") {
     return <ValueBoolean label={name} value={value} />;
-  } else if (type === "date" || type === "time") {
+  } else if (type === "date" || type === "time" || type === "datetime") {
     return <ValueDatetime label={name} value={value} format={field.format} />;
   }
   return <ValueText label={name} value={value?.toString()} />;

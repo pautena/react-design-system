@@ -47,6 +47,12 @@ type TimeField = {
   default: any;
 };
 
+type DatetimeField = {
+  type: "datetime";
+  format: string;
+  default: any;
+};
+
 type SingleFields =
   | StringField
   | NumberField
@@ -54,7 +60,8 @@ type SingleFields =
   | EnumField
   | MultiEnumField
   | DateField
-  | TimeField;
+  | TimeField
+  | DatetimeField;
 
 export type GroupField = {
   type: "group";

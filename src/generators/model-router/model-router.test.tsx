@@ -21,12 +21,19 @@ import {
   MockInstance,
   mockModel,
   ReturnTimeFormat,
+  TradeDateFormat,
 } from "../generators.mock";
 import { NotificationCenterProvider } from "../../providers";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { clearCheckbox, clearMultiSelect, pickDatetime, selectOptions } from "../../tests";
+import {
+  clearCheckbox,
+  clearMultiSelect,
+  expectToHaveBeenCalledOnceWithMockInstance,
+  pickDatetime,
+  selectOptions,
+} from "../../tests";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -89,42 +96,6 @@ describe("ModelRouter", () => {
     },
     expectNotToHaveMenuOption: ({ id }: { id: string }) => {
       expect(screen.queryByTestId(`options-${id}`)).not.toBeInTheDocument();
-    },
-    expectSubmitInstanceCall: (mockFn: jest.Mock, instance: MockInstance) => {
-      expect(mockFn).toHaveBeenCalledTimes(1);
-
-      const calledReturnTime: Date = mockFn.mock.calls[0][0].car.returnTime;
-
-      expect(mockFn).toHaveBeenCalledWith({
-        id: instance.id,
-        firstName: instance.firstName,
-        middleName: instance.middleName,
-        lastName: instance.lastName,
-        gender: instance.gender,
-        age: instance.age,
-        birthDate: instance.birthDate,
-        car: {
-          model: instance.car.model,
-          manufacturer: instance.car.manufacturer,
-          color: instance.car.color,
-          type: instance.car.type,
-          vin: instance.car.vin,
-          vrm: instance.car.vrm,
-          returnTime: new Date(
-            calledReturnTime.getFullYear(),
-            calledReturnTime.getMonth(),
-            calledReturnTime.getDate(),
-            instance.car.returnTime.getHours(),
-            instance.car.returnTime.getMinutes(),
-            calledReturnTime.getSeconds(),
-            calledReturnTime.getMilliseconds(),
-          ),
-        },
-        quantity: instance.quantity,
-        available: instance.available,
-        currency: instance.currency,
-        tradeDate: instance.tradeDate,
-      });
     },
   };
 
@@ -221,7 +192,7 @@ describe("ModelRouter", () => {
         await userEvent.click(availableElement);
       }
       await userEvent.type(currencyElement, instance.currency);
-      await userEvent.type(tradeDateElement, instance.tradeDate);
+      pickDatetime(tradeDateElement, instance.tradeDate, TradeDateFormat);
 
       submit && (await userEvent.click(screen.getByRole("button", { name: /save/i })));
 
@@ -567,7 +538,7 @@ describe("ModelRouter", () => {
 
       const newInstance = await actions.fullfillModelForm({ model, submit: true });
 
-      assertions.expectSubmitInstanceCall(onSubmitNewItem, newInstance);
+      expectToHaveBeenCalledOnceWithMockInstance(onSubmitNewItem, newInstance);
     });
 
     it("would show a loading indicator when the request is in progress", async () => {
@@ -735,7 +706,7 @@ describe("ModelRouter", () => {
       await waitForProgressIndicatorToBeRemoved();
       const newInstance = await actions.fullfillModelForm({ model, clear: true, submit: true });
 
-      assertions.expectSubmitInstanceCall(onSubmitUpdate, newInstance);
+      expectToHaveBeenCalledOnceWithMockInstance(onSubmitUpdate, newInstance);
     });
 
     it("would show a loading indicator while the submit request is in progress", async () => {

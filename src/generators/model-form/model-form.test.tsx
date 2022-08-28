@@ -8,8 +8,16 @@ import {
   selectOption,
   selectOptions,
   pickDatetime,
+  expectToHaveBeenCalledOnceWithMockInstance,
 } from "../../tests";
-import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
+import {
+  BirthDateFormat,
+  createModelInstance,
+  MockInstance,
+  mockModel,
+  ReturnTimeFormat,
+  TradeDateFormat,
+} from "../generators.mock";
 import userEvent from "@testing-library/user-event";
 
 describe("ModelForm", () => {
@@ -51,6 +59,8 @@ describe("ModelForm", () => {
   it("would call onSubmit if I fullfill all inputs and press the submit button", async () => {
     const { onSubmit } = renderComponent();
     const birthDate = new Date(2047, 11, 26);
+    const returnTime = new Date(1970, 0, 1, 10, 12);
+    const tradeDate = new Date(2047, 11, 26, 12, 50);
 
     await userEvent.type(screen.getByRole("textbox", { name: "Id" }), "Id-1");
     await userEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
@@ -58,7 +68,7 @@ describe("ModelForm", () => {
     await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
     await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis Man");
     await userEvent.type(screen.getByRole("spinbutton", { name: /age/i }), "37");
-    pickDatetime(screen.getByRole("textbox", { name: /birth date/i }), birthDate, "dd/MM/yyyy");
+    pickDatetime(screen.getByRole("textbox", { name: /birth date/i }), birthDate, BirthDateFormat);
     await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
     await selectOption(screen.getByRole("button", { name: /manufacturer/i }), "Bugatti");
     await userEvent.type(screen.getByRole("textbox", { name: /color/i }), "red");
@@ -69,18 +79,19 @@ describe("ModelForm", () => {
     ]);
     await userEvent.type(screen.getByRole("textbox", { name: /vin/i }), "46N6UE4VJ2XL28828");
     await userEvent.type(screen.getByRole("textbox", { name: /vrm/i }), "NE51AFH");
+    pickDatetime(
+      screen.getByRole("textbox", { name: /return time/i }),
+      returnTime,
+      ReturnTimeFormat,
+    );
     await userEvent.type(screen.getByRole("spinbutton", { name: /q/i }), "9");
     await userEvent.click(screen.getByRole("checkbox", { name: /available/i }));
     await userEvent.type(screen.getByRole("textbox", { name: /currency/i }), "mxn");
-    await userEvent.type(
-      screen.getByRole("textbox", { name: /trade date/i }),
-      "Thu Jul 21 2022 22:44:10",
-    );
+    pickDatetime(screen.getByRole("textbox", { name: /trade date/i }), tradeDate, TradeDateFormat);
 
     await userEvent.click(screen.getByRole("button", { name: /save/i }));
 
-    expect(onSubmit).toHaveBeenCalledTimes(1);
-    expect(onSubmit).toHaveBeenCalledWith({
+    expectToHaveBeenCalledOnceWithMockInstance(onSubmit, {
       id: "Id-1",
       firstName: "Karianne",
       middleName: "Noah",
@@ -95,11 +106,12 @@ describe("ModelForm", () => {
         type: ["Coupe", "Hatchback", "Minivan"],
         vin: "46N6UE4VJ2XL28828",
         vrm: "NE51AFH",
+        returnTime,
       },
       quantity: 9,
       available: true,
       currency: "mxn",
-      tradeDate: "Thu Jul 21 2022 22:44:10",
+      tradeDate,
     });
   });
 });

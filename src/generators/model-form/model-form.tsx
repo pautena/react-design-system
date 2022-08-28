@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DesktopDatePicker, TimePicker } from "@mui/x-date-pickers";
+import { DesktopDatePicker, TimePicker, DateTimePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, FormEvent, ReactElement, useMemo } from "react";
 import { useState } from "react";
 import { useGetDefaultThemeColor } from "../../utils/theme";
@@ -232,6 +232,16 @@ export const ModelForm = <T extends BasicModelInstance>({
     } else if (type === "time") {
       fieldInput = (
         <TimePicker
+          label={name}
+          inputFormat={field.format}
+          value={value}
+          onChange={(value) => handleDateChange(value, key, id)}
+          renderInput={(params: any) => <TextField {...params} />}
+        />
+      );
+    } else if (type === "datetime") {
+      fieldInput = (
+        <DateTimePicker
           label={name}
           inputFormat={field.format}
           value={value}
