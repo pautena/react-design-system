@@ -15,12 +15,18 @@ import { data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
-import { BirthDateFormat, createModelInstance, MockInstance, mockModel } from "../generators.mock";
+import {
+  BirthDateFormat,
+  createModelInstance,
+  MockInstance,
+  mockModel,
+  ReturnTimeFormat,
+} from "../generators.mock";
 import { NotificationCenterProvider } from "../../providers";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { clearCheckbox, clearMultiSelect, pickDate, selectOptions } from "../../tests";
+import { clearCheckbox, clearMultiSelect, pickDatetime, selectOptions } from "../../tests";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -86,6 +92,9 @@ describe("ModelRouter", () => {
     },
     expectSubmitInstanceCall: (mockFn: jest.Mock, instance: MockInstance) => {
       expect(mockFn).toHaveBeenCalledTimes(1);
+
+      const calledReturnTime: Date = mockFn.mock.calls[0][0].car.returnTime;
+
       expect(mockFn).toHaveBeenCalledWith({
         id: instance.id,
         firstName: instance.firstName,
@@ -101,6 +110,15 @@ describe("ModelRouter", () => {
           type: instance.car.type,
           vin: instance.car.vin,
           vrm: instance.car.vrm,
+          returnTime: new Date(
+            calledReturnTime.getFullYear(),
+            calledReturnTime.getMonth(),
+            calledReturnTime.getDate(),
+            instance.car.returnTime.getHours(),
+            instance.car.returnTime.getMinutes(),
+            calledReturnTime.getSeconds(),
+            calledReturnTime.getMilliseconds(),
+          ),
         },
         quantity: instance.quantity,
         available: instance.available,
@@ -160,6 +178,7 @@ describe("ModelRouter", () => {
       const typeElement = screen.getByRole("button", { name: /type/i });
       const vinElement = screen.getByRole("textbox", { name: /vin/i });
       const vrmElement = screen.getByRole("textbox", { name: /vrm/i });
+      const timeReturnElement = screen.getByRole("textbox", { name: /return time/i });
       const quantityElement = screen.getByRole("spinbutton", { name: /q/i });
       const availableElement = screen.getByRole("checkbox", { name: /available/i });
       const currencyElement = screen.getByRole("textbox", { name: /currency/i });
@@ -179,6 +198,7 @@ describe("ModelRouter", () => {
         await userEvent.clear(availableElement);
         await userEvent.clear(currencyElement);
         await userEvent.clear(tradeDateElement);
+        await userEvent.clear(timeReturnElement);
         await clearCheckbox(availableElement);
         await clearMultiSelect(typeElement);
       }
@@ -188,13 +208,14 @@ describe("ModelRouter", () => {
       await userEvent.type(lastNameElement, instance.lastName);
       await selectOption(genderElement, instance.gender);
       await userEvent.type(ageElement, instance.age.toString());
-      pickDate(birthDateElement, instance.birthDate, BirthDateFormat);
+      pickDatetime(birthDateElement, instance.birthDate, BirthDateFormat);
       await selectOption(modelElement, instance.car.model);
       await selectOption(manufacturerElement, instance.car.manufacturer);
       await userEvent.type(colorElement, instance.car.color);
       await selectOptions(typeElement, instance.car.type);
       await userEvent.type(vinElement, instance.car.vin);
       await userEvent.type(vrmElement, instance.car.vrm);
+      pickDatetime(timeReturnElement, instance.car.returnTime, ReturnTimeFormat);
       await userEvent.type(quantityElement, instance.quantity.toString());
       if (instance.available) {
         await userEvent.click(availableElement);

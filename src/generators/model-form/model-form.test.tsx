@@ -7,7 +7,7 @@ import {
   screen,
   selectOption,
   selectOptions,
-  pickDate,
+  pickDatetime,
 } from "../../tests";
 import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import userEvent from "@testing-library/user-event";
@@ -58,7 +58,7 @@ describe("ModelForm", () => {
     await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
     await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis Man");
     await userEvent.type(screen.getByRole("spinbutton", { name: /age/i }), "37");
-    pickDate(screen.getByRole("textbox", { name: /birth date/i }), birthDate, "dd/MM/yyyy");
+    pickDatetime(screen.getByRole("textbox", { name: /birth date/i }), birthDate, "dd/MM/yyyy");
     await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
     await selectOption(screen.getByRole("button", { name: /manufacturer/i }), "Bugatti");
     await userEvent.type(screen.getByRole("textbox", { name: /color/i }), "red");

@@ -41,13 +41,20 @@ type DateField = {
   default: any;
 };
 
+type TimeField = {
+  type: "time";
+  format: string;
+  default: any;
+};
+
 type SingleFields =
   | StringField
   | NumberField
   | BooleanField
   | EnumField
   | MultiEnumField
-  | DateField;
+  | DateField
+  | TimeField;
 
 export type GroupField = {
   type: "group";

@@ -6,7 +6,7 @@ import {
   ValueBoolean,
   ValueCard,
   ValueText,
-  ValueDate,
+  ValueDatetime,
 } from "../../components";
 import { ModelField, GroupField, Model, BasicModelInstance } from "../generators.model";
 
@@ -15,8 +15,8 @@ const singleDetailValueFactory = <T extends BasicModelInstance>(field: ModelFiel
   const value = instance[id];
   if (type === "boolean") {
     return <ValueBoolean label={name} value={value} />;
-  } else if (type === "date") {
-    return <ValueDate label={name} value={value} format={field.format} />;
+  } else if (type === "date" || type === "time") {
+    return <ValueDatetime label={name} value={value} format={field.format} />;
   }
   return <ValueText label={name} value={value?.toString()} />;
 };

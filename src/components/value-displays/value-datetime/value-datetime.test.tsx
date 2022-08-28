@@ -1,11 +1,11 @@
 import React from "react";
 import { render, screen } from "../../../tests";
-import { ValueDate } from "./value-date";
+import { ValueDatetime } from "./value-datetime";
 
-describe("ValueText", () => {
+describe("ValueDatetime", () => {
   const renderComponent = () => {
     return render(
-      <ValueDate label="Hello world" value={new Date(2022, 7, 10)} format="dd-MM-yyyy" />,
+      <ValueDatetime label="Hello world" value={new Date(2022, 7, 10)} format="dd-MM-yyyy" />,
     );
   };
 

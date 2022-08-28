@@ -2,7 +2,7 @@ import { Box, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { format } from "date-fns";
 
-export interface ValueDateProps {
+export interface ValueDatetimeProps {
   /**
    * Name of the displayed value
    */
@@ -13,15 +13,15 @@ export interface ValueDateProps {
   value: Date;
 
   /**
-   * Date format
+   * Datetime format
    */
   format: string;
 }
 
 /**
- * Displays a formated date with a label
+ * Displays a formated datetime with a label
  */
-export const ValueDate = ({ label, value, format: fmt }: ValueDateProps) => {
+export const ValueDatetime = ({ label, value, format: fmt }: ValueDatetimeProps) => {
   const id = `label-${label.replace(/ /g, "-")}`;
   const formatedValue = format(value, fmt);
 

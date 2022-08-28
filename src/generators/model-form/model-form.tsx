@@ -14,7 +14,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { DesktopDatePicker } from "@mui/x-date-pickers";
+import { DesktopDatePicker, TimePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, FormEvent, ReactElement, useMemo } from "react";
 import { useState } from "react";
 import { useGetDefaultThemeColor } from "../../utils/theme";
@@ -53,7 +53,7 @@ const getValuesInitialState = <T extends BasicModelInstance>(
           initialValues && initialValues[field.id],
         );
       });
-    } else if (field.type === "date") {
+    } else if (field.type === "date" || field.type === "time") {
       value = (initialValues && initialValues[field.id]) || field.default;
     } else {
       value = getFieldInitialState(field, initialValues);
@@ -222,6 +222,16 @@ export const ModelForm = <T extends BasicModelInstance>({
     } else if (type === "date") {
       fieldInput = (
         <DesktopDatePicker
+          label={name}
+          inputFormat={field.format}
+          value={value}
+          onChange={(value) => handleDateChange(value, key, id)}
+          renderInput={(params: any) => <TextField {...params} />}
+        />
+      );
+    } else if (type === "time") {
+      fieldInput = (
+        <TimePicker
           label={name}
           inputFormat={field.format}
           value={value}

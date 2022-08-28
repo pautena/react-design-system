@@ -36,7 +36,7 @@ export const expectModelFieldInputValue = (fields: ModelField[], initialValues: 
       expect(
         screen.getByRole("checkbox", { name: field.name, checked: value }),
       ).toBeInTheDocument();
-    } else if (field.type === "date") {
+    } else if (field.type === "date" || field.type === "time") {
       const expectedDateValue = format(value, field.format);
       expect(screen.getByRole("textbox", { name: field.name })).toHaveAttribute(
         "value",
@@ -62,7 +62,7 @@ export const expectModelFieldValue = (field: ModelField, instance: object) => {
   expect(screen.getByRole("label", { name: name })).toBeInTheDocument();
   if (type === "boolean") {
     expect(screen.getByTestId(value ? "CheckIcon" : "CloseIcon")).toBeInTheDocument();
-  } else if (type === "date") {
+  } else if (type === "date" || type === "time") {
     const formatedValue = format(value, field.format);
     expect(screen.getByLabelText(name)).toHaveTextContent(formatedValue);
   } else {

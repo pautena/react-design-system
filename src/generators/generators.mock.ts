@@ -3,6 +3,7 @@ import { faker } from "@faker-js/faker";
 import { newArrayWithSize } from "../utils";
 
 export const BirthDateFormat = "dd/MM/yyyy";
+export const ReturnTimeFormat = "hh:mm";
 export const mockModel: Model = {
   fields: [
     {
@@ -135,6 +136,16 @@ export const mockModel: Model = {
           xs: 12,
           sm: 4,
         },
+        {
+          id: "returnTime",
+          type: "time",
+          format: ReturnTimeFormat,
+          default: new Date(1970, 0, 1, 9, 0),
+          description: "Lorem ipsum",
+          name: "Return time",
+          xs: 12,
+          sm: 4,
+        },
       ],
     },
     {
@@ -188,6 +199,7 @@ export interface MockInstance {
     type: string[];
     vin: string;
     vrm: string;
+    returnTime: Date;
   };
   quantity: number;
   available: boolean;
@@ -205,6 +217,15 @@ const mockFieldValue = {
   birthDate: () => {
     const date = faker.date.recent();
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  },
+  returnTime: () => {
+    const date = faker.date.recent();
+    const time = new Date();
+    time.setHours(date.getHours());
+    time.setMinutes(date.getMinutes());
+    time.setSeconds(0);
+    time.setMilliseconds(0);
+    return time;
   },
   model: faker.vehicle.model,
   manufacturer: faker.vehicle.manufacturer,

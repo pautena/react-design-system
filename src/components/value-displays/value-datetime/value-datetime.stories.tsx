@@ -1,17 +1,17 @@
 import { ComponentMeta } from "@storybook/react";
-import { ValueDate } from "./value-date";
+import { ValueDatetime } from "./value-datetime";
 import { createTemplate, withContainer } from "../../../storybook";
 
 export default {
   title: "Value displays/ValueDate",
-  component: ValueDate,
+  component: ValueDatetime,
   decorators: [withContainer({ width: 200 })],
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ValueDate>;
+} as ComponentMeta<typeof ValueDatetime>;
 
-const Template = createTemplate(ValueDate);
+const Template = createTemplate(ValueDatetime);
 
 export const Default = Template.bind({});
 Default.args = {
