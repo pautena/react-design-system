@@ -4,6 +4,8 @@ import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
 import { ThemeProvider } from "@emotion/react";
 import { Theme, createTheme, PaletteMode } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 export type TestRouter = "router" | "memory";
 
@@ -34,7 +36,9 @@ const createWrapper =
         };
     return (
       <ThemeProvider theme={theme}>
-        <R {...routerArgs}>{children}</R>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <R {...routerArgs}>{children}</R>
+        </LocalizationProvider>
       </ThemeProvider>
     );
   };

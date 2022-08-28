@@ -14,6 +14,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { DesktopDatePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, FormEvent, ReactElement, useMemo } from "react";
 import { useState } from "react";
 import { useGetDefaultThemeColor } from "../../utils/theme";
@@ -23,8 +24,9 @@ const InitialStateZeroValue: Record<string, any> = {
   string: undefined,
   number: undefined,
   boolean: false,
-  enum: undefined,
+  enum: "",
   multienum: [],
+  date: "01/01/1970",
   group: {},
 };
 
@@ -51,6 +53,8 @@ const getValuesInitialState = <T extends BasicModelInstance>(
           initialValues && initialValues[field.id],
         );
       });
+    } else if (field.type === "date") {
+      value = (initialValues && initialValues[field.id]) || field.default;
     } else {
       value = getFieldInitialState(field, initialValues);
     }
@@ -125,6 +129,10 @@ export const ModelForm = <T extends BasicModelInstance>({
       value = parseInt(e.target.value);
     }
     setKeyValue(e.target.name, key, value);
+  };
+
+  const handleDateChange = (value: any, key: string | undefined, id: string) => {
+    setKeyValue(id, key, value);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -210,6 +218,16 @@ export const ModelForm = <T extends BasicModelInstance>({
             ))}
           </Select>
         </FormControl>
+      );
+    } else if (type === "date") {
+      fieldInput = (
+        <DesktopDatePicker
+          label={name}
+          inputFormat={field.format}
+          value={value}
+          onChange={(value) => handleDateChange(value, key, id)}
+          renderInput={(params: any) => <TextField {...params} />}
+        />
       );
     } else {
       fieldInput = (

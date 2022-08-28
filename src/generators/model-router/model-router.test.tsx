@@ -15,12 +15,12 @@ import { data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
-import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
+import { BirthDateFormat, createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import { NotificationCenterProvider } from "../../providers";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { clearCheckbox, clearMultiSelect, selectOptions } from "../../tests";
+import { clearCheckbox, clearMultiSelect, pickDate, selectOptions } from "../../tests";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -188,7 +188,7 @@ describe("ModelRouter", () => {
       await userEvent.type(lastNameElement, instance.lastName);
       await selectOption(genderElement, instance.gender);
       await userEvent.type(ageElement, instance.age.toString());
-      await userEvent.type(birthDateElement, instance.birthDate);
+      pickDate(birthDateElement, instance.birthDate, BirthDateFormat);
       await selectOption(modelElement, instance.car.model);
       await selectOption(manufacturerElement, instance.car.manufacturer);
       await userEvent.type(colorElement, instance.car.color);

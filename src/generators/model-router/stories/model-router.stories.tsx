@@ -1,6 +1,10 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
-import { withMemoryRouter, withNotificationCenter } from "../../../storybook";
+import {
+  withLocalizationProvider,
+  withMemoryRouter,
+  withNotificationCenter,
+} from "../../../storybook";
 import { ModelRouter } from "../model-router";
 import { IdleRequest } from "../model-router.types";
 import { MockInstance, mockModel } from "../../generators.mock";
@@ -216,7 +220,7 @@ export const InternalModelRouter = () => {
 export default {
   title: "Generators/ModelRouter",
   component: DummyModelRouter,
-  decorators: [withMemoryRouter(), withNotificationCenter],
+  decorators: [withMemoryRouter(), withNotificationCenter, withLocalizationProvider],
   parameters: {
     layout: "fullscreen",
   },

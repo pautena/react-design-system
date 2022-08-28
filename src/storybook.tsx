@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 import { MemoryRouter, Router, Navigator, Route, Routes } from "react-router-dom";
 import { NotificationCenterProvider } from "./providers";
 import { action } from "@storybook/addon-actions";
+import { LocalizationProvider } from "@mui/x-date-pickers/";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 export function createTemplate<P>(
   C: JSXElementConstructor<P>,
@@ -88,3 +90,11 @@ export const withPadding =
       </Box>
     );
   };
+
+export const withLocalizationProvider = (Story: FunctionComponent) => {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Story />
+    </LocalizationProvider>
+  );
+};

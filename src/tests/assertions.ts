@@ -1,6 +1,7 @@
 import { AlertColor } from "@mui/material";
 import { ModelField } from "../generators";
 import { screen, waitForElementToBeRemoved } from "./testing-library";
+import { format } from "date-fns";
 
 export const expectContentPlaceholder = async () => {
   expect(await screen.findByTestId(/content-placeholder-test/i)).toBeInTheDocument();
@@ -35,6 +36,12 @@ export const expectModelFieldInputValue = (fields: ModelField[], initialValues: 
       expect(
         screen.getByRole("checkbox", { name: field.name, checked: value }),
       ).toBeInTheDocument();
+    } else if (field.type === "date") {
+      const expectedDateValue = format(value, field.format);
+      expect(screen.getByRole("textbox", { name: field.name })).toHaveAttribute(
+        "value",
+        expectedDateValue,
+      );
     } else {
       expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
     }
@@ -55,9 +62,11 @@ export const expectModelFieldValue = (field: ModelField, instance: object) => {
   expect(screen.getByRole("label", { name: name })).toBeInTheDocument();
   if (type === "boolean") {
     expect(screen.getByTestId(value ? "CheckIcon" : "CloseIcon")).toBeInTheDocument();
+  } else if (type === "date") {
+    const formatedValue = format(value, field.format);
+    expect(screen.getByLabelText(name)).toHaveTextContent(formatedValue);
   } else {
     expect(screen.getByLabelText(name)).toHaveTextContent(value);
-    //expect(screen.getByText(value)).toBeInTheDocument();
   }
 };
 

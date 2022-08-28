@@ -1,5 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { screen, fireEvent } from "./testing-library";
+import { format } from "date-fns";
 
 export const selectOption = async (element: HTMLElement, option: string) => {
   await userEvent.click(element);
@@ -35,4 +36,8 @@ export const clearCheckbox = async (element: HTMLInputElement) => {
   if (element.checked) {
     await userEvent.click(element);
   }
+};
+
+export const pickDate = (element: HTMLInputElement, value: Date, fmt: string) => {
+  fireEvent.change(element, { target: { value: format(value, fmt) } });
 };

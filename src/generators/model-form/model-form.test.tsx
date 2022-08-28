@@ -7,6 +7,7 @@ import {
   screen,
   selectOption,
   selectOptions,
+  pickDate,
 } from "../../tests";
 import { createModelInstance, MockInstance, mockModel } from "../generators.mock";
 import userEvent from "@testing-library/user-event";
@@ -49,6 +50,7 @@ describe("ModelForm", () => {
 
   it("would call onSubmit if I fullfill all inputs and press the submit button", async () => {
     const { onSubmit } = renderComponent();
+    const birthDate = new Date(2047, 11, 26);
 
     await userEvent.type(screen.getByRole("textbox", { name: "Id" }), "Id-1");
     await userEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
@@ -56,10 +58,7 @@ describe("ModelForm", () => {
     await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
     await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis Man");
     await userEvent.type(screen.getByRole("spinbutton", { name: /age/i }), "37");
-    await userEvent.type(
-      screen.getByRole("textbox", { name: /birth date/i }),
-      "Tue Nov 26 2047 12:14:19",
-    );
+    pickDate(screen.getByRole("textbox", { name: /birth date/i }), birthDate, "dd/MM/yyyy");
     await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
     await selectOption(screen.getByRole("button", { name: /manufacturer/i }), "Bugatti");
     await userEvent.type(screen.getByRole("textbox", { name: /color/i }), "red");
@@ -88,7 +87,7 @@ describe("ModelForm", () => {
       lastName: "Gorczany",
       gender: "Cis Man",
       age: 37,
-      birthDate: "Tue Nov 26 2047 12:14:19",
+      birthDate,
       car: {
         model: "Spyder",
         manufacturer: "Bugatti",

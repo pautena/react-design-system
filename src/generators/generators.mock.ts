@@ -2,6 +2,7 @@ import { BasicModelInstance, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
 import { newArrayWithSize } from "../utils";
 
+export const BirthDateFormat = "dd/MM/yyyy";
 export const mockModel: Model = {
   fields: [
     {
@@ -66,13 +67,15 @@ export const mockModel: Model = {
     },
     {
       id: "birthDate",
-      type: "string",
+      type: "date",
+      format: BirthDateFormat,
+      default: new Date(2014, 8, 18),
       description: "When he was born",
       name: "Birth Date",
       xs: 12,
       sm: 6,
       md: 6,
-      listable: true,
+      listable: false,
     },
     {
       id: "car",
@@ -177,7 +180,7 @@ export interface MockInstance {
   lastName: string;
   gender: string;
   age: number;
-  birthDate: string;
+  birthDate: Date;
   car: {
     model: string;
     manufacturer: string;
@@ -199,7 +202,10 @@ const mockFieldValue = {
   lastName: faker.name.lastName,
   gender: faker.name.gender,
   age: () => faker.datatype.number({ min: 20, max: 60 }),
-  birthDate: () => faker.datatype.datetime().toString(),
+  birthDate: () => {
+    const date = faker.date.recent();
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  },
   model: faker.vehicle.model,
   manufacturer: faker.vehicle.manufacturer,
   color: faker.vehicle.color,

@@ -35,7 +35,19 @@ type MultiEnumField = {
   value: string[];
 };
 
-type SingleFields = StringField | NumberField | BooleanField | EnumField | MultiEnumField;
+type DateField = {
+  type: "date";
+  format: string;
+  default: any;
+};
+
+type SingleFields =
+  | StringField
+  | NumberField
+  | BooleanField
+  | EnumField
+  | MultiEnumField
+  | DateField;
 
 export type GroupField = {
   type: "group";

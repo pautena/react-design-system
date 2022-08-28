@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 import { ModelForm } from "./model-form";
-import { createTemplate, withPadding } from "../../storybook";
+import { createTemplate, withPadding, withLocalizationProvider } from "../../storybook";
 import { createModelInstance, mockModel } from "../generators.mock";
 
 const initialValues = createModelInstance(mockModel);
@@ -8,7 +8,7 @@ const initialValues = createModelInstance(mockModel);
 export default {
   title: "Generators/ModelForm",
   component: ModelForm,
-  decorators: [withPadding(2)],
+  decorators: [withPadding(2), withLocalizationProvider],
   parameters: {
     layout: "fullscreen",
   },
