@@ -28,6 +28,7 @@ export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseSc
 export const DetailsScreen = <T extends BasicModelInstance>({
   model,
   modelName,
+  basePath = "",
   onRequestItem,
   itemRequest,
   detailsItem,
@@ -47,12 +48,12 @@ export const DetailsScreen = <T extends BasicModelInstance>({
           {
             id: "list",
             text: modelName,
-            link: "/",
+            link: `${basePath}/`,
           },
           {
             id: "detail",
             text: id,
-            link: `/${id}`,
+            link: `${basePath}/${id}`,
           },
         ]}
       />

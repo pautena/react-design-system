@@ -4,6 +4,7 @@ import {
   expectModelFieldInputExist,
   expectProgressIndicator,
   waitForProgressIndicatorToBeRemoved,
+  waitForProgressFinish,
   render,
   screen,
   TestRouter,
@@ -375,6 +376,26 @@ describe("ModelRouter", () => {
       await assertions.expectAddScreen();
     });
 
+    it("would be able to go back to the list sreen from the add screen", async () => {
+      renderComponentInsideRouter();
+
+      await actions.navigateToInternal();
+      await actions.navigateToAddScreen();
+      await userEvent.click(screen.getByRole("link", { name: "Items" }));
+
+      await assertions.expectListScreen();
+    });
+
+    it("would navigate to the add screen if I click the navigaiton path", async () => {
+      renderComponentInsideRouter();
+
+      await actions.navigateToInternal();
+      await actions.navigateToAddScreen();
+      await userEvent.click(screen.getByRole("link", { name: "Add new Items" }));
+
+      await assertions.expectAddScreen();
+    });
+
     it("would navigate to the detail screen", async () => {
       renderComponentInsideRouter();
       const {
@@ -387,6 +408,32 @@ describe("ModelRouter", () => {
       await assertions.expectDetailScreen({ id });
     });
 
+    it("would be able to go back to the list sreen from the details screen", async () => {
+      renderComponentInsideRouter();
+      const {
+        item: { firstName },
+      } = getRandomItem<MockInstance>(mockData);
+
+      await actions.navigateToInternal();
+      await actions.navigateToDetailScreen({ name: firstName });
+      await userEvent.click(screen.getByRole("link", { name: "Items" }));
+
+      await assertions.expectListScreen();
+    });
+
+    it("would navigate to the add screen if I click the navigation path", async () => {
+      renderComponentInsideRouter();
+      const {
+        item: { id, firstName },
+      } = getRandomItem<MockInstance>(mockData);
+
+      await actions.navigateToInternal();
+      await actions.navigateToDetailScreen({ name: firstName });
+      await userEvent.click(screen.getByRole("link", { name: id }));
+
+      await assertions.expectDetailScreen({ id });
+    });
+
     it("would navigate to the update screen", async () => {
       renderComponentInsideRouter();
       const {
@@ -395,6 +442,32 @@ describe("ModelRouter", () => {
 
       await actions.navigateToInternal();
       await actions.navigateToUpdateScreen({ id });
+
+      await assertions.expectUpdateScreen({ id });
+    });
+
+    it("would be able to go back to the list sreen from the details screen", async () => {
+      renderComponentInsideRouter();
+      const {
+        item: { id },
+      } = getRandomItem<MockInstance>(mockData);
+
+      await actions.navigateToInternal();
+      await actions.navigateToUpdateScreen({ id });
+      await userEvent.click(screen.getByRole("link", { name: "Items" }));
+
+      await assertions.expectListScreen();
+    });
+
+    it("would navigate to the add screen if I click the navigation path", async () => {
+      renderComponentInsideRouter();
+      const {
+        item: { id },
+      } = getRandomItem<MockInstance>(mockData);
+
+      await actions.navigateToInternal();
+      await actions.navigateToUpdateScreen({ id });
+      await userEvent.click(screen.getByRole("link", { name: `Edit ${id}` }));
 
       await assertions.expectUpdateScreen({ id });
     });

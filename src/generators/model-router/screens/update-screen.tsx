@@ -75,12 +75,12 @@ export const UpdateScreen = <T extends BasicModelInstance>({
           {
             id: "list",
             text: modelName,
-            link: "/",
+            link: `${basePath}/`,
           },
           {
             id: "update",
             text: `Edit ${id}`,
-            link: `/${id}/update`,
+            link: `${basePath}/${id}/update`,
           },
         ]}
       />

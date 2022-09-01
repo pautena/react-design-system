@@ -79,6 +79,11 @@ export const waitForProgressIndicatorToBeRemoved = async () => {
   await waitForElementToBeRemoved(() => screen.getByRole("progressbar"));
 };
 
+export const waitForProgressFinish = async () => {
+  await screen.findByRole("progressbar");
+  await waitForProgressIndicatorToBeRemoved();
+};
+
 export const expectAlert = async ({
   title,
   message,

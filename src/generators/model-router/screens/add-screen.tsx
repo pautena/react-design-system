@@ -53,12 +53,12 @@ export const AddScreen = <T extends BasicModelInstance>({
           {
             id: "list",
             text: modelName,
-            link: "/",
+            link: `${basePath}/`,
           },
           {
             id: "add",
             text: `Add new ${modelName}`,
-            link: "/add",
+            link: `${basePath}/add`,
           },
         ]}
       />
