@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import userEvent from "@testing-library/user-event";
 import { AlertColor, Box, Button } from "@mui/material";
 import { render, screen, waitForElementToBeRemoved, expectAlert } from "../../tests";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import {
+  NotificationCenterContext,
   NotificationCenterProviderUndefinedError,
   useNotificationCenter,
+  Notification,
 } from "./notification-center.context";
+import { useNotifyWhenValueChanges } from "./notification-center.hooks";
 
 describe("NotificationCenterProvider", () => {
   const renderComponent = ({ autoHideDuration }: { autoHideDuration?: number } = {}) => {
@@ -108,5 +111,88 @@ describe("useNotificationCenter", () => {
     } catch (err) {
       expect(err).toStrictEqual(NotificationCenterProviderUndefinedError);
     }
+  });
+});
+
+describe("useNotifyWhenValueChanges", () => {
+  const DUMMY_NOTIFICATION: Notification = {
+    title: "Hello World",
+    message: "Lorem ipsum sit amet",
+    severity: "info",
+  };
+
+  const renderHook = ({ to, from }: { to: boolean; from: boolean }) => {
+    const show = jest.fn();
+
+    const DummyComponent = () => {
+      const [value, setValue] = useState<boolean | undefined>(false);
+      useNotifyWhenValueChanges(DUMMY_NOTIFICATION, value, { from, to });
+
+      return (
+        <Box>
+          <Button onClick={() => setValue(undefined)}>undefined</Button>
+          <Button onClick={() => setValue(false)}>false</Button>
+          <Button onClick={() => setValue(true)}>true</Button>
+        </Box>
+      );
+    };
+
+    render(
+      <NotificationCenterContext.Provider
+        value={{
+          show,
+          hide: jest.fn(),
+        }}
+      >
+        <DummyComponent />
+      </NotificationCenterContext.Provider>,
+    );
+
+    return { show };
+  };
+
+  const changeValueTo = async (value: "undefined" | "false" | "true") => {
+    await userEvent.click(screen.getByRole("button", { name: value }));
+  };
+
+  it("wouldn't call the show method when is rendered", () => {
+    const { show } = renderHook({ to: true, from: false });
+
+    expect(show).not.toHaveBeenCalled();
+  });
+
+  it("wouldn't call the show method when it changes to a value that is not to", async () => {
+    const { show } = renderHook({ to: true, from: false });
+
+    await changeValueTo("false");
+
+    expect(show).not.toHaveBeenCalled();
+  });
+
+  it("wouldn't call the show method when value changes to a value that is not to", async () => {
+    const { show } = renderHook({ to: true, from: false });
+
+    await changeValueTo("false");
+
+    expect(show).not.toHaveBeenCalled();
+  });
+
+  it("wouldn't call the show method when value changes from undefined to to", async () => {
+    const { show } = renderHook({ to: true, from: false });
+
+    await changeValueTo("undefined");
+    await changeValueTo("true");
+
+    expect(show).not.toHaveBeenCalled();
+  });
+
+  it("would call the show method when value changes from to to", async () => {
+    const { show } = renderHook({ to: true, from: false });
+
+    await changeValueTo("false");
+    await changeValueTo("true");
+
+    expect(show).toHaveBeenCalledTimes(1);
+    expect(show).toHaveBeenCalledWith(DUMMY_NOTIFICATION);
   });
 });
