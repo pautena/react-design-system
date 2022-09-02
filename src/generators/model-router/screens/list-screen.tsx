@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Content, Header, HeaderAction, TableList, TableRowOption } from "~/components";
 import { BasicModelInstance } from "~/generators";
+import { useNotifyWhenValueChanges } from "~/providers";
 import { HeaderLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
@@ -56,6 +57,22 @@ export const ListScreen = <T extends BasicModelInstance>({
   useEffect(() => {
     onRequestList();
   }, []);
+
+  useNotifyWhenValueChanges(
+    {
+      title: "Item deleted",
+      message: "The item has been deleted successfully",
+      severity: "success",
+    },
+    !!deleteRequest.success,
+    { from: false, to: true },
+  );
+
+  useNotifyWhenValueChanges(
+    { title: "We had an error", message: deleteRequest.error || "", severity: "error" },
+    !!deleteRequest.error,
+    { from: false, to: true },
+  );
 
   const handleClickListItem = detailsFeature
     ? (item: T) => {

@@ -12,3 +12,7 @@ export const IdleRequest: RequestState = {
 export const LoadingRequest: RequestState = {
   loading: true,
 };
+
+export const SuccessRequest: RequestState = {
+  success: true,
+};

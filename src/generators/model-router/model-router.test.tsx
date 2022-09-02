@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { DummyModelRouter, InternalModelRouter } from "./stories/model-router.stories";
 import {
   expectModelFieldInputExist,
   expectProgressIndicator,
   waitForProgressIndicatorToBeRemoved,
-  waitForProgressFinish,
   render,
   screen,
   TestRouter,
@@ -31,10 +30,13 @@ import { useNavigate } from "react-router-dom";
 import {
   clearCheckbox,
   clearMultiSelect,
+  expectAlert,
   expectToHaveBeenCalledOnceWithMockInstance,
   pickDatetime,
   selectOptions,
 } from "../../tests";
+import { AddScreen, ListScreen, UpdateScreen } from "./screens";
+import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
 
 const REQUEST_TIMEOUT = 20;
 
@@ -289,6 +291,98 @@ describe("ModelRouter", () => {
       </NotificationCenterProvider>,
       { router: "memory" },
     );
+  };
+
+  const renderListScreen = () => {
+    const error = "Lorem ipsum error";
+
+    const TestComponent = () => {
+      const [deleteRequest, setDeleteRequest] = useState(IdleRequest);
+
+      return (
+        <NotificationCenterProvider>
+          <ListScreen
+            onRequestList={jest.fn()}
+            listData={[]}
+            onClickDeleteItem={jest.fn()}
+            listRequest={IdleRequest}
+            deleteRequest={deleteRequest}
+            modelName="Items"
+            model={mockModel}
+          />
+          <Box>
+            <Button onClick={() => setDeleteRequest(IdleRequest)}>idle</Button>
+            <Button onClick={() => setDeleteRequest(LoadingRequest)}>loading</Button>
+            <Button onClick={() => setDeleteRequest(SuccessRequest)}>success</Button>
+            <Button onClick={() => setDeleteRequest({ error })}>error</Button>
+          </Box>
+        </NotificationCenterProvider>
+      );
+    };
+
+    const instance = render(<TestComponent />);
+
+    return { ...instance, error, model: mockModel };
+  };
+
+  const renderAddScreen = () => {
+    const error = "Lorem ipsum error";
+
+    const TestComponent = () => {
+      const [newItemRequest, setNewItemRequest] = useState(IdleRequest);
+
+      return (
+        <NotificationCenterProvider>
+          <AddScreen
+            modelName="Items"
+            model={mockModel}
+            onSubmitNewItem={jest.fn()}
+            newItemRequest={newItemRequest}
+          />
+          <Box>
+            <Button onClick={() => setNewItemRequest(IdleRequest)}>idle</Button>
+            <Button onClick={() => setNewItemRequest(LoadingRequest)}>loading</Button>
+            <Button onClick={() => setNewItemRequest(SuccessRequest)}>success</Button>
+            <Button onClick={() => setNewItemRequest({ error })}>error</Button>
+          </Box>
+        </NotificationCenterProvider>
+      );
+    };
+
+    const instance = render(<TestComponent />, { router: "router" });
+
+    return { ...instance, error, model: mockModel };
+  };
+
+  const renderUpdateScreen = () => {
+    const error = "Lorem ipsum error";
+
+    const TestComponent = () => {
+      const [updateRequest, setUpdateRequest] = useState(IdleRequest);
+
+      return (
+        <NotificationCenterProvider>
+          <UpdateScreen
+            modelName="Items"
+            model={mockModel}
+            onSubmitUpdateItem={jest.fn()}
+            submitUpdateItemRequest={updateRequest}
+            updateItemRequest={IdleRequest}
+            onRequestUpdateItem={jest.fn()}
+          />
+          <Box>
+            <Button onClick={() => setUpdateRequest(IdleRequest)}>idle</Button>
+            <Button onClick={() => setUpdateRequest(LoadingRequest)}>loading</Button>
+            <Button onClick={() => setUpdateRequest(SuccessRequest)}>success</Button>
+            <Button onClick={() => setUpdateRequest({ error })}>error</Button>
+          </Box>
+        </NotificationCenterProvider>
+      );
+    };
+
+    const instance = render(<TestComponent />, { router: "router" });
+
+    return { ...instance, error, model: mockModel };
   };
 
   describe("router screens", () => {
@@ -622,24 +716,36 @@ describe("ModelRouter", () => {
       expectProgressIndicator();
     });
 
-    // TODO it("would show a success message if the request finish with a success", async () => {
-    //   await renderComponent({ screen: "add" });
+    it("would show a success message if the request finish with a success", async () => {
+      renderAddScreen();
 
-    //   await actions.fullfillModelForm();
+      await userEvent.click(screen.getByRole("button", { name: /success/i }));
 
-    //   await expectAlert({
-    //     message: /item added successfully/i,
-    //     severity: "success",
-    //   });
-    // });
+      await expectAlert({
+        message: /item added successfully/i,
+        severity: "success",
+      });
+    });
 
-    // TODO it("would navigate to the list screen if the request finish with a success", async () => {
-    //   await renderComponent({ screen: "add" });
+    it("would navigate to the list screen if the request finish with a success", async () => {
+      const { history } = renderAddScreen();
 
-    //   await actions.fullfillModelForm();
+      await userEvent.click(screen.getByRole("button", { name: /success/i }));
 
-    //   await assertions.expectListScreen();
-    // });
+      expect(history.location.pathname).toBe("/");
+    });
+
+    it("would show an error message if the request finish with an error", async () => {
+      const { error } = renderAddScreen();
+
+      await userEvent.click(screen.getByRole("button", { name: /error/i }));
+
+      await expectAlert({
+        title: /we had an error/i,
+        message: error,
+        severity: "error",
+      });
+    });
   });
 
   describe("details screen", () => {
@@ -791,14 +897,37 @@ describe("ModelRouter", () => {
       expectProgressIndicator();
     });
 
-    // it("would navigate to the list screen when the submit request finish", async () => {
-    //   const { model } = await renderComponent({ screen: "update" });
+    it("would show a success message if the request finish with a success", async () => {
+      renderUpdateScreen();
 
-    //   await waitForProgressIndicatorToBeRemoved();
-    //   await actions.fullfillModelForm({ model, submit: true, clear: true });
+      await userEvent.click(screen.getByRole("button", { name: /success/i }));
 
-    //   await assertions.expectListScreen();
-    // });
+      await expectAlert({
+        title: /item updated/i,
+        message: /has been updated successfully/i,
+        severity: "success",
+      });
+    });
+
+    it("would navigate to the list screen if the request finish with a success", async () => {
+      const { history } = renderUpdateScreen();
+
+      await userEvent.click(screen.getByRole("button", { name: /success/i }));
+
+      expect(history.location.pathname).toBe("/");
+    });
+
+    it("would show an error message if the request finish with an error", async () => {
+      const { error } = renderUpdateScreen();
+
+      await userEvent.click(screen.getByRole("button", { name: /error/i }));
+
+      await expectAlert({
+        title: /we had an error/i,
+        message: error,
+        severity: "error",
+      });
+    });
   });
 
   describe("delete item", () => {
@@ -842,6 +971,30 @@ describe("ModelRouter", () => {
       await waitForProgressIndicatorToBeRemoved();
 
       expect(screen.queryByRole("cell", { name: firstName })).not.toBeInTheDocument();
+    });
+
+    it("would show a success message if the delete request finish with a success", async () => {
+      renderListScreen();
+
+      await userEvent.click(screen.getByRole("button", { name: /success/i }));
+
+      await expectAlert({
+        title: /item deleted/i,
+        message: /the item has been deleted successfully/i,
+        severity: "success",
+      });
+    });
+
+    it("would show a error message if the delete request finish with an error", async () => {
+      const { error } = renderListScreen();
+
+      await userEvent.click(screen.getByRole("button", { name: /error/i }));
+
+      await expectAlert({
+        title: /we had an error/i,
+        message: error,
+        severity: "error",
+      });
     });
   });
 

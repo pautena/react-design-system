@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Content, Header } from "~/components";
 import { BasicModelInstance, ModelForm } from "~/generators";
+import { useNavigateWhenValueChanges } from "~/hooks";
 import { HeaderLayout } from "../../../layouts";
-import { useNotificationCenter } from "../../../providers";
+import { useNotificationCenter, useNotifyWhenValueChanges } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
@@ -55,16 +56,24 @@ export const UpdateScreen = <T extends BasicModelInstance>({
     onRequestUpdateItem(id);
   }, [id]);
 
-  useEffect(() => {
-    if (submitUpdateItemRequest.success) {
-      show({
-        title: "Item updated",
-        message: `The item ${id} has been updated successfully`,
-        severity: "success",
-      });
-      navigate(`${basePath}/`);
-    }
-  }, [submitUpdateItemRequest.success]);
+  useNotifyWhenValueChanges(
+    {
+      title: "Item updated",
+      message: `The item ${id} has been updated successfully`,
+      severity: "success",
+    },
+    !!submitUpdateItemRequest.success,
+    { from: false, to: true },
+  );
+  useNavigateWhenValueChanges(`${basePath}/`, !!submitUpdateItemRequest.success, {
+    from: false,
+    to: true,
+  });
+  useNotifyWhenValueChanges(
+    { title: "We had an error", message: submitUpdateItemRequest.error || "", severity: "error" },
+    !!submitUpdateItemRequest.error,
+    { from: false, to: true },
+  );
 
   return (
     <HeaderLayout loading={loading}>

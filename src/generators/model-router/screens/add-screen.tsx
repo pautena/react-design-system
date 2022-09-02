@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { Header, Content } from "~/components";
 import { BasicModelInstance, ModelForm } from "~/generators";
 import { HeaderLayout } from "../../../layouts";
-import { useNotificationCenter } from "../../../providers";
+import { useNotifyWhenValueChanges } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
+import { useNavigateWhenValueChanges } from "../../../hooks";
 
 export interface AddScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**
@@ -28,21 +28,17 @@ export const AddScreen = <T extends BasicModelInstance>({
   onSubmitNewItem,
   newItemRequest,
 }: AddScreenProps<T>) => {
-  const navigate = useNavigate();
-  const { show } = useNotificationCenter();
-
-  useEffect(() => {
-    if (newItemRequest.success) {
-      show({ message: "Item added successfully", severity: "success" });
-      navigate(`${basePath}/`);
-    }
-  }, [newItemRequest.success]);
-
-  useEffect(() => {
-    if (newItemRequest.error) {
-      show({ title: "We had an error", message: newItemRequest.error, severity: "error" });
-    }
-  }, [newItemRequest.error]);
+  useNotifyWhenValueChanges(
+    { message: "Item added successfully", severity: "success" },
+    !!newItemRequest.success,
+    { from: false, to: true },
+  );
+  useNavigateWhenValueChanges(`${basePath}/`, !!newItemRequest.success, { from: false, to: true });
+  useNotifyWhenValueChanges(
+    { title: "We had an error", message: newItemRequest.error || "", severity: "error" },
+    !!newItemRequest.error,
+    { from: false, to: true },
+  );
 
   return (
     <HeaderLayout loading={newItemRequest.loading}>
