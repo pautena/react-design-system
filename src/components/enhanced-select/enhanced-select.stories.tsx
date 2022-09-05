@@ -1,4 +1,4 @@
-import { MenuItem } from "@mui/material";
+import { Box, MenuItem, PropTypes, useTheme } from "@mui/material";
 import { ComponentMeta } from "@storybook/react";
 import React, { ReactNode } from "react";
 import { createTemplate, withContainer } from "../../storybook";
@@ -67,4 +67,33 @@ export const SizeSmall = Template.bind({});
 SizeSmall.args = {
   ...baseArgs,
   size: "small",
+};
+
+type WithBackgroundProps<T extends ReactNode> = TemplateProps<T> & { bgcolor: PropTypes.Color };
+
+export const WithBackground = <T extends string>({
+  options,
+  bgcolor: bgcolorProp,
+  ...rest
+}: WithBackgroundProps<T>) => {
+  const { palette } = useTheme();
+  const bgcolor = palette[bgcolorProp].main;
+  const selectColor = palette.getContrastText(bgcolor);
+
+  return (
+    <Box bgcolor={bgcolor} padding={3}>
+      <EnhancedSelect {...rest} color={selectColor}>
+        {options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </EnhancedSelect>
+    </Box>
+  );
+};
+
+WithBackground.args = {
+  bgcolor: "secondary",
+  ...baseArgs,
 };

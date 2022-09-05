@@ -5,7 +5,10 @@ import {
   FormControl,
   InputLabel,
   LinearProgress,
+  useTheme,
   Select,
+  Typography,
+  styled,
 } from "@mui/material";
 import { CenterContainer } from "../center-container";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
@@ -18,6 +21,7 @@ export interface EnhancedSelectProps<T> {
   loading?: boolean;
   fetching?: boolean;
   size?: EnhancedSelectSize;
+  color?: string;
   fullWidth?: boolean;
   children?: ReactNode;
   onChange?: SelectInputProps<T>["onChange"];
@@ -35,6 +39,7 @@ export const EnhancedSelect = <T extends ReactNode>({
   fetching = false,
   size = "medium",
   fullWidth = false,
+  color,
   children,
   onChange,
 }: EnhancedSelectProps<T>) => {
@@ -64,8 +69,29 @@ export const EnhancedSelect = <T extends ReactNode>({
     return value;
   };
 
+  const StyledFormControl = styled(FormControl)(() => {
+    if (!color) {
+      return {};
+    }
+
+    return {
+      label: {
+        color,
+      },
+      ".MuiOutlinedInput-notchedOutline": {
+        borderColor: `${color} !important`,
+      },
+      ".MuiInputBase-root": {
+        color,
+      },
+      ".MuiSelect-icon": {
+        fill: color,
+      },
+    };
+  });
+
   return (
-    <FormControl fullWidth={fullWidth}>
+    <StyledFormControl fullWidth={fullWidth}>
       <InputLabel id={id}>{label}</InputLabel>
       <Select
         labelId={id}
@@ -79,6 +105,6 @@ export const EnhancedSelect = <T extends ReactNode>({
       >
         {children}
       </Select>
-    </FormControl>
+    </StyledFormControl>
   );
 };
