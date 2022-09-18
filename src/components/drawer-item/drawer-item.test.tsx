@@ -35,10 +35,10 @@ describe("DrawerItem", () => {
     expect(screen.getByRole("link", { name: /lorem ipsum/i })).toBeInTheDocument();
   });
 
-  it("would navigate to the href when is clicked", () => {
+  it("would navigate to the href when is clicked", async () => {
     const { history } = renderComponent();
 
-    userEvent.click(screen.getByRole("link", { name: /lorem ipsum/i }));
+    await userEvent.click(screen.getByRole("link", { name: /lorem ipsum/i }));
 
     expect(history.location.pathname).toBe("/items/1");
   });

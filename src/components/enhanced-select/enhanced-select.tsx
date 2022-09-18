@@ -5,9 +5,7 @@ import {
   FormControl,
   InputLabel,
   LinearProgress,
-  useTheme,
   Select,
-  Typography,
   styled,
 } from "@mui/material";
 import { CenterContainer } from "../center-container";

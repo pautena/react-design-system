@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Content, Header } from "~/components";
 import { BasicModelInstance, ModelForm } from "~/generators";
 import { useNavigateWhenValueChanges } from "~/hooks";
 import { HeaderLayout } from "../../../layouts";
-import { useNotificationCenter, useNotifyWhenValueChanges } from "../../../providers";
+import { useNotifyWhenValueChanges } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 
@@ -48,8 +48,6 @@ export const UpdateScreen = <T extends BasicModelInstance>({
   onRequestUpdateItem,
 }: UpdateScreenProps<T>) => {
   const { id = "" } = useParams();
-  const navigate = useNavigate();
-  const { show } = useNotificationCenter();
   const loading = updateItemRequest.loading || submitUpdateItemRequest.loading;
 
   useEffect(() => {
