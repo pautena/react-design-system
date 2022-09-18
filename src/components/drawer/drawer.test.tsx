@@ -1,6 +1,6 @@
 import React from "react";
 import { Drawer } from "./drawer";
-import { render, screen } from "../../tests";
+import { mockConsoleError, render, screen } from "../../tests";
 import { DrawerProvider } from "./drawer.provider";
 import { DummyDrawerContent, mockNav } from "./drawer.mock";
 import { Box, Button, createTheme } from "@mui/material";
@@ -63,8 +63,10 @@ describe("Drawer", () => {
 });
 
 describe("DrawerContext", () => {
+  mockConsoleError();
+
   it("would throw an error if no Provider is defined", () => {
-    try {
+    expect(() =>
       render(
         <Box>
           <Drawer>
@@ -72,11 +74,8 @@ describe("DrawerContext", () => {
           </Drawer>
           <TestContent />
         </Box>,
-      );
-      fail("No error has been thrown");
-    } catch (e) {
-      expect(e).toStrictEqual(UndefinedProvider);
-    }
+      ),
+    ).toThrow(UndefinedProvider);
   });
 });
 
