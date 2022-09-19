@@ -81,7 +81,7 @@ describe("TableList", () => {
     defaultSort?: string;
     loading?: boolean;
     search?: boolean;
-    options?: TableRowOption<any>[];
+    options?: TableRowOption<BasicModelInstance>[];
     onClick?: jest.Mock;
   } = {}) => {
     const instance = render(
@@ -228,6 +228,7 @@ describe("TableList", () => {
     await userEvents.click(screen.getByRole("row", { name: /item 3/i }));
   });
 
+  // TODO: this tests are throwing a console.error
   describe("options menu", () => {
     it("would render a button to open the menu if doesn't have options", () => {
       renderInstance({ options: undefined });

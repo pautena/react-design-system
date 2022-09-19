@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import userEvent from "@testing-library/user-event";
 import { AlertColor, Box, Button } from "@mui/material";
-import { render, screen, waitForElementToBeRemoved, expectAlert } from "../../tests";
+import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+  expectAlert,
+  mockConsoleError,
+} from "../../tests";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import {
   NotificationCenterContext,
@@ -99,18 +105,15 @@ describe("NotificationCenterProvider", () => {
 });
 
 describe("useNotificationCenter", () => {
+  mockConsoleError();
+
   it("would throw an error if the component is not wrapped by a NotificationCenterContext.Provider", () => {
     const FailingComponent = () => {
       useNotificationCenter();
       return <Box>FailingComponent</Box>;
     };
 
-    try {
-      render(<FailingComponent />);
-      fail();
-    } catch (err) {
-      expect(err).toStrictEqual(NotificationCenterProviderUndefinedError);
-    }
+    expect(() => render(<FailingComponent />)).toThrow(NotificationCenterProviderUndefinedError);
   });
 });
 
