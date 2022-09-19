@@ -109,8 +109,8 @@ describe("TableList", () => {
 
     data.forEach(({ id, name, value }) => {
       expect(screen.getByRole("cell", { name: id })).toBeInTheDocument();
-      expect(screen.getByRole("cell", { name: name })).toBeInTheDocument();
-      expect(screen.getByRole("cell", { name: value })).toBeInTheDocument();
+      expect(screen.getByRole("cell", { name: name as string })).toBeInTheDocument();
+      expect(screen.getByRole("cell", { name: value as string })).toBeInTheDocument();
     });
   });
 
@@ -149,7 +149,8 @@ describe("TableList", () => {
     it("would render the items 2,3 and 4", async () => {
       renderInstance({ search: true });
 
-      await userEvents.type(screen.getByPlaceholderText(/search/i), "a");
+      const search = screen.getByPlaceholderText(/search/i);
+      await userEvents.type(search, "a");
 
       expect(screen.getByText(/item 2/i)).toBeInTheDocument();
       expect(screen.getByText(/item 3/i)).toBeInTheDocument();
@@ -157,6 +158,8 @@ describe("TableList", () => {
 
       expect(screen.queryByText(/item 1/i)).not.toBeInTheDocument();
       expect(screen.queryByText(/item 5/i)).not.toBeInTheDocument();
+
+      await userEvents.clear(search);
     });
 
     it("would render all the items if I remove the search", async () => {

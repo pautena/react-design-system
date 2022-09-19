@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { ChangeEvent } from "react";
 import { ReactNode, useState } from "react";
 import {
@@ -95,7 +94,7 @@ export const EnhancedTable = <T,>({
                   </InputAdornment>
                 ),
               }}
-              onChange={(e: ChangeEvent<any>) => setSearchFilter(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchFilter(e.target.value)}
             />
           </Box>
         )}

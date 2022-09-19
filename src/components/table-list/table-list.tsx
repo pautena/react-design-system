@@ -34,19 +34,19 @@ export const TableList = <T extends BasicModelInstance>({
   defaultOrder,
   loading,
 }: TableListProps<T>) => {
-  const columns = columnsProp;
-  const [anchorMenuEl, setAnchorMenuEl] = React.useState<null | { item: T; anchor: HTMLElement }>(
-    null,
-  );
-  if (options && !columns.some((c) => c.id === OptionsId)) {
-    columns.push({
+  const columns = [
+    ...columnsProp,
+    {
       id: OptionsId,
       label: "",
       disablePadding: false,
       numeric: false,
       sort: false,
-    });
-  }
+    },
+  ];
+  const [anchorMenuEl, setAnchorMenuEl] = React.useState<null | { item: T; anchor: HTMLElement }>(
+    null,
+  );
 
   return (
     <>
