@@ -3,7 +3,7 @@ import { Link as RouterLink, LinkProps as RouterLinkProps } from "react-router-d
 import { forwardRef } from "react";
 import { LinkProps, Link as MuiLink } from "@mui/material";
 
-// eslint-disable-next-line react/display-name, @typescript-eslint/no-explicit-any
+/* eslint-disable react/display-name, @typescript-eslint/no-explicit-any */
 export const LinkBehaviour = forwardRef<
   any,
   Omit<RouterLinkProps, "to"> & { href: RouterLinkProps["to"] }
@@ -12,6 +12,6 @@ export const LinkBehaviour = forwardRef<
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
-export const Link = forwardRef<any, LinkProps>((props, _) => {
+export const Link = forwardRef<any, LinkProps>((props, _1) => {
   return <MuiLink {...props} component={LinkBehaviour} />;
 });

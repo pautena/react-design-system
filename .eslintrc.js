@@ -22,5 +22,12 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "react/display-name": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        varsIgnorePattern: "^_",
+        argsIgnorePattern: "^_",
+      },
+    ],
   },
 };
