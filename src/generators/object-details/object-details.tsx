@@ -8,28 +8,37 @@ import {
   ValueText,
   ValueDatetime,
 } from "../../components";
-import { ModelField, GroupField, Model, BasicModelInstance } from "../generators.model";
+import {
+  ModelField,
+  GroupField,
+  Model,
+  BasicModelInstance,
+  GroupInstanceType,
+} from "../generators.model";
 
-const singleDetailValueFactory = <T extends BasicModelInstance>(field: ModelField, instance: T) => {
+const singleDetailValueFactory = <T extends BasicModelInstance>(
+  field: ModelField,
+  instance: T | GroupInstanceType,
+) => {
   const { id, name, type } = field;
   const value = instance[id];
   if (type === "boolean") {
-    return <ValueBoolean label={name} value={value} />;
+    return <ValueBoolean label={name} value={value as boolean} />;
   } else if (type === "date" || type === "time" || type === "datetime") {
-    return <ValueDatetime label={name} value={value} format={field.format} />;
+    return <ValueDatetime label={name} value={value as Date} format={field.format} />;
   }
   return <ValueText label={name} value={value?.toString()} />;
 };
 
-interface ObjectDetailGroupProps<T extends BasicModelInstance> {
+interface ObjectDetailGroupProps {
   field: GroupField;
-  instance: T;
+  instance: GroupInstanceType;
 }
 
-const ObjectDetailGroup = <T extends BasicModelInstance>({
+const ObjectDetailGroup = ({
   field: { name, description, value },
   instance,
-}: ObjectDetailGroupProps<T>) => {
+}: ObjectDetailGroupProps) => {
   return (
     <GroupValueCard title={name} subtitle={description}>
       {value.map((field) => {
@@ -61,7 +70,7 @@ export const ObjectDetails = <T extends BasicModelInstance>({
         if (type === "group") {
           return (
             <Grid item key={id} xs={12}>
-              <ObjectDetailGroup field={field} instance={instance[id]} />
+              <ObjectDetailGroup field={field} instance={instance[id] as GroupInstanceType} />
             </Grid>
           );
         }

@@ -23,6 +23,7 @@ export interface TableListProps<T extends BasicModelInstance> {
   onClick?: (d: T) => void;
 }
 
+// TODO: Move this to teh generators section
 export const TableList = <T extends BasicModelInstance>({
   columns: columnsProp,
   options,
@@ -69,7 +70,11 @@ export const TableList = <T extends BasicModelInstance>({
               >
                 {columns.map(({ id }, j) => (
                   <TableCell role="cell" scope="row" key={id} aria-rowindex={i} aria-colindex={j}>
-                    {row[id]}
+                    {
+                      row[
+                        id
+                      ] as string /* TODO: This has to be reimplemented having a cell based on each model type */
+                    }
                   </TableCell>
                 ))}
                 {options && (

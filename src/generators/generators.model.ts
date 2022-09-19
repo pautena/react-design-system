@@ -1,3 +1,9 @@
+/**
+ * MODEL TYPES
+ * Types used to specify the model
+ */
+export type ModelFieldTypes = "string" | "number" | "boolean" | "enum" | "multienum";
+
 type Base = {
   id: string;
   description: string;
@@ -38,19 +44,19 @@ type MultiEnumField = {
 type DateField = {
   type: "date";
   format: string;
-  default: any;
+  default: Date;
 };
 
 type TimeField = {
   type: "time";
   format: string;
-  default: any;
+  default: Date;
 };
 
 type DatetimeField = {
   type: "datetime";
   format: string;
-  default: any;
+  default: Date;
 };
 
 type SingleFields =
@@ -69,16 +75,23 @@ export type GroupField = {
 } & Base;
 
 type Fields = SingleFields | GroupField;
-
 export type ModelField = Base & Breakpoints & Fields;
 
 export type Model = {
   fields: ModelField[];
 };
 
+/**
+ * INSTANCE TYPES
+ * Types used to represent an instance of a model specification
+ */
+export type BaseFieldType = string | number | boolean | Date;
+export type ArrayFieldType = string[];
+export type SingleFieldType = BaseFieldType | ArrayFieldType;
+export type GroupInstanceType = { [key: string]: SingleFieldType };
+export type FieldType = SingleFieldType | GroupInstanceType;
+
 export interface BasicModelInstance {
   id: string;
-  [key: string]: any;
+  [key: string]: FieldType;
 }
-
-export type ModelFieldTypes = "string" | "number" | "boolean" | "enum" | "multienum";

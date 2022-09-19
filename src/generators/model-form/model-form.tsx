@@ -18,9 +18,18 @@ import { DesktopDatePicker, TimePicker, DateTimePicker } from "@mui/x-date-picke
 import React, { ChangeEvent, FormEvent, ReactElement, useMemo } from "react";
 import { useState } from "react";
 import { useGetDefaultThemeColor } from "../../utils/theme";
-import { Model, ModelField, BasicModelInstance, ModelFieldTypes } from "../generators.model";
+import {
+  Model,
+  ModelField,
+  BasicModelInstance,
+  ModelFieldTypes,
+  GroupInstanceType,
+  FieldType,
+  ArrayFieldType,
+  SingleFieldType,
+} from "../generators.model";
 
-const InitialStateZeroValue: Record<string, any> = {
+const InitialStateZeroValue: Record<string, FieldType | undefined> = {
   string: undefined,
   number: undefined,
   boolean: false,
@@ -30,9 +39,9 @@ const InitialStateZeroValue: Record<string, any> = {
   group: {},
 };
 
-const getFieldInitialState = <T extends BasicModelInstance>(
+const getFieldInitialState = (
   field: ModelField,
-  initialValues: T | undefined,
+  initialValues: BasicModelInstance | GroupInstanceType | undefined,
 ) => {
   return initialValues ? initialValues[field.id] : InitialStateZeroValue[field.type];
 };
@@ -41,28 +50,26 @@ const getValuesInitialState = <T extends BasicModelInstance>(
   model: Model,
   initialValues: T | undefined,
 ): T => {
-  const obj = {} as any;
+  const obj: Record<string, FieldType | undefined> = {};
 
   model.fields.forEach((field) => {
-    let value: any;
     if (field.type === "group") {
-      value = {};
+      const value: GroupInstanceType = {};
       field.value.forEach((groupField) => {
         value[groupField.id] = getFieldInitialState(
           groupField,
-          initialValues && initialValues[field.id],
-        );
+          initialValues && (initialValues[field.id] as GroupInstanceType),
+        ) as SingleFieldType;
       });
+      obj[field.id] = value;
     } else if (field.type === "date" || field.type === "time") {
-      value = (initialValues && initialValues[field.id]) || field.default;
+      obj[field.id] = (initialValues && initialValues[field.id]) || field.default;
     } else {
-      value = getFieldInitialState(field, initialValues);
+      obj[field.id] = getFieldInitialState(field, initialValues);
     }
-
-    obj[field.id] = value;
   });
 
-  return obj;
+  return obj as T;
 };
 
 export interface ModelFormProps<T extends BasicModelInstance> {
@@ -84,14 +91,14 @@ export const ModelForm = <T extends BasicModelInstance>({
   );
   const [values, setValues] = useState<T>(valuesInitialState);
 
-  const setKeyValue = (name: string, key: string | undefined, value: any) => {
+  const setKeyValue = (name: string, key: string | undefined, value: FieldType | null) => {
     setValues((v) => {
-      const n: Record<string, object> = {};
+      const n: Record<string, FieldType | null> = {};
       if (key) {
         n[key] = {
-          ...v[key],
+          ...(v[key] as GroupInstanceType),
           [name]: value,
-        };
+        } as GroupInstanceType;
       } else {
         n[name] = value;
       }
@@ -100,17 +107,17 @@ export const ModelForm = <T extends BasicModelInstance>({
     });
   };
 
-  const handleCheckboxChange = (e: ChangeEvent<any>, key: string | undefined) => {
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>, key: string | undefined) => {
     e.preventDefault();
     setKeyValue(e.target.name, key, e.target.checked);
   };
 
-  const handleSelectChange = (e: SelectChangeEvent<any>, key: string | undefined) => {
+  const handleSelectChange = (e: SelectChangeEvent<FieldType>, key: string | undefined) => {
     e.preventDefault();
     setKeyValue(e.target.name, key, e.target.value);
   };
 
-  const handleMultiSelectChange = (e: SelectChangeEvent<any>, key: string | undefined) => {
+  const handleMultiSelectChange = (e: SelectChangeEvent<FieldType>, key: string | undefined) => {
     e.preventDefault();
     const { value } = e.target;
     const newValue = typeof value === "string" ? value.split(",") : value;
@@ -118,20 +125,20 @@ export const ModelForm = <T extends BasicModelInstance>({
   };
 
   const handleInputChange = (
-    e: ChangeEvent<any>,
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     key: string | undefined,
     type: ModelFieldTypes,
   ) => {
     e.preventDefault();
 
-    let value = e.target.value;
+    let value: string | number = e.target.value;
     if (type === "number") {
       value = parseInt(e.target.value);
     }
     setKeyValue(e.target.name, key, value);
   };
 
-  const handleDateChange = (value: any, key: string | undefined, id: string) => {
+  const handleDateChange = (value: FieldType | null, key: string | undefined, id: string) => {
     setKeyValue(id, key, value);
   };
 
@@ -146,7 +153,7 @@ export const ModelForm = <T extends BasicModelInstance>({
     const { id, type, name, description, xs, sm, md, lg, xl } = field;
 
     let fieldInput: ReactElement;
-    const value = key ? values[key][id] : values[id];
+    const value = key ? (values[key] as GroupInstanceType)[id] : values[id];
     if (type === "group") {
       fieldInput = (
         <Paper>
@@ -168,7 +175,11 @@ export const ModelForm = <T extends BasicModelInstance>({
         <Box sx={{ height: 1, display: "flex", alignItems: "center" }}>
           <FormControlLabel
             control={
-              <Checkbox name={id} onChange={(e) => handleCheckboxChange(e, key)} checked={value} />
+              <Checkbox
+                name={id}
+                onChange={(e) => handleCheckboxChange(e, key)}
+                checked={value as boolean}
+              />
             }
             label={name}
           />
@@ -203,7 +214,7 @@ export const ModelForm = <T extends BasicModelInstance>({
             labelId={`${id}-select-label`}
             id={`${id}-select`}
             value={value || []}
-            renderValue={(selected) => selected.join(", ")}
+            renderValue={(selected) => (selected as ArrayFieldType).join(", ")}
             label={name}
             name={id}
             onChange={(e) => handleMultiSelectChange(e, key)}
@@ -212,7 +223,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           >
             {field.value.map((fieldValue) => (
               <MenuItem key={fieldValue} value={fieldValue}>
-                <Checkbox checked={(value || []).includes(fieldValue)} />
+                <Checkbox checked={((value as ArrayFieldType) || []).includes(fieldValue)} />
                 <ListItemText primary={fieldValue} />
               </MenuItem>
             ))}
@@ -226,7 +237,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           inputFormat={field.format}
           value={value}
           onChange={(value) => handleDateChange(value, key, id)}
-          renderInput={(params: any) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />
       );
     } else if (type === "time") {
@@ -236,7 +247,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           inputFormat={field.format}
           value={value}
           onChange={(value) => handleDateChange(value, key, id)}
-          renderInput={(params: any) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />
       );
     } else if (type === "datetime") {
@@ -246,7 +257,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           inputFormat={field.format}
           value={value}
           onChange={(value) => handleDateChange(value, key, id)}
-          renderInput={(params: any) => <TextField {...params} />}
+          renderInput={(params) => <TextField {...params} />}
         />
       );
     } else {
