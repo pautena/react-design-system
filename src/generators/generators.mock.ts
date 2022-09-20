@@ -141,7 +141,7 @@ export const mockModel: Model = {
           id: "returnTime",
           type: "time",
           format: ReturnTimeFormat,
-          default: new Date(1970, 0, 1, 9, 0),
+          default: new Date(2022, 8, 21, 9, 0),
           description: "Lorem ipsum",
           name: "Return time",
           xs: 12,

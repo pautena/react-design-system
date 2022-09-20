@@ -9,6 +9,7 @@ import {
   selectOptions,
   pickDatetime,
   expectToHaveBeenCalledOnceWithMockInstance,
+  typeNumericInput,
 } from "../../tests";
 import {
   BirthDateFormat,
@@ -67,7 +68,7 @@ describe("ModelForm", () => {
     await userEvent.type(screen.getByRole("textbox", { name: /middle name/i }), "Noah");
     await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
     await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis Man");
-    await userEvent.type(screen.getByRole("spinbutton", { name: /age/i }), "37");
+    typeNumericInput(screen.getByRole("spinbutton", { name: /age/i }), 37);
     pickDatetime(screen.getByRole("textbox", { name: /birth date/i }), birthDate, BirthDateFormat);
     await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
     await selectOption(screen.getByRole("button", { name: /manufacturer/i }), "Bugatti");
@@ -84,7 +85,7 @@ describe("ModelForm", () => {
       returnTime,
       ReturnTimeFormat,
     );
-    await userEvent.type(screen.getByRole("spinbutton", { name: /q/i }), "9");
+    typeNumericInput(screen.getByRole("spinbutton", { name: /q/i }), 9);
     await userEvent.click(screen.getByRole("checkbox", { name: /available/i }));
     await userEvent.type(screen.getByRole("textbox", { name: /currency/i }), "mxn");
     pickDatetime(screen.getByRole("textbox", { name: /trade date/i }), tradeDate, TradeDateFormat);

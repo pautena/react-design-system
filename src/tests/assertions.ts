@@ -32,7 +32,7 @@ export const expectModelFieldInputValue = (fields: ModelField[], initialValues: 
     if (field.type === "group") {
       expectModelFieldInputValue(field.value, value);
     } else if (field.type === "number") {
-      expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
+      expect(screen.getByDisplayValue(value)).toBeInTheDocument();
     } else if (field.type === "boolean") {
       expect(
         screen.getByRole("checkbox", { name: field.name, checked: value }),

@@ -2,7 +2,15 @@
  * MODEL TYPES
  * Types used to specify the model
  */
-export type ModelFieldTypes = "string" | "number" | "boolean" | "enum" | "multienum";
+export type ModelFieldTypes =
+  | "string"
+  | "number"
+  | "boolean"
+  | "enum"
+  | "multienum"
+  | "date"
+  | "time"
+  | "datetime";
 
 type Base = {
   id: string;
@@ -95,3 +103,54 @@ export interface BasicModelInstance {
   id: string;
   [key: string]: FieldType;
 }
+
+/**
+ * UTILITIES
+ * Some functions used in several places to help to manage models
+ */
+const InitialStateZeroValue: Record<ModelFieldTypes | "group", FieldType | undefined> = {
+  string: "",
+  number: 0,
+  boolean: false,
+  enum: "",
+  multienum: [],
+  date: new Date(1970, 0, 1, 0, 0),
+  time: new Date(1970, 0, 1, 0, 0),
+  datetime: new Date(1970, 0, 1, 0, 0),
+  group: {},
+};
+
+const getFieldValueOrZero = (
+  field: ModelField,
+  values: BasicModelInstance | GroupInstanceType | undefined,
+) => {
+  return (
+    (values && values[field.id]) ||
+    ("default" in field && field.default) ||
+    InitialStateZeroValue[field.type]
+  );
+};
+
+export const newInstanceFromValuesOrZeroValue = <T extends BasicModelInstance>(
+  model: Model,
+  values: T | undefined = undefined,
+): T => {
+  const obj: Record<string, FieldType | undefined> = {};
+
+  model.fields.forEach((field) => {
+    if (field.type === "group") {
+      const value: GroupInstanceType = {};
+      field.value.forEach((groupField) => {
+        value[groupField.id] = getFieldValueOrZero(
+          groupField,
+          values && (values[field.id] as GroupInstanceType),
+        ) as SingleFieldType;
+      });
+      obj[field.id] = value;
+    } else {
+      obj[field.id] = getFieldValueOrZero(field, values);
+    }
+  });
+
+  return obj as T;
+};

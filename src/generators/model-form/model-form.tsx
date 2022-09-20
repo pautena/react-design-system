@@ -26,51 +26,8 @@ import {
   GroupInstanceType,
   FieldType,
   ArrayFieldType,
-  SingleFieldType,
+  newInstanceFromValuesOrZeroValue,
 } from "../generators.model";
-
-const InitialStateZeroValue: Record<string, FieldType | undefined> = {
-  string: undefined,
-  number: undefined,
-  boolean: false,
-  enum: "",
-  multienum: [],
-  date: "01/01/1970",
-  group: {},
-};
-
-const getFieldInitialState = (
-  field: ModelField,
-  initialValues: BasicModelInstance | GroupInstanceType | undefined,
-) => {
-  return initialValues ? initialValues[field.id] : InitialStateZeroValue[field.type];
-};
-
-const getValuesInitialState = <T extends BasicModelInstance>(
-  model: Model,
-  initialValues: T | undefined,
-): T => {
-  const obj: Record<string, FieldType | undefined> = {};
-
-  model.fields.forEach((field) => {
-    if (field.type === "group") {
-      const value: GroupInstanceType = {};
-      field.value.forEach((groupField) => {
-        value[groupField.id] = getFieldInitialState(
-          groupField,
-          initialValues && (initialValues[field.id] as GroupInstanceType),
-        ) as SingleFieldType;
-      });
-      obj[field.id] = value;
-    } else if (field.type === "date" || field.type === "time") {
-      obj[field.id] = (initialValues && initialValues[field.id]) || field.default;
-    } else {
-      obj[field.id] = getFieldInitialState(field, initialValues);
-    }
-  });
-
-  return obj as T;
-};
 
 export interface ModelFormProps<T extends BasicModelInstance> {
   model: Model;
@@ -86,7 +43,7 @@ export const ModelForm = <T extends BasicModelInstance>({
   initialValues,
 }: ModelFormProps<T>) => {
   const valuesInitialState = useMemo(
-    () => getValuesInitialState<T>(model, initialValues),
+    () => newInstanceFromValuesOrZeroValue<T>(model, initialValues),
     [model, initialValues],
   );
   const [values, setValues] = useState<T>(valuesInitialState);
@@ -132,7 +89,7 @@ export const ModelForm = <T extends BasicModelInstance>({
     e.preventDefault();
 
     let value: string | number = e.target.value;
-    if (type === "number") {
+    if (type === "number" && typeof value === "string") {
       value = parseInt(e.target.value);
     }
     setKeyValue(e.target.name, key, value);

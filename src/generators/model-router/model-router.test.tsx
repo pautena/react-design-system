@@ -35,6 +35,7 @@ import {
   mockConsoleWarn,
   pickDatetime,
   selectOptions,
+  typeNumericInput,
 } from "../../tests";
 import { AddScreen, ListScreen, UpdateScreen } from "./screens";
 import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
@@ -182,7 +183,7 @@ describe("ModelRouter", () => {
       await userEvent.type(middleNameElement, instance.middleName);
       await userEvent.type(lastNameElement, instance.lastName);
       await selectOption(genderElement, instance.gender);
-      await userEvent.type(ageElement, instance.age.toString());
+      typeNumericInput(ageElement, instance.age);
       pickDatetime(birthDateElement, instance.birthDate, BirthDateFormat);
       await selectOption(modelElement, instance.car.model);
       await selectOption(manufacturerElement, instance.car.manufacturer);
@@ -191,7 +192,7 @@ describe("ModelRouter", () => {
       await userEvent.type(vinElement, instance.car.vin);
       await userEvent.type(vrmElement, instance.car.vrm);
       pickDatetime(timeReturnElement, instance.car.returnTime, ReturnTimeFormat);
-      await userEvent.type(quantityElement, instance.quantity.toString());
+      typeNumericInput(quantityElement, instance.quantity);
       if (instance.available) {
         await userEvent.click(availableElement);
       }

@@ -2,6 +2,10 @@ import userEvent from "@testing-library/user-event";
 import { screen, fireEvent } from "./testing-library";
 import { format } from "date-fns";
 
+export const typeNumericInput = (element: HTMLElement, value: number) => {
+  fireEvent.change(element, { target: { value } });
+};
+
 export const selectOption = async (element: HTMLElement, option: string) => {
   await userEvent.click(element);
   await userEvent.click(screen.getByRole("option", { name: option }));
