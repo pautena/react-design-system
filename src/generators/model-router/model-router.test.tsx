@@ -32,6 +32,7 @@ import {
   clearMultiSelect,
   expectAlert,
   expectToHaveBeenCalledOnceWithMockInstance,
+  mockConsoleWarn,
   pickDatetime,
   selectOptions,
 } from "../../tests";
@@ -1014,6 +1015,8 @@ describe("ModelRouter", () => {
     });
 
     describe("updateFeature disabled", () => {
+      mockConsoleWarn();
+
       it("wouldn't have an option to remove an item from the list", async () => {
         const { data } = await renderComponent({ updateFeature: false });
         const {
@@ -1053,6 +1056,8 @@ describe("ModelRouter", () => {
     });
 
     describe("addFeature disabled", () => {
+      mockConsoleWarn();
+
       it("wouldn't render a button to navigate to the add screen", async () => {
         await renderComponent({ addFeature: false });
 
@@ -1071,6 +1076,8 @@ describe("ModelRouter", () => {
     });
 
     describe("detailsFeature disabled", () => {
+      mockConsoleWarn();
+
       it("wouldn't navigate to the details screen if I click a row item", async () => {
         const {
           randomItem: {

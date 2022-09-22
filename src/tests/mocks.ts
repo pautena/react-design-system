@@ -1,13 +1,21 @@
 export const mockConsoleError = () => {
+  mockConsole("error");
+};
+
+export const mockConsoleWarn = () => {
+  mockConsole("warn");
+};
+
+export const mockConsole = (severity: "error" | "warn") => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let errorFn: (message?: any, ...optionalParams: any[]) => void;
+  let logFn: (message?: any, ...optionalParams: any[]) => void;
 
   beforeEach(() => {
-    errorFn = console.error;
-    console.error = jest.fn();
+    logFn = console[severity];
+    console[severity] = jest.fn();
   });
 
   afterEach(() => {
-    console.error = errorFn;
+    console[severity] = logFn;
   });
 };
