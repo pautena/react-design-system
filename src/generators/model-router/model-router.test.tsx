@@ -165,12 +165,12 @@ describe("ModelRouter", () => {
         await userEvent.clear(firstNameElement);
         await userEvent.clear(middleNameElement);
         await userEvent.clear(lastNameElement);
-        await userEvent.clear(ageElement);
+        //await userEvent.clear(ageElement);
         await userEvent.clear(birthDateElement);
         await userEvent.clear(colorElement);
         await userEvent.clear(vinElement);
         await userEvent.clear(vrmElement);
-        await userEvent.clear(quantityElement);
+        //await userEvent.clear(quantityElement);
         await userEvent.clear(availableElement);
         await userEvent.clear(currencyElement);
         await userEvent.clear(tradeDateElement);
