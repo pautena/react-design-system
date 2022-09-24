@@ -3,23 +3,28 @@ import { TableSortLabel, TableRow, Box, TableCell, TableHead } from "@mui/materi
 import { visuallyHidden } from "@mui/utils";
 
 export type Order = "asc" | "desc";
-export interface HeadCell {
+export interface HeadCell<T> {
   disablePadding: boolean;
-  id: string;
+  id: keyof T;
   label: string;
   numeric: boolean;
   sort: boolean;
 }
 
-interface Props {
-  onRequestSort: (property: string) => void;
+interface EnhancedTableHeadProps<T> {
+  onRequestSort: (property: keyof T) => void;
   order: Order;
-  orderBy: string;
-  headCells: HeadCell[];
+  orderBy: keyof T;
+  headCells: HeadCell<T>[];
 }
 
-export function EnhancedTableHead({ order, orderBy, headCells, onRequestSort }: Props) {
-  const createSortHandler = (property: string) => () => {
+export const EnhancedTableHead = <T,>({
+  order,
+  orderBy,
+  headCells,
+  onRequestSort,
+}: EnhancedTableHeadProps<T>) => {
+  const createSortHandler = (property: keyof T) => () => {
     onRequestSort(property);
   };
 
@@ -55,4 +60,4 @@ export function EnhancedTableHead({ order, orderBy, headCells, onRequestSort }: 
       </TableRow>
     </TableHead>
   );
-}
+};

@@ -3,7 +3,7 @@ import { EnhancedTable } from ".";
 import { TableCell, TableRow } from "@mui/material";
 import { HeadCell, Order } from "./enhanced-table-head";
 
-export const columns: HeadCell[] = [
+export const columns: HeadCell<Data>[] = [
   {
     id: "name",
     numeric: false,
@@ -63,8 +63,8 @@ export const data: Data[] = [
 
 export interface TestTableProps {
   data: Data[];
-  columns: HeadCell[];
-  defaultSort: string;
+  columns: HeadCell<Data>[];
+  defaultSort: keyof Data;
   defaultOrder: Order;
   loading: boolean;
 }

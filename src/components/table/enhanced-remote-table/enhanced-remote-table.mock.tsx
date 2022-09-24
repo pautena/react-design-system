@@ -7,9 +7,9 @@ import { Data } from "../enhanced-table/enhanced-table.mock";
 export interface EnhancedRemoteDummyTableProps {
   data: Data[];
   loading: boolean;
-  defaultSort: string;
+  defaultSort: keyof Data;
   defaultOrder?: Order;
-  columns: HeadCell[];
+  columns: HeadCell<Data>[];
   onRequestSort: (col: string, orderBy: Order) => void;
 }
 

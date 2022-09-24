@@ -4,11 +4,6 @@ import React from "react";
 export const NotificationCenterProviderUndefinedError = new Error(
   "NotificationCenterContext.Provider is required and was undefined",
 );
-export type SnackbarContentType =
-  | React.ReactElement<any, any>
-  | ((key: string) => React.ReactElement<any, any>);
-
-export type SnackbarActionType = React.ReactNode | ((key: string) => React.ReactNode);
 
 export interface Notification {
   severity: AlertColor;

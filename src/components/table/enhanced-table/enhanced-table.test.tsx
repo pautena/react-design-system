@@ -2,12 +2,12 @@ import React from "react";
 import { expectProgressIndicator, render } from "../../../tests";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
-import { TestTable, columns, data } from "./enhanced-table.mock";
+import { TestTable, columns, data, Data } from "./enhanced-table.mock";
 
-function renderInstance({
+const renderInstance = ({
   defaultSort = "startDate",
   loading = false,
-}: { defaultSort?: string; loading?: boolean } = {}) {
+}: { defaultSort?: keyof Data; loading?: boolean } = {}) => {
   return render(
     <TestTable
       data={data}
@@ -17,7 +17,7 @@ function renderInstance({
       loading={loading}
     />,
   );
-}
+};
 
 describe("EnhancedTable", () => {
   it("all items are rendered in the correct order", async () => {

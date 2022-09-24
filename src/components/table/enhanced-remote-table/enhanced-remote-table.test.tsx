@@ -2,13 +2,13 @@ import React from "react";
 import { screen, render } from "@testing-library/react";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 import userEvent from "@testing-library/user-event";
-import { columns, data } from "../enhanced-table/enhanced-table.mock";
+import { columns, Data, data } from "../enhanced-table/enhanced-table.mock";
 import { expectProgressIndicator } from "../../../tests";
 
 function renderInstance({
   defaultSort = "startDate",
   loading = false,
-}: { defaultSort?: string; loading?: boolean } = {}) {
+}: { defaultSort?: keyof Data; loading?: boolean } = {}) {
   const onRequestSort = jest.fn();
   render(
     <EnhancedRemoteDummyTable

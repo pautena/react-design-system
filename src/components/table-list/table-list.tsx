@@ -13,7 +13,7 @@ export interface TableRowOption<T extends BasicModelInstance> {
 }
 
 export interface TableListProps<T extends BasicModelInstance> {
-  columns: HeadCell[];
+  columns: HeadCell<T>[];
   data: T[];
   search?: boolean;
   defaultSort: string;
@@ -69,7 +69,13 @@ export const TableList = <T extends BasicModelInstance>({
                 sx={{ cursor: onClick && "pointer" }}
               >
                 {columns.map(({ id }, j) => (
-                  <TableCell role="cell" scope="row" key={id} aria-rowindex={i} aria-colindex={j}>
+                  <TableCell
+                    role="cell"
+                    scope="row"
+                    key={id.toString()}
+                    aria-rowindex={i}
+                    aria-colindex={j}
+                  >
                     {
                       row[
                         id

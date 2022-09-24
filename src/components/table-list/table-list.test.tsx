@@ -6,7 +6,7 @@ import { TableRowOption, TableList } from "./table-list";
 import { HeadCell } from "../table/enhanced-table";
 import { BasicModelInstance } from "../../generators";
 
-const columns: HeadCell[] = [
+const columns: HeadCell<BasicModelInstance>[] = [
   {
     id: "id",
     numeric: true,

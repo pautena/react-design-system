@@ -14,11 +14,12 @@ import {
 import Search from "@mui/icons-material/Search";
 import { EnhancedTableHead, HeadCell, Order } from "./enhanced-table-head";
 
-function getFilter<T>(columns: HeadCell[], search: string) {
+function getFilter<T>(columns: HeadCell<T>[], search: string) {
   return (d: T) => {
     return (
       !search ||
       columns.some((col) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let value = (d as any)[col.id];
         if (value?.toLowerCase) {
           value = value.toLowerCase();
@@ -29,7 +30,7 @@ function getFilter<T>(columns: HeadCell[], search: string) {
   };
 }
 
-function getComparator(order: Order, orderBy: any): (a: any, b: any) => number {
+function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
@@ -47,10 +48,10 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 interface Props<T> {
   readonly data: T[];
   search?: boolean;
-  defaultSort: string;
+  defaultSort: keyof T;
   defaultOrder?: Order;
   loading?: boolean;
-  columns: HeadCell[];
+  columns: HeadCell<T>[];
   children: (data: T[]) => ReactNode;
 }
 
@@ -65,9 +66,9 @@ export const EnhancedTable = <T,>({
 }: Props<T>) => {
   const [searchFilter, setSearchFilter] = useState<string>("");
   const [order, setOrder] = useState<Order>(defaultOrder);
-  const [orderBy, setOrderBy] = useState(defaultSort);
+  const [orderBy, setOrderBy] = useState<keyof T>(defaultSort);
 
-  const handleRequestSort = (property: string) => {
+  const handleRequestSort = (property: keyof T) => {
     const isAsc = orderBy === property && order === "asc";
     setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);

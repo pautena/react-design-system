@@ -13,11 +13,11 @@ import { EnhancedTableHead, HeadCell, Order } from "../enhanced-table";
 export interface EnhancedRemoteTableProps<T> {
   data: T[];
   loading: boolean;
-  defaultSort: string;
+  defaultSort: keyof T;
   defaultOrder?: Order;
-  columns: HeadCell[];
+  columns: HeadCell<T>[];
   children: (data: T, index: number) => ReactNode;
-  onRequestSort: (col: string, orderBy: "asc" | "desc") => void;
+  onRequestSort: (col: keyof T, orderBy: "asc" | "desc") => void;
 }
 
 export const EnhancedRemoteTable = <T,>({
@@ -34,9 +34,9 @@ export const EnhancedRemoteTable = <T,>({
     order: defaultOrder || "asc",
   });
 
-  const handleRequestSort = (property: string) => {
-    setOrder((prevState) => {
-      const newOrder = prevState.orderBy === property && prevState.order === "asc" ? "desc" : "asc";
+  const handleRequestSort = (property: keyof T) => {
+    setOrder(({ orderBy, order }) => {
+      const newOrder = orderBy === property && order === "asc" ? "desc" : "asc";
       onRequestSort(property, newOrder);
 
       return {
