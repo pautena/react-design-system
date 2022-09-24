@@ -1,14 +1,14 @@
-import { Box, MenuItem, PropTypes, useTheme } from "@mui/material";
+import { Box, MenuItem, useTheme } from "@mui/material";
 import { ComponentMeta } from "@storybook/react";
 import React, { ReactNode } from "react";
 import { createTemplate, withContainer } from "../../storybook";
-import { EnhancedSelect, EnhancedSelectProps } from "./enhanced-select";
+import { EnhancedSelect, EnhancedSelectProps, EnhancedSelectSize } from "./enhanced-select";
 import { faker } from "@faker-js/faker";
 
 const baseArgs = {
   label: "Car model",
   value: faker.vehicle.model(),
-  size: "medium",
+  size: "medium" as EnhancedSelectSize,
   fetching: false,
   loading: false,
   fullWidth: true,
@@ -69,15 +69,15 @@ SizeSmall.args = {
   size: "small",
 };
 
-type WithBackgroundProps<T extends ReactNode> = TemplateProps<T> & { bgcolor: PropTypes.Color };
+type WithBackgroundProps = TemplateProps<string> & { bgcolor: "primary" | "secondary" };
 
-export const WithBackground = <T extends string>({
-  options,
-  bgcolor: bgcolorProp,
-  ...rest
-}: WithBackgroundProps<T>) => {
+export const WithBackground = ({ options, bgcolor: bgcolorProp, ...rest }: WithBackgroundProps) => {
   const { palette } = useTheme();
-  const bgcolor = palette[bgcolorProp].main;
+  const BackgroundColors: Record<"primary" | "secondary", string> = {
+    primary: palette.primary.main,
+    secondary: palette.secondary.main,
+  };
+  const bgcolor = BackgroundColors[bgcolorProp];
   const selectColor = palette.getContrastText(bgcolor);
 
   return (

@@ -89,10 +89,11 @@ describe("ModelRouter", () => {
       ).not.toBeInTheDocument(),
     expectListItems: async ({ data, model }: { data: MockInstance[]; model: Model }) => {
       for (let i = 0; i < model.fields.length; ++i) {
-        const { id, listable } = model.fields[i];
+        const { listable, id } = model.fields[i];
 
         if (listable) {
-          expect(await screen.findAllByRole("cell", { name: data[id] })).toBeTruthy();
+          const name = data[i][id] as string;
+          expect(await screen.findAllByRole("cell", { name })).toBeTruthy();
         }
       }
     },
@@ -147,30 +148,36 @@ describe("ModelRouter", () => {
       const lastNameElement = screen.getByRole("textbox", { name: /last name/i });
       const genderElement = screen.getByRole("button", { name: /gender/i });
       const ageElement = screen.getByRole("spinbutton", { name: /age/i });
-      const birthDateElement = screen.getByRole("textbox", { name: /birth date/i });
+      const birthDateElement = screen.getByRole<HTMLInputElement>("textbox", {
+        name: /birth date/i,
+      });
       const manufacturerElement = screen.getByRole("button", { name: /manufacturer/i });
       const modelElement = screen.getByRole("button", { name: /model/i });
       const colorElement = screen.getByRole("textbox", { name: /color/i });
       const typeElement = screen.getByRole("button", { name: /type/i });
       const vinElement = screen.getByRole("textbox", { name: /vin/i });
       const vrmElement = screen.getByRole("textbox", { name: /vrm/i });
-      const timeReturnElement = screen.getByRole("textbox", { name: /return time/i });
+      const timeReturnElement = screen.getByRole<HTMLInputElement>("textbox", {
+        name: /return time/i,
+      });
       const quantityElement = screen.getByRole("spinbutton", { name: /q/i });
-      const availableElement = screen.getByRole("checkbox", { name: /available/i });
+      const availableElement = screen.getByRole<HTMLInputElement>("checkbox", {
+        name: /available/i,
+      });
       const currencyElement = screen.getByRole("textbox", { name: /currency/i });
-      const tradeDateElement = screen.getByRole("textbox", { name: /trade date/i });
+      const tradeDateElement = screen.getByRole<HTMLInputElement>("textbox", {
+        name: /trade date/i,
+      });
 
       if (clear) {
         await userEvent.clear(idElement);
         await userEvent.clear(firstNameElement);
         await userEvent.clear(middleNameElement);
         await userEvent.clear(lastNameElement);
-        //await userEvent.clear(ageElement);
         await userEvent.clear(birthDateElement);
         await userEvent.clear(colorElement);
         await userEvent.clear(vinElement);
         await userEvent.clear(vrmElement);
-        //await userEvent.clear(quantityElement);
         await userEvent.clear(availableElement);
         await userEvent.clear(currencyElement);
         await userEvent.clear(tradeDateElement);

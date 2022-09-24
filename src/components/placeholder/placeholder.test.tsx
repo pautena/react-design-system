@@ -12,12 +12,13 @@ describe("Placeholder", () => {
     actions = undefined,
     icon = undefined,
   }: { actions?: PlaceholderAction[]; icon?: ReactElement } = {}) => {
+    const iconFn = icon ? () => icon : undefined;
     return render(
       <Placeholder
         title="Lorem ipsum"
         subtitle="Lorem ipsum sit amet"
         actions={actions}
-        icon={() => icon}
+        icon={iconFn}
       />,
     );
   };

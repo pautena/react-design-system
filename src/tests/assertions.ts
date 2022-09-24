@@ -1,5 +1,5 @@
 import { AlertColor } from "@mui/material";
-import { ModelField } from "../generators";
+import { BasicModelInstance, GroupInstanceType, ModelField } from "../generators";
 import { screen, waitForElementToBeRemoved } from "./testing-library";
 import { format } from "date-fns";
 import { MockInstance } from "../generators/generators.mock";
@@ -26,19 +26,22 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
   });
 };
 
-export const expectModelFieldInputValue = (fields: ModelField[], initialValues: object) => {
+export const expectModelFieldInputValue = (
+  fields: ModelField[],
+  initialValues: BasicModelInstance | GroupInstanceType,
+) => {
   fields.forEach((field) => {
     const value = initialValues[field.id];
     if (field.type === "group") {
-      expectModelFieldInputValue(field.value, value);
+      expectModelFieldInputValue(field.value, value as GroupInstanceType);
     } else if (field.type === "number") {
-      expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+      expect(screen.getByDisplayValue(value as number)).toBeInTheDocument();
     } else if (field.type === "boolean") {
       expect(
-        screen.getByRole("checkbox", { name: field.name, checked: value }),
+        screen.getByRole("checkbox", { name: field.name, checked: value as boolean }),
       ).toBeInTheDocument();
     } else if (field.type === "date" || field.type === "time" || field.type === "datetime") {
-      const expectedDateValue = format(value, field.format);
+      const expectedDateValue = format(value as Date, field.format);
       expect(screen.getByRole("textbox", { name: field.name })).toHaveAttribute(
         "value",
         expectedDateValue,
@@ -49,14 +52,19 @@ export const expectModelFieldInputValue = (fields: ModelField[], initialValues: 
   });
 };
 
-export const expectModelFieldValue = (field: ModelField, instance: object) => {
+export const expectModelFieldValue = (
+  field: ModelField,
+  instance: BasicModelInstance | GroupInstanceType,
+) => {
   const { id, type, name, description } = field;
   const value = instance[id];
 
   if (type === "group") {
     expect(screen.getByRole("heading", { level: 1, name }));
     expect(screen.getByRole("heading", { level: 2, name: description }));
-    field.value.forEach((groupValue) => expectModelFieldValue(groupValue, value));
+    field.value.forEach((groupValue) =>
+      expectModelFieldValue(groupValue, value as GroupInstanceType),
+    );
     return;
   }
 
@@ -64,10 +72,10 @@ export const expectModelFieldValue = (field: ModelField, instance: object) => {
   if (type === "boolean") {
     expect(screen.getByTestId(value ? "CheckIcon" : "CloseIcon")).toBeInTheDocument();
   } else if (type === "date" || type === "time" || type === "datetime") {
-    const formatedValue = format(value, field.format);
+    const formatedValue = format(value as Date, field.format);
     expect(screen.getByLabelText(name)).toHaveTextContent(formatedValue);
   } else {
-    expect(screen.getByLabelText(name)).toHaveTextContent(value);
+    expect(screen.getByLabelText(name)).toHaveTextContent(value as string);
   }
 };
 

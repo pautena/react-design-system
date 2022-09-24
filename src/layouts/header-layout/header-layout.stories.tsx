@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
-import { HeaderLayout } from "./header-layout";
+import { HeaderLayout, HeaderLayoutProps } from "./header-layout";
 import { withMemoryRouter } from "~/storybook";
 import { SkeletonGrid } from "../../tests";
 import { withFullHeight } from "../../storybook";
@@ -58,7 +58,7 @@ export default {
   },
 } as ComponentMeta<typeof HeaderLayout>;
 
-interface HeaderLayoutStoryProps {
+interface HeaderLayoutStoryProps extends HeaderLayoutProps {
   headerProps: HeaderProps;
   contentChildren: ReactElement;
 }

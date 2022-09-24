@@ -6,12 +6,12 @@ import { TabProvider } from "../../../providers";
 
 export const DummyTabs = ["tab 1", "tab 2.1", "tab 2.2", "tab 3"];
 
-interface Props {
+export interface TabCardDummyProps {
   tabs: string[];
   initialTab: number;
 }
 
-export function TabCardDummy({ tabs, initialTab }: Props) {
+export function TabCardDummy({ tabs, initialTab }: TabCardDummyProps) {
   return (
     <TabProvider initialValue={initialTab}>
       <TabCard tabs={tabs}>

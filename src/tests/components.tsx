@@ -14,7 +14,7 @@ export const Placeholder = () => {
   );
 };
 
-interface SkeletonCardProps {
+export interface SkeletonCardProps {
   width?: number | string;
   animation?: "pulse" | "wave" | false;
 }

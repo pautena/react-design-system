@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from "react";
 import { Stack, Box, TextField, Typography, Alert } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 
-interface Props {
+export interface SignInProps {
   title: string;
   subtitle: string;
   error?: Error;
@@ -10,7 +10,7 @@ interface Props {
   onSubmitSignIn: (email: string, password: string) => void;
 }
 
-export function SignIn({ title, subtitle, loading, error, onSubmitSignIn }: Props) {
+export const SignIn = ({ title, subtitle, loading, error, onSubmitSignIn }: SignInProps) => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
@@ -94,4 +94,4 @@ export function SignIn({ title, subtitle, loading, error, onSubmitSignIn }: Prop
       </Box>
     </>
   );
-}
+};

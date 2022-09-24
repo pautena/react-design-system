@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { TabCard } from "./tab-card";
 import { createTemplate } from "../../../storybook";
-import { DummyTabs, TabCardDummy } from "./tab-card.dummy";
+import { DummyTabs, TabCardDummy, TabCardDummyProps } from "./tab-card.dummy";
 
 export default {
   title: "Cards/Tab card",
@@ -12,7 +12,7 @@ export default {
   },
 } as ComponentMeta<typeof TabCard>;
 
-const Template = createTemplate((props) => {
+const Template = createTemplate((props: TabCardDummyProps) => {
   return <TabCardDummy {...props} />;
 });
 

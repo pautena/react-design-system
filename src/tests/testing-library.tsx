@@ -1,4 +1,4 @@
-import { render, RenderOptions } from "@testing-library/react";
+import { render, RenderOptions, RenderResult } from "@testing-library/react";
 import { MemoryRouter, Router } from "react-router-dom";
 import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
@@ -28,12 +28,11 @@ const createWrapper =
     const isMemoryRouter = router === "memory";
 
     const R = isMemoryRouter ? MemoryRouter : Router;
-    const routerArgs = isMemoryRouter
-      ? {}
-      : {
-          location: history.location,
-          navigator: history,
-        };
+    const routerArgs = {
+      location: history.location,
+      navigator: history,
+    };
+
     return (
       <ThemeProvider theme={theme}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -49,7 +48,11 @@ interface CustomRenderOptions {
   router?: TestRouter;
 }
 
-const customRender = (ui: React.ReactElement, options: CustomRenderOptions = {}) => {
+type CustomRenderResult = RenderResult & { history: MemoryHistory };
+const customRender = (
+  ui: React.ReactElement,
+  options: CustomRenderOptions = {},
+): CustomRenderResult => {
   const renderOptions = options.renderOptions || {};
   const mode = options.mode || "light";
   const router = options.router || "router";

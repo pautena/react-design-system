@@ -2,8 +2,9 @@ import React from "react";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
-import { TableList } from "./table-list";
+import { TableList, TableListProps } from "./table-list";
 import { action } from "@storybook/addon-actions";
+import { BasicModelInstance } from "~/generators";
 
 const maxColumns = 3;
 
@@ -15,23 +16,30 @@ export default {
   },
 } as ComponentMeta<typeof TableList>;
 
-const Template = createTemplate(({ dataSetType, size, ...rest }) => {
-  const { data } = useDemoData({
-    dataSet: dataSetType,
-    rowLength: size,
-    maxColumns,
-  });
-  const { rows } = data;
-  const columns = data.columns.map(({ field, headerName }) => ({
-    id: field,
-    label: headerName,
-    sort: true,
-    disablePadding: false,
-    numeric: false,
-  }));
+interface TemplateProps<T extends BasicModelInstance> extends TableListProps<T> {
+  size: number;
+  dataSetType: "Commodity" | "Employee";
+}
 
-  return <TableList {...rest} columns={columns} data={rows} onClick={action("onClick row")} />;
-});
+const Template = createTemplate(
+  <T extends BasicModelInstance>({ dataSetType, size, ...rest }: TemplateProps<T>) => {
+    const { data } = useDemoData({
+      dataSet: dataSetType,
+      rowLength: size,
+      maxColumns,
+    });
+    const { rows } = data;
+    const columns = data.columns.map(({ field, headerName }) => ({
+      id: field,
+      label: headerName || "invalid",
+      sort: true,
+      disablePadding: false,
+      numeric: false,
+    }));
+
+    return <TableList {...rest} columns={columns} data={rows} onClick={action("onClick row")} />;
+  },
+);
 
 export const Default = Template.bind({});
 Default.args = {

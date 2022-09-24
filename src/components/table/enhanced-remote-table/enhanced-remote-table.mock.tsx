@@ -2,9 +2,10 @@ import React from "react";
 import { TableCell, TableRow } from "@mui/material";
 import { EnhancedRemoteTable } from "./enhanced-remote-table";
 import { HeadCell, Order } from "../enhanced-table/enhanced-table-head";
+import { Data } from "../enhanced-table/enhanced-table.mock";
 
-interface DummyProps<T> {
-  data: T[];
+export interface EnhancedRemoteDummyTableProps {
+  data: Data[];
   loading: boolean;
   defaultSort: string;
   defaultOrder?: Order;
@@ -12,10 +13,10 @@ interface DummyProps<T> {
   onRequestSort: (col: string, orderBy: Order) => void;
 }
 
-export function EnhancedRemoteDummyTable<T>(props: DummyProps<T>) {
+export function EnhancedRemoteDummyTable(props: EnhancedRemoteDummyTableProps) {
   return (
     <EnhancedRemoteTable {...props}>
-      {(d: unknown) => (
+      {(d: Data) => (
         <TableRow key={d.id}>
           <TableCell>{d.name}</TableCell>
           <TableCell>{d.id}</TableCell>

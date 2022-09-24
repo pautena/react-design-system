@@ -11,7 +11,7 @@ import {
 import { CenterContainer } from "../center-container";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 
-type EnhancedSelectSize = "small" | "medium";
+export type EnhancedSelectSize = "small" | "medium";
 
 export interface EnhancedSelectProps<T> {
   label: string;

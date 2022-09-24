@@ -4,7 +4,7 @@ import { ContentElement, HeaderElement } from "../../components";
 import { LoadingArea } from "../../components/loading-area";
 import { TabProvider } from "../../providers";
 
-interface HeaderLayoutProps {
+export interface HeaderLayoutProps {
   loading?: boolean;
   children: [HeaderElement, ContentElement];
 }

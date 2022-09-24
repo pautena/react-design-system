@@ -8,11 +8,11 @@ const StyledTabs = styled(Tabs)(({ theme }) => ({
   },
 }));
 
-interface Props {
+export type TabCardProps = PropsWithChildren<{
   tabs: string[];
-}
+}>;
 
-export const TabCard = ({ children, tabs }: PropsWithChildren<Props>) => {
+export const TabCard = ({ children, tabs }: TabCardProps) => {
   const [tab, setTab] = useTab();
   return (
     <Paper>

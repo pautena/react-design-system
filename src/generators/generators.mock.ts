@@ -1,4 +1,4 @@
-import { BasicModelInstance, Model, ModelField } from "./generators.model";
+import { BasicModelInstance, FieldType, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
 import { newArrayWithSize } from "../utils";
 
@@ -65,7 +65,7 @@ export const mockModel: Model = {
       xs: 12,
       sm: 6,
       md: 3,
-      listable: true,
+      listable: false,
     },
     {
       id: "birthDate",
@@ -208,9 +208,10 @@ export interface MockInstance {
   available: boolean;
   currency: string;
   tradeDate: Date;
+  [key: string]: FieldType;
 }
 
-const mockFieldValue = {
+const mockFieldValue: Record<string, () => FieldType> = {
   id: () => faker.datatype.number({ min: 1000, max: 100000 }).toString(),
   firstName: faker.name.firstName,
   middleName: faker.name.middleName,
@@ -248,30 +249,31 @@ const mockFieldValue = {
 
 export const createModelInstance = <T extends BasicModelInstance>(model: Model, seed = 100): T => {
   faker.seed(seed);
-  const obj = {};
-
-  model.fields.forEach((field) => {
-    let value;
+  return model.fields.reduce((acc, field) => {
     if (field.type === "group") {
-      value = {};
-      field.value.forEach((groupField) => {
-        value[groupField.id] = getModelFieldValue(groupField);
-      });
+      return {
+        ...acc,
+        [field.id]: field.value.reduce(
+          (acc, groupField) => ({
+            ...acc,
+            [groupField.id]: getModelFieldValue(groupField),
+          }),
+          {},
+        ),
+      };
     } else {
-      value = getModelFieldValue(field);
+      return {
+        ...acc,
+        [field.id]: getModelFieldValue(field),
+      };
     }
-
-    obj[field.id] = value;
-  });
-
-  return obj as T;
+  }, {} as T);
 };
 
-const getModelFieldValue = ({ id, type }: ModelField) => {
+const getModelFieldValue = ({ id }: ModelField): FieldType => {
   const fieldGenerator = mockFieldValue[id];
   if (!fieldGenerator) {
-    const generator = faker.datatype[type];
-    return generator ? generator() : faker.datatype.string();
+    return faker.datatype.string();
   }
   return fieldGenerator();
 };

@@ -25,5 +25,4 @@ const Template = createTemplate(DrawerContent);
 export const Default = Template.bind({});
 Default.args = {
   nav: mockNav,
-  open: true,
 };

@@ -27,7 +27,7 @@ export const columns: HeadCell[] = [
   },
 ];
 
-interface Data {
+export interface Data {
   id: number;
   name: string;
   startDate: string;
@@ -61,7 +61,7 @@ export const data: Data[] = [
   },
 ];
 
-interface Props {
+export interface TestTableProps {
   data: Data[];
   columns: HeadCell[];
   defaultSort: string;
@@ -69,7 +69,13 @@ interface Props {
   loading: boolean;
 }
 
-export const TestTable = ({ data, columns, defaultOrder, defaultSort, loading }: Props) => {
+export const TestTable = ({
+  data,
+  columns,
+  defaultOrder,
+  defaultSort,
+  loading,
+}: TestTableProps) => {
   return (
     <EnhancedTable
       search

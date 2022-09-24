@@ -36,7 +36,6 @@ ColorInherit.args = {
   preset: "inherit",
   breadcrumbs,
   tabs,
-  selectedTab: 2,
   actions,
 };
 
@@ -47,7 +46,6 @@ ColorPrimary.args = {
   preset: "primary",
   breadcrumbs,
   tabs,
-  selectedTab: 2,
   actions,
 };
 
@@ -58,7 +56,6 @@ ColorSecondary.args = {
   preset: "secondary",
   breadcrumbs,
   tabs,
-  selectedTab: 2,
   actions,
 };
 
@@ -69,7 +66,6 @@ ColorDefault.args = {
   preset: "default",
   breadcrumbs,
   tabs,
-  selectedTab: 2,
   actions,
 };
 
@@ -80,7 +76,6 @@ ColorTransparent.args = {
   preset: "transparent",
   breadcrumbs,
   tabs,
-  selectedTab: 2,
   actions,
 };
 
@@ -112,5 +107,4 @@ WithTabs.args = {
   preset: "default",
   breadcrumbs,
   tabs,
-  selectedTab: 2,
 };

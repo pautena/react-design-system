@@ -75,7 +75,7 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
     }, requestTimeout);
   };
 
-  const handleClickDeleteItem = (item) => {
+  const handleClickDeleteItem = (item: MockInstance) => {
     setRemoveRequestState({ idle: false, loading: true });
     onRequestDeleteAction(item);
 

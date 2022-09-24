@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { EnhancedTableHead, HeadCell, Order } from "../enhanced-table";
 
-interface Props<T> {
+export interface EnhancedRemoteTableProps<T> {
   data: T[];
   loading: boolean;
   defaultSort: string;
@@ -28,7 +28,7 @@ export const EnhancedRemoteTable = <T,>({
   defaultSort,
   defaultOrder,
   onRequestSort,
-}: Props<T>) => {
+}: EnhancedRemoteTableProps<T>) => {
   const [order, setOrder] = useState({
     orderBy: defaultSort,
     order: defaultOrder || "asc",

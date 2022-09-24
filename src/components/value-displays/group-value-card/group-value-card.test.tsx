@@ -1,4 +1,4 @@
-import { render, screen } from "../../../tests";
+import { Placeholder, render, screen } from "../../../tests";
 import React from "react";
 import { GroupValueCardDummy } from "./group-value-card.mock";
 
@@ -7,7 +7,11 @@ describe("GroupValueCard", () => {
     title = "Hello world",
     subtitle = undefined,
   }: { title?: string; subtitle?: string } = {}) => {
-    return render(<GroupValueCardDummy title={title} subtitle={subtitle} />);
+    return render(
+      <GroupValueCardDummy title={title} subtitle={subtitle}>
+        <Placeholder />
+      </GroupValueCardDummy>,
+    );
   };
   it("would render a title", () => {
     renderComponent({ title: "Hello world" });

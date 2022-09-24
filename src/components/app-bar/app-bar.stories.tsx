@@ -3,6 +3,7 @@ import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { AppBar } from "./app-bar";
 import { DrawerProvider } from "../drawer";
+import { AppBarProps } from "./app-bar.types";
 
 export default {
   title: "AppBars/AppBar",
@@ -12,7 +13,7 @@ export default {
   },
 } as ComponentMeta<typeof AppBar>;
 
-const Template = createTemplate((args) => {
+const Template = createTemplate((args: AppBarProps) => {
   return (
     <DrawerProvider>
       <AppBar {...args} />

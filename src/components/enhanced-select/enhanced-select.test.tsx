@@ -5,13 +5,18 @@ import userEvent from "@testing-library/user-event";
 
 describe("EnhancedSelect", () => {
   const renderComponent = ({
-    label = EnhancedSelectLoaded.args.label,
+    label = EnhancedSelectLoaded.args?.label || "invalid",
     loading = false,
     fetching = false,
   } = {}) => {
+    const options = (EnhancedSelectLoaded.args?.options as string[]) || [];
+    const value = EnhancedSelectLoaded.args?.value as string;
+
     render(
       <EnhancedSelectLoaded
         {...EnhancedSelectLoaded.args}
+        options={options}
+        value={value}
         label={label}
         loading={loading}
         fetching={fetching}
@@ -19,8 +24,8 @@ describe("EnhancedSelect", () => {
     );
 
     return {
-      options: EnhancedSelectLoaded.args.options as string[],
-      value: EnhancedSelectLoaded.args.value as string,
+      options,
+      value,
     };
   };
 
