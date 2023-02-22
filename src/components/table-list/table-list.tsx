@@ -2,7 +2,7 @@ import { TableRow, TableCell, IconButton, MenuItem, Menu } from "@mui/material";
 import React from "react";
 import { EnhancedTable, HeadCell, Order } from "../table/enhanced-table";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { BasicModelInstance } from "~/generators/generators.model";
+import { BasicModelInstance } from "../../generators/generators.model";
 
 const OptionsId = "__options";
 
