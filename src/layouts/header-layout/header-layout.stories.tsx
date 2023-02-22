@@ -102,7 +102,14 @@ const ListContent = () => {
     numeric: false,
   }));
 
-  return <TableList data={rows as any} columns={columns} defaultSort={columns[0].id} defaultOrder="asc" />;
+  return (
+    <TableList
+      data={rows as any}
+      columns={columns}
+      defaultSort={columns[0].id}
+      defaultOrder="asc"
+    />
+  );
 };
 
 export const List = Template.bind({});

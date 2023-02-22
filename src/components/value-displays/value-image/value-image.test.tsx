@@ -3,8 +3,6 @@ import { render, screen } from "~/tests/testing-library";
 import { ValueImage } from "./value-image";
 import workInProgressImg from "~/stories/assets/work-in-progress.jpg";
 
-const DummyValue = "Lorem ipsum sit amet";
-
 describe("ValueImage", () => {
   const renderComponent = () => {
     return render(<ValueImage label="Hello world" value={workInProgressImg} />);

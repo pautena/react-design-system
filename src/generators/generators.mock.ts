@@ -1,6 +1,6 @@
 import { BasicModelInstance, FieldType, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
-import * as R from 'ramda';
+import * as R from "ramda";
 import { newArrayWithSize } from "../utils";
 
 export const BirthDateFormat = "dd/MM/yyyy";

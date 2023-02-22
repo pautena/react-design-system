@@ -16,15 +16,26 @@ import { NotificationCenterProvider } from "../../providers";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import {
-  render,
-  screen,
-  TestRouter
-} from "~/tests/testing-library";
+import { render, screen, TestRouter } from "~/tests/testing-library";
 import { AddScreen, ListScreen, UpdateScreen } from "./screens";
 import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
-import { clearCheckbox, clearMultiSelect, selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
-import { expectProgressIndicator, waitForProgressIndicatorToBeRemoved, expectModelFieldInputExist, expectModelFieldInputValue, expectToHaveBeenCalledOnceWithMockInstance, expectAlert, expectModelFieldValue } from "~/tests/assertions";
+import {
+  clearCheckbox,
+  clearMultiSelect,
+  selectOption,
+  typeNumericInput,
+  pickDatetime,
+  selectOptions,
+} from "~/tests/actions";
+import {
+  expectProgressIndicator,
+  waitForProgressIndicatorToBeRemoved,
+  expectModelFieldInputExist,
+  expectModelFieldInputValue,
+  expectToHaveBeenCalledOnceWithMockInstance,
+  expectAlert,
+  expectModelFieldValue,
+} from "~/tests/assertions";
 import { mockConsoleWarn } from "~/tests/mocks";
 
 const REQUEST_TIMEOUT = 20;

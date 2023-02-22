@@ -1,9 +1,6 @@
 import React from "react";
 import { ModelForm } from "./model-form";
-import {
-  render,
-  screen,
-} from "~/tests/testing-library";
+import { render, screen } from "~/tests/testing-library";
 import {
   BirthDateFormat,
   createModelInstance,
@@ -14,7 +11,11 @@ import {
 } from "../generators.mock";
 import userEvent from "@testing-library/user-event";
 import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
-import { expectModelFieldInputExist, expectModelFieldInputValue, expectToHaveBeenCalledOnceWithMockInstance } from "~/tests/assertions";
+import {
+  expectModelFieldInputExist,
+  expectModelFieldInputValue,
+  expectToHaveBeenCalledOnceWithMockInstance,
+} from "~/tests/assertions";
 
 describe("ModelForm", () => {
   const renderComponent = ({

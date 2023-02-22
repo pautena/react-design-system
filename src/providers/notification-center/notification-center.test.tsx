@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import userEvent from "@testing-library/user-event";
 import { AlertColor, Box, Button } from "@mui/material";
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved
-} from "~/tests/testing-library";
+import { render, screen, waitForElementToBeRemoved } from "~/tests/testing-library";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import {
   NotificationCenterContext,
