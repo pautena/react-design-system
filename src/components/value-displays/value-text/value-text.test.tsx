@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "../../../tests";
+import { render, screen } from "~/tests/testing-library";
 import { ValueText } from "./value-text";
 
 const DummyValue = "Lorem ipsum sit amet";

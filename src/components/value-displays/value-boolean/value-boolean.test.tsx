@@ -1,6 +1,6 @@
 import React from "react";
 import { ValueBoolean } from "./value-boolean";
-import { render, screen } from "../../../tests";
+import { render, screen } from "~/tests/testing-library";
 
 describe("ValueBoolean", () => {
   const renderComponent = ({ value, placeholder }: { value?: boolean; placeholder?: string }) => {

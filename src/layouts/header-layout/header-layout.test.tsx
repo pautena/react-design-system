@@ -1,6 +1,6 @@
 import React from "react";
 import { HeaderLayout } from "./header-layout";
-import { render, screen } from "../../tests";
+import { render, screen } from "~/tests/testing-library";
 import { Content, Header } from "../../components";
 import { Typography } from "@mui/material";
 

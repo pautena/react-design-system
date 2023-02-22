@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { render, screen } from "../../tests";
+import { render, screen } from "~/tests/testing-library";
 import { useNavigateWhenValueChanges } from "./routing.hooks";
 import userEvent from "@testing-library/user-event";
 

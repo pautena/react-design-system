@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Content, Header, HeaderAction, TableList, TableRowOption } from "~/components";
-import { BasicModelInstance } from "~/generators";
+import { BasicModelInstance } from "../../generators.model";
 import { useNotifyWhenValueChanges } from "~/providers";
 import { HeaderLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";

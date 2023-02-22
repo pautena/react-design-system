@@ -9,7 +9,7 @@ import { action } from "@storybook/addon-actions";
 import { LocalizationProvider } from "@mui/x-date-pickers/";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
-export function createTemplate<P>(
+export function createTemplate<P extends object>(
   C: JSXElementConstructor<P>,
 ): ComponentStory<JSXElementConstructor<P>> {
   return (args) => <C {...args} />;

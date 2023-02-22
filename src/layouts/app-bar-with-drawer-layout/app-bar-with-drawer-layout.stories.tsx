@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
-import { ContentPlaceholder } from "../../tests";
+import { ContentPlaceholder } from "~/tests/components";
 import { mockNav } from "../../components/drawer/drawer.mock";
 import { MiniAppBar } from "../../components/app-bar";
 import { DrawerContent, MiniDrawer } from "../../components";

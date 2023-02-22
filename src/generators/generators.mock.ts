@@ -1,5 +1,6 @@
 import { BasicModelInstance, FieldType, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
+import * as R from "ramda";
 import { newArrayWithSize } from "../utils";
 
 export const BirthDateFormat = "dd/MM/yyyy";
@@ -237,7 +238,7 @@ const mockFieldValue: Record<string, () => FieldType> = {
   type: () => {
     const array = newArrayWithSize(faker.datatype.number({ min: 2, max: 5 }), 0);
     const result = array.map(() => faker.vehicle.type());
-    return [...new Set(result)];
+    return R.uniq(result);
   },
   vin: faker.vehicle.vin,
   vrm: faker.vehicle.vrm,

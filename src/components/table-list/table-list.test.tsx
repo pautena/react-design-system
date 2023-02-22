@@ -1,10 +1,11 @@
 import React from "react";
-import { expectProgressIndicator, render } from "../../tests";
+import { render } from "~/tests/testing-library";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { TableRowOption, TableList } from "./table-list";
 import { HeadCell } from "../table/enhanced-table";
 import { BasicModelInstance } from "../../generators";
+import { expectProgressIndicator } from "~/tests/assertions";
 
 const columns: HeadCell<BasicModelInstance>[] = [
   {

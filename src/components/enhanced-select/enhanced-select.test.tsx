@@ -1,6 +1,6 @@
 import React from "react";
 import { EnhancedSelectLoaded } from "./enhanced-select.stories";
-import { render, screen } from "../../tests";
+import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 
 describe("EnhancedSelect", () => {

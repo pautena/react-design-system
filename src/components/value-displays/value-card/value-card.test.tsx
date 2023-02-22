@@ -1,6 +1,6 @@
 import React from "react";
 import { ValueCard } from "./value-card";
-import { render, screen } from "../../../tests";
+import { render, screen } from "~/tests/testing-library";
 import { ReactElement } from "react";
 import { ValueText } from "../value-text";
 

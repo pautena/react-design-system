@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { Content } from "./content";
-import { SkeletonGrid } from "../../tests";
+import { SkeletonGrid } from "~/tests/components";
 
 export default {
   title: "Sections/Content",

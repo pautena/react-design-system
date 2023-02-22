@@ -3,7 +3,7 @@ import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { HeaderLayout, HeaderLayoutProps } from "./header-layout";
 import { withMemoryRouter } from "~/storybook";
-import { SkeletonGrid } from "../../tests";
+import { SkeletonGrid } from "../../tests/components";
 import { withFullHeight } from "../../storybook";
 import { Content, Header, HeaderProps, HeaderTab, TableList, TabPanel } from "../../components";
 import { Box, Typography } from "@mui/material";
@@ -102,7 +102,14 @@ const ListContent = () => {
     numeric: false,
   }));
 
-  return <TableList data={rows} columns={columns} defaultSort={columns[0].id} defaultOrder="asc" />;
+  return (
+    <TableList
+      data={rows as any}
+      columns={columns}
+      defaultSort={columns[0].id}
+      defaultOrder="asc"
+    />
+  );
 };
 
 export const List = Template.bind({});
