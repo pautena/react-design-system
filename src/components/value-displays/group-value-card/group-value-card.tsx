@@ -60,6 +60,7 @@ export const GroupValueCard = ({ title, subtitle, centered, children }: GroupVal
         )}
       </Box>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Grid
         container
         padding={1}
@@ -71,6 +72,16 @@ export const GroupValueCard = ({ title, subtitle, centered, children }: GroupVal
 =======
       <Grid container margin={2} rowSpacing={2} justifyContent={centered ? "center" : "flex-start"}>
 >>>>>>> 8213da0 (Add value image component)
+||||||| parent of 317aaf6 (Fix padding in GroupValueCard)
+      <Grid container margin={2} rowSpacing={2} justifyContent={centered ? "center" : "flex-start"}>
+=======
+      <Grid
+        container
+        padding={1}
+        rowSpacing={2}
+        justifyContent={centered ? "center" : "flex-start"}
+      >
+>>>>>>> 317aaf6 (Fix padding in GroupValueCard)
         {children}
       </Grid>
     </Paper>
