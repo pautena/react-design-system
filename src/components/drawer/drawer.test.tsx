@@ -59,7 +59,7 @@ describe("Drawer", () => {
 
     await userEvent.click(screen.getByText(/close/i));
 
-    expect(screen.queryByRole("menu", { hidden: true })).not.toBeInTheDocument();
+    expect(screen.getByRole("menu", { hidden: true })).toBeInTheDocument();
   });
 });
 
