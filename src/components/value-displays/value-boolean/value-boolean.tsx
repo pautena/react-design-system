@@ -3,6 +3,7 @@ import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import { BaseValueProps, DefaultPlaceholder } from "../value-displays.types";
+import { ValueContent } from "../value-content";
 
 export type ValueBooleanProps = BaseValueProps<boolean>;
 
@@ -19,10 +20,7 @@ export const ValueBoolean = ({
   const iconSx = { fontSize: typography.h5.fontSize };
 
   return (
-    <Box>
-      <Typography variant="subtitle2" role="label">
-        {label}
-      </Typography>
+    <ValueContent label={label}>
       {value === undefined ? (
         <Typography variant="h5">{placeholder}</Typography>
       ) : value ? (
@@ -30,6 +28,6 @@ export const ValueBoolean = ({
       ) : (
         <CloseIcon color="error" sx={iconSx} />
       )}
-    </Box>
+    </ValueContent>
   );
 };
