@@ -1,17 +1,9 @@
 import { Box, Tooltip, Typography } from "@mui/material";
 import React from "react";
 import { format } from "date-fns";
+import { BaseValueProps, DefaultPlaceholder } from "../value-displays.types";
 
-export interface ValueDatetimeProps {
-  /**
-   * Name of the displayed value
-   */
-  label: string;
-  /**
-   * Value displayed
-   */
-  value: Date;
-
+export interface ValueDatetimeProps extends BaseValueProps<Date> {
   /**
    * Datetime format
    */
@@ -21,18 +13,23 @@ export interface ValueDatetimeProps {
 /**
  * Displays a formated datetime with a label
  */
-export const ValueDatetime = ({ label, value, format: fmt }: ValueDatetimeProps) => {
+export const ValueDatetime = ({
+  label,
+  value: valueProp,
+  format: fmt,
+  placeholder = DefaultPlaceholder,
+}: ValueDatetimeProps) => {
   const id = `label-${label.replace(/ /g, "-")}`;
-  const formatedValue = format(value, fmt);
+  const value = (valueProp && format(valueProp, fmt)) || placeholder;
 
   return (
     <Box>
       <Typography variant="subtitle2" role="label" id={id}>
         {label}
       </Typography>
-      <Tooltip title={formatedValue} placement="top" enterDelay={2000}>
+      <Tooltip title={value} placement="top" enterDelay={2000}>
         <Typography variant="h5" noWrap aria-labelledby={id}>
-          {formatedValue}
+          {value}
         </Typography>
       </Tooltip>
     </Box>

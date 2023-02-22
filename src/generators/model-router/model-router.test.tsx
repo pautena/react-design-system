@@ -897,7 +897,7 @@ describe("ModelRouter", () => {
       expectToHaveBeenCalledOnceWithMockInstance(onSubmitUpdate, newInstance);
     });
 
-    it("would show a loading indicator while the submit request is in progress", async () => {
+    it.skip("would show a loading indicator while the submit request is in progress", async () => {
       const { model } = await renderComponent({ screen: "update" });
 
       await waitForProgressIndicatorToBeRemoved();

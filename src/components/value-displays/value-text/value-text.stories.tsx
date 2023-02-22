@@ -24,3 +24,14 @@ TruncatedText.args = {
   label: "Lorem",
   value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 };
+
+export const Placeholder = Template.bind({});
+Placeholder.args = {
+  label: "Lorem",
+};
+
+export const CustomPlaceholder = Template.bind({});
+CustomPlaceholder.args = {
+  label: "Lorem",
+  placeholder: ".",
+};

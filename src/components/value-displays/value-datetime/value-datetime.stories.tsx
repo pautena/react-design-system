@@ -19,3 +19,16 @@ Default.args = {
   value: new Date(2022, 8, 22),
   format: "yyyy/MM/dd",
 };
+
+export const Placeholder = Template.bind({});
+Placeholder.args = {
+  label: "Lorem",
+  format: "yyyy/MM/dd",
+};
+
+export const CustomPlaceholder = Template.bind({});
+CustomPlaceholder.args = {
+  label: "Lorem",
+  format: "yyyy/MM/dd",
+  placeholder: ".",
+};
