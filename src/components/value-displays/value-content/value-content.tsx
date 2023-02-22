@@ -39,7 +39,7 @@ export const ValueContent = ({
   const id = getValueContentLabelId(label);
 
   return (
-    <Box width={1}>
+    <Box>
       <Typography variant="subtitle2" role="label" id={id}>
         {label}
       </Typography>
