@@ -2,6 +2,8 @@ import React, { PropsWithChildren } from "react";
 import { Typography, Container, Skeleton, Grid, Box } from "@mui/material";
 import { loremIpsum } from "lorem-ipsum";
 import { newArrayWithSize } from "../utils";
+import { useDemoData } from "@mui/x-data-grid-generator";
+import { DataGrid } from "@mui/x-data-grid";
 
 export const Placeholder = () => {
   return (
@@ -56,5 +58,37 @@ export const ContentPlaceholder = ({ size = 20, children, p }: ContentPlaceholde
       {children}
       <SkeletonGrid size={size} />
     </Container>
+  );
+};
+
+export interface DatatablePlaceholderProps {
+  rowLength?: number;
+  maxColumns?: number;
+}
+
+export const DatatablePlaceholder = ({
+  rowLength = 1000,
+  maxColumns = 10,
+}: DatatablePlaceholderProps) => {
+  const {
+    data: { rows, columns },
+  } = useDemoData({
+    dataSet: "Commodity",
+    rowLength,
+    maxColumns,
+  });
+
+  return (
+    <Box sx={{ height: 400, width: 1 }}>
+      <DataGrid
+        rows={rows}
+        columns={columns}
+        pageSize={5}
+        rowsPerPageOptions={[5]}
+        checkboxSelection
+        disableSelectionOnClick
+        experimentalFeatures={{ newEditingApi: true }}
+      />
+    </Box>
   );
 };
