@@ -1,7 +1,8 @@
 import React from "react";
 import { MiniDrawerStory } from "./app-bar-with-drawer-layout.stories";
-import { expectContentPlaceholder, render, screen } from "../../tests";
+import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
+import { expectContentPlaceholder } from "~/tests/assertions";
 
 describe("AppBarWithDrawerLayout", () => {
   const renderComponent = () => {

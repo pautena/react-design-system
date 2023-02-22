@@ -15,7 +15,8 @@
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["jest", "./src/types.d.ts"],
+    "types": ["jest"],
+    "typeRoots": ["./src/types"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]

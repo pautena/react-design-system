@@ -1,16 +1,9 @@
 import React from "react";
 import { ModelForm } from "./model-form";
 import {
-  expectModelFieldInputExist,
-  expectModelFieldInputValue,
   render,
   screen,
-  selectOption,
-  selectOptions,
-  pickDatetime,
-  expectToHaveBeenCalledOnceWithMockInstance,
-  typeNumericInput,
-} from "../../tests";
+} from "~/tests/testing-library";
 import {
   BirthDateFormat,
   createModelInstance,
@@ -20,6 +13,8 @@ import {
   TradeDateFormat,
 } from "../generators.mock";
 import userEvent from "@testing-library/user-event";
+import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
+import { expectModelFieldInputExist, expectModelFieldInputValue, expectToHaveBeenCalledOnceWithMockInstance } from "~/tests/assertions";
 
 describe("ModelForm", () => {
   const renderComponent = ({
@@ -67,7 +62,7 @@ describe("ModelForm", () => {
     await userEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
     await userEvent.type(screen.getByRole("textbox", { name: /middle name/i }), "Noah");
     await userEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
-    await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis Man");
+    await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis man");
     typeNumericInput(screen.getByRole("spinbutton", { name: /age/i }), 37);
     pickDatetime(screen.getByRole("textbox", { name: /birth date/i }), birthDate, BirthDateFormat);
     await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
@@ -97,7 +92,7 @@ describe("ModelForm", () => {
       firstName: "Karianne",
       middleName: "Noah",
       lastName: "Gorczany",
-      gender: "Cis Man",
+      gender: "Cis man",
       age: 37,
       birthDate,
       car: {

@@ -1,6 +1,6 @@
 import React from "react";
 import { DummyTabs, TabCardDummy } from "./tab-card.dummy";
-import { screen, render } from "../../../tests";
+import { screen, render } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 
 describe("TabCard", () => {

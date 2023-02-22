@@ -1,12 +1,13 @@
 import React from "react";
 import { Drawer } from "./drawer";
-import { mockConsoleError, render, screen } from "../../tests";
+import { render, screen } from "~/tests/testing-library";
 import { DrawerProvider } from "./drawer.provider";
 import { DummyDrawerContent, mockNav } from "./drawer.mock";
 import { Box, Button, createTheme } from "@mui/material";
 import { UndefinedProvider, useDrawer } from "./drawer.context";
 import userEvent from "@testing-library/user-event";
 import { openedMixin, closedMixin } from "./drawer.mixins";
+import { mockConsoleError } from "~/tests/mocks";
 
 const TestContent = () => {
   const { open, close } = useDrawer();

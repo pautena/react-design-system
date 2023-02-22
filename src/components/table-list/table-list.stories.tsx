@@ -37,7 +37,7 @@ const Template = createTemplate(
       numeric: false,
     }));
 
-    return <TableList {...rest} columns={columns} data={rows} onClick={action("onClick row")} />;
+    return <TableList {...rest} columns={columns} data={rows as any} onClick={action("onClick row")} />;
   },
 );
 

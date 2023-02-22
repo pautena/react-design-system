@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "../../tests";
+import { render, screen } from "~/tests/testing-library";
 import { mockNav } from "../drawer/drawer.mock";
 import { DrawerContent } from "./drawer-content";
 

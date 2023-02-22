@@ -1,5 +1,6 @@
 import React from "react";
-import { expectModelFieldValue, render } from "../../tests";
+import { expectModelFieldValue } from "~/tests/assertions";
+import { render } from "~/tests/testing-library";
 import { mockModel, createModelInstance } from "../generators.mock";
 import { ObjectDetails } from "./object-details";
 

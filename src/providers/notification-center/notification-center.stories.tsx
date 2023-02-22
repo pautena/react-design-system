@@ -2,7 +2,7 @@ import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import { useNotificationCenter } from "./notification-center.context";
-import { ContentPlaceholder } from "../../tests";
+import { ContentPlaceholder } from "~/tests/components";
 import { Button, Box } from "@mui/material";
 
 const DummyError = {

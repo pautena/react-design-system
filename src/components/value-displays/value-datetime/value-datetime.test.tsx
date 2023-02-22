@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "../../../tests";
+import { render, screen } from "~/tests/testing-library";
 import { ValueDatetime } from "./value-datetime";
 
 const DummyValue = new Date(2022, 7, 10);

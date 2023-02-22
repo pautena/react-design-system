@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent, render, screen } from "../../tests";
+import { fireEvent, render, screen } from "~/tests/testing-library";
 import { AppBar } from "./app-bar";
 import { DrawerProvider } from "../drawer";
 import { AppBarProfile } from "./app-bar.types";

@@ -1,16 +1,5 @@
 import React, { useState } from "react";
 import { DummyModelRouter, InternalModelRouter } from "./stories/model-router.stories";
-import {
-  expectModelFieldInputExist,
-  expectProgressIndicator,
-  waitForProgressIndicatorToBeRemoved,
-  render,
-  screen,
-  TestRouter,
-  expectModelFieldValue,
-  expectModelFieldInputValue,
-  selectOption,
-} from "~/tests";
 import { data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
@@ -28,17 +17,15 @@ import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {
-  clearCheckbox,
-  clearMultiSelect,
-  expectAlert,
-  expectToHaveBeenCalledOnceWithMockInstance,
-  mockConsoleWarn,
-  pickDatetime,
-  selectOptions,
-  typeNumericInput,
-} from "../../tests";
+  render,
+  screen,
+  TestRouter
+} from "~/tests/testing-library";
 import { AddScreen, ListScreen, UpdateScreen } from "./screens";
 import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
+import { clearCheckbox, clearMultiSelect, selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
+import { expectProgressIndicator, waitForProgressIndicatorToBeRemoved, expectModelFieldInputExist, expectModelFieldInputValue, expectToHaveBeenCalledOnceWithMockInstance, expectAlert, expectModelFieldValue } from "~/tests/assertions";
+import { mockConsoleWarn } from "~/tests/mocks";
 
 const REQUEST_TIMEOUT = 20;
 

@@ -4,10 +4,8 @@ import { AlertColor, Box, Button } from "@mui/material";
 import {
   render,
   screen,
-  waitForElementToBeRemoved,
-  expectAlert,
-  mockConsoleError,
-} from "../../tests";
+  waitForElementToBeRemoved
+} from "~/tests/testing-library";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import {
   NotificationCenterContext,
@@ -16,6 +14,8 @@ import {
   Notification,
 } from "./notification-center.context";
 import { useNotifyWhenValueChanges } from "./notification-center.hooks";
+import { expectAlert } from "~/tests/assertions";
+import { mockConsoleError } from "~/tests/mocks";
 
 describe("NotificationCenterProvider", () => {
   const renderComponent = ({ autoHideDuration }: { autoHideDuration?: number } = {}) => {

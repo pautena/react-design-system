@@ -1,6 +1,7 @@
-import { Placeholder, render, screen } from "../../../tests";
+import { render, screen } from "~/tests/testing-library";
 import React from "react";
 import { GroupValueCardDummy } from "./group-value-card.mock";
+import { Placeholder } from "~/tests/components";
 
 describe("GroupValueCard", () => {
   const renderComponent = ({

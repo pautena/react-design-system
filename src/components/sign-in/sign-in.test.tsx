@@ -1,7 +1,8 @@
 import React from "react";
 import { SignIn } from "./sign-in";
-import { expectProgressIndicator, render, screen } from "../../tests";
+import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
+import { expectProgressIndicator } from "~/tests/assertions";
 
 async function submitSignIn(email: string | null, password: string | null) {
   email && (await userEvent.type(screen.getByRole("input", { name: /email/i }), email));

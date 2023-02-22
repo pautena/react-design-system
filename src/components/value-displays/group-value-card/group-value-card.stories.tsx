@@ -6,7 +6,7 @@ import { ValueImage } from "../value-image";
 import workInProgressImg from "../../../stories/assets/work-in-progress.jpg";
 import React from "react";
 import { ValueContent } from "../value-content";
-import { DatatablePlaceholder } from "~/tests";
+import { DatatablePlaceholder } from "~/tests/components";
 
 export default {
   title: "Value displays/GroupValueCard",
