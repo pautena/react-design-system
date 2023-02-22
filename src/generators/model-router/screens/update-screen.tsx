@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Content, Header } from "~/components";
-import { BasicModelInstance, ModelForm } from "~/generators";
+import { BasicModelInstance } from "~/generators/generators.model";
+import { ModelForm } from "~/generators/model-form";
 import { useNavigateWhenValueChanges } from "~/hooks";
 import { HeaderLayout } from "../../../layouts";
 import { useNotifyWhenValueChanges } from "../../../providers";

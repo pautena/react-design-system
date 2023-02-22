@@ -4,7 +4,8 @@ import { RequestState } from "../model-router.types";
 import { Content, Header } from "~/components";
 import { HeaderLayout } from "~/layouts";
 import { BaseScreenProps } from "./screens.types";
-import { BasicModelInstance, ObjectDetails } from "~/generators";
+import { BasicModelInstance } from "~/generators/generators.model";
+import { ObjectDetails } from "~/generators/object-details";
 
 export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

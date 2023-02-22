@@ -1,6 +1,7 @@
 import React from "react";
 import { Header, Content } from "~/components";
-import { BasicModelInstance, ModelForm } from "~/generators";
+import { BasicModelInstance } from "~/generators/generators.model";
+import { ModelForm } from "~/generators/model-form";
 import { HeaderLayout } from "../../../layouts";
 import { useNotifyWhenValueChanges } from "../../../providers";
 import { RequestState } from "../model-router.types";
