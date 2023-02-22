@@ -33,10 +33,11 @@ export const GroupValueItem: GroupValueItemComponent = ({
 export interface GroupValueCardProps {
   title: string;
   subtitle?: string;
+  centered?: boolean;
   children: GroupValueItemElement | GroupValueItemElement[];
 }
 
-export const GroupValueCard = ({ title, subtitle, children }: GroupValueCardProps) => {
+export const GroupValueCard = ({ title, subtitle, centered, children }: GroupValueCardProps) => {
   const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
   return (
@@ -55,7 +56,7 @@ export const GroupValueCard = ({ title, subtitle, children }: GroupValueCardProp
           </Typography>
         )}
       </Box>
-      <Grid container margin={2} rowSpacing={2}>
+      <Grid container margin={2} rowSpacing={2} justifyContent={centered ? "center" : "flex-start"}>
         {children}
       </Grid>
     </Paper>
