@@ -32,4 +32,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  storySort: {
+    order: ["Introduction", "Getting Started"],
+  },
 };

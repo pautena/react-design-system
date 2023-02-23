@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography } from "@mui/material";
-import { render, screen } from "~/tests";
+import { render, screen } from "~/tests/testing-library";
 import { ValueContent } from "./value-content";
 import userEvent from "@testing-library/user-event";
 
