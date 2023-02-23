@@ -218,7 +218,7 @@ export const InternalModelRouter = () => {
 };
 
 export default {
-  title: "Generators/ModelRouter",
+  title: "Generators/ModelRouter/DummyModelRouter",
   component: DummyModelRouter,
   decorators: [withMemoryRouter(), withNotificationCenter, withLocalizationProvider],
   parameters: {

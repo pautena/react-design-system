@@ -2,8 +2,8 @@ import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import { useNotificationCenter } from "./notification-center.context";
-import { ContentPlaceholder } from "~/tests/components";
 import { Button, Box } from "@mui/material";
+import { ContentPlaceholder } from "~/components";
 
 const DummyError = {
   title: "Internal Server error",
@@ -11,7 +11,7 @@ const DummyError = {
 };
 
 export default {
-  title: "Providers/NotificationCenter",
+  title: "Components/Feedback/NotificationCenter",
   component: ContentPlaceholder,
   decorators: [
     (Story) => (

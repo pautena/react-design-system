@@ -6,10 +6,10 @@ import { ValueImage } from "../value-image";
 import workInProgressImg from "../../../stories/assets/work-in-progress.jpg";
 import React from "react";
 import { ValueContent } from "../value-content";
-import { DatatablePlaceholder } from "~/tests/components";
+import { DatatablePlaceholder } from "~/tests/datatable-placeholder";
 
 export default {
-  title: "Value displays/GroupValueCard",
+  title: "Components/Value displays/GroupValueCard",
   component: GroupValueCard,
   decorators: [withPadding(2)],
   parameters: {

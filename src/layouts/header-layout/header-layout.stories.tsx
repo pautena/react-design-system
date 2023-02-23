@@ -3,12 +3,11 @@ import { ComponentMeta } from "@storybook/react";
 import { createTemplate } from "../../storybook";
 import { HeaderLayout, HeaderLayoutProps } from "./header-layout";
 import { withMemoryRouter } from "~/storybook";
-import { SkeletonGrid } from "../../tests/components";
 import { withFullHeight } from "../../storybook";
-import { Content, Header, HeaderProps, HeaderTab, TableList, TabPanel } from "../../components";
+import { Content, Header, HeaderProps, HeaderTab, SkeletonGrid, TabPanel } from "../../components";
 import { Box, Typography } from "@mui/material";
 import { useDemoData } from "@mui/x-data-grid-generator";
-import { ModelForm, ObjectDetails } from "../../generators";
+import { ModelForm, ObjectDetails, TableList } from "../../generators";
 import { mockModel, createModelInstance } from "../../generators/generators.mock";
 import { action } from "@storybook/addon-actions";
 import { DataGrid } from "@mui/x-data-grid";
@@ -153,14 +152,16 @@ Form.args = {
 };
 
 const DataTableContent = () => {
-  const { data } = useDemoData({
+  const {
+    data: { rows, columns },
+  } = useDemoData({
     dataSet: "Commodity",
     rowLength: 100,
     maxColumns: 7,
     editable: true,
   });
 
-  return <DataGrid rows={data.rows} columns={data.columns} pagination sx={{ height: 400 }} />;
+  return <DataGrid rows={rows} columns={columns as any} pagination sx={{ height: 400 }} />;
 };
 
 export const DataTable = Template.bind({});

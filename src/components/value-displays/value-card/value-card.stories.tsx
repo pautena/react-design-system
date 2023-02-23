@@ -5,7 +5,7 @@ import { createTemplate } from "../../../storybook";
 import { ValueText } from "../value-text";
 
 export default {
-  title: "Value displays/ValueCard",
+  title: "Components/Value displays/ValueCard",
   component: ValueCard,
   parameters: {
     layout: "centered",

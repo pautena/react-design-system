@@ -3,7 +3,7 @@ import { ValueBoolean } from "./value-boolean";
 import { createTemplate } from "../../../storybook";
 
 export default {
-  title: "Value displays/ValueBoolean",
+  title: "Components/Value displays/ValueBoolean",
   component: ValueBoolean,
   parameters: {
     layout: "centered",

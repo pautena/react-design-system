@@ -1,7 +1,7 @@
 import { render, screen } from "~/tests/testing-library";
 import React from "react";
 import { GroupValueCardDummy } from "./group-value-card.mock";
-import { Placeholder } from "~/tests/components";
+import { LoremIpsumPlaceholder } from "~/components/placeholders";
 
 describe("GroupValueCard", () => {
   const renderComponent = ({
@@ -10,7 +10,7 @@ describe("GroupValueCard", () => {
   }: { title?: string; subtitle?: string } = {}) => {
     return render(
       <GroupValueCardDummy title={title} subtitle={subtitle}>
-        <Placeholder />
+        <LoremIpsumPlaceholder />
       </GroupValueCardDummy>,
     );
   };

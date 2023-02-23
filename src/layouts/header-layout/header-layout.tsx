@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { ContentElement, HeaderElement } from "../../components";
-import { LoadingArea } from "../../components/loading-area";
+import { LoadingArea } from "../../components/feedback/loading-area";
 import { TabProvider } from "../../providers";
 
 export interface HeaderLayoutProps {

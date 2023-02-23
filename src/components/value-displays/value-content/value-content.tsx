@@ -1,6 +1,5 @@
 import { Box, Tooltip, Typography } from "@mui/material";
-import React, { PropsWithChildren } from "react";
-import { BaseValueProps, DefaultPlaceholder } from "../value-displays.types";
+import React from "react";
 
 export const getValueContentLabelId = (label: string): string =>
   `label-${label.replace(/ /g, "-")}`;

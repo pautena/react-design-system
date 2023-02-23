@@ -1,10 +1,9 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
-import { ContentPlaceholder } from "~/tests/components";
-import { mockNav } from "../../components/drawer/drawer.mock";
-import { MiniAppBar } from "../../components/app-bar";
-import { DrawerContent, MiniDrawer } from "../../components";
+import { mockNav } from "../../components/drawers/drawer/drawer.mock";
+import { MiniAppBar } from "../../components/app-bars/app-bar";
+import { ContentPlaceholder, DrawerContent, MiniDrawer } from "../../components";
 import { withMemoryRouter } from "~/storybook";
 
 export default {

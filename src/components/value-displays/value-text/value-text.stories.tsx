@@ -3,7 +3,7 @@ import { ValueText } from "./value-text";
 import { createTemplate, withContainer } from "../../../storybook";
 
 export default {
-  title: "Value displays/ValueText",
+  title: "Components/Value displays/ValueText",
   component: ValueText,
   decorators: [withContainer({ width: 200 })],
   parameters: {

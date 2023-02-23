@@ -1,4 +1,4 @@
-import { Box, Tooltip, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import React from "react";
 import { format } from "date-fns";
 import { BaseValueProps, DefaultPlaceholder } from "../value-displays.types";

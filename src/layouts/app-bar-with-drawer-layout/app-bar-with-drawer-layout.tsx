@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 import { styled } from "@mui/material/styles";
-import { AppBarElement } from "../../components/app-bar";
-import { DrawerElement } from "../../components/drawer";
+import { AppBarElement } from "../../components/app-bars/app-bar";
+import { DrawerElement } from "../../components/drawers/drawer";
 import { Box } from "@mui/material";
-import { DrawerProvider } from "../../components/drawer/drawer.provider";
+import { DrawerProvider } from "../../components/drawers/drawer/drawer.provider";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",

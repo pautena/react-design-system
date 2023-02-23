@@ -5,7 +5,7 @@ import { Typography } from "@mui/material";
 import React from "react";
 
 export default {
-  title: "Value displays/ValueContent",
+  title: "Components/Value displays/ValueContent",
   component: ValueContent,
   decorators: [withContainer({ width: 200 })],
   parameters: {
