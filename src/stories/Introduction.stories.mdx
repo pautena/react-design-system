@@ -1,5 +1,6 @@
 import { Meta } from '@storybook/addon-docs';
 import LinkTo from '@storybook/addon-links/react';
+import {hrefTo} from '@storybook/addon-links';
 import WorkInProgress from './assets/work-in-progress.jpg'
 
 <Meta title="Introduction" />
@@ -16,9 +17,9 @@ that I use to create my personal projects.
 
 <ul>
   <li><LinkTo kind="Getting Started">Getting Started</LinkTo></li>
-  <li><LinkTo kind="Getting Started">Components</LinkTo></li>
-  <li><LinkTo kind="Getting Started">Layouts</LinkTo></li>
-  <li><LinkTo kind="Getting Started">Generators</LinkTo></li>
+  <li><LinkTo kind="Components" story="Introduction">Components</LinkTo></li>
+  <li><LinkTo kind="Layouts" story="Introduction">Layouts</LinkTo></li>
+  <li><LinkTo kind="Generators" story="Introduction">Generators</LinkTo></li>
 </ul>
 
 # Source code

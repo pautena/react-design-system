@@ -35,4 +35,5 @@ export const parameters = {
   storySort: {
     order: ["Introduction", "Getting Started"],
   },
+  viewMode: "docs",
 };
