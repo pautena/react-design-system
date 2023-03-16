@@ -16,7 +16,7 @@ export interface NavItemBullet {
   variant: BulletVariant;
 }
 
-export interface NavItem {
+export interface NavItemLink {
   id: string;
   text: string;
   href: string;
@@ -25,6 +25,12 @@ export interface NavItem {
   label?: NavItemLabel;
   bullet?: NavItemBullet;
 }
+
+export type NavItemCollapsable = Pick<NavItemLink, "id" | "text" | "icon"> & {
+  items: NavItemLink[];
+};
+
+export type NavItem = NavItemLink | NavItemCollapsable;
 
 export interface NavSection {
   title?: string;
@@ -36,6 +42,10 @@ export interface Nav {
 }
 
 export interface DrawerContentProps {
+  /**
+   * Item currently selected in the navigation
+   */
+  selectedItem?: string;
   /**
    * Object with the content that has to be rendered
    */

@@ -24,5 +24,6 @@ const Template = createTemplate(DrawerContent);
 
 export const Default = Template.bind({});
 Default.args = {
+  selectedItem: "item2.3.2",
   nav: mockNav,
 };

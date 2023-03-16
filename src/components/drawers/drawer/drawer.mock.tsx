@@ -2,6 +2,7 @@ import React from "react";
 import { DrawerContentComponent, Nav } from "./drawer.types";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { Box, Typography } from "@mui/material";
 
 export const mockNav: Nav = {
@@ -62,6 +63,32 @@ export const mockNav: Nav = {
             text: "new",
             variant: "info",
           },
+        },
+        {
+          id: "item2.3",
+          text: "Item 2.3",
+          href: "/items/2-3",
+          icon: <AccountTreeIcon />,
+          items: [
+            {
+              id: "item2.3.1",
+              text: "Item 2.3.1",
+              href: "/items/2-3-1",
+              icon: <DiamondIcon />,
+            },
+            {
+              id: "item2.3.2",
+              text: "Item 2.3.2",
+              href: "/items/2-3-2",
+              icon: <MenuBookIcon />,
+            },
+            {
+              id: "item2.3.3",
+              text: "Item 2.3.3",
+              href: "/items/2-3-3",
+              icon: <DiamondIcon />,
+            },
+          ],
         },
       ],
     },

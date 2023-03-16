@@ -1,5 +1,6 @@
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
+import userEvent from "@testing-library/user-event";
 import { mockNav } from "../drawer/drawer.mock";
 import { DrawerContent } from "./drawer-content";
 
@@ -30,5 +31,29 @@ describe("DrawerContent", () => {
     renderComponent();
 
     expect(screen.getByRole("link", { name: itemText })).toBeInTheDocument();
+  });
+
+  it("should render the item 2.3 as a button", () => {
+    renderComponent();
+
+    expect(screen.getByRole("button", { name: /item 2.3/i })).toBeInTheDocument();
+  });
+
+  it("shouldn't render the collapsed 2.3 items by default", () => {
+    renderComponent();
+
+    expect(screen.queryByText(/item 2.3.1/i)).toBeFalsy();
+    expect(screen.queryByText(/item 2.3.2/i)).toBeFalsy();
+    expect(screen.queryByText(/item 2.3.3/i)).toBeFalsy();
+  });
+
+  it("should render the 2.3 teims if the user click the button", async () => {
+    renderComponent();
+
+    await userEvent.click(screen.getByText(/item 2.3/i));
+
+    expect(screen.getByText(/item 2.3.1/i)).toBeVisible();
+    expect(screen.getByText(/item 2.3.2/i)).toBeVisible();
+    expect(screen.getByText(/item 2.3.3/i)).toBeVisible();
   });
 });

@@ -7,6 +7,8 @@ import {
   ListItemIcon,
   ListItemText,
   styled,
+  SxProps,
+  Theme,
 } from "@mui/material";
 import { Bullet, Label } from "../../data-display";
 import { NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer/drawer.types";
@@ -38,6 +40,14 @@ export interface DrawerItemProps {
    * Bullet to attract the user attention displyed to the right
    */
   bullet?: NavItemBullet;
+  /**
+   * The item has to be marked as selected
+   */
+  selected?: boolean;
+  /**
+   * Custom styles
+   */
+  sx?: SxProps<Theme>;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -51,10 +61,19 @@ const DrawerItemLink = styled(Link)(({ theme }) => {
 /**
  * Clicable item inside a drawer
  */
-export const DrawerItem = ({ text, icon, avatar, label, bullet, href }: DrawerItemProps) => {
+export const DrawerItem = ({
+  text,
+  icon,
+  avatar,
+  label,
+  bullet,
+  href,
+  selected,
+  sx,
+}: DrawerItemProps) => {
   return (
     <ListItem disablePadding sx={{ display: "block" }} component={DrawerItemLink} href={href}>
-      <ListItemButton>
+      <ListItemButton selected={selected} sx={sx}>
         {icon && <ListItemIcon>{icon}</ListItemIcon>}
         {avatar && (
           <ListItemAvatar>

@@ -5,13 +5,14 @@ import { DrawerContentComponent, DrawerContentProps } from "../drawer/drawer.typ
 /**
  * Content to be shown inside a navigation
  */
-export const DrawerContent: DrawerContentComponent = ({ nav }: DrawerContentProps) => {
-  const { items } = nav;
-
+export const DrawerContent: DrawerContentComponent = ({
+  nav: { items },
+  selectedItem,
+}: DrawerContentProps) => {
   return (
     <>
       {items.map(({ title, items }, i) => (
-        <DrawerSection key={i} title={title} items={items} />
+        <DrawerSection key={i} title={title} items={items} selectedItem={selectedItem} />
       ))}
     </>
   );
