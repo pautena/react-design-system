@@ -26,6 +26,7 @@ export const Header: HeaderComponent = ({
   breadcrumbs,
   actions,
   tabs,
+  navigationButton,
 }: HeaderProps) => {
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
@@ -53,6 +54,18 @@ export const Header: HeaderComponent = ({
       <Container>
         <Box sx={{ py: 3, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
           <Box>
+            {navigationButton && (
+              <Button
+                href={navigationButton.href}
+                size="small"
+                color="inherit"
+                LinkComponent={Link}
+                startIcon={navigationButton.icon}
+                sx={{ mb: 1 }}
+              >
+                {navigationButton.text}
+              </Button>
+            )}
             {breadcrumbs?.length && (
               <Breadcrumbs
                 color="inherit"

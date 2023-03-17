@@ -3,6 +3,8 @@ import { createTemplate } from "../../../storybook";
 import { Header } from "./header";
 import { withMemoryRouter } from "~/storybook";
 import { breadcrumbs, tabs, actions } from "./header.dummy";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import React from "react";
 
 export default {
   title: "Components/Data Display/Header",
@@ -107,4 +109,16 @@ WithTabs.args = {
   preset: "default",
   breadcrumbs,
   tabs,
+};
+
+export const NavigationButton = Template.bind({});
+NavigationButton.args = {
+  title: "Lorem ipsum",
+  subtitle: "Dolor sit amet",
+  preset: "default",
+  navigationButton: {
+    text: "Go back",
+    href: "/back",
+    icon: <ArrowBackIcon />,
+  },
 };

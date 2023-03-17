@@ -23,6 +23,7 @@ function renderInstance({
   actionsVariant,
   tabs,
   selectedTab,
+  navigationButton,
 }: {
   title?: string;
   subtitle?: string | undefined;
@@ -32,6 +33,7 @@ function renderInstance({
   actionsVariant?: HeaderActionVariant;
   tabs?: HeaderTab[];
   selectedTab?: number;
+  navigationButton?: boolean;
 }) {
   const instance = render(
     <TabProvider initialValue={selectedTab}>
@@ -43,6 +45,7 @@ function renderInstance({
         actions={actions}
         actionsVariant={actionsVariant}
         tabs={tabs}
+        navigationButton={navigationButton ? { text: "go back", href: "/back" } : undefined}
       />
     </TabProvider>,
   );
@@ -58,13 +61,13 @@ describe("Header", () => {
   });
 
   describe("subtitle", () => {
-    it("would renders when is set", () => {
+    it("should renders when is set", () => {
       renderInstance({ subtitle: "sit amet" });
 
       expect(screen.queryByRole("heading", { level: 2, name: /sit amet/i })).toBeInTheDocument();
     });
 
-    it("wouldn't render if it is not set", () => {
+    it("shouldn't render if it is not set", () => {
       renderInstance({ subtitle: undefined });
 
       expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
@@ -72,14 +75,14 @@ describe("Header", () => {
   });
 
   describe("breadcrumbs", () => {
-    it("would render a list of links", () => {
+    it("should render a list of links", () => {
       renderInstance({ breadcrumbs });
 
       expect(screen.getByRole("link", { name: /items/i })).toBeInTheDocument();
       expect(screen.getByRole("link", { name: /item 1/i })).toBeInTheDocument();
     });
 
-    it("would navigate to a breadcrumb when is", async () => {
+    it("should navigate to a breadcrumb when is", async () => {
       const { history } = renderInstance({ breadcrumbs });
 
       await userEvent.click(screen.getByRole("link", { name: /items/i }));
@@ -89,7 +92,7 @@ describe("Header", () => {
   });
 
   describe("actions", () => {
-    it("would render a list of buttons", () => {
+    it("should render a list of buttons", () => {
       renderInstance({ actions });
 
       expect(screen.getByRole("button", { name: /add/i })).toBeInTheDocument();
@@ -108,13 +111,13 @@ describe("Header", () => {
       expect(button.onClick).toHaveBeenCalledTimes(1);
     });
 
-    it("wouldn't be possible to click a disabled action", async () => {
+    it("shouldn't be possible to click a disabled action", async () => {
       renderInstance({ actions });
 
       expect(screen.getByRole("button", { name: /disabled/i })).toBeDisabled();
     });
 
-    it("would redirect to the expected url when click an action with an href", async () => {
+    it("should redirect to the expected url when click an action with an href", async () => {
       const { history } = renderInstance({ actions });
 
       await userEvent.click(screen.getByRole("button", { name: /add/i }));
@@ -124,7 +127,7 @@ describe("Header", () => {
   });
 
   describe("tabs", () => {
-    it("would render a list of tabs", () => {
+    it("should render a list of tabs", () => {
       renderInstance({ tabs, selectedTab: 2 });
 
       expect(screen.getByRole("tab", { name: /tab 1/i })).toBeInTheDocument();
@@ -132,7 +135,7 @@ describe("Header", () => {
       expect(screen.getByRole("tab", { name: /tab 3/i })).toBeInTheDocument();
     });
 
-    it("would mark as active the selectedTab", () => {
+    it("should mark as active the selectedTab", () => {
       renderInstance({ tabs, selectedTab: 2 });
 
       expect(screen.getByRole("tab", { name: /tab 1/i, selected: false })).toBeInTheDocument();
@@ -140,13 +143,13 @@ describe("Header", () => {
       expect(screen.getByRole("tab", { name: /tab 3/i, selected: true })).toBeInTheDocument();
     });
 
-    it("wouldn't be possible to click a disabled tab", () => {
+    it("shouldn't be possible to click a disabled tab", () => {
       renderInstance({ tabs, selectedTab: 2 });
 
       expect(screen.getByRole("tab", { name: /tab 2/i })).toBeDisabled();
     });
 
-    it("would change the selected tab when a tab is clicked", async () => {
+    it("should change the selected tab when a tab is clicked", async () => {
       renderInstance({ tabs, selectedTab: 0 });
 
       await userEvent.click(screen.getByRole("tab", { name: /tab 3/i }));
@@ -154,6 +157,28 @@ describe("Header", () => {
       expect(screen.getByRole("tab", { name: /tab 1/i, selected: false })).toBeInTheDocument();
       expect(screen.getByRole("tab", { name: /tab 2/i, selected: false })).toBeInTheDocument();
       expect(screen.getByRole("tab", { name: /tab 3/i, selected: true })).toBeInTheDocument();
+    });
+  });
+
+  describe("navigationButton", () => {
+    it("should render a navigation button if is set", () => {
+      renderInstance({ navigationButton: true });
+
+      expect(screen.getByRole("link", { name: /go back/i })).toBeVisible();
+    });
+
+    it("shouldn't render a navigation button if is not set", () => {
+      renderInstance({ navigationButton: false });
+
+      expect(screen.queryByRole("link", { name: /go back/i })).not.toBeInTheDocument();
+    });
+
+    it("should navigate to the navigation path if is clicked", async () => {
+      const { history } = renderInstance({ navigationButton: true });
+
+      await userEvent.click(screen.getByRole("link", { name: /go back/i }));
+
+      expect(history.location.pathname).toBe("/back");
     });
   });
 });

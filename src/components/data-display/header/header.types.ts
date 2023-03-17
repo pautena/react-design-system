@@ -24,6 +24,21 @@ export interface HeaderTab {
   disabled?: boolean;
 }
 
+export interface HeaderNavigationButton {
+  /**
+   * Button text
+   */
+  text: string;
+  /**
+   * Url where the user has to be redirected
+   */
+  href: string;
+  /**
+   * Icon to be shown before the button
+   */
+  icon?: ReactElement;
+}
+
 export type HeaderProps = {
   /**
    * Title of the header
@@ -55,6 +70,11 @@ export type HeaderProps = {
    * If is set, a list of tabs is dispayed at the bottom
    */
   tabs?: HeaderTab[];
+  /**
+   * A single button that helps the user to navigate to
+   * a screen related to the current screen
+   */
+  navigationButton?: HeaderNavigationButton;
 };
 
 export type HeaderComponent = FunctionComponent<HeaderProps>;
