@@ -9,12 +9,13 @@ import {
   HeaderPreset,
   HeaderTab,
 } from "./header.types";
-import { breadcrumbs, actions as actionsData, tabs } from "./header.dummy";
+import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
 import { TabProvider } from "../../../providers";
+import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
 
 const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && jest.fn() }));
 
-function renderInstance({
+const renderInstance = ({
   title = "Lorem ipsum",
   subtitle,
   preset = "default",
@@ -34,7 +35,7 @@ function renderInstance({
   tabs?: HeaderTab[];
   selectedTab?: number;
   navigationButton?: boolean;
-}) {
+}) => {
   const instance = render(
     <TabProvider initialValue={selectedTab}>
       <Header
@@ -51,7 +52,7 @@ function renderInstance({
   );
 
   return { ...instance };
-}
+};
 
 describe("Header", () => {
   it("renders the title", () => {
@@ -149,14 +150,72 @@ describe("Header", () => {
       expect(screen.getByRole("tab", { name: /tab 2/i })).toBeDisabled();
     });
 
-    it("should change the selected tab when a tab is clicked", async () => {
-      renderInstance({ tabs, selectedTab: 0 });
+    describe("tabMode = panel", () => {
+      const enabledTestCases = tabs.filter((tab) => !tab.disabled).map(({ label }) => [label]);
 
-      await userEvent.click(screen.getByRole("tab", { name: /tab 3/i }));
+      const renderPanelTabsInstance = () => {
+        render(<WithPanelTabs />);
+      };
 
-      expect(screen.getByRole("tab", { name: /tab 1/i, selected: false })).toBeInTheDocument();
-      expect(screen.getByRole("tab", { name: /tab 2/i, selected: false })).toBeInTheDocument();
-      expect(screen.getByRole("tab", { name: /tab 3/i, selected: true })).toBeInTheDocument();
+      it("should change the selected tab when a tab is clicked", async () => {
+        renderPanelTabsInstance();
+
+        await userEvent.click(screen.getByRole("tab", { name: /tab 3/i }));
+
+        expect(screen.getByRole("tab", { name: /tab 1/i, selected: false })).toBeInTheDocument();
+        expect(screen.getByRole("tab", { name: /tab 2/i, selected: false })).toBeInTheDocument();
+        expect(screen.getByRole("tab", { name: /tab 3/i, selected: true })).toBeInTheDocument();
+      });
+
+      it.each(enabledTestCases)(
+        "if i cliick the tab %s the content of that panel should be rendered",
+        async (label: string) => {
+          renderPanelTabsInstance();
+
+          await userEvent.click(screen.getByRole("tab", { name: label }));
+
+          expect(screen.getByText(`Panel ${label}`)).toBeVisible();
+        },
+      );
+    });
+
+    describe("tabMode = navigation", () => {
+      const enabledTestCases = linkedTabs
+        .filter((tab) => !tab.disabled)
+        .map(({ label, href }) => [href, label]);
+      const renderLinkedTabsInstance = () => {
+        render(<WithLinkedTabs />, { router: "memory" });
+      };
+
+      it("should render a list of tabs", () => {
+        renderLinkedTabsInstance();
+
+        tabs.forEach(({ label }) => {
+          expect(screen.getByRole("tab", { name: label })).toBeVisible();
+        });
+      });
+
+      it.each(enabledTestCases)(
+        "should render %s if the user click %s label",
+        async (href: string, label: string) => {
+          renderLinkedTabsInstance();
+
+          await userEvent.click(screen.getByRole("tab", { name: label }));
+
+          expect(screen.getByText(`Panel: ${href}`)).toBeVisible();
+        },
+      );
+
+      it.each(enabledTestCases)(
+        "should navigate to %s if the user click %s label",
+        async (href: string, label: string) => {
+          renderLinkedTabsInstance();
+
+          await userEvent.click(screen.getByRole("tab", { name: label }));
+
+          expect(screen.getByText(`Location: ${href}`)).toBeVisible();
+        },
+      );
     });
   });
 

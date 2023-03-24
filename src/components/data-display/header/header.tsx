@@ -13,6 +13,7 @@ import { Link } from "../../navigation/link";
 import { useGetDefaultThemeColor } from "../../../utils";
 import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
 import { useTab } from "~/providers";
+import { useLocation } from "react-router-dom";
 
 /**
  * Section used to explain give basic information about the page
@@ -26,8 +27,10 @@ export const Header: HeaderComponent = ({
   breadcrumbs,
   actions,
   tabs,
+  tabsMode = "panel",
   navigationButton,
 }: HeaderProps) => {
+  const location = useLocation();
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
   const [selectedTab, setSelectedTab] = useTab();
@@ -48,6 +51,9 @@ export const Header: HeaderComponent = ({
     transparent: palette.text.primary,
   };
   const textColor = textColorPresets[preset];
+
+  const modedSelectedTab =
+    tabsMode === "panel" ? selectedTab : tabs?.findIndex((tab) => tab.href === location.pathname);
 
   return (
     <Box bgcolor={bgColor} color={textColor}>
@@ -119,13 +125,18 @@ export const Header: HeaderComponent = ({
         </Box>
         {tabs && (
           <Tabs
-            value={selectedTab}
+            value={modedSelectedTab}
             textColor="inherit"
-            onChange={(_, index) => setSelectedTab(index)}
+            onChange={tabsMode === "panel" ? (_, index) => setSelectedTab(index) : undefined}
           >
-            {tabs.map(({ id, label, disabled }) => (
-              <Tab key={id} label={label} disabled={disabled} />
-            ))}
+            {tabs.map(({ id, label, disabled, href }) => {
+              const tabProps = { key: id, label, disabled };
+              if (tabsMode === "panel") {
+                return <Tab {...tabProps} />;
+              } else {
+                return <Tab {...tabProps} component={Link} href={href} />;
+              }
+            })}
           </Tabs>
         )}
       </Container>

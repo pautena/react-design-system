@@ -22,6 +22,7 @@ export interface HeaderTab {
   id: string;
   label: string;
   disabled?: boolean;
+  href?: string;
 }
 
 export interface HeaderNavigationButton {
@@ -70,6 +71,12 @@ export type HeaderProps = {
    * If is set, a list of tabs is dispayed at the bottom
    */
   tabs?: HeaderTab[];
+  /**
+   * The tabs will work using
+   * - a panel container (panel)
+   * - using a the navigation system (navigation).
+   */
+  tabsMode?: "panel" | "navigation";
   /**
    * A single button that helps the user to navigate to
    * a screen related to the current screen
