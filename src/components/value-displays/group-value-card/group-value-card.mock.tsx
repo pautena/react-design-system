@@ -1,5 +1,6 @@
 import React from "react";
 import { ValueBoolean } from "../value-boolean/value-boolean";
+import { ValueRating } from "../value-rating";
 import { ValueText } from "../value-text";
 import { GroupValueCard, GroupValueCardProps, GroupValueItem } from "./group-value-card";
 
@@ -29,6 +30,9 @@ export const GroupValueCardDummy = (props: GroupValueCardProps) => {
       </GroupValueItem>
       <GroupValueItem xs={12} sm={6} md={3}>
         <ValueText label="Level" value="2144" />
+      </GroupValueItem>
+      <GroupValueItem xs={12} sm={6} md={3}>
+        <ValueRating label="Rating" value={3} />
       </GroupValueItem>
     </GroupValueCard>
   );

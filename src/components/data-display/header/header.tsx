@@ -130,11 +130,11 @@ export const Header: HeaderComponent = ({
             onChange={tabsMode === "panel" ? (_, index) => setSelectedTab(index) : undefined}
           >
             {tabs.map(({ id, label, disabled, href }) => {
-              const tabProps = { key: id, label, disabled };
+              const tabProps = { label, disabled };
               if (tabsMode === "panel") {
-                return <Tab {...tabProps} />;
+                return <Tab key={id} {...tabProps} />;
               } else {
-                return <Tab {...tabProps} component={Link} href={href} />;
+                return <Tab key={id} {...tabProps} component={Link} href={href} />;
               }
             })}
           </Tabs>
