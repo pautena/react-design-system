@@ -2,14 +2,12 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemAvatar,
-  Avatar,
   ListItemText,
   Collapse,
   List,
 } from "@mui/material";
 import React, { ReactElement, useState } from "react";
-import { NavItem, NavItemLink } from "../drawer/drawer.types";
+import { NavItemLink } from "../drawer/drawer.types";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { DrawerItem } from "../drawer-item";

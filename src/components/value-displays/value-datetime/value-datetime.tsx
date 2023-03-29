@@ -63,9 +63,11 @@ export const ValueDatetime = ({
                 endAdornment: (
                   <>
                     {params.InputProps.endAdornment}
-                    <InputAdornment position="end" sx={{ ml: 2 }}>
-                      <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
-                    </InputAdornment>
+                    <ValueEditButtons
+                      onClickCancel={cancelEdit}
+                      onSubmitEdit={submitEdit}
+                      sx={{ ml: 2 }}
+                    />
                   </>
                 ),
               }}

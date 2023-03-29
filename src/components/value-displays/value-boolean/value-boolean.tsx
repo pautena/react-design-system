@@ -1,5 +1,5 @@
 import { Box, IconButton, Switch, Typography, useTheme } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -33,7 +33,7 @@ export const ValueBoolean = ({
   return (
     <ValueContent label={label}>
       {isEditing ? (
-        <Box>
+        <Box display="flex" alignItems="center">
           <Switch checked={editValue} onChange={(e) => setEditValue(e.target.checked)} />
           <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
         </Box>

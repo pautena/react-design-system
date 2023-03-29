@@ -35,11 +35,7 @@ export const ValueText = ({
           size="small"
           onChange={(e) => setEditValue(e.target.value)}
           InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
-              </InputAdornment>
-            ),
+            endAdornment: <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />,
           }}
         />
       ) : (

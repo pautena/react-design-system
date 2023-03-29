@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
-import { Button } from "@mui/material";
+import { Button, InputAdornment, SxProps, Theme } from "@mui/material";
 
 export interface ValueEditButtonsProps {
   onClickCancel: () => void;
   onSubmitEdit: () => void;
+  sx?: SxProps<Theme>;
 }
 
-export const ValueEditButtons = ({ onClickCancel, onSubmitEdit }: ValueEditButtonsProps) => {
+export const ValueEditButtons = ({ onClickCancel, onSubmitEdit, sx }: ValueEditButtonsProps) => {
   return (
-    <>
+    <InputAdornment position="end" sx={sx}>
       <Button
         variant="contained"
         size="small"
@@ -27,7 +28,7 @@ export const ValueEditButtons = ({ onClickCancel, onSubmitEdit }: ValueEditButto
         onClick={onSubmitEdit}
         sx={{ paddingRight: 0, minWidth: 0 }}
       />
-    </>
+    </InputAdornment>
   );
 };
 

@@ -25,3 +25,11 @@ Max.args = {
   value: 4,
   maxRating: 7,
 };
+
+export const Editable = Template.bind({});
+Editable.args = {
+  label: "Lorem",
+  value: 4,
+  maxRating: 7,
+  editable: true,
+};

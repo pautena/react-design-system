@@ -1,5 +1,3 @@
-import { ReactElement, useState } from "react";
-
 export interface BaseValueProps<T> {
   /**
    * Name of the displayed value
