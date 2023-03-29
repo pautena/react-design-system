@@ -19,6 +19,12 @@ Default.args = {
   value: "ipsum sit",
 };
 
+export const NumberAsValue = Template.bind({});
+NumberAsValue.args = {
+  label: "Lorem",
+  value: 1000,
+};
+
 export const TruncatedText = Template.bind({});
 TruncatedText.args = {
   label: "Lorem",
@@ -34,4 +40,11 @@ export const CustomPlaceholder = Template.bind({});
 CustomPlaceholder.args = {
   label: "Lorem",
   placeholder: ".",
+};
+
+export const Editable = Template.bind({});
+Editable.args = {
+  label: "Lorem",
+  value: "lorem ipsum",
+  editable: true,
 };
