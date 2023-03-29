@@ -1,6 +1,6 @@
 import { Rating, Typography } from "@mui/material";
 import React from "react";
-import { BaseValueProps, DefaultPlaceholder } from "../value-displays.types";
+import { BaseValueProps, DefaultPlaceholder } from "../value-base/value-displays.types";
 import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export type ValueRatingProps = BaseValueProps<number> & {

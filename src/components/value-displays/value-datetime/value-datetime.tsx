@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { format } from "date-fns";
-import { BaseValueProps, DefaultPlaceholder } from "../value-displays.types";
+import { BaseValueProps, DefaultPlaceholder } from "../value-base/value-displays.types";
 import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export interface ValueDatetimeProps extends BaseValueProps<Date> {

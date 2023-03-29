@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { ValueContent } from "../value-content";
-import { BaseValueProps } from "../value-displays.types";
+import { BaseValueProps } from "../value-base/value-displays.types";
 
 export interface ValueImageProps extends BaseValueProps<string> {
   /**

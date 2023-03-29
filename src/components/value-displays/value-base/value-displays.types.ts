@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 
 export interface BaseValueProps<T> {
   /**
@@ -15,6 +15,18 @@ export interface BaseValueProps<T> {
    * String rendered if value is undefined
    */
   placeholder?: string;
+}
+
+export interface EditableValueProps<T> {
+  /**
+   * This field can be edited or not
+   */
+  editable?: boolean;
+
+  /**
+   * Callback executed when the value is edited
+   */
+  onEdit?: (value?: T) => void;
 }
 
 export const DefaultPlaceholder = "-";

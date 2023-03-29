@@ -1,11 +1,18 @@
-import { Typography, useTheme } from "@mui/material";
-import React from "react";
+import { Box, IconButton, Switch, Typography, useTheme } from "@mui/material";
+import React, { useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
-import { BaseValueProps, DefaultPlaceholder } from "../value-displays.types";
+import {
+  BaseValueProps,
+  DefaultPlaceholder,
+  EditableValueProps,
+  useEditableValueDisplay,
+  ValueEditButtons,
+} from "../value-base";
 import { ValueContent } from "../value-content";
+import EditIcon from "@mui/icons-material/Edit";
 
-export type ValueBooleanProps = BaseValueProps<boolean>;
+export type ValueBooleanProps = BaseValueProps<boolean> & EditableValueProps<boolean>;
 
 /**
  * Displays a boolean value with a label
@@ -14,19 +21,37 @@ export const ValueBoolean = ({
   label,
   value,
   placeholder = DefaultPlaceholder,
+  editable,
+  onEdit = () => null,
 }: ValueBooleanProps) => {
   const { typography } = useTheme();
+  const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
+    useEditableValueDisplay(value, onEdit);
 
   const iconSx = { fontSize: typography.h5.fontSize };
 
   return (
     <ValueContent label={label}>
-      {value === undefined ? (
-        <Typography variant="h5">{placeholder}</Typography>
-      ) : value ? (
-        <CheckIcon color="success" sx={iconSx} />
+      {isEditing ? (
+        <Box>
+          <Switch checked={editValue} onChange={(e) => setEditValue(e.target.checked)} />
+          <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
+        </Box>
       ) : (
-        <CloseIcon color="error" sx={iconSx} />
+        <Box display="flex" alignItems="center">
+          {value === undefined ? (
+            <Typography variant="h5">{placeholder}</Typography>
+          ) : value ? (
+            <CheckIcon color="success" sx={iconSx} />
+          ) : (
+            <CloseIcon color="error" sx={iconSx} />
+          )}
+          {editable && (
+            <IconButton size="small" onClick={startEdit} sx={{ ml: 1 }}>
+              <EditIcon />
+            </IconButton>
+          )}
+        </Box>
       )}
     </ValueContent>
   );

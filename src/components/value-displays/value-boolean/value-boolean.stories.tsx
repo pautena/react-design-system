@@ -23,3 +23,10 @@ False.args = {
   label: "Lorem ipsum",
   value: false,
 };
+
+export const Editable = Template.bind({});
+Editable.args = {
+  label: "Lorem ipsum",
+  value: false,
+  editable: true,
+};

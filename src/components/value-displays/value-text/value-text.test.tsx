@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
-import { TextValue, ValueText } from "./value-text";
+import { ValueText } from "./value-text";
 import userEvent from "@testing-library/user-event";
 
 const DummyValue = "Lorem ipsum sit amet";
@@ -11,12 +11,11 @@ describe("ValueText", () => {
     placeholder,
     editable,
   }: {
-    value?: TextValue;
+    value?: string | number;
     placeholder?: string;
     editable?: boolean;
   }) => {
     const onEdit = jest.fn();
-    const onCancelEdit = jest.fn();
     render(
       <ValueText
         label="Hello world"
@@ -24,10 +23,9 @@ describe("ValueText", () => {
         placeholder={placeholder}
         editable={editable}
         onEdit={onEdit}
-        onCancelEdit={onCancelEdit}
       />,
     );
-    return { onEdit, onCancelEdit };
+    return { onEdit };
   };
 
   it("would render the label", () => {
@@ -93,8 +91,8 @@ describe("ValueText", () => {
       expect(onEdit).toHaveBeenCalledWith("new value");
     });
 
-    it("should call onCancelEdit without calling onEdit if the edition is cancelled", async () => {
-      const { onEdit, onCancelEdit } = renderComponent({ value: DummyValue, editable: true });
+    it("should not call onEdit if the edition is cancelled", async () => {
+      const { onEdit } = renderComponent({ value: DummyValue, editable: true });
 
       await userEvent.click(screen.getByTestId("EditIcon"));
       await userEvent.clear(screen.getByRole("textbox"));
@@ -102,7 +100,6 @@ describe("ValueText", () => {
       await userEvent.click(screen.getByTestId("ClearIcon"));
 
       expect(onEdit).not.toHaveBeenCalled();
-      expect(onCancelEdit).toHaveBeenCalledTimes(1);
     });
 
     it("should have the original value if is edited again after clear a change", async () => {
