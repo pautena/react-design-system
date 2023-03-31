@@ -219,19 +219,8 @@ const mockFieldValue: Record<string, () => FieldType> = {
   lastName: faker.name.lastName,
   gender: faker.name.gender,
   age: () => faker.datatype.number({ min: 20, max: 60 }),
-  birthDate: () => {
-    const date = faker.date.recent();
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  },
-  returnTime: () => {
-    const date = faker.date.recent();
-    const time = new Date();
-    time.setHours(date.getHours());
-    time.setMinutes(date.getMinutes());
-    time.setSeconds(0);
-    time.setMilliseconds(0);
-    return time;
-  },
+  birthDate: () => new Date(2019, 3, 2),
+  returnTime: () => new Date(2022, 10, 2, 11, 0),
   model: faker.vehicle.model,
   manufacturer: faker.vehicle.manufacturer,
   color: faker.vehicle.color,
@@ -245,7 +234,7 @@ const mockFieldValue: Record<string, () => FieldType> = {
   quantity: () => faker.datatype.number({ min: 1, max: 9 }),
   available: faker.datatype.boolean,
   currency: () => "MXN",
-  tradeDate: faker.date.recent,
+  tradeDate: () => new Date(2012, 2, 11, 8, 25),
 };
 
 export const createModelInstance = <T extends BasicModelInstance>(model: Model, seed = 100): T => {

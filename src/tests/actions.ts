@@ -43,5 +43,6 @@ export const clearCheckbox = async (element: HTMLInputElement) => {
 };
 
 export const pickDatetime = (element: HTMLInputElement, valueArg: Date, fmt: string) => {
-  fireEvent.change(element, { target: { value: format(valueArg, fmt) } });
+  const value = format(valueArg, fmt);
+  fireEvent.change(element, { target: { value } });
 };

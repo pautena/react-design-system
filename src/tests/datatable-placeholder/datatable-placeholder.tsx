@@ -29,11 +29,9 @@ export const DatatablePlaceholder = ({
       <DataGrid
         rows={rows}
         columns={columns as any}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
         checkboxSelection
-        disableSelectionOnClick
-        experimentalFeatures={{ newEditingApi: true }}
+        autoPageSize
+        disableRowSelectionOnClick
       />
     </Box>
   );

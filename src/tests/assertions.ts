@@ -8,6 +8,18 @@ export const expectContentPlaceholder = async () => {
   expect(await screen.findByTestId(/content-placeholder-test/i)).toBeInTheDocument();
 };
 
+export const assertDatetimeInputValue = (
+  element: HTMLElement,
+  { value, fmt, addSpaces = false }: { value: Date; fmt: string; addSpaces?: boolean },
+) => {
+  let expectedDateValue = format(value, fmt).replace(/ /g, "⁩ ⁦");
+
+  if (addSpaces) {
+    expectedDateValue = expectedDateValue.replace(/\//g, " / ").replace(/-/g, " - ");
+  }
+  expect(element).toHaveValue(expectedDateValue);
+};
+
 export const expectModelFieldInputExist = (fields: ModelField[]) => {
   fields.forEach((field) => {
     if (field.type === "group") {
@@ -41,11 +53,11 @@ export const expectModelFieldInputValue = (
         screen.getByRole("checkbox", { name: field.name, checked: value as boolean }),
       ).toBeInTheDocument();
     } else if (field.type === "date" || field.type === "time" || field.type === "datetime") {
-      const expectedDateValue = format(value as Date, field.format);
-      expect(screen.getByRole("textbox", { name: field.name })).toHaveAttribute(
-        "value",
-        expectedDateValue,
-      );
+      assertDatetimeInputValue(screen.getByRole("textbox", { name: field.name }), {
+        value: value as Date,
+        fmt: field.format,
+        addSpaces: true,
+      });
     } else {
       expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
     }

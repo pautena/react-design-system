@@ -54,25 +54,28 @@ export const ValueDatetime = ({
       {isEditing ? (
         <EditPickerComponent
           value={editValue}
-          inputFormat={fmt}
-          onChange={(newValue: any) => setEditValue(newValue)}
-          renderInput={(params: any) => (
-            <TextField
-              {...params}
-              InputProps={{
-                endAdornment: (
-                  <>
-                    {params.InputProps.endAdornment}
-                    <ValueEditButtons
-                      onClickCancel={cancelEdit}
-                      onSubmitEdit={submitEdit}
-                      sx={{ ml: 2 }}
-                    />
-                  </>
-                ),
-              }}
-            />
-          )}
+          format={fmt}
+          onChange={(newValue) => setEditValue(newValue ? newValue : undefined)}
+          slots={{
+            textField: (params) => (
+              <TextField
+                {...params}
+                InputProps={{
+                  ...params.InputProps,
+                  endAdornment: (
+                    <>
+                      {params.InputProps?.endAdornment}
+                      <ValueEditButtons
+                        onClickCancel={cancelEdit}
+                        onSubmitEdit={submitEdit}
+                        sx={{ ml: 2 }}
+                      />
+                    </>
+                  ),
+                }}
+              />
+            ),
+          }}
         />
       ) : (
         <Box display="flex" alignItems="center">

@@ -1,5 +1,5 @@
 import { Autocomplete, AutocompleteProps, ChipTypeMap } from "@mui/material";
-import React, { useId } from "react";
+import React from "react";
 import { EnhancedTextField } from "../enhanced-text-field";
 
 export interface EnhancedAutocompleteProps<
@@ -55,6 +55,7 @@ export const EnhancedAutocomplete = <
           fetching={fetching}
           loading={loading}
           hexColor={color}
+          helperText={helperText}
         />
       )}
       sx={sx}

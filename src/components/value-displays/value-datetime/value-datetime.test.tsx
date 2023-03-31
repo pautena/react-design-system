@@ -3,9 +3,12 @@ import { render, screen } from "~/tests/testing-library";
 import { EditInputType, ValueDatetime } from "./value-datetime";
 import userEvent from "@testing-library/user-event";
 import { pickDatetime } from "~/tests/actions";
+import { assertDatetimeInputValue } from "~/tests/assertions";
 
-const DummyValue = new Date(2022, 7, 10, 8, 11);
+const DummyValue = new Date(2022, 7, 10, 0, 0);
 const NewValue = new Date(2021, 8, 9, 11, 21);
+const NewDateValue = new Date(2018, 2, 17);
+const NewTimeValue = new Date(2021, 8, 9, 11, 21);
 const datetimeFormat = "dd-MM-yyyy HH:mm";
 const dateFormat = "dd-MM-yyyy";
 const timeFormat = "HH:mm";
@@ -81,16 +84,19 @@ describe("ValueDatetime", () => {
 
       await userEvent.click(screen.getByTestId("EditIcon"));
 
-      expect(screen.getByRole("textbox")).toHaveValue("10-08-2022 08:11");
+      assertDatetimeInputValue(screen.getByRole("textbox"), {
+        value: DummyValue,
+        fmt: datetimeFormat,
+      });
     });
 
     it.each([
-      ["datetime" as EditInputType, new Date(2021, 8, 9, 11, 21), datetimeFormat],
-      ["date" as EditInputType, new Date(2021, 8, 9), dateFormat],
-      ["time" as EditInputType, new Date(2022, 7, 10, 11, 21), timeFormat],
+      ["datetime" as EditInputType, NewValue, new Date(2021, 8, 9, 11, 21), datetimeFormat],
+      ["date" as EditInputType, NewDateValue, new Date(2018, 2, 17), dateFormat],
+      ["time" as EditInputType, NewTimeValue, new Date(2022, 7, 10, 11, 21), timeFormat],
     ])(
       "should submit the new value if is edited with type %s",
-      async (editInputType: EditInputType, expectedDate: Date, fmt: string) => {
+      async (editInputType: EditInputType, newValue: Date, expectedDate: Date, fmt: string) => {
         const { onEdit } = renderComponent({
           value: DummyValue,
           editable: true,
@@ -99,7 +105,7 @@ describe("ValueDatetime", () => {
         });
 
         await userEvent.click(screen.getByTestId("EditIcon"));
-        pickDatetime(screen.getByRole("textbox"), NewValue, fmt);
+        pickDatetime(screen.getByRole("textbox"), newValue, fmt);
         await userEvent.click(screen.getByTestId("CheckIcon"));
 
         expect(onEdit).toHaveBeenCalledTimes(1);
@@ -125,7 +131,10 @@ describe("ValueDatetime", () => {
       await userEvent.click(screen.getByTestId("ClearIcon"));
       await userEvent.click(screen.getByTestId("EditIcon"));
 
-      expect(screen.getByRole("textbox")).toHaveValue("10-08-2022 08:11");
+      assertDatetimeInputValue(screen.getByRole("textbox"), {
+        value: DummyValue,
+        fmt: datetimeFormat,
+      });
     });
   });
 });

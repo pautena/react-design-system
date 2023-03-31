@@ -191,30 +191,27 @@ export const ModelForm = <T extends BasicModelInstance>({
       fieldInput = (
         <DesktopDatePicker
           label={name}
-          inputFormat={field.format}
+          format={field.format}
           value={value}
           onChange={(value) => handleDateChange(value, key, id)}
-          renderInput={(params) => <TextField {...params} />}
         />
       );
     } else if (type === "time") {
       fieldInput = (
         <TimePicker
           label={name}
-          inputFormat={field.format}
+          format={field.format}
           value={value}
           onChange={(value) => handleDateChange(value, key, id)}
-          renderInput={(params) => <TextField {...params} />}
         />
       );
     } else if (type === "datetime") {
       fieldInput = (
         <DateTimePicker
           label={name}
-          inputFormat={field.format}
+          format={field.format}
           value={value}
           onChange={(value) => handleDateChange(value, key, id)}
-          renderInput={(params) => <TextField {...params} />}
         />
       );
     } else {
