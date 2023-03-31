@@ -1,27 +1,27 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate, withContainer } from "../../../storybook";
-import { EnhancedAutocomplete, EnhancedAutocompleteProps } from "./enhanced-autocomplete";
+import { EnhancedTextField } from "./enhanced-text-field";
 import { faker } from "@faker-js/faker";
-import { Box, useTheme } from "@mui/material";
+import { Box, IconButton, useTheme } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 import React from "react";
 
 export default {
-  title: "Components/Inputs/EnhancedAutocomplete",
-  component: EnhancedAutocomplete,
+  title: "Components/Inputs/EnhancedTextField",
+  component: EnhancedTextField,
   decorators: [withContainer({ width: 200 })],
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof EnhancedAutocomplete>;
+} as ComponentMeta<typeof EnhancedTextField>;
 
 const options: string[] = faker.definitions.vehicle?.model || [];
 
-const Template = createTemplate(EnhancedAutocomplete);
+const Template = createTemplate(EnhancedTextField);
 
 export const Default = Template.bind({});
 Default.args = {
   label: "Car model",
-  options,
 };
 
 export const HelperText = Template.bind({});
@@ -49,29 +49,66 @@ Fetching.args = {
   fetching: true,
 };
 
+export const FetchingWithEndAdornment = Template.bind({});
+FetchingWithEndAdornment.args = {
+  ...Default.args,
+  fetching: true,
+  InputProps: {
+    endAdornment: (
+      <IconButton>
+        <ClearIcon />
+      </IconButton>
+    ),
+  },
+};
+
 export const SizeSmall = Template.bind({});
 SizeSmall.args = {
   ...Default.args,
   size: "small",
 };
 
-type WithBackgroundProps = { bgcolor: "primary" | "secondary" };
-export const WithBackground = ({ bgcolor: bgcolorProp }: WithBackgroundProps) => {
+export const SizeSmallFetching = Template.bind({});
+SizeSmallFetching.args = {
+  ...Default.args,
+  size: "small",
+  fetching: true,
+};
+
+export const SizeSmallLoading = Template.bind({});
+SizeSmallLoading.args = {
+  ...Default.args,
+  size: "small",
+  loading: true,
+};
+
+type WithBackgroundProps = {
+  bgcolor: "primary" | "secondary";
+  fetching?: boolean;
+  loading?: boolean;
+};
+export const WithBackground = ({
+  bgcolor: bgcolorProp,
+  fetching,
+  loading,
+}: WithBackgroundProps) => {
   const { palette } = useTheme();
   const BackgroundColors: Record<"primary" | "secondary", string> = {
     primary: palette.primary.main,
     secondary: palette.secondary.main,
   };
   const bgcolor = BackgroundColors[bgcolorProp];
-  const selectColor = palette.getContrastText(bgcolor);
+  const color = palette.getContrastText(bgcolor);
 
   return (
     <Box bgcolor={bgcolor} padding={3}>
-      <EnhancedAutocomplete label="Car model" options={options} color={selectColor} />
+      <EnhancedTextField label="Car model" hexColor={color} fetching={fetching} loading={loading} />
     </Box>
   );
 };
 
 WithBackground.args = {
   bgcolor: "secondary",
+  loading: true,
+  fetching: true,
 };

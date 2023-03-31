@@ -1,13 +1,18 @@
 import {
   Autocomplete,
-  autocompleteClasses,
   AutocompleteProps,
   Box,
   ChipTypeMap,
   CircularProgress,
+  FormControl,
+  FormHelperText,
+  InputAdornment,
+  InputLabel,
+  LinearProgress,
+  OutlinedInput,
   TextField,
 } from "@mui/material";
-import React from "react";
+import React, { useId } from "react";
 
 export interface EnhancedAutocompleteProps<
   T,
@@ -20,6 +25,7 @@ export interface EnhancedAutocompleteProps<
     "renderInput" | "onChange" | "color"
   > {
   label: string;
+  helperText?: string;
   color?: string;
   fetching?: boolean;
   onChangeValue?: (value: T) => void;
@@ -39,6 +45,7 @@ export const EnhancedAutocomplete = <
     loading,
     fetching,
     options,
+    helperText,
     color,
     onChangeValue = () => null,
     sx,
