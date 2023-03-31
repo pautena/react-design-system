@@ -8,3 +8,4 @@ export * from "./inputs";
 export * from "./navigation";
 export * from "./tables";
 export * from "./placeholders";
+export * from "./alerts";

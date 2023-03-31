@@ -39,6 +39,7 @@
     "@mui/x-date-pickers": "^5.0.19",
     "date-fns": "^2.29.3",
     "lorem-ipsum": "^2.0.8",
+    "markdown-to-jsx": "^7.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.1"
@@ -109,7 +110,8 @@
     "lorem-ipsum": "^2.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
-    "react-router-dom": "^6.0.0"
+    "react-router-dom": "^6.0.0",
+    "markdown-to-jsx": "^7.0.0"
   },
   "repository": {
     "type": "git",

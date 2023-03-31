@@ -1,4 +1,4 @@
-import { IconButton, InputAdornment, TextField, Typography } from "@mui/material";
+import { IconButton, TextField, Typography } from "@mui/material";
 import React from "react";
 import {
   BaseValueProps,
