@@ -1,4 +1,4 @@
-import { Box, IconButton, InputAdornment, Rating } from "@mui/material";
+import { Box, IconButton, Rating } from "@mui/material";
 import React from "react";
 import { useEditableValueDisplay, ValueEditButtons } from "../value-base";
 import { BaseValueProps, EditableValueProps } from "../value-base/value-displays.types";

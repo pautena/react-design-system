@@ -1,17 +1,4 @@
-import {
-  Autocomplete,
-  AutocompleteProps,
-  Box,
-  ChipTypeMap,
-  CircularProgress,
-  FormControl,
-  FormHelperText,
-  InputAdornment,
-  InputLabel,
-  LinearProgress,
-  OutlinedInput,
-  TextField,
-} from "@mui/material";
+import { Autocomplete, AutocompleteProps, ChipTypeMap } from "@mui/material";
 import React, { useId } from "react";
 import { EnhancedTextField } from "../enhanced-text-field";
 
@@ -70,6 +57,7 @@ export const EnhancedAutocomplete = <
           hexColor={color}
         />
       )}
+      sx={sx}
     />
   );
 };
