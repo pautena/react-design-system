@@ -75,6 +75,12 @@ SizeSmallFetching.args = {
   fetching: true,
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true,
+};
+
 export const SizeSmallLoading = Template.bind({});
 SizeSmallLoading.args = {
   ...Default.args,

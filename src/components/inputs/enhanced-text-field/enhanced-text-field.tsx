@@ -1,8 +1,10 @@
 import {
+  autocompleteClasses,
   CircularProgress,
   circularProgressClasses,
   FormControl,
   FormHelperText,
+  iconButtonClasses,
   InputAdornment,
   InputLabel,
   inputLabelClasses,
@@ -31,6 +33,7 @@ export const EnhancedTextField = ({
   helperText,
   hexColor,
   size,
+  fullWidth,
   sx,
   ...rest
 }: EnhancedTextFieldProps) => {
@@ -55,11 +58,14 @@ export const EnhancedTextField = ({
         [`& .${linearProgressClasses.bar}`]: {
           backgroundColor: hexColor,
         },
+        [`& .${autocompleteClasses.endAdornment} .${iconButtonClasses.root}`]: {
+          color: hexColor,
+        },
       }
     : {};
 
   return (
-    <FormControl sx={hexColorSx}>
+    <FormControl sx={hexColorSx} fullWidth={fullWidth}>
       <InputLabel
         size={size === "small" ? "small" : "normal"}
         id={inputLabelId}
@@ -73,6 +79,7 @@ export const EnhancedTextField = ({
         id={id}
         label={label}
         size={size}
+        fullWidth={fullWidth}
         endAdornment={
           <InputAdornment position="end">
             {InputProps?.endAdornment}

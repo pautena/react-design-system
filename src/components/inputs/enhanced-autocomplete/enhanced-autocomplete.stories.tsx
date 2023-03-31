@@ -1,6 +1,6 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate, withContainer } from "../../../storybook";
-import { EnhancedAutocomplete, EnhancedAutocompleteProps } from "./enhanced-autocomplete";
+import { EnhancedAutocomplete } from "./enhanced-autocomplete";
 import { faker } from "@faker-js/faker";
 import { Box, useTheme } from "@mui/material";
 import React from "react";
@@ -8,7 +8,7 @@ import React from "react";
 export default {
   title: "Components/Inputs/EnhancedAutocomplete",
   component: EnhancedAutocomplete,
-  decorators: [withContainer({ width: 200 })],
+  decorators: [withContainer({ width: 300 })],
   parameters: {
     layout: "centered",
   },
@@ -55,8 +55,32 @@ SizeSmall.args = {
   size: "small",
 };
 
-type WithBackgroundProps = { bgcolor: "primary" | "secondary" };
-export const WithBackground = ({ bgcolor: bgcolorProp }: WithBackgroundProps) => {
+export const SizeSmallLoading = Template.bind({});
+SizeSmallLoading.args = {
+  ...Default.args,
+  size: "small",
+  value: options[0],
+  loading: true,
+};
+
+export const SizeSmallFetching = Template.bind({});
+SizeSmallFetching.args = {
+  ...Default.args,
+  size: "small",
+  fetching: true,
+  value: options[0],
+};
+
+type WithBackgroundProps = {
+  bgcolor: "primary" | "secondary";
+  loading: boolean;
+  fetching: boolean;
+};
+export const WithBackground = ({
+  bgcolor: bgcolorProp,
+  loading,
+  fetching,
+}: WithBackgroundProps) => {
   const { palette } = useTheme();
   const BackgroundColors: Record<"primary" | "secondary", string> = {
     primary: palette.primary.main,
@@ -67,11 +91,19 @@ export const WithBackground = ({ bgcolor: bgcolorProp }: WithBackgroundProps) =>
 
   return (
     <Box bgcolor={bgcolor} padding={3}>
-      <EnhancedAutocomplete label="Car model" options={options} color={selectColor} />
+      <EnhancedAutocomplete
+        label="Car model"
+        options={options}
+        color={selectColor}
+        loading={loading}
+        fetching={fetching}
+      />
     </Box>
   );
 };
 
 WithBackground.args = {
   bgcolor: "secondary",
+  loading: true,
+  fetching: true,
 };

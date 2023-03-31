@@ -13,6 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 import React, { useId } from "react";
+import { EnhancedTextField } from "../enhanced-text-field";
 
 export interface EnhancedAutocompleteProps<
   T,
@@ -59,25 +60,16 @@ export const EnhancedAutocomplete = <
       options={fetching ? [] : options}
       onChange={(_, value) => onChangeValue(value as T)}
       {...(rest as any)}
-      renderInput={(params) => {
-        return (
-          <TextField
-            label={label}
-            {...params}
-            InputProps={{
-              ...params.InputProps,
-              endAdornment: (
-                <Box display="flex" flexDirection="row">
-                  {params.InputProps.endAdornment}
-                  {loadingOrFetching ? (
-                    <CircularProgress color="inherit" size={20} sx={{ ml: 1 }} />
-                  ) : null}
-                </Box>
-              ),
-            }}
-          />
-        );
-      }}
+      renderInput={(params) => (
+        <EnhancedTextField
+          {...params}
+          label={label}
+          fullWidth
+          fetching={fetching}
+          loading={loading}
+          hexColor={color}
+        />
+      )}
     />
   );
 };
