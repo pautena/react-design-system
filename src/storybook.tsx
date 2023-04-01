@@ -1,8 +1,8 @@
 /* eslint-disable react/display-name */
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, PropsWithChildren, ReactElement, useState } from "react";
 import { ComponentStory } from "@storybook/react";
 import { JSXElementConstructor } from "react";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { MemoryRouter, Router, Navigator, Route, Routes } from "react-router-dom";
 import { NotificationCenterProvider } from "./providers";
 import { action } from "@storybook/addon-actions";
@@ -18,6 +18,7 @@ export function createTemplate<P extends object>(
 const replaceAction = action("navigator/replace");
 const goAction = action("navigator/go");
 const pushAction = action("navigator/push");
+const closeDialogAction = action("dialog/close");
 
 export const withActionRouter =
   ({ location = "/", path = "/" }: { location?: string; path?: string } = {}) =>
@@ -96,5 +97,36 @@ export const withLocalizationProvider = (Story: FunctionComponent) => {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Story />
     </LocalizationProvider>
+  );
+};
+
+export const StoryDialogManager = ({
+  component: C,
+  args,
+}: {
+  component: FunctionComponent<any>;
+  args: any;
+}) => {
+  const [open, setOpen] = useState(false);
+  const handleClose = (key: string) => {
+    setOpen(false);
+    closeDialogAction(key);
+  };
+
+  return (
+    <Box>
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        Open
+      </Button>
+      <C
+        {...args}
+        open={open}
+        onClose={() => handleClose("close")}
+        onCancel={() => handleClose("cancel")}
+        onAccept={() => handleClose("accept")}
+        onConfirm={() => handleClose("confirm")}
+        onSubmit={() => handleClose("submit")}
+      />
+    </Box>
   );
 };

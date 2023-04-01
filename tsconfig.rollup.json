@@ -27,6 +27,8 @@
     "node_modules",
     "src/tests",
     "src/**/*.test.ts",
+    "src/**/*.test-utils.ts",
+    "src/**/*.test-utils.tsx",
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx",
     "src/storybook.tsx"

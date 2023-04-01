@@ -9,3 +9,4 @@ export * from "./navigation";
 export * from "./tables";
 export * from "./placeholders";
 export * from "./alerts";
+export * from "./dialogs";
