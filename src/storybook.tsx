@@ -2,7 +2,7 @@
 import React, { FunctionComponent, PropsWithChildren, ReactElement, useState } from "react";
 import { ComponentStory } from "@storybook/react";
 import { JSXElementConstructor } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, SxProps, Theme } from "@mui/material";
 import { MemoryRouter, Router, Navigator, Route, Routes } from "react-router-dom";
 import { NotificationCenterProvider } from "./providers";
 import { action } from "@storybook/addon-actions";
@@ -66,9 +66,24 @@ export const withFullHeight = (Story: FunctionComponent) => {
 };
 
 export const withContainer =
-  ({ width, height, bordered }: { width?: number; height?: number; bordered?: boolean }) =>
+  ({
+    width,
+    height,
+    bordered,
+    backgroundColor,
+    padding,
+  }: {
+    width?: number;
+    height?: number;
+    bordered?: boolean;
+    backgroundColor?: string;
+    padding?: number;
+  }) =>
   (Story: FunctionComponent) => {
-    let sx = {};
+    let sx: SxProps<Theme> = {
+      backgroundColor,
+      padding,
+    };
     if (bordered) {
       sx = {
         ...sx,

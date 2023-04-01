@@ -2,6 +2,7 @@ import { BootstrapDialog } from "../bootstrap-dialog";
 import { FormEvent } from "react";
 import React from "react";
 import { BootstrapDialogDialogProps } from "../dialog.types";
+import { getFormData } from "~/utils/forms";
 
 type OmitBaseDialogProps =
   | "cancelable"
@@ -34,14 +35,7 @@ export const FormDialog = <T,>({
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = new FormData(e.currentTarget);
-    const rawData: Record<string, any> = {};
-
-    data.forEach((value, key) => {
-      rawData[key] = value;
-    });
-
-    onSubmit(rawData as T);
+    onSubmit(getFormData<T>(e));
   };
 
   return (

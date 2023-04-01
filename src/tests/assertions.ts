@@ -168,3 +168,36 @@ export const expectToHaveBeenCalledOnceWithMockInstance = (
     ),
   });
 };
+
+export enum AssertCloseDateUpTo {
+  Year = 1,
+  Month = 2,
+  Day = 3,
+  Hour = 4,
+  Minute = 5,
+  Seconds = 6,
+  Milliseconds = 7,
+}
+export const assertCloseDate = (date: Date, expectedDate: Date, upTo: AssertCloseDateUpTo) => {
+  if (upTo >= AssertCloseDateUpTo.Year) {
+    expect(date.getFullYear()).toBe(expectedDate.getFullYear());
+  }
+  if (upTo >= AssertCloseDateUpTo.Month) {
+    expect(date.getMonth()).toBe(expectedDate.getMonth());
+  }
+  if (upTo >= AssertCloseDateUpTo.Day) {
+    expect(date.getDay()).toBe(expectedDate.getDay());
+  }
+  if (upTo >= AssertCloseDateUpTo.Hour) {
+    expect(date.getHours()).toBe(expectedDate.getHours());
+  }
+  if (upTo >= AssertCloseDateUpTo.Minute) {
+    expect(date.getMinutes()).toBe(expectedDate.getMinutes());
+  }
+  if (upTo >= AssertCloseDateUpTo.Seconds) {
+    expect(date.getSeconds()).toBe(expectedDate.getSeconds());
+  }
+  if (upTo >= AssertCloseDateUpTo.Milliseconds) {
+    expect(date.getMilliseconds()).toBe(expectedDate.getMilliseconds());
+  }
+};
