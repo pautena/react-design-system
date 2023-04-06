@@ -1,14 +1,14 @@
-import { Drawer } from "../drawer";
+import { Drawer } from "../drawer/drawer";
 import { styled } from "@mui/material/styles";
-import { drawerWidth, openedMixin, closedMixin } from "../drawer.mixins";
-import { useDrawer } from "../drawer.context";
+import { drawerWidth, openedMixin, closedMixin } from "../drawer/drawer.mixins";
+import { useDrawer } from "../drawer/drawer.context";
 import {
   listItemButtonClasses,
   listItemIconClasses,
   listItemTextClasses,
   listSubheaderClasses,
 } from "@mui/material";
-import { labelClasses, bulletClasses } from "../../../data-display";
+import { labelClasses, bulletClasses } from "../../data-display";
 
 export const MiniDrawer = styled(Drawer)(({ theme }) => {
   const { isOpen } = useDrawer();
