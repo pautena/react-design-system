@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { DrawerItem } from "./drawer-item";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import { render, screen } from "~/tests/testing-library";
-import { NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer/drawer.types";
+import { NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer.types";
 
 describe("DrawerItem", () => {
   const renderComponent = ({

@@ -4,7 +4,7 @@ import { MiniDrawer } from ".";
 import { mockNav } from "../drawer.mock";
 import { DrawerContent } from "../../drawer-content";
 import { DrawerProvider } from "../drawer.provider";
-import { Nav } from "../drawer.types";
+import { Nav } from "../../drawer.types";
 import { withMemoryRouter } from "../../../../storybook";
 
 export default {

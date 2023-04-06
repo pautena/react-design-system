@@ -2,7 +2,7 @@ import { List, ListSubheader } from "@mui/material";
 import React from "react";
 import { DrawerCollapsableItem } from "../drawer-collapsable-item";
 import { DrawerItem } from "../drawer-item";
-import { NavItem } from "../drawer/drawer.types";
+import { NavItem } from "../drawer.types";
 
 export interface DrawerSectionProps {
   /**

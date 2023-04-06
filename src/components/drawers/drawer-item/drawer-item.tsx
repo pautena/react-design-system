@@ -11,7 +11,7 @@ import {
   Theme,
 } from "@mui/material";
 import { Bullet, Label } from "../../data-display";
-import { NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer/drawer.types";
+import { NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer.types";
 import { Link } from "../../navigation/link";
 
 export interface DrawerItemProps {

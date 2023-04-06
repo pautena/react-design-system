@@ -7,7 +7,7 @@ import {
   List,
 } from "@mui/material";
 import React, { ReactElement, useState } from "react";
-import { NavItemLink } from "../drawer/drawer.types";
+import { NavItemLink } from "../drawer.types";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { DrawerItem } from "../drawer-item";

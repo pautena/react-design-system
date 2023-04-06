@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { styled } from "@mui/material/styles";
 import { AppBarElement } from "../../components/app-bars/app-bar";
-import { DrawerElement } from "../../components/drawers/drawer";
+import { DrawerElement } from "../../components/drawers";
 import { Box } from "@mui/material";
 import { DrawerProvider } from "../../components/drawers/drawer/drawer.provider";
 

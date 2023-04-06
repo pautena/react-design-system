@@ -1,6 +1,6 @@
 import React from "react";
 import DiamondIcon from "@mui/icons-material/Diamond";
-import { NavItem } from "../drawer/drawer.types";
+import { NavItem } from "../drawer.types";
 
 export const SectionItems: NavItem[] = [
   {

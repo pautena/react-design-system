@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactElement } from "react";
-import { BulletVariant, LabelVariant } from "../../data-display";
+import { BulletVariant, LabelVariant } from "../data-display";
 import { DrawerProps as MuiDrawerProps } from "@mui/material";
 
 export interface NavItemAvatar {

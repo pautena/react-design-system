@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "@mui/material/styles";
 import { Drawer as MuiDrawer, Divider, IconButton } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { DrawerComponent, DrawerProps } from "./drawer.types";
+import { DrawerComponent, DrawerProps } from "../drawer.types";
 import { useDrawer } from "./drawer.context";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
