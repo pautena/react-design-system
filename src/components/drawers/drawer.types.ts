@@ -2,43 +2,48 @@ import { FunctionComponent, ReactElement } from "react";
 import { BulletVariant, LabelVariant } from "../data-display";
 import { DrawerProps as MuiDrawerProps } from "@mui/material";
 
-export interface NavItemAvatar {
+export type DrawerSize = "small" | "medium";
+
+export interface DrawerItemAvatar {
   src: string;
   alt: string;
 }
 
-export interface NavItemLabel {
+export interface DrawerItemLabel {
   text: string;
   variant: LabelVariant;
 }
 
-export interface NavItemBullet {
+export interface DrawerItemBullet {
   variant: BulletVariant;
 }
 
-export interface NavItemLink {
+export interface DrawerNavigationItemLink {
   id: string;
   text: string;
   href: string;
   icon?: ReactElement;
-  avatar?: NavItemAvatar;
-  label?: NavItemLabel;
-  bullet?: NavItemBullet;
+  avatar?: DrawerItemAvatar;
+  label?: DrawerItemLabel;
+  bullet?: DrawerItemBullet;
 }
 
-export type NavItemCollapsable = Pick<NavItemLink, "id" | "text" | "icon"> & {
-  items: NavItemLink[];
+export type DrawerNavigationItemCollapsable = Pick<
+  DrawerNavigationItemLink,
+  "id" | "text" | "icon"
+> & {
+  items: DrawerNavigationItemLink[];
 };
 
-export type NavItem = NavItemLink | NavItemCollapsable;
+export type DrawerNavigationItem = DrawerNavigationItemLink | DrawerNavigationItemCollapsable;
 
-export interface NavSection {
+export interface DrawerNavigationSection {
   title?: string;
-  items: NavItem[];
+  items: DrawerNavigationItem[];
 }
 
-export interface Nav {
-  items: NavSection[];
+export interface DrawerNavigation {
+  items: DrawerNavigationSection[];
 }
 
 export interface DrawerContentProps {
@@ -49,7 +54,7 @@ export interface DrawerContentProps {
   /**
    * Object with the content that has to be rendered
    */
-  nav: Nav;
+  nav: DrawerNavigation;
 }
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;
 export type DrawerContentElement = ReactElement<DrawerContentProps, DrawerContentComponent>;

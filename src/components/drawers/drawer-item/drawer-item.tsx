@@ -1,20 +1,23 @@
 import React, { ReactElement } from "react";
 import {
   Avatar,
-  ListItem,
   ListItemAvatar,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  styled,
   SxProps,
   Theme,
+  styled,
 } from "@mui/material";
 import { Bullet, Label } from "../../data-display";
-import { NavItemAvatar, NavItemBullet, NavItemLabel } from "../drawer.types";
+import { DrawerItemAvatar, DrawerItemBullet, DrawerItemLabel, DrawerSize } from "../drawer.types";
 import { Link } from "../../navigation/link";
 
 export interface DrawerItemProps {
+  /**
+   * Item size. default to medium
+   */
+  size?: DrawerSize;
   /**
    * Text displayed inside the item
    */
@@ -31,15 +34,15 @@ export interface DrawerItemProps {
   /**
    * Avatar displayed to the left
    */
-  avatar?: NavItemAvatar;
+  avatar?: DrawerItemAvatar;
   /**
    * Label with extra info displayed to the right
    */
-  label?: NavItemLabel;
+  label?: DrawerItemLabel;
   /**
    * Bullet to attract the user attention displyed to the right
    */
-  bullet?: NavItemBullet;
+  bullet?: DrawerItemBullet;
   /**
    * The item has to be marked as selected
    */
@@ -69,21 +72,30 @@ export const DrawerItem = ({
   bullet,
   href,
   selected,
+  size = "medium",
   sx,
 }: DrawerItemProps) => {
   return (
-    <ListItem disablePadding sx={{ display: "block" }} component={DrawerItemLink} href={href}>
-      <ListItemButton selected={selected} sx={sx}>
-        {icon && <ListItemIcon>{icon}</ListItemIcon>}
-        {avatar && (
-          <ListItemAvatar>
-            <Avatar alt={avatar.alt} src={avatar.src} />
-          </ListItemAvatar>
-        )}
-        <ListItemText primary={text} />
-        {label && <Label text={label.text} variant={label.variant} />}
-        {bullet && <Bullet variant={bullet.variant} />}
-      </ListItemButton>
-    </ListItem>
+    <ListItemButton
+      LinkComponent={DrawerItemLink}
+      dense={size === "small"}
+      href={href}
+      selected={selected}
+      sx={sx}
+    >
+      {icon && <ListItemIcon>{icon}</ListItemIcon>}
+      {avatar && (
+        <ListItemAvatar>
+          <Avatar
+            alt={avatar.alt}
+            src={avatar.src}
+            sx={size === "small" ? { width: 24, height: 24 } : undefined}
+          />
+        </ListItemAvatar>
+      )}
+      <ListItemText primary={text} />
+      {label && <Label text={label.text} variant={label.variant} />}
+      {bullet && <Bullet variant={bullet.variant} />}
+    </ListItemButton>
   );
 };

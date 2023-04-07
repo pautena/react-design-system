@@ -2,7 +2,7 @@ import { List, ListSubheader } from "@mui/material";
 import React from "react";
 import { DrawerCollapsableItem } from "../drawer-collapsable-item";
 import { DrawerItem } from "../drawer-item";
-import { NavItem } from "../drawer.types";
+import { DrawerNavigationItem } from "../drawer.types";
 
 export interface DrawerSectionProps {
   /**
@@ -12,7 +12,7 @@ export interface DrawerSectionProps {
   /**
    * List of items of that section
    */
-  items: NavItem[];
+  items: DrawerNavigationItem[];
 
   /**
    * Id of the item that has to be marked as selected

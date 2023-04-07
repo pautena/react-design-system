@@ -7,7 +7,7 @@ import {
   List,
 } from "@mui/material";
 import React, { ReactElement, useState } from "react";
-import { NavItemLink } from "../drawer.types";
+import { DrawerNavigationItemLink } from "../drawer.types";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import { DrawerItem } from "../drawer-item";
@@ -33,7 +33,7 @@ export interface DrawerCollapsableItemProps {
    * Items that are going to be displayed inside
    * the collapsable
    */
-  items: NavItemLink[];
+  items: DrawerNavigationItemLink[];
 }
 
 export const DrawerCollapsableItem = ({

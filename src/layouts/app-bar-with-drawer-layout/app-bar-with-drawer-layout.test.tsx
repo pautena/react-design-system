@@ -14,7 +14,7 @@ describe("AppBarWithDrawerLayout", () => {
 
     await userEvent.click(screen.getByTestId("MenuIcon"));
 
-    expect(screen.getByRole("button", { name: /item 1.1/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /item 1.1/i })).toBeInTheDocument();
   });
 
   it("would render an appbar", () => {

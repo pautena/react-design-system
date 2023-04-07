@@ -1,11 +1,11 @@
 import React from "react";
-import { DrawerContentComponent, Nav } from "../drawer.types";
+import { DrawerContentComponent, DrawerNavigation } from "../drawer.types";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { Box, Typography } from "@mui/material";
 
-export const mockNav: Nav = {
+export const mockNav: DrawerNavigation = {
   items: [
     {
       items: [
