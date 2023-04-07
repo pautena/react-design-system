@@ -1,19 +1,11 @@
 /* eslint-disable react/display-name */
-import React, { FunctionComponent, PropsWithChildren, ReactElement, useState } from "react";
-import { ComponentStory } from "@storybook/react";
-import { JSXElementConstructor } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { Box, Button, SxProps, Theme } from "@mui/material";
 import { MemoryRouter, Router, Navigator, Route, Routes } from "react-router-dom";
 import { NotificationCenterProvider } from "./providers";
 import { action } from "@storybook/addon-actions";
 import { LocalizationProvider } from "@mui/x-date-pickers/";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-
-export function createTemplate<P extends object>(
-  C: JSXElementConstructor<P>,
-): ComponentStory<JSXElementConstructor<P>> {
-  return (args) => <C {...args} />;
-}
 
 const replaceAction = action("navigator/replace");
 const goAction = action("navigator/go");

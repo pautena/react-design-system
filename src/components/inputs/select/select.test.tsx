@@ -2,6 +2,8 @@ import React from "react";
 import { SelectLoaded } from "./select.stories";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
+import { Select } from "./select";
+import { MenuItem } from "@mui/material";
 
 describe("Select", () => {
   const renderComponent = ({
@@ -13,14 +15,13 @@ describe("Select", () => {
     const value = SelectLoaded.args?.value as string;
 
     render(
-      <SelectLoaded
-        {...SelectLoaded.args}
-        options={options}
-        value={value}
-        label={label}
-        loading={loading}
-        fetching={fetching}
-      />,
+      <Select value={value} label={label} loading={loading} fetching={fetching}>
+        {options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>,
     );
 
     return {

@@ -1,6 +1,6 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { ModelForm } from "./model-form";
-import { createTemplate, withPadding, withLocalizationProvider } from "../../storybook";
+import { withPadding, withLocalizationProvider } from "../../storybook";
 import { createModelInstance, mockModel } from "../generators.mock";
 
 const initialValues = createModelInstance(mockModel);
@@ -12,19 +12,20 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof ModelForm>;
+} satisfies Meta<typeof ModelForm>;
+type Story = StoryObj<typeof ModelForm>;
 
-const Template = createTemplate(ModelForm);
-
-export const AddForm = Template.bind({});
-AddForm.args = {
-  model: mockModel,
-  saveButtonText: "add",
+export const AddForm: Story = {
+  args: {
+    model: mockModel,
+    saveButtonText: "add",
+  },
 };
 
-export const UpdateForm = Template.bind({});
-UpdateForm.args = {
-  model: mockModel,
-  initialValues,
-  saveButtonText: "update",
+export const UpdateForm: Story = {
+  args: {
+    model: mockModel,
+    initialValues,
+    saveButtonText: "update",
+  },
 };

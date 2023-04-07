@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import { Meta } from "@storybook/react";
 import { ObjectDetails } from "./object-details";
 import { withPadding } from "../../storybook";
 import { createModelInstance, mockModel } from "../generators.mock";
@@ -13,7 +13,7 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof ObjectDetails>;
+} satisfies Meta<typeof ObjectDetails>;
 
 export const Default = () => {
   return <ObjectDetails model={mockModel} instance={instance} />;

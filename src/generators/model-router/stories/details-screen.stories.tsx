@@ -1,5 +1,5 @@
-import { ComponentMeta } from "@storybook/react";
-import { withNotificationCenter, createTemplate, withActionRouter } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
+import { withNotificationCenter, withActionRouter } from "../../../storybook";
 import { item1 } from "./templates";
 import { DetailsScreen } from "../screens";
 import { mockModel } from "../../generators.mock";
@@ -18,21 +18,22 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof DetailsScreen>;
+} satisfies Meta<typeof DetailsScreen>;
+type Story = StoryObj<typeof DetailsScreen>;
 
-const Template = createTemplate(DetailsScreen);
-
-export const Loading = Template.bind({});
-Loading.args = {
-  modelName: "Items",
-  model: mockModel,
-  itemRequest: LoadingRequest,
+export const Loading: Story = {
+  args: {
+    modelName: "Items",
+    model: mockModel,
+    itemRequest: LoadingRequest,
+  },
 };
 
-export const Details = Template.bind({});
-Details.args = {
-  modelName: "Items",
-  model: mockModel,
-  itemRequest: IdleRequest,
-  detailsItem: item1,
+export const Details: Story = {
+  args: {
+    modelName: "Items",
+    model: mockModel,
+    itemRequest: IdleRequest,
+    detailsItem: item1,
+  },
 };

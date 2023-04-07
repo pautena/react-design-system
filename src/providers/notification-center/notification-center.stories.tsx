@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import { useNotificationCenter } from "./notification-center.context";
 import { Button, Box } from "@mui/material";
@@ -23,7 +23,7 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof ContentPlaceholder>;
+} satisfies Meta<typeof ContentPlaceholder>;
 
 export const Default = () => {
   const { show, hide } = useNotificationCenter();

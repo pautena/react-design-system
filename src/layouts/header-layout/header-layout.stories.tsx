@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { HeaderLayout, HeaderLayoutProps } from "./header-layout";
 import { withMemoryRouter } from "~/storybook";
 import { withFullHeight } from "../../storybook";
@@ -48,40 +47,40 @@ const tabs: HeaderTab[] = [
   },
 ];
 
-export default {
-  title: "Layouts/HeaderLayout",
-  component: HeaderLayout,
-  decorators: [withMemoryRouter(), withFullHeight],
-  parameters: {
-    layout: "fullscreen",
-  },
-} as ComponentMeta<typeof HeaderLayout>;
-
 interface HeaderLayoutStoryProps extends HeaderLayoutProps {
   headerProps: HeaderProps;
   contentChildren: ReactElement;
 }
 
-const Template = createTemplate(
-  ({ headerProps, contentChildren, ...rest }: HeaderLayoutStoryProps) => {
-    return (
-      <HeaderLayout {...rest}>
-        <Header {...headerProps} />
-        <Content>{contentChildren}</Content>
-      </HeaderLayout>
-    );
-  },
-);
+const DummyHeaderLayout = ({ headerProps, contentChildren, ...rest }: HeaderLayoutStoryProps) => {
+  return (
+    <HeaderLayout {...rest}>
+      <Header {...headerProps} />
+      <Content>{contentChildren}</Content>
+    </HeaderLayout>
+  );
+};
 
-export const Skeleton = Template.bind({});
-Skeleton.args = {
-  headerProps: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    breadcrumbs,
-    actions,
+export default {
+  title: "Layouts/HeaderLayout",
+  component: DummyHeaderLayout,
+  decorators: [withMemoryRouter(), withFullHeight],
+  parameters: {
+    layout: "fullscreen",
   },
-  contentChildren: <SkeletonGrid />,
+} satisfies Meta<typeof DummyHeaderLayout>;
+type Story = StoryObj<typeof DummyHeaderLayout>;
+
+export const Skeleton: Story = {
+  args: {
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: <SkeletonGrid />,
+  },
 };
 
 const ListContent = () => {
@@ -111,44 +110,47 @@ const ListContent = () => {
   );
 };
 
-export const List = Template.bind({});
-List.args = {
-  headerProps: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    breadcrumbs,
-    actions,
+export const List: Story = {
+  args: {
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: <ListContent />,
   },
-  contentChildren: <ListContent />,
 };
 
-export const Details = Template.bind({});
-Details.args = {
-  headerProps: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    breadcrumbs,
-    actions,
+export const Details: Story = {
+  args: {
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: <ObjectDetails model={mockModel} instance={createModelInstance(mockModel)} />,
   },
-  contentChildren: <ObjectDetails model={mockModel} instance={createModelInstance(mockModel)} />,
 };
 
-export const Form = Template.bind({});
-Form.args = {
-  headerProps: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    breadcrumbs,
-    actions,
+export const Form: Story = {
+  args: {
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: (
+      <ModelForm
+        model={mockModel}
+        initialValues={createModelInstance(mockModel)}
+        saveButtonText="Save"
+        onSubmit={action("Save form data")}
+      />
+    ),
   },
-  contentChildren: (
-    <ModelForm
-      model={mockModel}
-      initialValues={createModelInstance(mockModel)}
-      saveButtonText="Save"
-      onSubmit={action("Save form data")}
-    />
-  ),
 };
 
 const DataTableContent = () => {
@@ -164,49 +166,52 @@ const DataTableContent = () => {
   return <DataGrid rows={rows} columns={columns as any} pagination sx={{ height: 400 }} />;
 };
 
-export const DataTable = Template.bind({});
-DataTable.args = {
-  headerProps: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    breadcrumbs,
-    actions,
+export const DataTable: Story = {
+  args: {
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: <DataTableContent />,
   },
-  contentChildren: <DataTableContent />,
 };
 
-export const Tabs = Template.bind({});
-Tabs.args = {
-  headerProps: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    breadcrumbs,
-    actions,
-    tabs,
+export const Tabs: Story = {
+  args: {
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+      tabs,
+    },
+    contentChildren: (
+      <Box>
+        <TabPanel index={0}>
+          <Typography>Panel 1</Typography>
+        </TabPanel>
+        <TabPanel index={[1, 2]}>
+          <Typography>Panel 2</Typography>
+        </TabPanel>
+        <TabPanel index={3}>
+          <Typography>Panel 3</Typography>
+        </TabPanel>
+      </Box>
+    ),
   },
-  contentChildren: (
-    <Box>
-      <TabPanel index={0}>
-        <Typography>Panel 1</Typography>
-      </TabPanel>
-      <TabPanel index={[1, 2]}>
-        <Typography>Panel 2</Typography>
-      </TabPanel>
-      <TabPanel index={3}>
-        <Typography>Panel 3</Typography>
-      </TabPanel>
-    </Box>
-  ),
 };
 
-export const Loading = Template.bind({});
-Loading.args = {
-  loading: true,
-  headerProps: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    breadcrumbs,
-    actions,
+export const Loading: Story = {
+  args: {
+    loading: true,
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: <SkeletonGrid />,
   },
-  contentChildren: <SkeletonGrid />,
 };

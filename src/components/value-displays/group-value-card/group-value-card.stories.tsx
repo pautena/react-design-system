@@ -1,6 +1,6 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { GroupValueCard, GroupValueItem } from "./group-value-card";
-import { createTemplate, withPadding } from "../../../storybook";
+import { withPadding } from "../../../storybook";
 import { GroupValueCardDummy } from "./group-value-card.mock";
 import { ValueImage } from "../value-image";
 import workInProgressImg from "../../../stories/assets/work-in-progress.jpg";
@@ -10,24 +10,25 @@ import { DatatablePlaceholder } from "~/tests/datatable-placeholder";
 
 export default {
   title: "Components/Value displays/GroupValueCard",
-  component: GroupValueCard,
+  component: GroupValueCardDummy,
   decorators: [withPadding(2)],
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof GroupValueCard>;
+} satisfies Meta<typeof GroupValueCardDummy>;
+type Story = StoryObj<typeof GroupValueCardDummy>;
 
-const Template = createTemplate(GroupValueCardDummy);
-
-export const Default = Template.bind({});
-Default.args = {
-  title: "Hello world",
-  subtitle: "Lorem ipsum sit amet",
+export const Default: Story = {
+  args: {
+    title: "Hello world",
+    subtitle: "Lorem ipsum sit amet",
+  },
 };
 
-export const WihtoutSubtitle = Template.bind({});
-WihtoutSubtitle.args = {
-  title: "Hello world",
+export const WihtoutSubtitle: Story = {
+  args: {
+    title: "Hello world",
+  },
 };
 
 export const WithImage = () => (

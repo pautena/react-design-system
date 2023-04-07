@@ -1,6 +1,5 @@
 import { action } from "@storybook/addon-actions";
 import { ModelRouter } from "../model-router";
-import { createTemplate } from "../../../storybook";
 import { createModelInstance, MockInstance, mockModel } from "../../generators.mock";
 import { IdleRequest } from "../model-router.types";
 
@@ -22,8 +21,6 @@ export const data = [
   createModelInstance<MockInstance>(mockModel, 104),
 ];
 
-export const ModelRouterTemplate = createTemplate(ModelRouter);
-
 export const baseArgs = {
   modelName: "Items",
   model: mockModel,
@@ -34,6 +31,4 @@ export const baseArgs = {
   updateItemRequest: IdleRequest,
   submitUpdateItemRequest: IdleRequest,
   itemRequest: IdleRequest,
-  // onRequestList:onRequestListAction,
-  // onRequestUpdateItem: onRequestUpdateItemAction,
 };

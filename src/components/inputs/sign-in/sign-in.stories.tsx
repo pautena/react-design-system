@@ -1,6 +1,5 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { SignIn } from "./sign-in";
-import { createTemplate } from "../../../storybook";
 
 export default {
   title: "Components/Inputs/Sign In",
@@ -8,29 +7,31 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof SignIn>;
+} satisfies Meta<typeof SignIn>;
+type Story = StoryObj<typeof SignIn>;
 
-const Template = createTemplate(SignIn);
-
-export const Default = Template.bind({});
-Default.args = {
-  title: "Sign in into Garmin Workouts",
-  subtitle: "Enter your details below",
-};
-
-export const Error = Template.bind({});
-Error.args = {
-  title: "Sign in into Garmin Workouts",
-  subtitle: "Enter your details below",
-  error: {
-    name: "InvalidCredentials",
-    message: "Invalid user credentials",
+export const Default: Story = {
+  args: {
+    title: "Sign in into Garmin Workouts",
+    subtitle: "Enter your details below",
   },
 };
 
-export const Loading = Template.bind({});
-Loading.args = {
-  title: "Sign in into Garmin Workouts",
-  subtitle: "Enter your details below",
-  loading: true,
+export const Error: Story = {
+  args: {
+    title: "Sign in into Garmin Workouts",
+    subtitle: "Enter your details below",
+    error: {
+      name: "InvalidCredentials",
+      message: "Invalid user credentials",
+    },
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    title: "Sign in into Garmin Workouts",
+    subtitle: "Enter your details below",
+    loading: true,
+  },
 };

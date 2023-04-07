@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import { DummyModelRouter, InternalModelRouter } from "./stories/model-router.stories";
-import { data as mockData } from "./stories/templates";
+import {
+  DemoModelRouter,
+  DummyModelRouter,
+  InternalModelRouter,
+} from "./stories/model-router.stories";
+import { data, data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
 import { Model } from "../generators.model";
@@ -231,8 +235,7 @@ describe("ModelRouter", () => {
     const onRequestUpdateItem = jest.fn();
     const onSubmitUpdate = jest.fn();
     const onRequestDelete = jest.fn();
-    const args = DummyModelRouter.args;
-    const randomItem = getRandomItem(args.initialData);
+    const randomItem = getRandomItem(data);
 
     const ForceNavigationComponent = ({ id }: { id: string }) => {
       const navigate = useNavigate();
@@ -249,7 +252,6 @@ describe("ModelRouter", () => {
     const instance = render(
       <NotificationCenterProvider>
         <DummyModelRouter
-          {...args}
           deleteFeature={deleteFeature}
           updateFeature={updateFeature}
           addFeature={addFeature}
@@ -261,6 +263,7 @@ describe("ModelRouter", () => {
           onRequestUpdateItemAction={onRequestUpdateItem}
           onSubmitUpdateAction={onSubmitUpdate}
           onRequestDeleteAction={onRequestDelete}
+          initialData={data}
         />
         <ForceNavigationComponent id={randomItem.item.id} />
       </NotificationCenterProvider>,
@@ -279,7 +282,7 @@ describe("ModelRouter", () => {
 
     return {
       ...instance,
-      data: args.initialData,
+      data,
       model: mockModel,
       randomItem,
       onRequestList,

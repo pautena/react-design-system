@@ -1,22 +1,22 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { TabCard } from "./tab-card";
-import { createTemplate } from "../../../../storybook";
 import { DummyTabs, TabCardDummy, TabCardDummyProps } from "./tab-card.dummy";
 
 export default {
   title: "Components/Navigation/Tab card",
-  component: TabCard,
+  component: TabCardDummy,
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof TabCard>;
+  render: (props: TabCardDummyProps) => {
+    return <TabCardDummy {...props} />;
+  },
+} satisfies Meta<typeof TabCardDummy>;
+type Story = StoryObj<typeof TabCardDummy>;
 
-const Template = createTemplate((props: TabCardDummyProps) => {
-  return <TabCardDummy {...props} />;
-});
-
-export const Default = Template.bind({});
-Default.args = {
-  tabs: DummyTabs,
+export const Default: Story = {
+  args: {
+    tabs: DummyTabs,
+  },
 };

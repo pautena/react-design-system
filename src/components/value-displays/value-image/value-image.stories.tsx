@@ -1,6 +1,6 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { ValueImage } from "./value-image";
-import { createTemplate, withContainer } from "../../../storybook";
+import { withContainer } from "../../../storybook";
 import workInProgressImg from "../../../stories/assets/work-in-progress.jpg";
 
 export default {
@@ -10,19 +10,20 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ValueImage>;
+} satisfies Meta<typeof ValueImage>;
+type Story = StoryObj<typeof ValueImage>;
 
-const Template = createTemplate(ValueImage);
-
-export const Default = Template.bind({});
-Default.args = {
-  label: "Lorem",
-  value: workInProgressImg,
+export const Default: Story = {
+  args: {
+    label: "Lorem",
+    value: workInProgressImg,
+  },
 };
 
-export const CustomSize = Template.bind({});
-CustomSize.args = {
-  label: "Lorem",
-  value: workInProgressImg,
-  size: 250,
+export const CustomSize: Story = {
+  args: {
+    label: "Lorem",
+    value: workInProgressImg,
+    size: 250,
+  },
 };

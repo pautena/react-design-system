@@ -1,6 +1,6 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { ValueText } from "./value-text";
-import { createTemplate, withContainer } from "../../../storybook";
+import { withContainer } from "../../../storybook";
 
 export default {
   title: "Components/Value displays/ValueText",
@@ -9,42 +9,47 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ValueText>;
+} satisfies Meta<typeof ValueText>;
+type Story = StoryObj<typeof ValueText>;
 
-const Template = createTemplate(ValueText);
-
-export const Default = Template.bind({});
-Default.args = {
-  label: "Lorem",
-  value: "ipsum sit",
+export const Default: Story = {
+  args: {
+    label: "Lorem",
+    value: "ipsum sit",
+  },
 };
 
-export const NumberAsValue = Template.bind({});
-NumberAsValue.args = {
-  label: "Lorem",
-  value: 1000,
+export const NumberAsValue: Story = {
+  args: {
+    label: "Lorem",
+    value: 1000,
+  },
 };
 
-export const TruncatedText = Template.bind({});
-TruncatedText.args = {
-  label: "Lorem",
-  value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+export const TruncatedText: Story = {
+  args: {
+    label: "Lorem",
+    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+  },
 };
 
-export const Placeholder = Template.bind({});
-Placeholder.args = {
-  label: "Lorem",
+export const Placeholder: Story = {
+  args: {
+    label: "Lorem",
+  },
 };
 
-export const CustomPlaceholder = Template.bind({});
-CustomPlaceholder.args = {
-  label: "Lorem",
-  placeholder: ".",
+export const CustomPlaceholder: Story = {
+  args: {
+    label: "Lorem",
+    placeholder: ".",
+  },
 };
 
-export const Editable = Template.bind({});
-Editable.args = {
-  label: "Lorem",
-  value: "lorem ipsum",
-  editable: true,
+export const Editable: Story = {
+  args: {
+    label: "Lorem",
+    value: "lorem ipsum",
+    editable: true,
+  },
 };

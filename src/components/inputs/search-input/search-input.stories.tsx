@@ -1,5 +1,5 @@
 import { grey } from "@mui/material/colors";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn, StoryObj } from "@storybook/react";
 import React from "react";
 import { withContainer, withLocalizationProvider } from "~/storybook";
 import { SearchInput } from "./search-input";
@@ -14,44 +14,48 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof SearchInput>;
+} satisfies Meta<typeof SearchInput>;
+type Story = StoryObj<typeof SearchInput>;
 
-const Template: ComponentStory<typeof SearchInput> = (args) => <SearchInput {...args} />;
-
-export const Label = Template.bind({});
-Label.args = {
-  label: "Lorem ipsum",
-  fullWidth: true,
+export const Label: Story = {
+  args: {
+    label: "Lorem ipsum",
+    fullWidth: true,
+  },
 };
 
-export const Placeholder = Template.bind({});
-Placeholder.args = {
-  placeholder: "Lorem ipsum",
-  fullWidth: true,
+export const Placeholder: Story = {
+  args: {
+    placeholder: "Lorem ipsum",
+    fullWidth: true,
+  },
 };
 
-export const HelperText = Template.bind({});
-HelperText.args = {
-  placeholder: "Lorem ipsum",
-  fullWidth: true,
-  helperText: "this is a helper text",
+export const HelperText: Story = {
+  args: {
+    placeholder: "Lorem ipsum",
+    fullWidth: true,
+    helperText: "this is a helper text",
+  },
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  placeholder: "Lorem ipsum",
-  fullWidth: true,
-  size: "small",
+export const Small: Story = {
+  args: {
+    placeholder: "Lorem ipsum",
+    fullWidth: true,
+    size: "small",
+  },
 };
 
-export const WithFilters = Template.bind({});
-WithFilters.args = {
-  placeholder: "Lorem ipsum",
-  fullWidth: true,
-  filters: [
-    { id: "subject", type: "text", label: "Subject" },
-    { id: "amount", type: "number", label: "Amount" },
-    { id: "hasSomething", type: "boolean", label: "Has something" },
-    { id: "createdBefore", type: "datetime", label: "Created before" },
-  ],
+export const WithFilters: Story = {
+  args: {
+    placeholder: "Lorem ipsum",
+    fullWidth: true,
+    filters: [
+      { id: "subject", type: "text", label: "Subject" },
+      { id: "amount", type: "number", label: "Amount" },
+      { id: "hasSomething", type: "boolean", label: "Has something" },
+      { id: "createdBefore", type: "datetime", label: "Created before" },
+    ],
+  },
 };

@@ -1,6 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
 import { mockNav } from "../drawer/drawer.mock";
 import { Box } from "@mui/material";
@@ -18,12 +17,12 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof DrawerContent>;
+} satisfies Meta<typeof DrawerContent>;
+type Story = StoryObj<typeof DrawerContent>;
 
-const Template = createTemplate(DrawerContent);
-
-export const Default = Template.bind({});
-Default.args = {
-  selectedItem: "item2.3.2",
-  nav: mockNav,
+export const Default: Story = {
+  args: {
+    selectedItem: "item2.3.2",
+    nav: mockNav,
+  },
 };

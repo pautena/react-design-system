@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { DatatablePlaceholder } from "./datatable-placeholder";
 
 export default {
@@ -8,8 +7,7 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof DatatablePlaceholder>;
+} satisfies Meta<typeof DatatablePlaceholder>;
+type Story = StoryObj<typeof DatatablePlaceholder>;
 
-const Template = createTemplate(DatatablePlaceholder);
-
-export const Default = Template.bind({});
+export const Default: Story = {};

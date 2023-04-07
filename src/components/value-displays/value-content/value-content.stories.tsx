@@ -1,4 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { ValueContent } from "./value-content";
 import { withContainer } from "../../../storybook";
 import { Typography } from "@mui/material";
@@ -11,10 +11,12 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ValueContent>;
+  render: () => (
+    <ValueContent label="lorem ipsum">
+      <Typography>Demo content</Typography>
+    </ValueContent>
+  ),
+} satisfies Meta<typeof ValueContent>;
+type Story = StoryObj<typeof ValueContent>;
 
-export const Default = () => (
-  <ValueContent label="lorem ipsum">
-    <Typography>Demo content</Typography>
-  </ValueContent>
-);
+export const Default: Story = {};

@@ -1,6 +1,6 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { ValueRating } from "./value-rating";
-import { createTemplate, withContainer } from "../../../storybook";
+import { withContainer } from "../../../storybook";
 
 export default {
   title: "Components/Value displays/ValueRating",
@@ -9,27 +9,29 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ValueRating>;
+} satisfies Meta<typeof ValueRating>;
+type Story = StoryObj<typeof ValueRating>;
 
-const Template = createTemplate(ValueRating);
-
-export const Default = Template.bind({});
-Default.args = {
-  label: "Lorem",
-  value: 3,
+export const Default: Story = {
+  args: {
+    label: "Lorem",
+    value: 3,
+  },
 };
 
-export const Max = Template.bind({});
-Max.args = {
-  label: "Lorem",
-  value: 4,
-  maxRating: 7,
+export const Max: Story = {
+  args: {
+    label: "Lorem",
+    value: 4,
+    maxRating: 7,
+  },
 };
 
-export const Editable = Template.bind({});
-Editable.args = {
-  label: "Lorem",
-  value: 4,
-  maxRating: 7,
-  editable: true,
+export const Editable: Story = {
+  args: {
+    label: "Lorem",
+    value: 4,
+    maxRating: 7,
+    editable: true,
+  },
 };

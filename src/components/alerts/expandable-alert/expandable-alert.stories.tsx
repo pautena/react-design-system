@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import React from "react";
 import { ExpandableAlert } from "./expandable-alert";
 import { withContainer } from "~/storybook";
@@ -10,39 +10,43 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ExpandableAlert>;
+} satisfies Meta<typeof ExpandableAlert>;
+type Story = StoryObj<typeof ExpandableAlert>;
 
-const Template: ComponentStory<typeof ExpandableAlert> = (args) => <ExpandableAlert {...args} />;
-
-export const Info = Template.bind({});
-Info.args = {
-  severity: "info",
-  title: "Lorem ipsum",
-  message: "Lorem ipsum dolor sit amet",
-  metadata: ["lorem: ipsum", "foo: bar", "header: this", "host: localhost"],
+export const Info: Story = {
+  args: {
+    severity: "info",
+    title: "Lorem ipsum",
+    message: "Lorem ipsum dolor sit amet",
+    metadata: ["lorem: ipsum", "foo: bar", "header: this", "host: localhost"],
+  },
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  ...Info.args,
-  severity: "success",
+export const Success: Story = {
+  args: {
+    ...Info.args,
+    severity: "success",
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  ...Info.args,
-  severity: "error",
+export const Error: Story = {
+  args: {
+    ...Info.args,
+    severity: "error",
+  },
 };
 
-export const Warning = Template.bind({});
-Warning.args = {
-  ...Info.args,
-  severity: "warning",
+export const Warning: Story = {
+  args: {
+    ...Info.args,
+    severity: "warning",
+  },
 };
 
-export const WihtoutMetadata = Template.bind({});
-WihtoutMetadata.args = {
-  severity: "info",
-  title: "Lorem ipsum",
-  message: "Lorem ipsum dolor sit amet",
+export const WihtoutMetadata: Story = {
+  args: {
+    severity: "info",
+    title: "Lorem ipsum",
+    message: "Lorem ipsum dolor sit amet",
+  },
 };

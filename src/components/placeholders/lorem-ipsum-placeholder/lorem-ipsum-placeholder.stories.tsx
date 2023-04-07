@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { LoremIpsumPlaceholder } from "./lorem-ipsum-placeholder";
 
 export default {
@@ -8,8 +7,7 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof LoremIpsumPlaceholder>;
+} satisfies Meta<typeof LoremIpsumPlaceholder>;
+type Story = StoryObj<typeof LoremIpsumPlaceholder>;
 
-const Template = createTemplate(LoremIpsumPlaceholder);
-
-export const Default = Template.bind({});
+export const Default: Story = {};

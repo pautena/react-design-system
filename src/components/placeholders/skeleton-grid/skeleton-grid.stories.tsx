@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { SkeletonGrid } from "./skeleton-grid";
 
 export default {
@@ -8,8 +7,7 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof SkeletonGrid>;
+} satisfies Meta<typeof SkeletonGrid>;
+type Story = StoryObj<typeof SkeletonGrid>;
 
-const Template = createTemplate(SkeletonGrid);
-
-export const Default = Template.bind({});
+export const Default: Story = {};

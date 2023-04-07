@@ -1,6 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { AppBar } from "./app-bar";
 import { DrawerProvider } from "../../drawers/drawer";
 import { AppBarProps } from "./app-bar.types";
@@ -11,45 +10,48 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof AppBar>;
+  render: (args: AppBarProps) => {
+    return (
+      <DrawerProvider>
+        <AppBar {...args} />
+      </DrawerProvider>
+    );
+  },
+} satisfies Meta<typeof AppBar>;
+type Story = StoryObj<typeof AppBar>;
 
-const Template = createTemplate((args: AppBarProps) => {
-  return (
-    <DrawerProvider>
-      <AppBar {...args} />
-    </DrawerProvider>
-  );
-});
-
-export const Default = Template.bind({});
-Default.args = {
-  title: "Lorem ipsum",
-  menu: true,
+export const Default: Story = {
+  args: {
+    title: "Lorem ipsum",
+    menu: true,
+  },
 };
 
-export const WithSearch = Template.bind({});
-WithSearch.args = {
-  title: "Lorem ipsum",
-  search: true,
-  menu: true,
+export const WithSearch: Story = {
+  args: {
+    title: "Lorem ipsum",
+    search: true,
+    menu: true,
+  },
 };
 
-export const WithoutTitle = Template.bind({});
-WithoutTitle.args = {
-  menu: true,
+export const WithoutTitle: Story = {
+  args: { menu: true },
 };
 
-export const WihtoutMenu = Template.bind({});
-WihtoutMenu.args = {
-  title: "Lorem ipsum",
-  menu: false,
+export const WihtoutMenu: Story = {
+  args: {
+    title: "Lorem ipsum",
+    menu: false,
+  },
 };
 
-export const WithProfile = Template.bind({});
-WithProfile.args = {
-  title: "Lorem ipsum",
-  menu: true,
-  profile: {
-    name: "Test user",
+export const WithProfile: Story = {
+  args: {
+    title: "Lorem ipsum",
+    menu: true,
+    profile: {
+      name: "Test user",
+    },
   },
 };

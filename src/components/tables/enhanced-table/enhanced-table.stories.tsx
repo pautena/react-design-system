@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { TestTable, columns, data } from "./enhanced-table.mock";
 
 export default {
@@ -8,14 +7,14 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof TestTable>;
+} satisfies Meta<typeof TestTable>;
+type Story = StoryObj<typeof TestTable>;
 
-const Template = createTemplate(TestTable);
-
-export const Default = Template.bind({});
-Default.args = {
-  columns,
-  data,
-  defaultSort: "startDate",
-  defaultOrder: "asc",
+export const Default: Story = {
+  args: {
+    columns,
+    data,
+    defaultSort: "startDate",
+    defaultOrder: "asc",
+  },
 };

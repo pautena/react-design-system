@@ -1,32 +1,32 @@
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { ValueBoolean } from "./value-boolean";
-import { createTemplate } from "../../../storybook";
-
 export default {
   title: "Components/Value displays/ValueBoolean",
   component: ValueBoolean,
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof ValueBoolean>;
+} satisfies Meta<typeof ValueBoolean>;
+type Story = StoryObj<typeof ValueBoolean>;
 
-const Template = createTemplate(ValueBoolean);
-
-export const True = Template.bind({});
-True.args = {
-  label: "Lorem ipsum",
-  value: true,
+export const True: Story = {
+  args: {
+    label: "Lorem ipsum",
+    value: true,
+  },
 };
 
-export const False = Template.bind({});
-False.args = {
-  label: "Lorem ipsum",
-  value: false,
+export const False: Story = {
+  args: {
+    label: "Lorem ipsum",
+    value: false,
+  },
 };
 
-export const Editable = Template.bind({});
-Editable.args = {
-  label: "Lorem ipsum",
-  value: false,
-  editable: true,
+export const Editable: Story = {
+  args: {
+    label: "Lorem ipsum",
+    value: false,
+    editable: true,
+  },
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
 import { mockNav } from "../../components/drawers/drawer/drawer.mock";
 import { MiniAppBar } from "../../components/app-bars/app-bar";
@@ -13,15 +13,18 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof AppBarWithDrawerLayout>;
+  render: () => (
+    <AppBarWithDrawerLayout>
+      <MiniDrawer>
+        <DrawerContent nav={mockNav} />
+      </MiniDrawer>
+      <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
+      <ContentPlaceholder p={3} />
+    </AppBarWithDrawerLayout>
+  ),
+} satisfies Meta<typeof AppBarWithDrawerLayout>;
+type Story = StoryObj<typeof AppBarWithDrawerLayout>;
 
-export const MiniDrawerStory = () => (
-  <AppBarWithDrawerLayout>
-    <MiniDrawer>
-      <DrawerContent nav={mockNav} />
-    </MiniDrawer>
-    <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
-    <ContentPlaceholder p={3} />
-  </AppBarWithDrawerLayout>
-);
-MiniDrawerStory.storyName = "Mini drawer";
+export const MiniDrawerStory: Story = {
+  name: "Mini drawer",
+};

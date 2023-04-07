@@ -1,24 +1,22 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
-import { EnhancedRemoteTable } from "./enhanced-remote-table";
+import { Meta, StoryObj } from "@storybook/react";
 import { columns, data } from "../enhanced-table/enhanced-table.mock";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 
 export default {
   title: "Components/Tables/EnhancedRemoteTable",
-  component: EnhancedRemoteTable,
+  component: EnhancedRemoteDummyTable,
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof EnhancedRemoteTable>;
+} satisfies Meta<typeof EnhancedRemoteDummyTable>;
+type Story = StoryObj<typeof EnhancedRemoteDummyTable>;
 
-const Template = createTemplate(EnhancedRemoteDummyTable);
-
-export const Default = Template.bind({});
-Default.args = {
-  columns,
-  data,
-  loading: false,
-  defaultSort: "startDate",
-  defaultOrder: "asc",
+export const Default: Story = {
+  args: {
+    columns,
+    data,
+    loading: false,
+    defaultSort: "startDate",
+    defaultOrder: "asc",
+  },
 };

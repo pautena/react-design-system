@@ -1,6 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { Placeholder, PlaceholderIconArgs } from "./placeholder";
 import SearchIcon from "@mui/icons-material/Search";
 import { actions } from "./placeholder.mock";
@@ -11,34 +10,36 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof Placeholder>;
+} satisfies Meta<typeof Placeholder>;
+type Story = StoryObj<typeof Placeholder>;
 
-const Template = createTemplate(Placeholder);
-
-export const Default = Template.bind({});
-Default.args = {
-  title: "Lorem ipsum dolor sit amet",
-  subtitle:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",
+export const Default: Story = {
+  args: {
+    title: "Lorem ipsum dolor sit amet",
+    subtitle:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",
+  },
 };
 
-export const WithIcon = Template.bind({});
-WithIcon.args = {
-  icon: ({ size, color }: PlaceholderIconArgs) => (
-    <SearchIcon color={color} sx={{ fontSize: size }} />
-  ),
-  title: "Lorem ipsum dolor sit amet",
-  subtitle:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",
+export const WithIcon: Story = {
+  args: {
+    icon: ({ size, color }: PlaceholderIconArgs) => (
+      <SearchIcon color={color} sx={{ fontSize: size }} />
+    ),
+    title: "Lorem ipsum dolor sit amet",
+    subtitle:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",
+  },
 };
 
-export const WithActions = Template.bind({});
-WithActions.args = {
-  icon: ({ size, color }: PlaceholderIconArgs) => (
-    <SearchIcon color={color} sx={{ fontSize: size }} />
-  ),
-  title: "Lorem ipsum dolor sit amet",
-  subtitle:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",
-  actions,
+export const WithActions: Story = {
+  args: {
+    icon: ({ size, color }: PlaceholderIconArgs) => (
+      <SearchIcon color={color} sx={{ fontSize: size }} />
+    ),
+    title: "Lorem ipsum dolor sit amet",
+    subtitle:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",
+    actions,
+  },
 };

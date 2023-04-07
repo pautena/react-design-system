@@ -1,5 +1,5 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import {
   withLocalizationProvider,
   withMemoryRouter,
@@ -23,7 +23,7 @@ import {
 import { Route, Routes, useNavigate } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
 
-interface DummyModelRouterProps {
+export interface DummyModelRouterProps {
   requestTimeout: number;
   initialData: MockInstance[];
   basePath?: string;
@@ -162,18 +162,6 @@ export const DummyModelRouter = (args: DummyModelRouterProps) => {
   );
 };
 
-const args: DummyModelRouterProps = {
-  requestTimeout: REQUEST_TIMEOUT,
-  initialData: data,
-  onRequestListAction,
-  onSubmitNewItemAction,
-  onRequestItem,
-  onRequestUpdateItemAction,
-  onSubmitUpdateAction,
-  onRequestDeleteAction,
-};
-DummyModelRouter.args = args;
-
 export const InternalModelRouter = () => {
   const navigate = useNavigate();
 
@@ -224,4 +212,18 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof DummyModelRouter>;
+} satisfies Meta<typeof DummyModelRouter>;
+type Story = StoryObj<typeof DummyModelRouter>;
+
+export const DemoModelRouter: Story = {
+  args: {
+    requestTimeout: REQUEST_TIMEOUT,
+    initialData: data,
+    onRequestListAction,
+    onSubmitNewItemAction,
+    onRequestItem,
+    onRequestUpdateItemAction,
+    onSubmitUpdateAction,
+    onRequestDeleteAction,
+  },
+};

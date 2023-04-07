@@ -1,5 +1,5 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate, withContainer } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
+import { withContainer } from "../../../storybook";
 import { LoadingArea } from "./loading-area";
 
 export default {
@@ -9,9 +9,7 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof LoadingArea>;
+} satisfies Meta<typeof LoadingArea>;
+type Story = StoryObj<typeof LoadingArea>;
 
-const Template = createTemplate(LoadingArea);
-
-export const Default = Template.bind({});
-Default.args = {};
+export const Default: Story = {};

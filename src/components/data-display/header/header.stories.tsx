@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./header";
 import { withMemoryRouter } from "~/storybook";
 import { breadcrumbs, tabs, actions, linkedTabs } from "./header.dummy";
@@ -18,94 +17,103 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof Header>;
+} satisfies Meta<typeof Header>;
+type Story = StoryObj<typeof Header>;
 
-const Template = createTemplate(Header);
-
-export const Default = Template.bind({});
-Default.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "inherit",
-  breadcrumbs,
-  actions,
+export const Default: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "inherit",
+    breadcrumbs,
+    actions,
+  },
 };
 
-export const OnlyTitle = Template.bind({});
-OnlyTitle.args = {
-  title: "Lorem ipsum",
+export const OnlyTitle: Story = {
+  args: {
+    title: "Lorem ipsum",
+  },
 };
 
-export const ColorInherit = Template.bind({});
-ColorInherit.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "inherit",
-  breadcrumbs,
-  tabs,
-  actions,
+export const ColorInherit: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "inherit",
+    breadcrumbs,
+    tabs,
+    actions,
+  },
 };
 
-export const ColorPrimary = Template.bind({});
-ColorPrimary.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "primary",
-  breadcrumbs,
-  tabs,
-  actions,
+export const ColorPrimary: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "primary",
+    breadcrumbs,
+    tabs,
+    actions,
+  },
 };
 
-export const ColorSecondary = Template.bind({});
-ColorSecondary.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "secondary",
-  breadcrumbs,
-  tabs,
-  actions,
+export const ColorSecondary: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "secondary",
+    breadcrumbs,
+    tabs,
+    actions,
+  },
 };
 
-export const ColorDefault = Template.bind({});
-ColorDefault.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "default",
-  breadcrumbs,
-  tabs,
-  actions,
+export const ColorDefault: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "default",
+    breadcrumbs,
+    tabs,
+    actions,
+  },
 };
 
-export const ColorTransparent = Template.bind({});
-ColorTransparent.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "transparent",
-  breadcrumbs,
-  tabs,
-  actions,
+export const ColorTransparent: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "transparent",
+    breadcrumbs,
+    tabs,
+    actions,
+  },
 };
 
-export const WithSubheader = Template.bind({});
-WithSubheader.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
+export const WithSubheader: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+  },
 };
 
-export const WithBreadcumbs = Template.bind({});
-WithBreadcumbs.args = {
-  title: "Lorem ipsum",
-  breadcrumbs,
+export const WithBreadcumbs: Story = {
+  args: {
+    title: "Lorem ipsum",
+    breadcrumbs,
+  },
 };
 
-export const WithActions = Template.bind({});
-WithActions.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "default",
-  tabsMode: "panel",
-  breadcrumbs,
-  actions,
+export const WithActions: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "default",
+    tabsMode: "panel",
+    breadcrumbs,
+    actions,
+  },
 };
 
 export const WithPanelTabs = () => (
@@ -151,14 +159,15 @@ export const WithLinkedTabs = () => {
   );
 };
 
-export const NavigationButton = Template.bind({});
-NavigationButton.args = {
-  title: "Lorem ipsum",
-  subtitle: "Dolor sit amet",
-  preset: "default",
-  navigationButton: {
-    text: "Go back",
-    href: "/back",
-    icon: <ArrowBackIcon />,
+export const NavigationButton: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "default",
+    navigationButton: {
+      text: "Go back",
+      href: "/back",
+      icon: <ArrowBackIcon />,
+    },
   },
 };

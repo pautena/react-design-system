@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { Label } from "./label";
 
 export default {
@@ -8,42 +7,47 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof Label>;
+} satisfies Meta<typeof Label>;
+type Story = StoryObj<typeof Label>;
 
-const Template = createTemplate(Label);
-
-export const Default = Template.bind({});
-Default.args = {
-  text: "lorem",
-  variant: "default",
+export const Default: Story = {
+  args: {
+    text: "lorem",
+    variant: "default",
+  },
 };
 
-export const Primary = Template.bind({});
-Primary.args = {
-  text: "lorem",
-  variant: "primary",
+export const Primary: Story = {
+  args: {
+    text: "lorem",
+    variant: "primary",
+  },
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  text: "lorem",
-  variant: "secondary",
+export const Secondary: Story = {
+  args: {
+    text: "lorem",
+    variant: "secondary",
+  },
 };
 
-export const Info = Template.bind({});
-Info.args = {
-  text: "lorem",
-  variant: "info",
+export const Info: Story = {
+  args: {
+    text: "lorem",
+    variant: "info",
+  },
 };
 
-export const Warning = Template.bind({});
-Warning.args = {
-  text: "lorem",
-  variant: "warning",
+export const Warning: Story = {
+  args: {
+    text: "lorem",
+    variant: "warning",
+  },
 };
 
-export const Error = Template.bind({});
-Error.args = {
-  text: "lorem",
-  variant: "error",
+export const Error: Story = {
+  args: {
+    text: "lorem",
+    variant: "error",
+  },
 };

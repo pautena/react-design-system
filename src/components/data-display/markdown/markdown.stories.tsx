@@ -1,4 +1,4 @@
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { Markdown } from "./markdown";
 import mockMarkdownContentFile from "~/tests/mocks/markdown.mock.md";
 import React from "react";
@@ -10,16 +10,17 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof Markdown>;
+} satisfies Meta<typeof Markdown>;
+type Story = StoryObj<typeof Markdown>;
 
-const Template: ComponentStory<typeof Markdown> = (args) => <Markdown {...args} />;
-
-export const File = Template.bind({});
-File.args = {
-  content: mockMarkdownContentFile,
+export const File: Story = {
+  args: {
+    content: mockMarkdownContentFile,
+  },
 };
 
-export const StringVariable = Template.bind({});
-StringVariable.args = {
-  content: mockMarkdownContent,
+export const StringVariable: Story = {
+  args: {
+    content: mockMarkdownContent,
+  },
 };

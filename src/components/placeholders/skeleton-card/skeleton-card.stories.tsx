@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { SkeletonCard } from "./skeleton-card";
 
 export default {
@@ -8,11 +7,11 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof SkeletonCard>;
+} satisfies Meta<typeof SkeletonCard>;
+type Story = StoryObj<typeof SkeletonCard>;
 
-const Template = createTemplate(SkeletonCard);
-
-export const Default = Template.bind({});
-Default.args = {
-  width: 250,
+export const Default: Story = {
+  args: {
+    width: 250,
+  },
 };

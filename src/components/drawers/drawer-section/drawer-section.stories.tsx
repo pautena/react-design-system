@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSection } from "./drawer-section";
 import { withContainer } from "../../../storybook";
 import { withMemoryRouter } from "~/storybook";
@@ -12,17 +11,18 @@ export default {
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof DrawerSection>;
+} satisfies Meta<typeof DrawerSection>;
+type Story = StoryObj<typeof DrawerSection>;
 
-const Template = createTemplate(DrawerSection);
-
-export const Default = Template.bind({});
-Default.args = {
-  title: "Lorem ipsum",
-  items: SectionItems,
+export const Default: Story = {
+  args: {
+    title: "Lorem ipsum",
+    items: SectionItems,
+  },
 };
 
-export const WihtoutTitle = Template.bind({});
-WihtoutTitle.args = {
-  items: SectionItems,
+export const WihtoutTitle = {
+  args: {
+    items: SectionItems,
+  },
 };

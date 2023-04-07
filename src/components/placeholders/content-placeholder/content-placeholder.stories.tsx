@@ -1,5 +1,4 @@
-import { ComponentMeta } from "@storybook/react";
-import { createTemplate } from "../../../storybook";
+import { Meta, StoryObj } from "@storybook/react";
 import { ContentPlaceholder } from "./content-placeholder";
 
 export default {
@@ -8,8 +7,7 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof ContentPlaceholder>;
+} satisfies Meta<typeof ContentPlaceholder>;
+type Story = StoryObj<typeof ContentPlaceholder>;
 
-const Template = createTemplate(ContentPlaceholder);
-
-export const Default = Template.bind({});
+export const Default: Story = {};

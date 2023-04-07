@@ -1,5 +1,6 @@
-import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
-import { addDecorator } from "@storybook/react";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { Preview } from "@storybook/react";
+import React from "react";
 import { select, withKnobs } from "@storybook/addon-knobs";
 
 const light = createTheme();
@@ -11,18 +12,6 @@ const dark = createTheme({
 
 const themes = { light, dark };
 const themeNames = Object.keys(themes);
-
-addDecorator((Story) => {
-  const theme = select("Theme", themeNames, themeNames[0], "Themes");
-
-  return (
-    <ThemeProvider theme={themes[theme]}>
-      <CssBaseline />
-      <Story />
-    </ThemeProvider>
-  );
-});
-addDecorator(withKnobs);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -37,3 +26,21 @@ export const parameters = {
   },
   viewMode: "docs",
 };
+
+const preview: Preview = {
+  decorators: [
+    (Story) => {
+      const theme = select("Theme", themeNames, themeNames[0], "Themes");
+
+      return (
+        <ThemeProvider theme={themes[theme]}>
+          <CssBaseline />
+          <Story />
+        </ThemeProvider>
+      );
+    },
+    withKnobs,
+  ],
+};
+
+export default preview;

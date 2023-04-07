@@ -1,8 +1,8 @@
 import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { CenterContainer, CenterContainerProps } from "./center-container";
 import { Label } from "../../data-display/label";
-import { createTemplate, withContainer } from "../../../storybook";
+import { withContainer } from "../../../storybook";
 
 export default {
   title: "Components/Containers/CenterContainer",
@@ -11,40 +11,42 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} as ComponentMeta<typeof CenterContainer>;
-
-const Template = createTemplate((args: CenterContainerProps) => {
-  return (
+  render: (args) => (
     <CenterContainer {...args}>
       <Label text="Lorem ipsum" />
     </CenterContainer>
-  );
-});
+  ),
+} satisfies Meta<typeof CenterContainer>;
+type Story = StoryObj<typeof CenterContainer>;
 
-export const Default = Template.bind({});
-Default.args = {
-  centerVertical: true,
-  centerHorizontal: true,
+export const Default: Story = {
+  args: {
+    centerVertical: true,
+    centerHorizontal: true,
+  },
 };
 
-export const VerticalCentered = Template.bind({});
-VerticalCentered.args = {
-  centerVertical: true,
-  centerHorizontal: false,
+export const VerticalCentered: Story = {
+  args: {
+    centerVertical: true,
+    centerHorizontal: false,
+  },
 };
 
-export const HorizontallyCentered = Template.bind({});
-HorizontallyCentered.args = {
-  centerVertical: false,
-  centerHorizontal: true,
+export const HorizontallyCentered: Story = {
+  args: {
+    centerVertical: false,
+    centerHorizontal: true,
+  },
 };
 
-export const CustomStyles = Template.bind({});
-CustomStyles.args = {
-  centerVertical: false,
-  centerHorizontal: false,
-  sx: {
-    px: 3,
-    py: 2,
+export const CustomStyles: Story = {
+  args: {
+    centerVertical: false,
+    centerHorizontal: false,
+    sx: {
+      px: 3,
+      py: 2,
+    },
   },
 };

@@ -5,6 +5,13 @@ module.exports = {
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
     "@storybook/addon-knobs",
+    "@storybook/addon-mdx-gfm",
   ],
-  framework: "@storybook/react",
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
+  docs: {
+    autodocs: true,
+  },
 };
