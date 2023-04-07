@@ -1,3 +1,5 @@
+import { vi } from "vitest";
+
 export const mockConsoleError = () => {
   mockConsole("error");
 };
@@ -12,7 +14,7 @@ export const mockConsole = (severity: "error" | "warn") => {
 
   beforeEach(() => {
     logFn = console[severity];
-    console[severity] = jest.fn();
+    console[severity] = vi.fn();
   });
 
   afterEach(() => {

@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Header } from "./header";
+import { vi } from "vitest";
 import {
   HeaderAction,
   HeaderActionVariant,
@@ -13,7 +14,7 @@ import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.
 import { TabProvider } from "../../../providers";
 import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
 
-const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && jest.fn() }));
+const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && vi.fn() }));
 
 const renderInstance = ({
   title = "Lorem ipsum",

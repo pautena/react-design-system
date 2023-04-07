@@ -4,6 +4,7 @@ import { faker } from "@faker-js/faker";
 import React from "react";
 import userEvent from "@testing-library/user-event";
 import { expectProgressIndicator } from "~/tests/assertions";
+import { vi } from "vitest";
 
 const options: string[] = faker.definitions.vehicle?.model || [];
 
@@ -13,7 +14,7 @@ describe("TextField", () => {
     loading,
     fetching,
   }: { value?: string; loading?: boolean; fetching?: boolean } = {}) => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     render(
       <TextField
         label="Car model"

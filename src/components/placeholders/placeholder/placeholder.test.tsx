@@ -4,8 +4,9 @@ import userEvent from "@testing-library/user-event";
 import { Placeholder, PlaceholderAction } from "./placeholder";
 import { actions as actionData } from "./placeholder.mock";
 import SearchIcon from "@mui/icons-material/Search";
+import { vi } from "vitest";
 
-const actions = actionData.map((a) => ({ ...a, onClick: jest.fn() }));
+const actions = actionData.map((a) => ({ ...a, onClick: vi.fn() }));
 
 describe("Placeholder", () => {
   const renderComponent = ({

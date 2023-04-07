@@ -4,6 +4,7 @@ import { EditInputType, ValueDatetime } from "./value-datetime";
 import userEvent from "@testing-library/user-event";
 import { pickDatetime } from "~/tests/actions";
 import { assertDatetimeInputValue } from "~/tests/assertions";
+import { vi } from "vitest";
 
 const DummyValue = new Date(2022, 7, 10, 0, 0);
 const NewValue = new Date(2021, 8, 9, 11, 21);
@@ -27,7 +28,7 @@ describe("ValueDatetime", () => {
     fmt?: string;
     editInputType?: EditInputType;
   }) => {
-    const onEdit = jest.fn();
+    const onEdit = vi.fn();
     render(
       <ValueDatetime
         label="Hello world"

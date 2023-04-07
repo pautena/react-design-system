@@ -3,6 +3,7 @@ import { SignIn } from "./sign-in";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectProgressIndicator } from "~/tests/assertions";
+import { vi } from "vitest";
 
 async function submitSignIn(email: string | null, password: string | null) {
   email && (await userEvent.type(screen.getByRole("input", { name: /email/i }), email));
@@ -22,7 +23,7 @@ describe("SignIn", () => {
   });
 
   it("if I enter an email and a password and I submit onSubmitSignIn is called", async () => {
-    const onSubmitSignIn = jest.fn();
+    const onSubmitSignIn = vi.fn();
     render(<SignIn title="Lorem ipsum" subtitle="Sit amet" onSubmitSignIn={onSubmitSignIn} />);
 
     await submitSignIn("test@example.com", "password1");
@@ -32,7 +33,7 @@ describe("SignIn", () => {
   });
 
   it("if I don't enter an email and I submit an error is shown and onSubmitSignIn is not called", async () => {
-    const onSubmitSignIn = jest.fn();
+    const onSubmitSignIn = vi.fn();
     render(<SignIn title="Lorem ipsum" subtitle="Sit amet" onSubmitSignIn={onSubmitSignIn} />);
 
     await submitSignIn(null, "password1");
@@ -42,7 +43,7 @@ describe("SignIn", () => {
   });
 
   it("if I don't enter a valid email and I submit onSubmitSignIn is not called", async () => {
-    const onSubmitSignIn = jest.fn();
+    const onSubmitSignIn = vi.fn();
     render(<SignIn title="Lorem ipsum" subtitle="Sit amet" onSubmitSignIn={onSubmitSignIn} />);
 
     await submitSignIn("invalid.com", "password1");
@@ -51,7 +52,7 @@ describe("SignIn", () => {
   });
 
   it("if I don't enter an password and I submit an error is shown and onSubmitSignIn is not called", async () => {
-    const onSubmitSignIn = jest.fn();
+    const onSubmitSignIn = vi.fn();
     render(<SignIn title="Lorem ipsum" subtitle="Sit amet" onSubmitSignIn={onSubmitSignIn} />);
 
     await submitSignIn("test@example.com", null);
@@ -61,7 +62,7 @@ describe("SignIn", () => {
   });
 
   it("if I have an error and I enter the fields the errors are removed when I submit", async () => {
-    const onSubmitSignIn = jest.fn();
+    const onSubmitSignIn = vi.fn();
     render(<SignIn title="Lorem ipsum" subtitle="Sit amet" onSubmitSignIn={onSubmitSignIn} />);
 
     await userEvent.click(screen.getByRole("button", { name: /sign in/i }));

@@ -3,6 +3,7 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { ConfirmDialog } from "./confirm-dialog";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -21,8 +22,8 @@ describe("ConfirmDialog", () => {
     cancelText,
     loading,
   }: DialogRenderArgs) => {
-    const onCancel = jest.fn();
-    const onConfirm = jest.fn();
+    const onCancel = vi.fn();
+    const onConfirm = vi.fn();
 
     render(
       <ConfirmDialog

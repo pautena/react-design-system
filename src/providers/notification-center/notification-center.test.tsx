@@ -3,6 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { AlertColor, Box, Button } from "@mui/material";
 import { render, screen, waitForElementToBeRemoved } from "~/tests/testing-library";
 import { NotificationCenterProvider } from "./notification-center.provider";
+import { vi } from "vitest";
 import {
   NotificationCenterContext,
   NotificationCenterProviderUndefinedError,
@@ -121,7 +122,7 @@ describe("useNotifyWhenValueChanges", () => {
   };
 
   const renderHook = ({ to, from }: { to: boolean; from: boolean }) => {
-    const show = jest.fn();
+    const show = vi.fn();
 
     const DummyComponent = () => {
       const [value, setValue] = useState<boolean | undefined>(false);
@@ -140,7 +141,7 @@ describe("useNotifyWhenValueChanges", () => {
       <NotificationCenterContext.Provider
         value={{
           show,
-          hide: jest.fn(),
+          hide: vi.fn(),
         }}
       >
         <DummyComponent />

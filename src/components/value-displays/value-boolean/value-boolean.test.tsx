@@ -2,6 +2,7 @@ import React from "react";
 import { ValueBoolean } from "./value-boolean";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 describe("ValueBoolean", () => {
   const renderComponent = ({
@@ -13,7 +14,7 @@ describe("ValueBoolean", () => {
     placeholder?: string;
     editable?: boolean;
   }) => {
-    const onEdit = jest.fn();
+    const onEdit = vi.fn();
     render(
       <ValueBoolean
         label="Hello world"

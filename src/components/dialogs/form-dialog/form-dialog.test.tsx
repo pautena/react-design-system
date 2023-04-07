@@ -3,6 +3,7 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { FormDialog } from "./form-dialog";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -21,8 +22,8 @@ describe("FormDialog", () => {
     cancelText,
     loading,
   }: DialogRenderArgs) => {
-    const onCancel = jest.fn();
-    const onSubmit = jest.fn();
+    const onCancel = vi.fn();
+    const onSubmit = vi.fn();
 
     render(
       <FormDialog

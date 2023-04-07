@@ -9,6 +9,7 @@ import {
   ReturnTimeFormat,
   TradeDateFormat,
 } from "../generators.mock";
+import { vi } from "vitest";
 import userEvent from "@testing-library/user-event";
 import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
 import {
@@ -21,7 +22,7 @@ describe("ModelForm", () => {
   const renderComponent = ({
     initialValues = undefined,
   }: { initialValues?: MockInstance } = {}) => {
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
     const instance = render(
       <ModelForm
         model={mockModel}

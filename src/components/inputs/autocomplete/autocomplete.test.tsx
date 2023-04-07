@@ -5,6 +5,7 @@ import React from "react";
 import { selectOption } from "~/tests/actions";
 import userEvents from "@testing-library/user-event";
 import { expectProgressIndicator } from "~/tests/assertions";
+import { vi } from "vitest";
 
 const options: string[] = faker.definitions.vehicle?.model || [];
 
@@ -14,7 +15,7 @@ describe("Autocomplete", () => {
     loading,
     fetching,
   }: { value?: string; loading?: boolean; fetching?: boolean } = {}) => {
-    const onChangeValue = jest.fn();
+    const onChangeValue = vi.fn();
     render(
       <Autocomplete
         label="Car model"

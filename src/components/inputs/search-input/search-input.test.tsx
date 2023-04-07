@@ -4,6 +4,7 @@ import { SearchInput } from "./search-input";
 import userEvent from "@testing-library/user-event";
 import { pickDatetime, typeNumericInput } from "~/tests/actions";
 import { assertCloseDate, AssertCloseDateUpTo } from "~/tests/assertions";
+import { vi } from "vitest";
 
 const datetimeFormat = "dd-MM-yyyy HH:mm:ss.SSS";
 const createdBefore = new Date(2022, 2, 17, 12, 42);
@@ -26,7 +27,7 @@ describe("SearchInput", () => {
     label = "search",
     placeholder,
   }: { label?: string; placeholder?: string } = {}) => {
-    const onSearch = jest.fn();
+    const onSearch = vi.fn();
     render(
       <SearchInput
         label={label}

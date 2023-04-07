@@ -1,9 +1,6 @@
 import React, { useState } from "react";
-import {
-  DemoModelRouter,
-  DummyModelRouter,
-  InternalModelRouter,
-} from "./stories/model-router.stories";
+import { DummyModelRouter, InternalModelRouter } from "./stories/model-router.stories";
+import { vi } from "vitest";
 import { data, data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "../../utils";
@@ -229,12 +226,12 @@ describe("ModelRouter", () => {
     addFeature?: boolean;
     detailsFeature?: boolean;
   } = {}) => {
-    const onRequestList = jest.fn();
-    const onRequestItem = jest.fn();
-    const onSubmitNewItem = jest.fn();
-    const onRequestUpdateItem = jest.fn();
-    const onSubmitUpdate = jest.fn();
-    const onRequestDelete = jest.fn();
+    const onRequestList = vi.fn();
+    const onRequestItem = vi.fn();
+    const onSubmitNewItem = vi.fn();
+    const onRequestUpdateItem = vi.fn();
+    const onSubmitUpdate = vi.fn();
+    const onRequestDelete = vi.fn();
     const randomItem = getRandomItem(data);
 
     const ForceNavigationComponent = ({ id }: { id: string }) => {
@@ -312,9 +309,9 @@ describe("ModelRouter", () => {
       return (
         <NotificationCenterProvider>
           <ListScreen
-            onRequestList={jest.fn()}
+            onRequestList={vi.fn()}
             listData={[]}
-            onClickDeleteItem={jest.fn()}
+            onClickDeleteItem={vi.fn()}
             listRequest={IdleRequest}
             deleteRequest={deleteRequest}
             modelName="Items"
@@ -346,7 +343,7 @@ describe("ModelRouter", () => {
           <AddScreen
             modelName="Items"
             model={mockModel}
-            onSubmitNewItem={jest.fn()}
+            onSubmitNewItem={vi.fn()}
             newItemRequest={newItemRequest}
           />
           <Box>
@@ -375,10 +372,10 @@ describe("ModelRouter", () => {
           <UpdateScreen
             modelName="Items"
             model={mockModel}
-            onSubmitUpdateItem={jest.fn()}
+            onSubmitUpdateItem={vi.fn()}
             submitUpdateItemRequest={updateRequest}
             updateItemRequest={IdleRequest}
-            onRequestUpdateItem={jest.fn()}
+            onRequestUpdateItem={vi.fn()}
           />
           <Box>
             <Button onClick={() => setUpdateRequest(IdleRequest)}>idle</Button>

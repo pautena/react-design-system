@@ -4,6 +4,7 @@ import { render, screen } from "~/tests/testing-library";
 import { BootstrapDialog } from "./bootstrap-dialog";
 import userEvent from "@testing-library/user-event";
 import { DialogAction } from "../dialog.types";
+import { vi } from "vitest";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -19,8 +20,8 @@ interface DialogRenderArgs {
 
 describe("BootstrapDialog", () => {
   const createMockActions = () => {
-    const onClickAction1 = jest.fn();
-    const onClickAction2 = jest.fn();
+    const onClickAction1 = vi.fn();
+    const onClickAction2 = vi.fn();
     const actions: DialogAction[] = [
       {
         id: "action1",
@@ -48,9 +49,9 @@ describe("BootstrapDialog", () => {
     actions,
     loading,
   }: DialogRenderArgs) => {
-    const onClose = jest.fn();
-    const onCancel = jest.fn();
-    const onAccept = jest.fn();
+    const onClose = vi.fn();
+    const onCancel = vi.fn();
+    const onAccept = vi.fn();
 
     render(
       <BootstrapDialog

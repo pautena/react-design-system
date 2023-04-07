@@ -4,12 +4,13 @@ import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 import userEvent from "@testing-library/user-event";
 import { columns, Data, data } from "../enhanced-table/enhanced-table.mock";
 import { expectProgressIndicator } from "~/tests/assertions";
+import { vi } from "vitest";
 
 function renderInstance({
   defaultSort = "startDate",
   loading = false,
 }: { defaultSort?: keyof Data; loading?: boolean } = {}) {
-  const onRequestSort = jest.fn();
+  const onRequestSort = vi.fn();
   render(
     <EnhancedRemoteDummyTable
       data={data}

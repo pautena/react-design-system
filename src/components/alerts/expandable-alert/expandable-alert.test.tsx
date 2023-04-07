@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen, waitFor } from "~/tests/testing-library";
 import { ExpandableAlert } from "./expandable-alert";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 const message = "Lorem ipsum dolor sit amet";
 const metadata =
@@ -13,8 +14,8 @@ describe("ExpandableAlert", () => {
     title,
     metadata,
   }: { title?: string; metadata?: string | string[] } = {}) => {
-    const onClose = jest.fn();
-    const copy = jest.fn();
+    const onClose = vi.fn();
+    const copy = vi.fn();
     Object.assign(navigator, {
       clipboard: {
         writeText: copy,

@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { ValueText } from "./value-text";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 const DummyValue = "Lorem ipsum sit amet";
 
@@ -15,7 +16,7 @@ describe("ValueText", () => {
     placeholder?: string;
     editable?: boolean;
   }) => {
-    const onEdit = jest.fn();
+    const onEdit = vi.fn();
     render(
       <ValueText
         label="Hello world"

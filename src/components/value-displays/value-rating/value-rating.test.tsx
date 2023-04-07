@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { ValueRating } from "./value-rating";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 describe("ValueRating", () => {
   const renderComponent = ({
@@ -9,7 +10,7 @@ describe("ValueRating", () => {
     value = 3,
     editable,
   }: { maxRating?: number; value?: number; editable?: boolean } = {}) => {
-    const onEdit = jest.fn();
+    const onEdit = vi.fn();
     render(
       <ValueRating
         label="hello world"

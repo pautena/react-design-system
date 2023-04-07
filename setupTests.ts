@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+import { vi } from "vitest";
 
 beforeAll(() => {
   const originalError = console.error;
@@ -17,5 +18,5 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  jest.resetAllMocks();
+  vi.resetAllMocks();
 });

@@ -6,6 +6,7 @@ import { TableRowOption, TableList } from "./table-list";
 import { HeadCell } from "../../components/tables/enhanced-table";
 import { BasicModelInstance } from "..";
 import { expectProgressIndicator } from "~/tests/assertions";
+import { vi } from "vitest";
 
 const columns: HeadCell<BasicModelInstance>[] = [
   {
@@ -62,12 +63,12 @@ const options = [
   {
     id: "edit",
     label: "Edit",
-    onClick: jest.fn(),
+    onClick: vi.fn(),
   },
   {
     id: "remove",
     label: "Remove",
-    onClick: jest.fn(),
+    onClick: vi.fn(),
   },
 ];
 
@@ -77,7 +78,7 @@ describe("TableList", () => {
     defaultSort = "value",
     loading = false,
     options = undefined,
-    onClick = jest.fn(),
+    onClick = vi.fn(),
   }: {
     defaultSort?: string;
     loading?: boolean;

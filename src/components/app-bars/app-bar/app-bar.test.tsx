@@ -4,6 +4,7 @@ import { AppBar } from "./app-bar";
 import { DrawerProvider } from "../../drawers/drawer";
 import { AppBarProfile } from "./app-bar.types";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 const profile: AppBarProfile = {
   name: "John Smith",
@@ -23,7 +24,7 @@ describe("AppBar", () => {
     initialOpen?: boolean;
     profile?: AppBarProfile;
   } = {}) => {
-    const onClickSignOut = jest.fn();
+    const onClickSignOut = vi.fn();
     const instance = render(
       <DrawerProvider initialOpen={initialOpen}>
         <AppBar
