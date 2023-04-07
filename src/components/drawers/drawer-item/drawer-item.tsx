@@ -8,9 +8,16 @@ import {
   SxProps,
   Theme,
   styled,
+  useTheme,
 } from "@mui/material";
 import { Bullet, Label } from "../../data-display";
-import { DrawerItemAvatar, DrawerItemBullet, DrawerItemLabel, DrawerSize } from "../drawer.types";
+import {
+  DrawerItemAvatar,
+  DrawerItemBullet,
+  DrawerItemLabel,
+  DrawerSize,
+  getDrawerItemColors,
+} from "../drawer.types";
 import { Link } from "../../navigation/link";
 
 export interface DrawerItemProps {
@@ -75,6 +82,8 @@ export const DrawerItem = ({
   size = "medium",
   sx,
 }: DrawerItemProps) => {
+  const { palette } = useTheme();
+  const { color, fontWeight } = getDrawerItemColors(palette, selected);
   return (
     <ListItemButton
       LinkComponent={DrawerItemLink}
@@ -83,7 +92,7 @@ export const DrawerItem = ({
       selected={selected}
       sx={sx}
     >
-      {icon && <ListItemIcon>{icon}</ListItemIcon>}
+      {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
       {avatar && (
         <ListItemAvatar>
           <Avatar
@@ -93,7 +102,7 @@ export const DrawerItem = ({
           />
         </ListItemAvatar>
       )}
-      <ListItemText primary={text} />
+      <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
       {label && <Label text={label.text} variant={label.variant} />}
       {bullet && <Bullet variant={bullet.variant} />}
     </ListItemButton>

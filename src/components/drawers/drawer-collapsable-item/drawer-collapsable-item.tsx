@@ -5,14 +5,19 @@ import {
   ListItemText,
   Collapse,
   List,
+  useTheme,
 } from "@mui/material";
 import React, { ReactElement, useState } from "react";
-import { DrawerNavigationItemLink } from "../drawer.types";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
+import { DrawerNavigationItemLink, DrawerSize, getDrawerItemColors } from "../drawer.types";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "../drawer-item";
 
 export interface DrawerCollapsableItemProps {
+  /**
+   * Item size. default to medium
+   */
+  size?: DrawerSize;
   /**
    * Text displayed inside the item
    */
@@ -42,16 +47,19 @@ export const DrawerCollapsableItem = ({
   selected,
   selectedItem,
   items,
+  size = "medium",
 }: DrawerCollapsableItemProps) => {
   const [open, setOpen] = useState(false);
+  const { palette } = useTheme();
+  const { color, fontWeight } = getDrawerItemColors(palette, selected);
 
   return (
     <>
-      <ListItem disablePadding sx={{ display: "block" }}>
+      <ListItem disablePadding dense={size === "small"} sx={{ display: "block" }}>
         <ListItemButton selected={selected} onClick={() => setOpen((o) => !o)}>
-          {icon && <ListItemIcon>{icon}</ListItemIcon>}
-          <ListItemText primary={text} />
-          {open ? <ExpandLess /> : <ExpandMore />}
+          {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
+          <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
+          {open ? <ExpandMoreIcon sx={{ color }} /> : <ChevronRightIcon sx={{ color }} />}
         </ListItemButton>
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
@@ -66,6 +74,7 @@ export const DrawerCollapsableItem = ({
               label={label}
               bullet={bullet}
               href={href}
+              size={size}
               sx={{ pl: 4 }}
             />
           ))}
