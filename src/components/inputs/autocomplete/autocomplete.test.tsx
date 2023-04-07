@@ -1,5 +1,5 @@
 import { render, screen } from "~/tests/testing-library";
-import { EnhancedAutocomplete } from "./enhanced-autocomplete";
+import { Autocomplete } from "./autocomplete";
 import { faker } from "@faker-js/faker";
 import React from "react";
 import { selectOption } from "~/tests/actions";
@@ -8,7 +8,7 @@ import { expectProgressIndicator } from "~/tests/assertions";
 
 const options: string[] = faker.definitions.vehicle?.model || [];
 
-describe("EnhancedAutocomplete", () => {
+describe("Autocomplete", () => {
   const renderComponent = ({
     value,
     loading,
@@ -16,7 +16,7 @@ describe("EnhancedAutocomplete", () => {
   }: { value?: string; loading?: boolean; fetching?: boolean } = {}) => {
     const onChangeValue = jest.fn();
     render(
-      <EnhancedAutocomplete
+      <Autocomplete
         label="Car model"
         loading={loading}
         fetching={fetching}

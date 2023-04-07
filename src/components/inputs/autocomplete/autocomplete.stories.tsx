@@ -1,22 +1,22 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate, withContainer } from "../../../storybook";
-import { EnhancedAutocomplete } from "./enhanced-autocomplete";
+import { Autocomplete } from "./autocomplete";
 import { faker } from "@faker-js/faker";
 import { Box, useTheme } from "@mui/material";
 import React from "react";
 
 export default {
-  title: "Components/Inputs/EnhancedAutocomplete",
-  component: EnhancedAutocomplete,
+  title: "Components/Inputs/Autocomplete",
+  component: Autocomplete,
   decorators: [withContainer({ width: 300 })],
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof EnhancedAutocomplete>;
+} as ComponentMeta<typeof Autocomplete>;
 
 const options: string[] = faker.definitions.vehicle?.model || [];
 
-const Template = createTemplate(EnhancedAutocomplete);
+const Template = createTemplate(Autocomplete);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -91,7 +91,7 @@ export const WithBackground = ({
 
   return (
     <Box bgcolor={bgcolor} padding={3}>
-      <EnhancedAutocomplete
+      <Autocomplete
         label="Car model"
         options={options}
         color={selectColor}

@@ -1,5 +1,5 @@
 import { render, screen } from "~/tests/testing-library";
-import { EnhancedTextField } from "./enhanced-text-field";
+import { TextField } from "./text-field";
 import { faker } from "@faker-js/faker";
 import React from "react";
 import userEvent from "@testing-library/user-event";
@@ -7,7 +7,7 @@ import { expectProgressIndicator } from "~/tests/assertions";
 
 const options: string[] = faker.definitions.vehicle?.model || [];
 
-describe("EnhancedAutocomplete", () => {
+describe("TextField", () => {
   const renderComponent = ({
     value,
     loading,
@@ -15,7 +15,7 @@ describe("EnhancedAutocomplete", () => {
   }: { value?: string; loading?: boolean; fetching?: boolean } = {}) => {
     const onChange = jest.fn();
     render(
-      <EnhancedTextField
+      <TextField
         label="Car model"
         loading={loading}
         fetching={fetching}

@@ -5,32 +5,32 @@ import {
   FormControl,
   InputLabel,
   LinearProgress,
-  Select,
+  Select as MuiSelect,
   styled,
 } from "@mui/material";
 import { CenterContainer } from "../../containers/center-container";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 
-export type EnhancedSelectSize = "small" | "medium";
+export type SelectSize = "small" | "medium";
 
-export interface EnhancedSelectProps<T> {
+export interface SelectProps<T> {
   label: string;
   value: T;
   loading?: boolean;
   fetching?: boolean;
-  size?: EnhancedSelectSize;
+  size?: SelectSize;
   color?: string;
   fullWidth?: boolean;
   children?: ReactNode;
   onChange?: SelectInputProps<T>["onChange"];
 }
 
-const ProgressSize: Record<EnhancedSelectSize, number> = {
+const ProgressSize: Record<SelectSize, number> = {
   small: 15,
   medium: 20,
 };
 
-export const EnhancedSelect = <T extends ReactNode>({
+export const Select = <T extends ReactNode>({
   label,
   value,
   loading = false,
@@ -40,7 +40,7 @@ export const EnhancedSelect = <T extends ReactNode>({
   color,
   children,
   onChange,
-}: EnhancedSelectProps<T>) => {
+}: SelectProps<T>) => {
   const id = useId();
 
   const renderValue = (value: T): ReactNode => {
@@ -91,7 +91,7 @@ export const EnhancedSelect = <T extends ReactNode>({
   return (
     <StyledFormControl fullWidth={fullWidth}>
       <InputLabel id={id}>{label}</InputLabel>
-      <Select
+      <MuiSelect
         labelId={id}
         id={id}
         value={value}
@@ -102,7 +102,7 @@ export const EnhancedSelect = <T extends ReactNode>({
         renderValue={renderValue}
       >
         {children}
-      </Select>
+      </MuiSelect>
     </StyledFormControl>
   );
 };

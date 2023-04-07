@@ -1,20 +1,20 @@
 import React from "react";
-import { EnhancedSelectLoaded } from "./enhanced-select.stories";
+import { SelectLoaded } from "./select.stories";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 
-describe("EnhancedSelect", () => {
+describe("Select", () => {
   const renderComponent = ({
-    label = EnhancedSelectLoaded.args?.label || "invalid",
+    label = SelectLoaded.args?.label || "invalid",
     loading = false,
     fetching = false,
   } = {}) => {
-    const options = (EnhancedSelectLoaded.args?.options as string[]) || [];
-    const value = EnhancedSelectLoaded.args?.value as string;
+    const options = (SelectLoaded.args?.options as string[]) || [];
+    const value = SelectLoaded.args?.value as string;
 
     render(
-      <EnhancedSelectLoaded
-        {...EnhancedSelectLoaded.args}
+      <SelectLoaded
+        {...SelectLoaded.args}
         options={options}
         value={value}
         label={label}

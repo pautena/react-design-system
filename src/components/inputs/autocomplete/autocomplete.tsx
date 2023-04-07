@@ -1,15 +1,19 @@
-import { Autocomplete, AutocompleteProps, ChipTypeMap } from "@mui/material";
+import {
+  Autocomplete as MuiAutocomplete,
+  AutocompleteProps as MuiAutocompleteProps,
+  ChipTypeMap,
+} from "@mui/material";
 import React from "react";
-import { EnhancedTextField } from "../enhanced-text-field";
+import { TextField } from "../text-field";
 
-export interface EnhancedAutocompleteProps<
+export interface AutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
 > extends Omit<
-    AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    MuiAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
     "renderInput" | "onChange" | "color"
   > {
   label: string;
@@ -19,14 +23,14 @@ export interface EnhancedAutocompleteProps<
   onChangeValue?: (value: T) => void;
 }
 
-export const EnhancedAutocomplete = <
+export const Autocomplete = <
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
 >(
-  props: EnhancedAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
 ) => {
   const {
     label,
@@ -42,13 +46,13 @@ export const EnhancedAutocomplete = <
   const loadingOrFetching = loading || fetching;
 
   return (
-    <Autocomplete
+    <MuiAutocomplete
       loading={loadingOrFetching}
       options={fetching ? [] : options}
       onChange={(_, value) => onChangeValue(value as T)}
       {...(rest as any)}
       renderInput={(params) => (
-        <EnhancedTextField
+        <TextField
           {...params}
           label={label}
           fullWidth

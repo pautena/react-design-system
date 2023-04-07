@@ -1,23 +1,23 @@
 import { ComponentMeta } from "@storybook/react";
 import { createTemplate, withContainer } from "../../../storybook";
-import { EnhancedTextField } from "./enhanced-text-field";
+import { TextField } from "./text-field";
 import { faker } from "@faker-js/faker";
 import { Box, IconButton, useTheme } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
 import React from "react";
 
 export default {
-  title: "Components/Inputs/EnhancedTextField",
-  component: EnhancedTextField,
+  title: "Components/Inputs/TextField",
+  component: TextField,
   decorators: [withContainer({ width: 200 })],
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof EnhancedTextField>;
+} as ComponentMeta<typeof TextField>;
 
 const options: string[] = faker.definitions.vehicle?.model || [];
 
-const Template = createTemplate(EnhancedTextField);
+const Template = createTemplate(TextField);
 
 export const Default = Template.bind({});
 Default.args = {
@@ -108,7 +108,7 @@ export const WithBackground = ({
 
   return (
     <Box bgcolor={bgcolor} padding={3}>
-      <EnhancedTextField label="Car model" hexColor={color} fetching={fetching} loading={loading} />
+      <TextField label="Car model" hexColor={color} fetching={fetching} loading={loading} />
     </Box>
   );
 };

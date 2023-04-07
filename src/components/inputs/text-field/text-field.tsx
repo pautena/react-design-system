@@ -12,18 +12,18 @@ import {
   linearProgressClasses,
   OutlinedInput,
   outlinedInputClasses,
-  TextFieldProps,
+  TextFieldProps as MuiTextFieldProps,
 } from "@mui/material";
 import { unstable_useId as useId } from "@mui/utils";
 import React from "react";
 
-export type EnhancedTextFieldProps = TextFieldProps & {
+export type TextFieldProps = MuiTextFieldProps & {
   fetching?: boolean;
   loading?: boolean;
   hexColor?: string;
 };
 
-export const EnhancedTextField = ({
+export const TextField = ({
   id: overrideId,
   label,
   InputLabelProps,
@@ -36,7 +36,7 @@ export const EnhancedTextField = ({
   fullWidth,
   sx,
   ...rest
-}: EnhancedTextFieldProps) => {
+}: TextFieldProps) => {
   const id = useId(overrideId);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;

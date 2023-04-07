@@ -2,13 +2,13 @@ import { Box, MenuItem, useTheme } from "@mui/material";
 import { ComponentMeta } from "@storybook/react";
 import React, { ReactNode } from "react";
 import { createTemplate, withContainer } from "../../../storybook";
-import { EnhancedSelect, EnhancedSelectProps, EnhancedSelectSize } from "./enhanced-select";
+import { Select, SelectProps, SelectSize } from "./select";
 import { faker } from "@faker-js/faker";
 
 const baseArgs = {
   label: "Car model",
   value: faker.vehicle.model(),
-  size: "medium" as EnhancedSelectSize,
+  size: "medium" as SelectSize,
   fetching: false,
   loading: false,
   fullWidth: true,
@@ -16,27 +16,27 @@ const baseArgs = {
 };
 
 export default {
-  title: "Components/Inputs/EnhancedSelect",
-  component: EnhancedSelect,
+  title: "Components/Inputs/Select",
+  component: Select,
   decorators: [withContainer({ width: 200 })],
   parameters: {
     layout: "centered",
   },
-} as ComponentMeta<typeof EnhancedSelect>;
+} as ComponentMeta<typeof Select>;
 
-interface TemplateProps<T extends ReactNode> extends EnhancedSelectProps<T> {
+interface TemplateProps<T extends ReactNode> extends SelectProps<T> {
   options: T[];
 }
 
 const Template = createTemplate(<T extends string>({ options, ...rest }: TemplateProps<T>) => {
   return (
-    <EnhancedSelect {...rest}>
+    <Select {...rest}>
       {options.map((option) => (
         <MenuItem key={option} value={option}>
           {option}
         </MenuItem>
       ))}
-    </EnhancedSelect>
+    </Select>
   );
 });
 
@@ -46,8 +46,8 @@ WithoutFullWidth.args = {
   fullWidth: false,
 };
 
-export const EnhancedSelectLoaded = Template.bind({});
-EnhancedSelectLoaded.args = {
+export const SelectLoaded = Template.bind({});
+SelectLoaded.args = {
   ...baseArgs,
 };
 
@@ -82,13 +82,13 @@ export const WithBackground = ({ options, bgcolor: bgcolorProp, ...rest }: WithB
 
   return (
     <Box bgcolor={bgcolor} padding={3}>
-      <EnhancedSelect {...rest} color={selectColor}>
+      <Select {...rest} color={selectColor}>
         {options.map((option) => (
           <MenuItem key={option} value={option}>
             {option}
           </MenuItem>
         ))}
-      </EnhancedSelect>
+      </Select>
     </Box>
   );
 };
