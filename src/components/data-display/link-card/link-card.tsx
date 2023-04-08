@@ -4,7 +4,6 @@ import React from "react";
 import { Link } from "~/components/navigation/link";
 
 export type LinkCardVariant = "primary" | "secondary" | "info" | "warning" | "error";
-
 export interface LinkCardProps {
   variant?: LinkCardVariant;
   href: string;
@@ -29,11 +28,11 @@ export const LinkCard = ({
     display: "flex",
     flexDirection: "column",
     textDecoration: "none",
-    backgroundColor: grey[50],
+    backgroundColor: palette.mode === "light" ? grey[50] : grey[900],
     borderColor: grey[400],
     ":hover": {
       borderColor: palette[variant].main,
-      backgroundColor: "white",
+      backgroundColor: palette.mode === "light" ? palette.common.white : grey[800],
     },
   };
 

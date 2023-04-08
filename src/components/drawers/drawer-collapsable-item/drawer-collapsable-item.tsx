@@ -1,5 +1,4 @@
 import {
-  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -8,7 +7,7 @@ import {
   useTheme,
   Popover,
 } from "@mui/material";
-import React, { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useState, useRef } from "react";
 import {
   DrawerNavigationItemLink,
   DrawerSize,
@@ -66,7 +65,8 @@ export const DrawerCollapsableItem = ({
   size = "medium",
   submenuVariant = "collapse",
 }: DrawerCollapsableItemProps) => {
-  const anchorEl = useRef<HTMLLIElement | null>(null);
+  const anchorEl = useRef<HTMLDivElement | null>(null);
+  const { palette } = useTheme();
   const [open, setOpen] = useState(false);
   const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
 
@@ -91,20 +91,21 @@ export const DrawerCollapsableItem = ({
 
   return (
     <>
-      <ListItem ref={anchorEl} disablePadding dense={size === "small"} sx={{ display: "block" }}>
-        <ListItemButton selected={selected} onClick={() => setOpen((o) => !o)}>
-          {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
-          <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-          {open && submenuVariant === "collapse" ? (
-            <ExpandMoreIcon className={drawerCollapsableItemClasses.collapseIcon} sx={{ color }} />
-          ) : (
-            <ChevronRightIcon
-              className={drawerCollapsableItemClasses.collapseIcon}
-              sx={{ color }}
-            />
-          )}
-        </ListItemButton>
-      </ListItem>
+      <ListItemButton
+        ref={anchorEl}
+        selected={selected}
+        onClick={() => setOpen((o) => !o)}
+        dense={size === "small"}
+        sx={{ backgroundColor: open ? palette.action.hover : undefined }}
+      >
+        {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
+        <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
+        {open && submenuVariant === "collapse" ? (
+          <ExpandMoreIcon className={drawerCollapsableItemClasses.collapseIcon} sx={{ color }} />
+        ) : (
+          <ChevronRightIcon className={drawerCollapsableItemClasses.collapseIcon} sx={{ color }} />
+        )}
+      </ListItemButton>
       {submenuVariant === "collapse" ? (
         <Collapse
           in={open}

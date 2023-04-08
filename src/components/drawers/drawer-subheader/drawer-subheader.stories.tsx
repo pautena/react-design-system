@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSubheader } from "./drawer-subheader";
 import { withContainer } from "../../../storybook";
-import { grey } from "@mui/material/colors";
 
 export default {
   title: "Components/Drawers/DrawerSubheader",
