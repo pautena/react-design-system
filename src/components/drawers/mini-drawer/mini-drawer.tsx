@@ -34,7 +34,6 @@ export const MiniDrawer = styled(Drawer)(({ theme }) => {
           }),
     },
     [`& .${listItemButtonClasses.root}`]: {
-      minHeight: 48,
       paddingHorizontal: theme.spacing(2.5),
       ...(isOpen
         ? {
