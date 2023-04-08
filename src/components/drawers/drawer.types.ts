@@ -40,7 +40,7 @@ export type DrawerNavigationItemCollapsable = Pick<
   DrawerNavigationItemLink,
   "id" | "text" | "icon"
 > & {
-  items: DrawerNavigationItemLink[];
+  items: DrawerNavigationItem[];
 };
 
 export type DrawerNavigationItem = DrawerNavigationItemLink | DrawerNavigationItemCollapsable;

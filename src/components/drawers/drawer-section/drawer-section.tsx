@@ -1,9 +1,8 @@
-import { List, ListSubheader, ListSubheaderProps, styled, useTheme } from "@mui/material";
+import { List, useTheme } from "@mui/material";
 import React from "react";
-import { DrawerCollapsableItem } from "../drawer-collapsable-item";
-import { DrawerItem } from "../drawer-item";
 import { DrawerNavigationItem, DrawerSize, DrawerSubmenuVariant } from "../drawer.types";
 import { DrawerSubheader } from "../drawer-subheader";
+import { DrawerItem } from "../drawer-item/drawer-item";
 
 export interface DrawerSectionProps {
   /**
@@ -49,39 +48,15 @@ export const DrawerSection = ({
         </DrawerSubheader>
       )}
       <List sx={{ paddingTop: size === "small" ? spacing(0) : undefined }}>
-        {items.map((item) => {
-          if ("items" in item) {
-            const { id, text, icon, items } = item;
-            const childrenSelected = items.some((item) => item.id === selectedItem);
-            return (
-              <DrawerCollapsableItem
-                key={id}
-                size={size}
-                submenuVariant={submenuVariant}
-                selectedItem={selectedItem}
-                selected={id === selectedItem || childrenSelected}
-                text={text}
-                icon={icon}
-                items={items}
-              />
-            );
-          } else {
-            const { id, text, icon, avatar, label, bullet, href } = item;
-            return (
-              <DrawerItem
-                key={id}
-                selected={id === selectedItem}
-                size={size}
-                text={text}
-                icon={icon}
-                avatar={avatar}
-                label={label}
-                bullet={bullet}
-                href={href}
-              />
-            );
-          }
-        })}
+        {items.map((item) => (
+          <DrawerItem
+            key={item.id}
+            item={item}
+            size={size}
+            submenuVariant={submenuVariant}
+            selectedItem={selectedItem}
+          />
+        ))}
       </List>
     </>
   );

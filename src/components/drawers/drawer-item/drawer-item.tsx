@@ -1,109 +1,48 @@
-import React, { ReactElement } from "react";
-import {
-  Avatar,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  SxProps,
-  Theme,
-  styled,
-  useTheme,
-} from "@mui/material";
-import { Bullet, Label } from "../../data-display";
-import {
-  DrawerItemAvatar,
-  DrawerItemBullet,
-  DrawerItemLabel,
-  DrawerSize,
-  getDrawerItemColors,
-} from "../drawer.types";
-import { Link } from "../../navigation/link";
+import React from "react";
+import { DrawerCollapsableItem } from "../drawer-collapsable-item";
+import { DrawerNavigationItem, DrawerSize, DrawerSubmenuVariant } from "../drawer.types";
+import { DrawerItemLink } from "../drawer-item-link";
 
 export interface DrawerItemProps {
-  /**
-   * Item size. default to medium
-   */
+  item: DrawerNavigationItem;
+  selectedItem?: string;
   size?: DrawerSize;
-  /**
-   * Text displayed inside the item
-   */
-  text: string;
-  /**
-   * Url where the user is going to be redirected
-   * if the item is clicked
-   */
-  href: string;
-  /**
-   * Icon displayed to the left
-   */
-  icon?: ReactElement;
-  /**
-   * Avatar displayed to the left
-   */
-  avatar?: DrawerItemAvatar;
-  /**
-   * Label with extra info displayed to the right
-   */
-  label?: DrawerItemLabel;
-  /**
-   * Bullet to attract the user attention displyed to the right
-   */
-  bullet?: DrawerItemBullet;
-  /**
-   * The item has to be marked as selected
-   */
-  selected?: boolean;
-  /**
-   * Custom styles
-   */
-  sx?: SxProps<Theme>;
+  submenuVariant?: DrawerSubmenuVariant;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const DrawerItemLink = styled(Link)(({ theme }) => {
-  return {
-    color: theme.palette.text.primary,
-  };
-});
-
-/**
- * Clicable item inside a drawer
- */
 export const DrawerItem = ({
-  text,
-  icon,
-  avatar,
-  label,
-  bullet,
-  href,
-  selected,
+  selectedItem,
+  item,
   size = "medium",
-  sx,
+  submenuVariant = "collapse",
 }: DrawerItemProps) => {
-  const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
-  return (
-    <ListItemButton
-      LinkComponent={DrawerItemLink}
-      dense={size === "small"}
-      href={href}
-      selected={selected}
-      sx={sx}
-    >
-      {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
-      {avatar && (
-        <ListItemAvatar>
-          <Avatar
-            alt={avatar.alt}
-            src={avatar.src}
-            sx={size === "small" ? { width: 24, height: 24 } : undefined}
-          />
-        </ListItemAvatar>
-      )}
-      <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-      {label && <Label text={label.text} variant={label.variant} />}
-      {bullet && <Bullet variant={bullet.variant} />}
-    </ListItemButton>
-  );
+  if ("items" in item) {
+    const { id, text, icon, items } = item;
+    const childrenSelected = items.some((item) => item.id === selectedItem);
+    return (
+      <DrawerCollapsableItem
+        size={size}
+        submenuVariant={submenuVariant}
+        selectedItem={selectedItem}
+        selected={id === selectedItem || childrenSelected}
+        text={text}
+        icon={icon}
+        items={items}
+      />
+    );
+  } else {
+    const { id, text, icon, avatar, label, bullet, href } = item;
+    return (
+      <DrawerItemLink
+        selected={id === selectedItem}
+        size={size}
+        text={text}
+        icon={icon}
+        avatar={avatar}
+        label={label}
+        bullet={bullet}
+        href={href}
+      />
+    );
+  }
 };

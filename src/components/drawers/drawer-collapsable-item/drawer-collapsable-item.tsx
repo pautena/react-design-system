@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import React, { ReactElement, useState, useRef } from "react";
 import {
+  DrawerNavigationItem,
   DrawerNavigationItemLink,
   DrawerSize,
   DrawerSubmenuVariant,
@@ -16,7 +17,8 @@ import {
 } from "../drawer.types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { DrawerItem } from "../drawer-item";
+import { DrawerItemLink } from "../drawer-item-link";
+import { DrawerItem } from "../drawer-item/drawer-item";
 
 export interface DrawerCollapsableItemProps {
   /**
@@ -43,7 +45,7 @@ export interface DrawerCollapsableItemProps {
    * Items that are going to be displayed inside
    * the collapsable
    */
-  items: DrawerNavigationItemLink[];
+  items: DrawerNavigationItem[];
   /**
    * How the submenu has to be shown. collapsable by default
    */
@@ -72,18 +74,13 @@ export const DrawerCollapsableItem = ({
 
   const submenu = (
     <List component="div" disablePadding className={drawerCollapsableItemClasses.collapseContent}>
-      {items.map(({ id, text, icon, avatar, label, bullet, href }) => (
+      {items.map((item) => (
         <DrawerItem
-          key={id}
-          selected={id === selectedItem}
-          text={text}
-          icon={icon}
-          avatar={avatar}
-          label={label}
-          bullet={bullet}
-          href={href}
+          key={item.id}
+          item={item}
+          selectedItem={selectedItem}
           size={size}
-          sx={{ pl: 4 }}
+          submenuVariant={submenuVariant}
         />
       ))}
     </List>

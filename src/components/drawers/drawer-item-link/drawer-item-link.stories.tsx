@@ -1,19 +1,19 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../../storybook";
-import { DrawerItem } from "./drawer-item";
+import { DrawerItemLink } from "./drawer-item-link";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import { withMemoryRouter } from "~/storybook";
 
 export default {
-  title: "Components/Drawers/DrawerItem",
-  component: DrawerItem,
+  title: "Components/Drawers/DrawerItemLink",
+  component: DrawerItemLink,
   decorators: [withMemoryRouter(), withContainer({ width: 250 })],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof DrawerItem>;
-type Story = StoryObj<typeof DrawerItem>;
+} satisfies Meta<typeof DrawerItemLink>;
+type Story = StoryObj<typeof DrawerItemLink>;
 
 export const OnlyText: Story = {
   args: {

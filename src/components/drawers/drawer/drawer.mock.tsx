@@ -88,6 +88,39 @@ export const mockNav: DrawerNavigation = {
               href: "/items/2-3-3",
               icon: <DiamondIcon />,
             },
+            {
+              id: "item2.3.4",
+              text: "Item 2.3.4",
+              href: "/items/2-3-4",
+              icon: <AccountTreeIcon />,
+              items: [
+                {
+                  id: "item2.3.4.1",
+                  text: "Item 2.3.4.1",
+                  href: "/items/2-3-4-1",
+                  icon: <DiamondIcon />,
+                },
+                {
+                  id: "item2.3.4.2",
+                  text: "Item 2.3.4.2",
+                  icon: <DiamondIcon />,
+                  items: [
+                    {
+                      id: "item2.3.4.2.1",
+                      text: "Item 2.3.4.2.1",
+                      href: "/items/2-3-4-2.1",
+                      icon: <DiamondIcon />,
+                    },
+                    {
+                      id: "item2.3.4.2.2",
+                      text: "Item 2.3.4.2.2",
+                      href: "/items/2-3-4-2.2",
+                      icon: <DiamondIcon />,
+                    },
+                  ],
+                },
+              ],
+            },
           ],
         },
       ],

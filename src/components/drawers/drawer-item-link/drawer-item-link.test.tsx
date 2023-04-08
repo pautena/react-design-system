@@ -1,11 +1,11 @@
 import React, { ReactElement } from "react";
 import userEvent from "@testing-library/user-event";
-import { DrawerItem } from "./drawer-item";
+import { DrawerItemLink } from "./drawer-item-link";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerItemAvatar, DrawerItemBullet, DrawerItemLabel } from "../drawer.types";
 
-describe("DrawerItem", () => {
+describe("DrawerItemLink", () => {
   const renderComponent = ({
     icon,
     avatar,
@@ -18,7 +18,7 @@ describe("DrawerItem", () => {
     bullet?: DrawerItemBullet;
   } = {}) => {
     return render(
-      <DrawerItem
+      <DrawerItemLink
         text="Lorem ipsum"
         href="/items/1"
         icon={icon}
