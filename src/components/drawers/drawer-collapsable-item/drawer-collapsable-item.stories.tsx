@@ -52,6 +52,13 @@ export const Selected: Story = {
   },
 };
 
+export const PopoverSubmenu: Story = {
+  args: {
+    ...Selected.args,
+    submenuVariant: "popover",
+  },
+};
+
 export const NoSelectedSmall: Story = {
   args: {
     ...NotSelected.args,

@@ -2,14 +2,10 @@ import { List, ListSubheader, ListSubheaderProps, styled, useTheme } from "@mui/
 import React from "react";
 import { DrawerCollapsableItem } from "../drawer-collapsable-item";
 import { DrawerItem } from "../drawer-item";
-import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize, DrawerSubmenuVariant } from "../drawer.types";
 import { DrawerSubheader } from "../drawer-subheader";
 
 export interface DrawerSectionProps {
-  /**
-   * Item size. default to medium
-   */
-  size?: DrawerSize;
   /**
    * Section title
    */
@@ -23,6 +19,14 @@ export interface DrawerSectionProps {
    * Id of the item that has to be marked as selected
    */
   selectedItem?: string;
+  /**
+   * Item size. default to medium
+   */
+  size?: DrawerSize;
+  /**
+   * How the submenu has to be shown. collapsable by default
+   */
+  submenuVariant?: DrawerSubmenuVariant;
 }
 
 /**
@@ -34,6 +38,7 @@ export const DrawerSection = ({
   items,
   selectedItem,
   size = "medium",
+  submenuVariant = "collapse",
 }: DrawerSectionProps) => {
   const { spacing } = useTheme();
   return (
@@ -52,6 +57,7 @@ export const DrawerSection = ({
               <DrawerCollapsableItem
                 key={id}
                 size={size}
+                submenuVariant={submenuVariant}
                 selectedItem={selectedItem}
                 selected={id === selectedItem || childrenSelected}
                 text={text}

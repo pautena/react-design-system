@@ -4,6 +4,7 @@ import { DrawerContent } from "./drawer-content";
 import { mockNav } from "../drawer/drawer.mock";
 import { Box } from "@mui/material";
 import { withMemoryRouter } from "~/storybook";
+import { DrawerProvider } from "../drawer/drawer.provider";
 
 export default {
   title: "Components/Drawers/DrawerContent",
@@ -14,6 +15,11 @@ export default {
       return <Box maxWidth={300}>{<Story />}</Box>;
     },
   ],
+  render: (args) => (
+    <DrawerProvider>
+      <DrawerContent {...args} />
+    </DrawerProvider>
+  ),
   parameters: {
     layout: "fullscreen",
   },
@@ -31,5 +37,12 @@ export const Small: Story = {
   args: {
     ...Default.args,
     size: "small",
+  },
+};
+
+export const SubmenuPopover: Story = {
+  args: {
+    ...Default.args,
+    submenuVariant: "popover",
   },
 };

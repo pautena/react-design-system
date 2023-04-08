@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { MiniDrawer } from ".";
+import { MiniDrawer, miniDrawerSubmenuVariant } from ".";
 import { mockNav } from "../drawer/drawer.mock";
 import { DrawerContent } from "../drawer-content";
 import { DrawerProvider } from "../drawer/drawer.provider";
@@ -9,14 +9,15 @@ import { withMemoryRouter } from "../../../storybook";
 
 interface Props {
   size?: DrawerSize;
+  selectedItem: string;
   open: boolean;
   nav: DrawerNavigation;
 }
 
-const DemoMiniDrawer = ({ nav, open, size = "medium" }: Props) => (
-  <DrawerProvider initialOpen={open}>
+const DemoMiniDrawer = ({ nav, open, selectedItem, size = "medium" }: Props) => (
+  <DrawerProvider initialOpen={open} submenuVariant={miniDrawerSubmenuVariant}>
     <MiniDrawer>
-      <DrawerContent nav={nav} size={size} />
+      <DrawerContent nav={nav} size={size} selectedItem={selectedItem} />
     </MiniDrawer>
   </DrawerProvider>
 );
@@ -31,16 +32,24 @@ export default {
 } satisfies Meta<typeof DemoMiniDrawer>;
 type Story = StoryObj<typeof DemoMiniDrawer>;
 
-export const Default: Story = {
+export const OpenMedium: Story = {
   args: {
+    selectedItem: "item2.3.2",
     nav: mockNav,
     open: true,
   },
 };
 
+export const Closed: Story = {
+  args: {
+    ...OpenMedium.args,
+    open: false,
+  },
+};
+
 export const Small: Story = {
   args: {
-    ...Default.args,
+    ...OpenMedium.args,
     size: "small",
   },
 };

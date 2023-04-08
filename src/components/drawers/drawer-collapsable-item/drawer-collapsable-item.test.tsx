@@ -2,13 +2,18 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { DrawerCollapsableItem } from "./drawer-collapsable-item";
+import { DrawerSubmenuVariant } from "../drawer.types";
 
 interface RenderComponentOptions {
   selected?: boolean;
+  submenuVariant?: DrawerSubmenuVariant;
 }
 
 describe("DrawerCollapsableItem", () => {
-  const renderComponent = ({ selected }: RenderComponentOptions = {}) => {
+  const renderComponent = ({
+    selected,
+    submenuVariant = "collapse",
+  }: RenderComponentOptions = {}) => {
     const items = [
       {
         id: "item2.3.1",
@@ -28,6 +33,7 @@ describe("DrawerCollapsableItem", () => {
     ];
     render(
       <DrawerCollapsableItem
+        submenuVariant={submenuVariant}
         selectedItem="item2.3.2"
         text="lorem ipsum"
         items={items}
@@ -50,13 +56,32 @@ describe("DrawerCollapsableItem", () => {
     expect(screen.queryByText(/item 2.3.3/i)).toBeFalsy();
   });
 
-  it("should render the items if the user click the button", async () => {
-    renderComponent();
+  describe("expandable submenus", () => {
+    it.each([["collapse" as DrawerSubmenuVariant], ["popover" as DrawerSubmenuVariant]])(
+      "should render the items if submenuVariant='%s'",
+      async (submenuVariant: DrawerSubmenuVariant) => {
+        renderComponent({ submenuVariant });
 
-    await userEvent.click(screen.getByRole("button"));
+        await userEvent.click(screen.getByRole("button", { name: /lorem ipsum/i }));
 
-    expect(screen.getByText(/item 2.3.1/i)).toBeVisible();
-    expect(screen.getByText(/item 2.3.2/i)).toBeVisible();
-    expect(screen.getByText(/item 2.3.3/i)).toBeVisible();
+        expect(screen.getByRole("link", { name: /item 2.3.1/i })).toBeVisible();
+        expect(screen.getByRole("link", { name: /item 2.3.2/i })).toBeVisible();
+        expect(screen.getByRole("link", { name: /item 2.3.3/i })).toBeVisible();
+      },
+    );
+
+    it.each([
+      ["lorem ipsum collapse submenu", "collapse" as DrawerSubmenuVariant],
+      ["lorem ipsum popover submenu", "popover" as DrawerSubmenuVariant],
+    ])(
+      "should render a '%s' if submenuVariant='%s'",
+      async (label: string, submenuVariant: DrawerSubmenuVariant) => {
+        renderComponent({ submenuVariant });
+
+        await userEvent.click(screen.getByRole("button", { name: /lorem ipsum/i }));
+
+        expect(screen.getByLabelText(label)).toBeVisible();
+      },
+    );
   });
 });

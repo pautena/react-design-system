@@ -36,4 +36,26 @@ export const SectionItems: DrawerNavigationItem[] = [
       variant: "error",
     },
   },
+  {
+    id: "item1.5",
+    text: "Item 5",
+    icon: <DiamondIcon />,
+    items: [
+      {
+        id: "item1.5.1",
+        text: "Item 5.1",
+        href: "/items/1-5-1",
+      },
+      {
+        id: "item1.5.2",
+        text: "Item 5.2",
+        href: "/items/1-5-2",
+      },
+      {
+        id: "item1.5.3",
+        text: "Item 5.3",
+        href: "/items/1-5-3",
+      },
+    ],
+  },
 ];

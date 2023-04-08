@@ -9,6 +9,13 @@ import {
   listSubheaderClasses,
 } from "@mui/material";
 import { labelClasses, bulletClasses } from "../../data-display";
+import { drawerCollapsableItemClasses } from "../drawer-collapsable-item";
+import { DrawerSubmenuVariantProp } from "../drawer.types";
+
+export const miniDrawerSubmenuVariant: DrawerSubmenuVariantProp = {
+  open: "collapse",
+  closed: "popover",
+};
 
 export const MiniDrawer = styled(Drawer)(({ theme }) => {
   const { isOpen } = useDrawer();
@@ -46,6 +53,7 @@ export const MiniDrawer = styled(Drawer)(({ theme }) => {
     [`& .${labelClasses.root}`]: hideIfClosed,
     [`& .${bulletClasses.root}`]: hideIfClosed,
     [`& .${listSubheaderClasses.root}`]: hideIfClosed,
+    [`& .${drawerCollapsableItemClasses.collapseIcon}`]: hideIfClosed,
     [`& .${listItemTextClasses.root}`]: {
       opacity: isOpen ? 1 : 0,
     },

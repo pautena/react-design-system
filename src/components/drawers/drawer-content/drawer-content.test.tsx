@@ -3,10 +3,15 @@ import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { mockNav } from "../drawer/drawer.mock";
 import { DrawerContent } from "./drawer-content";
+import { DrawerProvider } from "../drawer/drawer.provider";
 
 describe("DrawerContent", () => {
   const renderComponent = () => {
-    return render(<DrawerContent nav={mockNav} />);
+    return render(
+      <DrawerProvider>
+        <DrawerContent nav={mockNav} />
+      </DrawerProvider>,
+    );
   };
 
   it.each([[/section 2/i], [/section avatar/i]])(
