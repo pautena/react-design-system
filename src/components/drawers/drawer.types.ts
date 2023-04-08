@@ -48,6 +48,10 @@ export interface DrawerNavigation {
 
 export interface DrawerContentProps {
   /**
+   * Item size. default to medium
+   */
+  size?: DrawerSize;
+  /**
    * Item currently selected in the navigation
    */
   selectedItem?: string;

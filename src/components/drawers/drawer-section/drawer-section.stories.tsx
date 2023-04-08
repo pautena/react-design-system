@@ -26,3 +26,10 @@ export const WihtoutTitle = {
     items: SectionItems,
   },
 };
+
+export const Small: Story = {
+  args: {
+    ...Default.args,
+    size: "small",
+  },
+};

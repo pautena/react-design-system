@@ -8,11 +8,18 @@ import { DrawerContentComponent, DrawerContentProps } from "../drawer.types";
 export const DrawerContent: DrawerContentComponent = ({
   nav: { items },
   selectedItem,
+  size = "medium",
 }: DrawerContentProps) => {
   return (
     <>
       {items.map(({ title, items }, i) => (
-        <DrawerSection key={i} title={title} items={items} selectedItem={selectedItem} />
+        <DrawerSection
+          key={i}
+          title={title}
+          items={items}
+          selectedItem={selectedItem}
+          size={size}
+        />
       ))}
     </>
   );

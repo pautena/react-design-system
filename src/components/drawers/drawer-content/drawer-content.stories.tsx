@@ -26,3 +26,10 @@ export const Default: Story = {
     nav: mockNav,
   },
 };
+
+export const Small: Story = {
+  args: {
+    ...Default.args,
+    size: "small",
+  },
+};

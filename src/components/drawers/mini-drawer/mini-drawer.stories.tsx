@@ -4,18 +4,19 @@ import { MiniDrawer } from ".";
 import { mockNav } from "../drawer/drawer.mock";
 import { DrawerContent } from "../drawer-content";
 import { DrawerProvider } from "../drawer/drawer.provider";
-import { DrawerNavigation } from "../drawer.types";
+import { DrawerNavigation, DrawerSize } from "../drawer.types";
 import { withMemoryRouter } from "../../../storybook";
 
 interface Props {
+  size?: DrawerSize;
   open: boolean;
   nav: DrawerNavigation;
 }
 
-const DemoMiniDrawer = ({ nav, open }: Props) => (
+const DemoMiniDrawer = ({ nav, open, size = "medium" }: Props) => (
   <DrawerProvider initialOpen={open}>
     <MiniDrawer>
-      <DrawerContent nav={nav} />
+      <DrawerContent nav={nav} size={size} />
     </MiniDrawer>
   </DrawerProvider>
 );
@@ -34,5 +35,12 @@ export const Default: Story = {
   args: {
     nav: mockNav,
     open: true,
+  },
+};
+
+export const Small: Story = {
+  args: {
+    ...Default.args,
+    size: "small",
   },
 };

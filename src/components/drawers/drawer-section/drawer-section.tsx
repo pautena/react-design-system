@@ -2,9 +2,13 @@ import { List, ListSubheader } from "@mui/material";
 import React from "react";
 import { DrawerCollapsableItem } from "../drawer-collapsable-item";
 import { DrawerItem } from "../drawer-item";
-import { DrawerNavigationItem } from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 
 export interface DrawerSectionProps {
+  /**
+   * Item size. default to medium
+   */
+  size?: DrawerSize;
   /**
    * Section title
    */
@@ -24,7 +28,12 @@ export interface DrawerSectionProps {
  * Render a group of items inside the drawer
  * with an optional title
  */
-export const DrawerSection = ({ title, items, selectedItem }: DrawerSectionProps) => {
+export const DrawerSection = ({
+  title,
+  items,
+  selectedItem,
+  size = "medium",
+}: DrawerSectionProps) => {
   return (
     <>
       {title && <ListSubheader role="heading">{title}</ListSubheader>}
@@ -36,6 +45,7 @@ export const DrawerSection = ({ title, items, selectedItem }: DrawerSectionProps
             return (
               <DrawerCollapsableItem
                 key={id}
+                size={size}
                 selectedItem={selectedItem}
                 selected={id === selectedItem || childrenSelected}
                 text={text}
@@ -49,6 +59,7 @@ export const DrawerSection = ({ title, items, selectedItem }: DrawerSectionProps
               <DrawerItem
                 key={id}
                 selected={id === selectedItem}
+                size={size}
                 text={text}
                 icon={icon}
                 avatar={avatar}
