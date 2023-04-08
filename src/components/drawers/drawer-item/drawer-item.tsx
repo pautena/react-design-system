@@ -82,8 +82,7 @@ export const DrawerItem = ({
   size = "medium",
   sx,
 }: DrawerItemProps) => {
-  const { palette } = useTheme();
-  const { color, fontWeight } = getDrawerItemColors(palette, selected);
+  const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
   return (
     <ListItemButton
       LinkComponent={DrawerItemLink}

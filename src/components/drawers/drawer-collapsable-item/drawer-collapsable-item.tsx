@@ -50,8 +50,7 @@ export const DrawerCollapsableItem = ({
   size = "medium",
 }: DrawerCollapsableItemProps) => {
   const [open, setOpen] = useState(false);
-  const { palette } = useTheme();
-  const { color, fontWeight } = getDrawerItemColors(palette, selected);
+  const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { FunctionComponent, ReactElement } from "react";
 import { BulletVariant, LabelVariant } from "../data-display";
-import { DrawerProps as MuiDrawerProps, Palette } from "@mui/material";
+import { DrawerProps as MuiDrawerProps, Palette, Theme } from "@mui/material";
 
 export type DrawerSize = "small" | "medium";
 
@@ -70,7 +70,7 @@ export interface DrawerProps extends MuiDrawerProps {
 export type DrawerComponent = FunctionComponent<DrawerProps>;
 export type DrawerElement = ReactElement<DrawerProps, DrawerComponent>;
 
-export const getDrawerItemColors = (palette: Palette, selected: boolean | undefined) => ({
-  color: selected ? palette.primary.main : undefined,
-  fontWeight: selected ? 600 : 400,
+export const getDrawerItemColors = (theme: Theme, selected: boolean | undefined) => ({
+  color: selected ? theme.palette.primary.main : undefined,
+  fontWeight: selected ? theme.typography.fontWeightBold : theme.typography.fontWeightMedium,
 });

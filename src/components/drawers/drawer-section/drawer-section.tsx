@@ -1,8 +1,9 @@
-import { List, ListSubheader } from "@mui/material";
+import { List, ListSubheader, ListSubheaderProps, styled, useTheme } from "@mui/material";
 import React from "react";
 import { DrawerCollapsableItem } from "../drawer-collapsable-item";
 import { DrawerItem } from "../drawer-item";
 import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
+import { DrawerSubheader } from "../drawer-subheader";
 
 export interface DrawerSectionProps {
   /**
@@ -34,10 +35,15 @@ export const DrawerSection = ({
   selectedItem,
   size = "medium",
 }: DrawerSectionProps) => {
+  const { spacing } = useTheme();
   return (
     <>
-      {title && <ListSubheader role="heading">{title}</ListSubheader>}
-      <List>
+      {title && (
+        <DrawerSubheader size={size} role="heading">
+          {title}
+        </DrawerSubheader>
+      )}
+      <List sx={{ paddingTop: size === "small" ? spacing(0) : undefined }}>
         {items.map((item) => {
           if ("items" in item) {
             const { id, text, icon, items } = item;
