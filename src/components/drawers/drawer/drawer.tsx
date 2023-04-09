@@ -4,7 +4,7 @@ import { Drawer as MuiDrawer, Divider, IconButton, useTheme } from "@mui/materia
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps } from "../drawer.types";
 import { useDrawer } from "./drawer.context";
-import { closedMixin, drawerWidth, openedMixin } from "./drawer.mixins";
+import { closedMixin, openedMixin } from "./drawer.mixins";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -17,15 +17,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 export const Drawer: DrawerComponent = ({
   children,
   closeState = "close",
-  width = drawerWidth,
   ...rest
 }: DrawerProps) => {
   const theme = useTheme();
-  const { state, setState } = useDrawer();
+  const { state, setState, drawerWidth } = useDrawer();
   const isOpen = state === "open";
 
   const sx = {
-    width,
+    width: drawerWidth,
     ...(isOpen && {
       ...openedMixin(theme),
       "& .MuiDrawer-paper": openedMixin(theme),

@@ -11,7 +11,6 @@ export interface AppBarProps extends MuiAppBarProps {
   search?: boolean;
   profile?: AppBarProfile;
   moveWithDrawer?: boolean;
-  drawerWidth?: number;
   onClickSignOut?: () => void;
 }
 

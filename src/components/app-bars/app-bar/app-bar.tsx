@@ -14,7 +14,6 @@ import { useTheme } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { AppBarComponent, AppBarProps } from "./app-bar.types";
 import { useDrawer } from "../../drawers/drawer/drawer.context";
-import { drawerWidth } from "~/components/drawers/drawer/drawer.mixins";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -63,13 +62,12 @@ export const AppBar: AppBarComponent = ({
   profile,
   moveWithDrawer = false,
   onClickSignOut = () => null,
-  drawerWidth: drawerWithProp = drawerWidth,
   sx,
   ...rest
 }: AppBarProps) => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { state, open } = useDrawer();
+  const { state, open, drawerWidth } = useDrawer();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -87,8 +85,8 @@ export const AppBar: AppBarComponent = ({
         duration: theme.transitions.duration.leavingScreen,
       }),
       ...(state === "open" && {
-        marginLeft: drawerWithProp,
-        width: `calc(100% - ${drawerWithProp}px)`,
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
         transition: theme.transitions.create(["width", "margin"], {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.enteringScreen,

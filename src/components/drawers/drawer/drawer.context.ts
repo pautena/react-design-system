@@ -3,6 +3,7 @@ import { DrawerState } from "../drawer.types";
 
 export interface DrawerContextProps {
   state: DrawerState;
+  drawerWidth: number;
   close(): void;
   collapse(): void;
   open(): void;
