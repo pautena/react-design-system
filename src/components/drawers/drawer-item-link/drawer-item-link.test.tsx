@@ -19,7 +19,7 @@ describe("DrawerItemLink", () => {
   } = {}) => {
     return render(
       <DrawerItemLink
-        text="Lorem ipsum"
+        text="Item 1"
         href="/items/1"
         icon={icon}
         bullet={bullet}
@@ -32,13 +32,13 @@ describe("DrawerItemLink", () => {
   it("would render the text", () => {
     renderComponent();
 
-    expect(screen.getByRole("link", { name: /lorem ipsum/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /item 1/i })).toBeInTheDocument();
   });
 
   it("would navigate to the href when is clicked", async () => {
     const { history } = renderComponent();
 
-    await userEvent.click(screen.getByRole("link", { name: /lorem ipsum/i }));
+    await userEvent.click(screen.getByRole("link", { name: /item 1/i }));
 
     expect(history.location.pathname).toBe("/items/1");
   });

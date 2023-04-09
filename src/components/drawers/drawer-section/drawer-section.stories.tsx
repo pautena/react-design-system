@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSection } from "./drawer-section";
 import { withContainer } from "../../../storybook";
 import { withMemoryRouter } from "~/storybook";
-import { SectionItems } from "./drawer-section.mock";
+import { mockCollapsableDrawerNavigationSection } from "../drawer.mock";
 
 export default {
   title: "Components/Drawers/DrawerSection",
@@ -14,16 +14,16 @@ export default {
 } satisfies Meta<typeof DrawerSection>;
 type Story = StoryObj<typeof DrawerSection>;
 
-export const Default: Story = {
+export const WihtoutTitle = {
   args: {
-    title: "Lorem ipsum",
-    items: SectionItems,
+    items: mockCollapsableDrawerNavigationSection.items,
   },
 };
 
-export const WihtoutTitle = {
+export const Default: Story = {
   args: {
-    items: SectionItems,
+    ...WihtoutTitle.args,
+    title: "Lorem ipsum",
   },
 };
 

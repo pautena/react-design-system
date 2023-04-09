@@ -2,7 +2,7 @@ import React from "react";
 import { Drawer } from "./drawer";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerProvider } from "./drawer.provider";
-import { mockNav } from "../drawer.mock";
+import { mockDrawerNavigation } from "../drawer.mock";
 import { Box, Button, Typography, createTheme } from "@mui/material";
 import { UndefinedProvider, useDrawer } from "./drawer.context";
 import userEvent from "@testing-library/user-event";
@@ -35,7 +35,7 @@ describe("Drawer", () => {
       <DrawerProvider initialOpen={initialOpen}>
         <Box>
           <Drawer>
-            <DummyDrawerContent nav={mockNav} />
+            <DummyDrawerContent nav={mockDrawerNavigation} />
           </Drawer>
           <TestContent />
         </Box>
@@ -80,7 +80,7 @@ describe("DrawerContext", () => {
       render(
         <Box>
           <Drawer>
-            <DummyDrawerContent nav={mockNav} />
+            <DummyDrawerContent nav={mockDrawerNavigation} />
           </Drawer>
           <TestContent />
         </Box>,

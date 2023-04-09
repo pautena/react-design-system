@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
-import { mockNav } from "../drawer.mock";
+import { mockDrawerNavigation } from "../drawer.mock";
 import { Box } from "@mui/material";
 import { withMemoryRouter } from "~/storybook";
 import { DrawerProvider } from "../drawer-provider/drawer.provider";
@@ -29,7 +29,7 @@ type Story = StoryObj<typeof DrawerContent>;
 export const Default: Story = {
   args: {
     selectedItem: "item2.3.2",
-    nav: mockNav,
+    nav: mockDrawerNavigation,
   },
 };
 

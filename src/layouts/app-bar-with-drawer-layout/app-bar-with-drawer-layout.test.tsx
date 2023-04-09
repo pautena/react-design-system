@@ -4,7 +4,7 @@ import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "~/tests/assertions";
 import { MiniDrawer, DrawerContent, MiniAppBar, ContentPlaceholder } from "~/components";
-import { mockNav } from "~/components/drawers/drawer.mock";
+import { mockDrawerNavigation } from "~/components/drawers/drawer.mock";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
 
 describe("AppBarWithDrawerLayout", () => {
@@ -12,7 +12,7 @@ describe("AppBarWithDrawerLayout", () => {
     return render(
       <AppBarWithDrawerLayout>
         <MiniDrawer>
-          <DrawerContent nav={mockNav} />
+          <DrawerContent nav={mockDrawerNavigation} />
         </MiniDrawer>
         <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
         <ContentPlaceholder p={3} />

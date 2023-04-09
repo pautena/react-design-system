@@ -6,6 +6,7 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { withMemoryRouter } from "~/storybook";
+import { mockCollapsableDrawerNavigationItem } from "../drawer.mock";
 
 export default {
   title: "Components/Drawers/DrawerCollapsableItem",
@@ -18,37 +19,14 @@ export default {
 type Story = StoryObj<typeof DrawerCollapsableItem>;
 
 export const NotSelected: Story = {
-  args: {
-    text: "Item 2.3",
-    icon: <AccountTreeIcon />,
-    items: [
-      {
-        id: "item2.3.1",
-        text: "Item 2.3.1",
-        href: "/items/2-3-1",
-        icon: <DiamondIcon />,
-      },
-      {
-        id: "item2.3.2",
-        text: "Item 2.3.2",
-        href: "/items/2-3-2",
-        icon: <MenuBookIcon />,
-      },
-      {
-        id: "item2.3.3",
-        text: "Item 2.3.3",
-        href: "/items/2-3-3",
-        icon: <DiamondIcon />,
-      },
-    ],
-  },
+  args: mockCollapsableDrawerNavigationItem,
 };
 
 export const Selected: Story = {
   args: {
     ...NotSelected.args,
     selected: true,
-    selectedItem: "item2.3.3",
+    selectedItem: "item2.3.4.2.2",
   },
 };
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
-import { mockNav } from "../drawer.mock";
+import { mockDrawerNavigation } from "../drawer.mock";
 import { DrawerContent } from "./drawer-content";
 import { DrawerProvider } from "../drawer-provider/drawer.provider";
 
@@ -9,7 +9,7 @@ describe("DrawerContent", () => {
   const renderComponent = () => {
     return render(
       <DrawerProvider>
-        <DrawerContent nav={mockNav} />
+        <DrawerContent nav={mockDrawerNavigation} />
       </DrawerProvider>,
     );
   };

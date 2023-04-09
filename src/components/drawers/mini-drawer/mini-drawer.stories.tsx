@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { MiniDrawer, miniDrawerSubmenuVariant } from ".";
-import { mockNav } from "../drawer.mock";
+import { mockDrawerNavigation } from "../drawer.mock";
 import { DrawerContent } from "../drawer-content";
 import { DrawerProvider } from "../drawer-provider/drawer.provider";
 import { DrawerNavigation, DrawerSize } from "../drawer.types";
@@ -35,7 +35,7 @@ type Story = StoryObj<typeof DemoMiniDrawer>;
 export const OpenMedium: Story = {
   args: {
     selectedItem: "item2.3.2",
-    nav: mockNav,
+    nav: mockDrawerNavigation,
     open: true,
   },
 };

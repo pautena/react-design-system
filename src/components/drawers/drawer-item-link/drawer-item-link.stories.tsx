@@ -17,7 +17,7 @@ type Story = StoryObj<typeof DrawerItemLink>;
 
 export const OnlyText: Story = {
   args: {
-    text: "Lorem ipsum",
+    text: "Item 1",
     href: "/items/1",
   },
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
-import { mockNav } from "../../components/drawers/drawer.mock";
+import { mockDrawerNavigation } from "../../components/drawers/drawer.mock";
 import { MiniAppBar } from "../../components/app-bars/app-bar";
 import { ContentPlaceholder, DrawerContent, MiniDrawer } from "../../components";
 import { withMemoryRouter } from "~/storybook";
@@ -16,7 +16,7 @@ export default {
   render: () => (
     <AppBarWithDrawerLayout>
       <MiniDrawer>
-        <DrawerContent nav={mockNav} />
+        <DrawerContent nav={mockDrawerNavigation} />
       </MiniDrawer>
       <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
       <ContentPlaceholder p={3} />
