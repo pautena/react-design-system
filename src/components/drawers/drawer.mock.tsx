@@ -29,6 +29,43 @@ export const mockLinkDrawerNavigationItem: DrawerNavigationItemLink = {
   href: "/items/1-1",
 };
 
+export const mockLinkNoIconDrawerNavigationItem: DrawerNavigationItemLink = {
+  id: "item1.1",
+  text: "Item 1.1",
+  href: "/items/1-1",
+};
+
+export const mockLinkBulletDrawerNavigationItem: DrawerNavigationItem = {
+  id: "item1.3",
+  text: "Item 1.3",
+  href: "/items/1-3",
+  icon: <BrushIcon />,
+  bullet: {
+    variant: "secondary",
+  },
+};
+
+export const mockLinkLabelDrawerNavigationItem: DrawerNavigationItem = {
+  id: "item2.1",
+  text: "Item 2.1",
+  href: "/items/2-1",
+  icon: <FlightTakeoffIcon />,
+  label: {
+    text: "10",
+    variant: "error",
+  },
+};
+
+export const mockLinkAvatarDrawerNavigationItem: DrawerNavigationItem = {
+  id: "item.a.1",
+  text: "Avatar 1",
+  href: "/items/a-1",
+  avatar: {
+    src: "https://c.pxhere.com/images/f6/e0/022ab77c391925931fe227c97ab4-1447675.jpg!d",
+    alt: "Avatar 1",
+  },
+};
+
 export const mockListDrawerNavigationItems: DrawerNavigationItem[] = [
   mockLinkDrawerNavigationItem,
   {
@@ -37,15 +74,7 @@ export const mockListDrawerNavigationItems: DrawerNavigationItem[] = [
     href: "/items/1-2",
     icon: <AccessAlarmIcon />,
   },
-  {
-    id: "item1.3",
-    text: "Item 1.3",
-    href: "/items/1-3",
-    icon: <BrushIcon />,
-    bullet: {
-      variant: "secondary",
-    },
-  },
+  mockLinkBulletDrawerNavigationItem,
   {
     id: "item1.4",
     text: "Item 1.4",
@@ -84,16 +113,7 @@ export const mockListDrawerNavigationSection: DrawerNavigationSection = {
 export const mockCollapsableDrawerNavigationSection: DrawerNavigationSection = {
   title: "Section 2",
   items: [
-    {
-      id: "item2.1",
-      text: "Item 2.1",
-      href: "/items/2-1",
-      icon: <FlightTakeoffIcon />,
-      label: {
-        text: "10",
-        variant: "error",
-      },
-    },
+    mockLinkLabelDrawerNavigationItem,
     {
       id: "item2.2",
       text: "Item 2.2",
@@ -151,15 +171,7 @@ export const mockCollapsableDrawerNavigationSection: DrawerNavigationSection = {
 export const mockAvatarsDrawerNavigationSection: DrawerNavigationSection = {
   title: "Section avatar",
   items: [
-    {
-      id: "item.a.1",
-      text: "Avatar 1",
-      href: "/items/a-1",
-      avatar: {
-        src: "https://c.pxhere.com/images/f6/e0/022ab77c391925931fe227c97ab4-1447675.jpg!d",
-        alt: "Avatar 1",
-      },
-    },
+    mockLinkAvatarDrawerNavigationItem,
     {
       id: "item.a.2",
       text: "Avatar 2",

@@ -9,7 +9,7 @@ import {
   listSubheaderClasses,
 } from "@mui/material";
 import { labelClasses, bulletClasses } from "../../data-display";
-import { drawerCollapsableItemClasses } from "../drawer-collapsable-item";
+import { drawerCollapsableItemClasses } from "../drawer-item";
 import { DrawerSubmenuVariantProp } from "../drawer.types";
 
 export const miniDrawerSubmenuVariant: DrawerSubmenuVariantProp = {

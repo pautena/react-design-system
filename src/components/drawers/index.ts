@@ -1,6 +1,5 @@
 export * from "./drawer-provider";
 export * from "./drawer-content";
-export * from "./drawer-item-link";
 export * from "./drawer-section";
 export * from "./drawer.types";
 export * from "./mini-drawer";

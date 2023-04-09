@@ -10,14 +10,12 @@ import {
 import React, { ReactElement, useState, useRef } from "react";
 import {
   DrawerNavigationItem,
-  DrawerNavigationItemLink,
   DrawerSize,
   DrawerSubmenuVariant,
   getDrawerItemColors,
 } from "../drawer.types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { DrawerItemLink } from "../drawer-item-link";
 import { DrawerItem } from "../drawer-item/drawer-item";
 
 export interface DrawerCollapsableItemProps {
