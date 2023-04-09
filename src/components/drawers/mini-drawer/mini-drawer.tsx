@@ -1,7 +1,7 @@
-import { Drawer } from "../drawer/drawer";
+import { Drawer } from "../drawer-provider/drawer";
 import { styled } from "@mui/material/styles";
-import { drawerWidth, openedMixin, closedMixin } from "../drawer/drawer.mixins";
-import { useDrawer } from "../drawer/drawer.context";
+import { drawerWidth, openedMixin, closedMixin } from "../drawer-provider/drawer.mixins";
+import { useDrawer } from "../drawer-provider/drawer.context";
 import {
   listItemButtonClasses,
   listItemIconClasses,

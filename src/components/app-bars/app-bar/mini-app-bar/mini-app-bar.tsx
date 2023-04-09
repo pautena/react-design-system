@@ -1,9 +1,9 @@
 import { styled } from "@mui/material/styles";
 import { AppBar } from "../app-bar";
 import { AppBarProps } from "@mui/material";
-import { drawerWidth } from "../../../drawers/drawer/drawer.mixins";
+import { drawerWidth } from "../../../drawers/drawer-provider/drawer.mixins";
 import { AppBarComponent } from "../app-bar.types";
-import { useDrawer } from "../../../drawers/drawer/drawer.context";
+import { useDrawer } from "../../../drawers/drawer-provider/drawer.context";
 
 export const MiniAppBar: AppBarComponent = styled(AppBar)<AppBarProps>(({ theme }) => {
   const { isOpen } = useDrawer();

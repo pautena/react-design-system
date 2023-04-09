@@ -1,10 +1,10 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
-import { mockNav } from "../drawer/drawer.mock";
+import { mockNav } from "../drawer.mock";
 import { Box } from "@mui/material";
 import { withMemoryRouter } from "~/storybook";
-import { DrawerProvider } from "../drawer/drawer.provider";
+import { DrawerProvider } from "../drawer-provider/drawer.provider";
 
 export default {
   title: "Components/Drawers/DrawerContent",

@@ -1,7 +1,7 @@
 import React from "react";
 import { DrawerSection } from "../drawer-section";
 import { DrawerContentComponent, DrawerContentProps } from "../drawer.types";
-import { useDrawer } from "../drawer/drawer.context";
+import { useDrawer } from "../drawer-provider/drawer.context";
 
 /**
  * Content to be shown inside a navigation

@@ -1,9 +1,9 @@
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
-import { mockNav } from "../drawer/drawer.mock";
+import { mockNav } from "../drawer.mock";
 import { DrawerContent } from "./drawer-content";
-import { DrawerProvider } from "../drawer/drawer.provider";
+import { DrawerProvider } from "../drawer-provider/drawer.provider";
 
 describe("DrawerContent", () => {
   const renderComponent = () => {

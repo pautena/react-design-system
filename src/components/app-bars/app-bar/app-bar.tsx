@@ -12,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { AppBarComponent, AppBarProps } from "./app-bar.types";
-import { useDrawer } from "../../drawers/drawer/drawer.context";
+import { useDrawer } from "../../drawers/drawer-provider/drawer.context";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",

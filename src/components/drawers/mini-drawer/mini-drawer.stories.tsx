@@ -1,9 +1,9 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { MiniDrawer, miniDrawerSubmenuVariant } from ".";
-import { mockNav } from "../drawer/drawer.mock";
+import { mockNav } from "../drawer.mock";
 import { DrawerContent } from "../drawer-content";
-import { DrawerProvider } from "../drawer/drawer.provider";
+import { DrawerProvider } from "../drawer-provider/drawer.provider";
 import { DrawerNavigation, DrawerSize } from "../drawer.types";
 import { withMemoryRouter } from "../../../storybook";
 

@@ -2,12 +2,21 @@ import React from "react";
 import { Drawer } from "./drawer";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerProvider } from "./drawer.provider";
-import { DummyDrawerContent, mockNav } from "./drawer.mock";
-import { Box, Button, createTheme } from "@mui/material";
+import { mockNav } from "../drawer.mock";
+import { Box, Button, Typography, createTheme } from "@mui/material";
 import { UndefinedProvider, useDrawer } from "./drawer.context";
 import userEvent from "@testing-library/user-event";
 import { openedMixin, closedMixin } from "./drawer.mixins";
 import { mockConsoleError } from "~/tests/mocks";
+import { DrawerContentComponent } from "../drawer.types";
+
+const DummyDrawerContent: DrawerContentComponent = () => {
+  return (
+    <Box>
+      <Typography variant="h6">Dummy Drawer Content</Typography>
+    </Box>
+  );
+};
 
 const TestContent = () => {
   const { open, close } = useDrawer();
