@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "~/tests/assertions";
-import { Drawer, DrawerContent, MiniAppBar, ContentPlaceholder } from "~/components";
+import { Drawer, DrawerContent, AppBar, ContentPlaceholder } from "~/components";
 import { mockDrawerNavigation } from "~/components/drawers/drawer.mock";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
 
@@ -13,7 +13,7 @@ describe("AppBarWithDrawerLayout", () => {
         <Drawer>
           <DrawerContent nav={mockDrawerNavigation} />
         </Drawer>
-        <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
+        <AppBar title="Lorem ipsum" moveWithDrawer menu />
         <ContentPlaceholder p={3} />
       </AppBarWithDrawerLayout>,
     );

@@ -10,9 +10,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { useTheme } from "@mui/material";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import { AppBarComponent, AppBarProps } from "./app-bar.types";
 import { useDrawer } from "../../drawers/drawer/drawer.context";
+import { drawerWidth } from "~/components/drawers/drawer/drawer.mixins";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -59,9 +61,13 @@ export const AppBar: AppBarComponent = ({
   title,
   menu = false,
   profile,
+  moveWithDrawer = false,
   onClickSignOut = () => null,
+  drawerWidth: drawerWithProp = drawerWidth,
+  sx,
   ...rest
 }: AppBarProps) => {
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const { state, open } = useDrawer();
 
@@ -73,8 +79,26 @@ export const AppBar: AppBarComponent = ({
     setAnchorEl(null);
   };
 
+  const rootSx =
+    (moveWithDrawer && {
+      zIndex: theme.zIndex.drawer + 1,
+      transition: theme.transitions.create(["width", "margin"], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      ...(state === "open" && {
+        marginLeft: drawerWithProp,
+        width: `calc(100% - ${drawerWithProp}px)`,
+        transition: theme.transitions.create(["width", "margin"], {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+      }),
+    }) ||
+    {};
+
   return (
-    <MuiAppBar {...rest}>
+    <MuiAppBar {...rest} sx={{ ...sx, ...rootSx }}>
       <Toolbar>
         {menu && (
           <IconButton
