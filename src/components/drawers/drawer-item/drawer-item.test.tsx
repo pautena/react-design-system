@@ -7,20 +7,27 @@ import {
   mockLinkLabelDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
 } from "../drawer.mock";
-import { DrawerNavigationItem, DrawerSubmenuVariant } from "../drawer.types";
+import { DrawerNavigationItem, DrawerState, DrawerSubmenuVariant } from "../drawer.types";
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerItem } from "./drawer-item";
+import { DrawerProvider } from "../drawer-provider";
 
 describe("DrawerItem", () => {
   const renderComponent = ({
     item,
     submenuVariant = "collapse",
+    initialState = "open",
   }: {
     item: DrawerNavigationItem;
     submenuVariant?: DrawerSubmenuVariant;
+    initialState?: DrawerState;
   }) => {
-    return render(<DrawerItem item={item} submenuVariant={submenuVariant} />);
+    return render(
+      <DrawerProvider initialState={initialState}>
+        <DrawerItem item={item} submenuVariant={submenuVariant} />
+      </DrawerProvider>,
+    );
   };
 
   describe("collapsable item", () => {
@@ -67,13 +74,21 @@ describe("DrawerItem", () => {
   });
 
   describe("link item", () => {
-    it("would render the text", () => {
-      renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
+    describe("title", () => {
+      it("should render the text", () => {
+        renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
-      expect(screen.getByRole("link", { name: /item 1.1/i })).toBeInTheDocument();
+        expect(screen.getByRole("link", { name: /item 1.1/i })).toBeVisible();
+      });
+
+      it("shouldn't render the text if the drawer is collapsed", () => {
+        renderComponent({ item: mockLinkNoIconDrawerNavigationItem, initialState: "collapse" });
+
+        expect(screen.queryByRole("link", { name: /item 1.1/i })).not.toBeInTheDocument();
+      });
     });
 
-    it("would navigate to the href when is clicked", async () => {
+    it("should navigate to the href when is clicked", async () => {
       const { history } = renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
       await userEvent.click(screen.getByRole("link", { name: /item 1.1/i }));
@@ -82,60 +97,84 @@ describe("DrawerItem", () => {
     });
 
     describe("icon", () => {
-      it("would render an icon when is set", () => {
+      it("should render an icon when is set", () => {
         renderComponent({ item: mockLinkDrawerNavigationItem });
 
-        expect(screen.getByTestId("DiamondIcon")).toBeInTheDocument();
+        expect(screen.getByTestId("DiamondIcon")).toBeVisible();
       });
 
-      it("wouldn't render an icon if is not set", () => {
+      it("shouldn't render an icon if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
         expect(screen.queryByTestId("DiamondIcon")).not.toBeInTheDocument();
       });
+
+      it("should render an icon if the drawer is collapsed", () => {
+        renderComponent({ item: mockLinkDrawerNavigationItem, initialState: "collapse" });
+
+        expect(screen.getByTestId("DiamondIcon")).toBeVisible();
+      });
     });
 
     describe("avatar", () => {
-      it("would render an avatar when is set", () => {
+      it("should render an avatar when is set", () => {
         renderComponent({ item: mockLinkAvatarDrawerNavigationItem });
 
-        expect(screen.getByRole("img", { name: /avatar 1/i })).toBeInTheDocument();
+        expect(screen.getByRole("img", { name: /avatar 1/i })).toBeVisible();
       });
 
-      it("wouldn't render an avatar if is not set", () => {
+      it("shouldn't render an avatar if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
         expect(screen.queryByRole("img", { name: /avatar 1/i })).not.toBeInTheDocument();
       });
+
+      it("should render an avatar if the drawer is collapsed", () => {
+        renderComponent({ item: mockLinkAvatarDrawerNavigationItem, initialState: "collapse" });
+
+        expect(screen.getByRole("img", { name: /avatar 1/i })).toBeVisible();
+      });
     });
 
     describe("label", () => {
-      it("would render a label when is set", () => {
+      it("should render a label when is set", () => {
         renderComponent({ item: mockLinkLabelDrawerNavigationItem });
 
         const label = screen.getByRole("label", { name: /10/i });
-        expect(label).toBeInTheDocument();
+        expect(label).toBeVisible();
         expect(label).toHaveAttribute("aria-describedby", "error");
       });
 
-      it("wouldn't render a label if is not set", () => {
+      it("shouldn't render a label if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
+
+        expect(screen.queryByRole("label", { name: /10/i })).not.toBeInTheDocument();
+      });
+
+      it("shouldn't render a label if the drawer is collapsed", () => {
+        renderComponent({ item: mockLinkLabelDrawerNavigationItem, initialState: "collapse" });
 
         expect(screen.queryByRole("label", { name: /10/i })).not.toBeInTheDocument();
       });
     });
 
     describe("bullet", () => {
-      it("would render a bullet when is set", () => {
+      it("should render a bullet when is set", () => {
         renderComponent({ item: mockLinkBulletDrawerNavigationItem });
 
         const bullet = screen.getByRole("bullet");
-        expect(bullet).toBeInTheDocument();
+        expect(bullet).toBeVisible();
         expect(bullet).toHaveAttribute("aria-describedby", "secondary");
       });
 
-      it("wouldn't render a bullet if is not set", () => {
+      it("shouldn't render a bullet if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
+
+        expect(screen.queryByRole("bullet")).not.toBeInTheDocument();
+      });
+
+      it("shouldn't render a bullet if the drawer is collapsed", () => {
+        renderComponent({ item: mockLinkBulletDrawerNavigationItem, initialState: "collapse" });
 
         expect(screen.queryByRole("bullet")).not.toBeInTheDocument();
       });

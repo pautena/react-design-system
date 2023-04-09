@@ -8,7 +8,7 @@ import { DrawerProvider } from "../drawer-provider/drawer.provider";
 describe("DrawerContent", () => {
   const renderComponent = () => {
     return render(
-      <DrawerProvider>
+      <DrawerProvider initialState="open">
         <DrawerContent nav={mockDrawerNavigation} />
       </DrawerProvider>,
     );

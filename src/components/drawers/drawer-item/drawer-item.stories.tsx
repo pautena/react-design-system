@@ -1,22 +1,33 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { withMemoryRouter, withContainer } from "~/storybook";
-import { DrawerItem } from "./drawer-item";
+import { DrawerItem, DrawerItemProps } from "./drawer-item";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import React from "react";
 import {
   mockCollapsableDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
 } from "../drawer.mock";
+import { DrawerProvider } from "../drawer-provider";
+import { DrawerState } from "../drawer.types";
+
+type DrawerItemStoryArgs = DrawerItemProps & {
+  initialState?: DrawerState;
+};
 
 export default {
   title: "Components/Drawers/DrawerItem",
   component: DrawerItem,
-  decorators: [withMemoryRouter(), withContainer({ width: 250 })],
+  decorators: [withMemoryRouter()],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof DrawerItem>;
-type Story = StoryObj<typeof DrawerItem>;
+  render: ({ initialState = "open", ...args }) => (
+    <DrawerProvider initialState={initialState}>
+      <DrawerItem {...args} />
+    </DrawerProvider>
+  ),
+} satisfies Meta<DrawerItemStoryArgs>;
+type Story = StoryObj<DrawerItemStoryArgs>;
 
 export const LinkOnlyText: Story = {
   args: {
@@ -74,6 +85,13 @@ export const LinkSelected: Story = {
   args: {
     ...LinkWithLabel.args,
     selectedItem: mockLinkNoIconDrawerNavigationItem.id,
+  },
+};
+
+export const LinkCollapsed: Story = {
+  args: {
+    ...LinkWithIcon.args,
+    initialState: "collapse",
   },
 };
 

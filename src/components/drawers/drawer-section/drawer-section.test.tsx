@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { DrawerSection } from "./drawer-section";
 import { DrawerSubmenuVariant } from "../drawer.types";
 import { mockCollapsableDrawerNavigationSection } from "../drawer.mock";
+import { DrawerProvider } from "../drawer-provider";
 
 describe("DrawerSection", () => {
   const renderComponent = ({
@@ -14,11 +15,13 @@ describe("DrawerSection", () => {
     submenuVariant?: DrawerSubmenuVariant;
   } = {}) => {
     return render(
-      <DrawerSection
-        title={title}
-        items={mockCollapsableDrawerNavigationSection.items}
-        submenuVariant={submenuVariant}
-      />,
+      <DrawerProvider initialState="open">
+        <DrawerSection
+          title={title}
+          items={mockCollapsableDrawerNavigationSection.items}
+          submenuVariant={submenuVariant}
+        />
+      </DrawerProvider>,
     );
   };
 

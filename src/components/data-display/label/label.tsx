@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, SxProps, Theme, Typography, useTheme } from "@mui/material";
 import React from "react";
 
 export type LabelVariant = "primary" | "secondary" | "default" | "info" | "warning" | "error";
@@ -16,12 +16,17 @@ export interface LabelProps {
    * Color palette used to draw the component
    */
   variant?: LabelVariant;
+
+  /**
+   * Custom styles
+   */
+  sx?: SxProps<Theme>;
 }
 
 /**
  * Compact element to represent a text
  */
-export const Label = ({ text, variant = "default" }: LabelProps) => {
+export const Label = ({ text, variant = "default", sx }: LabelProps) => {
   const { palette } = useTheme();
 
   const backgroundColor: Record<LabelVariant, string> = {
@@ -45,7 +50,7 @@ export const Label = ({ text, variant = "default" }: LabelProps) => {
   return (
     <Box
       px={1}
-      sx={{ backgroundColor: backgroundColor[variant] }}
+      sx={{ backgroundColor: backgroundColor[variant], ...sx }}
       borderRadius={1}
       color={textColor[variant]}
       className={labelClasses.root}
