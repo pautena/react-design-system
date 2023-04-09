@@ -1,9 +1,8 @@
 import React from "react";
-import { MiniDrawerStory } from "./app-bar-with-drawer-layout.stories";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "~/tests/assertions";
-import { MiniDrawer, DrawerContent, MiniAppBar, ContentPlaceholder } from "~/components";
+import { Drawer, DrawerContent, MiniAppBar, ContentPlaceholder } from "~/components";
 import { mockDrawerNavigation } from "~/components/drawers/drawer.mock";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
 
@@ -11,9 +10,9 @@ describe("AppBarWithDrawerLayout", () => {
   const renderComponent = () => {
     return render(
       <AppBarWithDrawerLayout>
-        <MiniDrawer>
+        <Drawer>
           <DrawerContent nav={mockDrawerNavigation} />
-        </MiniDrawer>
+        </Drawer>
         <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
         <ContentPlaceholder p={3} />
       </AppBarWithDrawerLayout>,

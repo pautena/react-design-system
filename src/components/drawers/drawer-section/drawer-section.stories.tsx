@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSection, DrawerSectionProps } from "./drawer-section";
 import { withMemoryRouter } from "~/storybook";
 import { mockCollapsableDrawerNavigationSection } from "../drawer.mock";
-import { DrawerProvider } from "../drawer-provider";
+import { DrawerProvider } from "../drawer";
 import React from "react";
 import { DrawerState } from "../drawer.types";
 

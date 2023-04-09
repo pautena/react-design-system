@@ -17,6 +17,7 @@ export const DrawerProvider = ({ children, initialState = "close" }: Props) => {
         collapse: () => setState("collapse"),
         close: () => setState("close"),
         open: () => setState("open"),
+        setState,
       }}
     >
       {children}

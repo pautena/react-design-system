@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, render, screen } from "~/tests/testing-library";
 import { AppBar } from "./app-bar";
-import { DrawerProvider } from "../../drawers/drawer-provider";
+import { DrawerProvider } from "../../drawers/drawer";
 import { AppBarProfile } from "./app-bar.types";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";

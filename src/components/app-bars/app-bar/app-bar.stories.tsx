@@ -1,7 +1,7 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { AppBar } from "./app-bar";
-import { DrawerProvider } from "../../drawers/drawer-provider";
+import { DrawerProvider } from "../../drawers/drawer";
 import { AppBarProps } from "./app-bar.types";
 
 export default {

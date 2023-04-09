@@ -6,6 +6,7 @@ export interface DrawerContextProps {
   close(): void;
   collapse(): void;
   open(): void;
+  setState: (state: DrawerState) => void;
 }
 
 export const DrawerContext = createContext<DrawerContextProps | undefined>(undefined);

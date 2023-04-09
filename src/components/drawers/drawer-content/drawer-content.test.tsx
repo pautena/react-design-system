@@ -3,7 +3,7 @@ import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { mockDrawerNavigation } from "../drawer.mock";
 import { DrawerContent } from "./drawer-content";
-import { DrawerProvider } from "../drawer-provider/drawer.provider";
+import { DrawerProvider } from "../drawer/drawer.provider";
 
 describe("DrawerContent", () => {
   const renderComponent = () => {

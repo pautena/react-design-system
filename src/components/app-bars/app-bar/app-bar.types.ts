@@ -10,7 +10,7 @@ export interface AppBarProps extends MuiAppBarProps {
   title?: string;
   search?: boolean;
   profile?: AppBarProfile;
-  onClickSignOut: () => void;
+  onClickSignOut?: () => void;
 }
 
 export type AppBarComponent = FunctionComponent<AppBarProps>;

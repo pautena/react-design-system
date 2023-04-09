@@ -7,7 +7,7 @@ import {
   mockCollapsableDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
 } from "../drawer.mock";
-import { DrawerProvider } from "../drawer-provider";
+import { DrawerProvider } from "../drawer";
 import { DrawerState } from "../drawer.types";
 
 type DrawerItemStoryArgs = DrawerItemProps & {

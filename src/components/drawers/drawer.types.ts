@@ -66,6 +66,8 @@ export type DrawerContentElement = ReactElement<DrawerContentProps, DrawerConten
 
 export interface DrawerProps extends MuiDrawerProps {
   children: DrawerContentElement;
+  closeState?: DrawerState;
+  width?: number;
 }
 
 export type DrawerComponent = FunctionComponent<DrawerProps>;
