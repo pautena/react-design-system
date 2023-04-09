@@ -123,7 +123,7 @@ export const LinkSizeSmallSelected: Story = {
   },
 };
 
-export const CollapsbleNotSelected: Story = {
+export const CollapsableNotSelected: Story = {
   args: {
     item: mockCollapsableDrawerNavigationItem,
   },
@@ -131,21 +131,21 @@ export const CollapsbleNotSelected: Story = {
 
 export const CollapsbleSelected: Story = {
   args: {
-    ...CollapsbleNotSelected.args,
+    ...CollapsableNotSelected.args,
     selectedItem: mockCollapsableDrawerNavigationItem.id,
   },
 };
 
-export const CollapsblePopoverSubmenu: Story = {
+export const CollapsbleCollapsedSubmenu: Story = {
   args: {
-    ...CollapsbleSelected.args,
-    submenuVariant: "popover",
+    ...CollapsableNotSelected.args,
+    initialState: "collapse",
   },
 };
 
 export const CollapsbleNoSelectedSmall: Story = {
   args: {
-    ...CollapsbleNotSelected.args,
+    ...CollapsableNotSelected.args,
     size: "small",
   },
 };

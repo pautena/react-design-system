@@ -1,20 +1,20 @@
 import React from "react";
 import { DrawerCollapsableItem } from "./drawer-collapsable-item";
-import { DrawerNavigationItem, DrawerSize, DrawerSubmenuVariant } from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
 
 export interface DrawerItemProps {
   item: DrawerNavigationItem;
   selectedItem?: string;
   size?: DrawerSize;
-  submenuVariant?: DrawerSubmenuVariant;
+  hideIfCollapsed?: boolean;
 }
 
 export const DrawerItem = ({
   selectedItem,
   item,
   size = "medium",
-  submenuVariant = "collapse",
+  hideIfCollapsed = true,
 }: DrawerItemProps) => {
   if ("items" in item) {
     const { id, text, icon, items } = item;
@@ -22,12 +22,12 @@ export const DrawerItem = ({
     return (
       <DrawerCollapsableItem
         size={size}
-        submenuVariant={submenuVariant}
         selectedItem={selectedItem}
         selected={id === selectedItem || childrenSelected}
         text={text}
         icon={icon}
         items={items}
+        hideIfCollapsed={hideIfCollapsed}
       />
     );
   } else {
@@ -42,6 +42,7 @@ export const DrawerItem = ({
         label={label}
         bullet={bullet}
         href={href}
+        hideIfCollapsed={hideIfCollapsed}
       />
     );
   }

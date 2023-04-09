@@ -1,6 +1,6 @@
 import { List, useTheme } from "@mui/material";
 import React from "react";
-import { DrawerNavigationItem, DrawerSize, DrawerSubmenuVariant } from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerSubheader } from "../drawer-subheader";
 import { DrawerItem } from "../drawer-item/drawer-item";
 
@@ -22,10 +22,6 @@ export interface DrawerSectionProps {
    * Item size. default to medium
    */
   size?: DrawerSize;
-  /**
-   * How the submenu has to be shown. collapsable by default
-   */
-  submenuVariant?: DrawerSubmenuVariant;
 }
 
 /**
@@ -37,7 +33,6 @@ export const DrawerSection = ({
   items,
   selectedItem,
   size = "medium",
-  submenuVariant = "collapse",
 }: DrawerSectionProps) => {
   const { spacing } = useTheme();
   return (
@@ -49,13 +44,7 @@ export const DrawerSection = ({
       )}
       <List sx={{ paddingTop: size === "small" ? spacing(0) : undefined }}>
         {items.map((item) => (
-          <DrawerItem
-            key={item.id}
-            item={item}
-            size={size}
-            submenuVariant={submenuVariant}
-            selectedItem={selectedItem}
-          />
+          <DrawerItem key={item.id} item={item} size={size} selectedItem={selectedItem} />
         ))}
       </List>
     </>

@@ -4,14 +4,6 @@ import { DrawerProps as MuiDrawerProps, Theme } from "@mui/material";
 
 export type DrawerState = "open" | "collapse" | "close";
 export type DrawerSize = "small" | "medium";
-export type DrawerSubmenuVariant = "collapse" | "popover";
-
-export type DrawerSubmenuVariantProp =
-  | DrawerSubmenuVariant
-  | {
-      open: DrawerSubmenuVariant;
-      closed: DrawerSubmenuVariant;
-    };
 
 export interface DrawerItemAvatar {
   src: string;
@@ -68,10 +60,6 @@ export interface DrawerContentProps {
    * Item size. default to medium
    */
   size?: DrawerSize;
-  /**
-   * How the submenu has to be shown. collapsable by default
-   */
-  submenuVariant?: DrawerSubmenuVariant;
 }
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;
 export type DrawerContentElement = ReactElement<DrawerContentProps, DrawerContentComponent>;

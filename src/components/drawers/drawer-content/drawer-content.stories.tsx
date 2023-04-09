@@ -43,6 +43,6 @@ export const Small: Story = {
 export const SubmenuPopover: Story = {
   args: {
     ...Default.args,
-    submenuVariant: "popover",
+    //TODO submenuVariant: "popover",
   },
 };

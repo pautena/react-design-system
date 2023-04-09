@@ -7,7 +7,7 @@ import {
   mockLinkLabelDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
 } from "../drawer.mock";
-import { DrawerNavigationItem, DrawerState, DrawerSubmenuVariant } from "../drawer.types";
+import { DrawerNavigationItem, DrawerState } from "../drawer.types";
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerItem } from "./drawer-item";
@@ -16,16 +16,14 @@ import { DrawerProvider } from "../drawer-provider";
 describe("DrawerItem", () => {
   const renderComponent = ({
     item,
-    submenuVariant = "collapse",
     initialState = "open",
   }: {
     item: DrawerNavigationItem;
-    submenuVariant?: DrawerSubmenuVariant;
     initialState?: DrawerState;
   }) => {
     return render(
       <DrawerProvider initialState={initialState}>
-        <DrawerItem item={item} submenuVariant={submenuVariant} />
+        <DrawerItem item={item} />
       </DrawerProvider>,
     );
   };
@@ -45,10 +43,10 @@ describe("DrawerItem", () => {
     });
 
     describe("expandable submenus", () => {
-      it.each([["collapse" as DrawerSubmenuVariant], ["popover" as DrawerSubmenuVariant]])(
+      it.each([["collapse" as DrawerState], ["open" as DrawerState]])(
         "should render the items if submenuVariant='%s'",
-        async (submenuVariant: DrawerSubmenuVariant) => {
-          renderComponent({ submenuVariant, item: mockCollapsableDrawerNavigationItem });
+        async (initialState: DrawerState) => {
+          renderComponent({ initialState, item: mockCollapsableDrawerNavigationItem });
 
           await userEvent.click(screen.getByRole("button", { name: /item 2.3.4.2/i }));
 
@@ -58,12 +56,12 @@ describe("DrawerItem", () => {
       );
 
       it.each([
-        ["Item 2.3.4.2 collapse submenu", "collapse" as DrawerSubmenuVariant],
-        ["Item 2.3.4.2 popover submenu", "popover" as DrawerSubmenuVariant],
+        ["Item 2.3.4.2 popover submenu", "collapse" as DrawerState],
+        ["Item 2.3.4.2 collapse submenu", "open" as DrawerState],
       ])(
         "should render a '%s' if submenuVariant='%s'",
-        async (label: string, submenuVariant: DrawerSubmenuVariant) => {
-          renderComponent({ submenuVariant, item: mockCollapsableDrawerNavigationItem });
+        async (label: string, initialState: DrawerState) => {
+          renderComponent({ initialState, item: mockCollapsableDrawerNavigationItem });
 
           await userEvent.click(screen.getByRole("button", { name: /item 2.3.4.2/i }));
 
@@ -78,13 +76,13 @@ describe("DrawerItem", () => {
       it("should render the text", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
-        expect(screen.getByRole("link", { name: /item 1.1/i })).toBeVisible();
+        expect(screen.getByText(/item 1.1/i)).toBeVisible();
       });
 
       it("shouldn't render the text if the drawer is collapsed", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem, initialState: "collapse" });
 
-        expect(screen.queryByRole("link", { name: /item 1.1/i })).not.toBeInTheDocument();
+        expect(screen.queryByText(/item 1.1/i)).not.toBeInTheDocument();
       });
     });
 

@@ -59,6 +59,8 @@ export interface DrawerItemLinkProps {
    * Custom styles
    */
   sx?: SxProps<Theme>;
+
+  hideIfCollapsed?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -81,17 +83,19 @@ export const DrawerItemLink = ({
   href,
   selected,
   size = "medium",
+  hideIfCollapsed = true,
   sx,
 }: DrawerItemLinkProps) => {
   const { state } = useDrawer();
   const theme = useTheme();
   const { color, fontWeight } = getDrawerItemColors(theme, selected);
-  const isOpen = state === "open";
+  const hideElements = hideIfCollapsed && state === "collapse";
 
   return (
     <ListItemButton
       LinkComponent={StyledLink}
       dense={size === "small"}
+      aria-label={text}
       href={href}
       selected={selected}
       sx={sx}
@@ -106,9 +110,11 @@ export const DrawerItemLink = ({
           />
         </ListItemAvatar>
       )}
-      {isOpen && <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />}
-      {isOpen && label && <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />}
-      {isOpen && bullet && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
+      {!hideElements && (
+        <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
+      )}
+      {!hideElements && label && <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />}
+      {!hideElements && bullet && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
     </ListItemButton>
   );
 };

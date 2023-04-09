@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { MiniDrawer, miniDrawerSubmenuVariant } from ".";
+import { MiniDrawer } from "./mini-drawer";
 import { mockDrawerNavigation } from "../drawer.mock";
 import { DrawerContent } from "../drawer-content";
 import { DrawerProvider } from "../drawer-provider/drawer.provider";
@@ -15,7 +15,7 @@ interface Props {
 }
 
 const DemoMiniDrawer = ({ nav, state, selectedItem, size = "medium" }: Props) => (
-  <DrawerProvider initialState={state} submenuVariant={miniDrawerSubmenuVariant}>
+  <DrawerProvider initialState={state}>
     <MiniDrawer>
       <DrawerContent nav={nav} size={size} selectedItem={selectedItem} />
     </MiniDrawer>

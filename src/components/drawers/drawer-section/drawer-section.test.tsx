@@ -2,25 +2,21 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { DrawerSection } from "./drawer-section";
-import { DrawerSubmenuVariant } from "../drawer.types";
 import { mockCollapsableDrawerNavigationSection } from "../drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
+import { DrawerState } from "../drawer.types";
 
 describe("DrawerSection", () => {
   const renderComponent = ({
     title,
-    submenuVariant = "collapse",
+    initialState = "open",
   }: {
     title?: string;
-    submenuVariant?: DrawerSubmenuVariant;
+    initialState?: DrawerState;
   } = {}) => {
     return render(
-      <DrawerProvider initialState="open">
-        <DrawerSection
-          title={title}
-          items={mockCollapsableDrawerNavigationSection.items}
-          submenuVariant={submenuVariant}
-        />
+      <DrawerProvider initialState={initialState}>
+        <DrawerSection title={title} items={mockCollapsableDrawerNavigationSection.items} />
       </DrawerProvider>,
     );
   };
@@ -40,10 +36,10 @@ describe("DrawerSection", () => {
   });
 
   describe("expandable submenus", () => {
-    it.each([["collapse" as DrawerSubmenuVariant], ["popover" as DrawerSubmenuVariant]])(
-      "should render the items if submenuVariant='%s'",
-      async (submenuVariant: DrawerSubmenuVariant) => {
-        renderComponent({ submenuVariant });
+    it.each([["collapse" as DrawerState], ["open" as DrawerState]])(
+      "should render the items if the drawer state is %s",
+      async (initialState: DrawerState) => {
+        renderComponent({ initialState });
 
         await userEvent.click(screen.getByRole("button", { name: /item 2.3/i }));
 
@@ -54,12 +50,12 @@ describe("DrawerSection", () => {
     );
 
     it.each([
-      ["Item 2.3 collapse submenu", "collapse" as DrawerSubmenuVariant],
-      ["Item 2.3 popover submenu", "popover" as DrawerSubmenuVariant],
+      ["Item 2.3 popover submenu", "collapse" as DrawerState],
+      ["Item 2.3 collapse submenu", "open" as DrawerState],
     ])(
-      "should render a '%s' if submenuVariant='%s'",
-      async (label: string, submenuVariant: DrawerSubmenuVariant) => {
-        renderComponent({ submenuVariant });
+      "should render a '%s' if the drawer state is %s",
+      async (label: string, initialState: DrawerState) => {
+        renderComponent({ initialState });
 
         await userEvent.click(screen.getByRole("button", { name: /item 2.3/i }));
 
