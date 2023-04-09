@@ -1,7 +1,8 @@
 import { FunctionComponent, ReactElement } from "react";
 import { BulletVariant, LabelVariant } from "../data-display";
-import { DrawerProps as MuiDrawerProps, Palette, Theme } from "@mui/material";
+import { DrawerProps as MuiDrawerProps, Theme } from "@mui/material";
 
+export type DrawerState = "open" | "collapse" | "close";
 export type DrawerSize = "small" | "medium";
 export type DrawerSubmenuVariant = "collapse" | "popover";
 

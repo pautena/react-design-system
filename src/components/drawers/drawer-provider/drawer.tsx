@@ -14,7 +14,8 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
-  const { isOpen, close } = useDrawer();
+  const { state, close } = useDrawer();
+  const isOpen = state === "open";
 
   return (
     <MuiDrawer open={isOpen} role="menu" aria-hidden={!isOpen} {...rest}>

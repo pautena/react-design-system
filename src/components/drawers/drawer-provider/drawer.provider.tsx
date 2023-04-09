@@ -1,19 +1,19 @@
 import { useState } from "react";
 import React, { PropsWithChildren } from "react";
 import { DrawerContext } from "./drawer.context";
-import { DrawerSubmenuVariantProp } from "../drawer.types";
+import { DrawerState, DrawerSubmenuVariantProp } from "../drawer.types";
 
 type Props = PropsWithChildren<{
-  initialOpen?: boolean;
+  initialState?: DrawerState;
   submenuVariant?: DrawerSubmenuVariantProp;
 }>;
 
 export const DrawerProvider = ({
   children,
-  initialOpen = false,
+  initialState = "close",
   submenuVariant: submenuVariantProp = "collapse",
 }: Props) => {
-  const [open, setOpen] = useState(initialOpen);
+  const [state, setState] = useState<DrawerState>(initialState);
 
   return (
     <DrawerContext.Provider
@@ -21,12 +21,13 @@ export const DrawerProvider = ({
         submenuVariant:
           typeof submenuVariantProp === "string"
             ? submenuVariantProp
-            : open
+            : state === "open"
             ? submenuVariantProp.open
             : submenuVariantProp.closed,
-        isOpen: open,
-        close: () => setOpen(false),
-        open: () => setOpen(true),
+        state,
+        collapse: () => setState("collapse"),
+        close: () => setState("close"),
+        open: () => setState("open"),
       }}
     >
       {children}

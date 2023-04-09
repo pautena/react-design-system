@@ -63,7 +63,7 @@ export const AppBar: AppBarComponent = ({
   ...rest
 }: AppBarProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const { isOpen, open } = useDrawer();
+  const { state, open } = useDrawer();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -84,7 +84,7 @@ export const AppBar: AppBarComponent = ({
             edge="start"
             sx={{
               marginRight: 5,
-              ...(isOpen && { display: "none" }),
+              ...(state === "open" && { display: "none" }),
             }}
           >
             <MenuIcon />

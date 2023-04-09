@@ -18,8 +18,9 @@ export const miniDrawerSubmenuVariant: DrawerSubmenuVariantProp = {
 };
 
 export const MiniDrawer = styled(Drawer)(({ theme }) => {
-  const { isOpen } = useDrawer();
+  const { state } = useDrawer();
 
+  const isOpen = state === "open";
   const hideIfClosed = !isOpen && {
     display: "none",
   };

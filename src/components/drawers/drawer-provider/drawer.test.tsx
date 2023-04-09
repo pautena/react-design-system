@@ -8,7 +8,7 @@ import { UndefinedProvider, useDrawer } from "./drawer.context";
 import userEvent from "@testing-library/user-event";
 import { openedMixin, closedMixin } from "./drawer.mixins";
 import { mockConsoleError } from "~/tests/mocks";
-import { DrawerContentComponent } from "../drawer.types";
+import { DrawerContentComponent, DrawerState } from "../drawer.types";
 
 const DummyDrawerContent: DrawerContentComponent = () => {
   return (
@@ -30,9 +30,9 @@ const TestContent = () => {
 };
 
 describe("Drawer", () => {
-  const renderComponent = ({ initialOpen = undefined }: { initialOpen?: boolean } = {}) => {
+  const renderComponent = ({ initialState }: { initialState?: DrawerState } = {}) => {
     return render(
-      <DrawerProvider initialOpen={initialOpen}>
+      <DrawerProvider initialState={initialState}>
         <Box>
           <Drawer>
             <DummyDrawerContent nav={mockDrawerNavigation} />
@@ -50,7 +50,7 @@ describe("Drawer", () => {
   });
 
   it("would render opened if initialOpen is true", () => {
-    renderComponent({ initialOpen: true });
+    renderComponent({ initialState: "open" });
 
     expect(screen.getByRole("menu", { hidden: false })).toBeInTheDocument();
   });
@@ -64,7 +64,7 @@ describe("Drawer", () => {
   });
 
   it("would close if the user click the close button and the drawer was opened", async () => {
-    renderComponent({ initialOpen: true });
+    renderComponent({ initialState: "open" });
 
     await userEvent.click(screen.getByText(/close/i));
 

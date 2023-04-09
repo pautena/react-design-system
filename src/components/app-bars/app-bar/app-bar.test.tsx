@@ -5,6 +5,7 @@ import { DrawerProvider } from "../../drawers/drawer-provider";
 import { AppBarProfile } from "./app-bar.types";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { DrawerState } from "~/components/drawers";
 
 const profile: AppBarProfile = {
   name: "John Smith",
@@ -15,18 +16,18 @@ describe("AppBar", () => {
     search,
     title,
     menu,
-    initialOpen,
+    initialState,
     profile,
   }: {
     title?: string;
     search?: boolean;
     menu?: boolean;
-    initialOpen?: boolean;
+    initialState?: DrawerState;
     profile?: AppBarProfile;
   } = {}) => {
     const onClickSignOut = vi.fn();
     const instance = render(
-      <DrawerProvider initialOpen={initialOpen}>
+      <DrawerProvider initialState={initialState}>
         <AppBar
           title={title}
           menu={menu}

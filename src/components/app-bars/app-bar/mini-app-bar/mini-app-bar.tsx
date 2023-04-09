@@ -6,7 +6,7 @@ import { AppBarComponent } from "../app-bar.types";
 import { useDrawer } from "../../../drawers/drawer-provider/drawer.context";
 
 export const MiniAppBar: AppBarComponent = styled(AppBar)<AppBarProps>(({ theme }) => {
-  const { isOpen } = useDrawer();
+  const { state } = useDrawer();
 
   return {
     zIndex: theme.zIndex.drawer + 1,
@@ -14,7 +14,7 @@ export const MiniAppBar: AppBarComponent = styled(AppBar)<AppBarProps>(({ theme 
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    ...(isOpen && {
+    ...(state === "open" && {
       marginLeft: drawerWidth,
       width: `calc(100% - ${drawerWidth}px)`,
       transition: theme.transitions.create(["width", "margin"], {
