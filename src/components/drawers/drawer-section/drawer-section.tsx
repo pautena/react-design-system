@@ -3,6 +3,7 @@ import React from "react";
 import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerSubheader } from "../drawer-subheader";
 import { DrawerItem } from "../drawer-item/drawer-item";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerSectionProps {
   /**
@@ -34,10 +35,11 @@ export const DrawerSection = ({
   selectedItem,
   size = "medium",
 }: DrawerSectionProps) => {
+  const { state } = useDrawer();
   const { spacing } = useTheme();
   return (
     <>
-      {title && (
+      {title && state === "open" && (
         <DrawerSubheader size={size} role="heading">
           {title}
         </DrawerSubheader>
