@@ -2,28 +2,23 @@ import React from "react";
 import { DrawerCollapsableItem } from "./drawer-collapsable-item";
 import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
+import { useDrawer } from "../drawer/drawer.context";
 
 export interface DrawerItemProps {
   item: DrawerNavigationItem;
-  selectedItem?: string;
   size?: DrawerSize;
   hideIfCollapsed?: boolean;
 }
 
-export const DrawerItem = ({
-  selectedItem,
-  item,
-  size = "medium",
-  hideIfCollapsed = true,
-}: DrawerItemProps) => {
+export const DrawerItem = ({ item, size = "medium", hideIfCollapsed = true }: DrawerItemProps) => {
+  const { selectedItemId } = useDrawer();
   if ("items" in item) {
     const { id, text, icon, items } = item;
-    const childrenSelected = items.some((item) => item.id === selectedItem);
+    const childrenSelected = items.some((item) => item.id === selectedItemId);
     return (
       <DrawerCollapsableItem
         size={size}
-        selectedItem={selectedItem}
-        selected={id === selectedItem || childrenSelected}
+        selected={id === selectedItemId || childrenSelected}
         text={text}
         icon={icon}
         items={items}
@@ -34,7 +29,7 @@ export const DrawerItem = ({
     const { id, text, icon, avatar, label, bullet, href } = item;
     return (
       <DrawerItemLink
-        selected={id === selectedItem}
+        selected={id === selectedItemId}
         size={size}
         text={text}
         icon={icon}

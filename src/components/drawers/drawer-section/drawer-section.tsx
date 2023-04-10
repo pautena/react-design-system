@@ -14,11 +14,6 @@ export interface DrawerSectionProps {
    * List of items of that section
    */
   items: DrawerNavigationItem[];
-
-  /**
-   * Id of the item that has to be marked as selected
-   */
-  selectedItem?: string;
   /**
    * Item size. default to medium
    */
@@ -29,12 +24,7 @@ export interface DrawerSectionProps {
  * Render a group of items inside the drawer
  * with an optional title
  */
-export const DrawerSection = ({
-  title,
-  items,
-  selectedItem,
-  size = "medium",
-}: DrawerSectionProps) => {
+export const DrawerSection = ({ title, items, size = "medium" }: DrawerSectionProps) => {
   const { state } = useDrawer();
   const { spacing } = useTheme();
   return (
@@ -46,7 +36,7 @@ export const DrawerSection = ({
       )}
       <List sx={{ paddingTop: size === "small" ? spacing(0) : undefined }}>
         {items.map((item) => (
-          <DrawerItem key={item.id} item={item} size={size} selectedItem={selectedItem} />
+          <DrawerItem key={item.id} item={item} size={size} />
         ))}
       </List>
     </>

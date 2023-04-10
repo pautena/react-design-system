@@ -51,10 +51,6 @@ export interface DrawerNavigation {
 
 export interface DrawerContentProps {
   /**
-   * Item currently selected in the navigation
-   */
-  selectedItem?: string;
-  /**
    * Object with the content that has to be rendered
    */
   nav: DrawerNavigation;

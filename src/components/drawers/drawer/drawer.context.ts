@@ -2,6 +2,7 @@ import { useContext, createContext } from "react";
 import { DrawerState, DrawerVariant } from "../drawer.types";
 
 export interface DrawerContextProps {
+  selectedItemId?: string;
   state: DrawerState;
   variant: DrawerVariant;
   drawerWidth: number;

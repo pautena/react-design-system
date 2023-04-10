@@ -8,6 +8,7 @@ import { DrawerState } from "../drawer.types";
 
 type DrawerSectionArgs = DrawerSectionProps & {
   initialState?: DrawerState;
+  selectedItemId?: string;
 };
 
 export default {
@@ -17,8 +18,8 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: ({ initialState = "open", ...args }) => (
-    <DrawerProvider initialState={initialState}>
+  render: ({ initialState = "open", selectedItemId, ...args }) => (
+    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
       <DrawerSection {...args} />{" "}
     </DrawerProvider>
   ),
@@ -28,6 +29,7 @@ type Story = StoryObj<DrawerSectionArgs>;
 export const WihtoutTitle = {
   args: {
     items: mockCollapsableDrawerNavigationSection.items,
+    selectedItemId: "item2.3.2",
   },
 };
 

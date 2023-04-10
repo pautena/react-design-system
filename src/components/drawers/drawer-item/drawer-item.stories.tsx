@@ -12,6 +12,7 @@ import { DrawerState } from "../drawer.types";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
   initialState?: DrawerState;
+  selectedItemId?: string;
 };
 
 export default {
@@ -21,8 +22,8 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: ({ initialState = "open", ...args }) => (
-    <DrawerProvider initialState={initialState}>
+  render: ({ initialState = "open", selectedItemId, ...args }) => (
+    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
       <DrawerItem {...args} />
     </DrawerProvider>
   ),
@@ -84,7 +85,7 @@ export const LinkWithBullet: Story = {
 export const LinkSelected: Story = {
   args: {
     ...LinkWithLabel.args,
-    selectedItem: mockLinkNoIconDrawerNavigationItem.id,
+    selectedItemId: mockLinkNoIconDrawerNavigationItem.id,
   },
 };
 
@@ -132,7 +133,7 @@ export const CollapsableNotSelected: Story = {
 export const CollapsbleSelected: Story = {
   args: {
     ...CollapsableNotSelected.args,
-    selectedItem: mockCollapsableDrawerNavigationItem.id,
+    selectedItemId: mockCollapsableDrawerNavigationItem.id,
   },
 };
 

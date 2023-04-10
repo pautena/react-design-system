@@ -12,6 +12,7 @@ interface DrawerDemoArgs {
   initialState: DrawerState;
   closeState: DrawerState;
   variant: DrawerVariant;
+  selectedItemId?: string;
 }
 
 export default {
@@ -20,8 +21,8 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  render: ({ initialState, closeState, variant }) => (
-    <DrawerProvider initialState={initialState} variant={variant}>
+  render: ({ initialState, closeState, variant, selectedItemId }) => (
+    <DrawerProvider initialState={initialState} variant={variant} selectedItemId={selectedItemId}>
       <DrawerAppBar title="Drawer demo" />
       <Drawer closeState={closeState}>
         <DrawerContent nav={mockDrawerNavigation} />
@@ -37,27 +38,27 @@ export const Temporary: Story = {
     initialState: "close",
     closeState: "close",
     variant: "temporary",
+    selectedItemId: "item2.3.2",
   },
 };
 
 export const Permanent: Story = {
   args: {
-    initialState: "close",
-    closeState: "close",
+    ...Temporary.args,
     variant: "permanent",
   },
 };
 
 export const PermanentUnder: Story = {
   args: {
-    initialState: "close",
-    closeState: "close",
+    ...Temporary.args,
     variant: "permanent-under",
   },
 };
 
 export const MiniDrawer: Story = {
   args: {
+    ...Temporary.args,
     initialState: "collapse",
     closeState: "collapse",
     variant: "mini",

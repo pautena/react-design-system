@@ -8,6 +8,7 @@ type Props = PropsWithChildren<{
   initialState?: DrawerState;
   drawerWidth?: number;
   variant?: DrawerVariant;
+  selectedItemId?: string;
 }>;
 
 export const DrawerProvider = ({
@@ -15,6 +16,7 @@ export const DrawerProvider = ({
   initialState = "close",
   variant = "temporary",
   drawerWidth: drawerWidthProp = drawerWidth,
+  selectedItemId,
 }: Props) => {
   const [state, setState] = useState<DrawerState>(initialState);
 
@@ -23,6 +25,7 @@ export const DrawerProvider = ({
       value={{
         state,
         variant,
+        selectedItemId,
         drawerWidth: drawerWidthProp,
         collapse: () => setState("collapse"),
         close: () => setState("close"),

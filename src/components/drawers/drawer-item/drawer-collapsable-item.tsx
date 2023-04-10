@@ -32,10 +32,6 @@ export interface DrawerCollapsableItemProps {
    */
   selected?: boolean;
   /**
-   * Id of the item that has to be marked as selected;
-   */
-  selectedItem?: string;
-  /**
    * Items that are going to be displayed inside
    * the collapsable
    */
@@ -50,7 +46,6 @@ export const DrawerCollapsableItem = ({
   text,
   icon,
   selected,
-  selectedItem,
   items,
   size = "medium",
   hideIfCollapsed = true,
@@ -64,13 +59,7 @@ export const DrawerCollapsableItem = ({
   const submenu = (
     <List component="div" disablePadding>
       {items.map((item) => (
-        <DrawerItem
-          key={item.id}
-          hideIfCollapsed={false}
-          item={item}
-          selectedItem={selectedItem}
-          size={size}
-        />
+        <DrawerItem key={item.id} hideIfCollapsed={false} item={item} size={size} />
       ))}
     </List>
   );
