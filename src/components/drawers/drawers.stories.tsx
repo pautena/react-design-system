@@ -32,11 +32,27 @@ export default {
 } satisfies Meta<DrawerDemoArgs>;
 type Story = StoryObj<DrawerDemoArgs>;
 
-export const Default: Story = {
+export const Temporary: Story = {
   args: {
     initialState: "close",
     closeState: "close",
     variant: "temporary",
+  },
+};
+
+export const Permanent: Story = {
+  args: {
+    initialState: "close",
+    closeState: "close",
+    variant: "permanent",
+  },
+};
+
+export const PermanentUnder: Story = {
+  args: {
+    initialState: "close",
+    closeState: "close",
+    variant: "permanent-under",
   },
 };
 
