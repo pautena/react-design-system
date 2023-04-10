@@ -39,7 +39,7 @@ export const DrawerSection = ({
   const { spacing } = useTheme();
   return (
     <>
-      {title && state === "open" && (
+      {title && (
         <DrawerSubheader size={size} role="heading">
           {title}
         </DrawerSubheader>

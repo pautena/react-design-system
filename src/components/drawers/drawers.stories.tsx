@@ -2,11 +2,12 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
 import { withMemoryRouter } from "~/storybook";
-import { Drawer, DrawerProvider } from "./drawer";
+import { Drawer, DrawerProvider, useDrawer } from "./drawer";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { ContentPlaceholder } from "../placeholders";
 import { AppBar } from "../app-bars";
 import { DrawerState } from "./drawer.types";
+import { Box, Paper, Typography } from "@mui/material";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;
@@ -14,6 +15,17 @@ interface DrawerDemoArgs {
   moveWithDrawer: boolean;
   drawerVariant?: "permanent" | "persistent" | "temporary";
 }
+
+const DrawerProviderInfo = () => {
+  const { state } = useDrawer();
+
+  return (
+    <Box component={Paper} position="fixed" bottom={20} right={20} p={2}>
+      <Typography variant="h6">Drawer provider info</Typography>
+      <Typography>State: {state}</Typography>
+    </Box>
+  );
+};
 
 export default {
   title: "Components/Drawers/Drawer demo",
@@ -27,7 +39,7 @@ export default {
       <Drawer variant={drawerVariant} closeState={closeState}>
         <DrawerContent nav={mockDrawerNavigation} />
       </Drawer>
-      <ContentPlaceholder p={3} />
+      <ContentPlaceholder p={3}>{<DrawerProviderInfo />}</ContentPlaceholder>
     </DrawerProvider>
   ),
 } satisfies Meta<DrawerDemoArgs>;

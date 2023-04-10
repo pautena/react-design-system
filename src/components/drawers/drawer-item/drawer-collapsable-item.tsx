@@ -60,7 +60,6 @@ export const DrawerCollapsableItem = ({
   const { palette } = useTheme();
   const [open, setOpen] = useState(false);
   const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
-  const hideElements = hideIfCollapsed && state === "collapse";
 
   const submenu = (
     <List component="div" disablePadding>
@@ -87,11 +86,9 @@ export const DrawerCollapsableItem = ({
         sx={{ backgroundColor: open ? palette.action.hover : undefined }}
       >
         {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
-        {!hideElements && (
-          <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-        )}
-        {open && !hideElements && <ExpandMoreIcon sx={{ color, ml: 2 }} />}
-        {!open && !hideElements && <ChevronRightIcon sx={{ color, ml: 2 }} />}
+        <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
+        {open && <ExpandMoreIcon sx={{ color, ml: 2 }} />}
+        {!open && <ChevronRightIcon sx={{ color, ml: 2 }} />}
       </ListItemButton>
       {state === "open" ? (
         <Collapse in={open} timeout="auto" unmountOnExit aria-label={`${text} collapse submenu`}>

@@ -89,7 +89,6 @@ export const DrawerItemLink = ({
   const { state } = useDrawer();
   const theme = useTheme();
   const { color, fontWeight } = getDrawerItemColors(theme, selected);
-  const hideElements = hideIfCollapsed && state === "collapse";
 
   return (
     <ListItemButton
@@ -110,11 +109,9 @@ export const DrawerItemLink = ({
           />
         </ListItemAvatar>
       )}
-      {!hideElements && (
-        <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-      )}
-      {!hideElements && label && <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />}
-      {!hideElements && bullet && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
+      <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
+      {label && <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />}
+      {bullet && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
     </ListItemButton>
   );
 };
