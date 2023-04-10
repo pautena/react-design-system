@@ -2,7 +2,7 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
 import { withMemoryRouter } from "~/storybook";
-import { Drawer, DrawerProvider } from "./drawer";
+import { Drawer, DrawerProvider } from "./drawer-provider";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { ContentPlaceholder } from "../placeholders";
 import { DrawerState, DrawerVariant } from "./drawer.types";

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import React, { PropsWithChildren } from "react";
-import { DrawerContext } from "./drawer.context";
+import { DrawerContext } from "./drawer-context";
 import { DrawerState, DrawerVariant } from "../drawer.types";
-import { drawerWidth } from "./drawer.mixins";
+import { drawerWidth } from "./drawer-mixins";
 
 const initialState: Record<DrawerVariant, DrawerState> = {
   temporary: "close",

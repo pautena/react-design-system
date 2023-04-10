@@ -15,8 +15,8 @@ import {
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
-import { useDrawer } from "./drawer.context";
-import { closedMixin, openedMixin } from "./drawer.mixins";
+import { useDrawer } from "../drawer-provider/drawer-context";
+import { closedMixin, openedMixin } from "../drawer-provider/drawer-mixins";
 import { labelClasses, bulletClasses } from "~/components/data-display";
 
 const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temporary"> = {

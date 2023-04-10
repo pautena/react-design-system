@@ -12,7 +12,7 @@ import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "../drawer-item/drawer-item";
-import { useDrawer } from "../drawer";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerCollapsableItemProps {
   /**

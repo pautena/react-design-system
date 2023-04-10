@@ -1,7 +1,7 @@
 import * as React from "react";
 import { AppBar as MuiAppBar, Toolbar, IconButton, Typography, useTheme } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useDrawer } from "../drawer/drawer.context";
+import { useDrawer } from "../drawer-provider/drawer-context";
 
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
 

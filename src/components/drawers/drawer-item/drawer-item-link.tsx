@@ -19,7 +19,7 @@ import {
   getDrawerItemColors,
 } from "../drawer.types";
 import { Link } from "../../navigation/link";
-import { useDrawer } from "../drawer";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerItemLinkProps {
   /**

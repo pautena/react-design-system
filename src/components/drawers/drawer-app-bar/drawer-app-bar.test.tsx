@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerAppBar } from "./drawer-app-bar";
-import { DrawerProvider } from "../drawer";
+import { DrawerProvider } from "../drawer-provider";
 import { DrawerState } from "~/components/drawers";
 import { Typography } from "@mui/material";
 

@@ -3,7 +3,7 @@ import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { DrawerSection } from "./drawer-section";
 import { mockCollapsableDrawerNavigationSection } from "../drawer.mock";
-import { DrawerProvider } from "../drawer";
+import { DrawerProvider } from "../drawer-provider";
 import { DrawerState } from "../drawer.types";
 
 describe("DrawerSection", () => {

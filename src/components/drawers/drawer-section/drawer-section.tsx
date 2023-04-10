@@ -3,7 +3,7 @@ import React from "react";
 import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerSubheader } from "../drawer-subheader";
 import { DrawerItem } from "../drawer-item/drawer-item";
-import { useDrawer } from "../drawer";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerSectionProps {
   /**

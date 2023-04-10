@@ -2,7 +2,7 @@ import React from "react";
 import { DrawerCollapsableItem } from "./drawer-collapsable-item";
 import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
-import { useDrawer } from "../drawer/drawer.context";
+import { useDrawer } from "../drawer-provider/drawer-context";
 
 export interface DrawerItemProps {
   item: DrawerNavigationItem;
