@@ -1,6 +1,7 @@
 import { FunctionComponent, ReactElement } from "react";
 import { BulletVariant, LabelVariant } from "../data-display";
 import { DrawerProps as MuiDrawerProps, Theme } from "@mui/material";
+import { DrawerAppBarProps } from "./drawer-app-bar";
 
 export type DrawerVariant = "temporary" | "mini";
 export type DrawerState = "open" | "collapse" | "close";
@@ -77,3 +78,6 @@ export const getDrawerItemColors = (theme: Theme, selected: boolean | undefined)
   color: selected ? theme.palette.primary.main : undefined,
   fontWeight: selected ? theme.typography.fontWeightBold : theme.typography.fontWeightMedium,
 });
+
+export type DrawerAppBarComponent = FunctionComponent<DrawerAppBarProps>;
+export type DrawerAppBarElement = ReactElement<DrawerAppBarProps, DrawerAppBarComponent>;

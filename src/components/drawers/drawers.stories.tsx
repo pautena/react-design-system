@@ -5,13 +5,12 @@ import { withMemoryRouter } from "~/storybook";
 import { Drawer, DrawerProvider } from "./drawer";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { ContentPlaceholder } from "../placeholders";
-import { AppBar } from "../app-bars";
 import { DrawerState, DrawerVariant } from "./drawer.types";
+import { DrawerAppBar } from "./drawer-app-bar";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;
   closeState: DrawerState;
-  moveWithDrawer: boolean;
   variant: DrawerVariant;
 }
 
@@ -21,9 +20,9 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  render: ({ initialState, moveWithDrawer, closeState, variant }) => (
+  render: ({ initialState, closeState, variant }) => (
     <DrawerProvider initialState={initialState} variant={variant}>
-      <AppBar title="Drawer demo" menu moveWithDrawer={moveWithDrawer} />
+      <DrawerAppBar title="Drawer demo" />
       <Drawer closeState={closeState}>
         <DrawerContent nav={mockDrawerNavigation} />
       </Drawer>
@@ -36,7 +35,6 @@ type Story = StoryObj<DrawerDemoArgs>;
 export const Default: Story = {
   args: {
     initialState: "close",
-    moveWithDrawer: false,
     closeState: "close",
     variant: "temporary",
   },
@@ -45,7 +43,6 @@ export const Default: Story = {
 export const MiniDrawer: Story = {
   args: {
     initialState: "collapse",
-    moveWithDrawer: true,
     closeState: "collapse",
     variant: "mini",
   },

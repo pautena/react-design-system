@@ -3,3 +3,4 @@ export * from "./drawer-content";
 export * from "./drawer-section";
 export * from "./drawer.types";
 export * from "./drawer-subheader";
+export * from "./drawer-app-bar";
