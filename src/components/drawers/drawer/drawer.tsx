@@ -11,10 +11,26 @@ import {
 } from "@mui/material";
 import { Drawer as MuiDrawer, Divider, IconButton, useTheme } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { DrawerComponent, DrawerProps } from "../drawer.types";
+import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
 import { useDrawer } from "./drawer.context";
 import { closedMixin, openedMixin } from "./drawer.mixins";
 import { labelClasses, bulletClasses } from "~/components/data-display";
+
+const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temporary"> = {
+  temporary: "temporary",
+  mini: "permanent",
+  permanent: "permanent",
+  "permanent-under": "permanent",
+  persistent: "persistent",
+};
+
+const closeState: Record<DrawerVariant, DrawerState> = {
+  temporary: "close",
+  mini: "collapse",
+  permanent: "close",
+  "permanent-under": "close",
+  persistent: "close",
+};
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -24,11 +40,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
 }));
 
-export const Drawer: DrawerComponent = ({
-  children,
-  closeState = "close",
-  ...rest
-}: DrawerProps) => {
+export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
   const { state, setState, drawerWidth, variant } = useDrawer();
   const isOpen = state === "open";
@@ -96,14 +108,14 @@ export const Drawer: DrawerComponent = ({
   return (
     <MuiDrawer
       open={isOpen}
-      variant={variant === "mini" ? "permanent" : "temporary"}
+      variant={muiDrawerVariant[variant]}
       role="menu"
       aria-hidden={!isOpen}
       sx={{ ...sx, ...collapseSx }}
       {...rest}
     >
       <DrawerHeader>
-        <IconButton onClick={() => setState(closeState)}>
+        <IconButton onClick={() => setState(closeState[variant])}>
           <ChevronLeftIcon />
         </IconButton>
       </DrawerHeader>
