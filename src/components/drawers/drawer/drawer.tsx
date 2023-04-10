@@ -30,7 +30,7 @@ export const Drawer: DrawerComponent = ({
   ...rest
 }: DrawerProps) => {
   const theme = useTheme();
-  const { state, setState, drawerWidth } = useDrawer();
+  const { state, setState, drawerWidth, variant } = useDrawer();
   const isOpen = state === "open";
 
   const sx: SxProps<Theme> = {
@@ -96,6 +96,7 @@ export const Drawer: DrawerComponent = ({
   return (
     <MuiDrawer
       open={isOpen}
+      variant={variant === "mini" ? "permanent" : "temporary"}
       role="menu"
       aria-hidden={!isOpen}
       sx={{ ...sx, ...collapseSx }}

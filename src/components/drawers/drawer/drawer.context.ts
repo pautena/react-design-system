@@ -1,8 +1,9 @@
 import { useContext, createContext } from "react";
-import { DrawerState } from "../drawer.types";
+import { DrawerState, DrawerVariant } from "../drawer.types";
 
 export interface DrawerContextProps {
   state: DrawerState;
+  variant: DrawerVariant;
   drawerWidth: number;
   close(): void;
   collapse(): void;

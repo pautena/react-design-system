@@ -2,30 +2,18 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
 import { withMemoryRouter } from "~/storybook";
-import { Drawer, DrawerProvider, useDrawer } from "./drawer";
+import { Drawer, DrawerProvider } from "./drawer";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { ContentPlaceholder } from "../placeholders";
 import { AppBar } from "../app-bars";
-import { DrawerState } from "./drawer.types";
-import { Box, Paper, Typography } from "@mui/material";
+import { DrawerState, DrawerVariant } from "./drawer.types";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;
   closeState: DrawerState;
   moveWithDrawer: boolean;
-  drawerVariant?: "permanent" | "persistent" | "temporary";
+  variant: DrawerVariant;
 }
-
-const DrawerProviderInfo = () => {
-  const { state } = useDrawer();
-
-  return (
-    <Box component={Paper} position="fixed" bottom={20} right={20} p={2}>
-      <Typography variant="h6">Drawer provider info</Typography>
-      <Typography>State: {state}</Typography>
-    </Box>
-  );
-};
 
 export default {
   title: "Components/Drawers/Drawer demo",
@@ -33,13 +21,13 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  render: ({ initialState, moveWithDrawer, closeState, drawerVariant = "temporary" }) => (
-    <DrawerProvider initialState={initialState}>
+  render: ({ initialState, moveWithDrawer, closeState, variant }) => (
+    <DrawerProvider initialState={initialState} variant={variant}>
       <AppBar title="Drawer demo" menu moveWithDrawer={moveWithDrawer} />
-      <Drawer variant={drawerVariant} closeState={closeState}>
+      <Drawer closeState={closeState}>
         <DrawerContent nav={mockDrawerNavigation} />
       </Drawer>
-      <ContentPlaceholder p={3}>{<DrawerProviderInfo />}</ContentPlaceholder>
+      <ContentPlaceholder p={3} />
     </DrawerProvider>
   ),
 } satisfies Meta<DrawerDemoArgs>;
@@ -50,6 +38,7 @@ export const Default: Story = {
     initialState: "close",
     moveWithDrawer: false,
     closeState: "close",
+    variant: "temporary",
   },
 };
 
@@ -58,6 +47,6 @@ export const MiniDrawer: Story = {
     initialState: "collapse",
     moveWithDrawer: true,
     closeState: "collapse",
-    drawerVariant: "permanent",
+    variant: "mini",
   },
 };
