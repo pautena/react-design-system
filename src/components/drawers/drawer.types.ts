@@ -3,7 +3,7 @@ import { BulletVariant, LabelVariant } from "../data-display";
 import { DrawerProps as MuiDrawerProps, Theme } from "@mui/material";
 import { DrawerAppBarProps } from "./drawer-app-bar";
 
-export type DrawerVariant = "temporary" | "mini" | "permanent" | "permanent-under" | "persistent";
+export type DrawerVariant = "temporary" | "mini" | "persistent" | "clipped";
 export type DrawerState = "open" | "collapse" | "close";
 export type DrawerSize = "small" | "medium";
 

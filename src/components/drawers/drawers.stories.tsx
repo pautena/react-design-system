@@ -7,11 +7,13 @@ import { mockDrawerNavigation } from "./drawer.mock";
 import { ContentPlaceholder } from "../placeholders";
 import { DrawerState, DrawerVariant } from "./drawer.types";
 import { DrawerAppBar } from "./drawer-app-bar";
+import { DrawerMain } from "./drawer-main";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;
   variant: DrawerVariant;
   selectedItemId?: string;
+  underAppBar?: boolean;
 }
 
 export default {
@@ -20,13 +22,20 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  render: ({ initialState, variant, selectedItemId }) => (
-    <DrawerProvider initialState={initialState} variant={variant} selectedItemId={selectedItemId}>
+  render: ({ initialState, variant, selectedItemId, underAppBar }) => (
+    <DrawerProvider
+      initialState={initialState}
+      variant={variant}
+      selectedItemId={selectedItemId}
+      underAppBar={underAppBar}
+    >
       <DrawerAppBar title="Drawer demo" />
       <Drawer>
         <DrawerContent nav={mockDrawerNavigation} />
       </Drawer>
-      <ContentPlaceholder p={3} />
+      <DrawerMain>
+        <ContentPlaceholder p={3} />
+      </DrawerMain>
     </DrawerProvider>
   ),
 } satisfies Meta<DrawerDemoArgs>;
@@ -39,17 +48,41 @@ export const Temporary: Story = {
   },
 };
 
-export const Permanent: Story = {
+export const TemporaryUnder: Story = {
   args: {
     ...Temporary.args,
-    variant: "permanent",
+    variant: "temporary",
+    underAppBar: true,
   },
 };
 
-export const PermanentUnder: Story = {
+export const Persistent: Story = {
   args: {
     ...Temporary.args,
-    variant: "permanent-under",
+    variant: "persistent",
+  },
+};
+
+export const PersistentUnder: Story = {
+  args: {
+    ...Temporary.args,
+    variant: "persistent",
+    underAppBar: true,
+  },
+};
+
+export const Clipped: Story = {
+  args: {
+    ...Temporary.args,
+    variant: "clipped",
+  },
+};
+
+export const ClippedUnder: Story = {
+  args: {
+    ...Temporary.args,
+    variant: "clipped",
+    underAppBar: true,
   },
 };
 

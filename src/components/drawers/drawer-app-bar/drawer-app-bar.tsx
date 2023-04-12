@@ -1,5 +1,12 @@
 import * as React from "react";
-import { AppBar as MuiAppBar, Toolbar, IconButton, Typography, useTheme } from "@mui/material";
+import {
+  AppBar as MuiAppBar,
+  Toolbar,
+  IconButton,
+  Typography,
+  useTheme,
+  Theme,
+} from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDrawer } from "../drawer-provider/drawer-context";
 
@@ -11,13 +18,12 @@ export interface DrawerAppBarProps extends MuiAppBarProps {
 
 export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps) => {
   const theme = useTheme();
-  const { state, open, drawerWidth } = useDrawer();
+  const { state, open, drawerWidth, underAppBar } = useDrawer();
   const { variant } = useDrawer();
   const moveWithDrawer = variant === "mini";
 
   const rootSx =
     (moveWithDrawer && {
-      zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -34,7 +40,15 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
     {};
 
   return (
-    <MuiAppBar {...rest} sx={{ ...sx, ...rootSx }}>
+    <MuiAppBar
+      position={underAppBar ? "fixed" : undefined}
+      {...rest}
+      sx={{
+        ...sx,
+        ...rootSx,
+        zIndex: (theme: Theme) => theme.zIndex.drawer + (underAppBar ? 1 : 0),
+      }}
+    >
       <Toolbar>
         <IconButton
           color="inherit"

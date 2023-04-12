@@ -12,6 +12,7 @@ import {
   Divider,
   IconButton,
   useTheme,
+  paperClasses,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
@@ -22,16 +23,14 @@ import { labelClasses, bulletClasses } from "~/components/data-display";
 const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temporary"> = {
   temporary: "temporary",
   mini: "permanent",
-  permanent: "permanent",
-  "permanent-under": "permanent",
+  clipped: "permanent",
   persistent: "persistent",
 };
 
 const closeState: Record<DrawerVariant, DrawerState> = {
   temporary: "close",
   mini: "collapse",
-  permanent: "close",
-  "permanent-under": "close",
+  clipped: "close",
   persistent: "close",
 };
 
@@ -45,6 +44,9 @@ const NoopSxGenerator = () => ({});
 const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
   mini: (state: DrawerState, theme: Theme) => ({
     boxSizing: "border-box",
+    [`& .${paperClasses.root}`]: {
+      zIndex: theme.zIndex.drawer - 1,
+    },
     ...(state === "open" && {
       ...openedMixin(theme),
       [`& .${drawerClasses.paper}`]: openedMixin(theme),
@@ -55,8 +57,7 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
     }),
   }),
   temporary: NoopSxGenerator,
-  permanent: NoopSxGenerator,
-  "permanent-under": NoopSxGenerator,
+  clipped: NoopSxGenerator,
   persistent: NoopSxGenerator,
 };
 
@@ -112,7 +113,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
-  const { state, setState, drawerWidth, variant } = useDrawer();
+  const { state, setState, close, drawerWidth, variant } = useDrawer();
   const isOpen = state === "open";
 
   const sx: any = {
@@ -129,6 +130,7 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
       variant={muiDrawerVariant[variant]}
       role="menu"
       aria-hidden={!isOpen}
+      onClose={close}
       sx={sx}
       {...rest}
     >

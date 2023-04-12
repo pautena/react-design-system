@@ -7,13 +7,13 @@ import { drawerWidth } from "./drawer-mixins";
 const initialState: Record<DrawerVariant, DrawerState> = {
   temporary: "close",
   mini: "collapse",
-  permanent: "close",
-  "permanent-under": "close",
-  persistent: "open",
+  clipped: "open",
+  persistent: "close",
 };
 
-type Props = PropsWithChildren<{
+type DrawerProviderProps = PropsWithChildren<{
   initialState?: DrawerState;
+  underAppBar?: boolean;
   drawerWidth?: number;
   variant?: DrawerVariant;
   selectedItemId?: string;
@@ -24,8 +24,9 @@ export const DrawerProvider = ({
   initialState: initialStateProp,
   variant = "temporary",
   drawerWidth: drawerWidthProp = drawerWidth,
+  underAppBar = false,
   selectedItemId,
-}: Props) => {
+}: DrawerProviderProps) => {
   const [state, setState] = useState<DrawerState>(initialStateProp || initialState[variant]);
 
   return (
@@ -34,6 +35,7 @@ export const DrawerProvider = ({
         state,
         variant,
         selectedItemId,
+        underAppBar,
         drawerWidth: drawerWidthProp,
         collapse: () => setState("collapse"),
         close: () => setState("close"),
