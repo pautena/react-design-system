@@ -11,6 +11,13 @@ const initialState: Record<DrawerVariant, DrawerState> = {
   persistent: "close",
 };
 
+const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
+  temporary: ["close", "open"],
+  mini: ["collapse", "open"],
+  clipped: ["close", "open"],
+  persistent: ["close", "open"],
+};
+
 type DrawerProviderProps = PropsWithChildren<{
   initialState?: DrawerState;
   underAppBar?: boolean;
@@ -37,6 +44,7 @@ export const DrawerProvider = ({
         selectedItemId,
         underAppBar,
         drawerWidth: drawerWidthProp,
+        switchState: () => setState((state) => targetStates[variant][state === "open" ? 0 : 1]),
         collapse: () => setState("collapse"),
         close: () => setState("close"),
         open: () => setState("open"),

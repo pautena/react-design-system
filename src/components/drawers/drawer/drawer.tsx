@@ -27,13 +27,6 @@ const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temp
   persistent: "persistent",
 };
 
-const closeState: Record<DrawerVariant, DrawerState> = {
-  temporary: "close",
-  mini: "collapse",
-  clipped: "close",
-  persistent: "close",
-};
-
 const hideIfClosed = (state: DrawerState) =>
   state !== "open" && {
     display: "none",
@@ -113,7 +106,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
-  const { state, setState, close, drawerWidth, variant } = useDrawer();
+  const { state, switchState, close, drawerWidth, variant } = useDrawer();
   const isOpen = state === "open";
 
   const sx: any = {
@@ -135,7 +128,7 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
       {...rest}
     >
       <DrawerHeader>
-        <IconButton onClick={() => setState(closeState[variant])}>
+        <IconButton onClick={switchState}>
           <ChevronLeftIcon />
         </IconButton>
       </DrawerHeader>

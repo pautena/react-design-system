@@ -7,6 +7,7 @@ export interface DrawerContextProps {
   variant: DrawerVariant;
   drawerWidth: number;
   underAppBar: boolean;
+  switchState(): void;
   close(): void;
   collapse(): void;
   open(): void;

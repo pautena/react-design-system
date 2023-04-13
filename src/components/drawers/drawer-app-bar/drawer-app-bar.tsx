@@ -9,8 +9,15 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDrawer } from "../drawer-provider/drawer-context";
-
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
+import { DrawerState, DrawerVariant } from "../drawer.types";
+
+const showMenuButton: Record<DrawerVariant, (state: DrawerState) => boolean> = {
+  temporary: () => true,
+  mini: (state) => state !== "open",
+  persistent: () => true,
+  clipped: () => false,
+};
 
 export interface DrawerAppBarProps extends MuiAppBarProps {
   title?: string;
@@ -18,7 +25,7 @@ export interface DrawerAppBarProps extends MuiAppBarProps {
 
 export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps) => {
   const theme = useTheme();
-  const { state, open, drawerWidth, underAppBar } = useDrawer();
+  const { state, switchState, drawerWidth, underAppBar } = useDrawer();
   const { variant } = useDrawer();
   const moveWithDrawer = variant === "mini";
 
@@ -53,11 +60,11 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
         <IconButton
           color="inherit"
           aria-label="open drawer"
-          onClick={open}
+          onClick={switchState}
           edge="start"
           sx={{
             marginRight: 5,
-            ...(state === "open" && { display: "none" }),
+            display: showMenuButton[variant](state) ? undefined : "none",
           }}
         >
           <MenuIcon />
