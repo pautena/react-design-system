@@ -20,6 +20,13 @@ import { useDrawer } from "../drawer-provider/drawer-context";
 import { closedMixin, openedMixin } from "../drawer-provider/drawer-mixins";
 import { labelClasses, bulletClasses } from "~/components/data-display";
 
+const showCloseButton: Record<DrawerVariant, boolean> = {
+  temporary: true,
+  mini: true,
+  persistent: true,
+  clipped: false,
+};
+
 const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temporary"> = {
   temporary: "temporary",
   mini: "permanent",
@@ -106,7 +113,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
-  const { state, switchState, close, drawerWidth, variant } = useDrawer();
+  const { state, switchState, underAppBar, close, drawerWidth, variant } = useDrawer();
   const isOpen = state === "open";
 
   const sx: any = {
@@ -128,9 +135,11 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
       {...rest}
     >
       <DrawerHeader>
-        <IconButton onClick={switchState}>
-          <ChevronLeftIcon />
-        </IconButton>
+        {!underAppBar && showCloseButton[variant] && (
+          <IconButton onClick={switchState}>
+            <ChevronLeftIcon />
+          </IconButton>
+        )}
       </DrawerHeader>
       <Divider />
       {children}
