@@ -13,6 +13,9 @@ import {
   IconButton,
   useTheme,
   paperClasses,
+  listClasses,
+  listItemClasses,
+  svgIconClasses,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
@@ -33,11 +36,6 @@ const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temp
   clipped: "permanent",
   persistent: "persistent",
 };
-
-const hideIfClosed = (state: DrawerState) =>
-  state !== "open" && {
-    display: "none",
-  };
 
 type SxGenerator = (state: DrawerState, theme: Theme) => SxProps<Theme>;
 const NoopSxGenerator = () => ({});
@@ -64,42 +62,31 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
 const statesSx: Readonly<Record<DrawerState, SxGenerator>> = {
   open: NoopSxGenerator,
   close: NoopSxGenerator,
-  collapse: (state: DrawerState, theme: Theme) => ({
-    // [`& .${listItemIconClasses.root}`]: {
-    //   minWidth: 0,
-    //   justifyContent: "center",
-    //   ...(isOpen
-    //     ? {
-    //         marginRight: theme.spacing(3),
-    //       }
-    //     : {
-    //         marginRight: "auto",
-    //       }),
-    // },
-    // [`& .${listItemButtonClasses.root}`]: {
-    //   paddingHorizontal: theme.spacing(2.5),
-    //   ...(isOpen
-    //     ? {
-    //         justifyContent: "initial",
-    //       }
-    //     : {
-    //         justifyContent: "center",
-    //       }),
-    // },
-    [`& .${labelClasses.root}`]: hideIfClosed(state),
-    [`& .${bulletClasses.root}`]: hideIfClosed(state),
-    // [`& .${listSubheaderClasses.root}`]: hideIfClosed,
-    // [`& .${listItemTextClasses.root}`]: {
-    //   opacity: isOpen ? 1 : 0,
-    // },
-    // ...(isOpen && {
-    //   ...openedMixin(theme),
-    //   "& .MuiDrawer-paper": openedMixin(theme),
-    // }),
-    // ...(!isOpen && {
-    //   ...closedMixin(theme),
-    //   "& .MuiDrawer-paper": closedMixin(theme),
-    // }),
+  collapse: (_: DrawerState, theme: Theme) => ({
+    [`& .${listItemIconClasses.root}`]: {
+      minWidth: 0,
+      justifyContent: "center",
+      marginRight: "auto",
+    },
+    [`& .${listItemButtonClasses.root}`]: {
+      paddingHorizontal: theme.spacing(2.5),
+      justifyContent: "center",
+    },
+    [`& .${labelClasses.root}`]: {
+      display: "none",
+    },
+    [`& .${bulletClasses.root}`]: {
+      display: "none",
+    },
+    [`& .${listSubheaderClasses.root}`]: {
+      display: "none",
+    },
+    [`& .${listItemTextClasses.root}`]: {
+      opacity: 0,
+    },
+    [`& .${listClasses.root}`]: {
+      paddingY: 0,
+    },
   }),
 };
 

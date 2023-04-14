@@ -59,8 +59,6 @@ export interface DrawerItemLinkProps {
    * Custom styles
    */
   sx?: SxProps<Theme>;
-
-  hideIfCollapsed?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -83,7 +81,6 @@ export const DrawerItemLink = ({
   href,
   selected,
   size = "medium",
-  hideIfCollapsed = true,
   sx,
 }: DrawerItemLinkProps) => {
   const { state } = useDrawer();

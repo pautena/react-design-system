@@ -7,10 +7,10 @@ import { useDrawer } from "../drawer-provider/drawer-context";
 export interface DrawerItemProps {
   item: DrawerNavigationItem;
   size?: DrawerSize;
-  hideIfCollapsed?: boolean;
+  level?: number;
 }
 
-export const DrawerItem = ({ item, size = "medium", hideIfCollapsed = true }: DrawerItemProps) => {
+export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps) => {
   const { selectedItemId } = useDrawer();
   if ("items" in item) {
     const { id, text, icon, items } = item;
@@ -22,7 +22,7 @@ export const DrawerItem = ({ item, size = "medium", hideIfCollapsed = true }: Dr
         text={text}
         icon={icon}
         items={items}
-        hideIfCollapsed={hideIfCollapsed}
+        level={level}
       />
     );
   } else {
@@ -37,7 +37,6 @@ export const DrawerItem = ({ item, size = "medium", hideIfCollapsed = true }: Dr
         label={label}
         bullet={bullet}
         href={href}
-        hideIfCollapsed={hideIfCollapsed}
       />
     );
   }

@@ -36,10 +36,8 @@ export interface DrawerCollapsableItemProps {
    * the collapsable
    */
   items: DrawerNavigationItem[];
-  /**
-   * Hide or not the elements if the drawer is collapsed
-   */
-  hideIfCollapsed?: boolean;
+
+  level: number;
 }
 
 export const DrawerCollapsableItem = ({
@@ -48,7 +46,7 @@ export const DrawerCollapsableItem = ({
   selected,
   items,
   size = "medium",
-  hideIfCollapsed = true,
+  level,
 }: DrawerCollapsableItemProps) => {
   const { state } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
@@ -59,10 +57,18 @@ export const DrawerCollapsableItem = ({
   const submenu = (
     <List component="div" disablePadding>
       {items.map((item) => (
-        <DrawerItem key={item.id} hideIfCollapsed={false} item={item} size={size} />
+        <DrawerItem key={item.id} level={level + 1} item={item} size={size} />
       ))}
     </List>
   );
+
+  const collapsedButtonSx =
+    state === "collapse" && level === 0
+      ? {
+          position: "absolute",
+          right: 0,
+        }
+      : {};
 
   return (
     <>
@@ -76,8 +82,11 @@ export const DrawerCollapsableItem = ({
       >
         {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
         <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-        {open && <ExpandMoreIcon sx={{ color, ml: 2 }} />}
-        {!open && <ChevronRightIcon sx={{ color, ml: 2 }} />}
+        {open && state === "open" ? (
+          <ExpandMoreIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
+        ) : (
+          <ChevronRightIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
+        )}
       </ListItemButton>
       {state === "open" ? (
         <Collapse in={open} timeout="auto" unmountOnExit aria-label={`${text} collapse submenu`}>
