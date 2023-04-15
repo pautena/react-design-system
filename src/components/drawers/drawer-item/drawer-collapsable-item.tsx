@@ -40,7 +40,7 @@ export interface DrawerCollapsableItemProps {
   items: DrawerNavigationItem[];
 
   level: number;
-  sx?:SxProps<Theme>;
+  sx?: SxProps<Theme>;
 }
 
 export const DrawerCollapsableItem = ({
@@ -50,11 +50,11 @@ export const DrawerCollapsableItem = ({
   items,
   size = "medium",
   level,
-  sx={}, 
+  sx = {},
 }: DrawerCollapsableItemProps) => {
   const { state } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
-  const { palette } = useTheme();
+  const { palette, spacing } = useTheme();
   const [open, setOpen] = useState(false);
   const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
 
@@ -82,7 +82,11 @@ export const DrawerCollapsableItem = ({
         aria-label={text}
         onClick={() => setOpen((o) => !o)}
         dense={size === "small"}
-        sx={{ ...sx,backgroundColor: open ? palette.action.hover : undefined }}
+        sx={{
+          ...sx,
+          pl: state === "open" ? spacing(2 + 1.5 * level) : undefined,
+          backgroundColor: open ? palette.action.hover : undefined,
+        }}
       >
         {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
         <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />

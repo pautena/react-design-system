@@ -59,6 +59,8 @@ export interface DrawerItemLinkProps {
    * Custom styles
    */
   sx?: SxProps<Theme>;
+
+  level: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -81,6 +83,7 @@ export const DrawerItemLink = ({
   href,
   selected,
   size = "medium",
+  level,
   sx,
 }: DrawerItemLinkProps) => {
   const { state } = useDrawer();
@@ -94,7 +97,10 @@ export const DrawerItemLink = ({
       aria-label={text}
       href={href}
       selected={selected}
-      sx={sx}
+      sx={{
+        ...sx,
+        pl: state === "open" ? theme.spacing(2 + 1.5 * level) : undefined,
+      }}
     >
       {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
       {avatar && (

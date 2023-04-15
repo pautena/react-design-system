@@ -12,9 +12,8 @@ export interface DrawerItemProps {
 }
 
 export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps) => {
-  const {spacing} = useTheme();
-  const { selectedItemId,state } = useDrawer();
-  const itemSx = state === "open" ? {pl:spacing(2 + 1.5 * level)}:undefined;
+  const { spacing } = useTheme();
+  const { selectedItemId, state } = useDrawer();
   if ("items" in item) {
     const { id, text, icon, items } = item;
     const childrenSelected = items.some((item) => item.id === selectedItemId);
@@ -26,7 +25,6 @@ export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps
         icon={icon}
         items={items}
         level={level}
-        sx={itemSx}
       />
     );
   } else {
@@ -41,7 +39,7 @@ export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps
         label={label}
         bullet={bullet}
         href={href}
-        sx={itemSx}
+        level={level}
       />
     );
   }

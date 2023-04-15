@@ -12,12 +12,12 @@ import { useDrawer } from "../drawer-provider/drawer-context";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
 import { DrawerState, DrawerVariant } from "../drawer.types";
 
-const moveWithDrawer:Record<DrawerVariant,boolean> ={
+const moveWithDrawer: Record<DrawerVariant, boolean> = {
   temporary: false,
   mini: true,
   persistent: true,
-  clipped: true
-}
+  clipped: true,
+};
 
 const showMenuButton: Record<DrawerVariant, (state: DrawerState) => boolean> = {
   temporary: () => true,
@@ -32,23 +32,24 @@ export interface DrawerAppBarProps extends MuiAppBarProps {
 
 export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps) => {
   const theme = useTheme();
-  const { state,variant, switchState, drawerWidth, underAppBar } = useDrawer();
+  const { state, variant, switchState, drawerWidth, underAppBar } = useDrawer();
 
   const rootSx =
-    (moveWithDrawer[variant] && !underAppBar && {
-      transition: theme.transitions.create(["width", "margin"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      ...(state === "open" && {
-        marginLeft: drawerWidth,
-        width: `calc(100% - ${drawerWidth}px)`,
+    (moveWithDrawer[variant] &&
+      !underAppBar && {
         transition: theme.transitions.create(["width", "margin"], {
           easing: theme.transitions.easing.sharp,
-          duration: theme.transitions.duration.enteringScreen,
+          duration: theme.transitions.duration.leavingScreen,
         }),
-      }),
-    }) ||
+        ...(state === "open" && {
+          marginLeft: drawerWidth,
+          width: `calc(100% - ${drawerWidth}px)`,
+          transition: theme.transitions.create(["width", "margin"], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+          }),
+        }),
+      }) ||
     {};
 
   return (

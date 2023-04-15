@@ -67,9 +67,9 @@ const statesSx: Readonly<Record<DrawerState, SxGenerator>> = {
       justifyContent: "center",
       marginRight: "auto",
       [`& .${avatarClasses.root}`]: {
-        width:30,
-        height:30,
-      }
+        width: 30,
+        height: 30,
+      },
     },
     [`& .${listItemButtonClasses.root}`]: {
       paddingHorizontal: theme.spacing(2.5),
