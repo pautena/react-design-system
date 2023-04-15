@@ -12,6 +12,13 @@ import { useDrawer } from "../drawer-provider/drawer-context";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
 import { DrawerState, DrawerVariant } from "../drawer.types";
 
+const moveWithDrawer:Record<DrawerVariant,boolean> ={
+  temporary: false,
+  mini: true,
+  persistent: true,
+  clipped: true
+}
+
 const showMenuButton: Record<DrawerVariant, (state: DrawerState) => boolean> = {
   temporary: () => true,
   mini: (state) => state !== "open",
@@ -27,10 +34,9 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
   const theme = useTheme();
   const { state, switchState, drawerWidth, underAppBar } = useDrawer();
   const { variant } = useDrawer();
-  const moveWithDrawer = variant === "mini";
 
   const rootSx =
-    (moveWithDrawer && {
+    (moveWithDrawer[variant] && {
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,

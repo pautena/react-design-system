@@ -7,6 +7,7 @@ import {
   useTheme,
   Popover,
   SxProps,
+  Theme,
 } from "@mui/material";
 import React, { ReactElement, useState, useRef } from "react";
 import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer.types";
@@ -14,7 +15,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "../drawer-item/drawer-item";
 import { useDrawer } from "../drawer-provider";
-import { Theme } from "@mui/system";
 
 export interface DrawerCollapsableItemProps {
   /**
@@ -50,7 +50,7 @@ export const DrawerCollapsableItem = ({
   items,
   size = "medium",
   level,
-  sx,
+  sx={}, 
 }: DrawerCollapsableItemProps) => {
   const { state } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
@@ -82,7 +82,7 @@ export const DrawerCollapsableItem = ({
         aria-label={text}
         onClick={() => setOpen((o) => !o)}
         dense={size === "small"}
-        sx={[sx,{ backgroundColor: open ? palette.action.hover : undefined }]}
+        sx={{ ...sx,backgroundColor: open ? palette.action.hover : undefined }}
       >
         {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
         <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
