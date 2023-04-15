@@ -18,7 +18,7 @@ const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
   persistent: ["close", "open"],
 };
 
-type DrawerProviderProps = PropsWithChildren<{
+export type DrawerProviderProps = PropsWithChildren<{
   initialState?: DrawerState;
   underAppBar?: boolean;
   drawerWidth?: number;

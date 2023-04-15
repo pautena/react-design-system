@@ -76,14 +76,7 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
           <MenuIcon />
         </IconButton>
         {title && (
-          <Typography
-            variant="h6"
-            component="h1"
-            role="heading"
-            aria-level={1}
-            noWrap
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
+          <Typography variant="h6" component="h1" role="heading" aria-level={1} noWrap>
             {title}
           </Typography>
         )}

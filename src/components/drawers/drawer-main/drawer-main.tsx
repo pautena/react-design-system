@@ -1,32 +1,42 @@
-import { styled } from "@mui/material";
-import { useDrawer } from "../drawer-provider";
+import { styled, useTheme } from "@mui/material";
+import React from "react";
+import { PropsWithChildren } from "react";
+import { DrawerHeader, useDrawer } from "../drawer-provider";
 import { DrawerVariant } from "../drawer.types";
 
 const drawerSpace: Record<DrawerVariant, boolean> = {
   temporary: false,
-  mini: false,
+  mini: true,
   clipped: true,
   persistent: true,
 };
 
-export const DrawerMain = styled("main")(({ theme }) => {
+const StyledDiv = styled("div")(({ theme }) => {
+  const { spacing } = useTheme();
   const { drawerWidth, state, variant } = useDrawer();
 
+  const marginLeft = drawerSpace[variant]
+    ? state === "open"
+      ? drawerWidth
+      : state === "collapse"
+      ? spacing(8)
+      : 0
+    : 0;
+
   return {
-    flexGrow: 1,
-    padding: theme.spacing(3),
+    marginLeft,
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(state === "open" &&
-      drawerSpace[variant] && {
-        transition: theme.transitions.create("margin", {
-          easing: theme.transitions.easing.easeOut,
-          duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
-      }),
   };
 });
+
+export type DrawerMainProps = PropsWithChildren;
+
+export const DrawerMain = ({ children }: DrawerMainProps) => (
+  <StyledDiv>
+    <DrawerHeader />
+    {children}
+  </StyledDiv>
+);

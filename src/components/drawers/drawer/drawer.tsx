@@ -18,7 +18,14 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
 import { useDrawer } from "../drawer-provider/drawer-context";
 import { closedMixin, openedMixin } from "../drawer-provider/drawer-mixins";
-import { labelClasses, bulletClasses } from "~/components/data-display";
+
+export const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "flex-end",
+  padding: theme.spacing(0, 1),
+  ...theme.mixins.toolbar,
+}));
 
 const showCloseButton: Record<DrawerVariant, boolean> = {
   temporary: true,
@@ -47,14 +54,6 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
   clipped: NoopSxGenerator,
   persistent: NoopSxGenerator,
 };
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "flex-end",
-  padding: theme.spacing(0, 1),
-  ...theme.mixins.toolbar,
-}));
 
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();

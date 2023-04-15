@@ -4,18 +4,18 @@ import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "~/tests/assertions";
 import { Drawer, DrawerContent, DrawerAppBar, ContentPlaceholder } from "~/components";
 import { mockDrawerNavigation } from "~/components/drawers/drawer.mock";
-import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
+import { DrawerLayoutProps } from "./drawer-layout";
 
-describe("AppBarWithDrawerLayout", () => {
+describe("DrawerLayout", () => {
   const renderComponent = () => {
     return render(
-      <AppBarWithDrawerLayout>
+      <DrawerLayoutProps>
         <Drawer>
           <DrawerContent nav={mockDrawerNavigation} />
         </Drawer>
         <DrawerAppBar title="Lorem ipsum" />
         <ContentPlaceholder p={3} />
-      </AppBarWithDrawerLayout>,
+      </DrawerLayoutProps>,
     );
   };
 
