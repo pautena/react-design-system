@@ -16,6 +16,8 @@ import {
   listClasses,
   listItemClasses,
   svgIconClasses,
+  listItemAvatarClasses,
+  avatarClasses,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
@@ -67,6 +69,15 @@ const statesSx: Readonly<Record<DrawerState, SxGenerator>> = {
       minWidth: 0,
       justifyContent: "center",
       marginRight: "auto",
+    },
+    [`& .${listItemAvatarClasses.root}`]: {
+      minWidth: 0,
+      justifyContent: "center",
+      marginRight: "auto",
+      [`& .${avatarClasses.root}`]: {
+        width:30,
+        height:30,
+      }
     },
     [`& .${listItemButtonClasses.root}`]: {
       paddingHorizontal: theme.spacing(2.5),
