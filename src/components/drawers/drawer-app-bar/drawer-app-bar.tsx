@@ -32,11 +32,10 @@ export interface DrawerAppBarProps extends MuiAppBarProps {
 
 export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps) => {
   const theme = useTheme();
-  const { state, switchState, drawerWidth, underAppBar } = useDrawer();
-  const { variant } = useDrawer();
+  const { state,variant, switchState, drawerWidth, underAppBar } = useDrawer();
 
   const rootSx =
-    (moveWithDrawer[variant] && {
+    (moveWithDrawer[variant] && !underAppBar && {
       transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,

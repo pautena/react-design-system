@@ -47,14 +47,6 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
     [`& .${paperClasses.root}`]: {
       zIndex: theme.zIndex.drawer - 1,
     },
-    ...(state === "open" && {
-      ...openedMixin(theme),
-      [`& .${drawerClasses.paper}`]: openedMixin(theme),
-    }),
-    ...(state !== "open" && {
-      ...closedMixin(theme),
-      [`& .${drawerClasses.paper}`]: closedMixin(theme),
-    }),
   }),
   temporary: NoopSxGenerator,
   clipped: NoopSxGenerator,
@@ -118,6 +110,14 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
+    ...(state === "open" && {
+      ...openedMixin(theme),
+      [`& .${drawerClasses.paper}`]: openedMixin(theme),
+    }),
+    ...(state !== "open" && {
+      ...closedMixin(theme),
+      [`& .${drawerClasses.paper}`]: closedMixin(theme),
+    }),
     ...statesSx[state](state, theme),
     ...variantsSx[variant](state, theme),
   };
