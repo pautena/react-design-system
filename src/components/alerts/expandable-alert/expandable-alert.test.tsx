@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { render, screen, waitFor } from "~/tests/testing-library";
 import { ExpandableAlert } from "./expandable-alert";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { Box, Button, Snackbar } from "@mui/material";
 
 const message = "Lorem ipsum dolor sit amet";
 const metadata =
@@ -111,5 +112,26 @@ describe("ExpandableAlert", () => {
 
     expect(copy).toHaveBeenCalledTimes(1);
     expect(copy).toHaveBeenCalledWith(metadata);
+  });
+
+  it("should work inside a snackbar", async () => {
+    const SnackbarAlert = () => {
+      const [open, setOpen] = useState(false);
+
+      return (
+        <Box>
+          <Button onClick={() => setOpen(true)}>snackbar</Button>
+          <Snackbar open={open}>
+            <ExpandableAlert severity="info" message="lorem ipsum" onClose={() => setOpen(false)} />
+          </Snackbar>
+        </Box>
+      );
+    };
+
+    render(<SnackbarAlert />);
+
+    await userEvent.click(screen.getByRole("button", { name: /snackbar/i }));
+
+    expect(screen.getByText(/lorem ipsum/i)).toBeVisible();
   });
 });

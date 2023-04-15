@@ -10,7 +10,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 import React from "react";
 import { Board } from "~/components/data-display";
 
@@ -29,43 +29,43 @@ const alertSx = {
   },
 };
 
-export const ExpandableAlert = ({
-  severity,
-  iconMapping,
-  title,
-  message,
-  metadata,
-  onClose,
-}: ExpandableAlertProps) => {
-  const [expanded, setExpanded] = useState(false);
-  return (
-    <Alert
-      severity={severity}
-      iconMapping={iconMapping}
-      onClose={onClose}
-      action={
-        <Box display="flex" flexDirection="column">
-          <IconButton color="inherit" onClick={onClose}>
-            <CloseIcon fontSize="small" />
-          </IconButton>
-          {metadata && (
-            <IconButton color="inherit" onClick={() => setExpanded((e) => !e)}>
-              {expanded ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
+export const ExpandableAlert = forwardRef<any, ExpandableAlertProps>(
+  ({ severity, iconMapping, title, message, metadata, onClose }, ref) => {
+    const [expanded, setExpanded] = useState(false);
+    return (
+      <Alert
+        ref={ref}
+        severity={severity}
+        iconMapping={iconMapping}
+        onClose={onClose}
+        action={
+          <Box display="flex" flexDirection="column">
+            <IconButton color="inherit" onClick={onClose}>
+              <CloseIcon fontSize="small" />
             </IconButton>
+            {metadata && (
+              <IconButton color="inherit" onClick={() => setExpanded((e) => !e)}>
+                {expanded ? (
+                  <ExpandLessIcon fontSize="small" />
+                ) : (
+                  <ExpandMoreIcon fontSize="small" />
+                )}
+              </IconButton>
+            )}
+          </Box>
+        }
+        sx={alertSx}
+      >
+        <Box sx={{ w: 1 }}>
+          {title && <AlertTitle>{title}</AlertTitle>}
+          {message}
+          {metadata && (
+            <Collapse in={expanded} sx={{ mt: 2 }}>
+              <Board content={metadata} />
+            </Collapse>
           )}
         </Box>
-      }
-      sx={alertSx}
-    >
-      <Box sx={{ w: 1 }}>
-        {title && <AlertTitle>{title}</AlertTitle>}
-        {message}
-        {metadata && (
-          <Collapse in={expanded} sx={{ mt: 2 }}>
-            <Board content={metadata} />
-          </Collapse>
-        )}
-      </Box>
-    </Alert>
-  );
-};
+      </Alert>
+    );
+  },
+);
