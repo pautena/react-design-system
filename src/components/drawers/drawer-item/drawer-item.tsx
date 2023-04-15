@@ -3,6 +3,7 @@ import { DrawerCollapsableItem } from "./drawer-collapsable-item";
 import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
 import { useDrawer } from "../drawer-provider/drawer-context";
+import { useTheme } from "@mui/material";
 
 export interface DrawerItemProps {
   item: DrawerNavigationItem;
@@ -11,7 +12,9 @@ export interface DrawerItemProps {
 }
 
 export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps) => {
-  const { selectedItemId } = useDrawer();
+  const {spacing} = useTheme();
+  const { selectedItemId,state } = useDrawer();
+  const itemSx = state === "open" ? {pl:spacing(2 + 1.5 * level)}:undefined;
   if ("items" in item) {
     const { id, text, icon, items } = item;
     const childrenSelected = items.some((item) => item.id === selectedItemId);
@@ -23,6 +26,7 @@ export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps
         icon={icon}
         items={items}
         level={level}
+        sx={itemSx}
       />
     );
   } else {
@@ -37,6 +41,7 @@ export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps
         label={label}
         bullet={bullet}
         href={href}
+        sx={itemSx}
       />
     );
   }
