@@ -1,24 +1,31 @@
 import React from "react";
-import { DrawerCollapsableItem } from "./drawer-collapsable-item";
+import { DrawerMenuItem } from "./drawer-menu-item";
 import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
 import { useDrawer } from "../drawer-provider/drawer-context";
-import { useTheme } from "@mui/material";
 
 export interface DrawerItemProps {
+  /**
+   * Data to be rendered
+   */
   item: DrawerNavigationItem;
+  /**
+   * Size of the item
+   */
   size?: DrawerSize;
+  /**
+   * Deep level of this item inside the submenus
+   */
   level?: number;
 }
 
 export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps) => {
-  const { spacing } = useTheme();
-  const { selectedItemId, state } = useDrawer();
+  const { selectedItemId } = useDrawer();
   if ("items" in item) {
     const { id, text, icon, items } = item;
     const childrenSelected = items.some((item) => item.id === selectedItemId);
     return (
-      <DrawerCollapsableItem
+      <DrawerMenuItem
         size={size}
         selected={id === selectedItemId || childrenSelected}
         text={text}

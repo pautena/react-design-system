@@ -9,6 +9,7 @@ import {
 } from "../drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
 import { DrawerState } from "../drawer.types";
+import { useTheme } from "@mui/material";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
   initialState?: DrawerState;
@@ -22,21 +23,27 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: ({ initialState = "open", selectedItemId, ...args }) => (
-    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
-      <DrawerItem {...args} />
-    </DrawerProvider>
-  ),
+  render: ({ initialState = "open", selectedItemId, ...args }) => {
+    const { spacing } = useTheme();
+
+    return (
+      <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
+        <DrawerItem {...args} />
+      </DrawerProvider>
+    );
+  },
 } satisfies Meta<DrawerItemStoryArgs>;
 type Story = StoryObj<DrawerItemStoryArgs>;
 
-export const LinkOnlyText: Story = {
+export const ItemOnlyText: Story = {
+  name: "Item (open)",
   args: {
     item: mockLinkNoIconDrawerNavigationItem,
   },
 };
 
-export const LinkWithIcon: Story = {
+export const ItemWithIcon: Story = {
+  name: "Item (icon,open)",
   args: {
     item: {
       ...mockLinkNoIconDrawerNavigationItem,
@@ -45,7 +52,8 @@ export const LinkWithIcon: Story = {
   },
 };
 
-export const LinkWithAvatar: Story = {
+export const ItemWithAvatar: Story = {
+  name: "Item (avatar,open)",
   args: {
     item: {
       ...mockLinkNoIconDrawerNavigationItem,
@@ -57,7 +65,8 @@ export const LinkWithAvatar: Story = {
   },
 };
 
-export const LinkWithLabel: Story = {
+export const ItemWithLabel: Story = {
+  name: "Item (icon,label,open)",
   args: {
     item: {
       ...mockLinkNoIconDrawerNavigationItem,
@@ -70,7 +79,8 @@ export const LinkWithLabel: Story = {
   },
 };
 
-export const LinkWithBullet: Story = {
+export const ItemWithBullet: Story = {
+  name: "Item (icon,bullet,open)",
   args: {
     item: {
       ...mockLinkNoIconDrawerNavigationItem,
@@ -82,78 +92,65 @@ export const LinkWithBullet: Story = {
   },
 };
 
-export const LinkSelected: Story = {
+export const ItemSelected: Story = {
+  name: "Item (icon,label,selected,open)",
   args: {
-    ...LinkWithLabel.args,
+    ...ItemWithLabel.args,
     selectedItemId: mockLinkNoIconDrawerNavigationItem.id,
   },
 };
 
-export const LinkCollapsed: Story = {
+export const ItemSizeSmallWithIcon: Story = {
+  name: "Item (icon,label,small,open)",
   args: {
-    ...LinkWithIcon.args,
-    initialState: "collapse",
-  },
-};
-
-export const LinkSizeSmall: Story = {
-  args: {
-    ...LinkWithIcon.args,
+    ...ItemWithLabel.args,
     size: "small",
   },
 };
 
-export const LinkSizeSmallWithLabel: Story = {
+export const ItemSizeSmallWithAvatar: Story = {
+  name: "Item (avatar,small,open)",
   args: {
-    ...LinkWithLabel.args,
+    ...ItemWithAvatar.args,
     size: "small",
   },
 };
 
-export const LinkSizeSmallWithAvatar: Story = {
+export const ItemSizeSmallSelected: Story = {
+  name: "Item (icon,label,selected,small,open)",
   args: {
-    ...LinkWithAvatar.args,
+    ...ItemSelected.args,
     size: "small",
   },
 };
 
-export const LinkSizeSmallSelected: Story = {
-  args: {
-    ...LinkSelected.args,
-    size: "small",
-  },
-};
-
-export const CollapsableNotSelected: Story = {
+export const MenuNotSelected: Story = {
+  name: "Menu (open)",
   args: {
     item: mockCollapsableDrawerNavigationItem,
   },
 };
 
-export const CollapsbleSelected: Story = {
+export const MenuSelected: Story = {
+  name: "Menu (selected,open)",
   args: {
-    ...CollapsableNotSelected.args,
+    ...MenuNotSelected.args,
     selectedItemId: mockCollapsableDrawerNavigationItem.id,
   },
 };
 
-export const CollapsbleCollapsedSubmenu: Story = {
+export const MenuNoSelectedSmall: Story = {
+  name: "Menu (small,open)",
   args: {
-    ...CollapsableNotSelected.args,
-    initialState: "collapse",
-  },
-};
-
-export const CollapsbleNoSelectedSmall: Story = {
-  args: {
-    ...CollapsableNotSelected.args,
+    ...MenuNotSelected.args,
     size: "small",
   },
 };
 
-export const CollapsbleSelectedSmall: Story = {
+export const MenuSelectedSmall: Story = {
+  name: "Menu (small,selected,open)",
   args: {
-    ...CollapsbleSelected.args,
+    ...MenuSelected.args,
     size: "small",
   },
 };

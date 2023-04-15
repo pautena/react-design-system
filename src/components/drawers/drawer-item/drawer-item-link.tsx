@@ -56,11 +56,13 @@ export interface DrawerItemLinkProps {
    */
   selected?: boolean;
   /**
+   * Deep level of this item inside the submenus
+   */
+  level: number;
+  /**
    * Custom styles
    */
   sx?: SxProps<Theme>;
-
-  level: number;
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -70,6 +72,12 @@ const StyledLink = styled(Link)(({ theme }) => {
     color: theme.palette.text.primary,
   };
 });
+
+const sxCollapsedIcon = {
+  minWidth: 0,
+  justifyContent: "center",
+  marginRight: "auto",
+};
 
 /**
  * Clicable item inside a drawer
@@ -100,21 +108,42 @@ export const DrawerItemLink = ({
       sx={{
         ...sx,
         pl: state === "open" ? theme.spacing(2 + 1.5 * level) : undefined,
+        ...(state === "collapse" && {
+          paddingHorizontal: theme.spacing(2.5),
+          justifyContent: "center",
+        }),
       }}
     >
-      {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
+      {icon && (
+        <ListItemIcon sx={{ color, ...(state === "collapse" && level === 0 && sxCollapsedIcon) }}>
+          {icon}
+        </ListItemIcon>
+      )}
       {avatar && (
-        <ListItemAvatar>
+        <ListItemAvatar
+          sx={{
+            ...(state === "collapse" && level === 0 && sxCollapsedIcon),
+          }}
+        >
           <Avatar
             alt={avatar.alt}
             src={avatar.src}
-            sx={size === "small" ? { width: 24, height: 24 } : undefined}
+            sx={{
+              ...(size === "small" && { width: 24, height: 24 }),
+              ...(state === "collapse" && { width: 30, height: 30 }),
+            }}
           />
         </ListItemAvatar>
       )}
-      <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-      {label && <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />}
-      {bullet && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
+      <ListItemText
+        disableTypography
+        primary={text}
+        sx={{ color, fontWeight, opacity: state === "collapse" && level === 0 ? 0 : undefined }}
+      />
+      {label && state === "open" && (
+        <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />
+      )}
+      {bullet && state === "open" && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
     </ListItemButton>
   );
 };

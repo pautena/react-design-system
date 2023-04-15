@@ -29,12 +29,17 @@ export const DrawerSection = ({ title, items, size = "medium" }: DrawerSectionPr
   const { spacing } = useTheme();
   return (
     <>
-      {title && (
+      {title && state === "open" && (
         <DrawerSubheader size={size} role="heading">
           {title}
         </DrawerSubheader>
       )}
-      <List sx={{ paddingTop: size === "small" ? spacing(0) : undefined }}>
+      <List
+        sx={{
+          paddingTop: size === "small" ? spacing(0) : undefined,
+          paddingY: state === "collapse" ? 0 : undefined,
+        }}
+      >
         {items.map((item) => (
           <DrawerItem key={item.id} item={item} size={size} />
         ))}

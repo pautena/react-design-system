@@ -5,17 +5,12 @@ import {
   drawerClasses,
   listItemButtonClasses,
   listItemIconClasses,
-  listItemTextClasses,
-  listSubheaderClasses,
   styled,
   Drawer as MuiDrawer,
   Divider,
   IconButton,
   useTheme,
   paperClasses,
-  listClasses,
-  listItemClasses,
-  svgIconClasses,
   listItemAvatarClasses,
   avatarClasses,
 } from "@mui/material";
@@ -53,46 +48,6 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
   persistent: NoopSxGenerator,
 };
 
-const statesSx: Readonly<Record<DrawerState, SxGenerator>> = {
-  open: NoopSxGenerator,
-  close: NoopSxGenerator,
-  collapse: (_: DrawerState, theme: Theme) => ({
-    [`& .${listItemIconClasses.root}`]: {
-      minWidth: 0,
-      justifyContent: "center",
-      marginRight: "auto",
-    },
-    [`& .${listItemAvatarClasses.root}`]: {
-      minWidth: 0,
-      justifyContent: "center",
-      marginRight: "auto",
-      [`& .${avatarClasses.root}`]: {
-        width: 30,
-        height: 30,
-      },
-    },
-    [`& .${listItemButtonClasses.root}`]: {
-      paddingHorizontal: theme.spacing(2.5),
-      justifyContent: "center",
-    },
-    [`& .${labelClasses.root}`]: {
-      display: "none",
-    },
-    [`& .${bulletClasses.root}`]: {
-      display: "none",
-    },
-    [`& .${listSubheaderClasses.root}`]: {
-      display: "none",
-    },
-    [`& .${listItemTextClasses.root}`]: {
-      opacity: 0,
-    },
-    [`& .${listClasses.root}`]: {
-      paddingY: 0,
-    },
-  }),
-};
-
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -118,7 +73,6 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
       ...closedMixin(theme),
       [`& .${drawerClasses.paper}`]: closedMixin(theme),
     }),
-    ...statesSx[state](state, theme),
     ...variantsSx[variant](state, theme),
   };
 

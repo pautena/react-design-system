@@ -13,10 +13,10 @@ import React, { ReactElement, useState, useRef } from "react";
 import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer.types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { DrawerItem } from "../drawer-item/drawer-item";
+import { DrawerItem } from "./drawer-item";
 import { useDrawer } from "../drawer-provider";
 
-export interface DrawerCollapsableItemProps {
+export interface DrawerMenuItemProps {
   /**
    * Item size. default to medium
    */
@@ -38,12 +38,17 @@ export interface DrawerCollapsableItemProps {
    * the collapsable
    */
   items: DrawerNavigationItem[];
-
+  /**
+   * Deep level of this item inside the submenus
+   */
   level: number;
+  /**
+   * Custom styles
+   */
   sx?: SxProps<Theme>;
 }
 
-export const DrawerCollapsableItem = ({
+export const DrawerMenuItem = ({
   text,
   icon,
   selected,
@@ -51,7 +56,7 @@ export const DrawerCollapsableItem = ({
   size = "medium",
   level,
   sx = {},
-}: DrawerCollapsableItemProps) => {
+}: DrawerMenuItemProps) => {
   const { state } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
   const { palette, spacing } = useTheme();
@@ -89,7 +94,11 @@ export const DrawerCollapsableItem = ({
         }}
       >
         {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
-        <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
+        <ListItemText
+          disableTypography
+          primary={text}
+          sx={{ color, fontWeight, opacity: state === "collapse" && level === 0 ? 0 : undefined }}
+        />
         {open && state === "open" ? (
           <ExpandMoreIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
         ) : (
