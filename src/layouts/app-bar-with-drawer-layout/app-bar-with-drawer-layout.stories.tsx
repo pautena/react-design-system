@@ -2,8 +2,7 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { AppBarWithDrawerLayout } from "./app-bar-with-drawer-layout";
 import { mockDrawerNavigation } from "../../components/drawers/drawer.mock";
-import { MiniAppBar } from "../../components/app-bars/app-bar";
-import { ContentPlaceholder, DrawerContent, MiniDrawer } from "../../components";
+import { ContentPlaceholder, DrawerContent, Drawer, DrawerAppBar } from "../../components";
 import { withMemoryRouter } from "~/storybook";
 
 export default {
@@ -15,10 +14,10 @@ export default {
   },
   render: () => (
     <AppBarWithDrawerLayout>
-      <MiniDrawer>
+      <Drawer>
         <DrawerContent nav={mockDrawerNavigation} />
-      </MiniDrawer>
-      <MiniAppBar title="Lorem ipsum" onClickSignOut={() => null} />
+      </Drawer>
+      <DrawerAppBar title="Lorem ipsum" />
       <ContentPlaceholder p={3} />
     </AppBarWithDrawerLayout>
   ),

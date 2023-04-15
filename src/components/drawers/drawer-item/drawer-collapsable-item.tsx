@@ -6,19 +6,15 @@ import {
   List,
   useTheme,
   Popover,
+  SxProps,
+  Theme,
 } from "@mui/material";
 import React, { ReactElement, useState, useRef } from "react";
-import {
-  DrawerNavigationItem,
-  DrawerNavigationItemLink,
-  DrawerSize,
-  DrawerSubmenuVariant,
-  getDrawerItemColors,
-} from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer.types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { DrawerItemLink } from "../drawer-item-link";
 import { DrawerItem } from "../drawer-item/drawer-item";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerCollapsableItemProps {
   /**
@@ -38,79 +34,66 @@ export interface DrawerCollapsableItemProps {
    */
   selected?: boolean;
   /**
-   * Id of the item that has to be marked as selected;
-   */
-  selectedItem?: string;
-  /**
    * Items that are going to be displayed inside
    * the collapsable
    */
   items: DrawerNavigationItem[];
-  /**
-   * How the submenu has to be shown. collapsable by default
-   */
-  submenuVariant?: DrawerSubmenuVariant;
-}
 
-export const drawerCollapsableItemClasses = {
-  collapseIcon: "DraweCollapsableItem-collapseIcon",
-  collapseRoot: "DraweCollapsableItem-collapseRoot",
-  collapseContent: "DraweCollapsableItem-collapseContent",
-};
+  level: number;
+  sx?:SxProps<Theme>;
+}
 
 export const DrawerCollapsableItem = ({
   text,
   icon,
   selected,
-  selectedItem,
   items,
   size = "medium",
-  submenuVariant = "collapse",
+  level,
+  sx={}, 
 }: DrawerCollapsableItemProps) => {
+  const { state } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
   const { palette } = useTheme();
   const [open, setOpen] = useState(false);
   const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
 
   const submenu = (
-    <List component="div" disablePadding className={drawerCollapsableItemClasses.collapseContent}>
+    <List component="div" disablePadding>
       {items.map((item) => (
-        <DrawerItem
-          key={item.id}
-          item={item}
-          selectedItem={selectedItem}
-          size={size}
-          submenuVariant={submenuVariant}
-        />
+        <DrawerItem key={item.id} level={level + 1} item={item} size={size} />
       ))}
     </List>
   );
+
+  const collapsedButtonSx =
+    state === "collapse" && level === 0
+      ? {
+          position: "absolute",
+          right: 0,
+        }
+      : {};
 
   return (
     <>
       <ListItemButton
         ref={anchorEl}
         selected={selected}
+        aria-label={text}
         onClick={() => setOpen((o) => !o)}
         dense={size === "small"}
-        sx={{ backgroundColor: open ? palette.action.hover : undefined }}
+        sx={{ ...sx,backgroundColor: open ? palette.action.hover : undefined }}
       >
         {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
         <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-        {open && submenuVariant === "collapse" ? (
-          <ExpandMoreIcon className={drawerCollapsableItemClasses.collapseIcon} sx={{ color }} />
+        {open && state === "open" ? (
+          <ExpandMoreIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
         ) : (
-          <ChevronRightIcon className={drawerCollapsableItemClasses.collapseIcon} sx={{ color }} />
+          <ChevronRightIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
         )}
       </ListItemButton>
-      {submenuVariant === "collapse" ? (
-        <Collapse
-          in={open}
-          timeout="auto"
-          unmountOnExit
-          aria-label={`${text} collapse submenu`}
-          className={drawerCollapsableItemClasses.collapseRoot}
-        >
+      {state === "open" ? (
+        <Collapse in={open} timeout="auto" unmountOnExit aria-label={`${text} collapse submenu`}>
           {submenu}
         </Collapse>
       ) : (

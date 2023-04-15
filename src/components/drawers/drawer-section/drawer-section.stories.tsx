@@ -1,22 +1,35 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DrawerSection } from "./drawer-section";
-import { withContainer } from "../../../storybook";
+import { DrawerSection, DrawerSectionProps } from "./drawer-section";
 import { withMemoryRouter } from "~/storybook";
 import { mockCollapsableDrawerNavigationSection } from "../drawer.mock";
+import { DrawerProvider } from "../drawer-provider";
+import React from "react";
+import { DrawerState } from "../drawer.types";
+
+type DrawerSectionArgs = DrawerSectionProps & {
+  initialState?: DrawerState;
+  selectedItemId?: string;
+};
 
 export default {
   title: "Components/Drawers/DrawerSection",
   component: DrawerSection,
-  decorators: [withMemoryRouter(), withContainer({ width: 250 })],
+  decorators: [withMemoryRouter()],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof DrawerSection>;
-type Story = StoryObj<typeof DrawerSection>;
+  render: ({ initialState = "open", selectedItemId, ...args }) => (
+    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
+      <DrawerSection {...args} />{" "}
+    </DrawerProvider>
+  ),
+} satisfies Meta<DrawerSectionArgs>;
+type Story = StoryObj<DrawerSectionArgs>;
 
 export const WihtoutTitle = {
   args: {
     items: mockCollapsableDrawerNavigationSection.items,
+    selectedItemId: "item2.3.2",
   },
 };
 
@@ -31,5 +44,12 @@ export const Small: Story = {
   args: {
     ...Default.args,
     size: "small",
+  },
+};
+
+export const Collapsed: Story = {
+  args: {
+    ...Default.args,
+    initialState: "collapse",
   },
 };

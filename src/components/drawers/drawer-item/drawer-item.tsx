@@ -1,40 +1,39 @@
 import React from "react";
-import { DrawerCollapsableItem } from "../drawer-collapsable-item";
-import { DrawerNavigationItem, DrawerSize, DrawerSubmenuVariant } from "../drawer.types";
-import { DrawerItemLink } from "../drawer-item-link";
+import { DrawerCollapsableItem } from "./drawer-collapsable-item";
+import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
+import { DrawerItemLink } from "./drawer-item-link";
+import { useDrawer } from "../drawer-provider/drawer-context";
+import { useTheme } from "@mui/material";
 
 export interface DrawerItemProps {
   item: DrawerNavigationItem;
-  selectedItem?: string;
   size?: DrawerSize;
-  submenuVariant?: DrawerSubmenuVariant;
+  level?: number;
 }
 
-export const DrawerItem = ({
-  selectedItem,
-  item,
-  size = "medium",
-  submenuVariant = "collapse",
-}: DrawerItemProps) => {
+export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps) => {
+  const {spacing} = useTheme();
+  const { selectedItemId,state } = useDrawer();
+  const itemSx = state === "open" ? {pl:spacing(2 + 1.5 * level)}:undefined;
   if ("items" in item) {
     const { id, text, icon, items } = item;
-    const childrenSelected = items.some((item) => item.id === selectedItem);
+    const childrenSelected = items.some((item) => item.id === selectedItemId);
     return (
       <DrawerCollapsableItem
         size={size}
-        submenuVariant={submenuVariant}
-        selectedItem={selectedItem}
-        selected={id === selectedItem || childrenSelected}
+        selected={id === selectedItemId || childrenSelected}
         text={text}
         icon={icon}
         items={items}
+        level={level}
+        sx={itemSx}
       />
     );
   } else {
     const { id, text, icon, avatar, label, bullet, href } = item;
     return (
       <DrawerItemLink
-        selected={id === selectedItem}
+        selected={id === selectedItemId}
         size={size}
         text={text}
         icon={icon}
@@ -42,6 +41,7 @@ export const DrawerItem = ({
         label={label}
         bullet={bullet}
         href={href}
+        sx={itemSx}
       />
     );
   }

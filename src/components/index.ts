@@ -1,6 +1,5 @@
 export * from "./value-displays";
 export * from "./feedback";
-export * from "./app-bars";
 export * from "./data-display";
 export * from "./containers";
 export * from "./drawers";

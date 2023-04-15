@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { styled } from "@mui/material/styles";
-import { AppBarElement } from "../../components/app-bars/app-bar";
-import { DrawerElement } from "../../components/drawers";
+import { DrawerAppBarElement, DrawerElement } from "../../components/drawers";
 import { Box } from "@mui/material";
 import { DrawerProvider } from "../../components/drawers/drawer-provider/drawer.provider";
 
@@ -14,7 +13,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export interface AppBarWithDrawerLayoutProps {
-  children: [DrawerElement, AppBarElement, ReactNode];
+  children: [DrawerElement, DrawerAppBarElement, ReactNode];
 }
 
 export const AppBarWithDrawerLayout = ({

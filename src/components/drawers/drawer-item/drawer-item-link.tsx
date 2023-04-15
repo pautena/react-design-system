@@ -19,6 +19,7 @@ import {
   getDrawerItemColors,
 } from "../drawer.types";
 import { Link } from "../../navigation/link";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerItemLinkProps {
   /**
@@ -82,12 +83,15 @@ export const DrawerItemLink = ({
   size = "medium",
   sx,
 }: DrawerItemLinkProps) => {
+  const { state } = useDrawer();
   const theme = useTheme();
   const { color, fontWeight } = getDrawerItemColors(theme, selected);
+
   return (
     <ListItemButton
       LinkComponent={StyledLink}
       dense={size === "small"}
+      aria-label={text}
       href={href}
       selected={selected}
       sx={sx}
@@ -103,8 +107,8 @@ export const DrawerItemLink = ({
         </ListItemAvatar>
       )}
       <ListItemText disableTypography primary={text} sx={{ color, fontWeight }} />
-      {label && <Label text={label.text} variant={label.variant} />}
-      {bullet && <Bullet variant={bullet.variant} />}
+      {label && <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />}
+      {bullet && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
     </ListItemButton>
   );
 };

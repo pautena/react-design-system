@@ -1,12 +1,17 @@
 import { useContext, createContext } from "react";
-import { DrawerState, DrawerSubmenuVariant } from "../drawer.types";
+import { DrawerState, DrawerVariant } from "../drawer.types";
 
 export interface DrawerContextProps {
+  selectedItemId?: string;
   state: DrawerState;
-  submenuVariant?: DrawerSubmenuVariant;
+  variant: DrawerVariant;
+  drawerWidth: number;
+  underAppBar: boolean;
+  switchState(): void;
   close(): void;
   collapse(): void;
   open(): void;
+  setState: (state: DrawerState) => void;
 }
 
 export const DrawerContext = createContext<DrawerContextProps | undefined>(undefined);

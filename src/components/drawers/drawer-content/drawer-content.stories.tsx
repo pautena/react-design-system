@@ -2,33 +2,33 @@ import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
 import { mockDrawerNavigation } from "../drawer.mock";
-import { Box } from "@mui/material";
 import { withMemoryRouter } from "~/storybook";
 import { DrawerProvider } from "../drawer-provider/drawer.provider";
+import { DrawerContentProps, DrawerState } from "../drawer.types";
+
+type DrawerContentArgs = DrawerContentProps & {
+  initialState?: DrawerState;
+  selectedItemId?: string;
+};
 
 export default {
   title: "Components/Drawers/DrawerContent",
   component: DrawerContent,
-  decorators: [
-    withMemoryRouter(),
-    (Story) => {
-      return <Box maxWidth={300}>{<Story />}</Box>;
-    },
-  ],
-  render: (args) => (
-    <DrawerProvider>
+  decorators: [withMemoryRouter()],
+  render: ({ initialState = "open", selectedItemId, ...args }) => (
+    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
       <DrawerContent {...args} />
     </DrawerProvider>
   ),
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
-} satisfies Meta<typeof DrawerContent>;
-type Story = StoryObj<typeof DrawerContent>;
+} satisfies Meta<DrawerContentArgs>;
+type Story = StoryObj<DrawerContentArgs>;
 
 export const Default: Story = {
   args: {
-    selectedItem: "item2.3.2",
+    selectedItemId: "item2.3.2",
     nav: mockDrawerNavigation,
   },
 };
@@ -40,9 +40,9 @@ export const Small: Story = {
   },
 };
 
-export const SubmenuPopover: Story = {
+export const Collapsed: Story = {
   args: {
     ...Default.args,
-    submenuVariant: "popover",
+    initialState: "collapse",
   },
 };

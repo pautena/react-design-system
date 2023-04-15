@@ -1,33 +1,54 @@
 import { useState } from "react";
 import React, { PropsWithChildren } from "react";
-import { DrawerContext } from "./drawer.context";
-import { DrawerState, DrawerSubmenuVariantProp } from "../drawer.types";
+import { DrawerContext } from "./drawer-context";
+import { DrawerState, DrawerVariant } from "../drawer.types";
+import { drawerWidth } from "./drawer-mixins";
 
-type Props = PropsWithChildren<{
+const initialState: Record<DrawerVariant, DrawerState> = {
+  temporary: "close",
+  mini: "collapse",
+  clipped: "open",
+  persistent: "close",
+};
+
+const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
+  temporary: ["close", "open"],
+  mini: ["collapse", "open"],
+  clipped: ["close", "open"],
+  persistent: ["close", "open"],
+};
+
+type DrawerProviderProps = PropsWithChildren<{
   initialState?: DrawerState;
-  submenuVariant?: DrawerSubmenuVariantProp;
+  underAppBar?: boolean;
+  drawerWidth?: number;
+  variant?: DrawerVariant;
+  selectedItemId?: string;
 }>;
 
 export const DrawerProvider = ({
   children,
-  initialState = "close",
-  submenuVariant: submenuVariantProp = "collapse",
-}: Props) => {
-  const [state, setState] = useState<DrawerState>(initialState);
+  initialState: initialStateProp,
+  variant = "temporary",
+  drawerWidth: drawerWidthProp = drawerWidth,
+  underAppBar = false,
+  selectedItemId,
+}: DrawerProviderProps) => {
+  const [state, setState] = useState<DrawerState>(initialStateProp || initialState[variant]);
 
   return (
     <DrawerContext.Provider
       value={{
-        submenuVariant:
-          typeof submenuVariantProp === "string"
-            ? submenuVariantProp
-            : state === "open"
-            ? submenuVariantProp.open
-            : submenuVariantProp.closed,
         state,
+        variant,
+        selectedItemId,
+        underAppBar,
+        drawerWidth: drawerWidthProp,
+        switchState: () => setState((state) => targetStates[variant][state === "open" ? 0 : 1]),
         collapse: () => setState("collapse"),
         close: () => setState("close"),
         open: () => setState("open"),
+        setState,
       }}
     >
       {children}
