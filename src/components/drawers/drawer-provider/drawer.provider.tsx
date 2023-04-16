@@ -14,7 +14,7 @@ const initialState: Record<DrawerVariant, DrawerState> = {
 const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
   temporary: ["close", "open"],
   mini: ["collapse", "open"],
-  clipped: ["close", "open"],
+  clipped: ["open", "open"],
   persistent: ["close", "open"],
 };
 

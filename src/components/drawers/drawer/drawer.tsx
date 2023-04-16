@@ -3,16 +3,12 @@ import {
   SxProps,
   Theme,
   drawerClasses,
-  listItemButtonClasses,
-  listItemIconClasses,
   styled,
   Drawer as MuiDrawer,
   Divider,
   IconButton,
   useTheme,
   paperClasses,
-  listItemAvatarClasses,
-  avatarClasses,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
@@ -58,7 +54,6 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
   const { state, switchState, underAppBar, close, drawerWidth, variant } = useDrawer();
-  const isOpen = state === "open";
 
   const sx: any = {
     width: drawerWidth,
@@ -77,10 +72,10 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
 
   return (
     <MuiDrawer
-      open={isOpen}
+      open={state === "open"}
       variant={muiDrawerVariant[variant]}
       role="menu"
-      aria-hidden={!isOpen}
+      aria-hidden={state === "close"}
       onClose={close}
       sx={sx}
       {...rest}

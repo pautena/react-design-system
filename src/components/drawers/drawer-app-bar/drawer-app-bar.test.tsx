@@ -1,9 +1,10 @@
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerAppBar } from "./drawer-app-bar";
-import { DrawerProvider } from "../drawer-provider";
+import { DrawerProvider, useDrawer } from "../drawer-provider";
 import { DrawerState, DrawerVariant } from "~/components/drawers";
 import { Typography } from "@mui/material";
+import userEvent from "@testing-library/user-event";
 
 describe("DrawerAppBar", () => {
   const renderComponent = ({
@@ -15,25 +16,40 @@ describe("DrawerAppBar", () => {
     initialState?: DrawerState;
     variant?: DrawerVariant;
   } = {}) => {
+    const TestContent = () => {
+      const { state } = useDrawer();
+      return <Typography>state: {state}</Typography>;
+    };
     render(
       <DrawerProvider initialState={initialState} variant={variant}>
         <DrawerAppBar title={title}>
           <Typography>test content</Typography>
         </DrawerAppBar>
+        <TestContent />
       </DrawerProvider>,
     );
   };
 
-  it.each([
-    ["temporary" as DrawerVariant, "open" as DrawerState],
-    ["temporary" as DrawerVariant, "close" as DrawerState],
-    ["persistent" as DrawerVariant, "open" as DrawerState],
-    ["persistent" as DrawerVariant, "close" as DrawerState],
-    ["mini" as DrawerVariant, "collapse" as DrawerState],
-  ])("should render a menu button if variant is %s", (variant, initialState) => {
-    renderComponent({ variant, initialState });
+  describe("menu button", () => {
+    it.each([
+      ["temporary" as DrawerVariant, "open" as DrawerState],
+      ["temporary" as DrawerVariant, "close" as DrawerState],
+      ["persistent" as DrawerVariant, "open" as DrawerState],
+      ["persistent" as DrawerVariant, "close" as DrawerState],
+      ["mini" as DrawerVariant, "collapse" as DrawerState],
+    ])("should render a menu button if variant is %s", (variant, initialState) => {
+      renderComponent({ variant, initialState });
 
-    expect(screen.getByRole("button", { name: /open drawer/i })).toBeVisible();
+      expect(screen.getByRole("button", { name: /open drawer/i })).toBeVisible();
+    });
+
+    it("should switch the drawer state if is clicked", async () => {
+      renderComponent({ initialState: "open", variant: "temporary" });
+
+      await userEvent.click(screen.getByTestId("MenuIcon"));
+
+      expect(screen.getByText("state: close")).toBeVisible();
+    });
   });
 
   it.each([
