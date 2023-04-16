@@ -60,7 +60,7 @@ export const DrawerMenuItem = ({
   const { state } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
   const { palette, spacing } = useTheme();
-  const [open, setOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
 
   const submenu = (
@@ -85,12 +85,12 @@ export const DrawerMenuItem = ({
         ref={anchorEl}
         selected={selected}
         aria-label={text}
-        onClick={() => setOpen((o) => !o)}
+        onClick={() => setMenuOpen((o) => !o)}
         dense={size === "small"}
         sx={{
           ...sx,
           pl: state === "open" ? spacing(2 + 1.5 * level) : undefined,
-          backgroundColor: open ? palette.action.hover : undefined,
+          backgroundColor: menuOpen ? palette.action.hover : undefined,
         }}
       >
         {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
@@ -99,26 +99,31 @@ export const DrawerMenuItem = ({
           primary={text}
           sx={{ color, fontWeight, opacity: state === "collapse" && level === 0 ? 0 : undefined }}
         />
-        {open && state === "open" ? (
+        {menuOpen && state === "open" ? (
           <ExpandMoreIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
         ) : (
           <ChevronRightIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
         )}
       </ListItemButton>
       {state === "open" ? (
-        <Collapse in={open} timeout="auto" unmountOnExit aria-label={`${text} collapse submenu`}>
+        <Collapse
+          in={menuOpen}
+          timeout="auto"
+          unmountOnExit
+          aria-label={`${text} collapse submenu`}
+        >
           {submenu}
         </Collapse>
       ) : (
         <Popover
-          open={open}
+          open={menuOpen}
           PaperProps={{
             elevation: 0,
             variant: "outlined",
           }}
           aria-label={`${text} popover submenu`}
           anchorEl={anchorEl.current}
-          onClose={() => setOpen(false)}
+          onClose={() => setMenuOpen(false)}
           anchorOrigin={{
             vertical: "top",
             horizontal: "right",

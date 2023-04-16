@@ -86,7 +86,7 @@ export const mockListDrawerNavigationItems: DrawerNavigationItem[] = [
   },
 ];
 
-export const mockCollapsableDrawerNavigationItem: DrawerNavigationItemCollapsable = {
+export const mockMenuDrawerNavigationItem: DrawerNavigationItemCollapsable = {
   id: "item2.3.4.2",
   text: "Item 2.3.4.2",
   icon: <ConnectingAirportsIcon />,
@@ -106,11 +106,27 @@ export const mockCollapsableDrawerNavigationItem: DrawerNavigationItemCollapsabl
   ],
 };
 
+export const mockMenuInsideMenuDrawerNavigationItem: DrawerNavigationItem = {
+  id: "item2.3.4",
+  text: "Item 2.3.4",
+  href: "/items/2-3-4",
+  icon: <AccountTreeIcon />,
+  items: [
+    {
+      id: "item2.3.4.1",
+      text: "Item 2.3.4.1",
+      href: "/items/2-3-4-1",
+      icon: <CallMissedIcon />,
+    },
+    mockMenuDrawerNavigationItem,
+  ],
+};
+
 export const mockListDrawerNavigationSection: DrawerNavigationSection = {
   items: mockListDrawerNavigationItems,
 };
 
-export const mockCollapsableDrawerNavigationSection: DrawerNavigationSection = {
+export const mockMenuDrawerNavigationSection: DrawerNavigationSection = {
   title: "Section 2",
   items: [
     mockLinkLabelDrawerNavigationItem,
@@ -148,21 +164,7 @@ export const mockCollapsableDrawerNavigationSection: DrawerNavigationSection = {
           href: "/items/2-3-3",
           icon: <AutoFixOffIcon />,
         },
-        {
-          id: "item2.3.4",
-          text: "Item 2.3.4",
-          href: "/items/2-3-4",
-          icon: <AccountTreeIcon />,
-          items: [
-            {
-              id: "item2.3.4.1",
-              text: "Item 2.3.4.1",
-              href: "/items/2-3-4-1",
-              icon: <CallMissedIcon />,
-            },
-            mockCollapsableDrawerNavigationItem,
-          ],
-        },
+        mockMenuInsideMenuDrawerNavigationItem,
       ],
     },
   ],
@@ -187,7 +189,7 @@ export const mockAvatarsDrawerNavigationSection: DrawerNavigationSection = {
 export const mockDrawerNavigation: DrawerNavigation = {
   items: [
     mockListDrawerNavigationSection,
-    mockCollapsableDrawerNavigationSection,
+    mockMenuDrawerNavigationSection,
     mockAvatarsDrawerNavigationSection,
   ],
 };

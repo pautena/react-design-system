@@ -1,15 +1,16 @@
 import userEvent from "@testing-library/user-event";
 import {
-  mockCollapsableDrawerNavigationItem,
+  mockMenuDrawerNavigationItem,
   mockLinkAvatarDrawerNavigationItem,
   mockLinkBulletDrawerNavigationItem,
   mockLinkDrawerNavigationItem,
   mockLinkLabelDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
+  mockMenuInsideMenuDrawerNavigationItem,
 } from "../drawer.mock";
 import { DrawerNavigationItem, DrawerState } from "../drawer.types";
 import React from "react";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen, within } from "~/tests/testing-library";
 import { DrawerItem } from "./drawer-item";
 import { DrawerProvider } from "../drawer-provider";
 
@@ -28,25 +29,114 @@ describe("DrawerItem", () => {
     );
   };
 
-  describe("collapsable item", () => {
-    it("should render a text", () => {
-      renderComponent({ item: mockCollapsableDrawerNavigationItem });
-
-      expect(screen.getByText(/item 2.3.4.2/i)).toBeVisible();
+  describe("menu item", () => {
+    it("should render a text if state is open", () => {
+      renderComponent({ initialState: "open", item: mockMenuDrawerNavigationItem });
     });
 
-    it("should be closed by default", () => {
-      renderComponent({ item: mockCollapsableDrawerNavigationItem });
+    it("should render the only the icon if state is collapse", async () => {
+      renderComponent({ initialState: "collapse", item: mockMenuDrawerNavigationItem });
 
-      expect(screen.queryByText(/item 2.3.4.2.1/i)).toBeFalsy();
-      expect(screen.queryByText(/item 2.3.4.2.2/i)).toBeFalsy();
+      expect(screen.getByTestId("ConnectingAirportsIcon")).toBeVisible();
+      expect(screen.getByText(/item 2.3.4.2/i)).not.toBeVisible();
+    });
+
+    describe("menu icon", () => {
+      describe("status open", () => {
+        it("should render the correct icon if the menu is closed", () => {
+          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+
+          expect(screen.getByTestId("ChevronRightIcon")).toBeVisible();
+        });
+
+        it("should render the correct icon if the menu is open", async () => {
+          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+
+          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+
+          expect(screen.getByTestId("ExpandMoreIcon")).toBeVisible();
+        });
+
+        it("should render the correct icon if a menu inside a menu is closed", async () => {
+          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+
+          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+
+          expect(
+            within(screen.getByRole("button", { name: /item 2.3.4.2/i })).getByTestId(
+              "ChevronRightIcon",
+            ),
+          ).toBeVisible();
+        });
+
+        it("should render the correct icon if a menu inside a menu is open", async () => {
+          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+
+          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+          const buttonEl = screen.getByRole("button", { name: /item 2.3.4.2/i });
+          await userEvent.click(buttonEl);
+
+          expect(within(buttonEl).getByTestId("ExpandMoreIcon")).toBeVisible();
+        });
+      });
+
+      describe("status collapse", () => {
+        it("should render the correct icon if the menu is closed", () => {
+          renderComponent({
+            initialState: "collapse",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
+
+          expect(screen.getByTestId("ChevronRightIcon")).toBeVisible();
+        });
+
+        it("should render the correct icon if the menu is open", async () => {
+          renderComponent({
+            initialState: "collapse",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
+
+          const button = screen.getByRole("button", { name: /item 2.3.4/i });
+          await userEvent.click(button);
+
+          expect(within(button).getByTestId("ChevronRightIcon")).toBeVisible();
+        });
+
+        it("should render the correct icon if a menu inside a menu is closed", async () => {
+          renderComponent({
+            initialState: "collapse",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
+
+          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+
+          expect(
+            within(screen.getByRole("button", { name: /item 2.3.4.2/i })).getByTestId(
+              "ChevronRightIcon",
+            ),
+          ).toBeVisible();
+        });
+
+        it("should render the correct icon if a menu inside a menu is open", async () => {
+          renderComponent({
+            initialState: "collapse",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
+
+          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+          const buttonEl = screen.getByRole("button", { name: /item 2.3.4.2/i });
+          await userEvent.click(buttonEl);
+
+          expect(within(buttonEl).getByTestId("ChevronRightIcon")).toBeVisible();
+        });
+      });
     });
 
     describe("expandable submenus", () => {
-      it.each([["collapse" as DrawerState], ["open" as DrawerState]])(
-        "should render the items if submenuVariant='%s'",
-        async (initialState: DrawerState) => {
-          renderComponent({ initialState, item: mockCollapsableDrawerNavigationItem });
+      it.each([["open"], ["collapse"]] satisfies [DrawerState][])(
+        "should render the items if state is %s",
+        async (initialState) => {
+          renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
 
           await userEvent.click(screen.getByRole("button", { name: /item 2.3.4.2/i }));
 
@@ -59,9 +149,9 @@ describe("DrawerItem", () => {
         ["Item 2.3.4.2 popover submenu", "collapse" as DrawerState],
         ["Item 2.3.4.2 collapse submenu", "open" as DrawerState],
       ])(
-        "should render a '%s' if submenuVariant='%s'",
+        "should render a '%s' if state is '%s'",
         async (label: string, initialState: DrawerState) => {
-          renderComponent({ initialState, item: mockCollapsableDrawerNavigationItem });
+          renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
 
           await userEvent.click(screen.getByRole("button", { name: /item 2.3.4.2/i }));
 

@@ -3,10 +3,7 @@ import { withMemoryRouter, withContainer } from "~/storybook";
 import { DrawerItem, DrawerItemProps } from "./drawer-item";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import React from "react";
-import {
-  mockCollapsableDrawerNavigationItem,
-  mockLinkNoIconDrawerNavigationItem,
-} from "../drawer.mock";
+import { mockMenuDrawerNavigationItem, mockLinkNoIconDrawerNavigationItem } from "../drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
 import { DrawerState } from "../drawer.types";
 import { useTheme } from "@mui/material";
@@ -127,7 +124,7 @@ export const ItemSizeSmallSelected: Story = {
 export const MenuNotSelected: Story = {
   name: "Menu (open)",
   args: {
-    item: mockCollapsableDrawerNavigationItem,
+    item: mockMenuDrawerNavigationItem,
   },
 };
 
@@ -135,7 +132,7 @@ export const MenuSelected: Story = {
   name: "Menu (selected,open)",
   args: {
     ...MenuNotSelected.args,
-    selectedItemId: mockCollapsableDrawerNavigationItem.id,
+    selectedItemId: mockMenuDrawerNavigationItem.id,
   },
 };
 

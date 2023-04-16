@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSection, DrawerSectionProps } from "./drawer-section";
 import { withMemoryRouter } from "~/storybook";
-import { mockCollapsableDrawerNavigationSection } from "../drawer.mock";
+import { mockMenuDrawerNavigationSection } from "../drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
 import React from "react";
 import { DrawerState } from "../drawer.types";
@@ -28,7 +28,7 @@ type Story = StoryObj<DrawerSectionArgs>;
 
 export const WihtoutTitle = {
   args: {
-    items: mockCollapsableDrawerNavigationSection.items,
+    items: mockMenuDrawerNavigationSection.items,
     selectedItemId: "item2.3.2",
   },
 };
