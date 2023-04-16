@@ -22,13 +22,22 @@ describe("DrawerSection", () => {
   };
 
   describe("title", () => {
-    it("would render if is set", () => {
+    it("should render if is set and state is open", () => {
       renderComponent({ title: "Item 1" });
 
       expect(screen.getByRole("heading", { name: /item 1/i })).toBeInTheDocument();
     });
 
-    it("wouldn't render if it's not set", () => {
+    it.each([["collapse" as DrawerState], ["close" as DrawerState]])(
+      "shouldn't render if is set and state isn't open",
+      (initialState) => {
+        renderComponent({ title: "Item 1", initialState });
+
+        expect(screen.queryByRole("heading", { name: /item 1/i })).not.toBeInTheDocument();
+      },
+    );
+
+    it("shouldn't render if it's not set and state is open", () => {
       renderComponent({ title: undefined });
 
       expect(screen.queryByRole("heading", { name: /item 1/i })).not.toBeInTheDocument();
@@ -68,7 +77,7 @@ describe("DrawerSection", () => {
     it.each([
       ["/items/2-1", /item 2.1/i],
       ["/items/2-2", /item 2.2/i],
-    ])("would navigate to %s if %s is clicked", async (to: string, item: RegExp) => {
+    ])("should navigate to %s if %s is clicked", async (to: string, item: RegExp) => {
       const { history } = renderComponent();
 
       await userEvent.click(screen.getByRole("link", { name: item }));
