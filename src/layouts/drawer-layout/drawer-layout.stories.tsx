@@ -1,28 +1,28 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { DrawerLayoutProps } from "./drawer-layout";
+import { DrawerLayout } from "./drawer-layout";
 import { mockDrawerNavigation } from "../../components/drawers/drawer.mock";
 import { ContentPlaceholder, DrawerContent, Drawer, DrawerAppBar } from "../../components";
 import { withMemoryRouter } from "~/storybook";
 
 export default {
   title: "Layouts/DrawerLayout",
-  component: DrawerLayoutProps,
+  component: DrawerLayout,
   decorators: [withMemoryRouter()],
   parameters: {
     layout: "fullscreen",
   },
   render: (args) => (
-    <DrawerLayoutProps {...args}>
+    <DrawerLayout {...args}>
       <Drawer>
         <DrawerContent nav={mockDrawerNavigation} />
       </Drawer>
       <DrawerAppBar title="Lorem ipsum" />
       <ContentPlaceholder p={3} />
-    </DrawerLayoutProps>
+    </DrawerLayout>
   ),
-} satisfies Meta<typeof DrawerLayoutProps>;
-type Story = StoryObj<typeof DrawerLayoutProps>;
+} satisfies Meta<typeof DrawerLayout>;
+type Story = StoryObj<typeof DrawerLayout>;
 
 export const Temporary: Story = {
   args: {

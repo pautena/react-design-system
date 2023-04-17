@@ -10,7 +10,7 @@ export interface DrawerLayoutProps {
   children: [DrawerElement, DrawerAppBarElement, ReactNode];
 }
 
-export const DrawerLayoutProps = ({
+export const DrawerLayout = ({
   drawerProviderProps,
   children: childrenProps,
 }: DrawerLayoutProps) => {
