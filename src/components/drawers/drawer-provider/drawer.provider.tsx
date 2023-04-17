@@ -24,6 +24,7 @@ export type DrawerProviderProps = PropsWithChildren<{
   drawerWidth?: number;
   variant?: DrawerVariant;
   selectedItemId?: string;
+  onStateChange?: (newState: DrawerState) => void;
 }>;
 
 export const DrawerProvider = ({
@@ -33,8 +34,14 @@ export const DrawerProvider = ({
   drawerWidth: drawerWidthProp = drawerWidth,
   underAppBar = false,
   selectedItemId,
+  onStateChange = () => null,
 }: DrawerProviderProps) => {
   const [state, setState] = useState<DrawerState>(initialStateProp || initialState[variant]);
+
+  const handleChangeState = (newState: DrawerState) => {
+    onStateChange(newState);
+    setState(newState);
+  };
 
   return (
     <DrawerContext.Provider
@@ -44,10 +51,10 @@ export const DrawerProvider = ({
         selectedItemId,
         underAppBar,
         drawerWidth: drawerWidthProp,
-        switchState: () => setState((state) => targetStates[variant][state === "open" ? 0 : 1]),
-        collapse: () => setState("collapse"),
-        close: () => setState("close"),
-        open: () => setState("open"),
+        switchState: () => handleChangeState(targetStates[variant][state === "open" ? 0 : 1]),
+        collapse: () => handleChangeState("collapse"),
+        close: () => handleChangeState("close"),
+        open: () => handleChangeState("open"),
         setState,
       }}
     >

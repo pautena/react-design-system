@@ -4,6 +4,7 @@ import { render, screen } from "~/tests/testing-library";
 import { Box, Button, Typography } from "@mui/material";
 import { DrawerState, DrawerVariant } from "../drawer.types";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 
 const TestContent = () => {
   const {
@@ -41,16 +42,21 @@ describe("DrawerProvider", () => {
     variant,
     underAppBar,
   }: { initialState?: DrawerState; variant?: DrawerVariant; underAppBar?: boolean } = {}) => {
-    return render(
+    const onStateChange = vi.fn();
+
+    render(
       <DrawerProvider
         initialState={initialState}
         variant={variant}
         drawerWidth={400}
         underAppBar={underAppBar}
+        onStateChange={onStateChange}
       >
         <TestContent />
       </DrawerProvider>,
     );
+
+    return { onStateChange };
   };
 
   it("should pass the drawerWith", () => {
@@ -146,5 +152,14 @@ describe("DrawerProvider", () => {
         expect(screen.getByText(`state: ${expectedState}`)).toBeVisible();
       },
     );
+  });
+
+  it("should call onStateChange when the state changes", async () => {
+    const { onStateChange } = renderComponent({ initialState: "close" });
+
+    await userEvent.click(screen.getByRole("button", { name: /open/i }));
+
+    expect(onStateChange).toHaveBeenCalledTimes(1);
+    expect(onStateChange).toHaveBeenCalledWith("open");
   });
 });
