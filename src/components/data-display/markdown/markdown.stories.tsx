@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Markdown } from "./markdown";
 import mockMarkdownContentFile from "~/tests/mocks/markdown.mock.md";
-import React from "react";
 import { mockMarkdownContent } from "~/tests/mocks/markdown.mock";
 
 export default {

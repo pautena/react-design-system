@@ -44,7 +44,6 @@ export const ValueItem: ValueItemComponent = ({
 }: ValueItemProps) => {
   const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
   const borderLeft = resolveBorderStyle(bordered, defaultColor);
-  console.log("borderLeft: ", borderLeft);
   return (
     <Grid item className={valueItemClasses.root} {...rest}>
       <Box className={valueItemClasses.content} px={1} borderLeft={borderLeft}>

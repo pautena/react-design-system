@@ -33,7 +33,7 @@ export const ValueRating = ({
           max={maxRating}
           size={dense ? "small" : "medium"}
           value={isEditing ? editValue : value}
-          onChange={(_, newValue) => setEditValue(newValue!)}
+          onChange={(_, newValue) => newValue && setEditValue(newValue)}
         />
         {editable && !isEditing && (
           <IconButton size="small" onClick={startEdit} sx={{ ml: 1 }}>

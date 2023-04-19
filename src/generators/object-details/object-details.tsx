@@ -1,12 +1,11 @@
 import React from "react";
-import { Grid, styled } from "@mui/material";
+import { Grid } from "@mui/material";
 import {
   GroupValueCard,
   ValueItem,
   ValueBoolean,
   ValueText,
   ValueDatetime,
-  valueItemClasses,
 } from "../../components";
 import {
   ModelField,
@@ -15,6 +14,7 @@ import {
   BasicModelInstance,
   GroupInstanceType,
 } from "../generators.model";
+import { newBreakpointsCounter } from "~/utils/breakpoints";
 
 interface SingleDetailValueFactoryOptions {
   dense?: boolean;
@@ -46,12 +46,15 @@ const ObjectDetailGroup = ({
   instance,
   dense,
 }: ObjectDetailGroupProps) => {
+  const breakpointsCounter = newBreakpointsCounter();
+
   return (
     <GroupValueCard title={name} subtitle={description} dense={dense}>
       {value.map((field) => {
         const { id, xs, sm, md, lg, xl } = field;
+        const bordered = breakpointsCounter.increment(field);
         return (
-          <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+          <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl} bordered={bordered}>
             {singleDetailValueFactory(field, instance, { dense })}
           </ValueItem>
         );
@@ -71,12 +74,14 @@ export const ObjectDetails = <T extends BasicModelInstance>({
   instance,
   dense,
 }: ObjectDetailsProps<T>) => {
+  const breakpointsCounter = newBreakpointsCounter();
   return (
     <Grid container spacing={dense ? 1 : 2}>
       {model.fields.map((field) => {
-        const { id, type, xs = 3, sm, md, lg, xl } = field;
+        const { id, type, xs = 3, sm = 0, md = 0, lg = 0, xl = 0 } = field;
 
         if (type === "group") {
+          breakpointsCounter.increment({ xs: 12 });
           return (
             <Grid item key={id} xs={12}>
               <ObjectDetailGroup
@@ -88,8 +93,10 @@ export const ObjectDetails = <T extends BasicModelInstance>({
           );
         }
 
+        const bordered = breakpointsCounter.increment(field);
+        console.log("breakpointsCounter. ", bordered, breakpointsCounter);
         return (
-          <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+          <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl} bordered={bordered}>
             {singleDetailValueFactory(field, instance, { dense })}
           </ValueItem>
         );

@@ -1,6 +1,6 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { CenterContainer, CenterContainerProps } from "./center-container";
+import { CenterContainer } from "./center-container";
 import { Label } from "../../data-display/label";
 import { withContainer } from "../../../storybook";
 

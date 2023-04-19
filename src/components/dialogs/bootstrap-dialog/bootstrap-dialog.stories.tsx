@@ -1,5 +1,5 @@
 import { DialogContentText } from "@mui/material";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { BootstrapDialog } from "./bootstrap-dialog";
 import { loremIpsum } from "lorem-ipsum";

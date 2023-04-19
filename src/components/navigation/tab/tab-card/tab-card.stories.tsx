@@ -1,6 +1,5 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { TabCard } from "./tab-card";
 import { DummyTabs, TabCardDummy, TabCardDummyProps } from "./tab-card.dummy";
 
 export default {
