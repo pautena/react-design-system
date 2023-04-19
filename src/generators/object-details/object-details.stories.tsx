@@ -15,6 +15,17 @@ export default {
   },
 } satisfies Meta<typeof ObjectDetails>;
 
-export const Default = () => {
-  return <ObjectDetails model={mockModel} instance={instance} />;
+export const Default = {
+  args: {
+    model: mockModel,
+    instance: instance,
+  },
+};
+
+export const Dense = {
+  args: {
+    model: mockModel,
+    instance: instance,
+    dense: true,
+  },
 };

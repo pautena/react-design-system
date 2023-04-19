@@ -26,3 +26,20 @@ export const Borderless: Story = {
     bordered: false,
   },
 };
+
+export const BreakpointsBorder: Story = {
+  args: {
+    bordered: {
+      xs: false,
+      sm: true,
+      md: false,
+      lg: true,
+    },
+  },
+};
+
+export const BreakpointsArrayBorder: Story = {
+  args: {
+    bordered: [false, true, false, true],
+  },
+};
