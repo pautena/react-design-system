@@ -20,6 +20,15 @@ export const Default: Story = {
   },
 };
 
+export const Dense: Story = {
+  args: {
+    label: "Lorem",
+    value: new Date(2022, 8, 22),
+    format: "yyyy/MM/dd",
+    dense: true,
+  },
+};
+
 export const Placeholder: Story = {
   args: {
     label: "Lorem",

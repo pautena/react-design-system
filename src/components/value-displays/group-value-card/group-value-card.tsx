@@ -38,9 +38,16 @@ export interface GroupValueCardProps {
   subtitle?: string;
   centered?: boolean;
   children: GroupValueItemElement | GroupValueItemElement[];
+  dense?: boolean;
 }
 
-export const GroupValueCard = ({ title, subtitle, centered, children }: GroupValueCardProps) => {
+export const GroupValueCard = ({
+  title,
+  subtitle,
+  centered,
+  children,
+  dense,
+}: GroupValueCardProps) => {
   const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
   return (
@@ -49,12 +56,12 @@ export const GroupValueCard = ({ title, subtitle, centered, children }: GroupVal
         paddingBottom: 1,
       }}
     >
-      <Box bgcolor={defaultColor} px={2} py={1}>
-        <Typography variant="h6" role="heading" aria-level={1}>
+      <Box bgcolor={defaultColor} px={dense ? 1 : 2} py={1}>
+        <Typography variant={dense ? "body1" : "h6"} role="heading" aria-level={1}>
           {title}
         </Typography>
         {subtitle && (
-          <Typography variant="body2" role="heading" aria-level={2}>
+          <Typography variant={dense ? "caption" : "body2"} role="heading" aria-level={2}>
             {subtitle}
           </Typography>
         )}

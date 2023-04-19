@@ -17,6 +17,7 @@ export const ValueRating = ({
   value = 0,
   maxRating = 5,
   editable,
+  dense,
   onEdit = () => null,
 }: ValueRatingProps) => {
   const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
@@ -24,12 +25,13 @@ export const ValueRating = ({
   const id = getValueContentLabelId(label);
 
   return (
-    <ValueContent label={label} tooltip={value.toString()}>
+    <ValueContent label={label} tooltip={value.toString()} dense={dense}>
       <Box display="flex" alignItems="center">
         <Rating
           aria-labelledby={id}
           readOnly={!isEditing}
           max={maxRating}
+          size={dense ? "small" : "medium"}
           value={isEditing ? editValue : value}
           onChange={(_, newValue) => setEditValue(newValue!)}
         />

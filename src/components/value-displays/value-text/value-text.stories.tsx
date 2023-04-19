@@ -19,6 +19,14 @@ export const Default: Story = {
   },
 };
 
+export const Dense: Story = {
+  args: {
+    label: "Lorem",
+    value: "ipsum sit",
+    dense: true,
+  },
+};
+
 export const NumberAsValue: Story = {
   args: {
     label: "Lorem",

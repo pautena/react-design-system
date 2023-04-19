@@ -35,6 +35,7 @@ export const ValueDatetime = ({
   placeholder = DefaultPlaceholder,
   editable,
   editInputType = "datetime",
+  dense,
   onEdit = () => null,
 }: ValueDatetimeProps) => {
   const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
@@ -50,7 +51,7 @@ export const ValueDatetime = ({
       : DatePicker;
 
   return (
-    <ValueContent label={label} tooltip={value}>
+    <ValueContent label={label} tooltip={value} dense={dense}>
       {isEditing ? (
         <EditPickerComponent
           value={editValue}
@@ -79,7 +80,7 @@ export const ValueDatetime = ({
         />
       ) : (
         <Box display="flex" alignItems="center">
-          <Typography variant="h5" noWrap aria-labelledby={id}>
+          <Typography variant={dense ? "body1" : "h5"} noWrap aria-labelledby={id}>
             {value}
           </Typography>
           {editable && (

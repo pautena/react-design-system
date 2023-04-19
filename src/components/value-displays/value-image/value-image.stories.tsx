@@ -20,6 +20,14 @@ export const Default: Story = {
   },
 };
 
+export const Dense: Story = {
+  args: {
+    label: "Lorem",
+    value: workInProgressImg,
+    dense: true,
+  },
+};
+
 export const CustomSize: Story = {
   args: {
     label: "Lorem",

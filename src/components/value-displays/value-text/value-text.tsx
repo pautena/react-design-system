@@ -20,6 +20,7 @@ export const ValueText = ({
   value: valueProp,
   placeholder = DefaultPlaceholder,
   editable,
+  dense,
   onEdit = () => null,
 }: ValueTextProps) => {
   const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
@@ -28,7 +29,7 @@ export const ValueText = ({
   const value = valueProp?.toString() || placeholder;
 
   return (
-    <ValueContent label={label} tooltip={value}>
+    <ValueContent label={label} tooltip={value} dense={dense}>
       {isEditing ? (
         <TextField
           value={editValue}
@@ -39,7 +40,7 @@ export const ValueText = ({
           }}
         />
       ) : (
-        <Typography variant="h5" noWrap aria-labelledby={id}>
+        <Typography variant={dense ? "body1" : "h5"} noWrap aria-labelledby={id}>
           {value}
           {editable && (
             <IconButton size="small" onClick={startEdit} sx={{ ml: 1 }}>

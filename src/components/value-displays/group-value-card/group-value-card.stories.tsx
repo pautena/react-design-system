@@ -25,6 +25,14 @@ export const Default: Story = {
   },
 };
 
+export const Dense: Story = {
+  args: {
+    title: "Hello world",
+    subtitle: "Lorem ipsum sit amet",
+    dense: true,
+  },
+};
+
 export const WihtoutSubtitle: Story = {
   args: {
     title: "Hello world",

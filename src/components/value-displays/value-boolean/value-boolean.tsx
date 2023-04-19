@@ -22,16 +22,17 @@ export const ValueBoolean = ({
   value,
   placeholder = DefaultPlaceholder,
   editable,
+  dense,
   onEdit = () => null,
 }: ValueBooleanProps) => {
   const { typography } = useTheme();
   const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
     useEditableValueDisplay(value, onEdit);
 
-  const iconSx = { fontSize: typography.h5.fontSize };
+  const iconSx = { fontSize: dense ? typography.h6.fontSize : typography.h5.fontSize };
 
   return (
-    <ValueContent label={label}>
+    <ValueContent label={label} dense={dense}>
       {isEditing ? (
         <Box display="flex" alignItems="center">
           <Switch checked={editValue} onChange={(e) => setEditValue(e.target.checked)} />

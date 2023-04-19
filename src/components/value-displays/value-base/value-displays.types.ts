@@ -13,6 +13,12 @@ export interface BaseValueProps<T> {
    * String rendered if value is undefined
    */
   placeholder?: string;
+
+  /**
+   * The value has to be displayed as compact or not.
+   * False by default
+   */
+  dense?: boolean;
 }
 
 export interface EditableValueProps<T> {

@@ -11,8 +11,8 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: () => (
-    <ValueContent label="lorem ipsum">
+  render: (args) => (
+    <ValueContent {...args} label="lorem ipsum">
       <Typography>Demo content</Typography>
     </ValueContent>
   ),
@@ -20,3 +20,8 @@ export default {
 type Story = StoryObj<typeof ValueContent>;
 
 export const Default: Story = {};
+export const Dense: Story = {
+  args: {
+    dense: true,
+  },
+};

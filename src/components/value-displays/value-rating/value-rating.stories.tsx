@@ -19,6 +19,14 @@ export const Default: Story = {
   },
 };
 
+export const Dense: Story = {
+  args: {
+    label: "Lorem",
+    value: 3,
+    dense: true,
+  },
+};
+
 export const Max: Story = {
   args: {
     label: "Lorem",

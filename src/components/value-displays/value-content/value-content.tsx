@@ -24,6 +24,12 @@ export interface ValueContentProps {
    * Component that's going to be renderd under the label
    */
   children: React.ReactElement<any, any>;
+
+  /**
+   * The value has to be displayed as compact or not.
+   * False by default
+   */
+  dense?: boolean;
 }
 
 /**
@@ -34,12 +40,13 @@ export const ValueContent = ({
   tooltip,
   tooltipEnterDelay = 2000,
   children,
+  dense,
 }: ValueContentProps) => {
   const id = getValueContentLabelId(label);
 
   return (
     <Box width={1}>
-      <Typography variant="subtitle2" role="label" id={id}>
+      <Typography variant={dense ? "caption" : "subtitle2"} role="label" id={id}>
         {label}
       </Typography>
       {tooltip ? (
