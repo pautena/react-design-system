@@ -1,4 +1,4 @@
-import { Box, Tooltip, Typography } from "@mui/material";
+import { Box, Tooltip, Typography, useTheme } from "@mui/material";
 import React from "react";
 
 export const getValueContentLabelId = (label: string): string =>
@@ -42,11 +42,17 @@ export const ValueContent = ({
   children,
   dense,
 }: ValueContentProps) => {
+  const { typography } = useTheme();
   const id = getValueContentLabelId(label);
 
   return (
-    <Box width={1}>
-      <Typography variant={dense ? "caption" : "subtitle2"} role="label" id={id}>
+    <Box width={1} lineHeight={dense ? 0 : undefined}>
+      <Typography
+        variant={dense ? "caption" : "subtitle2"}
+        role="label"
+        id={id}
+        lineHeight={dense ? typography.pxToRem(15) : undefined}
+      >
         {label}
       </Typography>
       {tooltip ? (

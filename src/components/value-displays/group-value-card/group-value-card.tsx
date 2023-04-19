@@ -1,43 +1,13 @@
-import { Grid, Paper, GridProps, Box, Typography } from "@mui/material";
-import React, { FunctionComponent, PropsWithChildren, ReactElement } from "react";
+import { Grid, Paper, Box, Typography } from "@mui/material";
+import React from "react";
 import { useGetDefaultThemeColor } from "../../../utils/theme";
-
-export type GroupValueItemProps = PropsWithChildren<
-  Omit<GridProps, "item" | "container"> & { bordered?: boolean }
->;
-export type GroupValueItemComponent = FunctionComponent<GroupValueItemProps>;
-export type GroupValueItemElement = ReactElement<GroupValueItemProps, GroupValueItemComponent>;
-
-export const groupValueItemClasses = {
-  root: "RdsGroupValueItem-root",
-};
-
-export const GroupValueItem: GroupValueItemComponent = ({
-  children,
-  bordered = true,
-  ...rest
-}: GroupValueItemProps) => {
-  const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
-
-  return (
-    <Grid item className={groupValueItemClasses.root} {...rest}>
-      <Box
-        px={1}
-        sx={{
-          borderLeft: bordered ? `solid ${defaultColor} 1px` : "none",
-        }}
-      >
-        {children}
-      </Box>
-    </Grid>
-  );
-};
+import { ValueItemElement } from "../value-item/value-item";
 
 export interface GroupValueCardProps {
   title: string;
   subtitle?: string;
   centered?: boolean;
-  children: GroupValueItemElement | GroupValueItemElement[];
+  children: ValueItemElement | ValueItemElement[];
   dense?: boolean;
 }
 
@@ -53,7 +23,7 @@ export const GroupValueCard = ({
   return (
     <Paper
       sx={{
-        paddingBottom: 1,
+        paddingBottom: dense ? 0 : 1,
       }}
     >
       <Box bgcolor={defaultColor} px={dense ? 1 : 2} py={1}>
@@ -69,7 +39,7 @@ export const GroupValueCard = ({
       <Grid
         container
         padding={1}
-        rowSpacing={2}
+        rowSpacing={dense ? 1 : 2}
         justifyContent={centered ? "center" : "flex-start"}
       >
         {children}

@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import {
   GroupValueCard,
-  GroupValueItem,
+  ValueItem,
   ValueBoolean,
   ValueCard,
   ValueText,
@@ -44,9 +44,9 @@ const ObjectDetailGroup = ({
       {value.map((field) => {
         const { id, xs, sm, md, lg, xl } = field;
         return (
-          <GroupValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+          <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
             {singleDetailValueFactory(field, instance)}
-          </GroupValueItem>
+          </ValueItem>
         );
       })}
     </GroupValueCard>

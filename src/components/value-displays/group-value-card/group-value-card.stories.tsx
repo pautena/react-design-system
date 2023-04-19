@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { GroupValueCard, GroupValueItem } from "./group-value-card";
+import { GroupValueCard } from "./group-value-card";
 import { withPadding } from "../../../storybook";
 import { GroupValueCardDummy } from "./group-value-card.mock";
 import { ValueImage } from "../value-image";
@@ -7,6 +7,7 @@ import workInProgressImg from "../../../stories/assets/work-in-progress.jpg";
 import React from "react";
 import { ValueContent } from "../value-content";
 import { DatatablePlaceholder } from "~/tests/datatable-placeholder";
+import { ValueItem } from "../value-item";
 
 export default {
   title: "Components/Value displays/GroupValueCard",
@@ -41,18 +42,18 @@ export const WihtoutSubtitle: Story = {
 
 export const WithImage = () => (
   <GroupValueCard centered title="Hello world" subtitle="Lorem ipsum sit amet">
-    <GroupValueItem xs={12} bordered={false}>
+    <ValueItem xs={12} bordered={false}>
       <ValueImage label="Lorem ipsum" value={workInProgressImg} />
-    </GroupValueItem>
+    </ValueItem>
   </GroupValueCard>
 );
 
 export const WithDataTable = () => (
   <GroupValueCard title="Hello world" subtitle="Lorem ipsum sit amet">
-    <GroupValueItem xs={12} bordered={false}>
+    <ValueItem xs={12} bordered={false}>
       <ValueContent label="lorem ipsum">
         <DatatablePlaceholder />
       </ValueContent>
-    </GroupValueItem>
+    </ValueItem>
   </GroupValueCard>
 );
