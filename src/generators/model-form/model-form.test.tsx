@@ -86,6 +86,8 @@ describe("ModelForm", () => {
     await userEvent.click(screen.getByRole("checkbox", { name: /available/i }));
     await userEvent.type(screen.getByRole("textbox", { name: /currency/i }), "mxn");
     pickDatetime(screen.getByRole("textbox", { name: /trade date/i }), tradeDate, TradeDateFormat);
+    await userEvent.type(screen.getByRole("textbox", { name: /codes/i }), "foo,bar");
+    await userEvent.type(screen.getByRole("textbox", { name: /identifiers/i }), "1,2,3");
 
     await userEvent.click(screen.getByRole("button", { name: /save/i }));
 
@@ -110,6 +112,8 @@ describe("ModelForm", () => {
       available: true,
       currency: "mxn",
       tradeDate,
+      codes: ["foo", "bar"],
+      identifiers: ["1", "2", "3"],
     });
   });
 });

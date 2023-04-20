@@ -94,7 +94,6 @@ export const ObjectDetails = <T extends BasicModelInstance>({
         }
 
         const bordered = breakpointsCounter.increment(field);
-        console.log("breakpointsCounter. ", bordered, breakpointsCounter);
         return (
           <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl} bordered={bordered}>
             {singleDetailValueFactory(field, instance, { dense })}

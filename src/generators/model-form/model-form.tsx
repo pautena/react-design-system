@@ -88,9 +88,11 @@ export const ModelForm = <T extends BasicModelInstance>({
   ) => {
     e.preventDefault();
 
-    let value: string | number = e.target.value;
+    let value: string | number | string[] | number[] = e.target.value;
     if (type === "number" && typeof value === "string") {
-      value = parseInt(e.target.value);
+      value = parseInt(e.target.value, 10);
+    } else if (type.includes("[]")) {
+      value = e.target.value.split(",");
     }
     setKeyValue(e.target.name, key, value);
   };
@@ -180,7 +182,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           >
             {field.value.map((fieldValue) => (
               <MenuItem key={fieldValue} value={fieldValue}>
-                <Checkbox checked={((value as ArrayFieldType) || []).includes(fieldValue)} />
+                <Checkbox checked={((value as any[]) || []).includes(fieldValue)} />
                 <ListItemText primary={fieldValue} />
               </MenuItem>
             ))}
@@ -212,6 +214,20 @@ export const ModelForm = <T extends BasicModelInstance>({
           format={field.format}
           value={value}
           onChange={(value) => handleDateChange(value, key, id)}
+        />
+      );
+    } else if (type.includes("[]")) {
+      fieldInput = (
+        <TextField
+          required
+          type="text"
+          label={name}
+          name={id}
+          variant="outlined"
+          helperText="Use comas to separate multiple values"
+          fullWidth
+          value={(value as any[]).join(",")}
+          onChange={(e) => handleInputChange(e, key, type)}
         />
       );
     } else {

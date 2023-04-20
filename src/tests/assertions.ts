@@ -58,6 +58,10 @@ export const expectModelFieldInputValue = (
         fmt: field.format,
         addSpaces: true,
       });
+    } else if (field.type.includes("[]")) {
+      expect(screen.getByRole("textbox", { name: field.name })).toHaveValue(
+        (value as any[]).join(","),
+      );
     } else {
       expect(screen.getByDisplayValue(value.toString())).toBeInTheDocument();
     }
@@ -166,6 +170,8 @@ export const expectToHaveBeenCalledOnceWithMockInstance = (
       calledTradeDate.getSeconds(),
       calledTradeDate.getMilliseconds(),
     ),
+    codes: instance.codes,
+    identifiers: instance.identifiers.map((i) => i.toString()),
   });
 };
 

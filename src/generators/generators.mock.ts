@@ -185,6 +185,22 @@ export const mockModel: Model = {
       xs: 12,
       sm: 5,
     },
+    {
+      id: "codes",
+      type: "string[]",
+      description: "Lorem ipsum",
+      name: "Codes",
+      xs: 12,
+      sm: 5,
+    },
+    {
+      id: "identifiers",
+      type: "number[]",
+      description: "Lorem ipsum",
+      name: "Identifiers",
+      xs: 12,
+      sm: 4,
+    },
   ],
 };
 
@@ -210,6 +226,8 @@ export interface MockInstance {
   currency: string;
   tradeDate: Date;
   [key: string]: FieldType;
+  codes: string[];
+  identifiers: string[];
 }
 
 const mockFieldValue: Record<string, () => FieldType> = {
@@ -235,6 +253,8 @@ const mockFieldValue: Record<string, () => FieldType> = {
   available: faker.datatype.boolean,
   currency: () => "MXN",
   tradeDate: () => new Date(2012, 2, 11, 8, 25),
+  codes: () => [faker.word.noun(), faker.word.noun(), faker.word.noun()],
+  identifiers: () => [faker.datatype.number(), faker.datatype.number(), faker.datatype.number()],
 };
 
 export const createModelInstance = <T extends BasicModelInstance>(model: Model, seed = 100): T => {

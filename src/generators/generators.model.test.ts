@@ -27,6 +27,8 @@ describe("utilities", () => {
         middleName: "",
         quantity: 0,
         tradeDate: new Date(2022, 8, 12, 9, 0),
+        codes: [],
+        identifiers: [],
       });
     });
 
@@ -48,6 +50,7 @@ describe("utilities", () => {
         },
         available: true,
         gender: "female",
+        identifiers: ["1", "2"],
       });
 
       expect(instance).toStrictEqual({
@@ -71,6 +74,8 @@ describe("utilities", () => {
         middleName: "",
         quantity: 0,
         tradeDate: new Date(2022, 8, 12, 9, 0),
+        codes: [],
+        identifiers: ["1", "2"],
       });
     });
   });

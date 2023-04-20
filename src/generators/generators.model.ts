@@ -5,6 +5,8 @@
 export type ModelFieldTypes =
   | "string"
   | "number"
+  | "string[]"
+  | "number[]"
   | "boolean"
   | "enum"
   | "multienum"
@@ -31,8 +33,16 @@ type StringField = {
   type: "string";
 };
 
+type StringArrayField = {
+  type: "string[]";
+};
+
 type NumberField = {
   type: "number";
+};
+
+type NumberArrayField = {
+  type: "number[]";
 };
 
 type BooleanField = {
@@ -70,6 +80,8 @@ type DatetimeField = {
 type SingleFields =
   | StringField
   | NumberField
+  | StringArrayField
+  | NumberArrayField
   | BooleanField
   | EnumField
   | MultiEnumField
@@ -94,7 +106,7 @@ export type Model = {
  * Types used to represent an instance of a model specification
  */
 export type BaseFieldType = string | number | boolean | Date;
-export type ArrayFieldType = string[];
+export type ArrayFieldType = string[] | number[];
 export type SingleFieldType = BaseFieldType | ArrayFieldType;
 export type GroupInstanceType = { [key: string]: SingleFieldType };
 export type FieldType = SingleFieldType | GroupInstanceType;
@@ -118,6 +130,8 @@ const InitialStateZeroValue: Record<ModelFieldTypes | "group", FieldType | undef
   time: new Date(1970, 0, 1, 0, 0),
   datetime: new Date(1970, 0, 1, 0, 0),
   group: {},
+  "string[]": [],
+  "number[]": [],
 };
 
 const getFieldValueOrZero = (

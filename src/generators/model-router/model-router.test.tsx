@@ -167,6 +167,8 @@ describe("ModelRouter", () => {
       const tradeDateElement = screen.getByRole<HTMLInputElement>("textbox", {
         name: /trade date/i,
       });
+      const codesElement = screen.getByRole("textbox", { name: /codes/i });
+      const identifiersElement = screen.getByRole("textbox", { name: /identifiers/i });
 
       if (clear) {
         await userEvent.clear(idElement);
@@ -181,6 +183,8 @@ describe("ModelRouter", () => {
         await userEvent.clear(currencyElement);
         await userEvent.clear(tradeDateElement);
         await userEvent.clear(timeReturnElement);
+        await userEvent.clear(codesElement);
+        await userEvent.clear(identifiersElement);
         await clearCheckbox(availableElement);
         await clearMultiSelect(typeElement);
       }
@@ -204,6 +208,8 @@ describe("ModelRouter", () => {
       }
       await userEvent.type(currencyElement, instance.currency);
       pickDatetime(tradeDateElement, instance.tradeDate, TradeDateFormat);
+      await userEvent.type(codesElement, instance.codes.join(","));
+      await userEvent.type(identifiersElement, instance.identifiers.join(","));
 
       submit && (await userEvent.click(screen.getByRole("button", { name: /save/i })));
 
