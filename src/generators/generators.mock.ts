@@ -201,6 +201,32 @@ export const mockModel: Model = {
       xs: 12,
       sm: 4,
     },
+    {
+      id: "carsHistory",
+      type: "group[]",
+      description: "Lorem ipsum",
+      name: "Cars History",
+      xs: 12,
+      sm: 4,
+      value: [
+        {
+          id: "model",
+          type: "string",
+          description: "Lorem ipsum",
+          name: "Model",
+          xs: 12,
+          sm: 5,
+        },
+        {
+          id: "manufacturer",
+          type: "string",
+          description: "Lorem ipsum",
+          name: "Manufacturer",
+          xs: 12,
+          sm: 5,
+        },
+      ],
+    },
   ],
 };
 
@@ -271,6 +297,20 @@ export const createModelInstance = <T extends BasicModelInstance>(model: Model, 
           {},
         ),
       };
+    } else if (field.type === "group[]") {
+      const numElements = faker.datatype.number({ min: 2, max: 5 });
+      return {
+        ...acc,
+        [field.id]: new Array(numElements).fill(0).map(() =>
+          field.value.reduce(
+            (acc, arrayField) => ({
+              ...acc,
+              [arrayField.id]: getModelFieldValue(arrayField),
+            }),
+            {},
+          ),
+        ),
+      };
     } else {
       return {
         ...acc,
@@ -279,6 +319,10 @@ export const createModelInstance = <T extends BasicModelInstance>(model: Model, 
     }
   }, {} as T);
 };
+
+/*
+
+*/
 
 const getModelFieldValue = ({ id }: ModelField): FieldType => {
   const fieldGenerator = mockFieldValue[id];

@@ -29,6 +29,7 @@ describe("utilities", () => {
         tradeDate: new Date(2022, 8, 12, 9, 0),
         codes: [],
         identifiers: [],
+        carsHistory: [],
       });
     });
 
@@ -76,6 +77,7 @@ describe("utilities", () => {
         tradeDate: new Date(2022, 8, 12, 9, 0),
         codes: [],
         identifiers: ["1", "2"],
+        carsHistory: [],
       });
     });
   });

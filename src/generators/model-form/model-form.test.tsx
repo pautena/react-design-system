@@ -114,6 +114,7 @@ describe("ModelForm", () => {
       tradeDate,
       codes: ["foo", "bar"],
       identifiers: ["1", "2", "3"],
+      carsHistory: [],
     });
   });
 });

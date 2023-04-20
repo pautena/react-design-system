@@ -718,7 +718,10 @@ describe("ModelRouter", () => {
 
       const newInstance = await actions.fullfillModelForm({ model, submit: true });
 
-      expectToHaveBeenCalledOnceWithMockInstance(onSubmitNewItem, newInstance);
+      expectToHaveBeenCalledOnceWithMockInstance(onSubmitNewItem, {
+        ...newInstance,
+        carsHistory: [],
+      });
     });
 
     it("would show a loading indicator when the request is in progress", async () => {

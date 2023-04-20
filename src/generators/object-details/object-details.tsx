@@ -13,8 +13,13 @@ import {
   Model,
   BasicModelInstance,
   GroupInstanceType,
+  ArrayGroupField,
+  ArrayInstanceType,
 } from "../generators.model";
 import { newBreakpointsCounter } from "~/utils/breakpoints";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { ValueContent } from "~/components/value-displays/value-content";
+import { ArrayFieldType } from "../generators.model";
 
 interface SingleDetailValueFactoryOptions {
   dense?: boolean;
@@ -33,6 +38,54 @@ const singleDetailValueFactory = <T extends BasicModelInstance>(
     return <ValueDatetime dense={dense} label={name} value={value as Date} format={field.format} />;
   }
   return <ValueText dense={dense} label={name} value={value?.toString()} />;
+};
+
+interface ObjectArrayGroupProps {
+  field: ArrayGroupField;
+  instance: ArrayInstanceType;
+  dense?: boolean;
+}
+
+const ObjectArrayGroup = ({
+  field: { name, description, value },
+  instance,
+  dense,
+}: ObjectArrayGroupProps) => {
+  const columns: GridColDef[] = [{ field: "id", headerName: "ID", width: 70 }];
+
+  value.forEach((column) => {
+    columns.push({
+      field: column.id,
+      headerName: column.name,
+    });
+  });
+
+  const rows = instance.map((f, id) => ({
+    id,
+    ...f,
+  }));
+
+  return (
+    <GroupValueCard title={name} subtitle={description} dense={dense}>
+      <Grid item xs={12}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          density={dense ? "compact" : "standard"}
+          disableRowSelectionOnClick
+          pageSizeOptions={[5]}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+          sx={{ height: 400 }}
+        />
+      </Grid>
+    </GroupValueCard>
+  );
 };
 
 interface ObjectDetailGroupProps {
@@ -89,6 +142,15 @@ export const ObjectDetails = <T extends BasicModelInstance>({
                 instance={instance[id] as GroupInstanceType}
                 dense={dense}
               />
+            </Grid>
+          );
+        }
+
+        if (type === "group[]") {
+          breakpointsCounter.increment({ xs: 12 });
+          return (
+            <Grid item key={id} xs={12}>
+              <ObjectArrayGroup field={field} instance={instance[id] as any} dense={dense} />
             </Grid>
           );
         }

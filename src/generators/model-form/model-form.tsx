@@ -216,6 +216,8 @@ export const ModelForm = <T extends BasicModelInstance>({
           onChange={(value) => handleDateChange(value, key, id)}
         />
       );
+    } else if (type === "group[]") {
+      return null;
     } else if (type.includes("[]")) {
       fieldInput = (
         <TextField

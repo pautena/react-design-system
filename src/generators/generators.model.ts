@@ -94,7 +94,12 @@ export type GroupField = {
   value: (Base & Breakpoints & SingleFields)[];
 } & Base;
 
-type Fields = SingleFields | GroupField;
+export type ArrayGroupField = {
+  type: "group[]";
+  value: (Base & Breakpoints & SingleFields)[];
+} & Base;
+
+type Fields = SingleFields | GroupField | ArrayGroupField;
 export type ModelField = Base & Breakpoints & Fields;
 
 export type Model = {
@@ -109,6 +114,7 @@ export type BaseFieldType = string | number | boolean | Date;
 export type ArrayFieldType = string[] | number[];
 export type SingleFieldType = BaseFieldType | ArrayFieldType;
 export type GroupInstanceType = { [key: string]: SingleFieldType };
+export type ArrayInstanceType = { [key: string]: SingleFieldType }[];
 export type FieldType = SingleFieldType | GroupInstanceType;
 
 export interface BasicModelInstance {
@@ -120,19 +126,21 @@ export interface BasicModelInstance {
  * UTILITIES
  * Some functions used in several places to help to manage models
  */
-const InitialStateZeroValue: Record<ModelFieldTypes | "group", FieldType | undefined> = {
-  string: "",
-  number: 0,
-  boolean: false,
-  enum: "",
-  multienum: [],
-  date: new Date(1970, 0, 1, 0, 0),
-  time: new Date(1970, 0, 1, 0, 0),
-  datetime: new Date(1970, 0, 1, 0, 0),
-  group: {},
-  "string[]": [],
-  "number[]": [],
-};
+const InitialStateZeroValue: Record<ModelFieldTypes | "group" | "group[]", FieldType | undefined> =
+  {
+    string: "",
+    number: 0,
+    boolean: false,
+    enum: "",
+    multienum: [],
+    date: new Date(1970, 0, 1, 0, 0),
+    time: new Date(1970, 0, 1, 0, 0),
+    datetime: new Date(1970, 0, 1, 0, 0),
+    group: {},
+    "group[]": [],
+    "string[]": [],
+    "number[]": [],
+  };
 
 const getFieldValueOrZero = (
   field: ModelField,

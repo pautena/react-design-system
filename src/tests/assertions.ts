@@ -32,7 +32,7 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
       expect(
         screen.getByRole("button", { name: new RegExp(field.name.toLowerCase(), "i") }),
       ).toBeInTheDocument();
-    } else {
+    } else if (field.type !== "group[]") {
       expect(screen.getByRole("textbox", { name: field.name })).toBeInTheDocument();
     }
   });
@@ -58,6 +58,8 @@ export const expectModelFieldInputValue = (
         fmt: field.format,
         addSpaces: true,
       });
+    } else if (field.type === "group[]") {
+      // Ignore group[] cases
     } else if (field.type.includes("[]")) {
       expect(screen.getByRole("textbox", { name: field.name })).toHaveValue(
         (value as any[]).join(","),
@@ -172,6 +174,7 @@ export const expectToHaveBeenCalledOnceWithMockInstance = (
     ),
     codes: instance.codes,
     identifiers: instance.identifiers.map((i) => i.toString()),
+    carsHistory: instance.carsHistory,
   });
 };
 
