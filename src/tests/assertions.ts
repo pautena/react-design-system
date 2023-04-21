@@ -174,7 +174,6 @@ export const expectToHaveBeenCalledOnceWithMockInstance = (
     ),
     codes: instance.codes,
     identifiers: instance.identifiers.map((i) => i.toString()),
-    carsHistory: instance.carsHistory,
   });
 };
 

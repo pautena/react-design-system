@@ -720,7 +720,6 @@ describe("ModelRouter", () => {
 
       expectToHaveBeenCalledOnceWithMockInstance(onSubmitNewItem, {
         ...newInstance,
-        carsHistory: [],
       });
     });
 
