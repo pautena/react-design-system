@@ -37,6 +37,10 @@ const singleDetailValueFactory = <T extends BasicModelInstance>(
   } else if (type === "date" || type === "time" || type === "datetime") {
     return <ValueDatetime dense={dense} label={name} value={value as Date} format={field.format} />;
   }
+
+  if (typeof value === "object" && !Array.isArray(value)) {
+    return <ValueText dense={dense} label={name} value={JSON.stringify(value)} />;
+  }
   return <ValueText dense={dense} label={name} value={value?.toString()} />;
 };
 
