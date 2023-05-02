@@ -71,7 +71,6 @@
     "@testing-library/react": "^14.0.0",
     "@types/ramda": "^0.28.23",
     "@types/react": "^18.0.31",
-    "@types/react-l": "^1.2.6",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
     "babel-loader": "^9.1.2",
