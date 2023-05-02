@@ -215,3 +215,31 @@ export const Loading: Story = {
     contentChildren: <SkeletonGrid />,
   },
 };
+
+export const Fetching: Story = {
+  args: {
+    fetching: true,
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: <SkeletonGrid />,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    error: {
+      message: "There is no user with that id",
+    },
+    headerProps: {
+      title: "Lorem ipsum",
+      subtitle: "Dolor sit amet",
+      breadcrumbs,
+      actions,
+    },
+    contentChildren: <SkeletonGrid />,
+  },
+};

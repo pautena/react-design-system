@@ -15,6 +15,7 @@
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
     "types": ["jest"],
     "typeRoots": ["./src/types"],
     "baseUrl": ".",

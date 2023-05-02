@@ -24,11 +24,13 @@ export interface PlaceholderIconArgs {
   color: IconColor;
 }
 
+export type PlaceholderIcon = ({ size, color }: PlaceholderIconArgs) => ReactElement;
+
 export interface PlaceholderProps {
   title: string;
   subtitle: string;
   iconSize?: number;
-  icon?: ({ size, color }: PlaceholderIconArgs) => ReactElement;
+  icon?: PlaceholderIcon;
   actions?: PlaceholderAction[];
 }
 
