@@ -1,6 +1,6 @@
 import { Box, IconButton, Rating } from "@mui/material";
 import React from "react";
-import { useEditableValueDisplay, ValueEditButtons } from "../value-base";
+import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "../value-base";
 import { BaseValueProps, EditableValueProps } from "../value-base/value-displays.types";
 import { getValueContentLabelId, ValueContent } from "../value-content";
 import EditIcon from "@mui/icons-material/Edit";
@@ -35,12 +35,10 @@ export const ValueRating = ({
           value={isEditing ? editValue : value}
           onChange={(_, newValue) => newValue && setEditValue(newValue)}
         />
-        {editable && !isEditing && (
-          <IconButton size="small" onClick={startEdit} sx={{ ml: 1 }}>
-            <EditIcon />
-          </IconButton>
+        {editable && !isEditing && <ValueEditButton dense={dense} onClick={startEdit} />}
+        {isEditing && (
+          <ValueEditButtons dense={dense} onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
         )}
-        {isEditing && <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />}
       </Box>
     </ValueContent>
   );

@@ -1,10 +1,12 @@
-import { IconButton, TextField, Typography } from "@mui/material";
+import { IconButton, TextField, Typography, inputBaseClasses } from "@mui/material";
 import React from "react";
 import {
   BaseValueProps,
   DefaultPlaceholder,
   EditableValueProps,
+  getEditTextFieldSx,
   useEditableValueDisplay,
+  ValueEditButton,
   ValueEditButtons,
 } from "../value-base";
 import { getValueContentLabelId, ValueContent } from "../value-content";
@@ -36,17 +38,20 @@ export const ValueText = ({
           size="small"
           onChange={(e) => setEditValue(e.target.value)}
           InputProps={{
-            endAdornment: <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />,
+            endAdornment: (
+              <ValueEditButtons
+                dense={dense}
+                onClickCancel={cancelEdit}
+                onSubmitEdit={submitEdit}
+              />
+            ),
           }}
+          sx={getEditTextFieldSx(dense)}
         />
       ) : (
         <Typography variant={dense ? "body1" : "h5"} noWrap aria-labelledby={id}>
           {value}
-          {editable && (
-            <IconButton size="small" onClick={startEdit} sx={{ ml: 1 }}>
-              <EditIcon />
-            </IconButton>
-          )}
+          {editable && <ValueEditButton dense={dense} onClick={startEdit} />}
         </Typography>
       )}
     </ValueContent>
