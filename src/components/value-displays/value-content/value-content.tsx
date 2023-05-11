@@ -1,4 +1,4 @@
-import { Box, Tooltip, Typography, useTheme } from "@mui/material";
+import { Box, SxProps, Theme, Tooltip, Typography, useTheme } from "@mui/material";
 import React from "react";
 
 export const getValueContentLabelId = (label: string): string =>
@@ -30,6 +30,11 @@ export interface ValueContentProps {
    * False by default
    */
   dense?: boolean;
+
+  /**
+   * Custom styles for the root component
+   */
+  sx?: SxProps<Theme>;
 }
 
 /**
@@ -41,12 +46,13 @@ export const ValueContent = ({
   tooltipEnterDelay = 2000,
   children,
   dense,
+  sx,
 }: ValueContentProps) => {
   const { typography } = useTheme();
   const id = getValueContentLabelId(label);
 
   return (
-    <Box width={1} lineHeight={dense ? 0 : undefined}>
+    <Box width={1} lineHeight={dense ? 0 : undefined} sx={sx}>
       <Typography
         variant={dense ? "caption" : "subtitle2"}
         role="label"

@@ -7,6 +7,7 @@ import {
   DefaultPlaceholder,
   EditableValueProps,
   useEditableValueDisplay,
+  ValueEditButton,
   ValueEditButtons,
 } from "../value-base";
 import { ValueContent, getValueContentLabelId } from "../value-content";
@@ -36,7 +37,11 @@ export const ValueBoolean = ({
     <ValueContent label={label} dense={dense}>
       {isEditing ? (
         <Box display="flex" alignItems="center">
-          <Switch checked={editValue} onChange={(e) => setEditValue(e.target.checked)} />
+          <Switch
+            size={dense ? "small" : "medium"}
+            checked={editValue}
+            onChange={(e) => setEditValue(e.target.checked)}
+          />
           <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
         </Box>
       ) : (
@@ -54,11 +59,7 @@ export const ValueBoolean = ({
           ) : (
             <CloseIcon color="error" sx={iconSx} />
           )}
-          {editable && (
-            <IconButton size="small" onClick={startEdit} sx={{ ml: 1 }}>
-              <EditIcon />
-            </IconButton>
-          )}
+          {editable && <ValueEditButton dense={dense} onClick={startEdit} />}
         </Box>
       )}
     </ValueContent>

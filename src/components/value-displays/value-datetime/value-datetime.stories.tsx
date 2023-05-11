@@ -73,3 +73,14 @@ export const EditableDate: Story = {
     editInputType: "date",
   },
 };
+
+export const DenseEditable: Story = {
+  args: {
+    label: "Lorem",
+    value: new Date(2022, 8, 22),
+    format: "yyyy/MM/dd",
+    editable: true,
+    editInputType: "date",
+    dense: true,
+  },
+};

@@ -7,7 +7,12 @@ import {
   EditableValueProps,
 } from "../value-base/value-displays.types";
 import { getValueContentLabelId, ValueContent } from "../value-content";
-import { useEditableValueDisplay, ValueEditButtons } from "../value-base";
+import {
+  getEditTextFieldSx,
+  useEditableValueDisplay,
+  ValueEditButton,
+  ValueEditButtons,
+} from "../value-base";
 import EditIcon from "@mui/icons-material/Edit";
 import { DatePicker, DateTimePicker, TimePicker } from "@mui/x-date-pickers";
 
@@ -51,7 +56,12 @@ export const ValueDatetime = ({
       : DatePicker;
 
   return (
-    <ValueContent label={label} tooltip={value} dense={dense}>
+    <ValueContent
+      label={label}
+      tooltip={value}
+      dense={dense}
+      sx={{ display: "flex", flexDirection: "column" }}
+    >
       {isEditing ? (
         <EditPickerComponent
           value={editValue}
@@ -61,6 +71,7 @@ export const ValueDatetime = ({
             textField: (params) => (
               <TextField
                 {...params}
+                size="small"
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: (
@@ -77,17 +88,14 @@ export const ValueDatetime = ({
               />
             ),
           }}
+          sx={getEditTextFieldSx(dense)}
         />
       ) : (
         <Box display="flex" alignItems="center">
           <Typography variant={dense ? "body1" : "h5"} noWrap aria-labelledby={id}>
             {value}
           </Typography>
-          {editable && (
-            <IconButton size="small" onClick={startEdit} sx={{ ml: 1 }}>
-              <EditIcon />
-            </IconButton>
-          )}
+          {editable && <ValueEditButton dense={dense} onClick={startEdit} />}
         </Box>
       )}
     </ValueContent>

@@ -43,3 +43,13 @@ export const Editable: Story = {
     editable: true,
   },
 };
+
+export const DenseEditable: Story = {
+  args: {
+    label: "Lorem",
+    value: 4,
+    maxRating: 7,
+    dense: true,
+    editable: true,
+  },
+};

@@ -31,6 +31,15 @@ export const Editable: Story = {
   },
 };
 
+export const DenseEditable: Story = {
+  args: {
+    label: "Lorem ipsum",
+    value: false,
+    dense: true,
+    editable: true,
+  },
+};
+
 export const Dense: Story = {
   args: {
     label: "Lorem ipsum",
