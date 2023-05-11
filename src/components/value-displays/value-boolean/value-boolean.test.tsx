@@ -45,6 +45,20 @@ describe("ValueBoolean", () => {
     expect(screen.getByTestId("CloseIcon")).toBeInTheDocument();
   });
 
+  describe("accessibility", () => {
+    it("should be checked if value is true", () => {
+      renderComponent({ value: true });
+
+      expect(screen.getByLabelText(/hello world/i)).toBeChecked();
+    });
+
+    it("shouldn't be checked if value is false", () => {
+      renderComponent({ value: false });
+
+      expect(screen.getByLabelText(/hello world/i)).not.toBeChecked();
+    });
+  });
+
   it("should render the placeholder if value is undefined", () => {
     renderComponent({ value: undefined });
 

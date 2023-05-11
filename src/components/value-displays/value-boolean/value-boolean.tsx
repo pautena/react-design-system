@@ -9,7 +9,7 @@ import {
   useEditableValueDisplay,
   ValueEditButtons,
 } from "../value-base";
-import { ValueContent } from "../value-content";
+import { ValueContent, getValueContentLabelId } from "../value-content";
 import EditIcon from "@mui/icons-material/Edit";
 
 export type ValueBooleanProps = BaseValueProps<boolean> & EditableValueProps<boolean>;
@@ -25,6 +25,7 @@ export const ValueBoolean = ({
   dense,
   onEdit = () => null,
 }: ValueBooleanProps) => {
+  const id = getValueContentLabelId(label);
   const { typography } = useTheme();
   const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
     useEditableValueDisplay(value, onEdit);
@@ -39,7 +40,13 @@ export const ValueBoolean = ({
           <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
         </Box>
       ) : (
-        <Box display="flex" alignItems="center">
+        <Box
+          display="flex"
+          alignItems="center"
+          aria-labelledby={id}
+          role="checkbox"
+          aria-checked={value}
+        >
           {value === undefined ? (
             <Typography variant="h5">{placeholder}</Typography>
           ) : value ? (
