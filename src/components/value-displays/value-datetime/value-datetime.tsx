@@ -56,7 +56,12 @@ export const ValueDatetime = ({
       : DatePicker;
 
   return (
-    <ValueContent label={label} tooltip={value} dense={dense}>
+    <ValueContent
+      label={label}
+      tooltip={value}
+      dense={dense}
+      sx={{ display: "flex", flexDirection: "column" }}
+    >
       {isEditing ? (
         <EditPickerComponent
           value={editValue}
