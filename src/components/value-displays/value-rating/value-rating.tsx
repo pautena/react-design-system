@@ -36,9 +36,7 @@ export const ValueRating = ({
           onChange={(_, newValue) => newValue && setEditValue(newValue)}
         />
         {editable && !isEditing && <ValueEditButton dense={dense} onClick={startEdit} />}
-        {isEditing && (
-          <ValueEditButtons dense={dense} onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
-        )}
+        {isEditing && <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />}
       </Box>
     </ValueContent>
   );

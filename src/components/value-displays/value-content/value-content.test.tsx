@@ -5,9 +5,17 @@ import { ValueContent } from "./value-content";
 import userEvent from "@testing-library/user-event";
 
 describe("ValueContent", () => {
-  const renderComponent = ({ tooltip }: { tooltip?: string } = {}) => {
+  const renderComponent = ({
+    tooltip,
+    hideLabel,
+  }: { tooltip?: string; hideLabel?: boolean } = {}) => {
     render(
-      <ValueContent label="lorem ipsum" tooltip={tooltip} tooltipEnterDelay={0}>
+      <ValueContent
+        label="lorem ipsum"
+        tooltip={tooltip}
+        tooltipEnterDelay={0}
+        hideLabel={hideLabel}
+      >
         <Typography>Test content</Typography>
       </ValueContent>,
     );
@@ -16,7 +24,13 @@ describe("ValueContent", () => {
   it("should render a label", () => {
     renderComponent();
 
-    expect(screen.getByRole("label", { name: /lorem ipsum/i })).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /lorem ipsum/i })).toBeVisible();
+  });
+
+  it("shouldn't render a label if hideLabel=true", () => {
+    renderComponent({ hideLabel: true });
+
+    expect(screen.queryByRole("label", { name: /lorem ipsum/i })).not.toBeInTheDocument();
   });
 
   describe("tooltip", () => {
@@ -25,7 +39,7 @@ describe("ValueContent", () => {
 
       await userEvent.hover(screen.getByText(/test content/i));
 
-      expect(await screen.findByRole("tooltip", { name: /dolor sit amet/i })).toBeInTheDocument();
+      expect(await screen.findByRole("tooltip", { name: /dolor sit amet/i })).toBeVisible();
     });
 
     it("shouldn't render a tooltip if it's not defined", () => {
@@ -39,12 +53,12 @@ describe("ValueContent", () => {
     it("should render the children if tooltip is defined", () => {
       renderComponent({ tooltip: "dolor sit amet" });
 
-      expect(screen.getByText(/test content/i)).toBeInTheDocument();
+      expect(screen.getByText(/test content/i)).toBeVisible();
     });
     it("should render the children if tooltip is undefined", () => {
       renderComponent({ tooltip: undefined });
 
-      expect(screen.getByText(/test content/i)).toBeInTheDocument();
+      expect(screen.getByText(/test content/i)).toBeVisible();
     });
   });
 });

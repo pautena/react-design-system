@@ -1,4 +1,4 @@
-import { Box, IconButton, TextField, Typography } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import React from "react";
 import { format } from "date-fns";
 import {
@@ -7,13 +7,7 @@ import {
   EditableValueProps,
 } from "../value-base/value-displays.types";
 import { getValueContentLabelId, ValueContent } from "../value-content";
-import {
-  getEditTextFieldSx,
-  useEditableValueDisplay,
-  ValueEditButton,
-  ValueEditButtons,
-} from "../value-base";
-import EditIcon from "@mui/icons-material/Edit";
+import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "../value-base";
 import { DatePicker, DateTimePicker, TimePicker } from "@mui/x-date-pickers";
 
 export type EditInputType = "datetime" | "date" | "time";
@@ -58,6 +52,7 @@ export const ValueDatetime = ({
   return (
     <ValueContent
       label={label}
+      hideLabel={isEditing}
       tooltip={value}
       dense={dense}
       sx={{ display: "flex", flexDirection: "column" }}
@@ -66,6 +61,7 @@ export const ValueDatetime = ({
         <EditPickerComponent
           value={editValue}
           format={fmt}
+          label={label}
           onChange={(newValue) => setEditValue(newValue ? newValue : undefined)}
           slots={{
             textField: (params) => (
@@ -78,18 +74,17 @@ export const ValueDatetime = ({
                     <>
                       {params.InputProps?.endAdornment}
                       <ValueEditButtons
-                        dense={dense}
                         onClickCancel={cancelEdit}
                         onSubmitEdit={submitEdit}
                         sx={{ ml: 2 }}
                       />
                     </>
                   ),
+                  sx: { marginY: !dense ? 1 : 0.2 },
                 }}
               />
             ),
           }}
-          sx={getEditTextFieldSx(dense)}
         />
       ) : (
         <Box display="flex" alignItems="center">

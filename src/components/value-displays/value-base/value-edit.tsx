@@ -13,26 +13,19 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 
 export interface ValueEditButtonsProps {
-  dense?: boolean;
   onClickCancel: () => void;
   onSubmitEdit: () => void;
   sx?: SxProps<Theme>;
 }
 
-export const ValueEditButtons = ({
-  dense,
-  onClickCancel,
-  onSubmitEdit,
-  sx,
-}: ValueEditButtonsProps) => {
-  const iconSx = dense ? { fontSize: 12 } : {};
+export const ValueEditButtons = ({ onClickCancel, onSubmitEdit, sx }: ValueEditButtonsProps) => {
   return (
     <InputAdornment position="end" sx={sx}>
       <Button
         variant="contained"
         size="small"
         color="error"
-        startIcon={<ClearIcon sx={iconSx} />}
+        startIcon={<ClearIcon sx={{ fontSize: 12 }} />}
         onClick={onClickCancel}
         sx={{ paddingRight: 0, minWidth: 0, marginRight: 1 }}
       />
@@ -40,7 +33,7 @@ export const ValueEditButtons = ({
         variant="contained"
         size="small"
         color="primary"
-        startIcon={<CheckIcon sx={iconSx} />}
+        startIcon={<CheckIcon sx={{ fontSize: 12 }} />}
         onClick={onSubmitEdit}
         sx={{ paddingRight: 0, minWidth: 0 }}
       />
@@ -87,16 +80,3 @@ export const ValueEditButton = ({ dense, onClick }: ValueEditButtonProps) => {
     </IconButton>
   );
 };
-
-export const getEditTextFieldSx = (dense: boolean | undefined) =>
-  dense
-    ? {
-        [`& .${inputBaseClasses.root}`]: {
-          paddingRight: 1,
-        },
-        [`& .${inputBaseClasses.input}`]: {
-          paddingLeft: 1,
-          paddingY: 0.5,
-        },
-      }
-    : undefined;
