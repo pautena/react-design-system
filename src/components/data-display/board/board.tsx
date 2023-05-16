@@ -1,13 +1,13 @@
-import { Box, Button, Paper, SxProps, Theme, Typography } from "@mui/material";
+import { Box, IconButton, Paper, SxProps, Theme, Tooltip, Typography } from "@mui/material";
 import { blueGrey } from "@mui/material/colors";
-import React, { PropsWithChildren, ReactNode, useState } from "react";
+import React, { PropsWithChildren, ReactNode } from "react";
 import { Markdown } from "../markdown";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export type BoardProps = PropsWithChildren<{
   markdown?: string;
   content?: string | string[];
   spacing?: 0 | 1 | 2 | 3 | 4 | 5;
-  timeoutCopyText?: number;
   sx?: SxProps<Theme>;
 }>;
 
@@ -15,11 +15,9 @@ export const Board = ({
   markdown: markdownProps,
   content: contentProp,
   spacing = 0,
-  timeoutCopyText = 2000,
   children,
   sx,
 }: BoardProps) => {
-  const [copyText, setCopyText] = useState("Copy");
   let copyContent: string;
   let content: ReactNode;
 
@@ -39,22 +37,21 @@ export const Board = ({
 
   const markdown = markdownProps && <Markdown content={markdownProps} />;
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(copyContent);
-    setCopyText("Copied!");
-
-    setTimeout(() => setCopyText("Copy"), timeoutCopyText);
-  };
-
   return (
     <Paper sx={{ p: 2, backgroundColor: blueGrey[800], color: "white", ...sx }}>
       <Box display="flex" flexDirection="row">
         <Box width={1}>{children || markdown || content}</Box>
-        <Box width={100} sx={{ ml: 1 }}>
+        <Box sx={{ ml: 1 }}>
           {copyContent && (
-            <Button fullWidth color="inherit" size="small" variant="outlined" onClick={handleCopy}>
-              {copyText}
-            </Button>
+            <IconButton
+              aria-label="copy board content"
+              color="inherit"
+              onClick={() => navigator.clipboard.writeText(copyContent)}
+            >
+              <Tooltip title="Copy">
+                <ContentCopyIcon />
+              </Tooltip>
+            </IconButton>
           )}
         </Box>
       </Box>

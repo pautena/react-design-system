@@ -1,4 +1,4 @@
-import { Box, IconButton, Switch, Typography, useTheme } from "@mui/material";
+import { Box, Switch, Typography, useTheme } from "@mui/material";
 import React from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
@@ -11,7 +11,6 @@ import {
   ValueEditButtons,
 } from "../value-base";
 import { ValueContent, getValueContentLabelId } from "../value-content";
-import EditIcon from "@mui/icons-material/Edit";
 
 export type ValueBooleanProps = BaseValueProps<boolean> & EditableValueProps<boolean>;
 
