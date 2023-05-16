@@ -24,7 +24,7 @@ describe("GroupValueCard", () => {
     it("would not render a subtitle if it's not provided", () => {
       renderComponent({ subtitle: undefined });
 
-      expect(screen.queryByRole("heading", { level: 2 })).not.toBeVisible();
+      expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
     });
 
     it("would render a subtitle if it's provided", () => {

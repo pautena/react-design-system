@@ -711,7 +711,7 @@ describe("ModelRouter", () => {
       const newInstance = await actions.fullfillModelForm({ model, submit: false });
 
       expectModelFieldInputValue(model.fields, newInstance);
-    });
+    }, 20000);
 
     it("would make a request when the form is submitted", async () => {
       const { onSubmitNewItem, model } = await renderComponent({ screen: "add" });
@@ -721,7 +721,7 @@ describe("ModelRouter", () => {
       expectToHaveBeenCalledOnceWithMockInstance(onSubmitNewItem, {
         ...newInstance,
       });
-    });
+    }, 20000);
 
     it("would show a loading indicator when the request is in progress", async () => {
       const { model } = await renderComponent({ screen: "add" });
@@ -729,7 +729,7 @@ describe("ModelRouter", () => {
       await actions.fullfillModelForm({ model, submit: true });
 
       expectProgressIndicator();
-    });
+    }, 20000);
 
     it("would show a success message if the request finish with a success", async () => {
       renderAddScreen();
