@@ -37,7 +37,9 @@ export const ValueText = ({
           size="small"
           onChange={(e) => setEditValue(e.target.value)}
           InputProps={{
-            endAdornment: <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />,
+            endAdornment: (
+              <ValueEditButtons onClickCancel={cancelEdit} onClickSubmit={submitEdit} />
+            ),
           }}
           sx={{ marginY: !dense ? 1 : 0 }}
         />

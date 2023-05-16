@@ -6,17 +6,18 @@ import EditIcon from "@mui/icons-material/Edit";
 
 export interface ValueEditButtonsProps {
   onClickCancel: () => void;
-  onSubmitEdit: () => void;
+  onClickSubmit: () => void;
   sx?: SxProps<Theme>;
 }
 
-export const ValueEditButtons = ({ onClickCancel, onSubmitEdit, sx }: ValueEditButtonsProps) => {
+export const ValueEditButtons = ({ onClickCancel, onClickSubmit, sx }: ValueEditButtonsProps) => {
   return (
     <InputAdornment position="end" sx={sx}>
       <Button
         variant="contained"
         size="small"
         color="error"
+        aria-label="cancel button"
         startIcon={<ClearIcon sx={{ fontSize: 12 }} />}
         onClick={onClickCancel}
         sx={{ paddingRight: 0, minWidth: 0, marginRight: 1 }}
@@ -25,8 +26,9 @@ export const ValueEditButtons = ({ onClickCancel, onSubmitEdit, sx }: ValueEditB
         variant="contained"
         size="small"
         color="primary"
+        aria-label="submit button"
         startIcon={<CheckIcon sx={{ fontSize: 12 }} />}
-        onClick={onSubmitEdit}
+        onClick={onClickSubmit}
         sx={{ paddingRight: 0, minWidth: 0 }}
       />
     </InputAdornment>
@@ -67,7 +69,12 @@ export interface ValueEditButtonProps {
 export const ValueEditButton = ({ dense, onClick }: ValueEditButtonProps) => {
   const { typography } = useTheme();
   return (
-    <IconButton size="small" onClick={onClick} sx={{ ml: dense ? 0.5 : 1 }}>
+    <IconButton
+      size="small"
+      onClick={onClick}
+      sx={{ ml: dense ? 0.5 : 1 }}
+      aria-label="edit button"
+    >
       <EditIcon sx={{ fontSize: typography.pxToRem(dense ? 18 : 24) }} />
     </IconButton>
   );
