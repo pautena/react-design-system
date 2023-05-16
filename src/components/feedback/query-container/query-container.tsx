@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Box } from "@mui/material";
+import { Alert, AlertTitle, Box, LinearProgress } from "@mui/material";
 import React from "react";
 import { PropsWithChildren } from "react";
 import { LoadingArea } from "../loading-area";
@@ -27,9 +27,14 @@ export interface QueryContainerSuccess {
 
 export type QueryContainerProps = PropsWithChildren<{
   /**
-   * There is a query in progress
+   * There is a query in progress and we have available data
    */
-  isFetching: boolean;
+  fetching: boolean;
+
+  /**
+   * There is a query in progress and we don't have available data
+   */
+  loading: boolean;
   /**
    * The query has returned an error
    */
@@ -43,8 +48,14 @@ export type QueryContainerProps = PropsWithChildren<{
 /**
  * Component to show different indicators based on the usual api query statuses
  */
-export function QueryContainer({ isFetching, error, success, children }: QueryContainerProps) {
-  if (isFetching) {
+export function QueryContainer({
+  fetching,
+  loading,
+  error,
+  success,
+  children,
+}: QueryContainerProps) {
+  if (loading) {
     return <LoadingArea />;
   }
 
@@ -65,6 +76,7 @@ export function QueryContainer({ isFetching, error, success, children }: QueryCo
           {success.message}
         </Alert>
       )}
+      {fetching && <LinearProgress sx={{ width: 1, mb: 1 }} />}
       {children}
     </Box>
   );
