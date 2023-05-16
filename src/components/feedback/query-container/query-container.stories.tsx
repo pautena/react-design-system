@@ -25,13 +25,26 @@ type Story = StoryObj<typeof QueryContainer>;
 
 export const Fetching: Story = {
   args: {
-    isFetching: true,
+    fetching: true,
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    loading: true,
+  },
+};
+
+export const FetchingAndLoading: Story = {
+  args: {
+    loading: true,
+    fetching: true,
   },
 };
 
 export const Error: Story = {
   args: {
-    isFetching: false,
+    fetching: false,
     error: {
       name: "Sign in error",
       message: "User and password doesn't match",
@@ -41,7 +54,7 @@ export const Error: Story = {
 
 export const ErrorWithOnlyMessage: Story = {
   args: {
-    isFetching: false,
+    fetching: false,
     error: {
       message: "Internal error",
     },
@@ -50,7 +63,7 @@ export const ErrorWithOnlyMessage: Story = {
 
 export const Success: Story = {
   args: {
-    isFetching: false,
+    fetching: false,
     success: {
       name: "Item added",
       message: "The new item has been created with id 1",
@@ -60,7 +73,7 @@ export const Success: Story = {
 
 export const SuccessWithOnlyMessage: Story = {
   args: {
-    isFetching: false,
+    fetching: false,
     success: {
       message: "The new item has been created with id 1",
     },
@@ -69,6 +82,6 @@ export const SuccessWithOnlyMessage: Story = {
 
 export const Content: Story = {
   args: {
-    isFetching: false,
+    fetching: false,
   },
 };
