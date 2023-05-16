@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { HeaderLayout, HeaderLayoutProps } from "./header-layout";
-import { withMemoryRouter } from "~/storybook";
+import { withLocalizationProvider, withMemoryRouter } from "~/storybook";
 import { withFullHeight } from "../../storybook";
 import { Content, Header, HeaderProps, HeaderTab, SkeletonGrid, TabPanel } from "../../components";
 import { Box, Typography } from "@mui/material";
@@ -64,7 +64,7 @@ const DummyHeaderLayout = ({ headerProps, contentChildren, ...rest }: HeaderLayo
 export default {
   title: "Layouts/HeaderLayout",
   component: DummyHeaderLayout,
-  decorators: [withMemoryRouter(), withFullHeight],
+  decorators: [withMemoryRouter(), withFullHeight, withLocalizationProvider],
   parameters: {
     layout: "fullscreen",
   },

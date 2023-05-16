@@ -6,11 +6,13 @@ import {
   Box,
   Collapse,
   IconButton,
+  SxProps,
+  Theme,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CloseIcon from "@mui/icons-material/Close";
-import { forwardRef, useState } from "react";
+import { forwardRef, ReactElement, useState } from "react";
 import React from "react";
 import { Board } from "~/components/data-display";
 
@@ -20,7 +22,9 @@ export interface ExpandableAlertProps {
   title?: string;
   message: string;
   metadata?: string | string[];
+  metadataComponent?: ReactElement;
   onClose: () => void;
+  sx?: SxProps<Theme>;
 }
 
 const alertSx = {
@@ -30,7 +34,10 @@ const alertSx = {
 };
 
 export const ExpandableAlert = forwardRef<any, ExpandableAlertProps>(
-  ({ severity, iconMapping, title, message, metadata, onClose }, ref) => {
+  (
+    { severity, iconMapping, title, message, metadata, metadataComponent, onClose, sx = {} },
+    ref,
+  ) => {
     const [expanded, setExpanded] = useState(false);
     return (
       <Alert
@@ -54,14 +61,14 @@ export const ExpandableAlert = forwardRef<any, ExpandableAlertProps>(
             )}
           </Box>
         }
-        sx={alertSx}
+        sx={{ ...alertSx, ...sx }}
       >
         <Box sx={{ w: 1 }}>
           {title && <AlertTitle>{title}</AlertTitle>}
           {message}
           {metadata && (
             <Collapse in={expanded} sx={{ mt: 2 }}>
-              <Board content={metadata} />
+              <Board content={metadata}>{metadataComponent}</Board>
             </Collapse>
           )}
         </Box>

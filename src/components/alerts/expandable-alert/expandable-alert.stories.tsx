@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import React, { useState } from "react";
 import { ExpandableAlert } from "./expandable-alert";
 import { withContainer } from "~/storybook";
-import { Box, Button, Snackbar } from "@mui/material";
+import { Box, Button, Snackbar, Typography } from "@mui/material";
 
 export default {
   title: "Components/Alerts/ExpandableAlert",
@@ -51,6 +51,28 @@ export const WihtoutMetadata: Story = {
     message: "Lorem ipsum dolor sit amet",
   },
 };
+
+export const MetadataCustomComponent = () => (
+  <ExpandableAlert
+    severity="info"
+    onClose={() => null}
+    title="Lorem ipsum"
+    message="Lorem ipsum dolor sit amet"
+    metadata={["lorem: ipsum", "foo: bar", "header: this", "host: localhost"]}
+    metadataComponent={
+      <>
+        <Typography variant="h6">lorem: ipsum</Typography>
+        <Typography variant="caption">foo: bar</Typography>
+        <Typography variant="body2" sx={{ textDecoration: "line-through" }}>
+          header: this
+        </Typography>
+        <Typography variant="body2" fontWeight={700}>
+          host: localhost
+        </Typography>
+      </>
+    }
+  />
+);
 
 export const SnackbarAlert = () => {
   const [open, setOpen] = useState(false);
