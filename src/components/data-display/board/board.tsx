@@ -48,10 +48,20 @@ export const Board = ({
   const markdown = markdownProps && <Markdown content={markdownProps} />;
 
   return (
-    <Paper sx={{ pl: 2, pr: 4, py: 1, backgroundColor: blueGrey[800], color: "white", ...sx }}>
+    <Paper
+      sx={{
+        position: "relative",
+        pl: 2,
+        pr: 4,
+        py: 1,
+        backgroundColor: blueGrey[800],
+        color: "white",
+        ...sx,
+      }}
+    >
       <Box display="flex" flexDirection="row">
         <Box width={1}>{children || markdown || content}</Box>
-        <Box sx={{ position: "absolute", top: themeSpacing(2), right: themeSpacing(2) }}>
+        <Box sx={{ position: "absolute", top: themeSpacing(0.5), right: themeSpacing(0.5) }}>
           {copyContent && (
             <IconButton
               aria-label="copy board content"
@@ -59,7 +69,7 @@ export const Board = ({
               onClick={() => navigator.clipboard.writeText(copyContent)}
             >
               <Tooltip title="Copy">
-                <ContentCopyIcon sx={{ fontSize: typography.pxToRem(22) }} />
+                <ContentCopyIcon sx={{ fontSize: typography.pxToRem(18) }} />
               </Tooltip>
             </IconButton>
           )}
