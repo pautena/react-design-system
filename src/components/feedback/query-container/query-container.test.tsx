@@ -11,8 +11,8 @@ describe("QueryContainer", () => {
     error = undefined,
     success = undefined,
   }: {
-    fetching?: boolean;
-    loading?: boolean;
+    fetching?: boolean | boolean[];
+    loading?: boolean | boolean[];
     error?: QueryContainerError;
     success?: QueryContainerSuccess;
   } = {}) => {
@@ -24,28 +24,52 @@ describe("QueryContainer", () => {
   };
 
   describe("fetching", () => {
-    it("should render a loading indicator", () => {
+    it("should render a loading indicator if fetching=true", () => {
       renderComponent({ fetching: true });
 
       expectProgressIndicator();
     });
 
-    it("should render the children", () => {
+    it("should render a loading indicator if fetching is an array with a true value", () => {
+      renderComponent({ fetching: [false, false, true, false, false] });
+
+      expectProgressIndicator();
+    });
+
+    it("should render the children if fetching=true", () => {
       renderComponent({ fetching: true });
+
+      expect(screen.getByText(/children content/i)).toBeVisible();
+    });
+
+    it("should render the children if fetching is an array with a true value", () => {
+      renderComponent({ fetching: [false, false, true, false, false] });
 
       expect(screen.getByText(/children content/i)).toBeVisible();
     });
   });
 
   describe("loading", () => {
-    it("should render a loading indicator", () => {
+    it("should render a loading indicator if loading=true", () => {
       renderComponent({ loading: true });
+
+      expectProgressIndicator();
+    });
+
+    it("should render a loading indicator if loading is an array with a true value", () => {
+      renderComponent({ loading: [false, false, true, false, false] });
 
       expectProgressIndicator();
     });
 
     it("shouldn't render the children", () => {
       renderComponent({ loading: true });
+
+      expect(screen.queryByText(/children content/i)).not.toBeInTheDocument();
+    });
+
+    it("shouldn't render the children if fetching is an array with a true value", () => {
+      renderComponent({ loading: [false, false, true, false, false] });
 
       expect(screen.queryByText(/children content/i)).not.toBeInTheDocument();
     });

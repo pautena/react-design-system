@@ -29,12 +29,12 @@ export type QueryContainerProps = PropsWithChildren<{
   /**
    * There is a query in progress and we have available data
    */
-  fetching: boolean;
+  fetching?: boolean | boolean[];
 
   /**
    * There is a query in progress and we don't have available data
    */
-  loading: boolean;
+  loading?: boolean | boolean[];
   /**
    * The query has returned an error
    */
@@ -49,12 +49,15 @@ export type QueryContainerProps = PropsWithChildren<{
  * Component to show different indicators based on the usual api query statuses
  */
 export function QueryContainer({
-  fetching,
-  loading,
+  fetching: fetchingProp = false,
+  loading: loadingProp = false,
   error,
   success,
   children,
 }: QueryContainerProps) {
+  const fetching = Array.isArray(fetchingProp) ? fetchingProp.some((f) => f) : fetchingProp;
+  const loading = Array.isArray(loadingProp) ? loadingProp.some((f) => f) : loadingProp;
+
   if (loading) {
     return <LoadingArea />;
   }
