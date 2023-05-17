@@ -53,6 +53,14 @@ export const Fetching: Story = {
   },
 };
 
+export const LoadingAndFetching: Story = {
+  args: {
+    ...Default.args,
+    fetching: true,
+    loading: true,
+  },
+};
+
 export const FetchingWithEndAdornment: Story = {
   args: {
     ...Default.args,

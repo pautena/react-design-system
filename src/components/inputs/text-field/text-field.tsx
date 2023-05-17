@@ -83,13 +83,13 @@ export const TextField = ({
         endAdornment={
           <InputAdornment position="end">
             {InputProps?.endAdornment}
-            {fetching ? <CircularProgress color="inherit" size={20} sx={{ ml: 1 }} /> : null}
+            {loading ? <CircularProgress color="inherit" size={20} sx={{ ml: 1 }} /> : null}
           </InputAdornment>
         }
         sx={sx}
         {...(rest as any)}
       />
-      {loading && (
+      {fetching && !loading && (
         <LinearProgress
           color="inherit"
           sx={{ position: "absolute", left: 0, right: 0, bottom: 0 }}
