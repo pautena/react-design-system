@@ -69,13 +69,13 @@ describe("ValueText", () => {
     it("should render an option to edit if editable is true", () => {
       renderComponent({ value: DummyValue, editable: true });
 
-      expect(screen.getByTestId("EditIcon")).toBeVisible();
+      expect(screen.getByRole("button", { name: /edit/i })).toBeVisible();
     });
 
     it("should render an input with the value if the edit button is clicked", async () => {
       renderComponent({ value: DummyValue, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(screen.getByRole("textbox")).toHaveValue(DummyValue);
     });
@@ -83,10 +83,10 @@ describe("ValueText", () => {
     it("should submit the new value if is edited", async () => {
       const { onEdit } = renderComponent({ value: DummyValue, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
       await userEvent.clear(screen.getByRole("textbox"));
       await userEvent.type(screen.getByRole("textbox"), "new value");
-      await userEvent.click(screen.getByTestId("CheckIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
       expect(onEdit).toHaveBeenCalledTimes(1);
       expect(onEdit).toHaveBeenCalledWith("new value");
@@ -95,10 +95,10 @@ describe("ValueText", () => {
     it("should not call onEdit if the edition is cancelled", async () => {
       const { onEdit } = renderComponent({ value: DummyValue, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
       await userEvent.clear(screen.getByRole("textbox"));
       await userEvent.type(screen.getByRole("textbox"), "new value");
-      await userEvent.click(screen.getByTestId("ClearIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
 
       expect(onEdit).not.toHaveBeenCalled();
     });
@@ -106,13 +106,24 @@ describe("ValueText", () => {
     it("should have the original value if is edited again after clear a change", async () => {
       renderComponent({ value: DummyValue, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
       await userEvent.clear(screen.getByRole("textbox"));
       await userEvent.type(screen.getByRole("textbox"), "new value");
-      await userEvent.click(screen.getByTestId("ClearIcon"));
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(screen.getByRole("textbox")).toHaveValue(DummyValue);
+    });
+
+    it("should call onEdit if the enter button is pressed", async () => {
+      const { onEdit } = renderComponent({ value: DummyValue, editable: true });
+
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      await userEvent.clear(screen.getByRole("textbox"));
+      await userEvent.type(screen.getByRole("textbox"), "new value{enter}");
+
+      expect(onEdit).toHaveBeenCalledTimes(1);
+      expect(onEdit).toHaveBeenCalledWith("new value");
     });
   });
 });

@@ -33,10 +33,16 @@ export const ValueRating = ({
           max={maxRating}
           size={dense ? "small" : "medium"}
           value={isEditing ? editValue : value}
-          onChange={(_, newValue) => newValue && setEditValue(newValue)}
+          onChange={(e, newValue) => {
+            if (Number.isNaN(newValue) && (e.currentTarget as any).value) {
+              setEditValue(parseInt((e.currentTarget as any).value, 10));
+            } else if (newValue) {
+              setEditValue(newValue);
+            }
+          }}
         />
         {editable && !isEditing && <ValueEditButton dense={dense} onClick={startEdit} />}
-        {isEditing && <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />}
+        {isEditing && <ValueEditButtons onClickCancel={cancelEdit} onClickSubmit={submitEdit} />}
       </Box>
     </ValueContent>
   );

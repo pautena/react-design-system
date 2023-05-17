@@ -41,7 +41,7 @@ export const ValueBoolean = ({
             checked={editValue}
             onChange={(e) => setEditValue(e.target.checked)}
           />
-          <ValueEditButtons onClickCancel={cancelEdit} onSubmitEdit={submitEdit} />
+          <ValueEditButtons onClickCancel={cancelEdit} onClickSubmit={submitEdit} />
         </Box>
       ) : (
         <Box

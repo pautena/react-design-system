@@ -59,13 +59,13 @@ describe("ValueRating", () => {
     it("should render an option to edit if editable is true", () => {
       renderComponent({ editable: true });
 
-      expect(screen.getByTestId("EditIcon")).toBeVisible();
+      expect(screen.getByRole("button", { name: /edit/i })).toBeVisible();
     });
 
     it("should render an input for each star + 1 for the zero value if the edit button is clicked", async () => {
       renderComponent({ editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(screen.getAllByRole("radio")).toHaveLength(6);
     });
@@ -73,9 +73,9 @@ describe("ValueRating", () => {
     it("should submit the new value if is edited", async () => {
       const { onEdit } = renderComponent({ value: 2, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
-      await userEvent.click(screen.getAllByRole("radio")[3]); // Click the fourth star
-      await userEvent.click(screen.getByTestId("CheckIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      await userEvent.click(screen.getByRole("radio", { name: /4 stars/i }));
+      await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
       expect(onEdit).toHaveBeenCalledTimes(1);
       expect(onEdit).toHaveBeenCalledWith(4);
@@ -84,9 +84,9 @@ describe("ValueRating", () => {
     it("should not call onEdit if the edition is cancelled", async () => {
       const { onEdit } = renderComponent({ editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
       await userEvent.click(screen.getAllByRole("radio")[3]);
-      await userEvent.click(screen.getByTestId("ClearIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
 
       expect(onEdit).not.toHaveBeenCalled();
     });
@@ -94,10 +94,10 @@ describe("ValueRating", () => {
     it("should have the original value if is edited again after clear a change", async () => {
       renderComponent({ editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
-      await userEvent.click(screen.getAllByRole("radio")[3]);
-      await userEvent.click(screen.getByTestId("ClearIcon"));
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      await userEvent.click(screen.getByLabelText(/3 stars/i));
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(screen.getAllByTestId("StarIcon")).toHaveLength(3);
     });

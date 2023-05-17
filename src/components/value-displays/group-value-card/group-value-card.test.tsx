@@ -17,7 +17,7 @@ describe("GroupValueCard", () => {
   it("would render a title", () => {
     renderComponent({ title: "Hello world" });
 
-    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toBeVisible();
   });
 
   describe("subtitle", () => {
@@ -30,34 +30,32 @@ describe("GroupValueCard", () => {
     it("would render a subtitle if it's provided", () => {
       renderComponent({ subtitle: "Hi. I am batman" });
 
-      expect(
-        screen.getByRole("heading", { level: 2, name: /hi. i am batman/i }),
-      ).toBeInTheDocument();
+      expect(screen.getByRole("heading", { level: 2, name: /hi. i am batman/i })).toBeVisible();
     });
   });
 
   it("would render all values", () => {
     renderComponent();
 
-    expect(screen.getByRole("label", { name: /hello world/i })).toBeInTheDocument();
-    expect(screen.getByText(/lorem ipsum sit amet/i)).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /hello world/i })).toBeVisible();
+    expect(screen.getByText(/lorem ipsum sit amet/i)).toBeVisible();
 
-    expect(screen.getByRole("label", { name: /enabled/i })).toBeInTheDocument();
-    expect(screen.getByTestId("CheckIcon")).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /enabled/i })).toBeVisible();
+    expect(screen.getByLabelText(/enabled/i)).toBeChecked();
 
-    expect(screen.getByRole("label", { name: /quantity/i })).toBeInTheDocument();
-    expect(screen.getByText(/1200/i)).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /quantity/i })).toBeVisible();
+    expect(screen.getByText(/1200/i)).toBeVisible();
 
-    expect(screen.getByRole("label", { name: /currency/i })).toBeInTheDocument();
-    expect(screen.getByText(/eur/i)).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /currency/i })).toBeVisible();
+    expect(screen.getByText(/eur/i)).toBeVisible();
 
-    expect(screen.getByRole("label", { name: /i am batman/i })).toBeInTheDocument();
-    expect(screen.getByText(/does it come in black/i)).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /i am batman/i })).toBeVisible();
+    expect(screen.getByText(/does it come in black/i)).toBeVisible();
 
-    expect(screen.getByRole("label", { name: /status/i })).toBeInTheDocument();
-    expect(screen.getByText(/open/i)).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /status/i })).toBeVisible();
+    expect(screen.getByText(/open/i)).toBeVisible();
 
-    expect(screen.getByRole("label", { name: /level/i })).toBeInTheDocument();
-    expect(screen.getByText(/2144/i)).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /level/i })).toBeVisible();
+    expect(screen.getByText(/2144/i)).toBeVisible();
   });
 });
