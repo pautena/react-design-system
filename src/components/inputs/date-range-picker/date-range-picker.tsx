@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
-import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
+import {
+  Button,
+  Collapse,
+  Grid,
+  IconButton,
+  InputAdornment,
+  Paper,
+  TextField,
+} from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
+import { DateCalendar } from "@mui/x-date-pickers";
 
 export interface DateRangePickerProps {
   label: string;
@@ -29,21 +38,35 @@ export const DateRangePicker = ({
   };
 
   return (
-    <TextField
-      label={label}
-      fullWidth={fullWidth}
-      size={size}
-      value={`${format(startDate, fmt)} - ${format(endDate, fmt)}`}
-      onChange={handleChange}
-      InputProps={{
-        endAdornment: (
-          <InputAdornment position="end">
-            <IconButton onClick={() => setIsPopoverOpened((o) => !o)}>
-              <EventIcon />
-            </IconButton>
-          </InputAdornment>
-        ),
-      }}
-    />
+    <>
+      <TextField
+        label={label}
+        fullWidth={fullWidth}
+        size={size}
+        value={`${format(startDate, fmt)} - ${format(endDate, fmt)}`}
+        onChange={handleChange}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <IconButton onClick={() => setIsPopoverOpened((o) => !o)}>
+                <EventIcon />
+              </IconButton>
+            </InputAdornment>
+          ),
+        }}
+      />
+      <Paper sx={{ position: "absolute", inset: "0px auto auto 0px" }}>
+        <Collapse in={isPopoverOpened}>
+          <Grid container>
+            <Grid item xs={6}>
+              <DateCalendar />
+            </Grid>
+            <Grid item xs={6}>
+              <DateCalendar />
+            </Grid>
+          </Grid>
+        </Collapse>
+      </Paper>
+    </>
   );
 };
