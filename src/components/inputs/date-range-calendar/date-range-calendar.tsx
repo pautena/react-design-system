@@ -1,18 +1,18 @@
-import { styled } from "@mui/material";
+import { Box, BoxProps, styled } from "@mui/material";
 import { DateCalendar, PickersDay, PickersDayProps } from "@mui/x-date-pickers";
-import { endOfWeek, isAfter, isSameDay, startOfWeek } from "date-fns";
+import { endOfWeek, format, isAfter, isSameDay, startOfWeek } from "date-fns";
 import { isBefore } from "date-fns/esm";
 import React from "react";
 
 type DateRange = [Date, Date];
 
-interface CustomPickerDayProps extends PickersDayProps<Date> {
+interface CustomPickerDayProps extends BoxProps {
   dayIsBetween: boolean;
   isFirstDay: boolean;
   isLastDay: boolean;
 }
 
-const CustomPickersDay = styled(PickersDay, {
+const CustomPickersDayBackground = styled(Box, {
   shouldForwardProp: (prop) =>
     prop !== "dayIsBetween" &&
     prop !== "isFirstDay" &&
@@ -23,12 +23,8 @@ const CustomPickersDay = styled(PickersDay, {
   return {
     ...((isFirstDay || isLastDay || dayIsBetween) && {
       borderRadius: 0,
-      backgroundColor: `${theme.palette.primary.light}80`,
+      backgroundColor: `${theme.palette.primary.light}40`,
       margin: 0,
-      "&:hover, &:focus": {
-        backgroundColor: theme.palette.primary.dark,
-        color: theme.palette.common.white,
-      },
     }),
     ...(isFirstDay && {
       borderTopLeftRadius: "50%",
@@ -57,14 +53,16 @@ const Day = (props: PickersDayProps<Date> & { dateRange?: DateRange | null }) =>
   const isEndOfWeek = isSameDay(day, endOfWeek(day));
 
   return (
-    <CustomPickersDay
-      {...other}
-      day={day}
-      sx={dayIsBetween ? { px: 2.5, mx: 0 } : {}}
+    <CustomPickersDayBackground
       dayIsBetween={dayIsBetween}
       isFirstDay={isFirstDay || (dayIsBetween && isStartOfWeek)}
       isLastDay={isLastDay || (dayIsBetween && isEndOfWeek)}
-    />
+      aria-label={format(day, "yyyy-MM-dd")}
+      aria-selected={dayIsBetween || isFirstDay || isLastDay}
+      role="gridcell"
+    >
+      <PickersDay {...other} day={day} selected={isFirstDay || isLastDay} />
+    </CustomPickersDayBackground>
   );
 };
 
