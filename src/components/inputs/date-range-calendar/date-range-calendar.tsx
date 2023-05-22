@@ -4,7 +4,7 @@ import { endOfWeek, format, isAfter, isSameDay, startOfWeek } from "date-fns";
 import { isBefore } from "date-fns/esm";
 import React, { useState } from "react";
 
-type DateRange = [Date, Date];
+type DateRange = [Date, Date | undefined];
 
 interface CustomPickerDayProps extends BoxProps {
   dayIsBetween: boolean;
@@ -46,9 +46,9 @@ const Day = (props: PickersDayProps<Date> & { dateRange?: DateRange | null }) =>
 
   const [start, end] = dateRange;
 
-  const dayIsBetween = isAfter(day, start) && isBefore(day, end);
+  const dayIsBetween = !!end && isAfter(day, start) && isBefore(day, end);
   const isFirstDay = isSameDay(day, start);
-  const isLastDay = isSameDay(day, end);
+  const isLastDay = !!end && isSameDay(day, end);
   const isStartOfWeek = isSameDay(day, startOfWeek(day));
   const isEndOfWeek = isSameDay(day, endOfWeek(day));
 
@@ -67,24 +67,40 @@ const Day = (props: PickersDayProps<Date> & { dateRange?: DateRange | null }) =>
 };
 
 export interface DateRangeCalendarProps {
-  value: DateRange;
+  defaultValue: DateRange;
   onValueChange: (value: DateRange, updatedIndex: number) => void;
 }
-export const DateRangeCalendar = ({ value: valueProp, onValueChange }: DateRangeCalendarProps) => {
-  const [value, setValue] = useState(valueProp);
+export const DateRangeCalendar = ({ defaultValue, onValueChange }: DateRangeCalendarProps) => {
+  const [value, setValue] = useState(defaultValue);
   const [index, setIndex] = useState(0);
+
+  const setValueRange = (newRange: DateRange, index: number, newIndex: number) => {
+    setValue(newRange);
+    onValueChange(newRange, index);
+    setIndex(newIndex);
+  };
+
   const handleChange = (newValue: Date | null) => {
     if (!newValue) {
       return;
     }
 
-    const newRange: DateRange = [
-      index === 0 ? newValue : value[0],
-      index === 1 ? newValue : value[1],
-    ];
-    setValue(newRange);
-    onValueChange(newRange, index);
-    setIndex(index === 0 ? 1 : 0);
+    // If is the end date and is minor than the start date
+    if (index === 1 && newValue < value[0]) {
+      return setValueRange([newValue, undefined], 0, 1);
+    }
+
+    // If is the start date and is bigger than the end date
+    if (index === 0 && value[1] && newValue > value[1]) {
+      return setValueRange([newValue, undefined], 0, 1);
+    }
+
+    // Default case
+    setValueRange(
+      [index === 0 ? newValue : value[0], index === 1 ? newValue : value[1]],
+      index,
+      index === 0 ? 1 : 0,
+    );
   };
   return (
     <DateCalendar

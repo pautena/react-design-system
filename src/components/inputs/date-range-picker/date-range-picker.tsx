@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { format } from "date-fns";
 import {
+  Box,
   Button,
   Collapse,
   Grid,
@@ -10,19 +11,20 @@ import {
   TextField,
 } from "@mui/material";
 import EventIcon from "@mui/icons-material/Event";
-import { DateCalendar } from "@mui/x-date-pickers";
+import { DateRangeCalendar } from "../date-range-calendar";
 
+type DateRange = [Date, Date | undefined];
 export interface DateRangePickerProps {
   label: string;
-  value: [Date, Date];
+  defaultValue: DateRange;
   format: string;
   fullWidth?: boolean;
   size?: "small" | "medium";
-  onValueChange: (value: [Date, Date]) => void;
+  onValueChange: (value: DateRange, index: number) => void;
 }
 
 export const DateRangePicker = ({
-  value: [startDateProp, endDateProp],
+  defaultValue,
   format: fmt,
   label,
   fullWidth,
@@ -30,11 +32,12 @@ export const DateRangePicker = ({
   size = "medium",
 }: DateRangePickerProps) => {
   const [isPopoverOpened, setIsPopoverOpened] = useState(false);
-  const [startDate, setStartDate] = useState(startDateProp);
-  const [endDate, setEndDate] = useState(endDateProp);
+  const [value, setValue] = useState(defaultValue);
 
-  const handleChange = (e: any) => {
-    console.log("TODO value change. e: ", e);
+  const handleValueChange = (newValue: DateRange, index: number) => {
+    setValue(newValue);
+    onValueChange(newValue, index);
+    setIsPopoverOpened(index < 1);
   };
 
   return (
@@ -43,28 +46,22 @@ export const DateRangePicker = ({
         label={label}
         fullWidth={fullWidth}
         size={size}
-        value={`${format(startDate, fmt)} - ${format(endDate, fmt)}`}
-        onChange={handleChange}
+        value={`${format(value[0], fmt)} - ${value[1] ? format(value[1], fmt) : fmt}`}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={() => setIsPopoverOpened((o) => !o)}>
+              <IconButton onClick={() => setIsPopoverOpened((o) => !o)} aria-label="open calendar">
                 <EventIcon />
               </IconButton>
             </InputAdornment>
           ),
         }}
       />
-      <Paper sx={{ position: "absolute", inset: "0px auto auto 0px" }}>
+      <Paper>
         <Collapse in={isPopoverOpened}>
-          <Grid container>
-            <Grid item xs={6}>
-              <DateCalendar />
-            </Grid>
-            <Grid item xs={6}>
-              <DateCalendar />
-            </Grid>
-          </Grid>
+          <Box aria-label="calendar range selector">
+            <DateRangeCalendar defaultValue={defaultValue} onValueChange={handleValueChange} />
+          </Box>
         </Collapse>
       </Paper>
     </>

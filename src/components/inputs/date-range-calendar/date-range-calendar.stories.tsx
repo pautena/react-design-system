@@ -14,6 +14,6 @@ type Story = StoryObj<typeof DateRangeCalendar>;
 
 export const Default: Story = {
   args: {
-    value: [new Date(2023, 4, 2), new Date(2023, 4, 24)],
+    defaultValue: [new Date(2023, 4, 2), new Date(2023, 4, 24)],
   },
 };

@@ -10,7 +10,7 @@ describe("DateRangeCalendar", () => {
     const onValueChange = vi.fn();
     const startDate = new Date(2023, 4, 2);
     const endDate = new Date(2023, 4, 24);
-    render(<DateRangeCalendar value={[startDate, endDate]} onValueChange={onValueChange} />);
+    render(<DateRangeCalendar defaultValue={[startDate, endDate]} onValueChange={onValueChange} />);
     return { startDate, endDate, onValueChange };
   };
 
@@ -106,6 +106,37 @@ describe("DateRangeCalendar", () => {
         [new Date(2023, 4, 18), new Date(2023, 4, 12)],
         0,
       );
+    });
+
+    it("should call onValueChange when a second date minor than the initial date is selected changing the first value", async () => {
+      const { onValueChange } = renderComponent();
+
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "12",
+        }),
+      );
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "6",
+        }),
+      );
+
+      expect(onValueChange).toHaveBeenCalledTimes(2);
+      expect(onValueChange).toHaveBeenLastCalledWith([new Date(2023, 4, 6), undefined], 0);
+    });
+
+    it("should call onValueChange when the first date is bigger than the end date with the end date as undefined", async () => {
+      const { onValueChange } = renderComponent();
+
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "28",
+        }),
+      );
+
+      expect(onValueChange).toHaveBeenCalledTimes(1);
+      expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 28), undefined], 0);
     });
   });
 });
