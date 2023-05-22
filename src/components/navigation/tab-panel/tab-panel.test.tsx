@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import { TabPanel } from "./tab-panel";
-import { TabProvider } from "../../../../providers";
+import { TabProvider } from "../../../providers";
 
 describe("TabPanel", () => {
   function renderInstance(initialValue: number) {

@@ -1,6 +1,6 @@
 import React from "react";
 import { TabCard } from "./tab-card";
-import { TabPanel } from "../tab-panel";
+import { TabPanel } from "../../tab-panel";
 import { Typography } from "@mui/material";
 import { TabProvider } from "../../../../providers";
 
