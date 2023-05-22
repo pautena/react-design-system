@@ -3,6 +3,7 @@ import { DateRangeCalendar } from "./date-range-calendar";
 import { vi } from "vitest";
 import React from "react";
 import { differenceInCalendarDays, format, addDays, subDays } from "date-fns";
+import userEvent from "@testing-library/user-event";
 
 describe("DateRangeCalendar", () => {
   const renderComponent = () => {
@@ -44,5 +45,67 @@ describe("DateRangeCalendar", () => {
         selected: false,
       }),
     ).toBeVisible();
+  });
+
+  describe("onValueChange", () => {
+    it("should call onValueChange when the first date is selected with the first value changed", async () => {
+      const { endDate, onValueChange } = renderComponent();
+
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "4",
+        }),
+      );
+
+      expect(onValueChange).toHaveBeenCalledTimes(1);
+      expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 4), endDate], 0);
+    });
+
+    it("should call onValueChange when the second date is selected with the second value changed", async () => {
+      const { onValueChange } = renderComponent();
+
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "4",
+        }),
+      );
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "12",
+        }),
+      );
+
+      expect(onValueChange).toHaveBeenCalledTimes(2);
+      expect(onValueChange).toHaveBeenLastCalledWith(
+        [new Date(2023, 4, 4), new Date(2023, 4, 12)],
+        1,
+      );
+    });
+
+    it("should call onValueChange when the third date is selected with the first value changed", async () => {
+      const { onValueChange } = renderComponent();
+
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "4",
+        }),
+      );
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "12",
+        }),
+      );
+      await userEvent.click(
+        screen.getByRole("gridcell", {
+          name: "18",
+        }),
+      );
+
+      expect(onValueChange).toHaveBeenCalledTimes(3);
+      expect(onValueChange).toHaveBeenLastCalledWith(
+        [new Date(2023, 4, 18), new Date(2023, 4, 12)],
+        0,
+      );
+    });
   });
 });

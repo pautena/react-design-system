@@ -2,7 +2,7 @@ import { Box, BoxProps, styled } from "@mui/material";
 import { DateCalendar, PickersDay, PickersDayProps } from "@mui/x-date-pickers";
 import { endOfWeek, format, isAfter, isSameDay, startOfWeek } from "date-fns";
 import { isBefore } from "date-fns/esm";
-import React from "react";
+import React, { useState } from "react";
 
 type DateRange = [Date, Date];
 
@@ -68,12 +68,23 @@ const Day = (props: PickersDayProps<Date> & { dateRange?: DateRange | null }) =>
 
 export interface DateRangeCalendarProps {
   value: DateRange;
-  onValueChange: (value: DateRange) => void;
+  onValueChange: (value: DateRange, updatedIndex: number) => void;
 }
-export const DateRangeCalendar = ({ value, onValueChange }: DateRangeCalendarProps) => {
+export const DateRangeCalendar = ({ value: valueProp, onValueChange }: DateRangeCalendarProps) => {
+  const [value, setValue] = useState(valueProp);
+  const [index, setIndex] = useState(0);
   const handleChange = (newValue: Date | null) => {
-    //newValue && onValueChange(newValue)
-    console.log("handleChange. newValue: ", newValue);
+    if (!newValue) {
+      return;
+    }
+
+    const newRange: DateRange = [
+      index === 0 ? newValue : value[0],
+      index === 1 ? newValue : value[1],
+    ];
+    setValue(newRange);
+    onValueChange(newRange, index);
+    setIndex(index === 0 ? 1 : 0);
   };
   return (
     <DateCalendar
