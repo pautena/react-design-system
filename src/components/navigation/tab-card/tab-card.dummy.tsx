@@ -1,8 +1,8 @@
 import React from "react";
 import { TabCard } from "./tab-card";
-import { TabPanel } from "../../tab-panel";
+import { TabPanel } from "../tab-panel";
 import { Typography } from "@mui/material";
-import { TabProvider } from "../../../../providers";
+import { TabProvider } from "../../../providers";
 
 export const DummyTabs = ["tab 1", "tab 2.1", "tab 2.2", "tab 3"];
 
