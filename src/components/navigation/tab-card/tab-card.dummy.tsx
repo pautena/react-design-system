@@ -1,30 +1,32 @@
 import React from "react";
-import { TabCard } from "./tab-card";
-import { TabPanel } from "../tab-panel";
+import { TabCard, TabData } from "./tab-card";
 import { Typography } from "@mui/material";
-import { TabProvider } from "../../../providers";
+import { TabCardPanel } from "./tab-card-panel";
 
-export const DummyTabs = ["tab 1", "tab 2.1", "tab 2.2", "tab 3"];
+export const DummyTabs = [
+  { text: "tab 1" },
+  { text: "tab 2.1", label: { text: "10", variant: "primary" } },
+  { text: "tab 2.2" },
+  { text: "tab 3", label: { text: "12", variant: "error" } },
+];
 
 export interface TabCardDummyProps {
-  tabs: string[];
+  tabs: TabData[];
   initialTab: number;
 }
 
 export function TabCardDummy({ tabs, initialTab }: TabCardDummyProps) {
   return (
-    <TabProvider initialValue={initialTab}>
-      <TabCard tabs={tabs}>
-        <TabPanel index={0}>
-          <Typography>Panel 1</Typography>
-        </TabPanel>
-        <TabPanel index={[1, 2]}>
-          <Typography>Panel 2</Typography>
-        </TabPanel>
-        <TabPanel index={3}>
-          <Typography>Panel 3</Typography>
-        </TabPanel>
-      </TabCard>
-    </TabProvider>
+    <TabCard tabs={tabs} initialTab={initialTab}>
+      <TabCardPanel index={0} sx={{ p: 2 }}>
+        <Typography>Panel 1</Typography>
+      </TabCardPanel>
+      <TabCardPanel index={[1, 2]} sx={{ p: 2 }}>
+        <Typography>Panel 2</Typography>
+      </TabCardPanel>
+      <TabCardPanel index={3} sx={{ p: 2 }}>
+        <Typography>Panel 3</Typography>
+      </TabCardPanel>
+    </TabCard>
   );
 }
