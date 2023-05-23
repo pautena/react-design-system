@@ -21,6 +21,7 @@ interface StyledTabsProps {
 const StyledTabs = styled((props: StyledTabsProps) => (
   <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
 ))(({ theme }) => ({
+  minHeight:theme.spacing(5),
   "& .MuiTabs-indicator": {
     display: "flex",
     justifyContent: "center",
@@ -40,7 +41,7 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   color: theme.palette.text.secondary,
   paddingTop: 0,
   paddingBottom: 0,
-  height: 36,
+  minHeight:theme.spacing(5),
   "&.Mui-selected": {
     color: theme.palette.text.secondary,
     fontWeight: theme.typography.fontWeightBold,
@@ -73,7 +74,13 @@ export const TabCard = ({
         <Box bgcolor={bgColor}>
           <StyledTabs value={selectedTab} onChange={handleChangeTab}>
             {tabs.map(({ text, label }) => (
-              <StyledTab disableRipple key={text} label={text} icon={label && <Label text={label.text} variant={label.variant}  sx={{display:'inline-block'}}/>}/>
+              <StyledTab
+                iconPosition="start"
+                disableRipple
+                key={text}
+                label={text}
+                icon={label && <Label text={label.text} variant={label.variant} sx={{ mr: 1 }} />}
+              />
             ))}
           </StyledTabs>
         </Box>
