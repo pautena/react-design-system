@@ -12,6 +12,8 @@ export type BootstrapDialogDialogProps = PropsWithChildren<{
   title: string;
   loading?: boolean;
   disabled?: boolean;
+  disableAccept?: boolean;
+  disableCancel?: boolean;
   cancelable?: boolean;
   acceptable?: boolean;
   callCloseWhenCancel?: boolean;
