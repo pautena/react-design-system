@@ -16,7 +16,7 @@ describe("Label", () => {
   it("renders as default without a variant", () => {
     renderComponent(undefined);
 
-    expect(screen.getByRole("label")).toHaveAttribute("aria-label", "lorem ipsum default label");
+    expect(screen.getByRole("label", { name: /default/i })).toBeVisible();
   });
 
   it.each([["primary"], ["secondary"], ["default"], ["info"], ["warning"], ["error"]])(

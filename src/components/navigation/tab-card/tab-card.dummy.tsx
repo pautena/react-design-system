@@ -14,11 +14,12 @@ export const DummyTabs = [
 export interface TabCardDummyProps {
   tabs: TabData[];
   initialTab: number;
+  onChangeTab: (tab: TabData, index: number) => void;
 }
 
-export function TabCardDummy({ tabs, initialTab }: TabCardDummyProps) {
+export function TabCardDummy({ tabs, initialTab, onChangeTab }: TabCardDummyProps) {
   return (
-    <TabCard tabs={tabs} initialTab={initialTab}>
+    <TabCard tabs={tabs} initialTab={initialTab} onChangeTab={onChangeTab}>
       <TabCardPanel index={0} sx={{ p: 2 }}>
         <Typography>Panel 1</Typography>
       </TabCardPanel>
