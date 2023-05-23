@@ -3,10 +3,10 @@ import { Meta, StoryObj } from "@storybook/react";
 import { DummyTabs, TabCardDummy, TabCardDummyProps } from "./tab-card.dummy";
 
 export default {
-  title: "Components/Navigation/Tab card",
+  title: "Components/Navigation/TabCard",
   component: TabCardDummy,
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   render: (props: TabCardDummyProps) => {
     return <TabCardDummy {...props} />;

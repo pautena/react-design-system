@@ -10,13 +10,13 @@ describe("Label", () => {
   it("renders the label text", () => {
     renderComponent();
 
-    expect(screen.getByText("LOREM IPSUM")).toBeInTheDocument();
+    expect(screen.getByText("lorem ipsum")).toBeInTheDocument();
   });
 
   it("renders as default without a variant", () => {
     renderComponent(undefined);
 
-    expect(screen.getByRole("label")).toHaveAttribute("aria-describedby", "default");
+    expect(screen.getByRole("label", { name: /default/i })).toBeVisible();
   });
 
   it.each([["primary"], ["secondary"], ["default"], ["info"], ["warning"], ["error"]])(
@@ -24,7 +24,7 @@ describe("Label", () => {
     (variant: string) => {
       renderComponent(variant as LabelVariant);
 
-      expect(screen.getByRole("label")).toHaveAttribute("aria-describedby", variant);
+      expect(screen.getByRole("label", { name: `lorem ipsum ${variant} label` })).toBeVisible();
     },
   );
 });
