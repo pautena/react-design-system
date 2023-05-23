@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { BootstrapDialog } from "../bootstrap-dialog";
 import { BootstrapDialogDialogProps } from "../dialog.types";
+import { TextField } from "@mui/material";
 
 type OmitBaseDialogProps =
   | "cancelable"
@@ -15,6 +16,7 @@ type OmitBaseDialogProps =
 export interface ConfirmDialogProps extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
   confirmText?: string;
   canceText?: string;
+  passphrase?: string;
   onCancel: () => void;
   onConfirm: () => void;
 }
@@ -26,15 +28,20 @@ export const ConfirmDialog = ({
   disabled,
   confirmText = "Confirm",
   cancelText = "Cancel",
+  passphrase,
   children,
   onConfirm,
   onCancel,
 }: ConfirmDialogProps) => {
+  const [inputPassphrase, setInputPassphrase] = useState("");
+  const validPassphrase = !passphrase || inputPassphrase === passphrase;
+
   return (
     <BootstrapDialog
       title={title}
       loading={loading}
       disabled={loading || disabled}
+      disableAccept={!validPassphrase}
       open={open}
       onClose={onCancel}
       acceptable
@@ -46,6 +53,15 @@ export const ConfirmDialog = ({
       onAccept={onConfirm}
     >
       {children}
+      {passphrase && (
+        <TextField
+          size="small"
+          fullWidth
+          value={inputPassphrase}
+          onChange={(e) => setInputPassphrase(e.target.value)}
+          placeholder={passphrase}
+        />
+      )}
     </BootstrapDialog>
   );
 };

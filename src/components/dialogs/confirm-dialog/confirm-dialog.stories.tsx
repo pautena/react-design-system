@@ -1,5 +1,5 @@
 import { DialogContentText } from "@mui/material";
-import { Meta, StoryFn, StoryObj } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import { loremIpsum } from "lorem-ipsum";
 import React from "react";
 import { StoryDialogManager } from "~/storybook";
@@ -42,5 +42,17 @@ export const CustomButtonText: Story = {
     ...Default.args,
     confirmText: "Create token",
     cancelText: "Don't create a token",
+  },
+};
+
+export const Passphrase: Story = {
+  args: {
+    title: "Lorem ipsum",
+    children: (
+      <DialogContentText sx={{ mb: 1 }}>
+        Write the passphrase to confirm your action
+      </DialogContentText>
+    ),
+    passphrase: "delete permanently",
   },
 };

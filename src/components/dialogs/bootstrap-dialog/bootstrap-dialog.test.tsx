@@ -9,6 +9,8 @@ import { vi } from "vitest";
 interface DialogRenderArgs {
   open: boolean;
   disabled?: boolean;
+  disableCancel?: boolean;
+  disableAccept?: boolean;
   cancelable?: boolean;
   acceptable?: boolean;
   callCloseWhenCancel?: boolean;
@@ -41,6 +43,8 @@ describe("BootstrapDialog", () => {
   const renderComponent = ({
     open,
     disabled,
+    disableCancel,
+    disableAccept,
     cancelable,
     acceptable,
     callCloseWhenCancel,
@@ -57,6 +61,8 @@ describe("BootstrapDialog", () => {
       <BootstrapDialog
         open={open}
         disabled={disabled}
+        disableAccept={disableAccept}
+        disableCancel={disableCancel}
         cancelable={cancelable}
         acceptable={acceptable}
         callCloseWhenCancel={callCloseWhenCancel}
@@ -133,6 +139,34 @@ describe("BootstrapDialog", () => {
 
       expect(screen.getByRole("button", { name: /action 1/i })).toBeDisabled();
       expect(screen.getByRole("button", { name: /action 2/i })).toBeDisabled();
+    });
+  });
+
+  describe("disableCancel", () => {
+    it("should have the Cancel button as disabled if is true", () => {
+      renderComponent({ open: true, disableCancel: true, cancelable: true });
+
+      expect(screen.getByRole("button", { name: /cancel/i })).toBeDisabled();
+    });
+
+    it("should not have the Cancel button as disabled if is false", () => {
+      renderComponent({ open: true, disableCancel: false, cancelable: true });
+
+      expect(screen.getByRole("button", { name: /cancel/i })).not.toBeDisabled();
+    });
+  });
+
+  describe("disableAccept", () => {
+    it("should have the Cancel button as disabled if is true", () => {
+      renderComponent({ open: true, disableAccept: true, acceptable: true });
+
+      expect(screen.getByRole("button", { name: /accept/i })).toBeDisabled();
+    });
+
+    it("should not have the Cancel button as disabled if is false", () => {
+      renderComponent({ open: true, disableAccept: false, acceptable: true });
+
+      expect(screen.getByRole("button", { name: /accept/i })).not.toBeDisabled();
     });
   });
 
