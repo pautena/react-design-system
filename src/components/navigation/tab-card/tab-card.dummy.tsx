@@ -2,12 +2,13 @@ import React from "react";
 import { TabCard, TabData } from "./tab-card";
 import { Typography } from "@mui/material";
 import { TabCardPanel } from "./tab-card-panel";
+import { Label } from "~/components/data-display";
 
 export const DummyTabs = [
   { text: "tab 1" },
-  { text: "tab 2.1", label: { text: "10", variant: "primary" } },
+  { text: "tab 2.1", icon: <Label text="10" variant="success" sx={{ mr: 1 }} /> },
   { text: "tab 2.2" },
-  { text: "tab 3", label: { text: "12", variant: "error" } },
+  { text: "tab 3", icon: <Label text="12" variant="error" sx={{ mr: 1 }} /> },
 ];
 
 export interface TabCardDummyProps {

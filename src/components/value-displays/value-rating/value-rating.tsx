@@ -1,9 +1,8 @@
-import { Box, IconButton, Rating } from "@mui/material";
+import { Box, Rating } from "@mui/material";
 import React from "react";
 import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "../value-base";
 import { BaseValueProps, EditableValueProps } from "../value-base/value-displays.types";
 import { getValueContentLabelId, ValueContent } from "../value-content";
-import EditIcon from "@mui/icons-material/Edit";
 
 export type ValueRatingProps = BaseValueProps<number> & {
   maxRating?: number;

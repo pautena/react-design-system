@@ -1,15 +1,11 @@
 import { Paper, Tabs, Tab, styled, Box } from "@mui/material";
-import React, { PropsWithChildren, SyntheticEvent, useState } from "react";
+import React, { PropsWithChildren, ReactElement, SyntheticEvent, useState } from "react";
 import { TabCardContextProvider } from "./tab-card.context";
 import { useGetDefaultThemeColor } from "~/utils";
-import { Label, LabelVariant } from "~/components/data-display/label";
 
 export interface TabData {
   text: string;
-  label?: {
-    text: string;
-    variant: LabelVariant;
-  };
+  icon?: ReactElement;
 }
 
 interface StyledTabsProps {
@@ -21,7 +17,7 @@ interface StyledTabsProps {
 const StyledTabs = styled((props: StyledTabsProps) => (
   <Tabs {...props} TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }} />
 ))(({ theme }) => ({
-  minHeight:theme.spacing(5),
+  minHeight: theme.spacing(5),
   "& .MuiTabs-indicator": {
     display: "flex",
     justifyContent: "center",
@@ -41,7 +37,7 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   color: theme.palette.text.secondary,
   paddingTop: 0,
   paddingBottom: 0,
-  minHeight:theme.spacing(5),
+  minHeight: theme.spacing(5),
   "&.Mui-selected": {
     color: theme.palette.text.secondary,
     fontWeight: theme.typography.fontWeightBold,
@@ -70,17 +66,11 @@ export const TabCard = ({
 
   return (
     <TabCardContextProvider value={[selectedTab, setSelectedTab]}>
-      <Paper>
+      <Paper variant="outlined">
         <Box bgcolor={bgColor}>
           <StyledTabs value={selectedTab} onChange={handleChangeTab}>
-            {tabs.map(({ text, label }) => (
-              <StyledTab
-                iconPosition="start"
-                disableRipple
-                key={text}
-                label={text}
-                icon={label && <Label text={label.text} variant={label.variant} sx={{ mr: 1 }} />}
-              />
+            {tabs.map(({ text, icon }) => (
+              <StyledTab iconPosition="start" disableRipple key={text} label={text} icon={icon} />
             ))}
           </StyledTabs>
         </Box>

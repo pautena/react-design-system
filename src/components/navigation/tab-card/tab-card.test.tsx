@@ -4,20 +4,27 @@ import { screen, render } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 
 describe("TabCard", () => {
-  function renderInstance(initialValue = 0) {
-    return render(<TabCardDummy tabs={DummyTabs} initialTab={initialValue} />);
+  function renderComponent({ initialTab = 0 } = {}) {
+    return render(<TabCardDummy tabs={DummyTabs} initialTab={initialTab} />);
   }
 
   it('initialTab is not set the "panel 1" is displayed', () => {
-    renderInstance();
+    renderComponent();
 
     expect(screen.getByText(/panel 1/i)).toBeInTheDocument();
   });
 
   it('initialTab is set to 3 the "panel 3" is displayed', () => {
-    renderInstance(3);
+    renderComponent({ initialTab: 3 });
 
     expect(screen.getByText(/panel 3/i)).toBeInTheDocument();
+  });
+
+  it("should render the tab labels", () => {
+    renderComponent();
+
+    expect(screen.getByText(/10/i)).toBeVisible();
+    expect(screen.getByText(/12/i)).toBeVisible();
   });
 
   it.each([
@@ -28,7 +35,7 @@ describe("TabCard", () => {
   ])(
     'click the tab "%s" the "%s" panel is displayed',
     async (tabName: RegExp, expectedText: RegExp) => {
-      renderInstance();
+      renderComponent();
 
       const tab = screen.getByRole("tab", { name: tabName });
       await userEvent.click(tab);
@@ -39,7 +46,7 @@ describe("TabCard", () => {
   );
 
   it('click the tab "tab 2" and click again the tab "tab 1" the "panel 1" is displayed', async () => {
-    renderInstance();
+    renderComponent();
 
     const tab1 = screen.getByRole("tab", { name: /tab 1/i });
     const tab2 = screen.getByRole("tab", { name: /tab 2.1/i });
@@ -47,7 +54,7 @@ describe("TabCard", () => {
     await userEvent.click(tab1);
 
     expect(screen.getByText(/panel 1/i)).toBeInTheDocument();
-    expect(tab1).toHaveAttribute("aria-selected", "true");
-    expect(tab2).toHaveAttribute("aria-selected", "false");
+    expect(screen.getByRole("tab", { name: /tab 1/i, selected: true })).toBeVisible();
+    expect(screen.getByRole("tab", { name: /tab 2.1/i, selected: false })).toBeVisible();
   });
 });

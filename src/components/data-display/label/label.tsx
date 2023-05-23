@@ -1,7 +1,14 @@
-import { Box, SxProps, Theme, Typography, useTheme } from "@mui/material";
+import { Box, SxProps, Theme, useTheme } from "@mui/material";
 import React from "react";
 
-export type LabelVariant = "primary" | "secondary" | "default" | "info" | "warning" | "error";
+export type LabelVariant =
+  | "primary"
+  | "secondary"
+  | "default"
+  | "info"
+  | "warning"
+  | "error"
+  | "success";
 
 export const labelClasses = {
   root: "RdsLabel-root",
@@ -21,21 +28,32 @@ export interface LabelProps {
    * Custom styles
    */
   sx?: SxProps<Theme>;
+
+  /**
+   * Show the text as uppercase
+   */
+  textTransform?: "none" | "capitalize" | "uppercase";
 }
 
 /**
  * Compact element to represent a text
  */
-export const Label = ({ text, variant = "default", sx }: LabelProps) => {
-  const { palette } = useTheme();
+export const Label = ({
+  text,
+  variant = "default",
+  textTransform = "capitalize",
+  sx,
+}: LabelProps) => {
+  const { palette, typography } = useTheme();
 
   const backgroundColor: Record<LabelVariant, string> = {
     default: palette.mode === "light" ? palette.grey[100] : palette.grey[900],
-    primary: palette.primary.main,
-    secondary: palette.secondary.main,
-    info: palette.info.main,
-    warning: palette.warning.main,
-    error: palette.error.main,
+    primary: palette.primary.light,
+    secondary: palette.secondary.light,
+    info: palette.info.light,
+    warning: palette.warning.light,
+    error: palette.error.light,
+    success: palette.success.light,
   };
 
   const textColor: Record<LabelVariant, string> = {
@@ -45,21 +63,31 @@ export const Label = ({ text, variant = "default", sx }: LabelProps) => {
     info: palette.info.contrastText,
     warning: palette.warning.contrastText,
     error: palette.error.contrastText,
+    success: palette.success.contrastText,
   };
 
   return (
     <Box
-      px={1}
-      sx={{ backgroundColor: backgroundColor[variant], ...sx }}
-      borderRadius={1}
+      height={24}
+      minWidth={22}
+      display="inline-flex"
+      justifyContent="center"
+      alignItems="center"
+      bgcolor={backgroundColor[variant]}
       color={textColor[variant]}
-      className={labelClasses.root}
+      fontSize={typography.caption.fontSize}
+      fontWeight={typography.fontWeightBold}
+      lineHeight={0}
+      textTransform={textTransform}
+      whiteSpace="nowrap"
+      borderRadius={2}
       role="label"
-      aria-describedby={variant}
+      aria-label={`${text} ${variant} label`}
+      py={0}
+      px={1}
+      sx={{ cursor: "default", ...sx }}
     >
-      <Typography variant="caption" fontWeight={700}>
-        {text.toUpperCase()}
-      </Typography>
+      {text}
     </Box>
   );
 };
