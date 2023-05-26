@@ -2934,27 +2934,6 @@
     telejson "^7.0.3"
     ts-dedent "^2.0.0"
 
-"@storybook/manager-api@7.0.17":
-  version "7.0.17"
-  resolved "https://registry.yarnpkg.com/@storybook/manager-api/-/manager-api-7.0.17.tgz#201b18a875b311511bd928641be7dfbca2246797"
-  integrity sha512-CdMdrrz+4xH4STCGmxkwSOpP7EcZn9H2XGAgiPWewSdZVTJGiwbeRkfmONYsMsyxuAiNmAe7kc1q53qyCdvGtA==
-  dependencies:
-    "@storybook/channels" "7.0.17"
-    "@storybook/client-logger" "7.0.17"
-    "@storybook/core-events" "7.0.17"
-    "@storybook/csf" "^0.1.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/router" "7.0.17"
-    "@storybook/theming" "7.0.17"
-    "@storybook/types" "7.0.17"
-    dequal "^2.0.2"
-    lodash "^4.17.21"
-    memoizerific "^1.11.3"
-    semver "^7.3.7"
-    store2 "^2.14.2"
-    telejson "^7.0.3"
-    ts-dedent "^2.0.0"
-
 "@storybook/manager-api@7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@storybook/manager-api/-/manager-api-7.0.2.tgz#2b1c509be94b644cfec9dd817f62394f2788a287"
@@ -10945,9 +10924,9 @@ vite-node@0.29.8:
     vite "^3.0.0 || ^4.0.0"
 
 vite-tsconfig-paths@^4.0.8:
-  version "4.0.8"
-  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-4.0.8.tgz#af5d3d074ae01c434713f7d81321ff3697af1b51"
-  integrity sha512-p04zH+Ey+NT78571x0pdX7nVRIJSlmKVvYryFglSWOK3Hc72eDL0+JJfbyQiugaIBApJkaEqbBQvqpsFZOSVGg==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/vite-tsconfig-paths/-/vite-tsconfig-paths-4.2.0.tgz#bd2647d3eadafb65a10fc98a2ca565211f2eaf63"
+  integrity sha512-jGpus0eUy5qbbMVGiTxCL1iB9ZGN6Bd37VGLJU39kTDD6ZfULTTb1bcc5IeTWqWJKiWV5YihCaibeASPiGi8kw==
   dependencies:
     debug "^4.1.1"
     globrex "^0.1.2"
