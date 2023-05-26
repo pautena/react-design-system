@@ -21,13 +21,12 @@ export const Default: Story = {
   },
 };
 
-
 export const Small: Story = {
   args: {
     label: "Select your date range",
     defaultValue: [new Date(2023, 4, 9), new Date(2023, 4, 18)],
     format: "yyyy/MM/dd",
     fullWidth: true,
-    size:'small'
+    size: "small",
   },
 };

@@ -46,7 +46,7 @@ export const DateRangePicker = ({
         label={label}
         fullWidth={fullWidth}
         size={size}
-        value={`${format(value[0], fmt)} - ${value[1] ? format(value[1], fmt) : fmt}`}
+        value={`${format(value[0], fmt)} - ${value[1] ? format(value[1], fmt) : fmt.toUpperCase()}`}
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
@@ -58,10 +58,8 @@ export const DateRangePicker = ({
         }}
       />
       <Paper>
-        <Collapse in={isPopoverOpened}>
-          <Box aria-label="calendar range selector">
-            <DateRangeCalendar defaultValue={defaultValue} onValueChange={handleValueChange} />
-          </Box>
+        <Collapse in={isPopoverOpened} aria-label="calendar collapse">
+          <DateRangeCalendar defaultValue={defaultValue} onValueChange={handleValueChange} />
         </Collapse>
       </Paper>
     </>

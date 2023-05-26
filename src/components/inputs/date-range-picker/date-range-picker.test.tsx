@@ -1,4 +1,4 @@
-import { render, screen, waitForElementToBeRemoved } from "~/tests/testing-library";
+import { render, screen, waitFor, waitForElementToBeRemoved } from "~/tests/testing-library";
 import { DateRangePicker } from "./date-range-picker";
 import { vi } from "vitest";
 import React from "react";
@@ -37,7 +37,7 @@ describe("DateRangePicker", () => {
 
     await userEvent.click(screen.getByRole("button", { name: /open calendar/i }));
 
-    expect(screen.getByLabelText(/calendar range selector/i)).toBeVisible();
+    expect(await screen.findByLabelText(/calendar range picker/i)).toBeVisible();
   });
 
   describe("date selection", () => {
@@ -93,41 +93,76 @@ describe("DateRangePicker", () => {
           }),
         );
 
-        await waitForElementToBeRemoved(() => screen.queryByLabelText(/calendar range selector/i));
+        await waitFor(() => expect(screen.getByLabelText(/calendar collapse/i)).not.toBeVisible());
       });
     });
 
-    it("should call onValueChange when a second date minor than the initial date is selected changing the first value", async () => {
-      const { onValueChange } = renderComponent();
-      await userEvent.click(screen.getByRole("button", { name: /open calendar/i }));
+    describe(" when a second date minor than the initial date", () => {
+      it("should call onValueChange changing the first value with end date as undefined", async () => {
+        const { onValueChange } = renderComponent();
+        await userEvent.click(screen.getByRole("button", { name: /open calendar/i }));
 
-      await userEvent.click(
-        screen.getByRole("gridcell", {
-          name: "12",
-        }),
-      );
-      await userEvent.click(
-        screen.getByRole("gridcell", {
-          name: "6",
-        }),
-      );
+        await userEvent.click(
+          screen.getByRole("gridcell", {
+            name: "12",
+          }),
+        );
+        await userEvent.click(
+          screen.getByRole("gridcell", {
+            name: "6",
+          }),
+        );
 
-      expect(onValueChange).toHaveBeenCalledTimes(2);
-      expect(onValueChange).toHaveBeenLastCalledWith([new Date(2023, 4, 6), undefined], 0);
+        expect(onValueChange).toHaveBeenCalledTimes(2);
+        expect(onValueChange).toHaveBeenLastCalledWith([new Date(2023, 4, 6), undefined], 0);
+      });
+
+      it("should show the date format as end date", async () => {
+        renderComponent();
+        await userEvent.click(screen.getByRole("button", { name: /open calendar/i }));
+
+        await userEvent.click(
+          screen.getByRole("gridcell", {
+            name: "12",
+          }),
+        );
+        await userEvent.click(
+          screen.getByRole("gridcell", {
+            name: "6",
+          }),
+        );
+
+        expect(screen.getByRole("textbox")).toHaveValue("2023-05-06 - YYYY-MM-DD");
+      });
     });
 
-    it("should call onValueChange when the first date is bigger than the end date with the end date as undefined", async () => {
-      const { onValueChange } = renderComponent();
-      await userEvent.click(screen.getByRole("button", { name: /open calendar/i }));
+    describe("when the first date is bigger than the end date", () => {
+      it("should call onValueChange changing the firest value with the end date as undefined", async () => {
+        const { onValueChange } = renderComponent();
+        await userEvent.click(screen.getByRole("button", { name: /open calendar/i }));
 
-      await userEvent.click(
-        screen.getByRole("gridcell", {
-          name: "28",
-        }),
-      );
+        await userEvent.click(
+          screen.getByRole("gridcell", {
+            name: "28",
+          }),
+        );
 
-      expect(onValueChange).toHaveBeenCalledTimes(1);
-      expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 28), undefined], 0);
+        expect(onValueChange).toHaveBeenCalledTimes(1);
+        expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 28), undefined], 0);
+      });
+
+      it("should show the date format as end date", async () => {
+        renderComponent();
+        await userEvent.click(screen.getByRole("button", { name: /open calendar/i }));
+
+        await userEvent.click(
+          screen.getByRole("gridcell", {
+            name: "28",
+          }),
+        );
+
+        expect(screen.getByRole("textbox")).toHaveValue("2023-05-28 - YYYY-MM-DD");
+      });
     });
   });
 });

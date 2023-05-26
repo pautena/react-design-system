@@ -112,6 +112,7 @@ export const DateRangeCalendar = ({ defaultValue, onValueChange }: DateRangeCale
           dateRange: value,
         } as any,
       }}
+      aria-label="calendar range picker"
     />
   );
 };
