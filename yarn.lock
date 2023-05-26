@@ -3062,9 +3062,9 @@
     ts-dedent "^2.2.0"
 
 "@storybook/testing-react@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@storybook/testing-react/-/testing-react-2.0.0.tgz#f5d855726e25af5ac6da7c74e9a3b0f150752716"
-  integrity sha512-xpjULCHN368+3+vC56tZ232EwgmG8F+1hOa17zqLFlADWNbFr/19ko0raMIdXiik9Fn6JAErJNKH7OhO0ni8qA==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@storybook/testing-react/-/testing-react-2.0.1.tgz#89417ab9f4261d0d0db8578a611b222adc652e36"
+  integrity sha512-D0fT7f0TUU8+usR+0NSyCYQCYDWernQqGZou32ISsoBkY9IiH1JMY4hQE8zUaGozu9eMlaa2wieWIMsjWovpdw==
   dependencies:
     "@storybook/csf" "^0.1.0"
 
