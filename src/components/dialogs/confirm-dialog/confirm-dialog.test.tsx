@@ -12,6 +12,7 @@ interface DialogRenderArgs {
   cancelText?: string;
   loading?: boolean;
   content?: string | string[];
+  passphrase?: string;
 }
 
 describe("ConfirmDialog", () => {
@@ -21,6 +22,7 @@ describe("ConfirmDialog", () => {
     confirmText,
     cancelText,
     loading,
+    passphrase,
   }: DialogRenderArgs) => {
     const onCancel = vi.fn();
     const onConfirm = vi.fn();
@@ -30,6 +32,7 @@ describe("ConfirmDialog", () => {
         open={open}
         disabled={disabled}
         loading={loading}
+        passphrase={passphrase}
         title="lorem ipsum"
         onCancel={onCancel}
         onConfirm={onConfirm}
@@ -146,6 +149,38 @@ describe("ConfirmDialog", () => {
       renderComponent({ open: true, loading: true });
 
       expect(screen.getByRole("button", { name: /confirm/i })).toBeDisabled();
+    });
+  });
+
+  describe("passphrase", () => {
+    it("should render an input to enter a passphrase", () => {
+      renderComponent({ open: true, passphrase: "delete permanently" });
+
+      const input = screen.getByRole("textbox");
+      expect(input).toBeVisible();
+      expect(input).toHaveAttribute("placeholder", "delete permanently");
+    });
+
+    it("should have the confirm button disabled by default", () => {
+      renderComponent({ open: true, passphrase: "delete permanently" });
+
+      expect(screen.getByRole("button", { name: /confirm/i })).toBeDisabled();
+    });
+
+    it("should have the confirm button disabled if the user writes a non valid passphrase", async () => {
+      renderComponent({ open: true, passphrase: "delete permanently" });
+
+      await userEvent.type(screen.getByRole("textbox"), "invalid passphrase");
+
+      expect(screen.getByRole("button", { name: /confirm/i })).toBeDisabled();
+    });
+
+    it("should have the confirm button enabled if the user writes a valid passphrase", async () => {
+      renderComponent({ open: true, passphrase: "delete permanently" });
+
+      await userEvent.type(screen.getByRole("textbox"), "delete permanently");
+
+      expect(screen.getByRole("button", { name: /confirm/i })).not.toBeDisabled();
     });
   });
 });

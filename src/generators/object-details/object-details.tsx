@@ -18,8 +18,6 @@ import {
 } from "../generators.model";
 import { newBreakpointsCounter } from "~/utils/breakpoints";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { ValueContent } from "~/components/value-displays/value-content";
-import { ArrayFieldType } from "../generators.model";
 
 interface SingleDetailValueFactoryOptions {
   dense?: boolean;

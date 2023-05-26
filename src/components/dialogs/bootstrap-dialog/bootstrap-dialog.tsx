@@ -19,6 +19,8 @@ export const BootstrapDialog = ({
   component,
   componentProps = {},
   disabled,
+  disableAccept,
+  disableCancel,
   actions = [],
   children,
   loading,
@@ -67,7 +69,7 @@ export const BootstrapDialog = ({
             {cancelable && (
               <Button
                 color="error"
-                disabled={disabled}
+                disabled={disabled || disableCancel}
                 onClick={() => {
                   onCancel();
                   callCloseWhenCancel && onClose();
@@ -81,7 +83,7 @@ export const BootstrapDialog = ({
               <LoadingButton
                 type={acceptType}
                 loading={loading}
-                disabled={disabled}
+                disabled={disabled || disableAccept}
                 onClick={onAccept}
               >
                 {acceptText}

@@ -77,13 +77,13 @@ describe("ValueDatetime", () => {
     it("should render an option to edit if editable is true", () => {
       renderComponent({ value: DummyValue, editable: true });
 
-      expect(screen.getByTestId("EditIcon")).toBeVisible();
+      expect(screen.getByRole("button", { name: /edit/i })).toBeVisible();
     });
 
     it("should render an input with the value if the edit button is clicked", async () => {
       renderComponent({ value: DummyValue, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       assertDatetimeInputValue(screen.getByRole("textbox"), {
         value: DummyValue,
@@ -105,9 +105,9 @@ describe("ValueDatetime", () => {
           fmt,
         });
 
-        await userEvent.click(screen.getByTestId("EditIcon"));
+        await userEvent.click(screen.getByRole("button", { name: /edit/i }));
         pickDatetime(screen.getByRole("textbox"), newValue, fmt);
-        await userEvent.click(screen.getByTestId("CheckIcon"));
+        await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
         expect(onEdit).toHaveBeenCalledTimes(1);
         expect(onEdit).toHaveBeenCalledWith(expectedDate);
@@ -117,9 +117,9 @@ describe("ValueDatetime", () => {
     it("should not call onEdit if the edition is cancelled", async () => {
       const { onEdit } = renderComponent({ value: DummyValue, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
       pickDatetime(screen.getByRole("textbox"), NewValue, datetimeFormat);
-      await userEvent.click(screen.getByTestId("ClearIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
 
       expect(onEdit).not.toHaveBeenCalled();
     });
@@ -127,10 +127,10 @@ describe("ValueDatetime", () => {
     it("should have the original value if is edited again after clear a change", async () => {
       renderComponent({ value: DummyValue, editable: true });
 
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
       pickDatetime(screen.getByRole("textbox"), NewValue, datetimeFormat);
-      await userEvent.click(screen.getByTestId("ClearIcon"));
-      await userEvent.click(screen.getByTestId("EditIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       assertDatetimeInputValue(screen.getByRole("textbox"), {
         value: DummyValue,

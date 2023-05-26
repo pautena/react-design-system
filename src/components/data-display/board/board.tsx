@@ -1,4 +1,13 @@
-import { Box, IconButton, Paper, SxProps, Theme, Tooltip, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Paper,
+  SxProps,
+  Theme,
+  Tooltip,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { blueGrey } from "@mui/material/colors";
 import React, { PropsWithChildren, ReactNode } from "react";
 import { Markdown } from "../markdown";
@@ -18,6 +27,7 @@ export const Board = ({
   children,
   sx,
 }: BoardProps) => {
+  const { spacing: themeSpacing, typography } = useTheme();
   let copyContent: string;
   let content: ReactNode;
 
@@ -38,10 +48,20 @@ export const Board = ({
   const markdown = markdownProps && <Markdown content={markdownProps} />;
 
   return (
-    <Paper sx={{ p: 2, backgroundColor: blueGrey[800], color: "white", ...sx }}>
+    <Paper
+      sx={{
+        position: "relative",
+        pl: 2,
+        pr: 4,
+        py: 1,
+        backgroundColor: blueGrey[800],
+        color: "white",
+        ...sx,
+      }}
+    >
       <Box display="flex" flexDirection="row">
         <Box width={1}>{children || markdown || content}</Box>
-        <Box sx={{ ml: 1 }}>
+        <Box sx={{ position: "absolute", top: themeSpacing(0.5), right: themeSpacing(0.5) }}>
           {copyContent && (
             <IconButton
               aria-label="copy board content"
@@ -49,7 +69,7 @@ export const Board = ({
               onClick={() => navigator.clipboard.writeText(copyContent)}
             >
               <Tooltip title="Copy">
-                <ContentCopyIcon />
+                <ContentCopyIcon sx={{ fontSize: typography.pxToRem(18) }} />
               </Tooltip>
             </IconButton>
           )}

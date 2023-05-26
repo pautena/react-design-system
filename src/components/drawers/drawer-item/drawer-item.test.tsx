@@ -228,9 +228,8 @@ describe("DrawerItem", () => {
       it("should render a label when is set", () => {
         renderComponent({ item: mockLinkLabelDrawerNavigationItem });
 
-        const label = screen.getByRole("label", { name: /10/i });
+        const label = screen.getByRole("label", { name: "10 error label" });
         expect(label).toBeVisible();
-        expect(label).toHaveAttribute("aria-describedby", "error");
       });
 
       it("shouldn't render a label if is not set", () => {

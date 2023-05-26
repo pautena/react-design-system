@@ -75,7 +75,7 @@ export const ValueDatetime = ({
                       {params.InputProps?.endAdornment}
                       <ValueEditButtons
                         onClickCancel={cancelEdit}
-                        onSubmitEdit={submitEdit}
+                        onClickSubmit={submitEdit}
                         sx={{ ml: 2 }}
                       />
                     </>
