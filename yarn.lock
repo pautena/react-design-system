@@ -2158,12 +2158,12 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.6.2.tgz#bbe75f8c59e0b7077584920ce2cc76f8f354934d"
   integrity sha512-LzqpSrMK/3JBAVBI9u3NWtOhWNw5AMQfrUFYB0+bDHTSw17z++WJLsPsxAuK+oSddsxk4d7F/JcdDPM1M5YAhA==
 
-"@rollup/plugin-alias@^3.1.9":
-  version "3.1.9"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-3.1.9.tgz#a5d267548fe48441f34be8323fb64d1d4a1b3fdf"
-  integrity sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==
+"@rollup/plugin-alias@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-alias/-/plugin-alias-5.0.0.tgz#70f3d504bd17d8922e35c6b61c08b40a6ec25af2"
+  integrity sha512-l9hY5chSCjuFRPsnRm16twWBiSApl2uYFLsepQYwtBuAxNMQ/1dJqADld40P0Jkqm65GRTLy/AC6hnpVebtLsA==
   dependencies:
-    slash "^3.0.0"
+    slash "^4.0.0"
 
 "@rollup/plugin-commonjs@^22.0.2":
   version "22.0.2"
@@ -2912,27 +2912,6 @@
     "@storybook/core-events" "7.0.17"
     "@storybook/global" "^5.0.0"
     "@storybook/preview-api" "7.0.17"
-
-"@storybook/manager-api@7.0.17":
-  version "7.0.17"
-  resolved "https://registry.yarnpkg.com/@storybook/manager-api/-/manager-api-7.0.17.tgz#201b18a875b311511bd928641be7dfbca2246797"
-  integrity sha512-CdMdrrz+4xH4STCGmxkwSOpP7EcZn9H2XGAgiPWewSdZVTJGiwbeRkfmONYsMsyxuAiNmAe7kc1q53qyCdvGtA==
-  dependencies:
-    "@storybook/channels" "7.0.17"
-    "@storybook/client-logger" "7.0.17"
-    "@storybook/core-events" "7.0.17"
-    "@storybook/csf" "^0.1.0"
-    "@storybook/global" "^5.0.0"
-    "@storybook/router" "7.0.17"
-    "@storybook/theming" "7.0.17"
-    "@storybook/types" "7.0.17"
-    dequal "^2.0.2"
-    lodash "^4.17.21"
-    memoizerific "^1.11.3"
-    semver "^7.3.7"
-    store2 "^2.14.2"
-    telejson "^7.0.3"
-    ts-dedent "^2.0.0"
 
 "@storybook/manager-api@7.0.17":
   version "7.0.17"
@@ -10017,6 +9996,11 @@ slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
   integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+
+slash@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
+  integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
 slice-ansi@^5.0.0:
   version "5.0.0"
