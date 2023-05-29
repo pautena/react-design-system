@@ -14,6 +14,15 @@ describe("DateRangeCalendar", () => {
     return { startDate, endDate, onValueChange };
   };
 
+  beforeEach(()=>{
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2023, 6, 26))
+  })
+
+  afterEach(()=>{
+    vi.useRealTimers();
+  })
+
   it("should mark the dates between the start and the end as selected", () => {
     const { startDate, endDate } = renderComponent();
 

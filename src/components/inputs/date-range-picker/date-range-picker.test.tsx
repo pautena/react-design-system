@@ -20,6 +20,15 @@ describe("DateRangePicker", () => {
     return { startDate, endDate, onValueChange };
   };
 
+  beforeEach(()=>{
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date(2023, 6, 26))
+  })
+
+  afterEach(()=>{
+    vi.useRealTimers();
+  })
+
   it("should render an input with a label", () => {
     renderComponent();
 
