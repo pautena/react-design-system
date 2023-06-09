@@ -4,7 +4,7 @@ import {
   GroupValueCard,
   ValueItem,
   ValueBoolean,
-  ValueText,
+  ValueLabel,
   ValueDatetime,
 } from "../../components";
 import {
@@ -37,9 +37,9 @@ const singleDetailValueFactory = <T extends BasicModelInstance>(
   }
 
   if (typeof value === "object" && !Array.isArray(value)) {
-    return <ValueText dense={dense} label={name} value={JSON.stringify(value)} />;
+    return <ValueLabel dense={dense} label={name} value={JSON.stringify(value)} />;
   }
-  return <ValueText dense={dense} label={name} value={value?.toString()} />;
+  return <ValueLabel dense={dense} label={name} value={value?.toString()} />;
 };
 
 interface ObjectArrayGroupProps {
