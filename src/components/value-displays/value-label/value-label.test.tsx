@@ -33,7 +33,7 @@ describe("ValueLabel", () => {
   it("would render the label", () => {
     renderComponent({ value: DummyValueText });
 
-    expect(screen.getByRole("label", { name: /hello world/i })).toBeInTheDocument();
+    expect(screen.getByRole("label", { name: /hello world/i })).toBeVisible();
   });
 
   it("would render the value if it is text", () => {
