@@ -2229,7 +2229,7 @@
   resolved "https://registry.yarnpkg.com/@sinclair/typebox/-/typebox-0.25.23.tgz#1c15b0d2b872d89cc0f47c7243eacb447df8b8bd"
   integrity sha512-VEB8ygeP42CFLWyAJhN5OklpxUliqdNEUcXb4xZ/CINqtYGTjL5ukluKdKzQ0iWdUxyQ7B0539PAUhHKrCNWSQ==
 
-"@storybook/addon-actions@7.0.2", "@storybook/addon-actions@^7.0.2":
+"@storybook/addon-actions@7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.0.2.tgz#720d764ec77e395a92be50f0cd0a1baa75a58518"
   integrity sha512-rcj39u9MrmzsrDWYt1zsoVxrogZ1Amrv9xkEofEY/QKUr2R3xpHhTALveY9BKIlG1GoE8zLlLoP2k4nz3sNNwQ==
@@ -2250,6 +2250,28 @@
     telejson "^7.0.3"
     ts-dedent "^2.0.0"
     uuid-browser "^3.1.0"
+
+"@storybook/addon-actions@^7.0.2":
+  version "7.0.20"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-7.0.20.tgz#4298f6acee8e7957db5a88e7448880667954cba5"
+  integrity sha512-otdbuEcHtzb6BzYdCYXyoZ3yNwcMdGSeGKf1aMj0b+C6b23XMnwDa90nzH3JST/sb8PJ1o5MHKWPQJ8UKt72Ug==
+  dependencies:
+    "@storybook/client-logger" "7.0.20"
+    "@storybook/components" "7.0.20"
+    "@storybook/core-events" "7.0.20"
+    "@storybook/global" "^5.0.0"
+    "@storybook/manager-api" "7.0.20"
+    "@storybook/preview-api" "7.0.20"
+    "@storybook/theming" "7.0.20"
+    "@storybook/types" "7.0.20"
+    dequal "^2.0.2"
+    lodash "^4.17.21"
+    polished "^4.2.2"
+    prop-types "^15.7.2"
+    react-inspector "^6.0.0"
+    telejson "^7.0.3"
+    ts-dedent "^2.0.0"
+    uuid "^9.0.0"
 
 "@storybook/addon-backgrounds@7.0.2":
   version "7.0.2"
@@ -10967,6 +10989,11 @@ uuid@^8.3.0:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
   integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
+
+uuid@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
+  integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 uvu@^0.5.0:
   version "0.5.6"
