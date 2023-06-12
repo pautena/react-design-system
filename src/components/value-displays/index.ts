@@ -7,3 +7,4 @@ export * from "./value-base/value-displays.types";
 export * from "./value-rating";
 export * from "./value-base";
 export * from "./value-item";
+export * from "./value-label";
