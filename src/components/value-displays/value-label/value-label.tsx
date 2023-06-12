@@ -37,7 +37,7 @@ export const ValueLabel = ({
 
   return (
     <ValueContent label={label}>
-      <Grid container gap={1}>
+      <Grid container gap={1} aria-labelledby={id}>
         {value}
       </Grid>
     </ValueContent>

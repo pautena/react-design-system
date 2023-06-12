@@ -1,9 +1,7 @@
 import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { ValueLabel } from "./value-label";
-import userEvent from "@testing-library/user-event";
-import { vi } from "vitest";
-import { Label, LabelVariant } from "~/components/data-display";
+import { LabelVariant } from "~/components/data-display";
 
 const DummyValueText = "Lorem ipsum sit amet";
 const DummyValueNumber = 1000;
@@ -33,36 +31,42 @@ describe("ValueLabel", () => {
   it("would render the label", () => {
     renderComponent({ value: DummyValueText });
 
-    expect(screen.getByRole("label", { name: /hello world/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/hello world/i)).toBeVisible();
   });
 
   it("would render the value if it is text", () => {
     renderComponent({ value: DummyValueText, variant: "success" });
 
-    expect(screen.getByText(/lorem ipsum sit amet/i)).toBeInTheDocument();
+    expect(screen.getByText(/lorem ipsum sit amet/i)).toBeVisible();
   });
 
   it("would render the value if it is a number", () => {
     renderComponent({ value: DummyValueNumber });
 
-    expect(screen.getByText(/1000/i)).toBeInTheDocument();
+    expect(screen.getByText(/1000/i)).toBeVisible();
   });
 
   it("would render the value if it is a list of texts", () => {
     renderComponent({ value: DummyValueTextList, variant: ["error", "warning"] });
 
-    DummyValueTextList.forEach((text) => expect(screen.getByText(text)).toBeInTheDocument());
+    DummyValueTextList.forEach((text) => expect(screen.getByText(text)).toBeVisible());
   });
 
   it("would render the value if it is a list of numbers", () => {
     renderComponent({ value: DummyValueNumberList });
 
-    DummyValueNumberList.forEach((number) => expect(screen.getByText(number)).toBeInTheDocument());
+    DummyValueNumberList.forEach((number) => expect(screen.getByText(number)).toBeVisible());
   });
 
   it("should render the placeholder if value is undefined", () => {
     renderComponent({ value: undefined });
 
-    expect(screen.getByText(/-/i)).toBeInTheDocument();
+    expect(screen.getByText(/-/i)).toBeVisible();
+  });
+
+  it("should render the value of the corresponding label", () => {
+    renderComponent({ value: DummyValueText });
+
+    expect(screen.getByLabelText(/hello world/i)).toHaveTextContent(DummyValueText);
   });
 });
