@@ -55,7 +55,7 @@
     "@mui/x-data-grid-generator": "^6.0.4",
     "@rollup/plugin-alias": "^3.1.9",
     "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "8.3.3",
     "@storybook/addon-actions": "^7.0.20",
     "@storybook/addon-essentials": "^7.0.20",
