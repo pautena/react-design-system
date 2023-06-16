@@ -10,13 +10,10 @@ export const expectContentPlaceholder = async () => {
 
 export const assertDatetimeInputValue = (
   element: HTMLElement,
-  { value, fmt, addSpaces = false }: { value: Date; fmt: string; addSpaces?: boolean },
+  { value, fmt }: { value: Date; fmt: string; },
 ) => {
-  let expectedDateValue = format(value, fmt).replace(/ /g, "⁩ ⁦");
+  let expectedDateValue = format(value, fmt)
 
-  if (addSpaces) {
-    expectedDateValue = expectedDateValue.replace(/\//g, " / ").replace(/-/g, " - ");
-  }
   expect(element).toHaveValue(expectedDateValue);
 };
 
@@ -56,7 +53,6 @@ export const expectModelFieldInputValue = (
       assertDatetimeInputValue(screen.getByRole("textbox", { name: field.name }), {
         value: value as Date,
         fmt: field.format,
-        addSpaces: true,
       });
     } else if (field.type === "group[]") {
       // Ignore group[] cases
