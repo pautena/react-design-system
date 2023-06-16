@@ -10,9 +10,9 @@ export const expectContentPlaceholder = async () => {
 
 export const assertDatetimeInputValue = (
   element: HTMLElement,
-  { value, fmt }: { value: Date; fmt: string; },
+  { value, fmt }: { value: Date; fmt: string },
 ) => {
-  let expectedDateValue = format(value, fmt)
+  const expectedDateValue = format(value, fmt);
 
   expect(element).toHaveValue(expectedDateValue);
 };
