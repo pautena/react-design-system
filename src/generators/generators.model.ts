@@ -19,6 +19,8 @@ type Base = {
   description: string;
   name: string;
   listable?: boolean;
+  updatable?: boolean;
+  required?: boolean;
 };
 
 type Breakpoints = {

@@ -37,6 +37,7 @@ export const mockModel: Model = {
       sm: 6,
       md: 4,
       listable: true,
+      required: false,
     },
     {
       id: "lastName",
@@ -67,6 +68,7 @@ export const mockModel: Model = {
       sm: 6,
       md: 3,
       listable: false,
+      required: false,
     },
     {
       id: "birthDate",

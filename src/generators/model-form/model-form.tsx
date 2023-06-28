@@ -109,7 +109,7 @@ export const ModelForm = <T extends BasicModelInstance>({
   const renderField = (field: ModelField, key: string | undefined = undefined) => {
     const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
-    const { id, type, name, description, xs, sm, md, lg, xl } = field;
+    const { id, type, name, description, updatable, required = true, xs, sm, md, lg, xl } = field;
 
     let fieldInput: ReactElement;
     const value = key ? (values[key] as GroupInstanceType)[id] : values[id];
@@ -155,7 +155,7 @@ export const ModelForm = <T extends BasicModelInstance>({
             label={name}
             name={id}
             onChange={(e) => handleSelectChange(e, key)}
-            required
+            required={required}
           >
             {field.value.map((fieldValue) => (
               <MenuItem key={fieldValue} value={fieldValue}>
@@ -177,7 +177,7 @@ export const ModelForm = <T extends BasicModelInstance>({
             label={name}
             name={id}
             onChange={(e) => handleMultiSelectChange(e, key)}
-            required
+            required={required}
             multiple
           >
             {field.value.map((fieldValue) => (
@@ -221,7 +221,7 @@ export const ModelForm = <T extends BasicModelInstance>({
     } else if (type.includes("[]")) {
       fieldInput = (
         <TextField
-          required
+          required={required}
           type="text"
           label={name}
           name={id}
@@ -235,7 +235,7 @@ export const ModelForm = <T extends BasicModelInstance>({
     } else {
       fieldInput = (
         <TextField
-          required
+          required={required}
           type={type}
           label={name}
           name={id}
