@@ -22,7 +22,7 @@ import { GroupValueCard } from "~/components";
 export interface ModelFormField {
   field: ModelField;
   update: boolean;
-  dense?:boolean;
+  dense?: boolean;
   path?: string[];
   value: any;
   onChangeValue: (path: string[], value: any) => void;
@@ -90,7 +90,7 @@ export const ModelFormField = ({
   const disabled: boolean = !updatable && update;
 
   let fieldInput: ReactElement;
-  const size =dense?"small":"medium";
+  const size = dense ? "small" : "medium";
   if (type === "group") {
     fieldInput = (
       <GroupValueCard title={name} subtitle={description} dense={dense}>
@@ -181,11 +181,13 @@ export const ModelFormField = ({
         label={name}
         format={field.format}
         value={value}
-        slotProps={{
-          field: {
-            size,
-          }
-        } as any}
+        slotProps={
+          {
+            field: {
+              size,
+            },
+          } as any
+        }
         disabled={disabled}
         onChange={(value) => handleDateChange(value, id)}
       />
@@ -196,11 +198,13 @@ export const ModelFormField = ({
         label={name}
         format={field.format}
         value={value}
-        slotProps={{
-          field: {
-            size,
-          }
-        } as any}
+        slotProps={
+          {
+            field: {
+              size,
+            },
+          } as any
+        }
         disabled={disabled}
         onChange={(value) => handleDateChange(value, id)}
       />
@@ -211,11 +215,13 @@ export const ModelFormField = ({
         label={name}
         format={field.format}
         value={value}
-        slotProps={{
-          field: {
-            size,
-          }
-        } as any}
+        slotProps={
+          {
+            field: {
+              size,
+            },
+          } as any
+        }
         disabled={disabled}
         onChange={(value) => handleDateChange(value, id)}
       />
