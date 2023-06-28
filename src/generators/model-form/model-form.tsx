@@ -109,7 +109,20 @@ export const ModelForm = <T extends BasicModelInstance>({
   const renderField = (field: ModelField, key: string | undefined = undefined) => {
     const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
-    const { id, type, name, description, updatable, required = true, xs, sm, md, lg, xl } = field;
+    const {
+      id,
+      type,
+      name,
+      description,
+      updatable = true,
+      required = true,
+      xs,
+      sm,
+      md,
+      lg,
+      xl,
+    } = field;
+    const disabled: boolean = !updatable && !!initialValues;
 
     let fieldInput: ReactElement;
     const value = key ? (values[key] as GroupInstanceType)[id] : values[id];
@@ -138,6 +151,7 @@ export const ModelForm = <T extends BasicModelInstance>({
                 name={id}
                 onChange={(e) => handleCheckboxChange(e, key)}
                 checked={value as boolean}
+                disabled={disabled}
               />
             }
             label={name}
@@ -156,6 +170,7 @@ export const ModelForm = <T extends BasicModelInstance>({
             name={id}
             onChange={(e) => handleSelectChange(e, key)}
             required={required}
+            disabled={disabled}
           >
             {field.value.map((fieldValue) => (
               <MenuItem key={fieldValue} value={fieldValue}>
@@ -178,6 +193,7 @@ export const ModelForm = <T extends BasicModelInstance>({
             name={id}
             onChange={(e) => handleMultiSelectChange(e, key)}
             required={required}
+            disabled={disabled}
             multiple
           >
             {field.value.map((fieldValue) => (
@@ -195,6 +211,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           label={name}
           format={field.format}
           value={value}
+          disabled={disabled}
           onChange={(value) => handleDateChange(value, key, id)}
         />
       );
@@ -204,6 +221,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           label={name}
           format={field.format}
           value={value}
+          disabled={disabled}
           onChange={(value) => handleDateChange(value, key, id)}
         />
       );
@@ -213,6 +231,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           label={name}
           format={field.format}
           value={value}
+          disabled={disabled}
           onChange={(value) => handleDateChange(value, key, id)}
         />
       );
@@ -228,6 +247,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           variant="outlined"
           helperText="Use comas to separate multiple values"
           fullWidth
+          disabled={disabled}
           value={(value as any[]).join(",")}
           onChange={(e) => handleInputChange(e, key, type)}
         />
@@ -242,6 +262,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           variant="outlined"
           fullWidth
           value={value}
+          disabled={disabled}
           onChange={(e) => handleInputChange(e, key, type)}
         />
       );

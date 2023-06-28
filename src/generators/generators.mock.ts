@@ -17,6 +17,7 @@ export const mockModel: Model = {
       sm: 6,
       md: 4,
       listable: false,
+      updatable: false,
     },
     {
       id: "firstName",
