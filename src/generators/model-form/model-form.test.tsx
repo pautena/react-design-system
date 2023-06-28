@@ -47,6 +47,23 @@ describe("ModelForm", () => {
     expectModelFieldInputExist(mockModel.fields);
   });
 
+  describe("required", () => {
+    it("should render as required the required fields", () => {
+      renderComponent();
+
+      expect(screen.getByLabelText(/first name/i)).toBeRequired();
+      expect(screen.getByLabelText(/last name/i)).toBeRequired();
+      expect(screen.getByLabelText(/codes/i)).toBeRequired();
+    });
+
+    it("should render as non required the non required fields", () => {
+      renderComponent();
+
+      expect(screen.getByLabelText(/middle name/i)).not.toBeRequired();
+      expect(screen.getByLabelText(/age/i)).not.toBeRequired();
+    });
+  });
+
   it("would render the initial value if initialValues is provided", () => {
     const initialValues = createModelInstance<MockInstance>(mockModel);
     renderComponent({ initialValues });

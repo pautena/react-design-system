@@ -29,3 +29,12 @@ export const UpdateForm: Story = {
     saveButtonText: "update",
   },
 };
+
+export const UpdateFormDense: Story = {
+  args: {
+    model: mockModel,
+    dense: true,
+    initialValues,
+    saveButtonText: "update",
+  },
+};
