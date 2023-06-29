@@ -136,7 +136,6 @@ export const expectToHaveBeenCalledOnceWithMockInstance = (
     firstName: instance.firstName,
     middleName: instance.middleName,
     lastName: instance.lastName,
-    gender: instance.gender,
     age: instance.age,
     birthDate: instance.birthDate,
     car: {

@@ -145,7 +145,6 @@ describe("ModelRouter", () => {
       const firstNameElement = screen.getByRole("textbox", { name: /first name/i });
       const middleNameElement = screen.getByRole("textbox", { name: /middle name/i });
       const lastNameElement = screen.getByRole("textbox", { name: /last name/i });
-      const genderElement = screen.getByRole("button", { name: /gender/i });
       const ageElement = screen.getByRole("spinbutton", { name: /age/i });
       const birthDateElement = screen.getByRole<HTMLInputElement>("textbox", {
         name: /birth date/i,
@@ -178,7 +177,6 @@ describe("ModelRouter", () => {
       fireEvent.type(firstNameElement, instance.firstName);
       fireEvent.type(middleNameElement, instance.middleName);
       fireEvent.type(lastNameElement, instance.lastName);
-      await selectOption(genderElement, instance.gender);
       typeNumericInput(ageElement, instance.age);
       pickDatetime(birthDateElement, instance.birthDate, BirthDateFormat);
       await selectOption(modelElement, instance.car.model);

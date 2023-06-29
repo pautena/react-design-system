@@ -81,7 +81,6 @@ describe("ModelForm", () => {
     fireEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
     fireEvent.type(screen.getByRole("textbox", { name: /middle name/i }), "Noah");
     fireEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
-    await selectOption(screen.getByRole("button", { name: /gender/i }), "Cis man");
     typeNumericInput(screen.getByRole("spinbutton", { name: /age/i }), 37);
     pickDatetime(screen.getByRole("textbox", { name: /birth date/i }), birthDate, BirthDateFormat);
     await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
@@ -113,7 +112,6 @@ describe("ModelForm", () => {
       firstName: "Karianne",
       middleName: "Noah",
       lastName: "Gorczany",
-      gender: "Cis man",
       age: 37,
       birthDate,
       car: {

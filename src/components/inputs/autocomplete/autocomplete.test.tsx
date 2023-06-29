@@ -7,7 +7,7 @@ import userEvents from "@testing-library/user-event";
 import { expectProgressIndicator } from "~/tests/assertions";
 import { vi } from "vitest";
 
-const options: string[] = faker.definitions.vehicle?.model || [];
+const options: string[] = [...faker.definitions.vehicle?.model] || [];
 
 describe("Autocomplete", () => {
   const renderComponent = ({
