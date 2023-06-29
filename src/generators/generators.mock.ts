@@ -83,7 +83,7 @@ export const mockModel: Model = {
         {
           id: "model",
           type: "enum",
-          value: [...faker.definitions.vehicle?.model] || [],
+          value: [...faker.definitions.vehicle.model],
           description: "Lorem ipsum",
           name: "Model",
           xs: 12,
@@ -92,7 +92,7 @@ export const mockModel: Model = {
         {
           id: "manufacturer",
           type: "enum",
-          value: [...faker.definitions.vehicle?.manufacturer] || [],
+          value: [...faker.definitions.vehicle.manufacturer],
           description: "Lorem ipsum",
           name: "Manufacturer",
           xs: 12,
@@ -109,7 +109,7 @@ export const mockModel: Model = {
         {
           id: "type",
           type: "multienum",
-          value: [...faker.definitions.vehicle?.type] || [],
+          value: [...faker.definitions.vehicle.type],
           description: "Lorem ipsum",
           name: "Type",
           xs: 12,

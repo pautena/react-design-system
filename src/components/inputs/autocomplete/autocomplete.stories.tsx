@@ -15,7 +15,7 @@ export default {
 } satisfies Meta<typeof Autocomplete>;
 type Story = StoryObj<typeof Autocomplete>;
 
-const options: string[] = [...faker.definitions.vehicle?.model] || [];
+const options: string[] = [...faker.definitions.vehicle.model];
 
 export const Default: Story = {
   args: {

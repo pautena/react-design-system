@@ -12,7 +12,7 @@ const baseArgs = {
   fetching: false,
   loading: false,
   fullWidth: true,
-  options: [...faker.definitions.vehicle?.model] || [],
+  options: [...faker.definitions.vehicle.model],
 };
 
 interface TemplateProps<T extends ReactNode> extends SelectProps<T> {
