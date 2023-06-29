@@ -16,7 +16,7 @@ export default {
 } satisfies Meta<typeof TextField>;
 type Story = StoryObj<typeof TextField>;
 
-const options: string[] = faker.definitions.vehicle?.model || [];
+const options = faker.definitions.vehicle?.model || [];
 
 export const Default: Story = {
   args: {

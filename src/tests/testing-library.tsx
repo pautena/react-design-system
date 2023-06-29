@@ -1,4 +1,4 @@
-import { render, RenderOptions, RenderResult } from "@testing-library/react";
+import { fireEvent, render, RenderOptions, RenderResult } from "@testing-library/react";
 import { MemoryRouter, Router } from "react-router-dom";
 import { createMemoryHistory, MemoryHistory } from "history";
 import React from "react";
@@ -65,8 +65,15 @@ const customRender = (
   return { ...instance, history };
 };
 
+const customFireEvent = {
+  ...fireEvent,
+  type: (element: HTMLElement, value: string | number) => {
+    fireEvent.change(element, { target: { value: value.toString() } });
+  },
+};
+
 // re-export everything
 export * from "@testing-library/react";
 
 // override render method
-export { customRender as render };
+export { customRender as render, customFireEvent as fireEvent };
