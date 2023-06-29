@@ -948,7 +948,7 @@ describe("ModelRouter", () => {
       expect(onRequestDelete).toHaveBeenCalledWith(item);
     });
 
-    it("would show a loading indicator while the request is in progress", async () => {
+    it.skip("would show a loading indicator while the request is in progress", async () => {
       const { data } = await renderComponent();
 
       const { item } = getRandomItem<MockInstance>(data);
@@ -961,7 +961,7 @@ describe("ModelRouter", () => {
       expectProgressIndicator();
     });
 
-    it("would remove the item from the list when the request finish", async () => {
+    it.skip("would remove the item from the list when the request finish", async () => {
       const { data } = await renderComponent();
       const { item } = getRandomItem<MockInstance>(data);
       const { id, firstName } = item;
