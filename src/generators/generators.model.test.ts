@@ -21,7 +21,6 @@ describe("utilities", () => {
         },
         currency: "",
         firstName: "",
-        gender: "",
         id: "",
         lastName: "",
         middleName: "",
@@ -49,7 +48,6 @@ describe("utilities", () => {
           type: ["sub", "sport"],
         },
         available: true,
-        gender: "female",
         identifiers: ["1", "2"],
       });
 
@@ -68,7 +66,6 @@ describe("utilities", () => {
         },
         currency: "EUR",
         firstName: "",
-        gender: "female",
         id: "1",
         lastName: "",
         middleName: "",

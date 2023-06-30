@@ -17,6 +17,7 @@ export const mockModel: Model = {
       sm: 6,
       md: 4,
       listable: false,
+      updatable: false,
     },
     {
       id: "firstName",
@@ -37,6 +38,7 @@ export const mockModel: Model = {
       sm: 6,
       md: 4,
       listable: true,
+      required: false,
     },
     {
       id: "lastName",
@@ -49,16 +51,6 @@ export const mockModel: Model = {
       listable: true,
     },
     {
-      id: "gender",
-      type: "enum",
-      value: faker.definitions.name?.gender || [],
-      description: "User gender",
-      name: "Gender",
-      xs: 12,
-      sm: 6,
-      md: 3,
-    },
-    {
       id: "age",
       type: "number",
       description: "User age",
@@ -67,6 +59,7 @@ export const mockModel: Model = {
       sm: 6,
       md: 3,
       listable: false,
+      required: false,
     },
     {
       id: "birthDate",
@@ -90,7 +83,7 @@ export const mockModel: Model = {
         {
           id: "model",
           type: "enum",
-          value: faker.definitions.vehicle?.model || [],
+          value: [...faker.definitions.vehicle.model],
           description: "Lorem ipsum",
           name: "Model",
           xs: 12,
@@ -99,7 +92,7 @@ export const mockModel: Model = {
         {
           id: "manufacturer",
           type: "enum",
-          value: faker.definitions.vehicle?.manufacturer || [],
+          value: [...faker.definitions.vehicle.manufacturer],
           description: "Lorem ipsum",
           name: "Manufacturer",
           xs: 12,
@@ -116,7 +109,7 @@ export const mockModel: Model = {
         {
           id: "type",
           type: "multienum",
-          value: faker.definitions.vehicle?.type || [],
+          value: [...faker.definitions.vehicle.type],
           description: "Lorem ipsum",
           name: "Type",
           xs: 12,
@@ -209,7 +202,6 @@ export interface MockInstance {
   firstName: string;
   middleName: string;
   lastName: string;
-  gender: string;
   age: number;
   birthDate: Date;
   car: {
@@ -235,7 +227,6 @@ const mockFieldValue: Record<string, () => FieldType> = {
   firstName: faker.name.firstName,
   middleName: faker.name.middleName,
   lastName: faker.name.lastName,
-  gender: faker.name.gender,
   age: () => faker.datatype.number({ min: 20, max: 60 }),
   birthDate: () => new Date(2019, 3, 2),
   returnTime: () => new Date(2022, 10, 2, 11, 0),
