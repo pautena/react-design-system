@@ -10,7 +10,6 @@ import {
   TradeDateFormat,
 } from "../generators.mock";
 import { vi } from "vitest";
-import userEvent from "@testing-library/user-event";
 import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
 import {
   expectModelFieldInputExist,
