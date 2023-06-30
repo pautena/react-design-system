@@ -1,9 +1,8 @@
-import { render, screen } from "~/tests/testing-library";
+import { fireEvent, render, screen, waitFor } from "~/tests/testing-library";
 import { DateRangeCalendar } from "./date-range-calendar";
 import { vi } from "vitest";
 import React from "react";
 import { differenceInCalendarDays, format, addDays, subDays } from "date-fns";
-import userEvent from "@testing-library/user-event";
 
 describe("DateRangeCalendar", () => {
   const renderComponent = () => {
@@ -14,14 +13,14 @@ describe("DateRangeCalendar", () => {
     return { startDate, endDate, onValueChange };
   };
 
-  beforeEach(()=>{
+  beforeEach(() => {
     vi.useFakeTimers();
-    vi.setSystemTime(new Date(2023, 6, 26))
-  })
+    vi.setSystemTime(new Date(2023, 4, 26));
+  });
 
-  afterEach(()=>{
+  afterEach(() => {
     vi.useRealTimers();
-  })
+  });
 
   it("should mark the dates between the start and the end as selected", () => {
     const { startDate, endDate } = renderComponent();
@@ -57,10 +56,10 @@ describe("DateRangeCalendar", () => {
   });
 
   describe("onValueChange", () => {
-    it("should call onValueChange when the first date is selected with the first value changed", async () => {
+    it("should call onValueChange when the first date is selected with the first value changed", () => {
       const { endDate, onValueChange } = renderComponent();
 
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "4",
         }),
@@ -70,15 +69,15 @@ describe("DateRangeCalendar", () => {
       expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 4), endDate], 0);
     });
 
-    it("should call onValueChange when the second date is selected with the second value changed", async () => {
+    it("should call onValueChange when the second date is selected with the second value changed", () => {
       const { onValueChange } = renderComponent();
 
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "4",
         }),
       );
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "12",
         }),
@@ -91,41 +90,41 @@ describe("DateRangeCalendar", () => {
       );
     });
 
-    it("should call onValueChange when the third date is selected with the first value changed", async () => {
+    it("should call onValueChange when the third date is selected with the first value changed", () => {
       const { onValueChange } = renderComponent();
 
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "4",
         }),
       );
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "12",
         }),
       );
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
-          name: "18",
+          name: "2",
         }),
       );
 
       expect(onValueChange).toHaveBeenCalledTimes(3);
       expect(onValueChange).toHaveBeenLastCalledWith(
-        [new Date(2023, 4, 18), new Date(2023, 4, 12)],
+        [new Date(2023, 4, 2), new Date(2023, 4, 12)],
         0,
       );
     });
 
-    it("should call onValueChange when a second date minor than the initial date is selected changing the first value", async () => {
+    it("should call onValueChange when a second date minor than the initial date is selected changing the first value", () => {
       const { onValueChange } = renderComponent();
 
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "12",
         }),
       );
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "6",
         }),
@@ -135,10 +134,10 @@ describe("DateRangeCalendar", () => {
       expect(onValueChange).toHaveBeenLastCalledWith([new Date(2023, 4, 6), undefined], 0);
     });
 
-    it("should call onValueChange when the first date is bigger than the end date with the end date as undefined", async () => {
+    it("should call onValueChange when the first date is bigger than the end date with the end date as undefined", () => {
       const { onValueChange } = renderComponent();
 
-      await userEvent.click(
+      fireEvent.click(
         screen.getByRole("gridcell", {
           name: "28",
         }),
