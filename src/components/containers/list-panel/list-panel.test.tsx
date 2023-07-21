@@ -62,4 +62,4 @@ describe("ListPanel", () => {
 
     expect(screen.getByText(/drafts panel/i)).toBeVisible();
   });
-}); 
+});
