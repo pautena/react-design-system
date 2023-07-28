@@ -13,12 +13,14 @@ export interface ListPanelItem {
 export type ListPanelProps = PropsWithChildren<{
   defaultSelectedItem?: string;
   items: ListPanelItem[];
+  colBreakpoint?: number;
   onSelectedItemChange?: (id: string) => void;
 }>;
 
 export const ListPanel = ({
   items,
   defaultSelectedItem,
+  colBreakpoint = 3,
   children,
   onSelectedItemChange = () => null,
 }: ListPanelProps) => {
@@ -34,7 +36,7 @@ export const ListPanel = ({
   return (
     <ListPanelContextProvider value={selectedItem}>
       <Grid container bgcolor={bgColor} height={1}>
-        <Grid item xs={3} pl={1} height={1}>
+        <Grid item xs={colBreakpoint} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
             {items.map(({ id, text, tooltip }) => {
               const selected = id === selectedItem;
@@ -44,15 +46,14 @@ export const ListPanel = ({
                   key={id}
                   dense
                   selected={selected}
-                  disableRipple
                   onClick={() => handleSelectItem(id)}
                   aria-label={text}
-                  sx={{ backgroundColor: "transparent !important" }}
+                  sx={{ backgroundColor: selected ? `${palette.grey[300]} !important` : undefined }}
                 >
                   <ListItemText
                     primary={text}
                     primaryTypographyProps={{
-                      fontWeight: selected ? typography.fontWeightBold : undefined,
+                      fontWeight: selected ? typography.fontWeightMedium : undefined,
                       color: selected ? typography.body1.color : grey[600],
                     }}
                   />
@@ -69,7 +70,7 @@ export const ListPanel = ({
             })}
           </List>
         </Grid>
-        <Grid item xs={9} pl={2} py={1} pr={1}>
+        <Grid item xs={12 - colBreakpoint} pl={1} py={1} pr={1}>
           <Paper
             elevation={0}
             sx={{
