@@ -1,7 +1,8 @@
-import { Grid, Button, Typography, useTheme, DialogContentText } from "@mui/material";
+import { Grid, Button, Typography, DialogContentText } from "@mui/material";
 import { Variant } from "@mui/material/styles/createTypography";
 import React, { ReactElement } from "react";
 import { ConfirmDialog, useDialog } from "~/components/dialogs";
+import { ActionHeader } from "./action-header";
 
 export type ActionVariant = "primary" | "error" | "warning" | "success";
 
@@ -35,7 +36,6 @@ export const Action = ({
   onAction,
 }: ActionProps) => {
   const { isOpen, open, close } = useDialog();
-  const { palette } = useTheme();
 
   const handleClickActionButton = () => {
     if (confirmable) {
@@ -50,26 +50,11 @@ export const Action = ({
     close;
   };
 
-  const titleColor: Record<ActionVariant, string | undefined> = {
-    primary: undefined,
-    error: "error",
-    warning: palette.warning.main,
-    success: palette.success.main,
-  };
-
   return (
     <>
       <Grid container spacing={1}>
         <Grid item xs={12} mb={2}>
-          <Typography
-            color={titleColor[variant]}
-            variant="h4"
-            pb={1}
-            borderBottom={1}
-            borderColor="grey.300"
-          >
-            {title}
-          </Typography>
+          <ActionHeader title={title} />
         </Grid>
         {description && (
           <Grid item xs={12}>
