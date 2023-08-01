@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Header } from "./header";
@@ -13,6 +13,9 @@ import {
 import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
 import { TabProvider } from "../../../providers";
 import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
+import { Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import { Label } from "../label";
 
 const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && vi.fn() }));
 
@@ -27,8 +30,8 @@ const renderInstance = ({
   selectedTab,
   navigationButton,
 }: {
-  title?: string;
-  subtitle?: string | undefined;
+  title?: string | ReactElement;
+  subtitle?: string | ReactElement;
   preset?: HeaderPreset;
   breadcrumbs?: HeaderBreadcrumb[];
   actions?: HeaderAction[];
@@ -56,14 +59,30 @@ const renderInstance = ({
 };
 
 describe("Header", () => {
-  it("renders the title", () => {
-    renderInstance({ title: "Lorem ipsum" });
+  describe("title", () => {
+    it("should render the title", () => {
+      renderInstance({ title: "Lorem ipsum" });
 
-    expect(screen.getByRole("heading", { level: 1, name: /lorem ipsum/i })).toBeInTheDocument();
+      expect(screen.getByRole("heading", { level: 1, name: /lorem ipsum/i })).toBeInTheDocument();
+    });
+
+    it("should render the custom title", () => {
+      renderInstance({
+        title: (
+          <Box display="flex" flexDirection="row" alignItems="center">
+            <Typography variant="h6">custom title</Typography>
+            <Label variant="primary" text="4 items" sx={{ ml: 1 }} />
+          </Box>
+        ),
+      });
+
+      expect(screen.getByRole("heading", { level: 6, name: /custom title/i })).toBeVisible();
+      expect(screen.getByText(/4 items/i)).toBeVisible();
+    });
   });
 
   describe("subtitle", () => {
-    it("should renders when is set", () => {
+    it("should render when is set", () => {
       renderInstance({ subtitle: "sit amet" });
 
       expect(screen.queryByRole("heading", { level: 2, name: /sit amet/i })).toBeInTheDocument();
@@ -73,6 +92,20 @@ describe("Header", () => {
       renderInstance({ subtitle: undefined });
 
       expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
+    });
+
+    it("should render the custom title", () => {
+      renderInstance({
+        subtitle: (
+          <Box display="flex" flexDirection="row" alignItems="center">
+            <Typography variant="body2">Dolor sit amet</Typography>
+            <Label variant="error" text="since yesterday" sx={{ ml: 1 }} />
+          </Box>
+        ),
+      });
+
+      expect(screen.getByText(/dolor sit amet/i)).toBeVisible();
+      expect(screen.getByText(/since yesterday/i)).toBeVisible();
     });
   });
 

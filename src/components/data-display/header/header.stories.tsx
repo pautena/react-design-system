@@ -9,6 +9,7 @@ import { Content } from "~/components/containers";
 import { Box, Typography } from "@mui/material";
 import { TabPanel } from "~/components/navigation/tab-panel";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { Label } from "../label";
 
 export default {
   title: "Components/Data Display/Header",
@@ -24,7 +25,7 @@ export const Default: Story = {
   args: {
     title: "Lorem ipsum",
     subtitle: "Dolor sit amet",
-    preset: "inherit",
+    preset: "default",
     breadcrumbs,
     actions,
   },
@@ -33,6 +34,30 @@ export const Default: Story = {
 export const OnlyTitle: Story = {
   args: {
     title: "Lorem ipsum",
+  },
+};
+
+export const CustomTitle: Story = {
+  args: {
+    ...Default.args,
+    title: (
+      <Box display="flex" flexDirection="row" alignItems="center">
+        <Typography variant="h6">Lorem ipsum</Typography>
+        <Label variant="primary" text="4 items" sx={{ ml: 1 }} />
+      </Box>
+    ),
+  },
+};
+
+export const CustomSubtitle: Story = {
+  args: {
+    ...Default.args,
+    subtitle: (
+      <Box display="flex" flexDirection="row" alignItems="center">
+        <Typography variant="body2">Dolor sit amet</Typography>
+        <Label variant="error" text="since yesterday" sx={{ ml: 1 }} />
+      </Box>
+    ),
   },
 };
 

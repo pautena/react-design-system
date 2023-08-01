@@ -44,11 +44,11 @@ export type HeaderProps = {
   /**
    * Title of the header
    */
-  title: string;
+  title: string | ReactElement;
   /**
    * Subtitle of the header
    */
-  subtitle?: string;
+  subtitle?: string | ReactElement;
   /**
    * Color palete used to render the component
    */
