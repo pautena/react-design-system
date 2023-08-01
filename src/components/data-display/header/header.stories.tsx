@@ -49,6 +49,13 @@ export const CustomTitle: Story = {
   },
 };
 
+export const TitleLoading: Story = {
+  args: {
+    ...Default.args,
+    loadingTitle: true,
+  },
+};
+
 export const CustomSubtitle: Story = {
   args: {
     ...Default.args,
@@ -58,6 +65,13 @@ export const CustomSubtitle: Story = {
         <Label variant="error" text="since yesterday" sx={{ ml: 1 }} />
       </Box>
     ),
+  },
+};
+
+export const SubtitleLoading: Story = {
+  args: {
+    ...Default.args,
+    loadingSubtitle: true,
   },
 };
 

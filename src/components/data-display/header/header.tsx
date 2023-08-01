@@ -14,14 +14,17 @@ import { useGetDefaultThemeColor } from "../../../utils";
 import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
 import { useTab } from "~/providers";
 import { useLocation } from "react-router-dom";
+import { HeaderSubtitle, HeaderTitle } from "./header-title";
 
 /**
  * Section used to explain give basic information about the page
  * and put the main actions
  */
 export const Header: HeaderComponent = ({
-  title,
+  title = "",
+  loadingTitle,
   subtitle,
+  loadingSubtitle,
   preset = "default",
   actionsVariant = "outlined",
   breadcrumbs,
@@ -93,13 +96,9 @@ export const Header: HeaderComponent = ({
                 ))}
               </Breadcrumbs>
             )}
-            <Typography variant="h4" role="heading" aria-level={1}>
-              {title}
-            </Typography>
-            {subtitle && (
-              <Typography variant="body1" role="heading" aria-level={2}>
-                {subtitle}
-              </Typography>
+            <HeaderTitle loading={loadingTitle}>{title}</HeaderTitle>
+            {(subtitle || loadingSubtitle) && (
+              <HeaderSubtitle loading={loadingSubtitle}>{subtitle}</HeaderSubtitle>
             )}
           </Box>
           {actions && (

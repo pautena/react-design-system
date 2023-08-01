@@ -21,7 +21,9 @@ const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && vi.fn() })
 
 const renderInstance = ({
   title = "Lorem ipsum",
+  loadingTitle,
   subtitle,
+  loadingSubtitle,
   preset = "default",
   breadcrumbs,
   actions,
@@ -32,6 +34,8 @@ const renderInstance = ({
 }: {
   title?: string | ReactElement;
   subtitle?: string | ReactElement;
+  loadingTitle?: boolean;
+  loadingSubtitle?: boolean;
   preset?: HeaderPreset;
   breadcrumbs?: HeaderBreadcrumb[];
   actions?: HeaderAction[];
@@ -44,7 +48,9 @@ const renderInstance = ({
     <TabProvider initialValue={selectedTab}>
       <Header
         title={title}
+        loadingTitle={loadingTitle}
         subtitle={subtitle}
+        loadingSubtitle={loadingSubtitle}
         preset={preset}
         breadcrumbs={breadcrumbs}
         actions={actions}
@@ -79,6 +85,15 @@ describe("Header", () => {
       expect(screen.getByRole("heading", { level: 6, name: /custom title/i })).toBeVisible();
       expect(screen.getByText(/4 items/i)).toBeVisible();
     });
+
+    it("should render a loading indicator if title is loading", () => {
+      renderInstance({ title: "Lorem ipsum", loadingTitle: true });
+
+      expect(
+        screen.queryByRole("heading", { level: 1, name: /lorem ipsum/i }),
+      ).not.toBeInTheDocument();
+      expect(screen.queryByRole("progressbar", { name: /title loading/i })).toBeInTheDocument();
+    });
   });
 
   describe("subtitle", () => {
@@ -106,6 +121,13 @@ describe("Header", () => {
 
       expect(screen.getByText(/dolor sit amet/i)).toBeVisible();
       expect(screen.getByText(/since yesterday/i)).toBeVisible();
+    });
+
+    it("should render a loading indicator if title is loading", () => {
+      renderInstance({ subtitle: "sit amet", loadingSubtitle: true });
+
+      expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
+      expect(screen.queryByRole("progressbar", { name: /subtitle loading/i })).toBeInTheDocument();
     });
   });
 
