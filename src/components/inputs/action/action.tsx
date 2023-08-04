@@ -9,6 +9,7 @@ export type ActionVariant = "primary" | "error" | "warning" | "success";
 export interface ActionProps {
   variant: ActionVariant;
   title: string;
+  titleVariant?: Extract<Variant, "h4" | "h5" | "h6">;
   description?: string | ReactElement;
   descriptionVariant?: Variant;
   helperText?: string;
@@ -24,6 +25,7 @@ export interface ActionProps {
 export const Action = ({
   variant = "primary",
   title,
+  titleVariant = "h4",
   description,
   descriptionVariant = "body2",
   buttonText,
@@ -54,7 +56,7 @@ export const Action = ({
     <>
       <Grid container spacing={1}>
         <Grid item xs={12} mb={2}>
-          <ActionHeader title={title} />
+          <ActionHeader title={title} titleVariant={titleVariant} />
         </Grid>
         {description && (
           <Grid item xs={12}>
