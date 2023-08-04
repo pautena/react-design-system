@@ -1,16 +1,23 @@
 import { Typography, useTheme } from "@mui/material";
+import { Variant } from "@mui/material/styles/createTypography";
 import React from "react";
 
-type Variant = "primary" | "error" | "warning" | "success";
+type ActionVariant = "primary" | "error" | "warning" | "success";
+
 export interface ActionHeaderProps {
-  variant?: Variant;
+  variant?: ActionVariant;
   title: string;
+  titleVariant?: Extract<Variant, "h4" | "h5" | "h6">;
 }
 
-export const ActionHeader = ({ title, variant = "primary" }: ActionHeaderProps) => {
+export const ActionHeader = ({
+  title,
+  titleVariant = "h4",
+  variant = "primary",
+}: ActionHeaderProps) => {
   const { palette } = useTheme();
 
-  const titleColor: Record<Variant, string | undefined> = {
+  const titleColor: Record<ActionVariant, string | undefined> = {
     primary: undefined,
     error: "error",
     warning: palette.warning.main,
@@ -19,7 +26,7 @@ export const ActionHeader = ({ title, variant = "primary" }: ActionHeaderProps) 
   return (
     <Typography
       color={titleColor[variant]}
-      variant="h4"
+      variant={titleVariant}
       pb={1}
       borderBottom={1}
       borderColor="grey.300"
