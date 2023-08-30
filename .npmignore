@@ -10,3 +10,5 @@ jest.setup.ts
 *.md
 rollup.config.js
 tsconfig.*
+src
+node_modules
