@@ -31,6 +31,8 @@
     "src/**/*.test-utils.tsx",
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx",
-    "src/storybook.tsx"
+    "src/storybook.tsx",
+    "vitest.config.ts",
+    "setupTests.ts"
   ]
 }
