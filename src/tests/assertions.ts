@@ -3,6 +3,7 @@ import { BasicModelInstance, GroupInstanceType, ModelField } from "../generators
 import { screen, waitForElementToBeRemoved } from "./testing-library";
 import { format } from "date-fns";
 import { MockInstance } from "../generators/generators.mock";
+import { Mock } from "vitest";
 
 export const expectContentPlaceholder = async () => {
   expect(await screen.findByTestId(/content-placeholder-test/i)).toBeInTheDocument();
@@ -123,7 +124,7 @@ export const expectAlert = async ({
 };
 
 export const expectToHaveBeenCalledOnceWithMockInstance = (
-  mockFn: jest.Mock,
+  mockFn: Mock,
   instance: MockInstance,
 ) => {
   expect(mockFn).toHaveBeenCalledTimes(1);

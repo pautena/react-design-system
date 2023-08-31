@@ -6,7 +6,7 @@ import { TableRowOption, TableList } from "./table-list";
 import { HeadCell } from "../../components/tables/enhanced-table";
 import { BasicModelInstance } from "..";
 import { expectProgressIndicator } from "~/tests/assertions";
-import { vi } from "vitest";
+import { Mock, vi } from "vitest";
 
 const columns: HeadCell<BasicModelInstance>[] = [
   {
@@ -84,7 +84,7 @@ describe("TableList", () => {
     loading?: boolean;
     search?: boolean;
     options?: TableRowOption<BasicModelInstance>[];
-    onClick?: jest.Mock;
+    onClick?: Mock;
   } = {}) => {
     const instance = render(
       <TableList
