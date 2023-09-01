@@ -5,7 +5,7 @@ import { breadcrumbs, tabs, actions, linkedTabs } from "./Header.dummy";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import React from "react";
 import { TabProvider } from "~/Providers";
-import { Content } from "~/Components/Content";
+import { Content } from "~/Components/content";
 import { Box, Typography } from "@mui/material";
 import { TabPanel } from "~/Components/TabPanel";
 import { Route, Routes, useLocation } from "react-router-dom";
