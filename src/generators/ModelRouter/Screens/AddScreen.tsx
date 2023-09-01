@@ -1,5 +1,5 @@
 import React from "react";
-import { Content } from "~/Components/content";
+import { Content } from "~/Components/Content";
 import { Header } from "~/Components/Header";
 import { BasicModelInstance } from "../../Generators.model";
 import { ModelForm } from "../../ModelForm";

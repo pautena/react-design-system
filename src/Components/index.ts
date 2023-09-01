@@ -1,5 +1,5 @@
 export * from "./ExpandableAlert";
-export * from "./content";
+export * from "./Content";
 export * from "./CenterContainer";
 export * from "./ListPanel";
 export * from "./Bullet";

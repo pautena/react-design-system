@@ -3,7 +3,7 @@ import React from "react";
 import { LoadingArea } from "~/Components/LoadingArea";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import { HeaderElement } from "~/Components/Header";
-import { ContentElement } from "~/Components/content";
+import { ContentElement } from "~/Components/Content";
 import { TabProvider } from "~/Providers/TabProvider";
 import { Placeholder, PlaceholderIcon } from "~/Components/Placeholder";
 
