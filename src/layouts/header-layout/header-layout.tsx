@@ -1,7 +1,7 @@
 import { Box, LinearProgress } from "@mui/material";
 import React from "react";
 import { ContentElement, HeaderElement, Placeholder, PlaceholderIcon } from "../../components";
-import { LoadingArea } from "../../components/feedback/loading-area";
+import { LoadingArea } from "../../components/loading-area";
 import { TabProvider } from "../../providers";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 

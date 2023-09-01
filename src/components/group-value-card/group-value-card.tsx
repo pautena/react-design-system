@@ -1,6 +1,6 @@
 import { Grid, Paper, Box, Typography, useTheme } from "@mui/material";
 import React from "react";
-import { useGetDefaultThemeColor } from "../../../utils/theme";
+import { useGetDefaultThemeColor } from "../../utils/theme";
 import { ValueItemElement } from "../value-item/value-item";
 
 export interface GroupValueCardProps {

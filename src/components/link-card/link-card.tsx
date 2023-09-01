@@ -1,7 +1,7 @@
 import { Paper, SxProps, Theme, Typography, useTheme } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import React from "react";
-import { Link } from "~/components/navigation/link";
+import { Link } from "~/components/link";
 
 export type LinkCardVariant = "primary" | "secondary" | "info" | "warning" | "error";
 export interface LinkCardProps {

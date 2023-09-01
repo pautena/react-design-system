@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { GroupValueCard } from "./group-value-card";
-import { withPadding, withLocalizationProvider } from "../../../storybook";
+import { withPadding, withLocalizationProvider } from "../../storybook";
 import { GroupValueCardDummy } from "./group-value-card.mock";
 import { ValueImage } from "../value-image";
 import workInProgressImg from "../../../stories/assets/work-in-progress.jpg";

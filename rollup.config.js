@@ -9,7 +9,6 @@ import path from "path";
 import generatePackageJson from "rollup-plugin-generate-package-json";
 import packageJson from "./package.json";
 
-
 const projectRootDir = path.resolve(__dirname);
 
 const plugins = [
@@ -46,15 +45,7 @@ const subfolderPlugins = (folderName) => [
   }),
 ];
 
-const folders = [
-  "components",
-  "generators",
-  "hooks",
-  "layouts",
-  "providers",
-  "utils",
-]
-
+const folders = ["components", "generators", "hooks", "layouts", "providers", "utils"];
 
 const folderBuilds = folders.map((folder) => {
   return {
@@ -62,11 +53,11 @@ const folderBuilds = folders.map((folder) => {
     output: {
       file: `dist/${folder}/index.js`,
       sourcemap: true,
-      exports: 'named',
-      format: 'esm',
+      exports: "named",
+      format: "esm",
     },
     plugins: subfolderPlugins(folder),
-    external: ['react', 'react-dom'],
+    external: ["react", "react-dom"],
   };
 });
 

@@ -8,7 +8,7 @@ import {
   Select as MuiSelect,
   styled,
 } from "@mui/material";
-import { CenterContainer } from "../../containers/center-container";
+import { CenterContainer } from "../../center-container";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 
 export type SelectSize = "small" | "medium";
