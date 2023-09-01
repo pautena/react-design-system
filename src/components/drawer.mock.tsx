@@ -5,7 +5,7 @@ import {
   DrawerNavigationItemCollapsable,
   DrawerNavigationItemLink,
   DrawerNavigationSection,
-} from "./drawer.types";
+} from "./Drawer.types";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";

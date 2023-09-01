@@ -1,4 +1,4 @@
-import { PlaceholderAction } from "./placeholder";
+import { PlaceholderAction } from "./Placeholder";
 import { action } from "@storybook/addon-actions";
 
 export const actions: PlaceholderAction[] = [

@@ -1,6 +1,6 @@
 import React from "react";
-import { Bullet, BulletVariant } from "./bullet";
-import { render, screen } from "~/tests/testing-library";
+import { Bullet, BulletVariant } from "./Bullet";
+import { render, screen } from "~/Tests/TestingLibrary";
 
 describe("Bullet", () => {
   const renderComponent = (variant: BulletVariant | undefined = undefined) => {

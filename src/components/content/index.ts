@@ -1,2 +1,2 @@
-export * from "./content";
-export * from "./content.types";
+export * from "./Content";
+export * from "./Content.types";

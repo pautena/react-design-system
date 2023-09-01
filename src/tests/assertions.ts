@@ -1,12 +1,12 @@
 import { AlertColor } from "@mui/material";
-import { BasicModelInstance, GroupInstanceType, ModelField } from "../generators";
-import { screen, waitForElementToBeRemoved } from "./testing-library";
+import { BasicModelInstance, GroupInstanceType, ModelField } from "../Generators";
+import { screen, waitForElementToBeRemoved } from "./TestingLibrary";
 import { format } from "date-fns";
-import { MockInstance } from "../generators/generators.mock";
+import { MockInstance } from "../Generators/Generators.mock";
 import { Mock } from "vitest";
 
 export const expectContentPlaceholder = async () => {
-  expect(await screen.findByTestId(/content-placeholder-test/i)).toBeInTheDocument();
+  expect(await screen.findByTestId(/ContentPlaceholder-test/i)).toBeInTheDocument();
 };
 
 export const assertDatetimeInputValue = (

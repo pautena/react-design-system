@@ -1,2 +1,2 @@
-export * from "./action";
-export * from "./action-header";
+export * from "./Action";
+export * from "./ActionHeader";

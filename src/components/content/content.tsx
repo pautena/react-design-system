@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "@mui/material";
-import { ContentProps } from "./content.types";
+import { ContentProps } from "./Content.types";
 
 export const Content = ({ children }: ContentProps) => {
   return (

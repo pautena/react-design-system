@@ -1,5 +1,5 @@
 import userEvent from "@testing-library/user-event";
-import { screen, fireEvent } from "./testing-library";
+import { screen, fireEvent } from "./TestingLibrary";
 import { format } from "date-fns";
 
 export const typeNumericInput = (element: HTMLElement, value: number) => {

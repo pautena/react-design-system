@@ -1,15 +1,15 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Header } from "./header";
-import { withMemoryRouter } from "~/storybook";
-import { breadcrumbs, tabs, actions, linkedTabs } from "./header.dummy";
+import { Header } from "./Header";
+import { withMemoryRouter } from "~/Storybook";
+import { breadcrumbs, tabs, actions, linkedTabs } from "./Header.dummy";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import React from "react";
-import { TabProvider } from "~/providers";
-import { Content } from "~/components/containers";
+import { TabProvider } from "~/Providers";
+import { Content } from "~/Components/Content";
 import { Box, Typography } from "@mui/material";
-import { TabPanel } from "~/components/navigation/tab-panel";
+import { TabPanel } from "~/Components/TabPanel";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Label } from "../label";
+import { Label } from "../Label";
 
 export default {
   title: "Components/Data Display/Header",

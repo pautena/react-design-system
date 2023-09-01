@@ -2,7 +2,7 @@
 
 **WORK IN PROGRESS**
 
-<img src="src/stories/assets/work-in-progress.jpg" width="200" height="180"/>
+<img src="src/Stories/Asssets/WorkInProgress.jpg" width="200" height="180"/>
 
 My custom design system on top of [MUI](https://mui.com/material-ui/), with a bunch of components to be able to fast prototype new pages and products
 

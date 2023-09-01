@@ -9,12 +9,12 @@ import {
   Tab,
   Button,
 } from "@mui/material";
-import { Link } from "../../navigation/link";
-import { useGetDefaultThemeColor } from "../../../utils";
-import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
-import { useTab } from "~/providers";
+import { Link } from "../Link";
+import { useGetDefaultThemeColor } from "~/Utils/Theme";
+import { HeaderComponent, HeaderPreset, HeaderProps } from "./Header.types";
+import { useTab } from "~/Providers";
 import { useLocation } from "react-router-dom";
-import { HeaderSubtitle, HeaderTitle } from "./header-title";
+import { HeaderSubtitle, HeaderTitle } from "./HeaderTitle";
 
 /**
  * Section used to explain give basic information about the page

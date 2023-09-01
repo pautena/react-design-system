@@ -4,7 +4,7 @@ import {
   ChipTypeMap,
 } from "@mui/material";
 import React from "react";
-import { TextField } from "../text-field";
+import { TextField } from "../TextField";
 
 export interface AutocompleteProps<
   T,

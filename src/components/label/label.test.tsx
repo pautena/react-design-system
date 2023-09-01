@@ -1,6 +1,6 @@
 import React from "react";
-import { Label, LabelVariant } from "./label";
-import { render, screen } from "~/tests/testing-library";
+import { Label, LabelVariant } from "./Label";
+import { render, screen } from "~/Tests/TestingLibrary";
 
 describe("Label", () => {
   const renderComponent = (variant: LabelVariant | undefined = undefined) => {

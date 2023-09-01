@@ -1,2 +1,2 @@
-export * from "./notification-center";
-export * from "./tab-provider";
+export * from "./NotificationCenter";
+export * from "./TabProvider";

@@ -1,7 +1,7 @@
 import React, { ReactElement } from "react";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "~/Tests/TestingLibrary";
 import userEvent from "@testing-library/user-event";
-import { Header } from "./header";
+import { Header } from "./Header";
 import { vi } from "vitest";
 import {
   HeaderAction,
@@ -9,13 +9,13 @@ import {
   HeaderBreadcrumb,
   HeaderPreset,
   HeaderTab,
-} from "./header.types";
-import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
-import { TabProvider } from "../../../providers";
-import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
+} from "./Header.types";
+import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./Header.dummy";
+import { TabProvider } from "~/Providers/TabProvider";
+import { WithLinkedTabs, WithPanelTabs } from "./Header.stories";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { Label } from "../label";
+import { Label } from "../Label";
 
 const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && vi.fn() }));
 

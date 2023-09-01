@@ -1,1 +1,1 @@
-export * from "./routing.hooks";
+export * from "./Routing.hooks";

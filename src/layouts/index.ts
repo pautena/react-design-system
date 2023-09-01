@@ -1,2 +1,2 @@
-export * from "./drawer-layout";
-export * from "./header-layout";
+export * from "./DrawerLayout";
+export * from "./HeaderLayout";

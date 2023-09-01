@@ -1,8 +1,8 @@
 import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { Placeholder, PlaceholderIconArgs } from "./placeholder";
+import { Placeholder, PlaceholderIconArgs } from "./Placeholder";
 import SearchIcon from "@mui/icons-material/Search";
-import { actions } from "./placeholder.mock";
+import { actions } from "./Placeholder.mock";
 
 export default {
   title: "Components/Placeholders/Placeholder",

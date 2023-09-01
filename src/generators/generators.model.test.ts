@@ -1,5 +1,5 @@
-import { createModelInstance, mockModel } from "./generators.mock";
-import { newInstanceFromValuesOrZeroValue } from "./generators.model";
+import { createModelInstance, mockModel } from "./Generators.mock";
+import { newInstanceFromValuesOrZeroValue } from "./Generators.model";
 
 describe("utilities", () => {
   describe("newInstanceFromValuesOrZeroValue", () => {

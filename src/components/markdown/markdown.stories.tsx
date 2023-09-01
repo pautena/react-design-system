@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Markdown } from "./markdown";
-import mockMarkdownContentFile from "~/tests/mocks/markdown.mock.md";
-import { mockMarkdownContent } from "~/tests/mocks/markdown.mock";
+import { Markdown } from "./Markdown";
+import mockMarkdownContentFile from "~/Tests/Mocks/Markdown.mock.md";
+import { mockMarkdownContent } from "~/Tests/Mocks/Markdown.mock";
 
 export default {
   title: "Components/Data Display/Markdown",

@@ -1,7 +1,7 @@
 import React from "react";
-import { render, screen } from "~/tests/testing-library";
-import { Board } from "./board";
-import { mockMarkdownContent } from "~/tests/mocks/markdown.mock";
+import { render, screen } from "~/Tests/TestingLibrary";
+import { Board } from "./Board";
+import { mockMarkdownContent } from "~/Tests/Mocks/Markdown.mock";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { Typography } from "@mui/material";

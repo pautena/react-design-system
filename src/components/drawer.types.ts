@@ -1,7 +1,8 @@
 import { FunctionComponent, ReactElement } from "react";
-import { BulletVariant, LabelVariant } from "../data-display";
 import { DrawerProps as MuiDrawerProps, Theme } from "@mui/material";
-import { DrawerAppBarProps } from "./drawer-app-bar";
+import { DrawerAppBarProps } from "./DrawerAppBar";
+import { LabelVariant } from "./Label";
+import { BulletVariant } from "./Bullet";
 
 export type DrawerVariant = "temporary" | "mini" | "persistent" | "clipped";
 export type DrawerState = "open" | "collapse" | "close";

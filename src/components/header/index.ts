@@ -1,3 +1,3 @@
-export * from "./header";
-export * from "./header.types";
-export * from "./header-title";
+export * from "./Header";
+export * from "./Header.types";
+export * from "./HeaderTitle";

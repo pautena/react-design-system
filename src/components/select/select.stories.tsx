@@ -1,8 +1,8 @@
 import { Box, MenuItem, useTheme } from "@mui/material";
 import { Meta, StoryObj } from "@storybook/react";
 import React, { ReactNode } from "react";
-import { withContainer } from "../../../storybook";
-import { Select, SelectProps, SelectSize } from "./select";
+import { withContainer } from "../../Storybook";
+import { Select, SelectProps, SelectSize } from "./Select";
 import { faker } from "@faker-js/faker";
 
 const baseArgs = {

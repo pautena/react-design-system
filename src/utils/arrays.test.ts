@@ -1,4 +1,4 @@
-import { newArrayWithSize } from "./arrays";
+import { newArrayWithSize } from "./Arrays";
 
 describe("newArrayWithSize", () => {
   it("would create a new array with size 3 filled with 5", () => {

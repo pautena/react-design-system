@@ -1,8 +1,9 @@
 import { Grid, Button, Typography, DialogContentText } from "@mui/material";
 import { Variant } from "@mui/material/styles/createTypography";
 import React, { ReactElement } from "react";
-import { ConfirmDialog, useDialog } from "~/components/dialogs";
-import { ActionHeader } from "./action-header";
+import { ActionHeader } from "./ActionHeader";
+import { useDialog } from "../DialogHooks";
+import { ConfirmDialog } from "../ConfirmDialog";
 
 export type ActionVariant = "primary" | "error" | "warning" | "success";
 

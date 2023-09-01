@@ -1,7 +1,7 @@
-import { Markdown } from "./markdown";
-import { render, screen } from "~/tests/testing-library";
+import { Markdown } from "./Markdown";
+import { render, screen } from "~/Tests/TestingLibrary";
 import React from "react";
-import { mockMarkdownContent } from "~/tests/mocks/markdown.mock";
+import { mockMarkdownContent } from "~/Tests/Mocks/Markdown.mock";
 
 describe.skip("Markdown", () => {
   const renderComponent = () => {

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { Action } from "./action";
+import { Action } from "./Action";
 import { loremIpsum } from "lorem-ipsum";
-import { withContainer } from "../../storybook";
+import { withContainer } from "../../Storybook";
 import { Box, Typography } from "@mui/material";
 import React from "react";
 

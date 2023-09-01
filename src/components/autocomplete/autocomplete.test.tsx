@@ -1,10 +1,10 @@
-import { render, screen } from "~/tests/testing-library";
-import { Autocomplete } from "./autocomplete";
+import { render, screen } from "~/Tests/TestingLibrary";
+import { Autocomplete } from "./Autocomplete";
 import { faker } from "@faker-js/faker";
 import React from "react";
-import { selectOption } from "~/tests/actions";
+import { selectOption } from "~/Tests/Actions";
 import userEvents from "@testing-library/user-event";
-import { expectProgressIndicator } from "~/tests/assertions";
+import { expectProgressIndicator } from "~/Tests/Assertions";
 import { vi } from "vitest";
 
 const options: string[] = [...faker.definitions.vehicle.model];

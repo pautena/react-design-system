@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "~/tests/testing-library";
-import { Action } from "./action";
+import { render, screen, fireEvent } from "~/Tests/TestingLibrary";
+import { Action } from "./Action";
 import { vi } from "vitest";
 import React from "react";
 

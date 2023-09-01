@@ -16,18 +16,12 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "typeRoots": ["./src/types"],
+    "typeRoots": ["src/types"],
     "baseUrl": ".",
     "paths": {
       "~/*": ["src/*"]
     }
   },
-  "include": [
-    "setupTests.ts",
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "src/components/feedback/feedback.stories.mdx",
-    "src/components/alerts/alerts.stories.mdx"
-  ],
+  "include": ["setupTests.ts", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["dist", "node_modules"]
 }

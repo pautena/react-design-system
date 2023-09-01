@@ -1,8 +1,8 @@
 import React, { ReactElement } from "react";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "~/Tests/TestingLibrary";
 import userEvent from "@testing-library/user-event";
-import { Placeholder, PlaceholderAction } from "./placeholder";
-import { actions as actionData } from "./placeholder.mock";
+import { Placeholder, PlaceholderAction } from "./Placeholder";
+import { actions as actionData } from "./Placeholder.mock";
 import SearchIcon from "@mui/icons-material/Search";
 import { vi } from "vitest";
 

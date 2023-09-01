@@ -1,4 +1,4 @@
-import { newBreakpointsCounter } from "./breakpoints";
+import { newBreakpointsCounter } from "./Breakpoints";
 
 describe("newBreakpointsCounter", () => {
   //TODO Write some tests to be able to debug/develop faster

@@ -11,9 +11,8 @@ import {
   paperClasses,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
-import { useDrawer } from "../drawer-provider/drawer-context";
-import { closedMixin, openedMixin } from "../drawer-provider/drawer-mixins";
+import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../Drawer.types";
+import { useDrawer, closedMixin, openedMixin } from "../DrawerProvider";
 
 export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",

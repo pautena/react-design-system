@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { blueGrey } from "@mui/material/colors";
 import React, { PropsWithChildren, ReactNode } from "react";
-import { Markdown } from "../markdown";
+import { Markdown } from "../Markdown";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export type BoardProps = PropsWithChildren<{
