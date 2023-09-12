@@ -7,7 +7,7 @@ import React from "react";
 import { TabProvider } from "~/tab-provider";
 import { Content } from "~/content";
 import { Box, Typography } from "@mui/material";
-import { TabPanel } from "src/tab-panel";
+import { TabPanel } from "~/tab-panel";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Label } from "~/label";
 

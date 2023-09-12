@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer, withMemoryRouter } from "../storybook";
+import { withContainer, withMemoryRouter } from "~/storybook";
 import { LinkCard } from "./link-card";
 
 export default {

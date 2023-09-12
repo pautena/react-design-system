@@ -3,7 +3,7 @@ import { Variant } from "@mui/material/styles/createTypography";
 import React, { ReactElement } from "react";
 import { ActionHeader } from "./action-header";
 import { ConfirmDialog } from "~/confirm-dialog";
-import { useDialog } from "src/dialog";
+import { useDialog } from "~/dialog";
 
 export type ActionVariant = "primary" | "error" | "warning" | "success";
 
