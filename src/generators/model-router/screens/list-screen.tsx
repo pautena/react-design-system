@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Content, Header, HeaderAction } from "~/components";
 import { TableList, TableRowOption } from "../../table-list";
 import { BasicModelInstance } from "../../generators.model";
 import { useNotifyWhenValueChanges } from "~/providers";
 import { HeaderLayout } from "../../../layouts";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
+import { Header, HeaderAction } from "~/header";
+import { Content } from "~/content";
 
 export interface ListScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

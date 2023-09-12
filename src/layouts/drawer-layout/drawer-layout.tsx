@@ -1,9 +1,7 @@
 import React, { ReactNode } from "react";
-import { DrawerAppBarElement, DrawerElement, DrawerMain } from "../../components/drawers";
-import {
-  DrawerProvider,
-  DrawerProviderProps,
-} from "../../components/drawers/drawer-provider/drawer.provider";
+import { DrawerProvider, DrawerProviderProps } from "~/drawer-provider";
+import { DrawerMain } from "~/drawer-main";
+import { DrawerAppBarElement, DrawerElement } from "~/drawer.types";
 
 export interface DrawerLayoutProps {
   drawerProviderProps?: DrawerProviderProps;

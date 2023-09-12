@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { RequestState } from "../model-router.types";
-import { Content, Header } from "~/components";
 import { HeaderLayout } from "~/layouts";
 import { BaseScreenProps } from "./screens.types";
 import { BasicModelInstance } from "../../generators.model";
 import { ObjectDetails } from "~/generators/object-details";
+import { Header } from "~/header";
+import { Content } from "~/content";
 
 export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

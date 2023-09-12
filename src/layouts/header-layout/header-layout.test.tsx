@@ -1,7 +1,8 @@
 import React from "react";
-import { HeaderLayout, HeaderLayoutError } from "./header-layout";
+import { HeaderLayout, HeaderLayoutError } from "~/layouts";
 import { render, screen } from "~/tests/testing-library";
-import { Content, Header } from "../../components";
+import { Content } from "~/content";
+import { Header } from "~/header";
 import { Typography } from "@mui/material";
 import { expectProgressIndicator } from "~/tests/assertions";
 

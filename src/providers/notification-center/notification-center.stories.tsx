@@ -3,7 +3,7 @@ import { Meta } from "@storybook/react";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import { useNotificationCenter } from "./notification-center.context";
 import { Button, Box } from "@mui/material";
-import { ContentPlaceholder } from "~/components";
+import { ContentPlaceholder } from "~/content-placeholder";
 
 const DummyError = {
   title: "Internal Server error",

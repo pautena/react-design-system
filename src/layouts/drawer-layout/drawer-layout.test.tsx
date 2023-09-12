@@ -2,9 +2,12 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "~/tests/assertions";
-import { Drawer, DrawerContent, DrawerAppBar, ContentPlaceholder } from "~/components";
-import { mockDrawerNavigation } from "~/components/drawers/drawer.mock";
-import { DrawerLayout } from "./drawer-layout";
+import { mockDrawerNavigation } from "~/drawer.mock";
+import { DrawerLayout } from "~/layouts";
+import { DrawerContent } from "~/drawer-content";
+import { Drawer } from "~/drawer";
+import { DrawerAppBar } from "~/drawer-app-bar";
+import { ContentPlaceholder } from "~/content-placeholder";
 
 describe("DrawerLayout", () => {
   const renderComponent = () => {

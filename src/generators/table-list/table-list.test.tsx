@@ -3,7 +3,7 @@ import { render } from "~/tests/testing-library";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { TableRowOption, TableList } from "./table-list";
-import { HeadCell } from "../../components/tables/enhanced-table";
+import { HeadCell } from "../../enhanced-table";
 import { BasicModelInstance } from "..";
 import { expectProgressIndicator } from "~/tests/assertions";
 import { Mock, vi } from "vitest";

@@ -1,5 +1,4 @@
 import React from "react";
-import { Header, Content } from "~/components";
 import { BasicModelInstance } from "../../generators.model";
 import { ModelForm } from "../../model-form";
 import { HeaderLayout } from "../../../layouts";
@@ -7,6 +6,8 @@ import { useNotifyWhenValueChanges } from "../../../providers";
 import { RequestState } from "../model-router.types";
 import { BaseScreenProps } from "./screens.types";
 import { useNavigateWhenValueChanges } from "../../../hooks";
+import { Header } from "~/header";
+import { Content } from "~/content";
 
 export interface AddScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

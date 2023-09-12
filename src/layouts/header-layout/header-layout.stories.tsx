@@ -1,15 +1,18 @@
 import React, { ReactElement } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { HeaderLayout, HeaderLayoutProps } from "./header-layout";
+import { HeaderLayout, HeaderLayoutProps } from "~/layouts";
 import { withLocalizationProvider, withMemoryRouter } from "~/storybook";
-import { withFullHeight } from "../../storybook";
-import { Content, Header, HeaderProps, HeaderTab, SkeletonGrid, TabPanel } from "../../components";
+import { withFullHeight } from "~/storybook";
 import { Box, Typography } from "@mui/material";
 import { useDemoData } from "@mui/x-data-grid-generator";
-import { ModelForm, ObjectDetails, TableList } from "../../generators";
-import { mockModel, createModelInstance } from "../../generators/generators.mock";
+import { ModelForm, ObjectDetails, TableList } from "~/generators";
+import { mockModel, createModelInstance } from "~/generators/generators.mock";
 import { action } from "@storybook/addon-actions";
 import { DataGrid } from "@mui/x-data-grid";
+import { Header, HeaderProps, HeaderTab } from "~/header";
+import { Content } from "~/content";
+import { SkeletonGrid } from "~/skeleton-grid";
+import { TabPanel } from "~/tab-panel";
 
 const breadcrumbs = [
   {
