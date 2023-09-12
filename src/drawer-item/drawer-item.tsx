@@ -1,6 +1,6 @@
 import React from "react";
 import { DrawerMenuItem } from "./drawer-menu-item";
-import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize } from "../drawer/drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
 import { useDrawer } from "../drawer-provider/drawer-context";
 

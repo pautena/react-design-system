@@ -11,7 +11,7 @@ import {
   paperClasses,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
+import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "./drawer.types";
 import { useDrawer } from "../drawer-provider/drawer-context";
 import { closedMixin, openedMixin } from "../drawer-provider/drawer-mixins";
 

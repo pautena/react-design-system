@@ -10,7 +10,7 @@ import {
   Theme,
 } from "@mui/material";
 import React, { ReactElement, useState, useRef } from "react";
-import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer/drawer.types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "./drawer-item";

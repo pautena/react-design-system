@@ -1,6 +1,6 @@
 import { List, useTheme } from "@mui/material";
 import React from "react";
-import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
+import { DrawerNavigationItem, DrawerSize } from "../drawer/drawer.types";
 import { DrawerSubheader } from "../drawer-subheader";
 import { DrawerItem } from "../drawer-item/drawer-item";
 import { useDrawer } from "../drawer-provider";

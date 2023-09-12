@@ -3,7 +3,7 @@ import { withActionRouter, withNotificationCenter } from "../../storybook";
 import { IdleRequest, LoadingRequest } from "../model-router.types";
 import { data } from "./templates";
 import { ListScreen } from "../screens";
-import { mockModel } from "../../generators.mock";
+import { mockModel } from "../../generators/generators.mock";
 
 export default {
   title: "Generators/ModelRouter/ListScreen",

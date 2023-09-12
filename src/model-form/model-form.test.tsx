@@ -8,7 +8,7 @@ import {
   mockModel,
   ReturnTimeFormat,
   TradeDateFormat,
-} from "../generators.mock";
+} from "../generators/generators.mock";
 import { vi } from "vitest";
 import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
 import {

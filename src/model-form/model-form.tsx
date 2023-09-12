@@ -6,7 +6,7 @@ import {
   BasicModelInstance,
   FieldType,
   newInstanceFromValuesOrZeroValue,
-} from "../generators.model";
+} from "../generators/generators.model";
 import { ModelFormField } from "./model-form-field";
 import { assocPath } from "ramda";
 

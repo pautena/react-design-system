@@ -11,7 +11,7 @@ import {
   mockModel,
   ReturnTimeFormat,
   TradeDateFormat,
-} from "~/generators.mock";
+} from "~/generators/generators.mock";
 import { NotificationCenterProvider } from "~/notification-center";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
@@ -36,7 +36,7 @@ import {
   expectModelFieldValue,
 } from "~/tests/assertions";
 import { mockConsoleWarn } from "~/tests/mocks";
-import { Model } from "~/generators.model";
+import { Model } from "~/generators/generators.model";
 import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
 
 const REQUEST_TIMEOUT = 20;

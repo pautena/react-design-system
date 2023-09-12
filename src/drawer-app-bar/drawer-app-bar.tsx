@@ -10,7 +10,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDrawer } from "../drawer-provider/drawer-context";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
-import { DrawerState, DrawerVariant } from "../drawer.types";
+import { DrawerState, DrawerVariant } from "../drawer/drawer.types";
 
 const moveWithDrawer: Record<DrawerVariant, boolean> = {
   temporary: false,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BootstrapDialog } from "../bootstrap-dialog";
-import { BootstrapDialogDialogProps } from "../dialog.types";
+import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
 import { TextField } from "@mui/material";
 
 type OmitBaseDialogProps =

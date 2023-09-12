@@ -7,7 +7,7 @@ import {
 } from "../../storybook";
 import { ModelRouter } from "../model-router";
 import { IdleRequest } from "../model-router.types";
-import { MockInstance, mockModel } from "../../generators.mock";
+import { MockInstance, mockModel } from "../../generators/generators.mock";
 import { HandlerFunction } from "@storybook/addon-actions";
 import { useState } from "react";
 import {

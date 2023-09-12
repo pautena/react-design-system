@@ -6,7 +6,7 @@ import { TableRowOption, TableList } from "./table-list";
 import { HeadCell } from "~/enhanced-table";
 import { expectProgressIndicator } from "~/tests/assertions";
 import { Mock, vi } from "vitest";
-import { BasicModelInstance } from "~/generators.model";
+import { BasicModelInstance } from "~/generators/generators.model";
 
 const columns: HeadCell<BasicModelInstance>[] = [
   {

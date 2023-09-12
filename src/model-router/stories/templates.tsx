@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { createModelInstance, MockInstance, mockModel } from "../../generators.mock";
+import { createModelInstance, MockInstance, mockModel } from "../../generators/generators.mock";
 import { IdleRequest } from "../model-router.types";
 
 export const onRequestListAction = action("Request list data");

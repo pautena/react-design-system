@@ -6,7 +6,7 @@ import { ObjectDetails } from "~/object-details";
 import { Header } from "~/header";
 import { Content } from "~/content";
 import { RequestState } from "~/model-router";
-import { BasicModelInstance } from "~/generators.model";
+import { BasicModelInstance } from "~/generators/generators.model";
 
 export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

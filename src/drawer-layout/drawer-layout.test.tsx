@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "~/tests/assertions";
-import { mockDrawerNavigation } from "~/drawer.mock";
+import { mockDrawerNavigation } from "~/drawer/drawer.mock";
 import { DrawerLayout } from "~/drawer-layout";
 import { DrawerContent } from "~/drawer-content";
 import { Drawer } from "~/drawer";

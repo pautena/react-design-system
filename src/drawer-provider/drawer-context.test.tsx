@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import React from "react";
 import { mockConsoleError } from "~/tests/mocks";
 import { DrawerContent } from "../drawer-content";
-import { mockDrawerNavigation } from "../drawer.mock";
+import { mockDrawerNavigation } from "../drawer/drawer.mock";
 import { UndefinedProvider } from "./drawer-context";
 import { Drawer } from "../drawer/drawer";
 import { render } from "~/tests/testing-library";

@@ -11,7 +11,7 @@ import {
 import { LoadingButton } from "@mui/lab";
 import CloseIcon from "@mui/icons-material/Close";
 import React from "react";
-import { BootstrapDialogDialogProps } from "../dialog.types";
+import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
 
 export const BootstrapDialog = ({
   open,

@@ -18,7 +18,7 @@ import {
   DrawerItemLabel,
   DrawerSize,
   getDrawerItemColors,
-} from "~/drawer.types";
+} from "~/drawer/drawer.types";
 import { Link } from "~/link";
 import { useDrawer } from "~/drawer-provider";
 

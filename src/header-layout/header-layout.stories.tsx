@@ -5,7 +5,7 @@ import { withLocalizationProvider, withMemoryRouter } from "~/storybook";
 import { withFullHeight } from "~/storybook";
 import { Box, Typography } from "@mui/material";
 import { useDemoData } from "@mui/x-data-grid-generator";
-import { mockModel, createModelInstance } from "~/generators.mock";
+import { mockModel, createModelInstance } from "~/generators/generators.mock";
 import { action } from "@storybook/addon-actions";
 import { DataGrid } from "@mui/x-data-grid";
 import { Header, HeaderProps, HeaderTab } from "~/header";

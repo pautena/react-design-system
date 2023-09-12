@@ -2,7 +2,7 @@ import React from "react";
 import { DrawerProvider, useDrawer } from "./index";
 import { render, screen } from "~/tests/testing-library";
 import { Box, Button, Typography } from "@mui/material";
-import { DrawerState, DrawerVariant } from "../drawer.types";
+import { DrawerState, DrawerVariant } from "../drawer/drawer.types";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 

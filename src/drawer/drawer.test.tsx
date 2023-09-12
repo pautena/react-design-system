@@ -3,8 +3,8 @@ import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { DrawerContent } from "../drawer-content";
 import { Drawer, DrawerProvider, useDrawer } from "../drawer-provider";
-import { mockDrawerNavigation } from "../drawer.mock";
-import { DrawerState, DrawerVariant } from "../drawer.types";
+import { mockDrawerNavigation } from "./drawer.mock";
+import { DrawerState, DrawerVariant } from "./drawer.types";
 import userEvent from "@testing-library/user-event";
 
 describe("Drawer", () => {

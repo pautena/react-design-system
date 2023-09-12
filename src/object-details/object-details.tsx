@@ -15,7 +15,7 @@ import {
   GroupInstanceType,
   Model,
   ModelField,
-} from "~/generators.model";
+} from "~/generators/generators.model";
 
 interface SingleDetailValueFactoryOptions {
   dense?: boolean;

@@ -3,7 +3,7 @@ import { useDemoData } from "@mui/x-data-grid-generator";
 import { Meta, StoryObj } from "@storybook/react";
 import { TableList, TableListProps } from "./table-list";
 import { action } from "@storybook/addon-actions";
-import { BasicModelInstance } from "~/generators.model";
+import { BasicModelInstance } from "~/generators/generators.model";
 
 const maxColumns = 3;
 

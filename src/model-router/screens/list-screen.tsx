@@ -5,7 +5,7 @@ import { HeaderLayout } from "~/header-layout";
 import { BaseScreenProps } from "./screens.types";
 import { Header, HeaderAction } from "~/header";
 import { Content } from "~/content";
-import { BasicModelInstance } from "~/generators.model";
+import { BasicModelInstance } from "~/generators/generators.model";
 import { RequestState } from "~/model-router";
 import { TableList, TableRowOption } from "~/table-list";
 
