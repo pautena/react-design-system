@@ -73,7 +73,7 @@ export type DrawerElement = ReactElement<DrawerProps, DrawerComponent>;
 
 export const getDrawerItemColors = (theme: Theme, selected: boolean | undefined) => ({
   color: selected ? theme.palette.primary.main : undefined,
-  fontWeight: selected ? theme.typography.fontWeightBold : theme.typography.fontWeightMedium
+  fontWeight: selected ? theme.typography.fontWeightBold : theme.typography.fontWeightMedium,
 });
 
 export type DrawerAppBarComponent = FunctionComponent<DrawerAppBarProps>;

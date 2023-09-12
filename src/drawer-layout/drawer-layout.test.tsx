@@ -3,7 +3,7 @@ import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "~/tests/assertions";
 import { mockDrawerNavigation } from "~/drawer.mock";
-import { DrawerLayout } from "~/layouts";
+import { DrawerLayout } from "~/drawer-layout";
 import { DrawerContent } from "~/drawer-content";
 import { Drawer } from "~/drawer";
 import { DrawerAppBar } from "~/drawer-app-bar";
@@ -18,7 +18,7 @@ describe("DrawerLayout", () => {
         </Drawer>
         <DrawerAppBar title="Lorem ipsum" />
         <ContentPlaceholder p={3} />
-      </DrawerLayout>,
+      </DrawerLayout>
     );
   };
 

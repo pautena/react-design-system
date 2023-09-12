@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { RequestState } from "../model-router.types";
-import { HeaderLayout } from "~/layouts";
+import { RequestState } from "~/generators";
+import { HeaderLayout } from "~/header-layout";
 import { BaseScreenProps } from "./screens.types";
-import { BasicModelInstance } from "../../generators.model";
+import { BasicModelInstance } from "~/generators";
 import { ObjectDetails } from "~/generators/object-details";
 import { Header } from "~/header";
 import { Content } from "~/content";

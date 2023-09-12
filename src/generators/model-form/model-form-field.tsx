@@ -9,7 +9,7 @@ import {
   MenuItem,
   ListItemText,
   TextField,
-  SelectChangeEvent
+  SelectChangeEvent,
 } from "@mui/material";
 import { DesktopDatePicker, TimePicker, DateTimePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, ReactElement } from "react";
@@ -27,13 +27,13 @@ export interface ModelFormField {
 }
 
 export const ModelFormField = ({
-                                 field,
-                                 path = [],
-                                 value,
-                                 dense,
-                                 update,
-                                 onChangeValue
-                               }: ModelFormField) => {
+  field,
+  path = [],
+  value,
+  dense,
+  update,
+  onChangeValue,
+}: ModelFormField) => {
   const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     onChangeValue([...path, e.target.name], e.target.checked);
@@ -53,7 +53,7 @@ export const ModelFormField = ({
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    type: ModelFieldTypes
+    type: ModelFieldTypes,
   ) => {
     e.preventDefault();
 
@@ -83,7 +83,7 @@ export const ModelFormField = ({
     sm,
     md,
     lg,
-    xl
+    xl,
   } = field;
   const disabled: boolean = !updatable && update;
 
@@ -182,8 +182,8 @@ export const ModelFormField = ({
         slotProps={
           {
             field: {
-              size
-            }
+              size,
+            },
           } as any
         }
         disabled={disabled}
@@ -199,8 +199,8 @@ export const ModelFormField = ({
         slotProps={
           {
             field: {
-              size
-            }
+              size,
+            },
           } as any
         }
         disabled={disabled}
@@ -216,8 +216,8 @@ export const ModelFormField = ({
         slotProps={
           {
             field: {
-              size
-            }
+              size,
+            },
           } as any
         }
         disabled={disabled}

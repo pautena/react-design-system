@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { HeaderLayout, HeaderLayoutProps } from "~/layouts";
+import { HeaderLayout, HeaderLayoutProps } from "~/header-layout";
 import { withLocalizationProvider, withMemoryRouter } from "~/storybook";
 import { withFullHeight } from "~/storybook";
 import { Box, Typography } from "@mui/material";

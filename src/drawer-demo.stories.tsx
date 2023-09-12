@@ -20,7 +20,7 @@ export default {
   title: "Components/Drawers/Drawer demo",
   decorators: [withMemoryRouter()],
   parameters: {
-    layout: "fullscreen"
+    layout: "fullscreen",
   },
   render: ({ initialState, variant, selectedItemId, underAppBar }) => (
     <DrawerProvider
@@ -37,58 +37,58 @@ export default {
         <ContentPlaceholder p={3} />
       </DrawerMain>
     </DrawerProvider>
-  )
+  ),
 } satisfies Meta<DrawerDemoArgs>;
 type Story = StoryObj<DrawerDemoArgs>;
 
 export const Temporary: Story = {
   args: {
     variant: "temporary",
-    selectedItemId: "item2.3.2"
-  }
+    selectedItemId: "item2.3.2",
+  },
 };
 
 export const TemporaryUnder: Story = {
   args: {
     ...Temporary.args,
     variant: "temporary",
-    underAppBar: true
-  }
+    underAppBar: true,
+  },
 };
 
 export const Persistent: Story = {
   args: {
     ...Temporary.args,
-    variant: "persistent"
-  }
+    variant: "persistent",
+  },
 };
 
 export const PersistentUnder: Story = {
   args: {
     ...Temporary.args,
     variant: "persistent",
-    underAppBar: true
-  }
+    underAppBar: true,
+  },
 };
 
 export const Clipped: Story = {
   args: {
     ...Temporary.args,
-    variant: "clipped"
-  }
+    variant: "clipped",
+  },
 };
 
 export const ClippedUnder: Story = {
   args: {
     ...Temporary.args,
     variant: "clipped",
-    underAppBar: true
-  }
+    underAppBar: true,
+  },
 };
 
 export const MiniDrawer: Story = {
   args: {
     ...Temporary.args,
-    variant: "mini"
-  }
+    variant: "mini",
+  },
 };

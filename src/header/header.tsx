@@ -9,10 +9,10 @@ import {
   Tab,
   Button,
 } from "@mui/material";
-import { Link } from "../link";
-import { useGetDefaultThemeColor } from "../utils";
+import { Link } from "~/link";
+import { useGetDefaultThemeColor } from "~/utils";
 import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
-import { useTab } from "~/providers";
+import { useTab } from "~/tab-provider";
 import { useLocation } from "react-router-dom";
 import { HeaderSubtitle, HeaderTitle } from "./header-title";
 

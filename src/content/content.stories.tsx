@@ -7,13 +7,13 @@ export default {
   title: "Components/Containers/Content",
   component: Content,
   parameters: {
-    layout: "fullscreen"
+    layout: "fullscreen",
   },
   render: () => (
     <Content>
       <SkeletonGrid />
     </Content>
-  )
+  ),
 } satisfies Meta<typeof Content>;
 type Story = StoryObj<typeof Content>;
 

@@ -3,8 +3,8 @@ import { DummyModelRouter, InternalModelRouter } from "./stories/model-router.st
 import { vi } from "vitest";
 import { data, data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
-import { getRandomItem } from "../../utils";
-import { Model } from "../generators.model";
+import { getRandomItem } from "~/utils";
+import { Model } from "~/generators";
 import {
   BirthDateFormat,
   createModelInstance,
@@ -13,13 +13,13 @@ import {
   ReturnTimeFormat,
   TradeDateFormat,
 } from "../generators.mock";
-import { NotificationCenterProvider } from "../../providers";
+import { NotificationCenterProvider } from "~/notification-center";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { fireEvent, render, screen, TestRouter } from "~/tests/testing-library";
 import { AddScreen, ListScreen, UpdateScreen } from "./screens";
-import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
+import { IdleRequest, LoadingRequest, SuccessRequest } from "~/generators";
 import {
   clearCheckbox,
   clearMultiSelect,

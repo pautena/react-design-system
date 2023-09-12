@@ -51,7 +51,9 @@ export * from "./value-base";
 export * from "./value-item";
 export * from "./value-label";
 export * from "./utils";
+export * from "./drawer-layout";
+export * from "./header-layout";
+export * from "./notification-center";
+export * from "./tab-provider";
 
-export * from "./layouts";
 export * from "./generators";
-export * from "./providers";

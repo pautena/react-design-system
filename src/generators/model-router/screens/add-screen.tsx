@@ -1,11 +1,11 @@
 import React from "react";
-import { BasicModelInstance } from "../../generators.model";
-import { ModelForm } from "../../model-form";
-import { HeaderLayout } from "../../../layouts";
-import { useNotifyWhenValueChanges } from "../../../providers";
-import { RequestState } from "../model-router.types";
+import { BasicModelInstance } from "~/generators";
+import { ModelForm } from "~/generators";
+import { HeaderLayout } from "~/header-layout";
+import { useNotifyWhenValueChanges } from "~/notification-center";
+import { RequestState } from "~/generators";
 import { BaseScreenProps } from "./screens.types";
-import { useNavigateWhenValueChanges } from "../../../hooks";
+import { useNavigateWhenValueChanges } from "~/hooks";
 import { Header } from "~/header";
 import { Content } from "~/content";
 

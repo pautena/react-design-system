@@ -4,12 +4,12 @@ import { withMemoryRouter } from "~/storybook";
 import { breadcrumbs, tabs, actions, linkedTabs } from "./header.dummy";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import React from "react";
-import { TabProvider } from "~/providers";
+import { TabProvider } from "~/tab-provider";
 import { Content } from "~/content";
 import { Box, Typography } from "@mui/material";
 import { TabPanel } from "src/tab-panel";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { Label } from "../label";
+import { Label } from "~/label";
 
 export default {
   title: "Components/Data Display/Header",

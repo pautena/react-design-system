@@ -11,7 +11,7 @@ import {
   HeaderTab,
 } from "./header.types";
 import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
-import { TabProvider } from "../providers";
+import { TabProvider } from "~/tab-provider";
 import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";

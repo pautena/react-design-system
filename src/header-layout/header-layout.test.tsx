@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderLayout, HeaderLayoutError } from "~/layouts";
+import { HeaderLayout, HeaderLayoutError } from "~/header-layout";
 import { render, screen } from "~/tests/testing-library";
 import { Content } from "~/content";
 import { Header } from "~/header";

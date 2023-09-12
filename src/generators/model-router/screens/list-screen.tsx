@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { TableList, TableRowOption } from "../../table-list";
-import { BasicModelInstance } from "../../generators.model";
-import { useNotifyWhenValueChanges } from "~/providers";
-import { HeaderLayout } from "../../../layouts";
-import { RequestState } from "../model-router.types";
+import { TableList, TableRowOption } from "~/generators";
+import { BasicModelInstance } from "~/generators";
+import { useNotifyWhenValueChanges } from "~/notification-center";
+import { HeaderLayout } from "~/header-layout";
+import { RequestState } from "~/generators";
 import { BaseScreenProps } from "./screens.types";
 import { Header, HeaderAction } from "~/header";
 import { Content } from "~/content";

@@ -8,7 +8,7 @@ import {
   SxProps,
   Theme,
   styled,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import { Bullet } from "~/bullet";
 import { Label } from "~/label";
@@ -17,7 +17,7 @@ import {
   DrawerItemBullet,
   DrawerItemLabel,
   DrawerSize,
-  getDrawerItemColors
+  getDrawerItemColors,
 } from "~/drawer.types";
 import { Link } from "~/link";
 import { useDrawer } from "~/drawer-provider";
@@ -70,31 +70,31 @@ export interface DrawerItemLinkProps {
 // @ts-ignore
 const StyledLink = styled(Link)(({ theme }) => {
   return {
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
   };
 });
 
 const sxCollapsedIcon = {
   minWidth: 0,
   justifyContent: "center",
-  marginRight: "auto"
+  marginRight: "auto",
 };
 
 /**
  * Clicable item inside a drawer
  */
 export const DrawerItemLink = ({
-                                 text,
-                                 icon,
-                                 avatar,
-                                 label,
-                                 bullet,
-                                 href,
-                                 selected,
-                                 size = "medium",
-                                 level,
-                                 sx
-                               }: DrawerItemLinkProps) => {
+  text,
+  icon,
+  avatar,
+  label,
+  bullet,
+  href,
+  selected,
+  size = "medium",
+  level,
+  sx,
+}: DrawerItemLinkProps) => {
   const { state } = useDrawer();
   const theme = useTheme();
   const { color, fontWeight } = getDrawerItemColors(theme, selected);
@@ -111,8 +111,8 @@ export const DrawerItemLink = ({
         pl: state === "open" ? theme.spacing(2 + 1.5 * level) : undefined,
         ...(state === "collapse" && {
           paddingHorizontal: theme.spacing(2.5),
-          justifyContent: "center"
-        })
+          justifyContent: "center",
+        }),
       }}
     >
       {icon && (
@@ -123,7 +123,7 @@ export const DrawerItemLink = ({
       {avatar && (
         <ListItemAvatar
           sx={{
-            ...(state === "collapse" && level === 0 && sxCollapsedIcon)
+            ...(state === "collapse" && level === 0 && sxCollapsedIcon),
           }}
         >
           <Avatar
@@ -131,7 +131,7 @@ export const DrawerItemLink = ({
             src={avatar.src}
             sx={{
               ...(size === "small" && { width: 24, height: 24 }),
-              ...(state === "collapse" && { width: 30, height: 30 })
+              ...(state === "collapse" && { width: 30, height: 30 }),
             }}
           />
         </ListItemAvatar>
