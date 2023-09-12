@@ -1,2 +1,2 @@
 export * from "./use-dialog";
-export * from './dialog.types'
+export * from "./dialog.types";

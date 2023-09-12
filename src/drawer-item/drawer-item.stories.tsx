@@ -3,7 +3,10 @@ import { withMemoryRouter } from "~/storybook";
 import { DrawerItem, DrawerItemProps } from "./drawer-item";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import React from "react";
-import { mockMenuDrawerNavigationItem, mockLinkNoIconDrawerNavigationItem } from "../drawer/drawer.mock";
+import {
+  mockMenuDrawerNavigationItem,
+  mockLinkNoIconDrawerNavigationItem,
+} from "../drawer/drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
 import { DrawerState } from "../drawer/drawer.types";
 
