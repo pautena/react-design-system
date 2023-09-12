@@ -7,8 +7,61 @@ import path from "path";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import packageJson from "./package.json";
+import { readdirSync } from "fs";
+import generatePackageJson from "rollup-plugin-generate-package-json";
+
+const ignoreFolders = ["stories", "tests", "types"];
 
 const projectRootDir = path.resolve(__dirname);
+const plugins = [
+  peerDepsExternal(),
+  resolve(),
+  commonjs(),
+  typescript({
+    tsconfig: "./tsconfig.rollup.json",
+  }),
+  terser(),
+  alias({
+    entries: [
+      {
+        find: "~",
+        replacement: path.resolve(projectRootDir, "src"),
+      },
+    ],
+  }),
+];
+
+const subfolderPlugins = (folderName) => [
+  ...plugins,
+  generatePackageJson({
+    baseContents: {
+      name: `${packageJson.name}/${folderName}`,
+      private: true,
+      main: "../cjs/index.js", // --> points to cjs format entry point of whole library
+      module: "./index.js", // --> points to esm format entry point of individual component
+      types: "./index.d.ts", // --> points to types definition file of individual component
+    },
+  }),
+];
+const getFolders = (source) =>
+  readdirSync(source, { withFileTypes: true })
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name)
+    .filter((name) => !ignoreFolders.includes(name));
+
+const folderBuilds = getFolders("./src").map((folder) => {
+  return {
+    input: `src/${folder}/index.ts`,
+    output: {
+      file: `dist/${folder}/index.js`,
+      sourcemap: true,
+      exports: "named",
+      format: "esm",
+    },
+    plugins: subfolderPlugins(folder),
+    external: ["react", "react-dom"],
+  };
+});
 
 export default [
   {
@@ -25,23 +78,7 @@ export default [
         sourcemap: true,
       },
     ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({
-        tsconfig: "./tsconfig.rollup.json",
-      }),
-      terser(),
-      alias({
-        entries: [
-          {
-            find: "~",
-            replacement: path.resolve(projectRootDir, "src"),
-          },
-        ],
-      }),
-    ],
+    plugins,
     external: ["react", "react-dom"],
   },
   {
@@ -49,4 +86,5 @@ export default [
     output: [{ file: "dist/index.d.ts", format: "esm" }],
     plugins: [dts()],
   },
+  ...folderBuilds,
 ];
