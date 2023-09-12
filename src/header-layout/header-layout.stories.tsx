@@ -5,14 +5,16 @@ import { withLocalizationProvider, withMemoryRouter } from "~/storybook";
 import { withFullHeight } from "~/storybook";
 import { Box, Typography } from "@mui/material";
 import { useDemoData } from "@mui/x-data-grid-generator";
-import { ModelForm, ObjectDetails, TableList } from "~/generators";
-import { mockModel, createModelInstance } from "~/generators/generators.mock";
+import { mockModel, createModelInstance } from "~/generators.mock";
 import { action } from "@storybook/addon-actions";
 import { DataGrid } from "@mui/x-data-grid";
 import { Header, HeaderProps, HeaderTab } from "~/header";
 import { Content } from "~/content";
 import { SkeletonGrid } from "~/skeleton-grid";
 import { TabPanel } from "~/tab-panel";
+import { TableList } from "~/table-list";
+import { ObjectDetails } from "~/object-details";
+import { ModelForm } from "~/model-form";
 
 const breadcrumbs = [
   {

@@ -4,7 +4,6 @@ import { vi } from "vitest";
 import { data, data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
 import { getRandomItem } from "~/utils";
-import { Model } from "~/generators";
 import {
   BirthDateFormat,
   createModelInstance,
@@ -12,14 +11,13 @@ import {
   mockModel,
   ReturnTimeFormat,
   TradeDateFormat,
-} from "../generators.mock";
+} from "~/generators.mock";
 import { NotificationCenterProvider } from "~/notification-center";
 import { Box } from "@mui/system";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { fireEvent, render, screen, TestRouter } from "~/tests/testing-library";
 import { AddScreen, ListScreen, UpdateScreen } from "./screens";
-import { IdleRequest, LoadingRequest, SuccessRequest } from "~/generators";
 import {
   clearCheckbox,
   clearMultiSelect,
@@ -38,6 +36,8 @@ import {
   expectModelFieldValue,
 } from "~/tests/assertions";
 import { mockConsoleWarn } from "~/tests/mocks";
+import { Model } from "~/generators.model";
+import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
 
 const REQUEST_TIMEOUT = 20;
 

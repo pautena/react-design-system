@@ -4,7 +4,7 @@ import {
   withLocalizationProvider,
   withMemoryRouter,
   withNotificationCenter,
-} from "../../../storybook";
+} from "../../storybook";
 import { ModelRouter } from "../model-router";
 import { IdleRequest } from "../model-router.types";
 import { MockInstance, mockModel } from "../../generators.mock";

@@ -1,14 +1,5 @@
 import React from "react";
 import { Grid } from "@mui/material";
-import {
-  ModelField,
-  GroupField,
-  Model,
-  BasicModelInstance,
-  GroupInstanceType,
-  ArrayGroupField,
-  ArrayInstanceType,
-} from "~/generators";
 import { newBreakpointsCounter } from "~/utils/breakpoints";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { ValueBoolean } from "~/value-boolean";
@@ -16,6 +7,15 @@ import { ValueDatetime } from "~/value-datetime";
 import { ValueText } from "~/value-text";
 import { GroupValueCard } from "~/group-value-card";
 import { ValueItem } from "~/value-item";
+import {
+  ArrayGroupField,
+  ArrayInstanceType,
+  BasicModelInstance,
+  GroupField,
+  GroupInstanceType,
+  Model,
+  ModelField,
+} from "~/generators.model";
 
 interface SingleDetailValueFactoryOptions {
   dense?: boolean;

@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/react";
 import { ObjectDetails } from "./object-details";
-import { withPadding } from "../../storybook";
+import { withPadding } from "../storybook";
 import { createModelInstance, mockModel } from "../generators.mock";
 
 const instance = createModelInstance(mockModel);

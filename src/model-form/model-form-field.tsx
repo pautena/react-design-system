@@ -14,8 +14,8 @@ import {
 import { DesktopDatePicker, TimePicker, DateTimePicker } from "@mui/x-date-pickers";
 import React, { ChangeEvent, ReactElement } from "react";
 import { useGetDefaultThemeColor } from "~/utils";
-import { ModelField, ArrayFieldType, FieldType, ModelFieldTypes } from "~/generators";
 import { GroupValueCard } from "~/group-value-card";
+import { ArrayFieldType, FieldType, ModelField, ModelFieldTypes } from "~/generators.model";
 
 export interface ModelFormField {
   field: ModelField;

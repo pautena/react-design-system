@@ -18,7 +18,7 @@ describe("DrawerLayout", () => {
         </Drawer>
         <DrawerAppBar title="Lorem ipsum" />
         <ContentPlaceholder p={3} />
-      </DrawerLayout>
+      </DrawerLayout>,
     );
   };
 

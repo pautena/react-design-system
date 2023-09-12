@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withActionRouter, withNotificationCenter } from "../../../storybook";
+import { withActionRouter, withNotificationCenter } from "../../storybook";
 import { IdleRequest, LoadingRequest } from "../model-router.types";
 import { data } from "./templates";
 import { ListScreen } from "../screens";

@@ -1,9 +1,9 @@
 import { AlertColor } from "@mui/material";
-import { BasicModelInstance, GroupInstanceType, ModelField } from "../generators";
 import { screen, waitForElementToBeRemoved } from "./testing-library";
 import { format } from "date-fns";
-import { MockInstance } from "../generators/generators.mock";
+import { MockInstance } from "~/generators.mock";
 import { Mock } from "vitest";
+import { BasicModelInstance, GroupInstanceType, ModelField } from "~/generators.model";
 
 export const expectContentPlaceholder = async () => {
   expect(await screen.findByTestId(/content-placeholder-test/i)).toBeInTheDocument();

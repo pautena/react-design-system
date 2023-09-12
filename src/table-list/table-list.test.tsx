@@ -3,10 +3,10 @@ import { render } from "~/tests/testing-library";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { TableRowOption, TableList } from "./table-list";
-import { HeadCell } from "../../enhanced-table";
-import { BasicModelInstance } from "..";
+import { HeadCell } from "~/enhanced-table";
 import { expectProgressIndicator } from "~/tests/assertions";
 import { Mock, vi } from "vitest";
+import { BasicModelInstance } from "~/generators.model";
 
 const columns: HeadCell<BasicModelInstance>[] = [
   {
