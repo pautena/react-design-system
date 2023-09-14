@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-const { resolve, join, basename } = require("path");
-const { readFile, writeFile, copy } = require("fs-extra");
+import { resolve, join, basename } from "path";
+import { readFile, writeFile, copy } from "fs-extra";
+
 const packagePath = process.cwd();
 const distPath = join(packagePath, "./dist");
 
