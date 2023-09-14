@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { ReactNode } from "react";
 
 export interface DialogAction {
   id: string;
@@ -7,7 +7,8 @@ export interface DialogAction {
   color?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning";
   onClick?: () => void;
 }
-export type BootstrapDialogDialogProps = PropsWithChildren<{
+
+export type BootstrapDialogDialogProps = {
   open: boolean;
   title: string;
   loading?: boolean;
@@ -26,4 +27,5 @@ export type BootstrapDialogDialogProps = PropsWithChildren<{
   onAccept?: () => void;
   component?: React.ElementType;
   componentProps?: any;
-}>;
+  children?: ReactNode | undefined;
+};

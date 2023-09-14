@@ -4,14 +4,15 @@
     "strict": true,
     "skipLibCheck": true,
     "jsx": "react",
-    "module": "ESNext",
-    "declaration": true,
-    "declarationDir": "types",
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
     "sourceMap": true,
     "rootDir": "src",
     "outDir": "dist",
+    "declaration": true,
+    "declarationDir": "dist",
     "moduleResolution": "node",
-    "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "typeRoots": ["./src/types"],
@@ -20,6 +21,7 @@
       "~/*": ["src/*"]
     }
   },
+  "include": ["src/**/*"],
   "exclude": [
     "dist",
     "types",
@@ -31,6 +33,8 @@
     "src/**/*.test-utils.tsx",
     "src/**/*.test.tsx",
     "src/**/*.stories.tsx",
-    "src/storybook.tsx"
+    "src/storybook.tsx",
+    "setupTests.ts",
+    "vitest.config.ts"
   ]
 }

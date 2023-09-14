@@ -10,11 +10,11 @@ import {
   Theme,
 } from "@mui/material";
 import React, { ReactElement, useState, useRef } from "react";
-import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer/drawer.types";
+import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "~/drawer";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "./drawer-item";
-import { useDrawer } from "../drawer-provider";
+import { useDrawer } from "~/drawer-provider";
 
 export interface DrawerMenuItemProps {
   /**
