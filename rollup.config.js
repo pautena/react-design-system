@@ -37,9 +37,9 @@ const subfolderPlugins = (folderName) => [
     baseContents: {
       name: `${packageJson.name}/${folderName}`,
       private: true,
-      main: "../cjs/index.js", // --> points to cjs format entry point of whole library
-      module: "./index.js", // --> points to esm format entry point of individual component
-      types: "./index.d.ts", // --> points to types definition file of individual component
+      main: "./cjs/index.js",
+      module: "./index.js",
+      types: "./index.d.ts",
     },
   }),
 ];
@@ -52,12 +52,20 @@ const getFolders = (source) =>
 const folderBuilds = getFolders("./src").map((folder) => {
   return {
     input: `src/${folder}/index.ts`,
-    output: {
-      file: `dist/${folder}/index.js`,
-      sourcemap: true,
-      exports: "named",
-      format: "esm",
-    },
+    output: [
+      {
+        file: `dist/${folder}/cjs/index.js`,
+        format: "cjs",
+        sourcemap: true,
+        exports: "named",
+      },
+      {
+        file: `dist/${folder}/index.js`,
+        sourcemap: true,
+        exports: "named",
+        format: "esm",
+      },
+    ],
     plugins: subfolderPlugins(folder),
     external: ["react", "react-dom"],
   };
