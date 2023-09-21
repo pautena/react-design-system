@@ -2708,7 +2708,7 @@
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
-"@mui/x-data-grid@6.14.0":
+"@mui/x-data-grid@6.14.0", "@mui/x-data-grid@^6.9.0":
   version "6.14.0"
   resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.14.0.tgz#93613d264da07953c556dc9d3af974c8b6e46933"
   integrity sha512-EMkPT0YQsjqfH8f/UpPscpPFlywWuyrkS6aaB90t821Z6khoheFS1XeKbCa3L6byC/fwt1cAmIljlh8xJxIueg==
@@ -2716,17 +2716,6 @@
     "@babel/runtime" "^7.22.15"
     "@mui/utils" "^5.14.8"
     clsx "^2.0.0"
-    prop-types "^15.8.1"
-    reselect "^4.1.8"
-
-"@mui/x-data-grid@^6.9.0":
-  version "6.10.1"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-6.10.1.tgz#cd79bd326cffff0bb368b8230fd690574e95ab32"
-  integrity sha512-CulrMp8K9os1d4mCPidotE/oYhgYlWoz+hpQs/OI8gD/dB+A7VJEjG5yEgYqH04jGl1ne9zLg4p6oEu55VJhYQ==
-  dependencies:
-    "@babel/runtime" "^7.22.6"
-    "@mui/utils" "^5.13.7"
-    clsx "^1.2.1"
     prop-types "^15.8.1"
     reselect "^4.1.8"
 
