@@ -1,8 +1,8 @@
-import React from "react";
-import { TableCell, TableRow } from "@mui/material";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import { EnhancedRemoteTable } from "./enhanced-remote-table";
-import { HeadCell, Order } from "../enhanced-table/enhanced-table-head";
-import { Data } from "../enhanced-table/enhanced-table.mock";
+import { HeadCell, Order } from "~/enhanced-table";
+import { Data } from "~/enhanced-table/enhanced-table.mock";
 
 export interface EnhancedRemoteDummyTableProps {
   data: Data[];

@@ -1,4 +1,3 @@
-import React from "react";
 import { Bullet, BulletVariant } from "./bullet";
 import { render, screen } from "~/tests/testing-library";
 

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Header } from "./header";
@@ -13,9 +13,9 @@ import {
 import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
 import { TabProvider } from "~/tab-provider";
 import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
-import { Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import { Label } from "../label";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import { Label } from "~/label";
 
 const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && vi.fn() }));
 

@@ -1,8 +1,8 @@
-import React from "react";
 import { Meta } from "@storybook/react";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import { useNotificationCenter } from "./notification-center.context";
-import { Button, Box } from "@mui/material";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import { ContentPlaceholder } from "~/content-placeholder";
 
 const DummyError = {

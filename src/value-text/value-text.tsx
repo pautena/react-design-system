@@ -1,5 +1,6 @@
-import { Typography, TextField } from "@mui/material";
-import React, { useEffect, useRef } from "react";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import { useEffect, useRef } from "react";
 import {
   BaseValueProps,
   DefaultPlaceholder,
@@ -7,8 +8,8 @@ import {
   useEditableValueDisplay,
   ValueEditButton,
   ValueEditButtons,
-} from "../value-base";
-import { getValueContentLabelId, ValueContent } from "../value-content";
+} from "~/value-base";
+import { getValueContentLabelId, ValueContent } from "~/value-content";
 
 export type ValueTextProps = BaseValueProps<string | number> & EditableValueProps<string>;
 

@@ -1,14 +1,10 @@
-import React from "react";
-import {
-  Breadcrumbs,
-  Typography,
-  Container,
-  useTheme,
-  Box,
-  Tabs,
-  Tab,
-  Button,
-} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Button from "@mui/material/Button";
 import { Link } from "~/link";
 import { useGetDefaultThemeColor } from "~/utils";
 import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";

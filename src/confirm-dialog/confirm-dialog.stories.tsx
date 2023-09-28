@@ -1,7 +1,6 @@
-import { DialogContentText } from "@mui/material";
+import DialogContentText from "@mui/material/DialogContentText";
 import { Meta, StoryObj } from "@storybook/react";
 import { loremIpsum } from "lorem-ipsum";
-import React from "react";
 import { StoryDialogManager } from "~/storybook";
 import { ConfirmDialog } from "./confirm-dialog";
 

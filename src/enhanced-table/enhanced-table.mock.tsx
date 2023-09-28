@@ -1,6 +1,6 @@
-import React from "react";
 import { EnhancedTable } from "./index";
-import { TableCell, TableRow } from "@mui/material";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import { HeadCell, Order } from "./enhanced-table-head";
 
 export const columns: HeadCell<Data>[] = [

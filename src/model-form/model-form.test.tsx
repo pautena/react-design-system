@@ -1,4 +1,3 @@
-import React from "react";
 import { ModelForm } from "./model-form";
 import { fireEvent, render, screen } from "~/tests/testing-library";
 import {
@@ -8,7 +7,7 @@ import {
   mockModel,
   ReturnTimeFormat,
   TradeDateFormat,
-} from "../generators/generators.mock";
+} from "~/generators/generators.mock";
 import { vi } from "vitest";
 import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
 import {

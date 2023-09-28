@@ -1,7 +1,6 @@
-import React from "react";
 import { Link as RouterLink, LinkProps as RouterLinkProps } from "react-router-dom";
 import { forwardRef } from "react";
-import { LinkProps, Link as MuiLink } from "@mui/material";
+import MuiLink, { LinkProps } from "@mui/material/Link";
 
 /* eslint-disable react/display-name, @typescript-eslint/no-explicit-any */
 export const LinkBehaviour = forwardRef<

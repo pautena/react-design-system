@@ -1,6 +1,7 @@
-import { GridProps, Grid, Box } from "@mui/material";
+import Grid, { GridProps } from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 import { ResponsiveStyleValue } from "@mui/system";
-import React, { PropsWithChildren, FunctionComponent, ReactElement } from "react";
+import { PropsWithChildren, FunctionComponent, ReactElement } from "react";
 import { useGetDefaultThemeColor } from "~/utils";
 
 export type ValueItemProps = PropsWithChildren<

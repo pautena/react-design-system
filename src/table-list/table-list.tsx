@@ -1,8 +1,12 @@
-import { TableRow, TableCell, IconButton, MenuItem, Menu } from "@mui/material";
-import React from "react";
-import { EnhancedTable, HeadCell, Order } from "../enhanced-table";
+import TableRow from "@mui/material/TableRow";
+import TableCell from "@mui/material/TableCell";
+import IconButton from "@mui/material/IconButton";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import { EnhancedTable, HeadCell, Order } from "~/enhanced-table";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { BasicModelInstance } from "../generators/generators.model";
+import { BasicModelInstance } from "~/generators";
+import { useState } from "react";
 
 const OptionsId = "__options";
 
@@ -44,9 +48,7 @@ export const TableList = <T extends BasicModelInstance>({
       sort: false,
     },
   ];
-  const [anchorMenuEl, setAnchorMenuEl] = React.useState<null | { item: T; anchor: HTMLElement }>(
-    null,
-  );
+  const [anchorMenuEl, setAnchorMenuEl] = useState<null | { item: T; anchor: HTMLElement }>(null);
 
   return (
     <>

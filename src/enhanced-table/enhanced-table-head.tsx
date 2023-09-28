@@ -1,5 +1,8 @@
-import React from "react";
-import { TableSortLabel, TableRow, Box, TableCell, TableHead } from "@mui/material";
+import TableSortLabel from "@mui/material/TableSortLabel";
+import TableRow from "@mui/material/TableRow";
+import Box from "@mui/material/Box";
+import TableCell from "@mui/material/TableCell";
+import TableHead from "@mui/material/TableHead";
 import { visuallyHidden } from "@mui/utils";
 
 export type Order = "asc" | "desc";

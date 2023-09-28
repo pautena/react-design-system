@@ -1,5 +1,5 @@
-import { Box, LinearProgress } from "@mui/material";
-import React from "react";
+import Box from "@mui/material/Box";
+import LinearProgress from "@mui/material/LinearProgress";
 import { LoadingArea } from "~/loading-area";
 import { TabProvider } from "~/tab-provider";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";

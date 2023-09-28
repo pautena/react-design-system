@@ -1,6 +1,5 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { BasicModelInstance } from "../generators/generators.model";
+import { BasicModelInstance } from "~/generators";
 import {
   AddScreen,
   AddScreenProps,

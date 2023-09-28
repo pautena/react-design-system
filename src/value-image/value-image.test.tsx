@@ -1,7 +1,6 @@
-import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { ValueImage } from "./value-image";
-import workInProgressImg from "../stories/assets/work-in-progress.jpg";
+import workInProgressImg from "~/stories/assets/work-in-progress.jpg";
 
 describe("ValueImage", () => {
   const renderComponent = () => {

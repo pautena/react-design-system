@@ -1,5 +1,5 @@
-import { Box, SxProps, Theme, useTheme } from "@mui/material";
-import React from "react";
+import Box from "@mui/material/Box";
+import { SxProps, Theme, useTheme } from "@mui/material/styles";
 
 export type LabelVariant =
   | "primary"

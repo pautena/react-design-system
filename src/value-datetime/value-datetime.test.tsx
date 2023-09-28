@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { EditInputType, ValueDatetime } from "./value-datetime";
 import userEvent from "@testing-library/user-event";

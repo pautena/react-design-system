@@ -1,7 +1,6 @@
-import { fireEvent, render, screen, waitFor } from "~/tests/testing-library";
+import { fireEvent, render, screen } from "~/tests/testing-library";
 import { DateRangeCalendar } from "./date-range-calendar";
 import { vi } from "vitest";
-import React from "react";
 import { differenceInCalendarDays, format, addDays, subDays } from "date-fns";
 
 describe("DateRangeCalendar", () => {

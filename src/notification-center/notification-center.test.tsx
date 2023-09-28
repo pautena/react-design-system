@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import userEvent from "@testing-library/user-event";
-import { AlertColor, Box, Button } from "@mui/material";
+import { AlertColor } from "@mui/material/Alert";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 import { render, screen, waitForElementToBeRemoved } from "~/tests/testing-library";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import { vi } from "vitest";

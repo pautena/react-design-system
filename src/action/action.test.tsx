@@ -1,7 +1,6 @@
 import { render, screen, fireEvent } from "~/tests/testing-library";
 import { Action } from "./action";
 import { vi } from "vitest";
-import React from "react";
 
 describe("Action", () => {
   const renderComponent = ({

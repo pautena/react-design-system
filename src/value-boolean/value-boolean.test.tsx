@@ -1,4 +1,3 @@
-import React from "react";
 import { ValueBoolean } from "./value-boolean";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";

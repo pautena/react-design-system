@@ -1,7 +1,9 @@
-import { Box, MenuItem, useTheme } from "@mui/material";
+import Box from "@mui/material/Box";
+import MenuItem from "@mui/material/MenuItem";
+import { useTheme } from "@mui/material/styles";
 import { Meta, StoryObj } from "@storybook/react";
-import React, { ReactNode } from "react";
-import { withContainer } from "../storybook";
+import { ReactNode } from "react";
+import { withContainer } from "~/storybook";
 import { Select, SelectProps, SelectSize } from "./select";
 import { faker } from "@faker-js/faker";
 

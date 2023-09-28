@@ -1,13 +1,8 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import {
-  withLocalizationProvider,
-  withMemoryRouter,
-  withNotificationCenter,
-} from "../../storybook";
-import { ModelRouter } from "../model-router";
-import { IdleRequest } from "../model-router.types";
-import { MockInstance, mockModel } from "../../generators/generators.mock";
+import { withLocalizationProvider, withMemoryRouter, withNotificationCenter } from "~/storybook";
+import { ModelRouter } from "~/model-router";
+import { IdleRequest } from "~/model-router";
+import { MockInstance, mockModel } from "~/generators/generators.mock";
 import { HandlerFunction } from "@storybook/addon-actions";
 import { useState } from "react";
 import {
@@ -21,7 +16,9 @@ import {
   REQUEST_TIMEOUT,
 } from "./templates";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 export interface DummyModelRouterProps {
   requestTimeout: number;

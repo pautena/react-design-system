@@ -1,4 +1,3 @@
-import React from "react";
 import { PropsWithChildren, useState } from "react";
 import { TabContextProvider } from "./tab-provider.context";
 

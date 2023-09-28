@@ -1,21 +1,14 @@
-import {
-  autocompleteClasses,
-  CircularProgress,
-  circularProgressClasses,
-  FormControl,
-  FormHelperText,
-  iconButtonClasses,
-  InputAdornment,
-  InputLabel,
-  inputLabelClasses,
-  LinearProgress,
-  linearProgressClasses,
-  OutlinedInput,
-  outlinedInputClasses,
-  TextFieldProps as MuiTextFieldProps,
-} from "@mui/material";
-import { unstable_useId as useId } from "@mui/utils";
-import React from "react";
+import { TextFieldProps as MuiTextFieldProps } from "@mui/material/TextField";
+import CircularProgress, { circularProgressClasses } from "@mui/material/CircularProgress";
+import FormControl from "@mui/material/FormControl";
+import FormHelperText from "@mui/material/FormHelperText";
+import { iconButtonClasses } from "@mui/material/IconButton";
+import LinearProgress, { linearProgressClasses } from "@mui/material/LinearProgress";
+import OutlinedInput, { outlinedInputClasses } from "@mui/material/OutlinedInput";
+import InputLabel, { inputLabelClasses } from "@mui/material/InputLabel";
+import InputAdornment from "@mui/material/InputAdornment";
+import { autocompleteClasses } from "@mui/material/Autocomplete";
+import useId from "@mui/utils/useId";
 
 export type TextFieldProps = MuiTextFieldProps & {
   fetching?: boolean;

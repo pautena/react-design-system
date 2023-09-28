@@ -1,4 +1,3 @@
-import React from "react";
 import { HeaderLayout } from "~/header-layout";
 import { useNotifyWhenValueChanges } from "~/notification-center";
 import { BaseScreenProps } from "./screens.types";

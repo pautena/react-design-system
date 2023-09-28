@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { BootstrapDialog } from "../bootstrap-dialog";
-import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
-import { TextField } from "@mui/material";
+import { useState } from "react";
+import { BootstrapDialog } from "~/bootstrap-dialog";
+import { BootstrapDialogDialogProps } from "~/dialog/dialog.types";
+import TextField from "@mui/material/TextField";
 
 type OmitBaseDialogProps =
   | "cancelable"

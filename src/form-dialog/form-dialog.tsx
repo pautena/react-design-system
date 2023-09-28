@@ -1,7 +1,6 @@
-import { BootstrapDialog } from "../bootstrap-dialog";
+import { BootstrapDialog } from "~/bootstrap-dialog";
 import { FormEvent } from "react";
-import React from "react";
-import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
+import { BootstrapDialogDialogProps } from "~/dialog";
 import { getFormData } from "~/utils/forms";
 
 type OmitBaseDialogProps =

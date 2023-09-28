@@ -1,5 +1,4 @@
 import { render, screen } from "~/tests/testing-library";
-import React from "react";
 import { GroupValueCardDummy } from "./group-value-card.mock";
 import { LoremIpsumPlaceholder } from "~/lorem-ipsum-placeholder";
 

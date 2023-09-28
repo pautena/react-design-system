@@ -1,14 +1,13 @@
-import { Box, TextField, Typography } from "@mui/material";
-import React from "react";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import { format } from "date-fns";
-import {
-  BaseValueProps,
-  DefaultPlaceholder,
-  EditableValueProps,
-} from "../value-base/value-displays.types";
-import { getValueContentLabelId, ValueContent } from "../value-content";
-import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "../value-base";
-import { DatePicker, DateTimePicker, TimePicker } from "@mui/x-date-pickers";
+import { BaseValueProps, DefaultPlaceholder, EditableValueProps } from "~/value-base";
+import { getValueContentLabelId, ValueContent } from "~/value-content";
+import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "~/value-base";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 
 export type EditInputType = "datetime" | "date" | "time";
 

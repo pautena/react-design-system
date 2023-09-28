@@ -1,9 +1,10 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { HeaderLayout, HeaderLayoutProps } from "~/header-layout";
 import { withLocalizationProvider, withMemoryRouter } from "~/storybook";
 import { withFullHeight } from "~/storybook";
-import { Box, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { mockModel, createModelInstance } from "~/generators/generators.mock";
 import { action } from "@storybook/addon-actions";

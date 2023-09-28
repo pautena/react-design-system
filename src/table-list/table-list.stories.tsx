@@ -1,4 +1,3 @@
-import React from "react";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import { Meta, StoryObj } from "@storybook/react";
 import { TableList, TableListProps } from "./table-list";

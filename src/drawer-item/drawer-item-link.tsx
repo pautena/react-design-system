@@ -1,15 +1,10 @@
-import React, { ReactElement } from "react";
-import {
-  Avatar,
-  ListItemAvatar,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  SxProps,
-  Theme,
-  styled,
-  useTheme,
-} from "@mui/material";
+import { ReactElement } from "react";
+import Avatar from "@mui/material/Avatar";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import { SxProps, Theme, styled, useTheme } from "@mui/material/styles";
 import { Bullet } from "~/bullet";
 import { Label } from "~/label";
 import {

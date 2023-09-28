@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../storybook";
+import { withContainer } from "~/storybook";
 import { ListPanel } from "./list-panel";
-import React from "react";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { ListPanelPanel } from "./list-panel-panel";
 import { ListPanelDemoContent, mockItemsLong, mockItemsShort } from "./list-panel.mocks";
 

@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Snackbar, Alert, AlertTitle } from "@mui/material";
-import React, { PropsWithChildren } from "react";
+import { useState, PropsWithChildren } from "react";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import { Notification, NotificationCenterContext } from "./notification-center.context";
 
 export type NotificationCenterProviderProps = PropsWithChildren<{

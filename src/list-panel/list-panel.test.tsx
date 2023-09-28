@@ -1,9 +1,8 @@
 import { fireEvent, render, screen } from "~/tests/testing-library";
 import { ListPanel, ListPanelItem } from "./list-panel";
 import { ListPanelDemoContent, mockItemsShort } from "./list-panel.mocks";
-import React from "react";
 import { ListPanelPanel } from "./list-panel-panel";
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { vi } from "vitest";
 
 describe("ListPanel", () => {

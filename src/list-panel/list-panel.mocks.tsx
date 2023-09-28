@@ -1,7 +1,6 @@
-import { Box } from "@mui/material";
+import Box from "@mui/material/Box";
 import { ListPanelItem } from "./list-panel";
 import { useListPanel } from "./list-panel.context";
-import React from "react";
 
 export const ListPanelDemoContent = () => {
   const selectedId = useListPanel();

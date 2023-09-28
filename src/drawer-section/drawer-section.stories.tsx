@@ -1,10 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSection, DrawerSectionProps } from "./drawer-section";
 import { withMemoryRouter } from "~/storybook";
-import { mockMenuDrawerNavigationSection } from "../drawer/drawer.mock";
-import { DrawerProvider } from "../drawer-provider";
-import React from "react";
-import { DrawerState } from "../drawer/drawer.types";
+import { mockMenuDrawerNavigationSection } from "~/drawer/drawer.mock";
+import { DrawerProvider } from "~/drawer-provider";
+import { DrawerState } from "~/drawer";
 
 type DrawerSectionArgs = DrawerSectionProps & {
   initialState?: DrawerState;

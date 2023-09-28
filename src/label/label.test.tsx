@@ -1,4 +1,3 @@
-import React from "react";
 import { Label, LabelVariant } from "./label";
 import { render, screen } from "~/tests/testing-library";
 

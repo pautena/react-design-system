@@ -1,5 +1,5 @@
-import { CircularProgress, Box } from "@mui/material";
-import React from "react";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 /**
  * Displays a centered loading indicator

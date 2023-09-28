@@ -1,5 +1,11 @@
-import { Grid, List, ListItemButton, ListItemText, Paper, Tooltip, useTheme } from "@mui/material";
-import React, { PropsWithChildren, useState } from "react";
+import Grid from "@mui/material/Grid";
+import List from "@mui/material/List";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import Paper from "@mui/material/Paper";
+import Tooltip from "@mui/material/Tooltip";
+import { useTheme } from "@mui/material";
+import { PropsWithChildren, useState } from "react";
 import { useGetDefaultThemeColor } from "~/utils";
 import { ListPanelContextProvider } from "./list-panel.context";
 import { grey } from "@mui/material/colors";

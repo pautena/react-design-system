@@ -1,6 +1,5 @@
 import { Markdown } from "./markdown";
 import { render, screen } from "~/tests/testing-library";
-import React from "react";
 import { mockMarkdownContent } from "~/tests/mocks/markdown.mock";
 
 describe.skip("Markdown", () => {

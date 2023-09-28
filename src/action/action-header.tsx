@@ -1,6 +1,6 @@
-import { Typography, useTheme } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 import { Variant } from "@mui/material/styles/createTypography";
-import React from "react";
 
 type ActionVariant = "primary" | "error" | "warning" | "success";
 

@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
-import { Button, IconButton, InputAdornment, SxProps, Theme, useTheme } from "@mui/material";
+import { SxProps, Theme, useTheme } from "@mui/material/styles";
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
 import EditIcon from "@mui/icons-material/Edit";
 
 export interface ValueEditButtonsProps {

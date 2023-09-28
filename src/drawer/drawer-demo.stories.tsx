@@ -1,13 +1,12 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { DrawerContent } from "../drawer-content";
+import { DrawerContent } from "~/drawer-content";
 import { withMemoryRouter } from "~/storybook";
 import { Drawer, DrawerProvider } from "../drawer-provider";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { ContentPlaceholder } from "~/content-placeholder";
 import { DrawerState, DrawerVariant } from "./drawer.types";
-import { DrawerAppBar } from "../drawer-app-bar";
-import { DrawerMain } from "../drawer-main";
+import { DrawerAppBar } from "~/drawer-app-bar";
+import { DrawerMain } from "~/drawer-main";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;

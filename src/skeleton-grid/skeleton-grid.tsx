@@ -1,7 +1,6 @@
-import { Grid } from "@mui/material";
-import React from "react";
+import Grid from "@mui/material/Grid";
 import { newArrayWithSize } from "~/utils";
-import { SkeletonCard } from "../skeleton-card";
+import { SkeletonCard } from "~/skeleton-card";
 
 export interface SkeletonGridProps {
   size?: number;

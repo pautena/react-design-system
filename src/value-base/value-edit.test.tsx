@@ -1,6 +1,5 @@
 import { render, screen } from "~/tests/testing-library";
 import { ValueEditButton, ValueEditButtons } from "./value-edit";
-import React from "react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 

@@ -1,8 +1,8 @@
-import { Box, Rating } from "@mui/material";
-import React from "react";
-import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "../value-base";
-import { BaseValueProps, EditableValueProps } from "../value-base/value-displays.types";
-import { getValueContentLabelId, ValueContent } from "../value-content";
+import Box from "@mui/material/Box";
+import Rating from "@mui/material/Rating";
+import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "~/value-base";
+import { BaseValueProps, EditableValueProps } from "~/value-base";
+import { getValueContentLabelId, ValueContent } from "~/value-content";
 
 export type ValueRatingProps = BaseValueProps<number> & {
   maxRating?: number;

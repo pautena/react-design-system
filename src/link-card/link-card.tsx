@@ -1,6 +1,7 @@
-import { Paper, SxProps, Theme, Typography, useTheme } from "@mui/material";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import { SxProps, Theme, useTheme } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
-import React from "react";
 import { Link } from "~/link";
 
 export type LinkCardVariant = "primary" | "secondary" | "info" | "warning" | "error";

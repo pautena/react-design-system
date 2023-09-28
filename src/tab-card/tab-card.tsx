@@ -1,5 +1,9 @@
-import { Paper, Tabs, Tab, styled, Box } from "@mui/material";
-import React, { PropsWithChildren, ReactElement, SyntheticEvent, useState } from "react";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+import { PropsWithChildren, ReactElement, SyntheticEvent, useState } from "react";
 import { TabCardContextProvider } from "./tab-card.context";
 import { useGetDefaultThemeColor } from "~/utils";
 

@@ -1,7 +1,6 @@
 import { render, screen } from "~/tests/testing-library";
 import { Autocomplete } from "./autocomplete";
 import { faker } from "@faker-js/faker";
-import React from "react";
 import { selectOption } from "~/tests/actions";
 import userEvents from "@testing-library/user-event";
 import { expectProgressIndicator } from "~/tests/assertions";

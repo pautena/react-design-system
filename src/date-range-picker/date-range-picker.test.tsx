@@ -1,14 +1,6 @@
-import {
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from "~/tests/testing-library";
+import { fireEvent, render, screen } from "~/tests/testing-library";
 import { DateRangePicker } from "./date-range-picker";
 import { vi } from "vitest";
-import React from "react";
-import userEvent from "@testing-library/user-event";
 
 describe("DateRangePicker", () => {
   const renderComponent = () => {

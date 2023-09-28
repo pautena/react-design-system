@@ -1,9 +1,9 @@
-import { List, useTheme } from "@mui/material";
-import React from "react";
-import { DrawerNavigationItem, DrawerSize } from "../drawer/drawer.types";
-import { DrawerSubheader } from "../drawer-subheader";
-import { DrawerItem } from "../drawer-item/drawer-item";
-import { useDrawer } from "../drawer-provider";
+import List from "@mui/material/List";
+import { useTheme } from "@mui/material/styles";
+import { DrawerNavigationItem, DrawerSize } from "~/drawer";
+import { DrawerSubheader } from "~/drawer-subheader";
+import { DrawerItem } from "~/drawer-item";
+import { useDrawer } from "~/drawer-provider";
 
 export interface DrawerSectionProps {
   /**

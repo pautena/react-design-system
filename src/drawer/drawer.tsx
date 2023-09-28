@@ -1,19 +1,12 @@
-import React from "react";
-import {
-  SxProps,
-  Theme,
-  drawerClasses,
-  styled,
-  Drawer as MuiDrawer,
-  Divider,
-  IconButton,
-  useTheme,
-  paperClasses,
-} from "@mui/material";
+import { SxProps, Theme, styled, useTheme } from "@mui/material/styles";
+import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
+import { paperClasses } from "@mui/material/Paper";
+import Divider from "@mui/material/Divider";
+import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "./drawer.types";
-import { useDrawer } from "../drawer-provider/drawer-context";
-import { closedMixin, openedMixin } from "../drawer-provider/drawer-mixins";
+import { useDrawer } from "~/drawer-provider/drawer-context";
+import { closedMixin, openedMixin } from "~/drawer-provider/drawer-mixins";
 
 export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",

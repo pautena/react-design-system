@@ -1,6 +1,9 @@
-import { Grid, Button, Typography, DialogContentText } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import DialogContentText from "@mui/material/DialogContentText";
 import { Variant } from "@mui/material/styles/createTypography";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import { ActionHeader } from "./action-header";
 import { ConfirmDialog } from "~/confirm-dialog";
 import { useDialog } from "~/dialog";

@@ -1,10 +1,9 @@
-import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { DrawerSection } from "./drawer-section";
-import { mockMenuDrawerNavigationSection } from "../drawer/drawer.mock";
-import { DrawerProvider } from "../drawer-provider";
-import { DrawerState } from "../drawer/drawer.types";
+import { mockMenuDrawerNavigationSection } from "~/drawer/drawer.mock";
+import { DrawerProvider } from "~/drawer-provider";
+import { DrawerState } from "~/drawer";
 
 describe("DrawerSection", () => {
   const renderComponent = ({

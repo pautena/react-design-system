@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Content } from "./content";
 import { SkeletonGrid } from "~/skeleton-grid";

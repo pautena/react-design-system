@@ -1,5 +1,5 @@
-import { AlertColor } from "@mui/material";
-import React from "react";
+import { AlertColor } from "@mui/material/Alert";
+import { createContext, useContext } from "react";
 
 export const NotificationCenterProviderUndefinedError = new Error(
   "NotificationCenterContext.Provider is required and was undefined",
@@ -16,12 +16,12 @@ export interface NotificationCenterProps {
   hide(): void;
 }
 
-export const NotificationCenterContext = React.createContext<NotificationCenterProps | undefined>(
+export const NotificationCenterContext = createContext<NotificationCenterProps | undefined>(
   undefined,
 );
 
 export const useNotificationCenter = () => {
-  const context = React.useContext(NotificationCenterContext);
+  const context = useContext(NotificationCenterContext);
 
   if (context === undefined) {
     throw NotificationCenterProviderUndefinedError;

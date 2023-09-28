@@ -1,7 +1,6 @@
 import { render, screen } from "~/tests/testing-library";
 import { LinkCard } from "./link-card";
 import userEvent from "@testing-library/user-event";
-import React from "react";
 
 describe("LinkCard", () => {
   const renderComponent = ({ linkText }: { linkText?: string } = {}) => {

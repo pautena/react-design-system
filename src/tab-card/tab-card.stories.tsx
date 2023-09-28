@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DummyTabs, TabCardDummy, TabCardDummyProps } from "./tab-card.dummy";
 

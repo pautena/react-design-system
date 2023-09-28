@@ -1,6 +1,5 @@
-import React from "react";
-import { DrawerSection } from "../drawer-section";
-import { DrawerContentComponent, DrawerContentProps } from "../drawer/drawer.types";
+import { DrawerSection } from "~/drawer-section";
+import { DrawerContentComponent, DrawerContentProps } from "~/drawer";
 
 /**
  * Content to be shown inside a navigation

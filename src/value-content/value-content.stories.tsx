@@ -1,8 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ValueContent } from "./value-content";
-import { withContainer } from "../storybook";
-import { Typography } from "@mui/material";
-import React from "react";
+import { withContainer } from "~/storybook";
+import Typography from "@mui/material/Typography";
 
 export default {
   title: "Components/Value displays/ValueContent",

@@ -1,7 +1,6 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerLayout } from "./drawer-layout";
-import { mockDrawerNavigation } from "../drawer/drawer.mock";
+import { mockDrawerNavigation } from "~/drawer/drawer.mock";
 import { withMemoryRouter } from "~/storybook";
 import { DrawerContent } from "~/drawer-content";
 import { Drawer } from "~/drawer";

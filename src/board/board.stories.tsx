@@ -1,9 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../storybook";
+import { withContainer } from "~/storybook";
 import { Board } from "./board";
 import demoMarkdownContent from "~/tests/mocks/markdown.mock.md";
-import { Typography } from "@mui/material";
-import React from "react";
+import Typography from "@mui/material/Typography";
 
 export default {
   title: "Components/Data Display/Board",

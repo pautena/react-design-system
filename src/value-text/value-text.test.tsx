@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { ValueText } from "./value-text";
 import userEvent from "@testing-library/user-event";

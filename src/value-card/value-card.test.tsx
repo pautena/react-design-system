@@ -1,8 +1,7 @@
-import React from "react";
 import { ValueCard } from "./value-card";
 import { render, screen } from "~/tests/testing-library";
 import { ReactElement } from "react";
-import { ValueText } from "../value-text";
+import { ValueText } from "~/value-text";
 
 describe("ValueCard", () => {
   const renderComponent = ({ children }: { children: ReactElement }) => {

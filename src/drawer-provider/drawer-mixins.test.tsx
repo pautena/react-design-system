@@ -1,4 +1,4 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
 import { openedMixin, closedMixin } from "./drawer-mixins";
 
 describe("mixins", () => {

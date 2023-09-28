@@ -1,7 +1,5 @@
-import React from "react";
-import { Grid } from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { newBreakpointsCounter } from "~/utils/breakpoints";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { ValueBoolean } from "~/value-boolean";
 import { ValueDatetime } from "~/value-datetime";
 import { ValueText } from "~/value-text";
@@ -16,6 +14,7 @@ import {
   Model,
   ModelField,
 } from "~/generators/generators.model";
+import { GridColDef, DataGrid } from "@mui/x-data-grid";
 
 interface SingleDetailValueFactoryOptions {
   dense?: boolean;

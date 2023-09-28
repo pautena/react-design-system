@@ -1,4 +1,3 @@
-import React from "react";
 import { render, screen } from "~/tests/testing-library";
 import { ValueLabel } from "./value-label";
 import { LabelVariant } from "~/label";

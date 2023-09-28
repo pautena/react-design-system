@@ -1,7 +1,6 @@
-import React from "react";
 import { Content } from "./content";
 import { render, screen } from "~/tests/testing-library";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 describe("Content", () => {
   const renderComponent = () => {

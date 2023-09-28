@@ -1,8 +1,8 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
-import { withPadding } from "../storybook";
+import { withPadding } from "~/storybook";
 import { QueryContainer, QueryContainerProps } from "./query-container";
-import { Typography, Box } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
 
 export default {
   title: "Components/Feedback/QueryContainer",

@@ -1,7 +1,6 @@
-import React from "react";
 import { QueryContainer, QueryContainerError, QueryContainerSuccess } from "./query-container";
 import { render, screen } from "~/tests/testing-library";
-import { Typography } from "@mui/material";
+import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "~/tests/assertions";
 
 describe("QueryContainer", () => {

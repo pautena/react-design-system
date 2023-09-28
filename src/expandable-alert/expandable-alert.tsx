@@ -1,19 +1,13 @@
-import {
-  Alert,
-  alertClasses,
-  AlertColor,
-  AlertTitle,
-  Box,
-  Collapse,
-  IconButton,
-  SxProps,
-  Theme,
-} from "@mui/material";
+import Alert, { alertClasses, AlertColor } from "@mui/material/Alert";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
+import AlertTitle from "@mui/material/AlertTitle";
+import { SxProps, Theme } from "@mui/material/styles";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CloseIcon from "@mui/icons-material/Close";
 import { forwardRef, ReactElement, useState } from "react";
-import React from "react";
 import { Board } from "~/board";
 
 export interface ExpandableAlertProps {

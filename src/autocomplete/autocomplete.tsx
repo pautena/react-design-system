@@ -1,10 +1,9 @@
-import {
-  Autocomplete as MuiAutocomplete,
+import MuiAutocomplete, {
   AutocompleteProps as MuiAutocompleteProps,
-  ChipTypeMap,
-} from "@mui/material";
+} from "@mui/material/Autocomplete";
 import React from "react";
 import { TextField } from "../text-field";
+import { ChipTypeMap } from "@mui/material/Chip";
 
 export interface AutocompleteProps<
   T,

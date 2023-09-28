@@ -1,4 +1,3 @@
-import React from "react";
 import { SignIn } from "./sign-in";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";

@@ -1,6 +1,6 @@
-import { Grid, TextField } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 import { Meta, StoryObj } from "@storybook/react";
-import React from "react";
 import { StoryDialogManager } from "~/storybook";
 import { FormDialog } from "./form-dialog";
 

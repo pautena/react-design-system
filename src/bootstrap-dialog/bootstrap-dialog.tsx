@@ -1,17 +1,14 @@
-import {
-  Dialog,
-  DialogTitle,
-  DialogActions,
-  Button,
-  IconButton,
-  DialogContent,
-  Box,
-  CircularProgress,
-} from "@mui/material";
-import { LoadingButton } from "@mui/lab";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogActions from "@mui/material/DialogActions";
+import IconButton from "@mui/material/IconButton";
+import DialogContent from "@mui/material/DialogContent";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import LoadingButton from "@mui/lab/LoadingButton";
 import CloseIcon from "@mui/icons-material/Close";
-import React from "react";
-import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
+import { BootstrapDialogDialogProps } from "~/dialog/dialog.types";
 
 export const BootstrapDialog = ({
   open,

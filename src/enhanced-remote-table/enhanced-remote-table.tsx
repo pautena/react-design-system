@@ -1,14 +1,11 @@
-import React from "react";
 import { ReactNode, useState } from "react";
-import {
-  TableContainer,
-  TableBody,
-  Table,
-  TableRow,
-  CircularProgress,
-  TableCell,
-} from "@mui/material";
-import { EnhancedTableHead, HeadCell, Order } from "../enhanced-table";
+import TableContainer from "@mui/material/TableContainer";
+import TableBody from "@mui/material/TableBody";
+import Table from "@mui/material/Table";
+import TableRow from "@mui/material/TableRow";
+import CircularProgress from "@mui/material/CircularProgress";
+import TableCell from "@mui/material/TableCell";
+import { EnhancedTableHead, HeadCell, Order } from "~/enhanced-table";
 
 export interface EnhancedRemoteTableProps<T> {
   data: T[];

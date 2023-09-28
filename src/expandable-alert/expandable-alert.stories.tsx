@@ -1,8 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ExpandableAlert } from "./expandable-alert";
 import { withContainer } from "~/storybook";
-import { Box, Button, Snackbar, Typography } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Typography from "@mui/material/Typography";
 
 export default {
   title: "Components/Alerts/ExpandableAlert",

@@ -1,8 +1,9 @@
-import React from "react";
 import { DrawerProvider, useDrawer } from "./index";
 import { render, screen } from "~/tests/testing-library";
-import { Box, Button, Typography } from "@mui/material";
-import { DrawerState, DrawerVariant } from "../drawer/drawer.types";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import { DrawerState, DrawerVariant } from "~/drawer";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 

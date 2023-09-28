@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { render, screen, waitFor } from "~/tests/testing-library";
 import { ExpandableAlert } from "./expandable-alert";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import { Box, Button, Snackbar } from "@mui/material";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
 
 const message = "Lorem ipsum dolor sit amet";
 const metadata =

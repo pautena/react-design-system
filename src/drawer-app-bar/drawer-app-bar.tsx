@@ -1,16 +1,12 @@
-import * as React from "react";
-import {
-  AppBar as MuiAppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  useTheme,
-  Theme,
-} from "@mui/material";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { useTheme, Theme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useDrawer } from "../drawer-provider/drawer-context";
+import { useDrawer } from "~/drawer-provider";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
-import { DrawerState, DrawerVariant } from "../drawer/drawer.types";
+import { DrawerState, DrawerVariant } from "~/drawer";
 
 const moveWithDrawer: Record<DrawerVariant, boolean> = {
   temporary: false,

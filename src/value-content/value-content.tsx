@@ -1,5 +1,7 @@
-import { Box, SxProps, Theme, Tooltip, Typography, useTheme } from "@mui/material";
-import React from "react";
+import { SxProps, Theme, useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
 
 export const getValueContentLabelId = (label: string): string =>
   `label-${label.replace(/ /g, "-")}`;

@@ -1,9 +1,8 @@
-import { DialogContentText } from "@mui/material";
+import DialogContentText from "@mui/material/DialogContentText";
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { BootstrapDialog } from "./bootstrap-dialog";
 import { loremIpsum } from "lorem-ipsum";
-import React from "react";
 import { StoryDialogManager } from "~/storybook";
 
 const onClickAction = action("On click dialog action");

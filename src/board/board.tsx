@@ -1,16 +1,12 @@
-import {
-  Box,
-  IconButton,
-  Paper,
-  SxProps,
-  Theme,
-  Tooltip,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Paper from "@mui/material/Paper";
+import Tooltip from "@mui/material/Tooltip";
+import Typography from "@mui/material/Typography";
+import { useTheme, SxProps, Theme } from "@mui/material/styles";
 import { blueGrey } from "@mui/material/colors";
-import React, { PropsWithChildren, ReactNode } from "react";
-import { Markdown } from "../markdown";
+import { PropsWithChildren, ReactNode } from "react";
+import { Markdown } from "~/markdown";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export type BoardProps = PropsWithChildren<{

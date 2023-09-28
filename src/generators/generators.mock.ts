@@ -1,7 +1,7 @@
 import { BasicModelInstance, FieldType, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
 import * as R from "ramda";
-import { newArrayWithSize } from "../utils";
+import { newArrayWithSize } from "~/utils";
 
 export const BirthDateFormat = "dd/MM/yyyy";
 export const ReturnTimeFormat = "HH:mm";
@@ -223,29 +223,29 @@ export interface MockInstance {
 }
 
 const mockFieldValue: Record<string, () => FieldType> = {
-  id: () => faker.datatype.number({ min: 1000, max: 100000 }).toString(),
-  firstName: faker.name.firstName,
-  middleName: faker.name.middleName,
-  lastName: faker.name.lastName,
-  age: () => faker.datatype.number({ min: 20, max: 60 }),
+  id: () => faker.number.int({ min: 1000, max: 100000 }).toString(),
+  firstName: faker.person.firstName,
+  middleName: faker.person.middleName,
+  lastName: faker.person.lastName,
+  age: () => faker.number.int({ min: 20, max: 60 }),
   birthDate: () => new Date(2019, 3, 2),
   returnTime: () => new Date(2022, 10, 2, 11, 0),
   model: faker.vehicle.model,
   manufacturer: faker.vehicle.manufacturer,
   color: faker.vehicle.color,
   type: () => {
-    const array = newArrayWithSize(faker.datatype.number({ min: 2, max: 5 }), 0);
+    const array = newArrayWithSize(faker.number.int({ min: 2, max: 5 }), 0);
     const result = array.map(() => faker.vehicle.type());
     return R.uniq(result);
   },
   vin: faker.vehicle.vin,
   vrm: faker.vehicle.vrm,
-  quantity: () => faker.datatype.number({ min: 1, max: 9 }),
+  quantity: () => faker.number.int({ min: 1, max: 9 }),
   available: faker.datatype.boolean,
   currency: () => "MXN",
   tradeDate: () => new Date(2012, 2, 11, 8, 25),
   codes: () => [faker.word.noun(), faker.word.noun(), faker.word.noun()],
-  identifiers: () => [faker.datatype.number(), faker.datatype.number(), faker.datatype.number()],
+  identifiers: () => [faker.number.int(), faker.number.int(), faker.number.int()],
 };
 
 export const createModelInstance = <T extends BasicModelInstance>(model: Model, seed = 100): T => {
@@ -263,7 +263,7 @@ export const createModelInstance = <T extends BasicModelInstance>(model: Model, 
         ),
       };
     } else if (field.type === "group[]") {
-      const numElements = faker.datatype.number({ min: 2, max: 5 });
+      const numElements = faker.number.int({ min: 2, max: 5 });
       return {
         ...acc,
         [field.id]: new Array(numElements).fill(0).map(() =>

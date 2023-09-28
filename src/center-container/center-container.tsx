@@ -1,5 +1,6 @@
-import React, { ReactNode } from "react";
-import { Box, SxProps, Theme } from "@mui/material";
+import { ReactNode } from "react";
+import Box from "@mui/material/Box";
+import { SxProps, Theme } from "@mui/material/styles";
 
 export interface CenterContainerProps {
   children: ReactNode | undefined;

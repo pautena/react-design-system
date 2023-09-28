@@ -1,5 +1,4 @@
-import React from "react";
-import { Container } from "@mui/material";
+import Container from "@mui/material/Container";
 import { ContentProps } from "./content.types";
 
 export const Content = ({ children }: ContentProps) => {

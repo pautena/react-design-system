@@ -1,4 +1,3 @@
-import React from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { Placeholder, PlaceholderIconArgs } from "./placeholder";
 import SearchIcon from "@mui/icons-material/Search";

@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { BasicModelInstance } from "../../generators/generators.model";
-import { ModelForm } from "../../model-form";
+import { BasicModelInstance } from "~/generators";
+import { ModelForm } from "~/model-form";
 import { useNavigateWhenValueChanges } from "~/hooks";
 import { HeaderLayout } from "~/header-layout";
 import { useNotifyWhenValueChanges } from "~/notification-center";
-import { RequestState } from "../model-router.types";
+import { RequestState } from "~/model-router";
 import { BaseScreenProps } from "./screens.types";
 import { Header } from "~/header";
 import { Content } from "~/content";

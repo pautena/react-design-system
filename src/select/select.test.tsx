@@ -1,9 +1,8 @@
-import React from "react";
 import { SelectLoaded } from "./select.stories";
 import { render, screen } from "~/tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Select } from "./select";
-import { MenuItem } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
 
 describe("Select", () => {
   const renderComponent = ({

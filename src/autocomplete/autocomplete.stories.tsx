@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../storybook";
+import { withContainer } from "~/storybook";
 import { Autocomplete } from "./autocomplete";
 import { faker } from "@faker-js/faker";
-import { Box, useTheme } from "@mui/material";
-import React from "react";
+import Box from "@mui/material/Box";
+import { useTheme } from "@mui/material/styles";
 
 export default {
   title: "Components/Inputs/Autocomplete",
