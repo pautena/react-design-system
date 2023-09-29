@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { columns, data } from "~/enhanced-table/enhanced-table.mock";
+import { columns, data } from "../enhanced-table/enhanced-table.mock";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 
 export default {

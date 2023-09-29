@@ -1,7 +1,7 @@
 import { TabCard, TabData } from "./tab-card";
 import Typography from "@mui/material/Typography";
 import { TabCardPanel } from "./tab-card-panel";
-import { Label } from "~/label";
+import { Label } from "../label";
 
 export const DummyTabs = [
   { text: "tab 1" },

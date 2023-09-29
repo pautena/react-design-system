@@ -1,7 +1,6 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
-import alias from "@rollup/plugin-alias";
 import path from "path";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
@@ -21,14 +20,6 @@ const plugins = [
     useTsconfigDeclarationDir: true,
   }),
   terser(),
-  alias({
-    entries: [
-      {
-        find: "~",
-        replacement: path.resolve(projectRootDir, "src"),
-      },
-    ],
-  }),
 ];
 
 const subfolderPlugins = (folderName) => [

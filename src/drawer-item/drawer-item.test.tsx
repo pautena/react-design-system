@@ -7,11 +7,11 @@ import {
   mockLinkLabelDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
   mockMenuInsideMenuDrawerNavigationItem,
-} from "~/drawer/drawer.mock";
-import { DrawerNavigationItem, DrawerState } from "~/drawer";
-import { render, screen, within } from "~/tests/testing-library";
+} from "../drawer/drawer.mock";
+import { DrawerNavigationItem, DrawerState } from "../drawer";
+import { render, screen, within } from "../tests/testing-library";
 import { DrawerItem } from "./drawer-item";
-import { DrawerProvider } from "~/drawer-provider";
+import { DrawerProvider } from "../drawer-provider";
 
 describe("DrawerItem", () => {
   const renderComponent = ({

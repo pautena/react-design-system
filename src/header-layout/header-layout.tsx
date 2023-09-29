@@ -1,11 +1,11 @@
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-import { LoadingArea } from "~/loading-area";
-import { TabProvider } from "~/tab-provider";
+import { LoadingArea } from "../loading-area";
+import { TabProvider } from "../tab-provider";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
-import { Placeholder, PlaceholderIcon } from "~/placeholder";
-import { HeaderElement } from "~/header";
-import { ContentElement } from "~/content";
+import { Placeholder, PlaceholderIcon } from "../placeholder";
+import { HeaderElement } from "../header";
+import { ContentElement } from "../content";
 
 export interface HeaderLayoutError {
   icon?: PlaceholderIcon;

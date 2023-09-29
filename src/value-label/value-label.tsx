@@ -1,6 +1,6 @@
-import { BaseValueProps, DefaultPlaceholder } from "~/value-base";
-import { getValueContentLabelId, ValueContent } from "~/value-content";
-import { Label, LabelVariant } from "~/label";
+import { BaseValueProps, DefaultPlaceholder } from "../value-base";
+import { getValueContentLabelId, ValueContent } from "../value-content";
+import { Label, LabelVariant } from "../label";
 import Grid from "@mui/material/Grid";
 
 export type ValueLabelProps = BaseValueProps<string | number | string[] | number[]> & {

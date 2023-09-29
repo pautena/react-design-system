@@ -1,7 +1,7 @@
 import { SignIn } from "./sign-in";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
-import { expectProgressIndicator } from "~/tests/assertions";
+import { expectProgressIndicator } from "../tests/assertions";
 import { vi } from "vitest";
 
 async function submitSignIn(email: string | null, password: string | null) {

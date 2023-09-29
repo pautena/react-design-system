@@ -5,7 +5,7 @@ import Table from "@mui/material/Table";
 import TableRow from "@mui/material/TableRow";
 import CircularProgress from "@mui/material/CircularProgress";
 import TableCell from "@mui/material/TableCell";
-import { EnhancedTableHead, HeadCell, Order } from "~/enhanced-table";
+import { EnhancedTableHead, HeadCell, Order } from "../enhanced-table";
 
 export interface EnhancedRemoteTableProps<T> {
   data: T[];

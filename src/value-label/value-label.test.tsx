@@ -1,6 +1,6 @@
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { ValueLabel } from "./value-label";
-import { LabelVariant } from "~/label";
+import { LabelVariant } from "../label";
 
 const DummyValueText = "Lorem ipsum sit amet";
 const DummyValueNumber = 1000;

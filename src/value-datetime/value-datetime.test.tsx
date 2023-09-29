@@ -1,8 +1,8 @@
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { EditInputType, ValueDatetime } from "./value-datetime";
 import userEvent from "@testing-library/user-event";
-import { pickDatetime } from "~/tests/actions";
-import { assertDatetimeInputValue } from "~/tests/assertions";
+import { pickDatetime } from "../tests/actions";
+import { assertDatetimeInputValue } from "../tests/assertions";
 import { vi } from "vitest";
 
 const DummyValue = new Date(2022, 7, 10, 0, 0);

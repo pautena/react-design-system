@@ -5,17 +5,17 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { SxProps, Theme, styled, useTheme } from "@mui/material/styles";
-import { Bullet } from "~/bullet";
-import { Label } from "~/label";
+import { Bullet } from "../bullet";
+import { Label } from "../label";
 import {
   DrawerItemAvatar,
   DrawerItemBullet,
   DrawerItemLabel,
   DrawerSize,
   getDrawerItemColors,
-} from "~/drawer/drawer.types";
-import { Link } from "~/link";
-import { useDrawer } from "~/drawer-provider";
+} from "../drawer/drawer.types";
+import { Link } from "../link";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerItemLinkProps {
   /**

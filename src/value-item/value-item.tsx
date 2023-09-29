@@ -2,7 +2,7 @@ import Grid, { GridProps } from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { ResponsiveStyleValue } from "@mui/system";
 import { PropsWithChildren, FunctionComponent, ReactElement } from "react";
-import { useGetDefaultThemeColor } from "~/utils";
+import { useGetDefaultThemeColor } from "../utils";
 
 export type ValueItemProps = PropsWithChildren<
   Omit<GridProps, "item" | "container"> & { bordered?: ResponsiveStyleValue<boolean> }

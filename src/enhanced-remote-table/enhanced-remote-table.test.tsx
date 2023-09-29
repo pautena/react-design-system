@@ -1,8 +1,8 @@
 import { screen, render } from "@testing-library/react";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 import userEvent from "@testing-library/user-event";
-import { columns, Data, data } from "~/enhanced-table/enhanced-table.mock";
-import { expectProgressIndicator } from "~/tests/assertions";
+import { columns, Data, data } from "../enhanced-table/enhanced-table.mock";
+import { expectProgressIndicator } from "../tests/assertions";
 import { vi } from "vitest";
 
 function renderInstance({

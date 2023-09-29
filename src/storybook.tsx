@@ -2,7 +2,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { Box, Button, SxProps, Theme } from "@mui/material";
 import { MemoryRouter, Router, Navigator, Route, Routes } from "react-router-dom";
-import { NotificationCenterProvider } from "~/notification-center";
+import { NotificationCenterProvider } from "./notification-center";
 import { action } from "@storybook/addon-actions";
 import { LocalizationProvider } from "@mui/x-date-pickers/";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ValueText } from "./value-text";
-import { withContainer } from "~/storybook";
+import { withContainer } from "../storybook";
 
 export default {
   title: "Components/Value displays/ValueText",

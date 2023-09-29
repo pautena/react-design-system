@@ -5,10 +5,10 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
-import { Link } from "~/link";
-import { useGetDefaultThemeColor } from "~/utils";
+import { Link } from "../link";
+import { useGetDefaultThemeColor } from "../utils";
 import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
-import { useTab } from "~/tab-provider";
+import { useTab } from "../tab-provider";
 import { useLocation } from "react-router-dom";
 import { HeaderSubtitle, HeaderTitle } from "./header-title";
 

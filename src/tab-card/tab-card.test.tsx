@@ -1,5 +1,5 @@
 import { DummyTabs, TabCardDummy } from "./tab-card.dummy";
-import { screen, render } from "~/tests/testing-library";
+import { screen, render } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 

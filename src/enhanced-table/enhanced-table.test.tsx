@@ -1,8 +1,8 @@
-import { render } from "~/tests/testing-library";
+import { render } from "../tests/testing-library";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { TestTable, columns, data, Data } from "./enhanced-table.mock";
-import { expectProgressIndicator } from "~/tests/assertions";
+import { expectProgressIndicator } from "../tests/assertions";
 
 const renderInstance = ({
   defaultSort = "startDate",

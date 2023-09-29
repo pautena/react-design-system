@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { TabPanel } from "./tab-panel";
-import { TabProvider } from "~/tab-provider";
+import { TabProvider } from "../tab-provider";
 
 describe("TabPanel", () => {
   function renderInstance(initialValue: number) {

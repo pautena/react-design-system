@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ModelForm } from "./model-form";
-import { withPadding, withLocalizationProvider } from "~/storybook";
-import { createModelInstance, mockModel } from "~/generators/generators.mock";
+import { withPadding, withLocalizationProvider } from "../storybook";
+import { createModelInstance, mockModel } from "../generators/generators.mock";
 
 const initialValues = createModelInstance(mockModel);
 

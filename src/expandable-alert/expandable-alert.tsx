@@ -8,7 +8,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import CloseIcon from "@mui/icons-material/Close";
 import { forwardRef, ReactElement, useState } from "react";
-import { Board } from "~/board";
+import { Board } from "../board";
 
 export interface ExpandableAlertProps {
   severity: AlertColor;

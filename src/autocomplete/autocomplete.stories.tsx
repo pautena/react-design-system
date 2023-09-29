@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "~/storybook";
+import { withContainer } from "../storybook";
 import { Autocomplete } from "./autocomplete";
 import { faker } from "@faker-js/faker";
 import Box from "@mui/material/Box";

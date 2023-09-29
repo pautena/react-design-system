@@ -5,7 +5,7 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { PropsWithChildren, ReactElement, SyntheticEvent, useState } from "react";
 import { TabCardContextProvider } from "./tab-card.context";
-import { useGetDefaultThemeColor } from "~/utils";
+import { useGetDefaultThemeColor } from "../utils";
 
 export interface TabData {
   text: string;

@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import { useTheme, SxProps, Theme } from "@mui/material/styles";
 import { blueGrey } from "@mui/material/colors";
 import { PropsWithChildren, ReactNode } from "react";
-import { Markdown } from "~/markdown";
+import { Markdown } from "../markdown";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 export type BoardProps = PropsWithChildren<{

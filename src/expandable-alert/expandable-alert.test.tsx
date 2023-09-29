@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { render, screen, waitFor } from "~/tests/testing-library";
+import { render, screen, waitFor } from "../tests/testing-library";
 import { ExpandableAlert } from "./expandable-alert";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";

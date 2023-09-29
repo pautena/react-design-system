@@ -3,7 +3,7 @@ import { DummyModelRouter, InternalModelRouter } from "./stories/model-router.st
 import { vi } from "vitest";
 import { data, data as mockData } from "./stories/templates";
 import userEvent from "@testing-library/user-event";
-import { getRandomItem } from "~/utils";
+import { getRandomItem } from "../utils";
 import {
   BirthDateFormat,
   createModelInstance,
@@ -11,12 +11,12 @@ import {
   mockModel,
   ReturnTimeFormat,
   TradeDateFormat,
-} from "~/generators/generators.mock";
-import { NotificationCenterProvider } from "~/notification-center";
+} from "../generators/generators.mock";
+import { NotificationCenterProvider } from "../notification-center";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
-import { fireEvent, render, screen, TestRouter } from "~/tests/testing-library";
+import { fireEvent, render, screen, TestRouter } from "../tests/testing-library";
 import { AddScreen, ListScreen, UpdateScreen } from "./screens";
 import {
   clearCheckbox,
@@ -25,7 +25,7 @@ import {
   typeNumericInput,
   pickDatetime,
   selectOptions,
-} from "~/tests/actions";
+} from "../tests/actions";
 import {
   expectProgressIndicator,
   waitForProgressIndicatorToBeRemoved,
@@ -34,9 +34,9 @@ import {
   expectToHaveBeenCalledOnceWithMockInstance,
   expectAlert,
   expectModelFieldValue,
-} from "~/tests/assertions";
-import { mockConsoleWarn } from "~/tests/mocks";
-import { Model } from "~/generators/generators.model";
+} from "../tests/assertions";
+import { mockConsoleWarn } from "../tests/mocks";
+import { Model } from "../generators/generators.model";
 import { IdleRequest, LoadingRequest, SuccessRequest } from "./model-router.types";
 
 const REQUEST_TIMEOUT = 20;

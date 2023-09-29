@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { GroupValueCard } from "./group-value-card";
-import { withPadding, withLocalizationProvider } from "~/storybook";
+import { withPadding, withLocalizationProvider } from "../storybook";
 import { GroupValueCardDummy } from "./group-value-card.mock";
-import { ValueImage } from "~/value-image";
-import workInProgressImg from "~/stories/assets/work-in-progress.jpg";
-import { ValueContent } from "~/value-content";
-import { DatatablePlaceholder } from "~/tests/datatable-placeholder";
-import { ValueItem } from "~/value-item";
+import { ValueImage } from "../value-image";
+import workInProgressImg from "../stories/assets/work-in-progress.jpg";
+import { ValueContent } from "../value-content";
+import { DatatablePlaceholder } from "../tests/datatable-placeholder";
+import { ValueItem } from "../value-item";
 
 export default {
   title: "Components/Value displays/GroupValueCard",

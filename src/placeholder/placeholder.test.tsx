@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Placeholder, PlaceholderAction } from "./placeholder";
 import { actions as actionData } from "./placeholder.mock";

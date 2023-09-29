@@ -3,7 +3,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { BootstrapDialog } from "./bootstrap-dialog";
 import { loremIpsum } from "lorem-ipsum";
-import { StoryDialogManager } from "~/storybook";
+import { StoryDialogManager } from "../storybook";
 
 const onClickAction = action("On click dialog action");
 

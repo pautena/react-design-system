@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
 import { useTheme } from "@mui/material";
 import { PropsWithChildren, useState } from "react";
-import { useGetDefaultThemeColor } from "~/utils";
+import { useGetDefaultThemeColor } from "../utils";
 import { ListPanelContextProvider } from "./list-panel.context";
 import { grey } from "@mui/material/colors";
 

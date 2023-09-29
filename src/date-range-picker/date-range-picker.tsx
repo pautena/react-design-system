@@ -6,7 +6,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import EventIcon from "@mui/icons-material/Event";
-import { DateRangeCalendar } from "~/date-range-calendar";
+import { DateRangeCalendar } from "../date-range-calendar";
 
 type DateRange = [Date, Date | undefined];
 export interface DateRangePickerProps {

@@ -1,5 +1,5 @@
 import { ValueBoolean } from "./value-boolean";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 

@@ -6,7 +6,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import LinearProgress from "@mui/material/LinearProgress";
 import MuiSelect from "@mui/material/Select";
-import { CenterContainer } from "~/center-container";
+import { CenterContainer } from "../center-container";
 import { SelectInputProps } from "@mui/material/Select/SelectInput";
 
 export type SelectSize = "small" | "medium";

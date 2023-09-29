@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { CenterContainer } from "./center-container";
 
 describe("CenterContainer", () => {

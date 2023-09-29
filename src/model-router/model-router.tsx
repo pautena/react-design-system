@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { BasicModelInstance } from "~/generators";
+import { BasicModelInstance } from "../generators";
 import {
   AddScreen,
   AddScreenProps,

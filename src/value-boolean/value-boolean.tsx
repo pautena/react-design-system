@@ -11,8 +11,8 @@ import {
   useEditableValueDisplay,
   ValueEditButton,
   ValueEditButtons,
-} from "~/value-base";
-import { ValueContent, getValueContentLabelId } from "~/value-content";
+} from "../value-base";
+import { ValueContent, getValueContentLabelId } from "../value-content";
 
 export type ValueBooleanProps = BaseValueProps<boolean> & EditableValueProps<boolean>;
 

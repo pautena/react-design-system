@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withLocalizationProvider } from "~/storybook";
+import { withLocalizationProvider } from "../storybook";
 import { DateRangeCalendar } from "./date-range-calendar";
 
 export default {

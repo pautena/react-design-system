@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
-import { ValueContent } from "~/value-content";
-import { BaseValueProps } from "~/value-base";
+import { ValueContent } from "../value-content";
+import { BaseValueProps } from "../value-base";
 
 export interface ValueImageProps extends BaseValueProps<string> {
   /**

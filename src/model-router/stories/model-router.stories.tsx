@@ -1,8 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withLocalizationProvider, withMemoryRouter, withNotificationCenter } from "~/storybook";
-import { ModelRouter } from "~/model-router";
-import { IdleRequest } from "~/model-router";
-import { MockInstance, mockModel } from "~/generators/generators.mock";
+import {
+  withLocalizationProvider,
+  withMemoryRouter,
+  withNotificationCenter,
+} from "../../storybook";
+import { ModelRouter } from "../model-router";
+import { IdleRequest } from "../../model-router";
+import { MockInstance, mockModel } from "../../generators/generators.mock";
 import { HandlerFunction } from "@storybook/addon-actions";
 import { useState } from "react";
 import {

@@ -1,11 +1,11 @@
-import { render } from "~/tests/testing-library";
+import { render } from "../tests/testing-library";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { TableRowOption, TableList } from "./table-list";
-import { HeadCell } from "~/enhanced-table";
-import { expectProgressIndicator } from "~/tests/assertions";
+import { HeadCell } from "../enhanced-table";
+import { expectProgressIndicator } from "../tests/assertions";
 import { Mock, vi } from "vitest";
-import { BasicModelInstance } from "~/generators/generators.model";
+import { BasicModelInstance } from "../generators/generators.model";
 
 const columns: HeadCell<BasicModelInstance>[] = [
   {

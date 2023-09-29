@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { HeaderLayout } from "~/header-layout";
+import { HeaderLayout } from "../../header-layout";
 import { BaseScreenProps } from "./screens.types";
-import { ObjectDetails } from "~/object-details";
-import { Header } from "~/header";
-import { Content } from "~/content";
-import { RequestState } from "~/model-router";
-import { BasicModelInstance } from "~/generators/generators.model";
+import { ObjectDetails } from "../../object-details";
+import { Header } from "../../header";
+import { Content } from "../../content";
+import { RequestState } from "../../model-router";
+import { BasicModelInstance } from "../../generators";
 
 export interface DetailsScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

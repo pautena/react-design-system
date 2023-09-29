@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { FormDialog } from "./form-dialog";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";

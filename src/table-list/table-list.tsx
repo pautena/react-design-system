@@ -3,9 +3,9 @@ import TableCell from "@mui/material/TableCell";
 import IconButton from "@mui/material/IconButton";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { EnhancedTable, HeadCell, Order } from "~/enhanced-table";
+import { EnhancedTable, HeadCell, Order } from "../enhanced-table";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { BasicModelInstance } from "~/generators";
+import { BasicModelInstance } from "../generators";
 import { useState } from "react";
 
 const OptionsId = "__options";

@@ -11,14 +11,14 @@ import TextField from "@mui/material/TextField";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { DesktopDatePicker, TimePicker, DateTimePicker } from "@mui/x-date-pickers";
 import { ChangeEvent, ReactElement } from "react";
-import { useGetDefaultThemeColor } from "~/utils";
-import { GroupValueCard } from "~/group-value-card";
+import { useGetDefaultThemeColor } from "../utils";
+import { GroupValueCard } from "../group-value-card";
 import {
   ArrayFieldType,
   FieldType,
   ModelField,
   ModelFieldTypes,
-} from "~/generators/generators.model";
+} from "../generators/generators.model";
 
 export interface ModelFormField {
   field: ModelField;

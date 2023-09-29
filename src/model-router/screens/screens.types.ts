@@ -1,4 +1,4 @@
-import { Model } from "~/generators";
+import { Model } from "../../generators";
 
 export interface BaseScreenProps {
   /**

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PropsWithChildren } from "react";
 import { DrawerContext } from "./drawer-context";
-import { DrawerState, DrawerVariant } from "~/drawer";
+import { DrawerState, DrawerVariant } from "../drawer";
 import { drawerWidth } from "./drawer-mixins";
 
 const initialState: Record<DrawerVariant, DrawerState> = {

@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { ValueContent } from "./value-content";
 import userEvent from "@testing-library/user-event";
 

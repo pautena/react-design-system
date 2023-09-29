@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "~/tests/testing-library";
+import { fireEvent, render, screen } from "../tests/testing-library";
 import { DateRangeCalendar } from "./date-range-calendar";
 import { vi } from "vitest";
 import { differenceInCalendarDays, format, addDays, subDays } from "date-fns";

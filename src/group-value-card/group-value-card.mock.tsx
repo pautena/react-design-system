@@ -1,9 +1,9 @@
-import { ValueBoolean } from "~/value-boolean";
-import { ValueRating } from "~/value-rating";
-import { ValueText } from "~/value-text";
+import { ValueBoolean } from "../value-boolean";
+import { ValueRating } from "../value-rating";
+import { ValueText } from "../value-text";
 import { GroupValueCard, GroupValueCardProps } from "./group-value-card";
-import { ValueItem } from "~/value-item";
-import { ValueDatetime } from "~/value-datetime";
+import { ValueItem } from "../value-item";
+import { ValueDatetime } from "../value-datetime";
 
 export const GroupValueCardDummy = ({
   dense,

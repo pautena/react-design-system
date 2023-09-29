@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { useTab } from "~/tab-provider";
+import { useTab } from "../tab-provider";
 
 interface TabPanelProps {
   children?: React.ReactNode;

@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useNotifyWhenValueChanges } from "~/notification-center";
-import { HeaderLayout } from "~/header-layout";
+import { useNotifyWhenValueChanges } from "../../notification-center";
+import { HeaderLayout } from "../../header-layout";
 import { BaseScreenProps } from "./screens.types";
-import { Header, HeaderAction } from "~/header";
-import { Content } from "~/content";
-import { BasicModelInstance } from "~/generators/generators.model";
-import { RequestState } from "~/model-router";
-import { TableList, TableRowOption } from "~/table-list";
+import { Header, HeaderAction } from "../../header";
+import { Content } from "../../content";
+import { BasicModelInstance } from "../../generators";
+import { RequestState } from "../../model-router";
+import { TableList, TableRowOption } from "../../table-list";
 
 export interface ListScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

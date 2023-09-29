@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ValueLabel } from "./value-label";
-import { withContainer } from "~/storybook";
+import { withContainer } from "../storybook";
 
 export default {
   title: "Components/Value displays/ValueLabel",

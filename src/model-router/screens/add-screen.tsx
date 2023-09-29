@@ -1,12 +1,12 @@
-import { HeaderLayout } from "~/header-layout";
-import { useNotifyWhenValueChanges } from "~/notification-center";
+import { HeaderLayout } from "../../header-layout";
+import { useNotifyWhenValueChanges } from "../../notification-center";
 import { BaseScreenProps } from "./screens.types";
-import { useNavigateWhenValueChanges } from "~/hooks";
-import { Header } from "~/header";
-import { Content } from "~/content";
-import { BasicModelInstance } from "~/generators/generators.model";
-import { RequestState } from "~/model-router";
-import { ModelForm } from "~/model-form";
+import { useNavigateWhenValueChanges } from "../../hooks";
+import { Header } from "../../header";
+import { Content } from "../../content";
+import { BasicModelInstance } from "../../generators";
+import { RequestState } from "../../model-router";
+import { ModelForm } from "../../model-form";
 
 export interface AddScreenProps<T extends BasicModelInstance> extends BaseScreenProps {
   /**

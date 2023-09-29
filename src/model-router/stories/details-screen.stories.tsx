@@ -1,9 +1,9 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withNotificationCenter, withActionRouter } from "~/storybook";
+import { withNotificationCenter, withActionRouter } from "../../storybook";
 import { item1 } from "./templates";
 import { DetailsScreen } from "../screens";
-import { mockModel } from "~/generators/generators.mock";
-import { IdleRequest, LoadingRequest } from "~/model-router";
+import { mockModel } from "../../generators/generators.mock";
+import { IdleRequest, LoadingRequest } from "../../model-router";
 
 export default {
   title: "Generators/ModelRouter/DetailsScreen",

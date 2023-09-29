@@ -1,5 +1,5 @@
 import { Label, LabelVariant } from "./label";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 
 describe("Label", () => {
   const renderComponent = (variant: LabelVariant | undefined = undefined) => {

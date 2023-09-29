@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { ValueCard } from "./value-card";
-import { ValueText } from "~/value-text";
+import { ValueText } from "../value-text";
 
 export default {
   title: "Components/Value displays/ValueCard",

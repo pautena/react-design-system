@@ -1,4 +1,4 @@
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { ValueEditButton, ValueEditButtons } from "./value-edit";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";

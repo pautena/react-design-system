@@ -1,5 +1,5 @@
 import { Content } from "./content";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import Typography from "@mui/material/Typography";
 
 describe("Content", () => {

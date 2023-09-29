@@ -1,5 +1,5 @@
 import { ModelForm } from "./model-form";
-import { fireEvent, render, screen } from "~/tests/testing-library";
+import { fireEvent, render, screen } from "../tests/testing-library";
 import {
   BirthDateFormat,
   createModelInstance,
@@ -7,14 +7,14 @@ import {
   mockModel,
   ReturnTimeFormat,
   TradeDateFormat,
-} from "~/generators/generators.mock";
+} from "../generators/generators.mock";
 import { vi } from "vitest";
-import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "~/tests/actions";
+import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "../tests/actions";
 import {
   expectModelFieldInputExist,
   expectModelFieldInputValue,
   expectToHaveBeenCalledOnceWithMockInstance,
-} from "~/tests/assertions";
+} from "../tests/assertions";
 
 describe("ModelForm", () => {
   const renderComponent = ({

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { ExpandableAlert } from "./expandable-alert";
-import { withContainer } from "~/storybook";
+import { withContainer } from "../storybook";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";

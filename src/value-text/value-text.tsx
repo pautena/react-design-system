@@ -8,8 +8,8 @@ import {
   useEditableValueDisplay,
   ValueEditButton,
   ValueEditButtons,
-} from "~/value-base";
-import { getValueContentLabelId, ValueContent } from "~/value-content";
+} from "../value-base";
+import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export type ValueTextProps = BaseValueProps<string | number> & EditableValueProps<string>;
 

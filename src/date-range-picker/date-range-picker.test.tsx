@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "~/tests/testing-library";
+import { fireEvent, render, screen } from "../tests/testing-library";
 import { DateRangePicker } from "./date-range-picker";
 import { vi } from "vitest";
 

@@ -3,8 +3,8 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import { useGetDefaultThemeColor } from "~/utils";
-import { ValueItemElement } from "~/value-item";
+import { useGetDefaultThemeColor } from "../utils";
+import { ValueItemElement } from "../value-item";
 
 export interface GroupValueCardProps {
   title: string;

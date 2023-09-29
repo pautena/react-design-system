@@ -1,8 +1,8 @@
 import DialogContentText from "@mui/material/DialogContentText";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { BootstrapDialog } from "./bootstrap-dialog";
 import userEvent from "@testing-library/user-event";
-import { DialogAction } from "~/dialog/dialog.types";
+import { DialogAction } from "../dialog/dialog.types";
 import { vi } from "vitest";
 
 interface DialogRenderArgs {

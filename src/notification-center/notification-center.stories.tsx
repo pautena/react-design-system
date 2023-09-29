@@ -3,7 +3,7 @@ import { NotificationCenterProvider } from "./notification-center.provider";
 import { useNotificationCenter } from "./notification-center.context";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { ContentPlaceholder } from "~/content-placeholder";
+import { ContentPlaceholder } from "../content-placeholder";
 
 const DummyError = {
   title: "Internal Server error",

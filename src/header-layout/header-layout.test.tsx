@@ -1,9 +1,9 @@
-import { HeaderLayout, HeaderLayoutError } from "~/header-layout";
-import { render, screen } from "~/tests/testing-library";
-import { Content } from "~/content";
-import { Header } from "~/header";
+import { HeaderLayout, HeaderLayoutError } from "../header-layout";
+import { render, screen } from "../tests/testing-library";
+import { Content } from "../content";
+import { Header } from "../header";
 import Typography from "@mui/material/Typography";
-import { expectProgressIndicator } from "~/tests/assertions";
+import { expectProgressIndicator } from "../tests/assertions";
 
 describe("HeaderLayout", () => {
   const renderComponent = ({

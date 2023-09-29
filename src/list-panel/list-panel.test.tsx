@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "~/tests/testing-library";
+import { fireEvent, render, screen } from "../tests/testing-library";
 import { ListPanel, ListPanelItem } from "./list-panel";
 import { ListPanelDemoContent, mockItemsShort } from "./list-panel.mocks";
 import { ListPanelPanel } from "./list-panel-panel";

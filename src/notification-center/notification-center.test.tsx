@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { AlertColor } from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { render, screen, waitForElementToBeRemoved } from "~/tests/testing-library";
+import { render, screen, waitForElementToBeRemoved } from "../tests/testing-library";
 import { NotificationCenterProvider } from "./notification-center.provider";
 import { vi } from "vitest";
 import {
@@ -13,8 +13,8 @@ import {
   Notification,
 } from "./notification-center.context";
 import { useNotifyWhenValueChanges } from "./notification-center.hooks";
-import { expectAlert } from "~/tests/assertions";
-import { mockConsoleError } from "~/tests/mocks";
+import { expectAlert } from "../tests/assertions";
+import { mockConsoleError } from "../tests/mocks";
 
 describe("NotificationCenterProvider", () => {
   const renderComponent = ({ autoHideDuration }: { autoHideDuration?: number } = {}) => {

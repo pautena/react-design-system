@@ -1,5 +1,5 @@
-import { expectProgressIndicator } from "~/tests/assertions";
-import { render } from "~/tests/testing-library";
+import { expectProgressIndicator } from "../tests/assertions";
+import { render } from "../tests/testing-library";
 import { LoadingArea } from "./loading-area";
 
 describe("LoadingArea", () => {

@@ -1,5 +1,5 @@
 import DialogContentText from "@mui/material/DialogContentText";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { ConfirmDialog } from "./confirm-dialog";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";

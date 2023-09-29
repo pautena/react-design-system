@@ -1,6 +1,6 @@
 import { action } from "@storybook/addon-actions";
-import { createModelInstance, MockInstance, mockModel } from "~/generators/generators.mock";
-import { IdleRequest } from "~/model-router";
+import { createModelInstance, MockInstance, mockModel } from "../../generators/generators.mock";
+import { IdleRequest } from "../../model-router";
 
 export const onRequestListAction = action("Request list data");
 export const onSubmitNewItemAction = action("Submit new item");

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withPadding } from "~/storybook";
+import { withPadding } from "../storybook";
 import { QueryContainer, QueryContainerProps } from "./query-container";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";

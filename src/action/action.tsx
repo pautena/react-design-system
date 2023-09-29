@@ -5,8 +5,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import { Variant } from "@mui/material/styles/createTypography";
 import { ReactElement } from "react";
 import { ActionHeader } from "./action-header";
-import { ConfirmDialog } from "~/confirm-dialog";
-import { useDialog } from "~/dialog";
+import { ConfirmDialog } from "../confirm-dialog";
+import { useDialog } from "../dialog";
 
 export type ActionVariant = "primary" | "error" | "warning" | "success";
 

@@ -1,6 +1,6 @@
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { GroupValueCardDummy } from "./group-value-card.mock";
-import { LoremIpsumPlaceholder } from "~/lorem-ipsum-placeholder";
+import { LoremIpsumPlaceholder } from "../lorem-ipsum-placeholder";
 
 describe("GroupValueCard", () => {
   const renderComponent = ({

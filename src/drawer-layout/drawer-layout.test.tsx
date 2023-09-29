@@ -1,12 +1,12 @@
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
-import { expectContentPlaceholder } from "~/tests/assertions";
-import { mockDrawerNavigation } from "~/drawer/drawer.mock";
-import { DrawerLayout } from "~/drawer-layout";
-import { DrawerContent } from "~/drawer-content";
-import { Drawer } from "~/drawer";
-import { DrawerAppBar } from "~/drawer-app-bar";
-import { ContentPlaceholder } from "~/content-placeholder";
+import { expectContentPlaceholder } from "../tests/assertions";
+import { mockDrawerNavigation } from "../drawer/drawer.mock";
+import { DrawerLayout } from "../drawer-layout";
+import { DrawerContent } from "../drawer-content";
+import { Drawer } from "../drawer";
+import { DrawerAppBar } from "../drawer-app-bar";
+import { ContentPlaceholder } from "../content-placeholder";
 
 describe("DrawerLayout", () => {
   const renderComponent = () => {

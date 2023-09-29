@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "~/storybook";
+import { withContainer } from "../storybook";
 import { LoadingArea } from "./loading-area";
 
 export default {

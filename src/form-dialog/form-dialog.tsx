@@ -1,7 +1,7 @@
-import { BootstrapDialog } from "~/bootstrap-dialog";
+import { BootstrapDialog } from "../bootstrap-dialog";
 import { FormEvent } from "react";
-import { BootstrapDialogDialogProps } from "~/dialog";
-import { getFormData } from "~/utils/forms";
+import { BootstrapDialogDialogProps } from "../dialog";
+import { getFormData } from "../utils/forms";
 
 type OmitBaseDialogProps =
   | "cancelable"

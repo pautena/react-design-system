@@ -3,7 +3,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
 import { Meta, StoryObj } from "@storybook/react";
 import { ReactNode } from "react";
-import { withContainer } from "~/storybook";
+import { withContainer } from "../storybook";
 import { Select, SelectProps, SelectSize } from "./select";
 import { faker } from "@faker-js/faker";
 

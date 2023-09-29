@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { Header } from "./header";
 import { vi } from "vitest";
@@ -11,11 +11,11 @@ import {
   HeaderTab,
 } from "./header.types";
 import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
-import { TabProvider } from "~/tab-provider";
+import { TabProvider } from "../tab-provider";
 import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { Label } from "~/label";
+import { Label } from "../label";
 
 const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && vi.fn() }));
 

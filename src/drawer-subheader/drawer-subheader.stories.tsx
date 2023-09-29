@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSubheader } from "./drawer-subheader";
-import { withContainer } from "~/storybook";
+import { withContainer } from "../storybook";
 
 export default {
   title: "Components/Drawers/DrawerSubheader",

@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ValueImage } from "./value-image";
-import { withContainer } from "~/storybook";
-import workInProgressImg from "~/stories/assets/work-in-progress.jpg";
+import { withContainer } from "../storybook";
+import workInProgressImg from "../stories/assets/work-in-progress.jpg";
 
 export default {
   title: "Components/Value displays/ValueImage",

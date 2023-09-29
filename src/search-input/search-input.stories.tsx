@@ -1,6 +1,6 @@
 import { grey } from "@mui/material/colors";
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer, withLocalizationProvider } from "~/storybook";
+import { withContainer, withLocalizationProvider } from "../storybook";
 import { SearchInput } from "./search-input";
 
 export default {

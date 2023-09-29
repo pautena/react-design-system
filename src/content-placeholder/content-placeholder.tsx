@@ -1,6 +1,6 @@
 import Container from "@mui/material/Container";
 import { PropsWithChildren } from "react";
-import { SkeletonGrid } from "~/skeleton-grid";
+import { SkeletonGrid } from "../skeleton-grid";
 
 export type ContentPlaceholderProps = PropsWithChildren<{
   size?: number;

@@ -3,7 +3,7 @@ import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
 import { PropsWithChildren } from "react";
-import { LoadingArea } from "~/loading-area";
+import { LoadingArea } from "../loading-area";
 
 export interface QueryContainerError {
   /**

@@ -1,8 +1,8 @@
-import { render, screen } from "~/tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { SearchInput } from "./search-input";
 import userEvent from "@testing-library/user-event";
-import { pickDatetime, typeNumericInput } from "~/tests/actions";
-import { assertCloseDate, AssertCloseDateUpTo } from "~/tests/assertions";
+import { pickDatetime, typeNumericInput } from "../tests/actions";
+import { assertCloseDate, AssertCloseDateUpTo } from "../tests/assertions";
 import { vi } from "vitest";
 
 const datetimeFormat = "dd-MM-yyyy HH:mm:ss.SSS";
