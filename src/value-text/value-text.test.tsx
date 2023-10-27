@@ -2,6 +2,7 @@ import { render, screen } from "../tests/testing-library";
 import { ValueText } from "./value-text";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { within } from "@testing-library/react";
 
 const DummyValue = "Lorem ipsum sit amet";
 
@@ -123,6 +124,14 @@ describe("ValueText", () => {
 
       expect(onEdit).toHaveBeenCalledTimes(1);
       expect(onEdit).toHaveBeenCalledWith("new value");
+    });
+
+    it("should have the edit button accessible by label", () => {
+      renderComponent({ editable: true });
+
+      expect(
+        within(screen.getByLabelText(/hello world/i)).getByRole("button", { name: /edit/i }),
+      ).toBeVisible();
     });
   });
 });

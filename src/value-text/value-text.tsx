@@ -59,8 +59,8 @@ export const ValueText = ({
           sx={{ marginY: !dense ? 1 : 0 }}
         />
       ) : (
-        <Box display="flex">
-          <Typography variant={dense ? "body1" : "h5"} noWrap aria-labelledby={id}>
+        <Box display="flex" aria-labelledby={id}>
+          <Typography variant={dense ? "body1" : "h5"} noWrap>
             {value}
           </Typography>
           {editable && <ValueEditButton dense={dense} onClick={startEdit} />}

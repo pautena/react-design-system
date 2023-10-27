@@ -25,9 +25,8 @@ export const ValueRating = ({
 
   return (
     <ValueContent label={label} tooltip={value.toString()} dense={dense}>
-      <Box display="flex" alignItems="center">
+      <Box display="flex" alignItems="center" aria-labelledby={id}>
         <Rating
-          aria-labelledby={id}
           readOnly={!isEditing}
           max={maxRating}
           size={dense ? "small" : "medium"}

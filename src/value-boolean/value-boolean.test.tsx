@@ -2,6 +2,7 @@ import { ValueBoolean } from "./value-boolean";
 import { render, screen } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { within } from "@testing-library/react";
 
 describe("ValueBoolean", () => {
   const renderComponent = ({
@@ -127,6 +128,14 @@ describe("ValueBoolean", () => {
       await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(screen.getByRole("checkbox")).toBeChecked();
+    });
+
+    it("should have the edit button accessible by label", () => {
+      renderComponent({ editable: true });
+
+      expect(
+        within(screen.getByLabelText(/hello world/i)).getByRole("button", { name: /edit/i }),
+      ).toBeVisible();
     });
   });
 });

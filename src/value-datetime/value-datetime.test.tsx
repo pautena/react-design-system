@@ -4,6 +4,7 @@ import userEvent from "@testing-library/user-event";
 import { pickDatetime } from "../tests/actions";
 import { assertDatetimeInputValue } from "../tests/assertions";
 import { vi } from "vitest";
+import { within } from "@testing-library/react";
 
 const DummyValue = new Date(2022, 7, 10, 0, 0);
 const NewValue = new Date(2021, 8, 9, 11, 21);
@@ -135,6 +136,14 @@ describe("ValueDatetime", () => {
         value: DummyValue,
         fmt: datetimeFormat,
       });
+    });
+
+    it("should have the edit button accessible by label", () => {
+      renderComponent({ editable: true });
+
+      expect(
+        within(screen.getByLabelText(/hello world/i)).getByRole("button", { name: /edit/i }),
+      ).toBeVisible();
     });
   });
 });

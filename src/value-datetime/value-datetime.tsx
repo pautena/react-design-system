@@ -86,8 +86,8 @@ export const ValueDatetime = ({
           }}
         />
       ) : (
-        <Box display="flex" alignItems="center">
-          <Typography variant={dense ? "body1" : "h5"} noWrap aria-labelledby={id}>
+        <Box display="flex" alignItems="center" aria-labelledby={id}>
+          <Typography variant={dense ? "body1" : "h5"} noWrap>
             {value}
           </Typography>
           {editable && <ValueEditButton dense={dense} onClick={startEdit} />}
