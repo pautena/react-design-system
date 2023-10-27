@@ -9,11 +9,13 @@ import { PropsWithChildren, useState } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 import { ListPanelContextProvider } from "./list-panel.context";
 import { grey } from "@mui/material/colors";
+import { Link } from "../link";
 
 export interface ListPanelItem {
   id: string;
   text: string;
   tooltip?: string;
+  href?: string;
 }
 
 export type ListPanelProps = PropsWithChildren<{
@@ -44,11 +46,14 @@ export const ListPanel = ({
       <Grid container bgcolor={bgColor} height={1}>
         <Grid item xs={colBreakpoint} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
-            {items.map(({ id, text, tooltip }) => {
+            {items.map(({ id, text, tooltip, href }) => {
               const selected = id === selectedItem;
+
+              const linkProps = href ? { component: Link, href } : {};
 
               const contentEl = (
                 <ListItemButton
+                  {...linkProps}
                   key={id}
                   dense
                   selected={selected}

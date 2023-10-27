@@ -114,3 +114,27 @@ export const mockItemsLong: ListPanelItem[] = [
     text: "Item 20",
   },
 ];
+
+export const mockItemsRouterNavigation: ListPanelItem[] = [
+  {
+    id: "all",
+    text: "all",
+    href: "/all",
+  },
+  {
+    id: "inbox",
+    text: "Inbox",
+    tooltip: "this is the inbox tooltip",
+    href: "/inbox",
+  },
+  {
+    id: "sent",
+    text: "Sent",
+    href: "/sent",
+  },
+  {
+    id: "drafts",
+    text: "Drafts",
+    href: "/drafts",
+  },
+];
