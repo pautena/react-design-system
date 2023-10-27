@@ -16,6 +16,8 @@ import { TabPanel } from "../tab-panel";
 import { TableList } from "../table-list";
 import { ObjectDetails } from "../object-details";
 import { ModelForm } from "../model-form";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { linkedTabs } from "../header/header.dummy";
 
 const breadcrumbs = [
   {
@@ -248,4 +250,30 @@ export const Error: Story = {
     },
     contentChildren: <SkeletonGrid />,
   },
+};
+
+export const NavaigationRouterTabs = () => {
+  const { pathname } = useLocation();
+
+  return (
+    <HeaderLayout>
+      <Header
+        title="Lorem ipsum"
+        subtitle="Dolor sit amet"
+        tabsMode="navigation"
+        tabs={linkedTabs}
+      />
+      <Content>
+        <>
+          <Typography>pathname: {pathname}</Typography>
+          <Routes>
+            <Route path="/tab/tab1" element={<Typography>Panel: /tab/tab1</Typography>} />
+            <Route path="/tab/tab2" element={<Typography>Panel: /tab/tab2</Typography>} />
+            <Route path="/tab/tab3" element={<Typography>Panel: /tab/tab3</Typography>} />
+            <Route path="/" element={<Typography>Home</Typography>} />
+          </Routes>
+        </>
+      </Content>
+    </HeaderLayout>
+  );
 };

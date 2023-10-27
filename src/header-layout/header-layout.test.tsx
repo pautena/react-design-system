@@ -1,9 +1,11 @@
 import { HeaderLayout, HeaderLayoutError } from "../header-layout";
-import { render, screen } from "../tests/testing-library";
+import { fireEvent, render, screen } from "../tests/testing-library";
 import { Content } from "../content";
 import { Header } from "../header";
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
+import { Route, Routes } from "react-router-dom";
+import { linkedTabs } from "../header/header.dummy";
 
 describe("HeaderLayout", () => {
   const renderComponent = ({
@@ -18,6 +20,37 @@ describe("HeaderLayout", () => {
           <Typography>Test content</Typography>
         </Content>
       </HeaderLayout>,
+    );
+  };
+
+  const renderNavigationComponent = () => {
+    render(
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <HeaderLayout>
+              <Header
+                title="Lorem ipsum"
+                subtitle="Dolor sit amet"
+                tabs={linkedTabs}
+                tabsMode="navigation"
+              />
+              <Content>
+                <Routes>
+                  <Route path="/tab/tab1" element={<Typography>Panel: tab1</Typography>} />
+                  <Route path="/tab/tab2" element={<Typography>Panel: tab2</Typography>} />
+                  <Route path="/tab/tab3" element={<Typography>Panel: tab3</Typography>} />
+                  <Route path="/" element={<Typography>Home</Typography>} />
+                </Routes>
+              </Content>
+            </HeaderLayout>
+          }
+        />
+      </Routes>,
+      {
+        router: "memory",
+      },
     );
   };
 
@@ -97,6 +130,24 @@ describe("HeaderLayout", () => {
       });
 
       expect(screen.queryByText(/invalid user id/i)).toBeVisible();
+    });
+
+    describe("navigation router", () => {
+      it("should render all tabs", () => {
+        renderNavigationComponent();
+
+        linkedTabs.forEach((tab) => {
+          expect(screen.getByRole("tab", { name: tab.label })).toBeVisible();
+        });
+      });
+
+      it("should render the tab content when is clicked", () => {
+        renderNavigationComponent();
+
+        fireEvent.click(screen.getByRole("tab", { name: /tab 2/i }));
+
+        expect(screen.getByText(/panel: tab2/i)).toBeVisible();
+      });
     });
   });
 });
