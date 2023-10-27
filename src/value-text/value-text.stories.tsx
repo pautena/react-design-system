@@ -41,6 +41,14 @@ export const TruncatedText: Story = {
   },
 };
 
+export const TruncatedTextEditable: Story = {
+  args: {
+    label: "Lorem",
+    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    editable: true,
+  },
+};
+
 export const Placeholder: Story = {
   args: {
     label: "Lorem",
