@@ -23,6 +23,7 @@ export interface HeaderTab {
   label: string;
   disabled?: boolean;
   href?: string;
+  path?: string;
 }
 
 export interface HeaderNavigationButton {

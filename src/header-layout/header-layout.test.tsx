@@ -1,10 +1,10 @@
-import { HeaderLayout, HeaderLayoutError } from "../header-layout";
+import { HeaderLayout, HeaderLayoutError } from "./header-layout";
 import { fireEvent, render, screen } from "../tests/testing-library";
 import { Content } from "../content";
 import { Header } from "../header";
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import { linkedTabs } from "../header/header.dummy";
 
 describe("HeaderLayout", () => {
@@ -24,6 +24,11 @@ describe("HeaderLayout", () => {
   };
 
   const renderNavigationComponent = () => {
+    const TabComponent = () => {
+      const { id } = useParams();
+      return <Typography>Panel: {id}</Typography>;
+    };
+
     render(
       <Routes>
         <Route
@@ -38,10 +43,10 @@ describe("HeaderLayout", () => {
               />
               <Content>
                 <Routes>
-                  <Route path="/tab/tab1" element={<Typography>Panel: tab1</Typography>} />
-                  <Route path="/tab/tab2" element={<Typography>Panel: tab2</Typography>} />
-                  <Route path="/tab/tab3" element={<Typography>Panel: tab3</Typography>} />
-                  <Route path="/" element={<Typography>Home</Typography>} />
+                  <Route path="/tab/:id" element={<TabComponent />} />
+                  <Route path="/other" element={<Typography>Panel: other</Typography>} />
+                  <Route path="/another" element={<Typography>Panel: another</Typography>} />
+                  <Route path="/:id/subtab" element={<Typography>Panel: subtab</Typography>} />
                 </Routes>
               </Content>
             </HeaderLayout>
@@ -50,6 +55,9 @@ describe("HeaderLayout", () => {
       </Routes>,
       {
         router: "memory",
+        historyOptions: {
+          initialEntries: ["/other"],
+        },
       },
     );
   };
@@ -145,8 +153,16 @@ describe("HeaderLayout", () => {
         renderNavigationComponent();
 
         fireEvent.click(screen.getByRole("tab", { name: /tab 2/i }));
-
         expect(screen.getByText(/panel: tab2/i)).toBeVisible();
+
+        fireEvent.click(screen.getByRole("tab", { name: "Other" }));
+        expect(screen.getByText(/panel: other/i)).toBeVisible();
+
+        fireEvent.click(screen.getByRole("tab", { name: /another/i }));
+        expect(screen.getByText(/panel: another/i)).toBeVisible();
+
+        fireEvent.click(screen.getByRole("tab", { name: /subtab/i }));
+        expect(screen.getByText(/panel: subtab/i)).toBeVisible();
       });
     });
   });

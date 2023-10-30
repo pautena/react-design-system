@@ -53,4 +53,43 @@ export const tabs: HeaderTab[] = [
     label: "Tab 3",
   },
 ];
-export const linkedTabs = tabs.map((tab) => ({ ...tab, href: `/tab/${tab.id}` }));
+
+export const linkedTabs: HeaderTab[] = [
+  {
+    id: "tab1",
+    label: "Tab 1",
+    href: "/tab/tab1",
+    path: "/tab/tab1",
+  },
+  {
+    id: "tab2",
+    label: "Tab 2",
+    disabled: true,
+    href: "/tab/tab2",
+    path: "/tab/tab2",
+  },
+  {
+    id: "tab3",
+    label: "Tab 3",
+    href: "/tab/tab3",
+    path: "/tab/tab3",
+  },
+  {
+    id: "other",
+    label: "Other",
+    href: "/other",
+    path: "/other",
+  },
+  {
+    id: "another",
+    label: "Another",
+    href: "/another",
+    path: "/another",
+  },
+  {
+    id: "subtab",
+    label: "Subtab",
+    href: "/1/subtab",
+    path: "/:id/subtab",
+  },
+];

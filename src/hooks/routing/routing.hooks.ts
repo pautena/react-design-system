@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { matchPath, useLocation, useNavigate } from "react-router-dom";
 
 export interface NavigateWhenValueChangesOptions<T> {
   from: T;
@@ -20,4 +20,18 @@ export const useNavigateWhenValueChanges = <T>(
     }
     prevRef.current = value;
   }, [value]);
+};
+
+export const useRouteMatch = (patterns: string[]) => {
+  const { pathname } = useLocation();
+
+  for (let i = 0; i < patterns.length; i += 1) {
+    const pattern = patterns[i];
+    const possibleMatch = matchPath(pattern, pathname);
+    if (possibleMatch !== null) {
+      return possibleMatch;
+    }
+  }
+
+  return null;
 };

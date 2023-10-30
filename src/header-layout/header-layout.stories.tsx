@@ -16,7 +16,7 @@ import { TabPanel } from "../tab-panel";
 import { TableList } from "../table-list";
 import { ObjectDetails } from "../object-details";
 import { ModelForm } from "../model-form";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import { linkedTabs } from "../header/header.dummy";
 
 const breadcrumbs = [
@@ -72,7 +72,7 @@ const DummyHeaderLayout = ({ headerProps, contentChildren, ...rest }: HeaderLayo
 export default {
   title: "Layouts/HeaderLayout",
   component: DummyHeaderLayout,
-  decorators: [withMemoryRouter(), withFullHeight, withLocalizationProvider],
+  decorators: [withMemoryRouter(["/tab/tab3"]), withFullHeight, withLocalizationProvider],
   parameters: {
     layout: "fullscreen",
   },
@@ -255,6 +255,11 @@ export const Error: Story = {
 export const NavaigationRouterTabs = () => {
   const { pathname } = useLocation();
 
+  const TabComponent = () => {
+    const { id } = useParams();
+    return <Typography>Panel: {id}</Typography>;
+  };
+
   return (
     <HeaderLayout>
       <Header
@@ -267,10 +272,10 @@ export const NavaigationRouterTabs = () => {
         <>
           <Typography>pathname: {pathname}</Typography>
           <Routes>
-            <Route path="/tab/tab1" element={<Typography>Panel: /tab/tab1</Typography>} />
-            <Route path="/tab/tab2" element={<Typography>Panel: /tab/tab2</Typography>} />
-            <Route path="/tab/tab3" element={<Typography>Panel: /tab/tab3</Typography>} />
-            <Route path="/" element={<Typography>Home</Typography>} />
+            <Route path="/tab/:id" element={<TabComponent />} />
+            <Route path="/other" element={<Typography>Panel: other</Typography>} />
+            <Route path="/another" element={<Typography>Panel: another</Typography>} />
+            <Route path="/:id/subtab" element={<Typography>Panel: subtab</Typography>} />
           </Routes>
         </>
       </Content>

@@ -240,7 +240,12 @@ describe("Header", () => {
         .filter((tab) => !tab.disabled)
         .map(({ label, href }) => [href, label]);
       const renderLinkedTabsInstance = () => {
-        render(<WithLinkedTabs />, { router: "memory" });
+        render(<WithLinkedTabs />, {
+          router: "memory",
+          historyOptions: {
+            initialEntries: ["/other"],
+          },
+        });
       };
 
       it("should render a list of tabs", () => {
@@ -253,23 +258,34 @@ describe("Header", () => {
 
       it.each(enabledTestCases)(
         "should render %s if the user click %s label",
-        async (href: string, label: string) => {
+        async (id: string | undefined, label: string | undefined) => {
           renderLinkedTabsInstance();
 
           await userEvent.click(screen.getByRole("tab", { name: label }));
 
-          expect(screen.getByText(`Panel: ${href}`)).toBeVisible();
+          expect(screen.getByText(`Panel: ${id}`)).toBeVisible();
         },
       );
 
       it.each(enabledTestCases)(
         "should navigate to %s if the user click %s label",
-        async (href: string, label: string) => {
+        async (href: string | undefined, label: string | undefined) => {
           renderLinkedTabsInstance();
 
           await userEvent.click(screen.getByRole("tab", { name: label }));
 
           expect(screen.getByText(`Location: ${href}`)).toBeVisible();
+        },
+      );
+
+      it.each(enabledTestCases)(
+        "should mark the %s tab aas selected if the user click %s label",
+        async (_: string | undefined, label: string | undefined) => {
+          renderLinkedTabsInstance();
+
+          await userEvent.click(screen.getByRole("tab", { name: label }));
+
+          expect(screen.getByRole("tab", { name: label, selected: true })).toBeVisible();
         },
       );
     });

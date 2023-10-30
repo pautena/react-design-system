@@ -8,7 +8,7 @@ import { Content } from "../content";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { TabPanel } from "../tab-panel";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import { Label } from "../label";
 
 export default {
@@ -175,6 +175,11 @@ export const WithPanelTabs = () => (
 export const WithLinkedTabs = () => {
   const location = useLocation();
 
+  const TabComponent = () => {
+    const { id } = useParams();
+    return <Typography>Panel: /tab/{id}</Typography>;
+  };
+
   return (
     <Box>
       <Header
@@ -187,10 +192,10 @@ export const WithLinkedTabs = () => {
         <>
           <Typography>Location: {location.pathname}</Typography>
           <Routes>
-            <Route path="/tab/tab1" element={<Typography>Panel: /tab/tab1</Typography>} />
-            <Route path="/tab/tab2" element={<Typography>Panel: /tab/tab2</Typography>} />
-            <Route path="/tab/tab3" element={<Typography>Panel: /tab/tab3</Typography>} />
-            <Route path="/" element={<Typography>Home</Typography>} />
+            <Route path="/tab/:id" element={<TabComponent />} />
+            <Route path="/other" element={<Typography>Panel: /other</Typography>} />
+            <Route path="/another" element={<Typography>Panel: /another</Typography>} />
+            <Route path="/:id/subtab" element={<Typography>Panel: /1/subtab</Typography>} />
           </Routes>
         </>
       </Content>

@@ -11,6 +11,7 @@ import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
 import { useTab } from "../tab-provider";
 import { useLocation } from "react-router-dom";
 import { HeaderSubtitle, HeaderTitle } from "./header-title";
+import { useRouteMatch } from "../hooks";
 
 /**
  * Section used to explain give basic information about the page
@@ -29,10 +30,12 @@ export const Header: HeaderComponent = ({
   tabsMode = "panel",
   navigationButton,
 }: HeaderProps) => {
-  const location = useLocation();
+  const paths = (tabs || []).map((tab) => tab.path).filter(Boolean) as string[];
+
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
   const [selectedTab, setSelectedTab] = useTab();
+  const routeMatch = useRouteMatch(paths);
 
   const bgColorPresets: Record<HeaderPreset, string> = {
     default: defaultColor,
@@ -51,8 +54,7 @@ export const Header: HeaderComponent = ({
   };
   const textColor = textColorPresets[preset];
 
-  const modedSelectedTab =
-    tabsMode === "panel" ? selectedTab : tabs?.findIndex((tab) => tab.href === location.pathname);
+  const modedSelectedTab = tabsMode === "panel" ? selectedTab : routeMatch?.pattern?.path;
 
   return (
     <Box bgcolor={bgColor} color={textColor}>
@@ -124,12 +126,12 @@ export const Header: HeaderComponent = ({
             textColor="inherit"
             onChange={tabsMode === "panel" ? (_, index) => setSelectedTab(index) : undefined}
           >
-            {tabs.map(({ id, label, disabled, href }) => {
+            {tabs.map(({ id, label, disabled, path, href }) => {
               const tabProps = { label, disabled };
               if (tabsMode === "panel") {
                 return <Tab key={id} {...tabProps} />;
               } else {
-                return <Tab key={id} {...tabProps} component={Link} href={href} />;
+                return <Tab key={id} {...tabProps} component={Link} href={href} value={path} />;
               }
             })}
           </Tabs>
