@@ -10,12 +10,14 @@ import { useGetDefaultThemeColor } from "../utils";
 import { ListPanelContextProvider } from "./list-panel.context";
 import { grey } from "@mui/material/colors";
 import { Link } from "../link";
+import { useRouteMatch } from "../hooks";
 
 export interface ListPanelItem {
   id: string;
   text: string;
   tooltip?: string;
   href?: string;
+  path?: string;
 }
 
 export type ListPanelProps = PropsWithChildren<{
@@ -32,6 +34,9 @@ export const ListPanel = ({
   children,
   onSelectedItemChange = () => null,
 }: ListPanelProps) => {
+  const paths = items.map((item) => item.path).filter(Boolean) as string[];
+
+  const routeMatch = useRouteMatch(paths);
   const bgColor = useGetDefaultThemeColor();
   const { palette, typography } = useTheme();
   const [selectedItem, setSelectedItem] = useState(defaultSelectedItem);
@@ -46,8 +51,8 @@ export const ListPanel = ({
       <Grid container bgcolor={bgColor} height={1}>
         <Grid item xs={colBreakpoint} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
-            {items.map(({ id, text, tooltip, href }) => {
-              const selected = id === selectedItem;
+            {items.map(({ id, text, tooltip, path, href }) => {
+              const selected = id === selectedItem || routeMatch?.pattern?.path === path;
 
               const linkProps = href ? { component: Link, href } : {};
 

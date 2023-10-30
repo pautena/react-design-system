@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
 import { Route, Routes, useParams } from "react-router-dom";
 import { linkedTabs } from "../header/header.dummy";
+import { TestRouterId } from "../tests/components";
 
 describe("HeaderLayout", () => {
   const renderComponent = ({
@@ -24,11 +25,6 @@ describe("HeaderLayout", () => {
   };
 
   const renderNavigationComponent = () => {
-    const TabComponent = () => {
-      const { id } = useParams();
-      return <Typography>Panel: {id}</Typography>;
-    };
-
     render(
       <Routes>
         <Route
@@ -43,7 +39,7 @@ describe("HeaderLayout", () => {
               />
               <Content>
                 <Routes>
-                  <Route path="/tab/:id" element={<TabComponent />} />
+                  <Route path="/tab/:id" element={<TestRouterId />} />
                   <Route path="/other" element={<Typography>Panel: other</Typography>} />
                   <Route path="/another" element={<Typography>Panel: another</Typography>} />
                   <Route path="/:id/subtab" element={<Typography>Panel: subtab</Typography>} />
@@ -153,7 +149,7 @@ describe("HeaderLayout", () => {
         renderNavigationComponent();
 
         fireEvent.click(screen.getByRole("tab", { name: /tab 2/i }));
-        expect(screen.getByText(/panel: tab2/i)).toBeVisible();
+        expect(screen.getByText(/router id: tab2/i)).toBeVisible();
 
         fireEvent.click(screen.getByRole("tab", { name: "Other" }));
         expect(screen.getByText(/panel: other/i)).toBeVisible();

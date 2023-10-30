@@ -18,6 +18,7 @@ import { ObjectDetails } from "../object-details";
 import { ModelForm } from "../model-form";
 import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import { linkedTabs } from "../header/header.dummy";
+import { TestRouterId } from "../tests/components";
 
 const breadcrumbs = [
   {
@@ -255,11 +256,6 @@ export const Error: Story = {
 export const NavaigationRouterTabs = () => {
   const { pathname } = useLocation();
 
-  const TabComponent = () => {
-    const { id } = useParams();
-    return <Typography>Panel: {id}</Typography>;
-  };
-
   return (
     <HeaderLayout>
       <Header
@@ -272,7 +268,7 @@ export const NavaigationRouterTabs = () => {
         <>
           <Typography>pathname: {pathname}</Typography>
           <Routes>
-            <Route path="/tab/:id" element={<TabComponent />} />
+            <Route path="/tab/:id" element={<TestRouterId />} />
             <Route path="/other" element={<Typography>Panel: other</Typography>} />
             <Route path="/another" element={<Typography>Panel: another</Typography>} />
             <Route path="/:id/subtab" element={<Typography>Panel: subtab</Typography>} />

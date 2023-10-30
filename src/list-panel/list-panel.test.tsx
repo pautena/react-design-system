@@ -9,6 +9,8 @@ import { ListPanelPanel } from "./list-panel-panel";
 import Box from "@mui/material/Box";
 import { vi } from "vitest";
 import { Route, Routes } from "react-router-dom";
+import { TestRouterId } from "../tests/components";
+import Typography from "@mui/material/Typography";
 
 describe("ListPanel", () => {
   const renderComponent = ({
@@ -35,7 +37,13 @@ describe("ListPanel", () => {
     return { onSelectedItemChange };
   };
 
-  const renderRouterComponent = ({ items }: { items: ListPanelItem[] }) => {
+  const renderRouterComponent = ({
+    items,
+    location = "/",
+  }: {
+    items: ListPanelItem[];
+    location?: string;
+  }) => {
     const onSelectedItemChange = vi.fn();
 
     render(
@@ -45,11 +53,10 @@ describe("ListPanel", () => {
           element={
             <ListPanel items={items} onSelectedItemChange={onSelectedItemChange}>
               <Routes>
-                <Route path="/all" element={<Box>all panel</Box>} />
-                <Route path="/inbox" element={<Box>inbox panel</Box>} />
-                <Route path="/sent" element={<Box>sent panel</Box>} />
-                <Route path="/drafts" element={<Box>drafts panel</Box>} />
-                <Route path="/" element={<Box>Select an item in the left panel</Box>} />
+                <Route path="/panel/:id" element={<TestRouterId />} />
+                <Route path="/inbox" element={<Typography>inbox panel</Typography>} />
+                <Route path="/:id/profile" element={<Typography>profile panel</Typography>} />
+                <Route path="/:id/settings" element={<Typography>settings panel</Typography>} />
               </Routes>
             </ListPanel>
           }
@@ -57,6 +64,9 @@ describe("ListPanel", () => {
       </Routes>,
       {
         router: "memory",
+        historyOptions: {
+          initialEntries: [location],
+        },
       },
     );
 
@@ -95,17 +105,17 @@ describe("ListPanel", () => {
     expect(screen.getByText(/drafts panel/i)).toBeVisible();
   });
 
-  it("should render the initial screen if it contains a router", () => {
-    renderRouterComponent({ items: mockItemsRouterNavigation });
+  it("should render the initial screen based on the location", () => {
+    renderRouterComponent({ items: mockItemsRouterNavigation, location: "/1/settings" });
 
-    expect(screen.getByText(/select an item in the left panel/i)).toBeVisible();
+    expect(screen.getByText(/settings panel/i)).toBeVisible();
   });
 
   it("should render the correct route if the user click an item", () => {
     renderRouterComponent({ items: mockItemsRouterNavigation });
 
-    fireEvent.click(screen.getByRole("link", { name: /sent/i }));
+    fireEvent.click(screen.getByRole("link", { name: /inbox/i }));
 
-    expect(screen.getByText(/sent panel/i)).toBeVisible();
+    expect(screen.getByText(/inbox panel/i)).toBeVisible();
   });
 });

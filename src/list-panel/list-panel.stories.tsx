@@ -11,11 +11,12 @@ import {
 } from "./list-panel.mocks";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
 import Typography from "@mui/material/Typography";
+import { TestRouterId } from "../tests/components";
 
 export default {
   title: "Components/Containers/ListPanel",
   component: ListPanel,
-  decorators: [withContainer({ width: 800, height: 600 }), withMemoryRouter()],
+  decorators: [withContainer({ width: 800, height: 600 }), withMemoryRouter(["/inbox"])],
   render: (args) => (
     <ListPanel {...args}>
       <ListPanelDemoContent />
@@ -45,16 +46,17 @@ export const Long: Story = {
 
 export const RouterNavigation = () => {
   const { pathname } = useLocation();
+
   return (
     <>
       <Typography>pathname: {pathname}</Typography>
       <ListPanel items={mockItemsRouterNavigation}>
         <Routes>
-          <Route path="/all" element={<Box>all panel</Box>} />
-          <Route path="/inbox" element={<Box>inbox panel</Box>} />
-          <Route path="/sent" element={<Box>sent panel</Box>} />
-          <Route path="/drafts" element={<Box>drafts panel</Box>} />
-          <Route path="/" element={<Box>Select an item in the left panel</Box>} />
+          <Route path="/panel/:id" element={<TestRouterId />} />
+          <Route path="/inbox" element={<Typography>inbox panel</Typography>} />
+          <Route path="/:id/profile" element={<Typography>profile panel</Typography>} />
+          <Route path="/:id/settings" element={<Typography>settings panel</Typography>} />
+          <Route path="/" element={<Typography>Select an item in the left panel</Typography>} />
         </Routes>
       </ListPanel>
     </>
