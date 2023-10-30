@@ -23,6 +23,7 @@ export interface ListPanelItem {
 export type ListPanelProps = PropsWithChildren<{
   defaultSelectedItem?: string;
   items: ListPanelItem[];
+  listMode?: "panel" | "navigation";
   colBreakpoint?: number;
   onSelectedItemChange?: (id: string) => void;
 }>;
@@ -31,6 +32,7 @@ export const ListPanel = ({
   items,
   defaultSelectedItem,
   colBreakpoint = 3,
+  listMode = "panel",
   children,
   onSelectedItemChange = () => null,
 }: ListPanelProps) => {
@@ -52,9 +54,9 @@ export const ListPanel = ({
         <Grid item xs={colBreakpoint} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
             {items.map(({ id, text, tooltip, path, href }) => {
-              const selected = id === selectedItem || routeMatch?.pattern?.path === path;
-
-              const linkProps = href ? { component: Link, href } : {};
+              const selected =
+                listMode === "panel" ? id === selectedItem : routeMatch?.pattern?.path === path;
+              const linkProps = listMode === "navigation" ? { component: Link, href } : {};
 
               const contentEl = (
                 <ListItemButton

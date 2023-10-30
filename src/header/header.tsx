@@ -27,7 +27,7 @@ export const Header: HeaderComponent = ({
   breadcrumbs,
   actions,
   tabs,
-  tabsMode = "panel", // TODO remove tabs mode and calculate it
+  tabsMode = "panel",
   navigationButton,
 }: HeaderProps) => {
   const paths = (tabs || []).map((tab) => tab.path).filter(Boolean) as string[];

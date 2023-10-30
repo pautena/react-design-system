@@ -50,7 +50,7 @@ export const RouterNavigation = () => {
   return (
     <>
       <Typography>pathname: {pathname}</Typography>
-      <ListPanel items={mockItemsRouterNavigation}>
+      <ListPanel items={mockItemsRouterNavigation} listMode="navigation">
         <Routes>
           <Route path="/panel/:id" element={<TestRouterId />} />
           <Route path="/inbox" element={<Typography>inbox panel</Typography>} />

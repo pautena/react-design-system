@@ -51,7 +51,11 @@ describe("ListPanel", () => {
         <Route
           path="/*"
           element={
-            <ListPanel items={items} onSelectedItemChange={onSelectedItemChange}>
+            <ListPanel
+              items={items}
+              onSelectedItemChange={onSelectedItemChange}
+              listMode="navigation"
+            >
               <Routes>
                 <Route path="/panel/:id" element={<TestRouterId />} />
                 <Route path="/inbox" element={<Typography>inbox panel</Typography>} />
