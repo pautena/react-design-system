@@ -76,3 +76,19 @@ export const CustomPlaceholder: Story = {
     placeholder: ".",
   },
 };
+
+export const ListSingleColor: Story = {
+  args: {
+    label: "Lorem",
+    value: ["ipsum sit", "amet", "dolor"],
+    color: "#9b3242",
+  },
+};
+
+export const ListMultipleColors: Story = {
+  args: {
+    label: "Lorem",
+    value: ["ipsum sit", "amet", "dolor"],
+    color: ["#9b3242", "#36e3cd"],
+  },
+};
