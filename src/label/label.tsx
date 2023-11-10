@@ -23,6 +23,10 @@ export interface LabelProps {
    * Color palette used to draw the component
    */
   variant?: LabelVariant;
+  /**
+   * Background color. Overrides variant
+   */
+  color?: string;
 
   /**
    * Custom styles
@@ -40,6 +44,7 @@ export interface LabelProps {
  */
 export const Label = ({
   text,
+  color: colorProp,
   variant = "default",
   textTransform = "capitalize",
   sx,
@@ -66,6 +71,9 @@ export const Label = ({
     success: palette.success.contrastText,
   };
 
+  const bgcolor = colorProp ? colorProp : backgroundColor[variant];
+  const color = colorProp ? palette.getContrastText(colorProp) : textColor[variant];
+
   return (
     <Box
       height={24}
@@ -73,8 +81,8 @@ export const Label = ({
       display="inline-flex"
       justifyContent="center"
       alignItems="center"
-      bgcolor={backgroundColor[variant]}
-      color={textColor[variant]}
+      bgcolor={bgcolor}
+      color={color}
       fontSize={typography.caption.fontSize}
       fontWeight={typography.fontWeightBold}
       lineHeight={0}

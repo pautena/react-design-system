@@ -51,3 +51,17 @@ export const Error: Story = {
     variant: "error",
   },
 };
+
+export const LightColor: Story = {
+  args: {
+    text: "lorem",
+    color: "#36e3cd",
+  },
+};
+
+export const DarkColor: Story = {
+  args: {
+    text: "lorem",
+    color: "#9b3242",
+  },
+};
