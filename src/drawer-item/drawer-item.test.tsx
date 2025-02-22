@@ -175,14 +175,6 @@ describe("DrawerItem", () => {
       });
     });
 
-    it("should navigate to the href when is clicked", async () => {
-      const { history } = renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
-
-      await userEvent.click(screen.getByRole("link", { name: /item 1.1/i }));
-
-      expect(history.location.pathname).toBe("/items/1-1");
-    });
-
     describe("icon", () => {
       it("should render an icon when is set", () => {
         renderComponent({ item: mockLinkDrawerNavigationItem });

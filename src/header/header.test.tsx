@@ -12,7 +12,7 @@ import {
 } from "./header.types";
 import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
 import { TabProvider } from "../tab-provider";
-import { WithLinkedTabs, WithPanelTabs } from "./header.stories";
+import { WithPanelTabs } from "./header.stories";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { Label } from "../label";
@@ -138,14 +138,6 @@ describe("Header", () => {
       expect(screen.getByRole("link", { name: /items/i })).toBeInTheDocument();
       expect(screen.getByRole("link", { name: /item 1/i })).toBeInTheDocument();
     });
-
-    it("should navigate to a breadcrumb when is", async () => {
-      const { history } = renderInstance({ breadcrumbs });
-
-      await userEvent.click(screen.getByRole("link", { name: /items/i }));
-
-      expect(history.location.pathname).toBe("/items");
-    });
   });
 
   describe("actions", () => {
@@ -172,14 +164,6 @@ describe("Header", () => {
       renderInstance({ actions });
 
       expect(screen.getByRole("button", { name: /disabled/i })).toBeDisabled();
-    });
-
-    it("should redirect to the expected url when click an action with an href", async () => {
-      const { history } = renderInstance({ actions });
-
-      await userEvent.click(screen.getByRole("button", { name: /add/i }));
-
-      expect(history.location.pathname).toBe("/items/add");
     });
   });
 
@@ -234,61 +218,6 @@ describe("Header", () => {
         },
       );
     });
-
-    describe("tabMode = navigation", () => {
-      const enabledTestCases = linkedTabs
-        .filter((tab) => !tab.disabled)
-        .map(({ label, href }) => [href, label]);
-      const renderLinkedTabsInstance = () => {
-        render(<WithLinkedTabs />, {
-          router: "memory",
-          historyOptions: {
-            initialEntries: ["/other"],
-          },
-        });
-      };
-
-      it("should render a list of tabs", () => {
-        renderLinkedTabsInstance();
-
-        tabs.forEach(({ label }) => {
-          expect(screen.getByRole("tab", { name: label })).toBeVisible();
-        });
-      });
-
-      it.each(enabledTestCases)(
-        "should render %s if the user click %s label",
-        async (id: string | undefined, label: string | undefined) => {
-          renderLinkedTabsInstance();
-
-          await userEvent.click(screen.getByRole("tab", { name: label }));
-
-          expect(screen.getByText(`Panel: ${id}`)).toBeVisible();
-        },
-      );
-
-      it.each(enabledTestCases)(
-        "should navigate to %s if the user click %s label",
-        async (href: string | undefined, label: string | undefined) => {
-          renderLinkedTabsInstance();
-
-          await userEvent.click(screen.getByRole("tab", { name: label }));
-
-          expect(screen.getByText(`Location: ${href}`)).toBeVisible();
-        },
-      );
-
-      it.each(enabledTestCases)(
-        "should mark the %s tab aas selected if the user click %s label",
-        async (_: string | undefined, label: string | undefined) => {
-          renderLinkedTabsInstance();
-
-          await userEvent.click(screen.getByRole("tab", { name: label }));
-
-          expect(screen.getByRole("tab", { name: label, selected: true })).toBeVisible();
-        },
-      );
-    });
   });
 
   describe("navigationButton", () => {
@@ -302,14 +231,6 @@ describe("Header", () => {
       renderInstance({ navigationButton: false });
 
       expect(screen.queryByRole("link", { name: /go back/i })).not.toBeInTheDocument();
-    });
-
-    it("should navigate to the navigation path if is clicked", async () => {
-      const { history } = renderInstance({ navigationButton: true });
-
-      await userEvent.click(screen.getByRole("link", { name: /go back/i }));
-
-      expect(history.location.pathname).toBe("/back");
     });
   });
 });

@@ -5,13 +5,11 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
-import { Link } from "../link";
 import { useGetDefaultThemeColor } from "../utils";
 import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
 import { useTab } from "../tab-provider";
-import { useLocation } from "react-router-dom";
 import { HeaderSubtitle, HeaderTitle } from "./header-title";
-import { useRouteMatch } from "../hooks";
+import Link from "@mui/material/Link";
 
 /**
  * Section used to explain give basic information about the page
@@ -35,7 +33,6 @@ export const Header: HeaderComponent = ({
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
   const [selectedTab, setSelectedTab] = useTab();
-  const routeMatch = useRouteMatch(paths);
 
   const bgColorPresets: Record<HeaderPreset, string> = {
     default: defaultColor,
@@ -54,7 +51,7 @@ export const Header: HeaderComponent = ({
   };
   const textColor = textColorPresets[preset];
 
-  const modedSelectedTab = tabsMode === "panel" ? selectedTab : routeMatch?.pattern?.path;
+  const modedSelectedTab = selectedTab;
 
   return (
     <Box bgcolor={bgColor} color={textColor}>

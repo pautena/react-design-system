@@ -47,8 +47,7 @@
     "lorem-ipsum": "^2.0.8",
     "markdown-to-jsx": "^7.2.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.2"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.22.20",
@@ -118,8 +117,7 @@
     "lorem-ipsum": "^2.0.8",
     "markdown-to-jsx": "^7.2.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.0"
+    "react-dom": "^18.2.0"
   },
   "repository": {
     "type": "git",

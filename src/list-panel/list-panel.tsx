@@ -4,13 +4,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
-import { useTheme } from "@mui/material";
+import { Link, useTheme } from "@mui/material";
 import { PropsWithChildren, useState } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 import { ListPanelContextProvider } from "./list-panel.context";
 import { grey } from "@mui/material/colors";
-import { Link } from "../link";
-import { useRouteMatch } from "../hooks";
 
 export interface ListPanelItem {
   id: string;
@@ -38,7 +36,6 @@ export const ListPanel = ({
 }: ListPanelProps) => {
   const paths = items.map((item) => item.path).filter(Boolean) as string[];
 
-  const routeMatch = useRouteMatch(paths);
   const bgColor = useGetDefaultThemeColor();
   const { palette, typography } = useTheme();
   const [selectedItem, setSelectedItem] = useState(defaultSelectedItem);
@@ -54,8 +51,6 @@ export const ListPanel = ({
         <Grid item xs={colBreakpoint} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
             {items.map(({ id, text, tooltip, path, href }) => {
-              const selected =
-                listMode === "panel" ? id === selectedItem : routeMatch?.pattern?.path === path;
               const linkProps = listMode === "navigation" ? { component: Link, href } : {};
 
               const contentEl = (
@@ -63,16 +58,13 @@ export const ListPanel = ({
                   {...linkProps}
                   key={id}
                   dense
-                  selected={selected}
                   onClick={() => handleSelectItem(id)}
                   aria-label={text}
-                  sx={{ backgroundColor: selected ? `${palette.grey[300]} !important` : undefined }}
                 >
                   <ListItemText
                     primary={text}
                     primaryTypographyProps={{
-                      fontWeight: selected ? typography.fontWeightMedium : undefined,
-                      color: selected ? typography.body1.color : grey[600],
+                      color: grey[600],
                     }}
                   />
                 </ListItemButton>

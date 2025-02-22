@@ -1,20 +1,18 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Header } from "./header";
-import { withMemoryRouter } from "../storybook";
-import { breadcrumbs, tabs, actions, linkedTabs } from "./header.dummy";
+import { breadcrumbs, tabs, actions } from "./header.dummy";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { TabProvider } from "../tab-provider";
 import { Content } from "../content";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+
 import { TabPanel } from "../tab-panel";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
 import { Label } from "../label";
 
 export default {
   title: "Components/Data Display/Header",
   component: Header,
-  decorators: [withMemoryRouter()],
   parameters: {
     layout: "fullscreen",
   },
@@ -171,37 +169,6 @@ export const WithPanelTabs = () => (
     </Content>
   </TabProvider>
 );
-
-export const WithLinkedTabs = () => {
-  const location = useLocation();
-
-  const TabComponent = () => {
-    const { id } = useParams();
-    return <Typography>Panel: /tab/{id}</Typography>;
-  };
-
-  return (
-    <Box>
-      <Header
-        title="Lorem ipsum"
-        subtitle="Dolor sit amet"
-        tabsMode="navigation"
-        tabs={linkedTabs}
-      />
-      <Content>
-        <>
-          <Typography>Location: {location.pathname}</Typography>
-          <Routes>
-            <Route path="/tab/:id" element={<TabComponent />} />
-            <Route path="/other" element={<Typography>Panel: /other</Typography>} />
-            <Route path="/another" element={<Typography>Panel: /another</Typography>} />
-            <Route path="/:id/subtab" element={<Typography>Panel: /1/subtab</Typography>} />
-          </Routes>
-        </>
-      </Content>
-    </Box>
-  );
-};
 
 export const NavigationButton: Story = {
   args: {

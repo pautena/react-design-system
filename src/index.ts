@@ -51,7 +51,6 @@ export * from "./header-layout";
 export * from "./notification-center";
 export * from "./tab-provider";
 export * from "./object-details";
-export * from "./model-router";
 export * from "./generators";
 export * from "./model-form";
 export * from "./table-list";

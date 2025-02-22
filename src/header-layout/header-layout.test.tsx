@@ -1,12 +1,9 @@
 import { HeaderLayout, HeaderLayoutError } from "./header-layout";
-import { fireEvent, render, screen } from "../tests/testing-library";
+import { render, screen } from "../tests/testing-library";
 import { Content } from "../content";
 import { Header } from "../header";
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
-import { Route, Routes, useParams } from "react-router-dom";
-import { linkedTabs } from "../header/header.dummy";
-import { TestRouterId } from "../tests/components";
 
 describe("HeaderLayout", () => {
   const renderComponent = ({
@@ -21,40 +18,6 @@ describe("HeaderLayout", () => {
           <Typography>Test content</Typography>
         </Content>
       </HeaderLayout>,
-    );
-  };
-
-  const renderNavigationComponent = () => {
-    render(
-      <Routes>
-        <Route
-          path="/*"
-          element={
-            <HeaderLayout>
-              <Header
-                title="Lorem ipsum"
-                subtitle="Dolor sit amet"
-                tabs={linkedTabs}
-                tabsMode="navigation"
-              />
-              <Content>
-                <Routes>
-                  <Route path="/tab/:id" element={<TestRouterId />} />
-                  <Route path="/other" element={<Typography>Panel: other</Typography>} />
-                  <Route path="/another" element={<Typography>Panel: another</Typography>} />
-                  <Route path="/:id/subtab" element={<Typography>Panel: subtab</Typography>} />
-                </Routes>
-              </Content>
-            </HeaderLayout>
-          }
-        />
-      </Routes>,
-      {
-        router: "memory",
-        historyOptions: {
-          initialEntries: ["/other"],
-        },
-      },
     );
   };
 
@@ -134,32 +97,6 @@ describe("HeaderLayout", () => {
       });
 
       expect(screen.queryByText(/invalid user id/i)).toBeVisible();
-    });
-
-    describe("navigation router", () => {
-      it("should render all tabs", () => {
-        renderNavigationComponent();
-
-        linkedTabs.forEach((tab) => {
-          expect(screen.getByRole("tab", { name: tab.label })).toBeVisible();
-        });
-      });
-
-      it("should render the tab content when is clicked", () => {
-        renderNavigationComponent();
-
-        fireEvent.click(screen.getByRole("tab", { name: /tab 2/i }));
-        expect(screen.getByText(/router id: tab2/i)).toBeVisible();
-
-        fireEvent.click(screen.getByRole("tab", { name: "Other" }));
-        expect(screen.getByText(/panel: other/i)).toBeVisible();
-
-        fireEvent.click(screen.getByRole("tab", { name: /another/i }));
-        expect(screen.getByText(/panel: another/i)).toBeVisible();
-
-        fireEvent.click(screen.getByRole("tab", { name: /subtab/i }));
-        expect(screen.getByText(/panel: subtab/i)).toBeVisible();
-      });
     });
   });
 });

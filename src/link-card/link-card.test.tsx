@@ -31,12 +31,4 @@ describe("LinkCard", () => {
 
     expect(screen.getByText(/check more/i)).toBeVisible();
   });
-
-  it("should navigate to the href if the card is clicked", async () => {
-    const { history } = renderComponent();
-
-    await userEvent.click(screen.getByText(/Lorem ipsum dolor sit amet/i));
-
-    expect(history.location.pathname).toBe("/test");
-  });
 });

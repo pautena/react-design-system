@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerLayout } from "./drawer-layout";
 import { mockDrawerNavigation } from "../drawer/drawer.mock";
-import { withMemoryRouter } from "../storybook";
 import { DrawerContent } from "../drawer-content";
 import { Drawer } from "../drawer";
 import { DrawerAppBar } from "../drawer-app-bar";
@@ -10,7 +9,6 @@ import { ContentPlaceholder } from "../content-placeholder";
 export default {
   title: "Layouts/DrawerLayout",
   component: DrawerLayout,
-  decorators: [withMemoryRouter()],
   parameters: {
     layout: "fullscreen",
   },
