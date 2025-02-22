@@ -11,7 +11,7 @@ export const useNotifyWhenValueChanges = <T>(
   value: T | undefined,
   { from, to }: NotifyWhenValueChangesOptions<T>,
 ) => {
-  const prevRef = useRef<T>();
+  const prevRef = useRef<T>(undefined);
   const { show } = useNotificationCenter();
 
   useEffect(() => {
