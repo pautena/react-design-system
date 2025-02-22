@@ -1,5 +1,5 @@
 import { fireEvent, render, RenderOptions, RenderResult } from "@testing-library/react";
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { ThemeProvider } from "@emotion/react";
 import { Theme, createTheme, PaletteMode } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -18,7 +18,7 @@ function createMockTheme(mode: PaletteMode) {
 const createWrapper =
   (theme: Theme) =>
   // eslint-disable-next-line react/display-name
-  ({ children }: { children: React.ReactElement }) => {
+  ({ children }: PropsWithChildren) => {
     return (
       <ThemeProvider theme={theme}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>{children}</LocalizationProvider>
