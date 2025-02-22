@@ -32,7 +32,7 @@ describe("Select", () => {
   it("would render a select with a label", () => {
     renderComponent({ label: "Lorem ipsum" });
 
-    expect(screen.getByRole("button", { name: /lorem ipsum/i })).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: /lorem ipsum/i })).toBeInTheDocument();
   });
 
   it("would render the value", () => {
@@ -86,7 +86,7 @@ describe("Select", () => {
   it("would render a menu item for each option", async () => {
     const { options } = renderComponent({ label: "Lorem ipsum" });
 
-    await userEvent.click(screen.getByRole("button", { name: /lorem ipsum/i }));
+    await userEvent.click(screen.getByRole("combobox", { name: /lorem ipsum/i }));
 
     options.forEach((option) => {
       expect(screen.getByRole("option", { name: option })).toBeInTheDocument();
