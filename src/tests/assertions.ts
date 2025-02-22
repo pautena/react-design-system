@@ -28,7 +28,7 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
       expect(screen.getByRole("checkbox", { name: field.name })).toBeInTheDocument();
     } else if (field.type === "enum" || field.type === "multienum") {
       expect(
-        screen.getByRole("button", { name: new RegExp(field.name.toLowerCase(), "i") }),
+        screen.getByRole("combobox", { name: new RegExp(field.name.toLowerCase(), "i") }),
       ).toBeInTheDocument();
     } else if (field.type !== "group[]") {
       expect(screen.getByRole("textbox", { name: field.name })).toBeInTheDocument();

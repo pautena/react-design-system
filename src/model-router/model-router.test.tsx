@@ -150,7 +150,7 @@ describe("ModelRouter", () => {
         name: /birth date/i,
       });
       const manufacturerElement = screen.getByRole("button", { name: /manufacturer/i });
-      const modelElement = screen.getByRole("button", { name: /model/i });
+      const modelElement = screen.getByRole("combobox", { name: /model/i });
       const colorElement = screen.getByRole("textbox", { name: /color/i });
       const typeElement = screen.getByRole("button", { name: /type/i });
       const vinElement = screen.getByRole("textbox", { name: /vin/i });
