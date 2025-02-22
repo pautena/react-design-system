@@ -1,45 +1,12 @@
 /* eslint-disable react/display-name */
-import React, { FunctionComponent, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { Box, Button, SxProps, Theme } from "@mui/material";
-import { MemoryRouter, Router, Navigator, Route, Routes } from "react-router-dom";
 import { NotificationCenterProvider } from "./notification-center";
 import { action } from "@storybook/addon-actions";
 import { LocalizationProvider } from "@mui/x-date-pickers/";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
-const replaceAction = action("navigator/replace");
-const goAction = action("navigator/go");
-const pushAction = action("navigator/push");
 const closeDialogAction = action("dialog/close");
-
-export const withActionRouter =
-  ({ location = "/", path = "/" }: { location?: string; path?: string } = {}) =>
-  (Story: FunctionComponent) => {
-    const navigator: Navigator = {
-      replace: (args) => replaceAction(args),
-      go: (args) => goAction(args),
-      push: (args) => pushAction(args),
-      createHref: () => "",
-    };
-
-    return (
-      <Router location={location} navigator={navigator}>
-        <Routes>
-          <Route path={path} element={<Story />} />
-        </Routes>
-      </Router>
-    );
-  };
-
-export const withMemoryRouter =
-  (initialEntries = ["/"]) =>
-  (Story: FunctionComponent) => {
-    return (
-      <MemoryRouter initialEntries={initialEntries}>
-        <Story />
-      </MemoryRouter>
-    );
-  };
 
 export const withNotificationCenter = (Story: FunctionComponent) => {
   return (

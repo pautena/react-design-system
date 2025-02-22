@@ -1,5 +1,4 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withMemoryRouter } from "../storybook";
 import { DrawerItem, DrawerItemProps } from "./drawer-item";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import {
@@ -17,7 +16,6 @@ type DrawerItemStoryArgs = DrawerItemProps & {
 export default {
   title: "Components/Drawers/DrawerItem",
   component: DrawerItem,
-  decorators: [withMemoryRouter()],
   parameters: {
     layout: "centered",
   },

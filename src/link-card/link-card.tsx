@@ -1,8 +1,8 @@
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
 import { SxProps, Theme, useTheme } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
-import { Link } from "../link";
 
 export type LinkCardVariant = "primary" | "secondary" | "info" | "warning" | "error";
 export interface LinkCardProps {

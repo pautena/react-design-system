@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer, withMemoryRouter } from "../storybook";
+import { withContainer } from "../storybook";
 import { LinkCard } from "./link-card";
 
 export default {
   title: "Components/Data Display/LinkCard",
   component: LinkCard,
-  decorators: [withContainer({ width: 400 }), withMemoryRouter()],
+  decorators: [withContainer({ width: 400 })],
   parameters: {
     layout: "centered",
   },

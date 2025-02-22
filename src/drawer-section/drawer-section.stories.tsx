@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerSection, DrawerSectionProps } from "./drawer-section";
-import { withMemoryRouter } from "../storybook";
 import { mockMenuDrawerNavigationSection } from "../drawer/drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
 import { DrawerState } from "../drawer";
@@ -13,7 +12,6 @@ type DrawerSectionArgs = DrawerSectionProps & {
 export default {
   title: "Components/Drawers/DrawerSection",
   component: DrawerSection,
-  decorators: [withMemoryRouter()],
   parameters: {
     layout: "centered",
   },

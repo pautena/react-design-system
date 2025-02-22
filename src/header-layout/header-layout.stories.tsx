@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Meta, StoryObj } from "@storybook/react";
 import { HeaderLayout, HeaderLayoutProps } from "../header-layout";
-import { withLocalizationProvider, withMemoryRouter } from "../storybook";
+import { withLocalizationProvider } from "../storybook";
 import { withFullHeight } from "../storybook";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -16,9 +16,6 @@ import { TabPanel } from "../tab-panel";
 import { TableList } from "../table-list";
 import { ObjectDetails } from "../object-details";
 import { ModelForm } from "../model-form";
-import { Route, Routes, useLocation, useParams } from "react-router-dom";
-import { linkedTabs } from "../header/header.dummy";
-import { TestRouterId } from "../tests/components";
 
 const breadcrumbs = [
   {
@@ -73,7 +70,7 @@ const DummyHeaderLayout = ({ headerProps, contentChildren, ...rest }: HeaderLayo
 export default {
   title: "Layouts/HeaderLayout",
   component: DummyHeaderLayout,
-  decorators: [withMemoryRouter(["/tab/tab3"]), withFullHeight, withLocalizationProvider],
+  decorators: [withFullHeight, withLocalizationProvider],
   parameters: {
     layout: "fullscreen",
   },
@@ -251,30 +248,4 @@ export const Error: Story = {
     },
     contentChildren: <SkeletonGrid />,
   },
-};
-
-export const NavaigationRouterTabs = () => {
-  const { pathname } = useLocation();
-
-  return (
-    <HeaderLayout>
-      <Header
-        title="Lorem ipsum"
-        subtitle="Dolor sit amet"
-        tabsMode="navigation"
-        tabs={linkedTabs}
-      />
-      <Content>
-        <>
-          <Typography>pathname: {pathname}</Typography>
-          <Routes>
-            <Route path="/tab/:id" element={<TestRouterId />} />
-            <Route path="/other" element={<Typography>Panel: other</Typography>} />
-            <Route path="/another" element={<Typography>Panel: another</Typography>} />
-            <Route path="/:id/subtab" element={<Typography>Panel: subtab</Typography>} />
-          </Routes>
-        </>
-      </Content>
-    </HeaderLayout>
-  );
 };

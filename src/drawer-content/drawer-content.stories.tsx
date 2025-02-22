@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
 import { mockDrawerNavigation } from "../drawer/drawer.mock";
-import { withMemoryRouter } from "../storybook";
 import { DrawerProvider } from "../drawer-provider";
 import { DrawerContentProps, DrawerState } from "../drawer";
 
@@ -13,7 +12,6 @@ type DrawerContentArgs = DrawerContentProps & {
 export default {
   title: "Components/Drawers/DrawerContent",
   component: DrawerContent,
-  decorators: [withMemoryRouter()],
   render: ({ initialState = "open", selectedItemId, ...args }) => (
     <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
       <DrawerContent {...args} />

@@ -1,22 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { withContainer, withMemoryRouter } from "../storybook";
+import { withContainer } from "../storybook";
 import { ListPanel } from "./list-panel";
 import Box from "@mui/material/Box";
 import { ListPanelPanel } from "./list-panel-panel";
-import {
-  ListPanelDemoContent,
-  mockItemsLong,
-  mockItemsRouterNavigation,
-  mockItemsShort,
-} from "./list-panel.mocks";
-import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
-import Typography from "@mui/material/Typography";
-import { TestRouterId } from "../tests/components";
+import { ListPanelDemoContent, mockItemsLong, mockItemsShort } from "./list-panel.mocks";
 
 export default {
   title: "Components/Containers/ListPanel",
   component: ListPanel,
-  decorators: [withContainer({ width: 800, height: 600 }), withMemoryRouter(["/inbox"])],
+  decorators: [withContainer({ width: 800, height: 600 })],
   render: (args) => (
     <ListPanel {...args}>
       <ListPanelDemoContent />
@@ -42,23 +34,4 @@ export const Long: Story = {
     items: mockItemsLong,
     defaultSelectedItem: "item3",
   },
-};
-
-export const RouterNavigation = () => {
-  const { pathname } = useLocation();
-
-  return (
-    <>
-      <Typography>pathname: {pathname}</Typography>
-      <ListPanel items={mockItemsRouterNavigation} listMode="navigation">
-        <Routes>
-          <Route path="/panel/:id" element={<TestRouterId />} />
-          <Route path="/inbox" element={<Typography>inbox panel</Typography>} />
-          <Route path="/:id/profile" element={<Typography>profile panel</Typography>} />
-          <Route path="/:id/settings" element={<Typography>settings panel</Typography>} />
-          <Route path="/" element={<Typography>Select an item in the left panel</Typography>} />
-        </Routes>
-      </ListPanel>
-    </>
-  );
 };

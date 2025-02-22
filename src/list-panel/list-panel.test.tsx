@@ -8,8 +8,6 @@ import {
 import { ListPanelPanel } from "./list-panel-panel";
 import Box from "@mui/material/Box";
 import { vi } from "vitest";
-import { Route, Routes } from "react-router-dom";
-import { TestRouterId } from "../tests/components";
 import Typography from "@mui/material/Typography";
 
 describe("ListPanel", () => {
@@ -32,46 +30,6 @@ describe("ListPanel", () => {
           <Box>Drafts panel</Box>
         </ListPanelPanel>
       </ListPanel>,
-    );
-
-    return { onSelectedItemChange };
-  };
-
-  const renderRouterComponent = ({
-    items,
-    location = "/",
-  }: {
-    items: ListPanelItem[];
-    location?: string;
-  }) => {
-    const onSelectedItemChange = vi.fn();
-
-    render(
-      <Routes>
-        <Route
-          path="/*"
-          element={
-            <ListPanel
-              items={items}
-              onSelectedItemChange={onSelectedItemChange}
-              listMode="navigation"
-            >
-              <Routes>
-                <Route path="/panel/:id" element={<TestRouterId />} />
-                <Route path="/inbox" element={<Typography>inbox panel</Typography>} />
-                <Route path="/:id/profile" element={<Typography>profile panel</Typography>} />
-                <Route path="/:id/settings" element={<Typography>settings panel</Typography>} />
-              </Routes>
-            </ListPanel>
-          }
-        />
-      </Routes>,
-      {
-        router: "memory",
-        historyOptions: {
-          initialEntries: [location],
-        },
-      },
     );
 
     return { onSelectedItemChange };
@@ -107,19 +65,5 @@ describe("ListPanel", () => {
     fireEvent.click(screen.getByRole("button", { name: /drafts/i }));
 
     expect(screen.getByText(/drafts panel/i)).toBeVisible();
-  });
-
-  it("should render the initial screen based on the location", () => {
-    renderRouterComponent({ items: mockItemsRouterNavigation, location: "/1/settings" });
-
-    expect(screen.getByText(/settings panel/i)).toBeVisible();
-  });
-
-  it("should render the correct route if the user click an item", () => {
-    renderRouterComponent({ items: mockItemsRouterNavigation });
-
-    fireEvent.click(screen.getByRole("link", { name: /inbox/i }));
-
-    expect(screen.getByText(/inbox panel/i)).toBeVisible();
   });
 });

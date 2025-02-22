@@ -71,17 +71,4 @@ describe("DrawerSection", () => {
       },
     );
   });
-
-  describe("click list item", () => {
-    it.each([
-      ["/items/2-1", /item 2.1/i],
-      ["/items/2-2", /item 2.2/i],
-    ])("should navigate to %s if %s is clicked", async (to: string, item: RegExp) => {
-      const { history } = renderComponent();
-
-      await userEvent.click(screen.getByRole("link", { name: item }));
-
-      expect(history.location.pathname).toBe(to);
-    });
-  });
 });
