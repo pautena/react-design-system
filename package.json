@@ -99,7 +99,7 @@
     "storybook": "^7.6.20",
     "tslib": "^2.8.1",
     "typescript": "^5.7.3",
-    "vite-tsconfig-paths": "^4.3.2",
+    "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^0.34.6"
   },
   "peerDependencies": {
