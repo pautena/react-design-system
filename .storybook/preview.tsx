@@ -41,6 +41,8 @@ const preview: Preview = {
     },
     withKnobs,
   ],
+
+  tags: ["autodocs"],
 };
 
 export default preview;
