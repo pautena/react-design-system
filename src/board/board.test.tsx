@@ -23,15 +23,9 @@ const mockCopy = () => {
 };
 
 describe("Board", () => {
-  const renderComponent = ({
-    markdown,
-    content,
-  }: {
-    markdown?: string;
-    content?: string | string[];
-  }) => {
+  const renderComponent = ({ content }: { content: string | string[] }) => {
     const { copy } = mockCopy();
-    render(<Board markdown={markdown} content={content} />);
+    render(<Board content={content} />);
 
     return { copy };
   };
@@ -48,14 +42,6 @@ describe("Board", () => {
     expect(screen.getByText(content1)).toBeVisible();
     expect(screen.getByText(content2)).toBeVisible();
     expect(screen.getByText(content3)).toBeVisible();
-  });
-
-  it.skip("should render a markdown content", () => {
-    renderComponent({ markdown: mockMarkdownContent });
-
-    expect(
-      screen.getByRole("heading", { name: "Diu in illa Lavini atque de quoque", level: 5 }),
-    ).toBeVisible();
   });
 
   describe("copy", () => {
@@ -76,15 +62,6 @@ describe("Board", () => {
 
       expect(copy).toHaveBeenCalledTimes(1);
       expect(copy).toHaveBeenCalledWith(expectedCopy);
-    });
-
-    it.skip("should copy the markdown content to the clipboard if the copy button is clicked", async () => {
-      const { copy } = renderComponent({ markdown: mockMarkdownContent });
-
-      await userEvent.click(screen.getByRole("button"));
-
-      expect(copy).toHaveBeenCalledTimes(1);
-      expect(copy).toHaveBeenCalledWith(mockMarkdownContent);
     });
 
     it("should render the children and copy the string content if it has a custom children", async () => {

@@ -1,13 +1,7 @@
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import ReactMarkdown, { MarkdownToJSX } from "markdown-to-jsx";
 
-export interface MarkdownProps {
-  content: string;
-  options?: MarkdownToJSX.Options;
-}
-
-export const markdownDefaultOptions: MarkdownToJSX.Options = {
+export const markdownMuiOptions = {
   overrides: {
     h1: {
       component: Typography,
@@ -31,8 +25,4 @@ export const markdownDefaultOptions: MarkdownToJSX.Options = {
       component: "li",
     },
   },
-};
-
-export const Markdown = ({ content, options = markdownDefaultOptions }: MarkdownProps) => {
-  return <ReactMarkdown options={options}>{content}</ReactMarkdown>;
 };

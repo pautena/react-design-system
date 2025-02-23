@@ -38,12 +38,6 @@ export const ArrayList: Story = {
   },
 };
 
-export const Markdown: Story = {
-  args: {
-    markdown: demoMarkdownContent,
-  },
-};
-
 export const Children: Story = {
   args: {
     children: (
