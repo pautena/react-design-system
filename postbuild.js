@@ -1,4 +1,4 @@
-/* eslint-disable no-console,@typescript-eslint/no-var-requires */
+/* eslint-disable no-console,@typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports */
 const { resolve, join, basename } = require("path");
 const { readFile, writeFile, copy } = require("fs-extra");
 

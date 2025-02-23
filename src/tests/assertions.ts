@@ -119,7 +119,9 @@ export const expectAlert = async ({
   const alertElement = await screen.findByRole("alert");
   expect(alertElement).toBeInTheDocument();
   expect(alertElement).toHaveAttribute("aria-label", severity);
-  title && expect(await screen.findByText(title)).toBeInTheDocument();
+  if (title) {
+    expect(await screen.findByText(title)).toBeInTheDocument();
+  }
   expect(await screen.findByText(message)).toBeInTheDocument();
 };
 

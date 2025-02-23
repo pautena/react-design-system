@@ -28,8 +28,6 @@ export const Header: HeaderComponent = ({
   tabsMode = "panel",
   navigationButton,
 }: HeaderProps) => {
-  const paths = (tabs || []).map((tab) => tab.path).filter(Boolean) as string[];
-
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
   const [selectedTab, setSelectedTab] = useTab();

@@ -1,14 +1,9 @@
 import { fireEvent, render, screen } from "../tests/testing-library";
 import { ListPanel, ListPanelItem } from "./list-panel";
-import {
-  ListPanelDemoContent,
-  mockItemsRouterNavigation,
-  mockItemsShort,
-} from "./list-panel.mocks";
+import { ListPanelDemoContent, mockItemsShort } from "./list-panel.mocks";
 import { ListPanelPanel } from "./list-panel-panel";
 import Box from "@mui/material/Box";
 import { vi } from "vitest";
-import Typography from "@mui/material/Typography";
 
 describe("ListPanel", () => {
   const renderComponent = ({

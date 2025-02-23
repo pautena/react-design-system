@@ -53,7 +53,7 @@ export const Action = ({
 
   const handleConfirmDialog = () => {
     onAction();
-    close;
+    close();
   };
 
   return (

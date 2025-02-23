@@ -10,7 +10,7 @@ import {
   HeaderPreset,
   HeaderTab,
 } from "./header.types";
-import { breadcrumbs, actions as actionsData, tabs, linkedTabs } from "./header.dummy";
+import { breadcrumbs, actions as actionsData, tabs } from "./header.dummy";
 import { TabProvider } from "../tab-provider";
 import { WithPanelTabs } from "./header.stories";
 import Box from "@mui/material/Box";
@@ -139,6 +139,7 @@ describe("Header", () => {
       expect(screen.getByRole("link", { name: /item 1/i })).toBeInTheDocument();
     });
   });
+  const paths = (tabs || []).map((tab) => tab.path).filter(Boolean) as string[];
 
   describe("actions", () => {
     it("should render a list of buttons", () => {
