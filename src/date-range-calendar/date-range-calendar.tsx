@@ -1,8 +1,7 @@
 import Box, { BoxProps } from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import { DateCalendar, PickersDay, PickersDayProps } from "@mui/x-date-pickers";
-import { endOfWeek, format, isAfter, isSameDay, startOfWeek } from "date-fns";
-import { isBefore } from "date-fns/esm";
+import { endOfWeek, format, isAfter, isBefore, isSameDay, startOfWeek } from "date-fns";
 import { useState } from "react";
 
 type DateRange = [Date, Date | undefined];

@@ -3,7 +3,7 @@ import React, { PropsWithChildren } from "react";
 import { ThemeProvider } from "@emotion/react";
 import { Theme, createTheme, PaletteMode } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
 export type TestRouter = "router" | "memory";
 
