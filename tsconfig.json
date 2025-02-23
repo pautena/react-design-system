@@ -16,7 +16,8 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "typeRoots": ["./src/types"],
+    "typeRoots": ["./src/types", "node_modules"],
+    "types": ["vitest/globals"],
     "baseUrl": "."
   },
   "include": [
