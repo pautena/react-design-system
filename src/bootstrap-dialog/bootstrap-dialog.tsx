@@ -6,7 +6,6 @@ import DialogContent from "@mui/material/DialogContent";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import LoadingButton from "@mui/lab/LoadingButton";
 import CloseIcon from "@mui/icons-material/Close";
 import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
 
@@ -79,14 +78,14 @@ export const BootstrapDialog = ({
             )}
 
             {acceptable && (
-              <LoadingButton
+              <Button
                 type={acceptType}
                 loading={loading}
                 disabled={disabled || disableAccept}
                 onClick={onAccept}
               >
                 {acceptText}
-              </LoadingButton>
+              </Button>
             )}
           </DialogActions>
         )}

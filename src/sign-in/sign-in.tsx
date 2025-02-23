@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
-import LoadingButton from "@mui/lab/LoadingButton";
+import Button from "@mui/material/Button";
 
 export interface SignInProps {
   title: string;
@@ -84,7 +84,7 @@ export const SignIn = ({ title, subtitle, loading, error, onSubmitSignIn }: Sign
           error={!!passwordError}
           helperText={passwordError}
         />
-        <LoadingButton
+        <Button
           type="submit"
           fullWidth
           variant="contained"
@@ -94,7 +94,7 @@ export const SignIn = ({ title, subtitle, loading, error, onSubmitSignIn }: Sign
           sx={{ mt: 2 }}
         >
           Sign In
-        </LoadingButton>
+        </Button>
       </Box>
     </>
   );
