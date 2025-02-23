@@ -18,8 +18,8 @@ const StyledDiv = styled("div")(({ theme }) => {
     ? state === "open"
       ? drawerWidth
       : state === "collapse"
-      ? spacing(8)
-      : 0
+        ? spacing(8)
+        : 0
     : 0;
 
   return {

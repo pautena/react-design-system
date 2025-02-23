@@ -45,8 +45,8 @@ export const ValueDatetime = ({
     editInputType === "datetime"
       ? DateTimePicker
       : editInputType === "time"
-      ? TimePicker
-      : DatePicker;
+        ? TimePicker
+        : DatePicker;
 
   return (
     <ValueContent
