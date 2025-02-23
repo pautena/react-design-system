@@ -292,7 +292,7 @@ export const createModelInstance = <T extends BasicModelInstance>(model: Model, 
 const getModelFieldValue = ({ id }: ModelField): FieldType => {
   const fieldGenerator = mockFieldValue[id];
   if (!fieldGenerator) {
-    return faker.datatype.string();
+    return faker.string.sample();
   }
   return fieldGenerator();
 };
