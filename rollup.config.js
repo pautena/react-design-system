@@ -1,16 +1,14 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import typescript from "rollup-plugin-typescript2";
-import path from "path";
 import { terser } from "rollup-plugin-terser";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-import packageJson from "./package.json";
+import packageJson from "./package.json" with { type: "json" };
 import { readdirSync } from "fs";
 import generatePackageJson from "rollup-plugin-generate-package-json";
 
 const ignoreFolders = ["stories", "tests", "types"];
 
-const projectRootDir = path.resolve(__dirname);
 const plugins = [
   peerDepsExternal(),
   resolve(),
