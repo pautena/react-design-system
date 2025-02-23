@@ -1,6 +1,6 @@
 {
   "name": "@pautena/react-design-system",
-  "version": "0.14.8",
+  "version": "0.15.0",
   "description": "My custom design system on top of MUI",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
