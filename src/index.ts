@@ -33,7 +33,6 @@ export * from "./placeholder";
 export * from "./skeleton-grid";
 export * from "./skeleton-card";
 export * from "./content-placeholder";
-export * from "./lorem-ipsum-placeholder";
 export * from "./enhanced-table";
 export * from "./enhanced-remote-table";
 export * from "./value-text";

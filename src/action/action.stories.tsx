@@ -1,6 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { Action } from "./action";
-import { loremIpsum } from "lorem-ipsum";
 import { withContainer } from "../storybook";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -18,9 +17,9 @@ type Story = StoryObj<typeof Action>;
 export const Default: Story = {
   args: {
     title: "Change username",
-    description: loremIpsum({ count: 5, units: "sentence" }),
+    description: "Set your new username",
     buttonText: "Change username",
-    helperText: loremIpsum({ count: 1, units: "sentence" }),
+    helperText: "Min length 8",
   },
 };
 
@@ -35,7 +34,7 @@ export const CustomDescription: Story = {
       </Box>
     ),
     buttonText: "Change username",
-    helperText: loremIpsum({ count: 1, units: "sentence" }),
+    helperText: "Min length 8",
   },
 };
 

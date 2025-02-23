@@ -1,6 +1,6 @@
 import { render, screen } from "../tests/testing-library";
 import { GroupValueCardDummy } from "./group-value-card.mock";
-import { LoremIpsumPlaceholder } from "../lorem-ipsum-placeholder";
+import { Typography } from "@mui/material";
 
 describe("GroupValueCard", () => {
   const renderComponent = ({
@@ -9,7 +9,7 @@ describe("GroupValueCard", () => {
   }: { title?: string; subtitle?: string } = {}) => {
     return render(
       <GroupValueCardDummy title={title} subtitle={subtitle}>
-        <LoremIpsumPlaceholder />
+        <Typography>Test content</Typography>
       </GroupValueCardDummy>,
     );
   };

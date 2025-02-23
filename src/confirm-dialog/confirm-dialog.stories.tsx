@@ -1,6 +1,5 @@
 import DialogContentText from "@mui/material/DialogContentText";
 import { Meta, StoryObj } from "@storybook/react";
-import { loremIpsum } from "lorem-ipsum";
 import { StoryDialogManager } from "../storybook";
 import { ConfirmDialog } from "./confirm-dialog";
 
@@ -18,7 +17,12 @@ export const Default: Story = {
   args: {
     open: true,
     title: "Lorem ipsum",
-    children: <DialogContentText>{loremIpsum({ count: 1, units: "paragraph" })}</DialogContentText>,
+    children: (
+      <DialogContentText>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+      </DialogContentText>
+    ),
   },
 };
 

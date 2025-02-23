@@ -2,7 +2,6 @@ import DialogContentText from "@mui/material/DialogContentText";
 import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { BootstrapDialog } from "./bootstrap-dialog";
-import { loremIpsum } from "lorem-ipsum";
 import { StoryDialogManager } from "../storybook";
 
 const onClickAction = action("On click dialog action");
@@ -20,7 +19,12 @@ type Story = StoryObj<typeof BootstrapDialog>;
 export const Default: Story = {
   args: {
     title: "Lorem ipsum",
-    children: <DialogContentText>{loremIpsum({ count: 1, units: "paragraph" })}</DialogContentText>,
+    children: (
+      <DialogContentText>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua.
+      </DialogContentText>
+    ),
   },
 };
 
