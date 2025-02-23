@@ -20,7 +20,9 @@ export const selectOptions = async (element: HTMLElement, options: string[]) => 
   }
 
   const presentation = screen.getByRole("presentation").firstChild;
-  presentation && fireEvent.click(presentation);
+  if (presentation) {
+    fireEvent.click(presentation);
+  }
 };
 
 export const clearMultiSelect = async (element: HTMLElement) => {
@@ -33,7 +35,9 @@ export const clearMultiSelect = async (element: HTMLElement) => {
   }
 
   const presentation = screen.getByRole("presentation").firstChild;
-  presentation && fireEvent.click(presentation);
+  if (presentation) {
+    fireEvent.click(presentation);
+  }
 };
 
 export const clearCheckbox = async (element: HTMLInputElement) => {

@@ -69,7 +69,9 @@ export const BootstrapDialog = ({
                 disabled={disabled || disableCancel}
                 onClick={() => {
                   onCancel();
-                  callCloseWhenCancel && onClose();
+                  if (callCloseWhenCancel) {
+                    onClose();
+                  }
                 }}
               >
                 {cancelText}

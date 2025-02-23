@@ -19,24 +19,22 @@ export const ValueLabel = ({
   variant,
 }: ValueLabelProps) => {
   const id = getValueContentLabelId(label);
-  let value;
-
-  Array.isArray(valueProp)
-    ? (value = valueProp.map((value, i) => (
-        <Label
-          text={value.toString() || placeholder}
-          variant={Array.isArray(variant) ? variant[i] : variant}
-          color={Array.isArray(color) ? color[i] : color}
-          key={i}
-        />
-      )))
-    : (value = (
-        <Label
-          text={valueProp?.toString() || placeholder}
-          variant={Array.isArray(variant) ? variant[0] : variant}
-          color={Array.isArray(color) ? color[0] : color}
-        />
-      ));
+  const value = Array.isArray(valueProp) ? (
+    valueProp.map((value, i) => (
+      <Label
+        text={value.toString() || placeholder}
+        variant={Array.isArray(variant) ? variant[i] : variant}
+        color={Array.isArray(color) ? color[i] : color}
+        key={i}
+      />
+    ))
+  ) : (
+    <Label
+      text={valueProp?.toString() || placeholder}
+      variant={Array.isArray(variant) ? variant[0] : variant}
+      color={Array.isArray(color) ? color[0] : color}
+    />
+  );
 
   return (
     <ValueContent label={label}>

@@ -5,8 +5,12 @@ import { expectProgressIndicator } from "../tests/assertions";
 import { vi } from "vitest";
 
 async function submitSignIn(email: string | null, password: string | null) {
-  email && (await userEvent.type(screen.getByRole("input", { name: /email/i }), email));
-  password && (await userEvent.type(screen.getByRole("input", { name: /password/i }), password));
+  if (email) {
+    await userEvent.type(screen.getByRole("input", { name: /email/i }), email);
+  }
+  if (password) {
+    await userEvent.type(screen.getByRole("input", { name: /password/i }), password);
+  }
   await userEvent.click(screen.getByRole("button", { name: /sign in/i }));
 }
 
