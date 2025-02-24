@@ -13,13 +13,13 @@ This project is available as an [npm package](https://www.npmjs.com/package/@pau
 npm:
 
 ```bash
-npm install @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/lab @mui/material @mui/x-data-grid
+npm install @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid
 ```
 
 yarn:
 
 ```bash
-npm install @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/lab @mui/material @mui/x-data-grid react-dom
+yarn add @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid react-dom
 ```
 
 Now you are going to be able to import the components and use it in your React project.
