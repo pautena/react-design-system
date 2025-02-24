@@ -62,7 +62,7 @@ const folderBuilds = getFolders("./src").map((folder) => {
 
 export default [
   {
-    input: "src/index.ts",
+    input: "src/index.ts",r
     output: [
       {
         file: packageJson.main,
