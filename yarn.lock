@@ -2278,10 +2278,10 @@
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.6.0-beta.7.tgz#5020176b4a12e612e994f6f99f0a6da89c0ed043"
   integrity sha512-68Qf+bBG5jXw2WKBByBYvGdMULO3zq0VZyybAUDH2ZlveENog4YNRjF890/8XBID6aSFloYBc44zCHwrx0bAUQ==
 
-"@storybook/types@^8.6.0-beta.7":
-  version "8.6.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@storybook/types/-/types-8.6.0-beta.7.tgz#a364f567b9c853d40b7eb75ad36fd00a79a88529"
-  integrity sha512-xo+N8h2vcVR4r+PktC9aX5U8jnYW8Do2DgKZiICouOwo+qszKGStzM0Bhi61CCrWJmNPI1tPQN43Uyikyi8kbA==
+"@storybook/types@^9.0.0-alpha.0":
+  version "9.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/@storybook/types/-/types-9.0.0-alpha.0.tgz#b9a137aa67b13c5786147951ffdda8c9a486fb37"
+  integrity sha512-64d1rk6flwKKgTG5sDRzR1rwY9AzEAF8NLhoNc//YyTUFaiqqP+A+VKdbkwjQy218aDaU4b+giX+y2x+CUN0Ng==
 
 "@testing-library/dom@10.4.0":
   version "10.4.0"
