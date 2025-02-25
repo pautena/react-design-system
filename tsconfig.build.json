@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "typeRoots": ["./src/types"]
+  },
+  "include": ["src"],
+  "exclude": [
+    "dist",
+    "storybook-static",
+    "node_modules",
+    "src/tests",
+    "src/**/*.test.ts",
+    "src/**/*.test-utils.ts",
+    "src/**/*.test-utils.tsx",
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx",
+    "src/storybook.tsx",
+    "setupTests.ts",
+    "vite.config.ts",
+    "vitest.config.ts"
+  ]
+}

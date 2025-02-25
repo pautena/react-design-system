@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsc && vite build",
-    "publish:npm": "npm publish ./dist --access public",
+    "publish:npm": "npm publish --access public",
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverage",
