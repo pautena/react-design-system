@@ -4,7 +4,6 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Link from "@mui/material/Link";
 import { SxProps, Theme, styled, useTheme } from "@mui/material/styles";
 import { Bullet } from "../bullet";
 import { Label } from "../label";
@@ -61,14 +60,6 @@ export interface DrawerItemLinkProps {
   sx?: SxProps<Theme>;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const StyledLink = styled(Link)(({ theme }) => {
-  return {
-    color: theme.palette.text.primary,
-  };
-});
-
 const sxCollapsedIcon = {
   minWidth: 0,
   justifyContent: "center",
@@ -96,7 +87,6 @@ export const DrawerItemLink = ({
 
   return (
     <ListItemButton
-      LinkComponent={StyledLink}
       dense={size === "small"}
       aria-label={text}
       href={href}
