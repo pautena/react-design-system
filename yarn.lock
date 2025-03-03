@@ -2175,12 +2175,12 @@
   dependencies:
     ts-dedent "^2.0.0"
 
-"@storybook/core@8.6.0-beta.7":
-  version "8.6.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@storybook/core/-/core-8.6.0-beta.7.tgz#08e49fc709893b383b9993ff59c85bc4afaa809a"
-  integrity sha512-Qdq6Qamqq/vZBHOTkoW3ef6rYMgPlVghsFYv28J4hBRBPnv0FJWHp4Y918ziw1w9kOp6X+l77fpS9xzJeMXN4w==
+"@storybook/core@8.6.3":
+  version "8.6.3"
+  resolved "https://registry.yarnpkg.com/@storybook/core/-/core-8.6.3.tgz#a64aea869d3df0d4101ad14e000348b1cc19d849"
+  integrity sha512-0iMTfmo3UFCa1hFJLtThnRIppkIpGPyTL3MElhORP1t5l9lCUq5am0ymbi/TeCbsJPjE86FjeO0NinokL9iQiw==
   dependencies:
-    "@storybook/theming" "8.6.0-beta.7"
+    "@storybook/theming" "8.6.3"
     better-opn "^3.0.2"
     browser-assert "^1.2.1"
     esbuild "^0.18.0 || ^0.19.0 || ^0.20.0 || ^0.21.0 || ^0.22.0 || ^0.23.0 || ^0.24.0 || ^0.25.0"
@@ -2321,6 +2321,11 @@
   version "8.6.0-beta.7"
   resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.6.0-beta.7.tgz#5020176b4a12e612e994f6f99f0a6da89c0ed043"
   integrity sha512-68Qf+bBG5jXw2WKBByBYvGdMULO3zq0VZyybAUDH2ZlveENog4YNRjF890/8XBID6aSFloYBc44zCHwrx0bAUQ==
+
+"@storybook/theming@8.6.3":
+  version "8.6.3"
+  resolved "https://registry.yarnpkg.com/@storybook/theming/-/theming-8.6.3.tgz#f35fd55aa1c50e1b768fd71ac5b93547d2ba05ba"
+  integrity sha512-sDcWnnko73KOCIc9stQyec9KvTmGOuMswqeKtWh0ha/wsgYB6G2/2j1xOheFmWKPitOsbwgvqtjCP7bRE68uIA==
 
 "@storybook/types@^8.6.0-beta.7":
   version "8.6.2"
@@ -8100,11 +8105,11 @@ std-env@^3.8.0:
   integrity sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==
 
 storybook@^8.6.0-beta.7:
-  version "8.6.0-beta.7"
-  resolved "https://registry.yarnpkg.com/storybook/-/storybook-8.6.0-beta.7.tgz#68601e69b3c54ca8101a61005eaeb6c00526c53b"
-  integrity sha512-PzAY7I2uEyuL2IL2Bk3AFoS+zHEbMQ098CqnOvMP4ApFxLL2H0+f6Vqdm3MjLz3oS8HCOwlOUKidmpFnJ4T1bw==
+  version "8.6.3"
+  resolved "https://registry.yarnpkg.com/storybook/-/storybook-8.6.3.tgz#519166a7f64b67ed86b092ab530d278cbbe05e27"
+  integrity sha512-Vbmd8/FXp6X0AOMak6arcg3WdkHj+2AYJTNHbCPVHsCEbnREyRZIG+Eq5/Ffmy6byiz+4OAX5HwsHGSMR6Xmow==
   dependencies:
-    "@storybook/core" "8.6.0-beta.7"
+    "@storybook/core" "8.6.3"
 
 string-argv@~0.3.1:
   version "0.3.2"
