@@ -4,7 +4,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { SxProps, Theme, styled, useTheme } from "@mui/material/styles";
+import { SxProps, Theme, useTheme } from "@mui/material/styles";
 import { Bullet } from "../bullet";
 import { Label } from "../label";
 import {
@@ -84,10 +84,12 @@ export const DrawerItemLink = ({
   const { state } = useDrawer();
   const theme = useTheme();
   const { color, fontWeight } = getDrawerItemColors(theme, selected);
+  const { LinkComponent } = useDrawer();
 
   return (
     <ListItemButton
       dense={size === "small"}
+      LinkComponent={LinkComponent}
       aria-label={text}
       href={href}
       selected={selected}
