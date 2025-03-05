@@ -1,4 +1,4 @@
-import { useContext, createContext } from "react";
+import { useContext, createContext, ElementType } from "react";
 import { DrawerState, DrawerVariant } from "../drawer";
 
 export interface DrawerContextProps {
@@ -7,6 +7,11 @@ export interface DrawerContextProps {
   variant: DrawerVariant;
   drawerWidth: number;
   underAppBar: boolean;
+  /**
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
+   */
+  LinkComponent?: ElementType;
   switchState(): void;
   close(): void;
   collapse(): void;

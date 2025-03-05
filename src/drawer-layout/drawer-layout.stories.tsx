@@ -5,6 +5,7 @@ import { DrawerContent } from "../drawer-content";
 import { Drawer } from "../drawer";
 import { DrawerAppBar } from "../drawer-app-bar";
 import { ContentPlaceholder } from "../content-placeholder";
+import styled from "@mui/system/styled";
 
 export default {
   title: "Layouts/DrawerLayout",
@@ -52,6 +53,14 @@ export const Mini: Story = {
   args: {
     drawerProviderProps: {
       variant: "mini",
+    },
+  },
+};
+
+export const CustomLinkComponent: Story = {
+  args: {
+    drawerProviderProps: {
+      LinkComponent: "b",
     },
   },
 };
