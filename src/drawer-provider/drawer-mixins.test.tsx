@@ -8,6 +8,9 @@ describe("mixins", () => {
       overflowX: "hidden",
       transition: "width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms",
       width: 240,
+      "@media (max-width:599.95px)": {
+        width: 1,
+      },
     });
   });
 

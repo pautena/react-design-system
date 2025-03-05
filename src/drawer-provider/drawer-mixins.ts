@@ -4,6 +4,9 @@ export const drawerWidth = 240;
 
 export const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
+  [theme.breakpoints.down("sm")]: {
+    width: 1,
+  },
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
