@@ -13,7 +13,7 @@
     "publish:npm": "npm publish --access public",
     "test": "vitest run",
     "test:watch": "vitest",
-    "coverage": "vitest run --coverage",
+    "coverage": "vitest run --coverarge",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build",
     "storybook:deploy": "gh-pages -d storybook-static",
