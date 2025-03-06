@@ -2323,9 +2323,9 @@
   integrity sha512-68Qf+bBG5jXw2WKBByBYvGdMULO3zq0VZyybAUDH2ZlveENog4YNRjF890/8XBID6aSFloYBc44zCHwrx0bAUQ==
 
 "@storybook/types@^8.6.0-beta.7":
-  version "8.6.2"
-  resolved "https://registry.yarnpkg.com/@storybook/types/-/types-8.6.2.tgz#6fb3bd2dece422edbc5a58da5c3279c46c6b9a8d"
-  integrity sha512-wSnM7hR81W1koi4Hk9m8ASwrMVpw0naIgIcAJbk+pTxYZnSutG8GAIo4DjDTLWzDnpqG4FL6AL/apGmrxCg+eQ==
+  version "8.6.4"
+  resolved "https://registry.yarnpkg.com/@storybook/types/-/types-8.6.4.tgz#73de49cda387f5726ccb6896b478c1ed197a3f8d"
+  integrity sha512-6VJat4/2Ne2tuz3s0iOHpMpW3/zdHGDAxGTSgJCxcgElNQgceI8dlhTwB0b3B6WyoG2tSt9DgbGa/TdfZhSAPg==
 
 "@testing-library/dom@10.4.0":
   version "10.4.0"
