@@ -4,9 +4,9 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { useTheme, Theme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useDrawer } from "../drawerx/drawer-provider";
+import { useDrawer } from "../drawer-provider";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
-import { DrawerState, DrawerVariant } from "src/drawerx/drawer";
+import { DrawerState, DrawerVariant } from "src/drawerx/drawer.types";
 
 const moveWithDrawer: Record<DrawerVariant, boolean> = {
   temporary: false,

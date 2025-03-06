@@ -1,7 +1,7 @@
 import { DrawerMenuItem } from "./drawer-menu-item";
-import { DrawerNavigationItem, DrawerSize } from "src/drawerx/drawer/drawer.types";
+import { DrawerNavigationItem, DrawerSize } from "src/drawerx/drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
-import { useDrawer } from "../drawerx/drawer-provider";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerItemProps {
   /**

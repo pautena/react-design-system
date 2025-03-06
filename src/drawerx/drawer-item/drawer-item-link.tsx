@@ -5,15 +5,15 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { SxProps, Theme, useTheme } from "@mui/material/styles";
-import { Bullet } from "../bullet";
-import { Label } from "../label";
+import { Bullet } from "../../bullet";
+import { Label } from "../../label";
 import {
   DrawerItemAvatar,
   DrawerItemBullet,
   DrawerItemLabel,
   DrawerSize,
   getDrawerItemColors,
-} from "src/drawerx/drawer/drawer.types";
+} from "src/drawerx/drawer.types";
 import { useDrawer } from "src/drawerx/drawer-provider";
 
 export interface DrawerItemLinkProps {

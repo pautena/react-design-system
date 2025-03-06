@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { DrawerSection } from "./drawer-section";
 import { mockMenuDrawerNavigationSection } from "src/drawerx/drawer/drawer.mock";
 import { DrawerProvider } from "src/drawerx/drawer-provider";
-import { DrawerState } from "src/drawerx/drawer";
+import { DrawerState } from "src/drawerx/drawer.types";
 
 describe("DrawerSection", () => {
   const renderComponent = ({

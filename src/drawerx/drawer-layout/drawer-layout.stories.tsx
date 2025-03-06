@@ -4,7 +4,7 @@ import { mockDrawerNavigation } from "src/drawerx/drawer/drawer.mock";
 import { DrawerContent } from "../drawer-content";
 import { Drawer } from "src/drawerx/drawer";
 import { DrawerAppBar } from "../drawer-app-bar";
-import { ContentPlaceholder } from "../content-placeholder";
+import { ContentPlaceholder } from "../../content-placeholder";
 
 export default {
   title: "Layouts/DrawerLayout",

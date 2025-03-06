@@ -4,7 +4,7 @@ import { paperClasses } from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "./drawer.types";
+import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
 import { useDrawer } from "src/drawerx/drawer-provider/drawer-context";
 import { closedMixin, openedMixin } from "src/drawerx/drawer-provider/drawer-mixins";
 

@@ -1,6 +1,6 @@
 import ListSubheader, { ListSubheaderProps } from "@mui/material/ListSubheader";
 import { styled } from "@mui/material/styles";
-import { DrawerSize } from "src/drawerx/drawer";
+import { DrawerSize } from "src/drawerx/drawer.types";
 
 export interface DrawerSubheaderProps extends ListSubheaderProps {
   /**

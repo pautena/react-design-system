@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerAppBar } from "./drawer-app-bar";
-import { DrawerProvider } from "../drawerx/drawer-provider";
+import { DrawerProvider } from "../drawer-provider";
 
 export default {
   title: "Components/Drawers/DrawerAppBar",
