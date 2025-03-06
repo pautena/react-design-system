@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "./drawer-content";
-import { mockDrawerNavigation } from "src/drawerx/drawer/drawer.mock";
+import { mockDrawerNavigation } from "../drawer/drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
-import { DrawerContentProps, DrawerState } from "src/drawerx/drawer.types";
+import { DrawerContentProps, DrawerState } from "../drawer.types";
 
 type DrawerContentArgs = DrawerContentProps & {
   initialState?: DrawerState;
@@ -26,7 +26,7 @@ type Story = StoryObj<DrawerContentArgs>;
 export const Default: Story = {
   args: {
     selectedItemId: "item2.3.2",
-    nav: mockDrawerNavigation,
+    navigation: mockDrawerNavigation,
   },
 };
 

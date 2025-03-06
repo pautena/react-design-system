@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DrawerContent } from "src/drawerx/drawer-content";
-import { DrawerProvider } from "src/drawerx/drawer-provider";
+import { DrawerContent } from "../drawer-content";
+import { DrawerProvider } from "../drawer-provider";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { DrawerState } from "../drawer.types";
 import { Drawer } from "./drawer";
@@ -18,7 +18,7 @@ export default {
   render: ({ initialState, selectedItemId }) => (
     <DrawerProvider initialState={initialState} variant="mini" selectedItemId={selectedItemId}>
       <Drawer>
-        <DrawerContent nav={mockDrawerNavigation} />
+        <DrawerContent navigation={mockDrawerNavigation} />
       </Drawer>
     </DrawerProvider>
   ),

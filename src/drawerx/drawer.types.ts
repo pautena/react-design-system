@@ -1,9 +1,9 @@
 import { FunctionComponent, ReactElement } from "react";
-import { BulletVariant } from "src/bullet";
-import { LabelVariant } from "src/label";
+import { BulletVariant } from "../bullet";
+import { LabelVariant } from "../label";
 import { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
 import { Theme } from "@mui/material/styles";
-import { DrawerAppBarProps } from "src/drawerx/drawer-app-bar";
+import { DrawerAppBarProps } from "./drawer-app-bar";
 
 export type DrawerVariant = "temporary" | "mini" | "persistent" | "clipped";
 export type DrawerState = "open" | "collapse" | "close";
@@ -23,7 +23,8 @@ export interface DrawerItemBullet {
   variant: BulletVariant;
 }
 
-export interface DrawerNavigationItemLink {
+export interface DrawerNavigationLink {
+  kind: "link";
   id: string;
   text: string;
   href: string;
@@ -33,29 +34,29 @@ export interface DrawerNavigationItemLink {
   bullet?: DrawerItemBullet;
 }
 
-export type DrawerNavigationItemCollapsable = Pick<
-  DrawerNavigationItemLink,
-  "id" | "text" | "icon"
-> & {
+export type DrawerNavigationCollapsable = Pick<DrawerNavigationLink, "id" | "text" | "icon"> & {
+  kind: "collapsable";
   items: DrawerNavigationItem[];
 };
 
-export type DrawerNavigationItem = DrawerNavigationItemLink | DrawerNavigationItemCollapsable;
-
-export interface DrawerNavigationSection {
-  title?: string;
-  items: DrawerNavigationItem[];
+export interface DrawerNavigationHeader {
+  kind: "header";
+  id: string;
+  text: string;
 }
 
-export interface DrawerNavigation {
-  items: DrawerNavigationSection[];
-}
+export type DrawerNavigationItem =
+  | DrawerNavigationLink
+  | DrawerNavigationCollapsable
+  | DrawerNavigationHeader;
+
+export type DrawerNavigation = DrawerNavigationItem[];
 
 export interface DrawerContentProps {
   /**
    * Object with the content that has to be rendered
    */
-  nav: DrawerNavigation;
+  navigation: DrawerNavigation;
   /**
    * Item size. default to medium
    */

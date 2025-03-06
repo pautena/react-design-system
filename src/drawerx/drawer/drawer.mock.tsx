@@ -1,9 +1,8 @@
 import {
   DrawerNavigation,
   DrawerNavigationItem,
-  DrawerNavigationItemCollapsable,
-  DrawerNavigationItemLink,
-  DrawerNavigationSection,
+  DrawerNavigationCollapsable,
+  DrawerNavigationLink,
 } from "../drawer.types";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
@@ -21,21 +20,24 @@ import DangerousIcon from "@mui/icons-material/Dangerous";
 import SpellcheckIcon from "@mui/icons-material/Spellcheck";
 import ChairIcon from "@mui/icons-material/Chair";
 
-export const mockLinkDrawerNavigationItem: DrawerNavigationItemLink = {
+export const mockLinkDrawerNavigationItem: DrawerNavigationLink = {
   id: "item1.1",
+  kind: "link",
   text: "Item 1.1",
   icon: <DiamondIcon />,
   href: "/items/1-1",
 };
 
-export const mockLinkNoIconDrawerNavigationItem: DrawerNavigationItemLink = {
+export const mockLinkNoIconDrawerNavigationItem: DrawerNavigationLink = {
   id: "item1.1",
+  kind: "link",
   text: "Item 1.1",
   href: "/items/1-1",
 };
 
 export const mockLinkBulletDrawerNavigationItem: DrawerNavigationItem = {
   id: "item1.3",
+  kind: "link",
   text: "Item 1.3",
   href: "/items/1-3",
   icon: <BrushIcon />,
@@ -46,6 +48,7 @@ export const mockLinkBulletDrawerNavigationItem: DrawerNavigationItem = {
 
 export const mockLinkLabelDrawerNavigationItem: DrawerNavigationItem = {
   id: "item2.1",
+  kind: "link",
   text: "Item 2.1",
   href: "/items/2-1",
   icon: <FlightTakeoffIcon />,
@@ -57,6 +60,7 @@ export const mockLinkLabelDrawerNavigationItem: DrawerNavigationItem = {
 
 export const mockLinkAvatarDrawerNavigationItem: DrawerNavigationItem = {
   id: "item.a.1",
+  kind: "link",
   text: "Avatar 1",
   href: "/items/a-1",
   avatar: {
@@ -69,6 +73,7 @@ export const mockListDrawerNavigationItems: DrawerNavigationItem[] = [
   mockLinkDrawerNavigationItem,
   {
     id: "item1.2",
+    kind: "link",
     text: "Item 1.2",
     href: "/items/1-2",
     icon: <AccessAlarmIcon />,
@@ -76,6 +81,7 @@ export const mockListDrawerNavigationItems: DrawerNavigationItem[] = [
   mockLinkBulletDrawerNavigationItem,
   {
     id: "item1.4",
+    kind: "link",
     text: "Item 1.4",
     href: "/items/1-4",
     icon: <AccountBoxIcon />,
@@ -85,19 +91,22 @@ export const mockListDrawerNavigationItems: DrawerNavigationItem[] = [
   },
 ];
 
-export const mockMenuDrawerNavigationItem: DrawerNavigationItemCollapsable = {
+export const mockMenuDrawerNavigationItem: DrawerNavigationCollapsable = {
   id: "item2.3.4.2",
+  kind: "collapsable",
   text: "Item 2.3.4.2",
   icon: <ConnectingAirportsIcon />,
   items: [
     {
       id: "item2.3.4.2.1",
+      kind: "link",
       text: "Item 2.3.4.2.1",
       href: "/items/2-3-4-2.1",
       icon: <DangerousIcon />,
     },
     {
       id: "item2.3.4.2.2",
+      kind: "link",
       text: "Item 2.3.4.2.2",
       href: "/items/2-3-4-2.2",
       icon: <SpellcheckIcon />,
@@ -107,12 +116,13 @@ export const mockMenuDrawerNavigationItem: DrawerNavigationItemCollapsable = {
 
 export const mockMenuInsideMenuDrawerNavigationItem: DrawerNavigationItem = {
   id: "item2.3.4",
+  kind: "collapsable",
   text: "Item 2.3.4",
-  href: "/items/2-3-4",
   icon: <AccountTreeIcon />,
   items: [
     {
       id: "item2.3.4.1",
+      kind: "link",
       text: "Item 2.3.4.1",
       href: "/items/2-3-4-1",
       icon: <CallMissedIcon />,
@@ -121,74 +131,65 @@ export const mockMenuInsideMenuDrawerNavigationItem: DrawerNavigationItem = {
   ],
 };
 
-export const mockListDrawerNavigationSection: DrawerNavigationSection = {
-  items: mockListDrawerNavigationItems,
-};
-
-export const mockMenuDrawerNavigationSection: DrawerNavigationSection = {
-  title: "Section 2",
-  items: [
-    mockLinkLabelDrawerNavigationItem,
-    {
-      id: "item2.2",
-      text: "Item 2.2",
-      href: "/items/2-2",
-      icon: <FlightLandIcon />,
-      label: {
-        text: "new",
-        variant: "info",
+export const mockListDrawerNavigationItems2: DrawerNavigationItem[] = [
+  mockLinkLabelDrawerNavigationItem,
+  {
+    id: "item2.2",
+    kind: "link",
+    text: "Item 2.2",
+    href: "/items/2-2",
+    icon: <FlightLandIcon />,
+    label: {
+      text: "new",
+      variant: "info",
+    },
+  },
+  {
+    id: "item2.3",
+    kind: "collapsable",
+    text: "Item 2.3",
+    icon: <ChairIcon />,
+    items: [
+      {
+        id: "item2.3.1",
+        kind: "link",
+        text: "Item 2.3.1",
+        href: "/items/2-3-1",
+        icon: <ApiIcon />,
       },
-    },
-    {
-      id: "item2.3",
-      text: "Item 2.3",
-      href: "/items/2-3",
-      icon: <ChairIcon />,
-      items: [
-        {
-          id: "item2.3.1",
-          text: "Item 2.3.1",
-          href: "/items/2-3-1",
-          icon: <ApiIcon />,
-        },
-        {
-          id: "item2.3.2",
-          text: "Item 2.3.2",
-          href: "/items/2-3-2",
-          icon: <MenuBookIcon />,
-        },
-        {
-          id: "item2.3.3",
-          text: "Item 2.3.3",
-          href: "/items/2-3-3",
-          icon: <AutoFixOffIcon />,
-        },
-        mockMenuInsideMenuDrawerNavigationItem,
-      ],
-    },
-  ],
-};
-
-export const mockAvatarsDrawerNavigationSection: DrawerNavigationSection = {
-  title: "Section avatar",
-  items: [
-    mockLinkAvatarDrawerNavigationItem,
-    {
-      id: "item.a.2",
-      text: "Avatar 2",
-      href: "/items/a-2",
-      avatar: {
-        src: "https://www.publicdomainpictures.net/pictures/270000/velka/avatar-people-person-business-u-15354603894rE.jpg",
-        alt: "Avatar 2",
+      {
+        id: "item2.3.2",
+        kind: "link",
+        text: "Item 2.3.2",
+        href: "/items/2-3-2",
+        icon: <MenuBookIcon />,
       },
-    },
-  ],
-};
+      {
+        id: "item2.3.3",
+        kind: "link",
+        text: "Item 2.3.3",
+        href: "/items/2-3-3",
+        icon: <AutoFixOffIcon />,
+      },
+      mockMenuInsideMenuDrawerNavigationItem,
+    ],
+  },
+];
 
-export const mockDrawerNavigation: DrawerNavigation = {
-  items: [
-    mockListDrawerNavigationSection,
-    mockMenuDrawerNavigationSection,
-    mockAvatarsDrawerNavigationSection,
-  ],
-};
+export const mockDrawerNavigation: DrawerNavigation = [
+  ...mockListDrawerNavigationItems,
+  { kind: "header", id: "header2", text: "Section 2" },
+  ...mockListDrawerNavigationItems2,
+  { kind: "header", id: "header2", text: "Section Avatar" },
+  mockLinkAvatarDrawerNavigationItem,
+  {
+    id: "item.a.2",
+    kind: "link",
+    text: "Avatar 2",
+    href: "/items/a-2",
+    avatar: {
+      src: "https://www.publicdomainpictures.net/pictures/270000/velka/avatar-people-person-business-u-15354603894rE.jpg",
+      alt: "Avatar 2",
+    },
+  },
+];

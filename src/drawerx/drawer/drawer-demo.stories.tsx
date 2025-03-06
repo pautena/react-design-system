@@ -1,12 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DrawerContent } from "src/drawerx/drawer-content";
-import { DrawerProvider } from "src/drawerx/drawer-provider";
+import { DrawerContent } from "../drawer-content";
+import { DrawerProvider } from "../drawer-provider";
 import { mockDrawerNavigation } from "./drawer.mock";
-import { ContentPlaceholder } from "src/content-placeholder";
 import { DrawerState, DrawerVariant } from "../drawer.types";
-import { DrawerAppBar } from "src/drawerx/drawer-app-bar";
-import { DrawerMain } from "src/drawerx/drawer-main";
+import { DrawerAppBar } from "../drawer-app-bar";
+import { DrawerMain } from "../drawer-main";
 import { Drawer } from "./drawer";
+import { ContentPlaceholder } from "../../content-placeholder";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;
@@ -29,7 +29,7 @@ export default {
     >
       <DrawerAppBar title="Drawer demo" />
       <Drawer>
-        <DrawerContent nav={mockDrawerNavigation} />
+        <DrawerContent navigation={mockDrawerNavigation} />
       </Drawer>
       <DrawerMain>
         <ContentPlaceholder p={3} />

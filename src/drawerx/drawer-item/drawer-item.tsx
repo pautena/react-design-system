@@ -1,7 +1,8 @@
 import { DrawerMenuItem } from "./drawer-menu-item";
-import { DrawerNavigationItem, DrawerSize } from "src/drawerx/drawer.types";
+import { DrawerNavigationItem, DrawerSize } from "../drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
 import { useDrawer } from "../drawer-provider";
+import { DrawerSubheader } from "../drawer-subheader";
 
 export interface DrawerItemProps {
   /**
@@ -19,8 +20,8 @@ export interface DrawerItemProps {
 }
 
 export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps) => {
-  const { selectedItemId } = useDrawer();
-  if ("items" in item) {
+  const { selectedItemId, state } = useDrawer();
+  if (item.kind === "collapsable") {
     const { id, text, icon, items } = item;
     const childrenSelected = items.some((item) => item.id === selectedItemId);
     return (
@@ -33,6 +34,8 @@ export const DrawerItem = ({ item, size = "medium", level = 0 }: DrawerItemProps
         level={level}
       />
     );
+  } else if (item.kind === "header") {
+    return state === "open" && <DrawerSubheader role="heading">{item.text}</DrawerSubheader>;
   } else {
     const { id, text, icon, avatar, label, bullet, href } = item;
     return (

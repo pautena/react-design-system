@@ -6,7 +6,7 @@ import { useTheme, Theme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDrawer } from "../drawer-provider";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
-import { DrawerState, DrawerVariant } from "src/drawerx/drawer.types";
+import { DrawerState, DrawerVariant } from "../drawer.types";
 
 const moveWithDrawer: Record<DrawerVariant, boolean> = {
   temporary: false,

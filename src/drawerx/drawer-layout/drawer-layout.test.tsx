@@ -1,10 +1,10 @@
 import { render, screen } from "../../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { expectContentPlaceholder } from "../../tests/assertions";
-import { mockDrawerNavigation } from "src/drawerx/drawer/drawer.mock";
+import { mockDrawerNavigation } from "../drawer/drawer.mock";
 import { DrawerLayout } from ".";
 import { DrawerContent } from "../drawer-content";
-import { Drawer } from "src/drawerx/drawer";
+import { Drawer } from "../drawer";
 import { DrawerAppBar } from "../drawer-app-bar";
 import { ContentPlaceholder } from "../../content-placeholder";
 
@@ -13,7 +13,7 @@ describe("DrawerLayout", () => {
     return render(
       <DrawerLayout>
         <Drawer>
-          <DrawerContent nav={mockDrawerNavigation} />
+          <DrawerContent navigation={mockDrawerNavigation} />
         </Drawer>
         <DrawerAppBar title="Lorem ipsum" />
         <ContentPlaceholder p={3} />

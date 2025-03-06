@@ -1,5 +1,5 @@
 import { useContext, createContext, ElementType } from "react";
-import { DrawerState, DrawerVariant } from "src/drawerx/drawer.types";
+import { DrawerState, DrawerVariant } from "../drawer.types";
 
 export interface DrawerContextProps {
   selectedItemId?: string;

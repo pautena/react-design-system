@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
-import { render, screen } from "src/tests/testing-library";
-import { DrawerContent } from "src/drawerx/drawer-content";
-import { DrawerProvider, useDrawer } from "src/drawerx/drawer-provider";
+import { render, screen } from "../../tests/testing-library";
+import { DrawerContent } from "../drawer-content";
+import { DrawerProvider, useDrawer } from "../drawer-provider";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { DrawerState, DrawerVariant } from "../drawer.types";
 import userEvent from "@testing-library/user-event";
@@ -19,7 +19,7 @@ describe("Drawer", () => {
       return (
         <>
           <Typography>state: {state}</Typography>
-          <DrawerContent nav={mockDrawerNavigation} />
+          <DrawerContent navigation={mockDrawerNavigation} />
         </>
       );
     };
@@ -33,23 +33,11 @@ describe("Drawer", () => {
     );
   };
 
-  it("should render the title of each section", () => {
-    renderComponent({ initialState: "open" });
-
-    mockDrawerNavigation.items
-      .filter((s) => s.title)
-      .forEach((section) => {
-        expect(screen.getByText(section.title!)).toBeVisible();
-      });
-  });
-
   it("should render the items text if the drawer is open", () => {
     renderComponent({ initialState: "open" });
 
-    mockDrawerNavigation.items.forEach((section) => {
-      section.items.forEach((item) => {
-        expect(screen.getByText(item.text)).toBeVisible();
-      });
+    mockDrawerNavigation.forEach((item) => {
+      expect(screen.getByText(item.text)).toBeVisible();
     });
   });
 

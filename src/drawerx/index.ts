@@ -1,5 +1,4 @@
 export * from "./drawer-subheader";
-export * from "./drawer-section";
 export * from "./drawer";
 export * from "./drawer-provider";
 export * from "./drawer-content";

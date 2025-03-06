@@ -1,18 +1,38 @@
-import { DrawerSection } from "../drawer-section";
-import { DrawerContentComponent, DrawerContentProps } from "src/drawerx/drawer.types";
+import { List, useTheme } from "@mui/material";
+import { useDrawer } from "../drawer-provider";
+import { DrawerContentComponent, DrawerContentProps } from "../drawer.types";
+import { DrawerItem } from "../drawer-item";
+/*
+save it for the item header
+
+{title && state === "open" && (
+        <DrawerSubheader size={size} role="heading">
+          {title}
+        </DrawerSubheader>
+      )}
+
+*/
 
 /**
  * Content to be shown inside a navigation
  */
 export const DrawerContent: DrawerContentComponent = ({
-  nav: { items },
+  navigation,
   size = "medium",
 }: DrawerContentProps) => {
+  const { state } = useDrawer();
+  const { spacing } = useTheme();
+
   return (
-    <>
-      {items.map(({ title, items }, i) => (
-        <DrawerSection key={i} title={title} items={items} size={size} />
+    <List
+      sx={{
+        paddingTop: size === "small" ? spacing(0) : undefined,
+        paddingY: state === "collapse" ? 0 : undefined,
+      }}
+    >
+      {navigation.map((item) => (
+        <DrawerItem key={item.id} item={item} size={size} />
       ))}
-    </>
+    </List>
   );
 };

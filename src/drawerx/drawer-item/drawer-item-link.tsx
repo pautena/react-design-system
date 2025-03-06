@@ -13,8 +13,8 @@ import {
   DrawerItemLabel,
   DrawerSize,
   getDrawerItemColors,
-} from "src/drawerx/drawer.types";
-import { useDrawer } from "src/drawerx/drawer-provider";
+} from "../drawer.types";
+import { useDrawer } from "../drawer-provider";
 
 export interface DrawerItemLinkProps {
   /**
