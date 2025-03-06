@@ -7,8 +7,8 @@ import {
   mockLinkLabelDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
   mockMenuInsideMenuDrawerNavigationItem,
-} from "../drawer/drawer.mock";
-import { DrawerNavigationItem, DrawerState } from "../drawer";
+} from "src/drawerx/drawer/drawer.mock";
+import { DrawerNavigationItem, DrawerState } from "src/drawerx/drawer";
 import { render, screen, within } from "../tests/testing-library";
 import { DrawerItem } from "./drawer-item";
 import { DrawerProvider } from "../drawer-provider";

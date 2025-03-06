@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerLayout } from "./drawer-layout";
-import { mockDrawerNavigation } from "../drawer/drawer.mock";
+import { mockDrawerNavigation } from "src/drawerx/drawer/drawer.mock";
 import { DrawerContent } from "../drawer-content";
-import { Drawer } from "../drawer";
+import { Drawer } from "src/drawerx/drawer";
 import { DrawerAppBar } from "../drawer-app-bar";
 import { ContentPlaceholder } from "../content-placeholder";
-import styled from "@mui/system/styled";
 
 export default {
   title: "Layouts/DrawerLayout",

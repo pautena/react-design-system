@@ -15,7 +15,6 @@ export * from "./drawerx";
 export * from "./drawer-provider";
 export * from "./drawer-content";
 export * from "./drawer-app-bar";
-export * from "./drawer";
 export * from "./drawer-main";
 export * from "./loading-area";
 export * from "./query-container";

@@ -1,5 +1,5 @@
 import { DrawerSection } from "../drawerx/drawer-section";
-import { DrawerContentComponent, DrawerContentProps } from "../drawer";
+import { DrawerContentComponent, DrawerContentProps } from "src/drawerx/drawer";
 
 /**
  * Content to be shown inside a navigation

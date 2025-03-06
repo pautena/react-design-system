@@ -1,10 +1,11 @@
 import Typography from "@mui/material/Typography";
-import { render, screen } from "../tests/testing-library";
-import { DrawerContent } from "../drawer-content";
-import { Drawer, DrawerProvider, useDrawer } from "../drawer-provider";
+import { render, screen } from "src/tests/testing-library";
+import { DrawerContent } from "src/drawer-content";
+import { DrawerProvider, useDrawer } from "src/drawer-provider";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { DrawerState, DrawerVariant } from "./drawer.types";
 import userEvent from "@testing-library/user-event";
+import { Drawer } from "./drawer";
 
 describe("Drawer", () => {
   const renderComponent = ({

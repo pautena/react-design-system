@@ -5,8 +5,8 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "./drawer.types";
-import { useDrawer } from "../drawer-provider/drawer-context";
-import { closedMixin, openedMixin } from "../drawer-provider/drawer-mixins";
+import { useDrawer } from "src/drawer-provider/drawer-context";
+import { closedMixin, openedMixin } from "src/drawer-provider/drawer-mixins";
 
 export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -33,7 +33,7 @@ const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temp
 type SxGenerator = (state: DrawerState, theme: Theme) => SxProps<Theme>;
 const NoopSxGenerator = () => ({});
 const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
-  mini: (state: DrawerState, theme: Theme) => ({
+  mini: (_: DrawerState, theme: Theme) => ({
     boxSizing: "border-box",
     [`& .${paperClasses.root}`]: {
       zIndex: theme.zIndex.drawer - 1,

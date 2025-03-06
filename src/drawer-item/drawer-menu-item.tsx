@@ -6,7 +6,7 @@ import List from "@mui/material/List";
 import Popover from "@mui/material/Popover";
 import { SxProps, useTheme, Theme } from "@mui/material/styles";
 import { ReactElement, useState, useRef } from "react";
-import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer";
+import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "src/drawerx/drawer";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "./drawer-item";

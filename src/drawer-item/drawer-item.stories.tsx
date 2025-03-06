@@ -4,9 +4,9 @@ import DiamondIcon from "@mui/icons-material/Diamond";
 import {
   mockMenuDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
-} from "../drawer/drawer.mock";
+} from "src/drawerx/drawer/drawer.mock";
 import { DrawerProvider } from "../drawer-provider";
-import { DrawerState } from "../drawer";
+import { DrawerState } from "src/drawerx/drawer";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
   initialState?: DrawerState;
