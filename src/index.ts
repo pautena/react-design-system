@@ -12,7 +12,7 @@ export * from "./form-dialog";
 export * from "./bootstrap-dialog";
 export * from "./dialog";
 export * from "./drawerx";
-export * from "./drawer-provider";
+export * from "./drawerx/drawer-provider";
 export * from "./drawer-content";
 export * from "./drawer-app-bar";
 export * from "./drawer-main";

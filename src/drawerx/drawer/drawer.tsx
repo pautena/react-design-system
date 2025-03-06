@@ -5,8 +5,8 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "./drawer.types";
-import { useDrawer } from "src/drawer-provider/drawer-context";
-import { closedMixin, openedMixin } from "src/drawer-provider/drawer-mixins";
+import { useDrawer } from "src/drawerx/drawer-provider/drawer-context";
+import { closedMixin, openedMixin } from "src/drawerx/drawer-provider/drawer-mixins";
 
 export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",

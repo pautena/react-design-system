@@ -1,5 +1,5 @@
 import { DrawerProvider, useDrawer } from "./index";
-import { render, screen } from "../tests/testing-library";
+import { render, screen } from "../../tests/testing-library";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";

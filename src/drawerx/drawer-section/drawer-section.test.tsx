@@ -2,7 +2,7 @@ import { render, screen } from "../../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { DrawerSection } from "./drawer-section";
 import { mockMenuDrawerNavigationSection } from "src/drawerx/drawer/drawer.mock";
-import { DrawerProvider } from "src/drawer-provider";
+import { DrawerProvider } from "src/drawerx/drawer-provider";
 import { DrawerState } from "src/drawerx/drawer";
 
 describe("DrawerSection", () => {
