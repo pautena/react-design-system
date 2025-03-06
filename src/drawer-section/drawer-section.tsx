@@ -1,9 +1,9 @@
 import List from "@mui/material/List";
 import { useTheme } from "@mui/material/styles";
 import { DrawerNavigationItem, DrawerSize } from "../drawer";
-import { DrawerSubheader } from "../drawer-subheader";
 import { DrawerItem } from "../drawer-item";
 import { useDrawer } from "../drawer-provider";
+import { DrawerSubheader } from "src/drawerx/drawer-subheader";
 
 export interface DrawerSectionProps {
   /**
