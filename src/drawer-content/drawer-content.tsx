@@ -1,4 +1,4 @@
-import { DrawerSection } from "../drawer-section";
+import { DrawerSection } from "../drawerx/drawer-section";
 import { DrawerContentComponent, DrawerContentProps } from "../drawer";
 
 /**
