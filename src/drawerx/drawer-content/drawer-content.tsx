@@ -7,13 +7,13 @@ import { DrawerItem } from "../drawer-item";
  * Content to be shown inside a navigation
  */
 export const DrawerContent: DrawerContentComponent = ({ navigation }: DrawerContentProps) => {
-  const { state, size } = useDrawer();
+  const { size } = useDrawer();
   const { spacing } = useTheme();
 
   return (
     <List
       sx={{
-        paddingTop: size === "small" ? spacing(0) : undefined,
+        paddingTop: size === "small" ? spacing(0.5) : undefined,
         paddingX: size === "small" ? spacing(0.5) : spacing(1),
       }}
     >
