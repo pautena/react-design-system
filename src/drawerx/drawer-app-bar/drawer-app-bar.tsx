@@ -74,7 +74,7 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
           onClick={switchState}
           edge="start"
           sx={{
-            marginRight: state != "collapse" ? 5 : 0,
+            marginRight: theme.spacing(2),
             display: showMenuButton[variant](state) ? undefined : "none",
           }}
         >

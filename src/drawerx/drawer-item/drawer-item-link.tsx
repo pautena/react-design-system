@@ -89,6 +89,7 @@ export const DrawerItemLink = ({
       selected={selected}
       sx={{
         ...sx,
+        px: 2.5,
         pl: state === "open" ? theme.spacing(2 + 1.5 * level) : undefined,
         ...(state === "collapse" && {
           paddingHorizontal: theme.spacing(2.5),

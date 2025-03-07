@@ -90,6 +90,7 @@ export const DrawerMenuItem = ({
         dense={size === "small"}
         sx={{
           ...sx,
+          px: 2.5,
           pl: state === "open" ? spacing(2 + 1.5 * level) : undefined,
           backgroundColor: menuOpen ? palette.action.hover : undefined,
         }}
