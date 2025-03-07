@@ -5,7 +5,7 @@ import {
   mockMenuDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
 } from "../drawer/drawer.mock";
-import { DrawerProvider } from "../drawer-provider";
+import { DrawerProvider } from "../drawer-context";
 import { DrawerState } from "../drawer.types";
 
 type DrawerItemStoryArgs = DrawerItemProps & {

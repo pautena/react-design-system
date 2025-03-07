@@ -10,7 +10,7 @@ import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "./drawer-item";
-import { useDrawer } from "../drawer-provider";
+import { useDrawer } from "../drawer-context";
 
 export interface DrawerMenuItemProps {
   /**

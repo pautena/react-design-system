@@ -1,5 +1,5 @@
 import { List, useTheme } from "@mui/material";
-import { useDrawer } from "../drawer-provider";
+import { useDrawer } from "../drawer-context";
 import { DrawerContentComponent, DrawerContentProps } from "../drawer.types";
 import { DrawerItem } from "../drawer-item";
 /*

@@ -11,7 +11,7 @@ import {
 import { DrawerNavigationItem, DrawerState } from "../drawer.types";
 import { render, screen, within } from "../../tests/testing-library";
 import { DrawerItem } from "./drawer-item";
-import { DrawerProvider } from "../drawer-provider";
+import { DrawerProvider } from "../drawer-context";
 
 describe("DrawerItem", () => {
   const renderComponent = ({

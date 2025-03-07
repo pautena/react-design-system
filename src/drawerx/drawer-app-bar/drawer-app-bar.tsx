@@ -4,7 +4,7 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { useTheme, Theme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useDrawer } from "../drawer-provider";
+import { useDrawer } from "../drawer-context";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
 import { DrawerState, DrawerVariant } from "../drawer.types";
 

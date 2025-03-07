@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerContent } from "../drawer-content";
-import { DrawerProvider } from "../drawer-provider";
+import { DrawerProvider } from "../drawer-context";
 import { mockDrawerNavigation } from "./drawer.mock";
 import { DrawerState, DrawerVariant } from "../drawer.types";
 import { DrawerAppBar } from "../drawer-app-bar";

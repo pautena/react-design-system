@@ -14,7 +14,7 @@ import {
   DrawerSize,
   getDrawerItemColors,
 } from "../drawer.types";
-import { useDrawer } from "../drawer-provider";
+import { useDrawer } from "../drawer-context";
 
 export interface DrawerItemLinkProps {
   /**

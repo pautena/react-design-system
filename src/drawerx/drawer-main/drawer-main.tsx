@@ -1,6 +1,6 @@
 import { styled, useTheme } from "@mui/material/styles";
 import { PropsWithChildren } from "react";
-import { useDrawer } from "../drawer-provider/drawer-context";
+import { useDrawer } from "../drawer-context/drawer-context";
 import { DrawerVariant } from "../drawer.types";
 import { DrawerHeader } from "../drawer/drawer";
 
