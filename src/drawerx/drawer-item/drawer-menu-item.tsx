@@ -6,17 +6,13 @@ import List from "@mui/material/List";
 import Popover from "@mui/material/Popover";
 import { SxProps, useTheme, Theme } from "@mui/material/styles";
 import { ReactElement, useState, useRef } from "react";
-import { DrawerNavigationItem, DrawerSize, getDrawerItemColors } from "../drawer.types";
+import { DrawerNavigationItem, getDrawerItemColors } from "../drawer.types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { DrawerItem } from "./drawer-item";
 import { useDrawer } from "../drawer-context";
 
 export interface DrawerMenuItemProps {
-  /**
-   * Item size. default to medium
-   */
-  size?: DrawerSize;
   /**
    * Text displayed inside the item
    */
@@ -49,11 +45,10 @@ export const DrawerMenuItem = ({
   icon,
   selected,
   items,
-  size = "medium",
   level,
   sx = {},
 }: DrawerMenuItemProps) => {
-  const { state } = useDrawer();
+  const { state, size } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
   const { palette, spacing } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -62,7 +57,7 @@ export const DrawerMenuItem = ({
   const submenu = (
     <List component="div" disablePadding>
       {items.map((item) => (
-        <DrawerItem key={item.id} level={level + 1} item={item} size={size} />
+        <DrawerItem key={item.id} level={level + 1} item={item} />
       ))}
     </List>
   );
@@ -113,9 +108,11 @@ export const DrawerMenuItem = ({
       ) : (
         <Popover
           open={menuOpen}
-          PaperProps={{
-            elevation: 0,
-            variant: "outlined",
+          slotProps={{
+            paper: {
+              elevation: 0,
+              variant: "outlined",
+            },
           }}
           aria-label={`${text} popover submenu`}
           anchorEl={anchorEl.current}

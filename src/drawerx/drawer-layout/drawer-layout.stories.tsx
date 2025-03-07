@@ -32,44 +32,34 @@ type Story = StoryObj<typeof DrawerLayout>;
 export const Temporary: Story = {
   args: {
     ...baseProps,
-    drawerProviderProps: {
-      variant: "temporary",
-    },
+    variant: "temporary",
   },
 };
 
 export const Persistent: Story = {
   args: {
     ...baseProps,
-    drawerProviderProps: {
-      variant: "persistent",
-    },
+    variant: "persistent",
   },
 };
 
 export const Clipped: Story = {
   args: {
     ...baseProps,
-    drawerProviderProps: {
-      variant: "clipped",
-    },
+    variant: "clipped",
   },
 };
 
 export const Mini: Story = {
   args: {
     ...baseProps,
-    drawerProviderProps: {
-      variant: "mini",
-    },
+    variant: "mini",
   },
 };
 
 export const CustomLinkComponent: Story = {
   args: {
     ...baseProps,
-    drawerProviderProps: {
-      LinkComponent: "b",
-    },
+    LinkComponent: "b",
   },
 };

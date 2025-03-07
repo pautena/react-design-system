@@ -57,10 +57,6 @@ export interface DrawerContentProps {
    * Object with the content that has to be rendered
    */
   navigation: DrawerNavigation;
-  /**
-   * Item size. default to medium
-   */
-  size?: DrawerSize;
 }
 
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;

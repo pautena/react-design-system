@@ -6,11 +6,12 @@ import {
   mockLinkNoIconDrawerNavigationItem,
 } from "../drawer/drawer.mock";
 import { DrawerProvider } from "../drawer-context";
-import { DrawerState } from "../drawer.types";
+import { DrawerSize, DrawerState } from "../drawer.types";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
   initialState?: DrawerState;
   selectedItemId?: string;
+  size?: DrawerSize;
 };
 
 export default {
@@ -19,8 +20,8 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: ({ initialState = "open", selectedItemId, ...args }) => (
-    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
+  render: ({ initialState = "open", size = "medium", selectedItemId, ...args }) => (
+    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}>
       <DrawerItem {...args} />
     </DrawerProvider>
   ),

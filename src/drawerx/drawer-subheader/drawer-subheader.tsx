@@ -1,16 +1,20 @@
 import ListSubheader, { ListSubheaderProps } from "@mui/material/ListSubheader";
-import { styled } from "@mui/material/styles";
-import { DrawerSize } from "../drawer.types";
+import { useDrawer } from "../drawer-context";
+import { useTheme } from "@mui/material";
 
-export interface DrawerSubheaderProps extends ListSubheaderProps {
-  /**
-   * Item size. default to medium
-   */
-  size?: DrawerSize;
-}
+export type DrawerSubheaderProps = ListSubheaderProps;
 
-export const DrawerSubheader = styled(ListSubheader, {
-  shouldForwardProp: (prop) => prop !== "size",
-})<DrawerSubheaderProps>(({ size, theme }) => ({
-  lineHeight: size === "small" ? theme.typography.pxToRem(40) : undefined,
-}));
+export const DrawerSubheader = ({ sx, ...rest }: DrawerSubheaderProps) => {
+  const { size } = useDrawer();
+  const { typography } = useTheme();
+
+  return (
+    <ListSubheader
+      {...rest}
+      sx={{
+        lineHeight: size === "small" ? typography.pxToRem(40) : undefined,
+        ...sx,
+      }}
+    />
+  );
+};

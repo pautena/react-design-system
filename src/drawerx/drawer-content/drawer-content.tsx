@@ -2,25 +2,12 @@ import { List, useTheme } from "@mui/material";
 import { useDrawer } from "../drawer-context";
 import { DrawerContentComponent, DrawerContentProps } from "../drawer.types";
 import { DrawerItem } from "../drawer-item";
-/*
-save it for the item header
-
-{title && state === "open" && (
-        <DrawerSubheader size={size} role="heading">
-          {title}
-        </DrawerSubheader>
-      )}
-
-*/
 
 /**
  * Content to be shown inside a navigation
  */
-export const DrawerContent: DrawerContentComponent = ({
-  navigation,
-  size = "medium",
-}: DrawerContentProps) => {
-  const { state } = useDrawer();
+export const DrawerContent: DrawerContentComponent = ({ navigation }: DrawerContentProps) => {
+  const { state, size } = useDrawer();
   const { spacing } = useTheme();
 
   return (
@@ -31,7 +18,7 @@ export const DrawerContent: DrawerContentComponent = ({
       }}
     >
       {navigation.map((item) => (
-        <DrawerItem key={item.id} item={item} size={size} />
+        <DrawerItem key={item.id} item={item} />
       ))}
     </List>
   );

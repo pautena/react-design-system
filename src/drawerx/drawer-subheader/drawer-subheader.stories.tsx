@@ -1,6 +1,12 @@
 import { Meta, StoryObj } from "@storybook/react";
-import { DrawerSubheader } from "./drawer-subheader";
+import { DrawerSubheader, DrawerSubheaderProps } from "./drawer-subheader";
 import { withContainer } from "../../storybook";
+import { DrawerProvider } from "../drawer-context";
+import { DrawerSize } from "../drawer.types";
+
+type DrawerSubheaderStoryArgs = DrawerSubheaderProps & {
+  size?: DrawerSize;
+};
 
 export default {
   title: "Components/Drawers/DrawerSubheader",
@@ -9,8 +15,13 @@ export default {
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof DrawerSubheader>;
-type Story = StoryObj<typeof DrawerSubheader>;
+  render: ({ size = "medium", ...args }) => (
+    <DrawerProvider size={size}>
+      <DrawerSubheader {...args} />
+    </DrawerProvider>
+  ),
+} satisfies Meta<DrawerSubheaderStoryArgs>;
+type Story = StoryObj<DrawerSubheaderStoryArgs>;
 
 export const Medium: Story = {
   args: {

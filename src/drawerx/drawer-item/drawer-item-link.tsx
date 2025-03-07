@@ -11,16 +11,11 @@ import {
   DrawerItemAvatar,
   DrawerItemBullet,
   DrawerItemLabel,
-  DrawerSize,
   getDrawerItemColors,
 } from "../drawer.types";
 import { useDrawer } from "../drawer-context";
 
 export interface DrawerItemLinkProps {
-  /**
-   * Item size. default to medium
-   */
-  size?: DrawerSize;
   /**
    * Text displayed inside the item
    */
@@ -77,11 +72,10 @@ export const DrawerItemLink = ({
   bullet,
   href,
   selected,
-  size = "medium",
   level,
   sx,
 }: DrawerItemLinkProps) => {
-  const { state } = useDrawer();
+  const { state, size } = useDrawer();
   const theme = useTheme();
   const { color, fontWeight } = getDrawerItemColors(theme, selected);
   const { LinkComponent } = useDrawer();

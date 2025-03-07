@@ -3,19 +3,15 @@ import { DrawerProvider, DrawerProviderProps } from "../drawer-context";
 import { DrawerMain } from "../drawer-main";
 import { DrawerAppBarElement, DrawerElement } from "../drawer.types";
 
-export interface DrawerLayoutProps {
-  drawerProviderProps?: DrawerProviderProps;
+export interface DrawerLayoutProps extends DrawerProviderProps {
   children: [DrawerElement, DrawerAppBarElement, ReactNode];
 }
 
-export const DrawerLayout = ({
-  drawerProviderProps,
-  children: childrenProps,
-}: DrawerLayoutProps) => {
+export const DrawerLayout = ({ children: childrenProps, ...rest }: DrawerLayoutProps) => {
   const [appBar, drawer, children] = childrenProps;
 
   return (
-    <DrawerProvider {...drawerProviderProps}>
+    <DrawerProvider {...rest}>
       {appBar}
       {drawer}
       <DrawerMain>{children}</DrawerMain>
