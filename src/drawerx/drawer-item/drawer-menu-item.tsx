@@ -5,7 +5,7 @@ import Collapse from "@mui/material/Collapse";
 import List from "@mui/material/List";
 import Popover from "@mui/material/Popover";
 import { SxProps, useTheme, Theme } from "@mui/material/styles";
-import { ReactElement, useState, useRef } from "react";
+import { ReactElement, useState, useRef, useEffect } from "react";
 import { DrawerNavigationItem, getDrawerItemColors } from "../drawer.types";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -50,9 +50,19 @@ export const DrawerMenuItem = ({
 }: DrawerMenuItemProps) => {
   const { state, size } = useDrawer();
   const anchorEl = useRef<HTMLDivElement | null>(null);
-  const { palette, spacing } = useTheme();
+  const { palette, spacing, transitions } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const { color, fontWeight } = getDrawerItemColors(useTheme(), selected);
+  const [canOpenCollapsed, setCanOpenCollapsed] = useState(true);
+
+  useEffect(() => {
+    if (menuOpen && state === "collapse") {
+      setCanOpenCollapsed(false);
+      setTimeout(() => {
+        setCanOpenCollapsed(true);
+      }, transitions.duration.leavingScreen);
+    }
+  }, [state]);
 
   const submenu = (
     <List component="div" disablePadding>
@@ -106,24 +116,26 @@ export const DrawerMenuItem = ({
           {submenu}
         </Collapse>
       ) : (
-        <Popover
-          open={menuOpen}
-          slotProps={{
-            paper: {
-              elevation: 0,
-              variant: "outlined",
-            },
-          }}
-          aria-label={`${text} popover submenu`}
-          anchorEl={anchorEl.current}
-          onClose={() => setMenuOpen(false)}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "right",
-          }}
-        >
-          {submenu}
-        </Popover>
+        canOpenCollapsed && (
+          <Popover
+            open={menuOpen}
+            slotProps={{
+              paper: {
+                elevation: 0,
+                variant: "outlined",
+              },
+            }}
+            aria-label={`${text} popover submenu`}
+            anchorEl={anchorEl.current}
+            onClose={() => setMenuOpen(false)}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            {submenu}
+          </Popover>
+        )
       )}
     </>
   );
