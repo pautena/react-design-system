@@ -38,7 +38,7 @@ export const DrawerLayout = ({
 
   return (
     <DrawerProvider {...rest}>
-      <DrawerAppBarSlot title={title} {...slotsProps?.drawerAppBar} />
+      <DrawerAppBarSlot title={title} color="inherit" {...slotsProps?.drawerAppBar} />
       <DrawerSlot {...slotsProps?.drawer}>
         <DrawerContentSlot navigation={navigation} {...slotsProps?.drawerContent} />
       </DrawerSlot>

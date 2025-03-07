@@ -2,11 +2,20 @@ import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import { useTheme, Theme } from "@mui/material/styles";
+import { useTheme, Theme, styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useDrawer } from "../drawer-context";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
 import { DrawerState, DrawerVariant } from "../drawer.types";
+
+const MyMuiAppBar = styled(MuiAppBar)(({ theme }) => ({
+  borderWidth: 0,
+  borderBottomWidth: 1,
+  borderStyle: "solid",
+  borderColor: theme.palette.divider,
+  boxShadow: "none",
+  zIndex: theme.zIndex.drawer + 1,
+}));
 
 const moveWithDrawer: Record<DrawerVariant, boolean> = {
   temporary: false,
@@ -49,7 +58,7 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
     {};
 
   return (
-    <MuiAppBar
+    <MyMuiAppBar
       position={underAppBar ? "fixed" : undefined}
       {...rest}
       sx={{
@@ -65,7 +74,7 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
           onClick={switchState}
           edge="start"
           sx={{
-            marginRight: 5,
+            marginRight: state != "collapse" ? 5 : 0,
             display: showMenuButton[variant](state) ? undefined : "none",
           }}
         >
@@ -78,6 +87,6 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
         )}
         {children}
       </Toolbar>
-    </MuiAppBar>
+    </MyMuiAppBar>
   );
 };
