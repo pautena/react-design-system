@@ -20,13 +20,11 @@ const showCloseButton: Record<DrawerVariant, boolean> = {
   temporary: true,
   mini: true,
   persistent: true,
-  clipped: false,
 };
 
 const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temporary"> = {
   temporary: "temporary",
   mini: "permanent",
-  clipped: "permanent",
   persistent: "persistent",
 };
 
@@ -40,15 +38,14 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
     },
   }),
   temporary: NoopSxGenerator,
-  clipped: NoopSxGenerator,
   persistent: NoopSxGenerator,
 };
 
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
-  const { state, switchState, underAppBar, close, drawerWidth, variant } = useDrawer();
+  const { state, switchState, clipped, close, drawerWidth, variant } = useDrawer();
 
-  const sx: any = {
+  const sx = {
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: "nowrap",
@@ -74,7 +71,7 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
       {...rest}
     >
       <DrawerHeader>
-        {!underAppBar && showCloseButton[variant] && (
+        {!clipped && showCloseButton[variant] && (
           <IconButton onClick={switchState}>
             <ChevronLeftIcon />
           </IconButton>

@@ -8,21 +8,19 @@ import { Link } from "@mui/material";
 const initialState: Record<DrawerVariant, DrawerState> = {
   temporary: "close",
   mini: "collapse",
-  clipped: "open",
   persistent: "close",
 };
 
 const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
   temporary: ["close", "open"],
   mini: ["collapse", "open"],
-  clipped: ["open", "open"],
   persistent: ["close", "open"],
 };
 
 export type DrawerProviderProps = PropsWithChildren<{
   initialState?: DrawerState;
   size?: DrawerSize;
-  underAppBar?: boolean;
+  clipped?: boolean;
   drawerWidth?: number;
   variant?: DrawerVariant;
   selectedItemId?: string;
@@ -40,7 +38,7 @@ export const DrawerProvider = ({
   variant = "temporary",
   size = "medium",
   drawerWidth: drawerWidthProp = drawerWidth,
-  underAppBar = false,
+  clipped = true,
   selectedItemId,
   LinkComponent = Link,
   onStateChange = () => null,
@@ -59,7 +57,7 @@ export const DrawerProvider = ({
         size,
         variant,
         selectedItemId,
-        underAppBar,
+        clipped,
         drawerWidth: drawerWidthProp,
         LinkComponent,
         switchState: () => handleChangeState(targetStates[variant][state === "open" ? 0 : 1]),

@@ -4,6 +4,8 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import { useTheme, Theme, styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { useDrawer } from "../drawer-context";
 import { AppBarProps as MuiAppBarProps } from "@mui/material";
 import { DrawerState, DrawerVariant } from "../drawer.types";
@@ -21,14 +23,12 @@ const moveWithDrawer: Record<DrawerVariant, boolean> = {
   temporary: false,
   mini: true,
   persistent: true,
-  clipped: true,
 };
 
 const showMenuButton: Record<DrawerVariant, (state: DrawerState) => boolean> = {
   temporary: () => true,
   mini: (state) => state !== "open",
   persistent: () => true,
-  clipped: () => false,
 };
 
 export interface DrawerAppBarProps extends MuiAppBarProps {
@@ -37,11 +37,11 @@ export interface DrawerAppBarProps extends MuiAppBarProps {
 
 export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps) => {
   const theme = useTheme();
-  const { state, variant, switchState, drawerWidth, underAppBar } = useDrawer();
+  const { state, variant, switchState, drawerWidth, clipped } = useDrawer();
 
   const rootSx =
     (moveWithDrawer[variant] &&
-      !underAppBar && {
+      !clipped && {
         transition: theme.transitions.create(["width", "margin"], {
           easing: theme.transitions.easing.sharp,
           duration: theme.transitions.duration.leavingScreen,
@@ -59,12 +59,12 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
 
   return (
     <MyMuiAppBar
-      position={underAppBar ? "fixed" : undefined}
+      position={clipped ? "fixed" : undefined}
       {...rest}
       sx={{
         ...sx,
         ...rootSx,
-        zIndex: (theme: Theme) => theme.zIndex.drawer + (underAppBar ? 1 : 0),
+        zIndex: (theme: Theme) => theme.zIndex.drawer + (clipped ? 1 : 0),
       }}
     >
       <Toolbar>
@@ -75,10 +75,18 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
           edge="start"
           sx={{
             marginRight: theme.spacing(2),
-            display: showMenuButton[variant](state) ? undefined : "none",
+            display: clipped || showMenuButton[variant](state) ? undefined : "none",
           }}
         >
-          <MenuIcon />
+          {state === "open" ? (
+            variant === "mini" ? (
+              <MenuOpenIcon />
+            ) : (
+              <ChevronLeftIcon />
+            )
+          ) : (
+            <MenuIcon />
+          )}
         </IconButton>
         {title && (
           <Typography variant="h6" component="h1" role="heading" aria-level={1} noWrap>

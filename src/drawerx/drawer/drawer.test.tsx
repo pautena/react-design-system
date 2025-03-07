@@ -11,8 +11,8 @@ describe("Drawer", () => {
   const renderComponent = ({
     initialState = "open",
     variant,
-    underAppBar,
-  }: { initialState?: DrawerState; variant?: DrawerVariant; underAppBar?: boolean } = {}) => {
+    clipped,
+  }: { initialState?: DrawerState; variant?: DrawerVariant; clipped?: boolean } = {}) => {
     const DrawerContentTest = () => {
       const { state } = useDrawer();
 
@@ -25,7 +25,7 @@ describe("Drawer", () => {
     };
 
     render(
-      <DrawerProvider initialState={initialState} variant={variant} underAppBar={underAppBar}>
+      <DrawerProvider initialState={initialState} variant={variant} clipped={clipped}>
         <Drawer>
           <DrawerContentTest />
         </Drawer>
@@ -47,21 +47,19 @@ describe("Drawer", () => {
       [false, "temporary", true],
       [true, "persistent", false],
       [false, "persistent", true],
-      [false, "clipped", false],
-      [false, "clipped", true],
       [true, "mini", false],
       [false, "mini", true],
     ] satisfies [boolean, DrawerVariant, boolean][])(
-      "should be visible=%s if variant=%s and underAppBar=%s",
-      (visible, variant, underAppBar) => {
-        renderComponent({ variant, underAppBar });
+      "should be visible=%s if variant=%s and clipped=%s",
+      (visible, variant, clipped) => {
+        renderComponent({ variant, clipped });
 
         expect(!!screen.queryByTestId("ChevronLeftIcon")).toBe(visible);
       },
     );
 
     it("should switch the drawer state if is clicked", async () => {
-      renderComponent({ initialState: "open", variant: "temporary" });
+      renderComponent({ initialState: "open", variant: "temporary", clipped: false });
 
       await userEvent.click(screen.getByTestId("ChevronLeftIcon"));
 

@@ -10,17 +10,19 @@ describe("DrawerAppBar", () => {
     title,
     initialState,
     variant = "temporary",
+    clipped,
   }: {
     title?: string;
     initialState?: DrawerState;
     variant?: DrawerVariant;
+    clipped?: boolean;
   } = {}) => {
     const TestContent = () => {
       const { state } = useDrawer();
       return <Typography>state: {state}</Typography>;
     };
     render(
-      <DrawerProvider initialState={initialState} variant={variant}>
+      <DrawerProvider initialState={initialState} variant={variant} clipped={clipped}>
         <DrawerAppBar title={title}>
           <Typography>test content</Typography>
         </DrawerAppBar>
@@ -45,20 +47,20 @@ describe("DrawerAppBar", () => {
     it("should switch the drawer state if is clicked", async () => {
       renderComponent({ initialState: "open", variant: "temporary" });
 
-      await userEvent.click(screen.getByTestId("MenuIcon"));
+      await userEvent.click(screen.getByRole("button", { name: /open drawer/i }));
 
       expect(screen.getByText("state: close")).toBeVisible();
     });
   });
 
-  it.each([
-    ["clipped" as DrawerVariant, "open" as DrawerState],
-    ["mini" as DrawerVariant, "open" as DrawerState],
-  ])("should not render a menu button if variant is %s", (variant, initialState) => {
-    renderComponent({ variant, initialState });
+  it.each([["mini" as DrawerVariant, "open" as DrawerState]])(
+    "should not render a menu button if variant is %s",
+    (variant, initialState) => {
+      renderComponent({ variant, initialState, clipped: false });
 
-    expect(screen.queryByRole("button", { name: /open drawer/i })).not.toBeInTheDocument();
-  });
+      expect(screen.queryByRole("button", { name: /open drawer/i })).not.toBeInTheDocument();
+    },
+  );
 
   it("should render the children", () => {
     renderComponent();

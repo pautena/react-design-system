@@ -12,7 +12,7 @@ interface DrawerDemoArgs {
   initialState: DrawerState;
   variant: DrawerVariant;
   selectedItemId?: string;
-  underAppBar?: boolean;
+  clipped?: boolean;
 }
 
 export default {
@@ -20,12 +20,12 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  render: ({ initialState, variant, selectedItemId, underAppBar }) => (
+  render: ({ initialState, variant, selectedItemId, clipped }) => (
     <DrawerProvider
       initialState={initialState}
       variant={variant}
       selectedItemId={selectedItemId}
-      underAppBar={underAppBar}
+      clipped={clipped}
     >
       <DrawerAppBar title="Drawer demo" />
       <Drawer>
@@ -46,11 +46,11 @@ export const Temporary: Story = {
   },
 };
 
-export const TemporaryUnder: Story = {
+export const TemporaryClipped: Story = {
   args: {
     ...Temporary.args,
     variant: "temporary",
-    underAppBar: true,
+    clipped: true,
   },
 };
 
@@ -61,26 +61,11 @@ export const Persistent: Story = {
   },
 };
 
-export const PersistentUnder: Story = {
+export const PersistentClipped: Story = {
   args: {
     ...Temporary.args,
     variant: "persistent",
-    underAppBar: true,
-  },
-};
-
-export const Clipped: Story = {
-  args: {
-    ...Temporary.args,
-    variant: "clipped",
-  },
-};
-
-export const ClippedUnder: Story = {
-  args: {
-    ...Temporary.args,
-    variant: "clipped",
-    underAppBar: true,
+    clipped: true,
   },
 };
 

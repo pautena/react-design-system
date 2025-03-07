@@ -180,7 +180,7 @@ export const mockDrawerNavigation: DrawerNavigation = [
   ...mockListDrawerNavigationItems,
   { kind: "header", id: "header2", text: "Section 2" },
   ...mockListDrawerNavigationItems2,
-  { kind: "header", id: "header2", text: "Section Avatar" },
+  { kind: "header", id: "header-avatar", text: "Section Avatar" },
   mockLinkAvatarDrawerNavigationItem,
   {
     id: "item.a.2",

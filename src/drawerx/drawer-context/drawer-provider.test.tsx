@@ -13,7 +13,7 @@ const TestContent = () => {
     state,
     variant,
     drawerWidth,
-    underAppBar,
+    clipped,
     switchState,
     close,
     collapse,
@@ -27,7 +27,7 @@ const TestContent = () => {
       <Typography>state: {state}</Typography>
       <Typography>variant: {variant}</Typography>
       <Typography>drawerWidth: {drawerWidth}</Typography>
-      <Typography>underAppBar: {underAppBar.toString()}</Typography>
+      <Typography>clipped: {clipped.toString()}</Typography>
       <Button onClick={switchState}>switch</Button>
       <Button onClick={open}>open</Button>
       <Button onClick={collapse}>collapse</Button>
@@ -41,8 +41,8 @@ describe("DrawerProvider", () => {
   const renderComponent = ({
     initialState,
     variant,
-    underAppBar,
-  }: { initialState?: DrawerState; variant?: DrawerVariant; underAppBar?: boolean } = {}) => {
+    clipped,
+  }: { initialState?: DrawerState; variant?: DrawerVariant; clipped?: boolean } = {}) => {
     const onStateChange = vi.fn();
 
     render(
@@ -50,7 +50,7 @@ describe("DrawerProvider", () => {
         initialState={initialState}
         variant={variant}
         drawerWidth={400}
-        underAppBar={underAppBar}
+        clipped={clipped}
         onStateChange={onStateChange}
       >
         <TestContent />
@@ -66,16 +66,16 @@ describe("DrawerProvider", () => {
     expect(screen.getByText("drawerWidth: 400")).toBeVisible();
   });
 
-  describe("underAppBar", () => {
-    it.each([[true], [false]])("should pass the underAppBar=%s", (underAppBar) => {
-      renderComponent({ underAppBar });
+  describe("clipped", () => {
+    it.each([[true], [false]])("should pass the clipped=%s", (clipped) => {
+      renderComponent({ clipped });
 
-      expect(screen.getByText(`underAppBar: ${underAppBar.toString()}`)).toBeVisible();
+      expect(screen.getByText(`clipped: ${clipped.toString()}`)).toBeVisible();
     });
   });
 
   describe("variant", () => {
-    it.each([["temporary"], ["persistent"], ["clipped"], ["mini"]] satisfies [DrawerVariant][])(
+    it.each([["temporary"], ["persistent"], ["mini"]] satisfies [DrawerVariant][])(
       "should pass the variant %s",
       (variant) => {
         renderComponent({ variant });
@@ -98,7 +98,6 @@ describe("DrawerProvider", () => {
     it.each([
       ["temporary", "close"],
       ["persistent", "close"],
-      ["clipped", "open"],
       ["mini", "collapse"],
     ] satisfies [DrawerVariant, DrawerState][])(
       "should render the %s variant default state",
@@ -140,7 +139,6 @@ describe("DrawerProvider", () => {
       ["open", "close", "temporary"],
       ["close", "open", "persistent"],
       ["open", "close", "persistent"],
-      ["open", "open", "clipped"],
       ["collapse", "open", "mini"],
       ["open", "collapse", "mini"],
     ] satisfies [DrawerState, DrawerState, DrawerVariant][])(

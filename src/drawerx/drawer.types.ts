@@ -5,7 +5,7 @@ import { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
 import { Theme } from "@mui/material/styles";
 import { DrawerAppBarProps } from "./drawer-app-bar";
 
-export type DrawerVariant = "temporary" | "mini" | "persistent" | "clipped";
+export type DrawerVariant = "temporary" | "mini" | "persistent";
 export type DrawerState = "open" | "collapse" | "close";
 export type DrawerSize = "small" | "medium";
 

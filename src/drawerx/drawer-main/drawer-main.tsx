@@ -7,7 +7,6 @@ import { DrawerHeader } from "../drawer/drawer";
 const drawerSpace: Record<DrawerVariant, boolean> = {
   temporary: false,
   mini: true,
-  clipped: true,
   persistent: true,
 };
 

@@ -36,10 +36,11 @@ export const Persistent: Story = {
   },
 };
 
-export const Clipped: Story = {
+export const NoClipped: Story = {
   args: {
     ...baseProps,
-    variant: "clipped",
+    variant: "mini",
+    clipped: false,
   },
 };
 

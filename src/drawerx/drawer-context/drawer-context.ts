@@ -10,7 +10,7 @@ export interface DrawerContextProps {
   state: DrawerState;
   variant: DrawerVariant;
   drawerWidth: number;
-  underAppBar: boolean;
+  clipped: boolean;
   /**
    * The component used to render a link when the `href` prop is provided.
    * @default 'a'
