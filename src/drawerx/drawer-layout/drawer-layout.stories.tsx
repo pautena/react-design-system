@@ -1,9 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { DrawerLayout } from "./drawer-layout";
 import { mockDrawerNavigation } from "../drawer/drawer.mock";
-import { DrawerContent } from "../drawer-content";
-import { Drawer } from "../drawer";
-import { DrawerAppBar } from "../drawer-app-bar";
 import { ContentPlaceholder } from "../../content-placeholder";
 
 const baseProps = {
@@ -19,10 +16,6 @@ export default {
   },
   render: (args) => (
     <DrawerLayout {...args}>
-      <Drawer>
-        <DrawerContent navigation={mockDrawerNavigation} />
-      </Drawer>
-      <DrawerAppBar title="Lorem ipsum" />
       <ContentPlaceholder p={3} />
     </DrawerLayout>
   ),

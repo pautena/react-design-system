@@ -1,19 +1,47 @@
-import { ReactNode } from "react";
 import { DrawerProvider, DrawerProviderProps } from "../drawer-context";
 import { DrawerMain } from "../drawer-main";
-import { DrawerAppBarElement, DrawerElement } from "../drawer.types";
+import { DrawerAppBar, DrawerAppBarProps } from "../drawer-app-bar";
+import { DrawerContent } from "../drawer-content";
+import { DrawerContentProps, DrawerNavigation, DrawerProps } from "../drawer.types";
+import { Drawer } from "../drawer";
 
-export interface DrawerLayoutProps extends DrawerProviderProps {
-  children: [DrawerElement, DrawerAppBarElement, ReactNode];
+export interface DrawerLayoutSlots {
+  drawerAppBar?: React.JSXElementConstructor<DrawerAppBarProps>;
+  drawer?: React.JSXElementConstructor<DrawerProps>;
+  drawerContent?: React.JSXElementConstructor<DrawerContentProps>;
 }
 
-export const DrawerLayout = ({ children: childrenProps, ...rest }: DrawerLayoutProps) => {
-  const [appBar, drawer, children] = childrenProps;
+export interface DrawerLayoutSlotProps {
+  drawerAppBar?: DrawerAppBarProps;
+  drawer?: DrawerProps;
+  drawerContent?: DrawerContentProps;
+}
+
+export interface DrawerLayoutProps extends DrawerProviderProps {
+  title: string;
+  navigation: DrawerNavigation;
+  slots?: DrawerLayoutSlots;
+  slotsProps?: DrawerLayoutSlotProps;
+}
+
+export const DrawerLayout = ({
+  children,
+  navigation,
+  title,
+  slots,
+  slotsProps,
+  ...rest
+}: DrawerLayoutProps) => {
+  const DrawerAppBarSlot = slots?.drawerAppBar ?? DrawerAppBar;
+  const DrawerSlot = slots?.drawer ?? Drawer;
+  const DrawerContentSlot = slots?.drawerContent ?? DrawerContent;
 
   return (
     <DrawerProvider {...rest}>
-      {appBar}
-      {drawer}
+      <DrawerAppBarSlot title={title} {...slotsProps?.drawerAppBar} />
+      <DrawerSlot {...slotsProps?.drawer}>
+        <DrawerContentSlot navigation={navigation} {...slotsProps?.drawerContent} />
+      </DrawerSlot>
       <DrawerMain>{children}</DrawerMain>
     </DrawerProvider>
   );
