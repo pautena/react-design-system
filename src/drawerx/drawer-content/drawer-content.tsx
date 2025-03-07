@@ -14,7 +14,7 @@ export const DrawerContent: DrawerContentComponent = ({ navigation }: DrawerCont
     <List
       sx={{
         paddingTop: size === "small" ? spacing(0) : undefined,
-        paddingY: state === "collapse" ? 0 : undefined,
+        paddingX: size === "small" ? spacing(0.5) : spacing(1),
       }}
     >
       {navigation.map((item) => (

@@ -51,6 +51,14 @@ export const Mini: Story = {
   },
 };
 
+export const MiniSmall: Story = {
+  args: {
+    ...baseProps,
+    variant: "mini",
+    size: "small",
+  },
+};
+
 export const CustomLinkComponent: Story = {
   args: {
     ...baseProps,

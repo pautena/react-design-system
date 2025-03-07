@@ -76,7 +76,7 @@ export const DrawerMenuItem = ({
     state === "collapse" && level === 0
       ? {
           position: "absolute",
-          right: 0,
+          right: -3,
         }
       : {};
 
@@ -90,21 +90,25 @@ export const DrawerMenuItem = ({
         dense={size === "small"}
         sx={{
           ...sx,
-          px: 2.5,
+          borderRadius: 2,
           pl: state === "open" ? spacing(2 + 1.5 * level) : undefined,
           backgroundColor: menuOpen ? palette.action.hover : undefined,
+          ...(state === "collapse" && {
+            px: 2.5,
+            justifyContent: "center",
+          }),
         }}
       >
-        {icon && <ListItemIcon sx={{ color }}>{icon}</ListItemIcon>}
+        {icon && <ListItemIcon sx={{ color, justifyContent: "center" }}>{icon}</ListItemIcon>}
         <ListItemText
           disableTypography
           primary={text}
           sx={{ color, fontWeight, opacity: state === "collapse" && level === 0 ? 0 : undefined }}
         />
         {menuOpen && state === "open" ? (
-          <ExpandMoreIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
+          <ExpandMoreIcon sx={[{ color, ml: 2, fontSize: 20 }, collapsedButtonSx]} />
         ) : (
-          <ChevronRightIcon sx={[{ color, ml: 2 }, collapsedButtonSx]} />
+          <ChevronRightIcon sx={[{ color, ml: 2, fontSize: 20 }, collapsedButtonSx]} />
         )}
       </ListItemButton>
       {state === "open" ? (
