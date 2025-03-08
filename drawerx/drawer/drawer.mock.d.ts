@@ -1,0 +1,11 @@
+import { DrawerNavigation, DrawerNavigationItem, DrawerNavigationCollapsable, DrawerNavigationLink } from '../drawer.types';
+export declare const mockLinkDrawerNavigationItem: DrawerNavigationLink;
+export declare const mockLinkNoIconDrawerNavigationItem: DrawerNavigationLink;
+export declare const mockLinkBulletDrawerNavigationItem: DrawerNavigationItem;
+export declare const mockLinkLabelDrawerNavigationItem: DrawerNavigationItem;
+export declare const mockLinkAvatarDrawerNavigationItem: DrawerNavigationItem;
+export declare const mockListDrawerNavigationItems: DrawerNavigationItem[];
+export declare const mockMenuDrawerNavigationItem: DrawerNavigationCollapsable;
+export declare const mockMenuInsideMenuDrawerNavigationItem: DrawerNavigationItem;
+export declare const mockListDrawerNavigationItems2: DrawerNavigationItem[];
+export declare const mockDrawerNavigation: DrawerNavigation;
