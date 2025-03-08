@@ -58,6 +58,7 @@
     "@mui/x-data-grid-generator": "^7.27.0",
     "@storybook/addon-essentials": "^8.6.4",
     "@storybook/addon-interactions": "^8.6.4",
+    "@storybook/addon-links": "^8.6.4",
     "@storybook/addon-onboarding": "^8.6.4",
     "@storybook/blocks": "^8.6.4",
     "@storybook/react": "^8.6.4",
