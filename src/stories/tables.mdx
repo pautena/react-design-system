@@ -1,0 +1,30 @@
+import { Meta } from "@storybook/blocks";
+import { Description } from "@storybook/addon-docs";
+import { Story, Canvas } from "@storybook/blocks";
+
+{/* prettier-ignore */}
+<Meta title="Components/Tables" />
+
+# Tables
+
+## Enhanced Remote Table
+
+import * as EnhancedRemoteTableStories from "../enhanced-remote-table/enhanced-remote-table.stories";
+import { EnhancedRemoteTable } from "../enhanced-remote-table/enhanced-remote-table";
+
+<Description of={EnhancedRemoteTable} />
+
+[Enhanced Remote Table Stories](?path=/docs/components-tables-enhancedremotetable--docs)
+
+<Canvas of={EnhancedRemoteTableStories.Default} />
+
+## Enhanced Table
+
+import * as EnhancedTableStories from "../enhanced-table/enhanced-table.stories";
+import { EnhancedTable } from "../enhanced-table/enhanced-table";
+
+<Description of={EnhancedTable} />
+
+[Enhanced Table Stories](?path=/docs/components-tables-enhancedtable--docs)
+
+<Canvas of={EnhancedTableStories.Default} />

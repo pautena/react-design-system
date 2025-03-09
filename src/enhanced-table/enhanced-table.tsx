@@ -43,7 +43,42 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
   return 0;
 }
 
-interface Props<T> {
+/**
+ * Props for the EnhancedTable component.
+ *
+ * @template T - The type of data being displayed in the table.
+ */
+interface EnhancedTableProps<T> {
+  /**
+   * The array of data to be displayed in the table.
+   */
+  readonly data: T[];
+  /**
+   * Optional. If true, enables the search functionality.
+   */
+  search?: boolean;
+  /**
+   * The key of the data to sort by default.
+   */
+  defaultSort: keyof T;
+  /**
+   * Optional. The default order of sorting (ascending or descending).
+   */
+  defaultOrder?: Order;
+  /**
+   * Optional. If true, displays a loading indicator.
+   */
+  loading?: boolean;
+  /**
+   * The columns configuration for the table.
+   */
+  columns: HeadCell<T>[];
+  /**
+   * A render prop function that takes the sorted and filtered data and returns a ReactNode.
+   */
+  children: (data: T[]) => ReactNode;
+}
+interface EnhancedTableProps<T> {
   readonly data: T[];
   search?: boolean;
   defaultSort: keyof T;
@@ -53,6 +88,9 @@ interface Props<T> {
   children: (data: T[]) => ReactNode;
 }
 
+/**
+ * EnhancedTable component provides a table with sorting, filtering, and loading states.
+ */
 export const EnhancedTable = <T,>({
   children,
   data,
@@ -61,7 +99,7 @@ export const EnhancedTable = <T,>({
   defaultSort,
   defaultOrder = "asc",
   loading = false,
-}: Props<T>) => {
+}: EnhancedTableProps<T>) => {
   const [searchFilter, setSearchFilter] = useState<string>("");
   const [order, setOrder] = useState<Order>(defaultOrder);
   const [orderBy, setOrderBy] = useState<keyof T>(defaultSort);
