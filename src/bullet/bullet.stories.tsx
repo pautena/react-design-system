@@ -10,37 +10,43 @@ export default {
 } satisfies Meta<typeof Bullet>;
 type Story = StoryObj<typeof Bullet>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     variant: "primary",
   },
 };
 
-export const Secondary: Story = {
+export const PrimaryVariant: Story = {
+  args: {
+    variant: "primary",
+  },
+};
+
+export const SecondaryVariant: Story = {
   args: {
     variant: "secondary",
   },
 };
 
-export const Default: Story = {
+export const DefaultVariant: Story = {
   args: {
     variant: "default",
   },
 };
 
-export const Info: Story = {
+export const InfoVariant: Story = {
   args: {
     variant: "info",
   },
 };
 
-export const Warning: Story = {
+export const WarningVariant: Story = {
   args: {
     variant: "warning",
   },
 };
 
-export const Error: Story = {
+export const ErrorVariant: Story = {
   args: {
     variant: "error",
   },
