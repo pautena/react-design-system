@@ -9,7 +9,7 @@ type DrawerSubheaderStoryArgs = DrawerSubheaderProps & {
 };
 
 export default {
-  title: "Components/Drawers/DrawerSubheader",
+  title: "Components/Navigation/DrawerSubheader",
   component: DrawerSubheader,
   decorators: [withContainer({ width: 250 })],
   parameters: {

@@ -15,7 +15,7 @@ type DrawerItemStoryArgs = DrawerItemProps & {
 };
 
 export default {
-  title: "Components/Drawers/DrawerItem",
+  title: "Components/Navigation/DrawerItem",
   component: DrawerItem,
   parameters: {
     layout: "centered",
