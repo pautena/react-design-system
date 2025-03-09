@@ -12,4 +12,7 @@ export interface HeaderLayoutProps {
     error?: HeaderLayoutError;
     children: [HeaderElement, ContentElement];
 }
+/**
+ * A layout component that provides a header and content area with optional loading, fetching, and error states.
+ */
 export declare const HeaderLayout: ({ loading, children, fetching, error }: HeaderLayoutProps) => import("react/jsx-runtime").JSX.Element;

@@ -10,4 +10,7 @@ export declare const valueItemClasses: {
     root: string;
     content: string;
 };
+/**
+ * `ValueItem` is a component to wrap your value components
+ */
 export declare const ValueItem: ValueItemComponent;

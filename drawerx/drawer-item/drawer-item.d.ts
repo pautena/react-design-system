@@ -9,4 +9,7 @@ export interface DrawerItemProps {
      */
     level?: number;
 }
+/**
+ * Component representing a drawer item in the navigation drawer.
+ */
 export declare const DrawerItem: ({ item, level }: DrawerItemProps) => false | import("react/jsx-runtime").JSX.Element;

@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from '../../node_modules/react';
+import { FunctionComponent, PropsWithChildren, ReactElement } from '../../node_modules/react';
 import { BulletVariant } from '../bullet';
 import { LabelVariant } from '../label';
 import { DrawerProps as MuiDrawerProps } from '@mui/material/Drawer';
@@ -47,9 +47,7 @@ export interface DrawerContentProps {
 }
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;
 export type DrawerContentElement = ReactElement<DrawerContentProps, DrawerContentComponent>;
-export interface DrawerProps extends MuiDrawerProps {
-    children: DrawerContentElement;
-}
+export type DrawerProps = PropsWithChildren<MuiDrawerProps>;
 export type DrawerComponent = FunctionComponent<DrawerProps>;
 export type DrawerElement = ReactElement<DrawerProps, DrawerComponent>;
 export declare const getDrawerItemColors: (theme: Theme, selected: boolean | undefined) => {
