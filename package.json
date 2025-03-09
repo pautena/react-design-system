@@ -23,7 +23,7 @@
     "format": "npm-run-all format:*",
     "format:js": "prettier --write \"**/*.js\"",
     "format:json": "prettier --write \"**/*.json\"",
-    "format:md": "prettier --write \"**/*.md\"",
+    "format:md": "prettier --write \"**/*.md{,x}\"",
     "format:ts": "prettier --write \"**/*.ts{,x}\""
   },
   "keywords": [
