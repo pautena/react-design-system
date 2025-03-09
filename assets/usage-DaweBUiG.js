@@ -1,4 +1,4 @@
-import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as r}from"./index-DR1jFbPG.js";import{M as s}from"./index-C-Pk5LAz.js";import"./index-CFahbR6w.js";import"./iframe-C3p2cJ65.js";import"./index-BHL8jL0s.js";import"./index-chp1rBSu.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";function o(n){const t={code:"code",h1:"h1",p:"p",pre:"pre",...r(),...n.components};return e.jsxs(e.Fragment,{children:[`
+import{j as e}from"./jsx-runtime-D_zvdyIk.js";import{useMDXComponents as r}from"./index-DR1jFbPG.js";import{M as s}from"./index-BCyivX1-.js";import"./index-CFahbR6w.js";import"./iframe-CQTB2ld8.js";import"./index-BHL8jL0s.js";import"./index-chp1rBSu.js";import"./index-CXQShRbs.js";import"./index-DrFu-skq.js";function o(n){const t={code:"code",h1:"h1",p:"p",pre:"pre",...r(),...n.components};return e.jsxs(e.Fragment,{children:[`
 `,e.jsx(s,{title:"Usage"}),`
 `,e.jsx(t.h1,{id:"usage",children:"Usage"}),`
 `,e.jsx(t.p,{children:"To use the components in your React project, you can import them as shown below:"}),`
