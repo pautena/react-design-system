@@ -41,6 +41,9 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
   persistent: NoopSxGenerator,
 };
 
+/**
+ * Drawer component that provides a customizable drawer interface.
+ */
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
   const { state, switchState, clipped, close, drawerWidth, variant } = useDrawer();

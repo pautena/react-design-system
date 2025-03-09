@@ -32,9 +32,15 @@ const showMenuButton: Record<DrawerVariant, (state: DrawerState) => boolean> = {
 };
 
 export interface DrawerAppBarProps extends MuiAppBarProps {
+  /**
+   * Title to display in the AppBar.
+   */
   title?: string;
 }
 
+/**
+ * DrawerAppBar component that renders an AppBar adapted to work inside a Drawer context.
+ */
 export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps) => {
   const theme = useTheme();
   const { state, variant, switchState, drawerWidth, clipped } = useDrawer();

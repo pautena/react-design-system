@@ -23,7 +23,7 @@ export default {
 } satisfies Meta<DrawerSubheaderStoryArgs>;
 type Story = StoryObj<DrawerSubheaderStoryArgs>;
 
-export const Medium: Story = {
+export const Default: Story = {
   args: {
     children: "Lorem ipsum",
     size: "medium",
