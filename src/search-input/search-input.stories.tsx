@@ -1,4 +1,3 @@
-import { grey } from "@mui/material/colors";
 import { Meta, StoryObj } from "@storybook/react";
 import { withContainer, withLocalizationProvider } from "../storybook";
 import { SearchInput } from "./search-input";
@@ -6,15 +5,16 @@ import { SearchInput } from "./search-input";
 export default {
   title: "Components/Inputs/SearchInput",
   component: SearchInput,
-  decorators: [
-    withLocalizationProvider,
-    withContainer({ width: 400, height: 400, backgroundColor: grey[100], padding: 5 }),
-  ],
+  decorators: [withLocalizationProvider],
   parameters: {
     layout: "centered",
   },
 } satisfies Meta<typeof SearchInput>;
 type Story = StoryObj<typeof SearchInput>;
+
+export const Default: Story = {
+  args: {},
+};
 
 export const Label: Story = {
   args: {
@@ -57,4 +57,5 @@ export const WithFilters: Story = {
       { id: "createdBefore", type: "datetime", label: "Created before" },
     ],
   },
+  decorators: [withContainer({ width: 400, height: 400, padding: 5 })],
 };
