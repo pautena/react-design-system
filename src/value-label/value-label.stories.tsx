@@ -3,7 +3,7 @@ import { ValueLabel } from "./value-label";
 import { withContainer } from "../storybook";
 
 export default {
-  title: "Components/Value displays/ValueLabel",
+  title: "Components/Data Display/ValueLabel",
   component: ValueLabel,
   decorators: [withContainer({ width: 200 })],
   parameters: {

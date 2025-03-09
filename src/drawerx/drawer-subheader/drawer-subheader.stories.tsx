@@ -9,7 +9,7 @@ type DrawerSubheaderStoryArgs = DrawerSubheaderProps & {
 };
 
 export default {
-  title: "Components/Drawers/DrawerSubheader",
+  title: "Components/Navigation/DrawerSubheader",
   component: DrawerSubheader,
   decorators: [withContainer({ width: 250 })],
   parameters: {
@@ -23,7 +23,7 @@ export default {
 } satisfies Meta<DrawerSubheaderStoryArgs>;
 type Story = StoryObj<DrawerSubheaderStoryArgs>;
 
-export const Medium: Story = {
+export const Default: Story = {
   args: {
     children: "Lorem ipsum",
     size: "medium",

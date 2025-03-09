@@ -38,6 +38,9 @@ const resolveBorderStyle = (bordered: ResponsiveStyleValue<boolean>, color: stri
   return borderStyle;
 };
 
+/**
+ * `ValueItem` is a component to wrap your value components
+ */
 export const ValueItem: ValueItemComponent = ({
   children,
   bordered = true,

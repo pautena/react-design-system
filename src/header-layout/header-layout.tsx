@@ -22,6 +22,9 @@ export interface HeaderLayoutProps {
 
 const DefaultErrorIcon = () => <ReportProblemIcon color="error" sx={{ width: 200, height: 200 }} />;
 
+/**
+ * A layout component that provides a header and content area with optional loading, fetching, and error states.
+ */
 export const HeaderLayout = ({ loading, children, fetching, error }: HeaderLayoutProps) => {
   const [headerElement, contentElement] = children;
 

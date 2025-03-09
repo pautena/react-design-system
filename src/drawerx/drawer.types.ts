@@ -1,4 +1,4 @@
-import { FunctionComponent, ReactElement } from "react";
+import { FunctionComponent, PropsWithChildren, ReactElement } from "react";
 import { BulletVariant } from "../bullet";
 import { LabelVariant } from "../label";
 import { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
@@ -62,9 +62,7 @@ export interface DrawerContentProps {
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;
 export type DrawerContentElement = ReactElement<DrawerContentProps, DrawerContentComponent>;
 
-export interface DrawerProps extends MuiDrawerProps {
-  children: DrawerContentElement;
-}
+export type DrawerProps = PropsWithChildren<MuiDrawerProps>;
 
 export type DrawerComponent = FunctionComponent<DrawerProps>;
 export type DrawerElement = ReactElement<DrawerProps, DrawerComponent>;

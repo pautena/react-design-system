@@ -10,12 +10,30 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { autocompleteClasses } from "@mui/material/Autocomplete";
 import useId from "@mui/utils/useId";
 
+/**
+ * Props for the TextField component.
+ *
+ * @extends MuiTextFieldProps
+ */
 export type TextFieldProps = MuiTextFieldProps & {
+  /**
+   * Indicates if the field is in a fetching state.
+   */
   fetching?: boolean;
+  /**
+   * Indicates if the field is in a loading state.
+   */
   loading?: boolean;
+  /**
+   * Optional hex color code for the text field.
+   */
   hexColor?: string;
 };
 
+/**
+ * A customizable TextField component that extends the functionality of the Material-UI TextField component
+ * and supports various props for styling and functionality.
+ */
 export const TextField = ({
   id: overrideId,
   label,

@@ -15,6 +15,9 @@ export interface DrawerItemProps {
   level?: number;
 }
 
+/**
+ * Component representing a drawer item in the navigation drawer.
+ */
 export const DrawerItem = ({ item, level = 0 }: DrawerItemProps) => {
   const { selectedItemId, state } = useDrawer();
   if (item.kind === "collapsable") {

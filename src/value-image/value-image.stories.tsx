@@ -4,7 +4,7 @@ import { withContainer } from "../storybook";
 import workInProgressImg from "../stories/assets/work-in-progress.jpg";
 
 export default {
-  title: "Components/Value displays/ValueImage",
+  title: "Components/Data Display/ValueImage",
   component: ValueImage,
   decorators: [withContainer({ width: 200 })],
   parameters: {

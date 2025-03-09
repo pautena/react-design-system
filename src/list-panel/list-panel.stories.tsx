@@ -23,7 +23,7 @@ export default {
 } satisfies Meta<typeof ListPanel>;
 type Story = StoryObj<typeof ListPanel>;
 
-export const Short: Story = {
+export const Default: Story = {
   args: {
     items: mockItemsShort,
   },

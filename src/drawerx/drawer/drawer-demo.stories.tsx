@@ -16,7 +16,7 @@ interface DrawerDemoArgs {
 }
 
 export default {
-  title: "Components/Drawers/Drawer demo",
+  title: "Components/Navigation/Drawer demo",
   parameters: {
     layout: "fullscreen",
   },

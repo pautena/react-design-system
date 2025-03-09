@@ -4,6 +4,9 @@ import { useTheme } from "@mui/material";
 
 export type DrawerSubheaderProps = ListSubheaderProps;
 
+/**
+ * A functional component that renders a `ListSubheader` with custom styles.
+ */
 export const DrawerSubheader = ({ sx, ...rest }: DrawerSubheaderProps) => {
   const { size } = useDrawer();
   const { typography } = useTheme();

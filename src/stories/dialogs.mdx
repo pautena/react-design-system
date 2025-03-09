@@ -1,0 +1,41 @@
+import { Meta } from "@storybook/blocks";
+import { Story, Canvas } from "@storybook/blocks";
+import { Description } from "@storybook/addon-docs";
+
+{/* prettier-ignore */}
+<Meta title="Components/Dialogs" />
+
+# Dialogs
+
+## BootstrapDialog
+
+import * as BootstrapDialogStories from "../bootstrap-dialog/bootstrap-dialog.stories";
+import { BootstrapDialog } from "../bootstrap-dialog/bootstrap-dialog";
+
+<Description of={BootstrapDialog} />
+
+[BootstrapDialog Stories](?path=/docs/components-dialogs-bootstrapdialog--docs)
+
+<Canvas of={BootstrapDialogStories.Default} />
+
+## ConfirmDialog
+
+import * as ConfirmDialogStories from "../confirm-dialog/confirm-dialog.stories";
+import { ConfirmDialog } from "../confirm-dialog/confirm-dialog";
+
+<Description of={ConfirmDialog} />
+
+[ConfirmDialog Stories](?path=/docs/components-dialogs-confirmdialog--docs)
+
+<Canvas of={ConfirmDialogStories.Default} />
+
+## FormDialog
+
+import * as FormDialogStories from "../form-dialog/form-dialog.stories";
+import { FormDialog } from "../form-dialog/form-dialog";
+
+<Description of={FormDialog} />
+
+[FormDialog Stories](?path=/docs/components-dialogs-formdialog--docs)
+
+<Canvas of={FormDialogStories.Default} />

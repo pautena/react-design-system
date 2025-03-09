@@ -3,7 +3,7 @@ import { ValueDatetime } from "./value-datetime";
 import { withContainer, withLocalizationProvider } from "../storybook";
 
 export default {
-  title: "Components/Value displays/ValueDatetime",
+  title: "Components/Data Display/ValueDatetime",
   component: ValueDatetime,
   decorators: [withContainer({ width: 600 }), withLocalizationProvider],
   parameters: {

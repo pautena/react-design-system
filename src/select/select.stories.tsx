@@ -43,6 +43,12 @@ export default {
 } satisfies Meta<typeof DemoSelect>;
 type Story = StoryObj<typeof DemoSelect>;
 
+export const Default: Story = {
+  args: {
+    ...baseArgs,
+  },
+};
+
 export const WithoutFullWidth: Story = {
   args: {
     ...baseArgs,

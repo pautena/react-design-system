@@ -1,13 +1,20 @@
 import { Meta, StoryObj } from "@storybook/react";
 import { ValueBoolean } from "./value-boolean";
 export default {
-  title: "Components/Value displays/ValueBoolean",
+  title: "Components/Data Display/ValueBoolean",
   component: ValueBoolean,
   parameters: {
     layout: "centered",
   },
 } satisfies Meta<typeof ValueBoolean>;
 type Story = StoryObj<typeof ValueBoolean>;
+
+export const Default: Story = {
+  args: {
+    label: "Lorem ipsum",
+    value: true,
+  },
+};
 
 export const True: Story = {
   args: {

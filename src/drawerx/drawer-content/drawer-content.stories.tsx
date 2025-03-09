@@ -11,7 +11,7 @@ type DrawerContentArgs = DrawerContentProps & {
 };
 
 export default {
-  title: "Components/Drawers/DrawerContent",
+  title: "Components/Navigation/DrawerContent",
   component: DrawerContent,
   render: ({ initialState = "open", size = "medium", selectedItemId, ...args }) => (
     <DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}>

@@ -19,6 +19,11 @@ export interface ModelFormProps<T extends BasicModelInstance> {
   onSubmit: (values: T) => void;
 }
 
+/**
+ *
+ * ModelForm component is a generic form component for handling model-based forms.
+ * It renders form fields based on the provided model and handles form submission.
+ */
 export const ModelForm = <T extends BasicModelInstance>({
   model,
   saveButtonText,

@@ -27,7 +27,9 @@ export interface TableListProps<T extends BasicModelInstance> {
   onClick?: (d: T) => void;
 }
 
-// TODO: Move this to teh generators section
+/**
+ * TableList component renders a list about a given instances of a model.
+ */
 export const TableList = <T extends BasicModelInstance>({
   columns: columnsProp,
   options,

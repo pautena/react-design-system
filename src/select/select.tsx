@@ -12,6 +12,44 @@ import { SelectInputProps } from "@mui/material/Select/SelectInput";
 export type SelectSize = "small" | "medium";
 
 export interface SelectProps<T> {
+  /**
+   * The label for the select input.
+   */
+  label: string;
+  /**
+   * The selected value.
+   */
+  value: T;
+  /**
+   * If true, the select input is in a loading state.
+   */
+  loading?: boolean;
+  /**
+   * If true, the select input is in a fetching state.
+   */
+  fetching?: boolean;
+  /**
+   * The size of the select input.
+   */
+  size?: SelectSize;
+  /**
+   * The color of the select input.
+   */
+  color?: string;
+  /**
+   * If true, the select input takes up the full width of its container.
+   */
+  fullWidth?: boolean;
+  /**
+   * The child elements to be rendered within the select input.
+   */
+  children?: ReactNode;
+  /**
+   * The callback function to handle changes to the select input.
+   */
+  onChange?: SelectInputProps<T>["onChange"];
+}
+export interface SelectProps<T> {
   label: string;
   value: T;
   loading?: boolean;
@@ -28,6 +66,10 @@ const ProgressSize: Record<SelectSize, number> = {
   medium: 20,
 };
 
+/**
+ * A custom Select component that extends the functionality of the Material-UI Select component.
+ * This component supports additional features such as loading and fetching states, custom colors, and full-width display.
+ */
 export const Select = <T extends ReactNode>({
   label,
   value,

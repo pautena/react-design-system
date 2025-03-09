@@ -9,7 +9,7 @@ import { DatatablePlaceholder } from "../tests/datatable-placeholder";
 import { ValueItem } from "../value-item";
 
 export default {
-  title: "Components/Value displays/GroupValueCard",
+  title: "Components/Data display/GroupValueCard",
   component: GroupValueCardDummy,
   decorators: [withPadding(2), withLocalizationProvider],
   parameters: {

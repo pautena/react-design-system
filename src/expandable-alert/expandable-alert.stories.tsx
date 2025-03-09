@@ -17,7 +17,7 @@ export default {
 } satisfies Meta<typeof ExpandableAlert>;
 type Story = StoryObj<typeof ExpandableAlert>;
 
-export const Info: Story = {
+export const Default: Story = {
   args: {
     severity: "info",
     title: "Lorem ipsum",
@@ -28,21 +28,21 @@ export const Info: Story = {
 
 export const Success: Story = {
   args: {
-    ...Info.args,
+    ...Default.args,
     severity: "success",
   },
 };
 
 export const Error: Story = {
   args: {
-    ...Info.args,
+    ...Default.args,
     severity: "error",
   },
 };
 
 export const Warning: Story = {
   args: {
-    ...Info.args,
+    ...Default.args,
     severity: "warning",
   },
 };

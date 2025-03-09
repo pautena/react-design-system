@@ -9,6 +9,9 @@ import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
 
+/**
+ * A customizable dialog component. Use it as a base to create more dialogs
+ */
 export const BootstrapDialog = ({
   open,
   title,

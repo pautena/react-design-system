@@ -1,0 +1,41 @@
+import { Meta } from "@storybook/blocks";
+import { Story, Canvas } from "@storybook/blocks";
+import { Description } from "@storybook/addon-docs";
+
+{/* prettier-ignore */}
+<Meta title="Components/Placeholders" />
+
+# Placeholders
+
+## ContentPlaceholder
+
+import * as ContentPlaceholderStories from "../content-placeholder/content-placeholder.stories";
+import { ContentPlaceholder } from "../content-placeholder/content-placeholder";
+
+<Description of={ContentPlaceholder} />
+
+[ContentPlaceholder Stories](?path=/docs/components-placeholders-contentplaceholder--docs)
+
+<Canvas of={ContentPlaceholderStories.Default} />
+
+## SkeletonCard
+
+import * as SkeletonCardStories from "../skeleton-card/skeleton-card.stories";
+import { SkeletonCard } from "../skeleton-card/skeleton-card";
+
+<Description of={SkeletonCard} />
+
+[SkeletonCard Stories](?path=/docs/components-placeholders-skeletoncard--docs)
+
+<Canvas of={SkeletonCardStories.Default} />
+
+## SkeletonGrid
+
+import * as SkeletonGridStories from "../skeleton-grid/skeleton-grid.stories";
+import { SkeletonGrid } from "../skeleton-grid/skeleton-grid";
+
+<Description of={SkeletonGrid} />
+
+[SkeletonGrid Stories](?path=/docs/components-placeholders-skeletongrid--docs)
+
+<Canvas of={SkeletonGridStories.Default} />

@@ -12,14 +12,14 @@ type Story = StoryObj<typeof SignIn>;
 
 export const Default: Story = {
   args: {
-    title: "Sign in into Garmin Workouts",
+    title: "Sign in into React Design System",
     subtitle: "Enter your details below",
   },
 };
 
 export const Error: Story = {
   args: {
-    title: "Sign in into Garmin Workouts",
+    title: "Sign in into React Design System",
     subtitle: "Enter your details below",
     error: {
       name: "InvalidCredentials",
@@ -30,7 +30,7 @@ export const Error: Story = {
 
 export const Loading: Story = {
   args: {
-    title: "Sign in into Garmin Workouts",
+    title: "Sign in into React Design System",
     subtitle: "Enter your details below",
     loading: true,
   },

@@ -3,7 +3,7 @@ import { DrawerAppBar } from "./drawer-app-bar";
 import { DrawerProvider } from "../drawer-context";
 
 export default {
-  title: "Components/Drawers/DrawerAppBar",
+  title: "Components/Navigation/DrawerAppBar",
   component: DrawerAppBar,
   parameters: {
     layout: "fullscreen",

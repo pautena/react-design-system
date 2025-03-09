@@ -15,7 +15,7 @@ type DrawerItemStoryArgs = DrawerItemProps & {
 };
 
 export default {
-  title: "Components/Drawers/DrawerItem",
+  title: "Components/Navigation/DrawerItem",
   component: DrawerItem,
   parameters: {
     layout: "centered",
@@ -28,7 +28,7 @@ export default {
 } satisfies Meta<DrawerItemStoryArgs>;
 type Story = StoryObj<DrawerItemStoryArgs>;
 
-export const ItemOnlyText: Story = {
+export const Default: Story = {
   name: "Item (open)",
   args: {
     item: mockLinkNoIconDrawerNavigationItem,

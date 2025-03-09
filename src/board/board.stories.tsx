@@ -14,7 +14,7 @@ export default {
 } satisfies Meta<typeof Board>;
 type Story = StoryObj<typeof Board>;
 
-export const Text: Story = {
+export const Default: Story = {
   args: {
     content:
       "Of recommend residence education be on difficult repulsive offending. Judge views had mirth table seems great him for her. Alone all happy asked begin fully stand own get. Excuse ye seeing result of we. See scale dried songs old may not. Promotion did disposing you household any instantly. Hills we do under times at first short an.",

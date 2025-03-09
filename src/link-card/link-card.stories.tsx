@@ -12,7 +12,7 @@ export default {
 } satisfies Meta<typeof LinkCard>;
 type Story = StoryObj<typeof LinkCard>;
 
-export const Primary: Story = {
+export const Default: Story = {
   args: {
     title: "Lorem ipsum",
     message:
@@ -22,30 +22,36 @@ export const Primary: Story = {
   },
 };
 
+export const Primary: Story = {
+  args: {
+    ...Default.args,
+  },
+};
+
 export const Secondary: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     variant: "secondary",
   },
 };
 
 export const Info: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     variant: "info",
   },
 };
 
 export const Warning: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     variant: "warning",
   },
 };
 
 export const Error: Story = {
   args: {
-    ...Primary.args,
+    ...Default.args,
     variant: "error",
   },
 };

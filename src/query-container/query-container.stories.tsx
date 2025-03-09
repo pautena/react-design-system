@@ -23,15 +23,15 @@ export default {
 } satisfies Meta<typeof QueryContainer>;
 type Story = StoryObj<typeof QueryContainer>;
 
-export const Fetching: Story = {
+export const Default: Story = {
   args: {
-    fetching: true,
+    loading: true,
   },
 };
 
-export const Loading: Story = {
+export const Fetching: Story = {
   args: {
-    loading: true,
+    fetching: true,
   },
 };
 

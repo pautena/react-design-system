@@ -1,0 +1,19 @@
+import { Meta } from "@storybook/blocks";
+import { Story, Canvas } from "@storybook/blocks";
+import { Description } from "@storybook/addon-docs";
+
+{/* prettier-ignore */}
+<Meta title="Components/Alerts" />
+
+# Alerts
+
+## ExpandableAlert
+
+import * as ExpandableAlertStories from "../expandable-alert/expandable-alert.stories";
+import { ExpandableAlert } from "../expandable-alert/expandable-alert";
+
+<Description of={ExpandableAlert} />
+
+[ExpandableAlert Stories](?path=/docs/components-alerts-expandablealert--docs)
+
+<Canvas of={ExpandableAlertStories.Default} />
