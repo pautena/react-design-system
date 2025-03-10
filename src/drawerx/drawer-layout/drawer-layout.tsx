@@ -4,6 +4,7 @@ import { DrawerAppBar, DrawerAppBarProps } from "../drawer-app-bar";
 import { DrawerContent } from "../drawer-content";
 import { DrawerContentProps, DrawerNavigation, DrawerProps } from "../drawer.types";
 import { Drawer } from "../drawer";
+import { JSXElementConstructor } from "react";
 
 /**
  * Interface representing the slots for the DrawerLayout component.
@@ -13,19 +14,19 @@ export interface DrawerLayoutSlots {
    * Slot for the DrawerAppBar component.
    * This component is responsible for rendering the app bar within the drawer layout.
    */
-  drawerAppBar?: React.JSXElementConstructor<DrawerAppBarProps>;
+  drawerAppBar?: JSXElementConstructor<DrawerAppBarProps>;
 
   /**
    * Slot for the Drawer component.
    * This component is responsible for rendering the drawer within the drawer layout.
    */
-  drawer?: React.JSXElementConstructor<DrawerProps>;
+  drawer?: JSXElementConstructor<DrawerProps>;
 
   /**
    * Slot for the DrawerContent component.
    * This component is responsible for rendering the content within the drawer layout.
    */
-  drawerContent?: React.JSXElementConstructor<DrawerContentProps>;
+  drawerContent?: JSXElementConstructor<DrawerContentProps>;
 }
 
 /**

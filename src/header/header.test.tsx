@@ -56,6 +56,7 @@ const renderInstance = ({
         actions={actions}
         actionsVariant={actionsVariant}
         tabs={tabs}
+        tabsMode="panel"
         navigationButton={navigationButton ? { text: "go back", href: "/back" } : undefined}
       />
     </TabProvider>,
