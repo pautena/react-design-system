@@ -22,6 +22,12 @@ yarn:
 yarn add @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid react-dom
 ```
 
+pnpm:
+
+```bash
+pnpm i @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid react-dom
+```
+
 Now you are going to be able to import the components and use it in your React project.
 
 ```javascript

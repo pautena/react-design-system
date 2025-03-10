@@ -37,10 +37,10 @@ git checkout main
 git pull upstream main
 ```
 
-4. Install the dependencies with yarn (npm isn't supported):
+4. Install the dependencies with pnpm:
 
 ```sh
-yarn install
+pnpm install
 ```
 
 5. Create a new topic branch:
@@ -68,7 +68,7 @@ It's the local development environment used by the maintainers.
 To get started:
 
 ```sh
-yarn storybook
+pnpm storybook
 ```
 
 You can now access the documentation site [locally](http://localhost:6006).
@@ -93,9 +93,9 @@ Make sure the following is true:
 
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
-- The code is formatted. If the code was changed, run `yarn format`.
-- The code is linted. If the code was changed, run `yarn lint:eslint`.
-- The code is type-safe. If TypeScript sources/declarations were changed, `yarn lint:ts` passed.
+- The code is formatted. If the code was changed, run `pnpm format`.
+- The code is linted. If the code was changed, run `pnpm lint:eslint`.
+- The code is type-safe. If TypeScript sources/declarations were changed, `pnpm lint:ts` passed.
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 If your pull request addresses an open issue, make sure to link the PR to that issue.
@@ -111,8 +111,8 @@ Make sure that you add the proper stories to the component Storybook to generate
 
 Please follow the coding style of the project. MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
-- `yarn format` reformats the code.
-- `yarn lint` runs manually the linting rules.
+- `pnpm format` reformats the code.
+- `pnpm lint` runs manually the linting rules.
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 

@@ -1,4 +1,4 @@
-import { FunctionComponent, PropsWithChildren, ReactElement } from "react";
+import { CSSProperties, FunctionComponent, PropsWithChildren, ReactElement } from "react";
 import { BulletVariant } from "../bullet";
 import { LabelVariant } from "../label";
 import { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
@@ -67,7 +67,13 @@ export type DrawerProps = PropsWithChildren<MuiDrawerProps>;
 export type DrawerComponent = FunctionComponent<DrawerProps>;
 export type DrawerElement = ReactElement<DrawerProps, DrawerComponent>;
 
-export const getDrawerItemColors = (theme: Theme, selected: boolean | undefined) => ({
+export const getDrawerItemColors = (
+  theme: Theme,
+  selected: boolean | undefined,
+): {
+  color?: string;
+  fontWeight: CSSProperties["fontWeight"];
+} => ({
   color: selected ? theme.palette.primary.main : undefined,
   fontWeight: selected ? theme.typography.fontWeightBold : theme.typography.fontWeightMedium,
 });
