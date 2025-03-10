@@ -1,5 +1,5 @@
 import { PropTypes } from '@mui/material';
-import { FunctionComponent, ReactElement } from '../../node_modules/react';
+import { ReactElement } from '../../node_modules/react';
 export type HeaderPreset = PropTypes.Color | "transparent";
 export type HeaderActionVariant = "text" | "outlined" | "contained";
 export type HeaderAction = {
@@ -86,5 +86,3 @@ export type HeaderProps = {
      */
     navigationButton?: HeaderNavigationButton;
 };
-export type HeaderComponent = FunctionComponent<HeaderProps>;
-export type HeaderElement = ReactElement<HeaderProps, HeaderComponent>;
