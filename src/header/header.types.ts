@@ -92,6 +92,3 @@ export type HeaderProps = {
    */
   navigationButton?: HeaderNavigationButton;
 };
-
-export type HeaderComponent = FunctionComponent<HeaderProps>;
-export type HeaderElement = ReactElement<HeaderProps, HeaderComponent>;

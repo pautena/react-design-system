@@ -55,16 +55,11 @@ const tabs: HeaderTab[] = [
 
 interface HeaderLayoutStoryProps extends HeaderLayoutProps {
   headerProps: HeaderProps;
-  contentChildren: ReactElement;
+  children: ReactElement;
 }
 
-const DummyHeaderLayout = ({ headerProps, contentChildren, ...rest }: HeaderLayoutStoryProps) => {
-  return (
-    <HeaderLayout {...rest}>
-      <Header {...headerProps} />
-      <Content>{contentChildren}</Content>
-    </HeaderLayout>
-  );
+const DummyHeaderLayout = ({ children, ...rest }: HeaderLayoutStoryProps) => {
+  return <HeaderLayout {...rest}>{children}</HeaderLayout>;
 };
 
 export default {
@@ -79,13 +74,15 @@ type Story = StoryObj<typeof DummyHeaderLayout>;
 
 export const Skeleton: Story = {
   args: {
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: <SkeletonGrid />,
+    children: <SkeletonGrid />,
   },
 };
 
@@ -118,37 +115,43 @@ const ListContent = () => {
 
 export const List: Story = {
   args: {
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: <ListContent />,
+    children: <ListContent />,
   },
 };
 
 export const Details: Story = {
   args: {
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: <ObjectDetails model={mockModel} instance={createModelInstance(mockModel)} />,
+    children: <ObjectDetails model={mockModel} instance={createModelInstance(mockModel)} />,
   },
 };
 
 export const Form: Story = {
   args: {
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: (
+    children: (
       <ModelForm
         model={mockModel}
         initialValues={createModelInstance(mockModel)}
@@ -174,26 +177,30 @@ const DataTableContent = () => {
 
 export const DataTable: Story = {
   args: {
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: <DataTableContent />,
+    children: <DataTableContent />,
   },
 };
 
 export const Tabs: Story = {
   args: {
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
-      tabs,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+        tabs,
+      },
     },
-    contentChildren: (
+    children: (
       <Box>
         <TabPanel index={0}>
           <Typography>Panel 1</Typography>
@@ -212,40 +219,46 @@ export const Tabs: Story = {
 export const Loading: Story = {
   args: {
     loading: true,
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: <SkeletonGrid />,
+    children: <SkeletonGrid />,
   },
 };
 
 export const Fetching: Story = {
   args: {
     fetching: true,
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: <SkeletonGrid />,
+    children: <SkeletonGrid />,
   },
 };
 
 export const Error: Story = {
   args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
     error: {
       message: "There is no user with that id",
     },
-    headerProps: {
-      title: "Lorem ipsum",
-      subtitle: "Dolor sit amet",
-      breadcrumbs,
-      actions,
+    slotProps: {
+      header: {
+        breadcrumbs,
+        actions,
+      },
     },
-    contentChildren: <SkeletonGrid />,
+    children: <SkeletonGrid />,
   },
 };

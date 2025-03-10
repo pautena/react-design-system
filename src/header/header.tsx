@@ -6,7 +6,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from "@mui/material/Button";
 import { useGetDefaultThemeColor } from "../utils";
-import { HeaderComponent, HeaderPreset, HeaderProps } from "./header.types";
+import { HeaderPreset, HeaderProps } from "./header.types";
 import { useTab } from "../tab-provider";
 import { HeaderSubtitle, HeaderTitle } from "./header-title";
 import Link from "@mui/material/Link";
@@ -15,7 +15,7 @@ import Link from "@mui/material/Link";
  * Section used to explain give basic information about the page
  * and put the main actions
  */
-export const Header: HeaderComponent = ({
+export const Header = ({
   title = "",
   loadingTitle,
   subtitle,
