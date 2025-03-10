@@ -25,7 +25,7 @@ export const Header = ({
   breadcrumbs,
   actions,
   tabs,
-  tabsMode = "panel",
+  tabsMode = "navigation",
   navigationButton,
 }: HeaderProps) => {
   const { palette } = useTheme();
