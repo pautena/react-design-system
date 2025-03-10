@@ -1,7 +1,5 @@
 import { HeaderLayout, HeaderLayoutError } from "./header-layout";
 import { render, screen } from "../tests/testing-library";
-import { Content } from "../content";
-import { Header } from "../header";
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
 
@@ -12,11 +10,14 @@ describe("HeaderLayout", () => {
     error,
   }: { loading?: boolean; fetching?: boolean; error?: HeaderLayoutError } = {}) => {
     return render(
-      <HeaderLayout loading={loading} fetching={fetching} error={error}>
-        <Header title="Lorem ipsum" subtitle="Dolor sit amet" />
-        <Content>
-          <Typography>Test content</Typography>
-        </Content>
+      <HeaderLayout
+        title="Lorem ipsum"
+        subtitle="Dolor sit amet"
+        loading={loading}
+        fetching={fetching}
+        error={error}
+      >
+        <Typography>Test content</Typography>
       </HeaderLayout>,
     );
   };
