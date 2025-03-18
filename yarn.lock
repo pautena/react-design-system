@@ -1557,6 +1557,11 @@
   resolved "https://registry.yarnpkg.com/@mui/types/-/types-7.2.21.tgz#63f50874eda8e4a021a69aaa8ba9597369befda2"
   integrity sha512-6HstngiUxNqLU+/DPqlUJDIPbzUBxIVHb1MmXP0eTWDIROiCR2viugXpEif0PPe2mLqqakPzzRClWAnK+8UJww==
 
+"@mui/types@~7.2.24":
+  version "7.2.24"
+  resolved "https://registry.yarnpkg.com/@mui/types/-/types-7.2.24.tgz#5eff63129d9c29d80bbf2d2e561bd0690314dec2"
+  integrity sha512-3c8tRt/CbWZ+pEg7QpSwbdxOk36EfmhbKf6AGZsD1EcLDLTSZoxxJ86FVtcjxvjuhdyBiWKSTGZFaXCnidO2kw==
+
 "@mui/utils@^5.16.6 || ^6.0.0", "@mui/utils@^6.4.6":
   version "6.4.6"
   resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-6.4.6.tgz#307828bee501d30ed5cd1e339ca28c9efcc4e3f9"
@@ -1569,57 +1574,69 @@
     prop-types "^15.8.1"
     react-is "^19.0.0"
 
+"@mui/utils@^5.16.6 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta":
+  version "6.4.8"
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-6.4.8.tgz#f80ee0c0ac47f1cd47c2031a5fb87243322b6bf3"
+  integrity sha512-C86gfiZ5BfZ51KqzqoHi1WuuM2QdSKoFhbkZeAfQRB+jCc4YNhhj11UXFVMMsqBgZ+Zy8IHNJW3M9Wj/LOwRXQ==
+  dependencies:
+    "@babel/runtime" "^7.26.0"
+    "@mui/types" "~7.2.24"
+    "@types/prop-types" "^15.7.14"
+    clsx "^2.1.1"
+    prop-types "^15.8.1"
+    react-is "^19.0.0"
+
 "@mui/x-data-grid-generator@^7.27.0":
-  version "7.27.2"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-7.27.2.tgz#9a07547a851b576993a70f51dbc3c534d3737963"
-  integrity sha512-TD7vWX3tPg8v5Xe0805tgZYe3orVX8cyDDW0QhjkosVgdOCsftGxy78L63Dt8QcsedgffZjeHMEhzGpZOb6F5Q==
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-7.28.0.tgz#f64b96948c099e1c0d707a83a92a394c8a2f5f83"
+  integrity sha512-KMqRu6p5zkjwAORGgE6uVP2waLqvjtwyhJi45fUTW2mxQMpsGRpq4WTLop1Jb+DevIN0WxTwpVBuezCw0qD07A==
   dependencies:
     "@babel/runtime" "^7.25.7"
-    "@mui/x-data-grid-premium" "7.27.2"
+    "@mui/x-data-grid-premium" "7.28.0"
     chance "^1.1.12"
     clsx "^2.1.1"
     lru-cache "^11.0.1"
 
-"@mui/x-data-grid-premium@7.27.2":
-  version "7.27.2"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-7.27.2.tgz#81d0d7ace82ad0c45a4c85be0ba8a847e45392ae"
-  integrity sha512-owoTnwMIzuItn7MZlkfPI7p70LUQWySAY5tENoohfJHDpr2QMw1vwhGStIXTZmKlHJF28aDusT2XENlCpOVEhQ==
+"@mui/x-data-grid-premium@7.28.0":
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-7.28.0.tgz#8915c2033c69031586a563a84c47e9479b463af2"
+  integrity sha512-FCvIuCCmF0lM6o0XlXjoJf03dmQE8AyQE6u11aHMGW1dYhEqz85/27TdRqHRJoYTndLDt2CiLD1v0q4KFX+7xw==
   dependencies:
     "@babel/runtime" "^7.25.7"
-    "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-data-grid" "7.27.2"
-    "@mui/x-data-grid-pro" "7.27.2"
-    "@mui/x-internals" "7.26.0"
-    "@mui/x-license" "7.26.0"
+    "@mui/utils" "^5.16.6 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta"
+    "@mui/x-data-grid" "7.28.0"
+    "@mui/x-data-grid-pro" "7.28.0"
+    "@mui/x-internals" "7.28.0"
+    "@mui/x-license" "7.28.0"
     "@types/format-util" "^1.0.4"
     clsx "^2.1.1"
     exceljs "^4.4.0"
     prop-types "^15.8.1"
     reselect "^5.1.1"
 
-"@mui/x-data-grid-pro@7.27.2":
-  version "7.27.2"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-7.27.2.tgz#f013a53641ee6a41b7ac052357449625426b0eb1"
-  integrity sha512-uwT8ym3xxHEY3h7hOIh1O3T+SzkYR8jT5ho7nWQfwAR4whlKkOYt0GOYsj1HQJZSZ1WpUdxCRk6V5dYNLp1rvw==
+"@mui/x-data-grid-pro@7.28.0":
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-7.28.0.tgz#eaaec40a3a87f331e9c680272a1f677a5774df9a"
+  integrity sha512-PC6GdFV0oVDn1ASTBzyH8q1jLsFw+27B1TtIHneYwOpWX15wIEvYDqQ8ti1nAoJX+ynbT7CXjFBzqZmA20HL3Q==
   dependencies:
     "@babel/runtime" "^7.25.7"
-    "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-data-grid" "7.27.2"
-    "@mui/x-internals" "7.26.0"
-    "@mui/x-license" "7.26.0"
+    "@mui/utils" "^5.16.6 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta"
+    "@mui/x-data-grid" "7.28.0"
+    "@mui/x-internals" "7.28.0"
+    "@mui/x-license" "7.28.0"
     "@types/format-util" "^1.0.4"
     clsx "^2.1.1"
     prop-types "^15.8.1"
     reselect "^5.1.1"
 
-"@mui/x-data-grid@7.27.2":
-  version "7.27.2"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-7.27.2.tgz#79d2beb4c18bb1cabc2e39d07f61825af25bb3a4"
-  integrity sha512-Nj6PWp6WN0gkps676j1Jai3mP1fQotJbqMTvllU7LwQp09S/RE/uJicYdqfeWQLxtQipWm5dnAY63gzsTiAHGA==
+"@mui/x-data-grid@7.28.0":
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-7.28.0.tgz#b080b58824e2946dc1eabe5edb28a4e9ba293511"
+  integrity sha512-rOAUB0m1kL2hmgodScJu5AI0AjbVBJtG7erRZ3IhDyk73oRRlgnKttWNks9iIuVCNxXbCbBkvH06rqxgkkuCsQ==
   dependencies:
     "@babel/runtime" "^7.25.7"
-    "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-internals" "7.26.0"
+    "@mui/utils" "^5.16.6 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta"
+    "@mui/x-internals" "7.28.0"
     clsx "^2.1.1"
     prop-types "^15.8.1"
     reselect "^5.1.1"
@@ -1659,14 +1676,22 @@
     "@babel/runtime" "^7.25.7"
     "@mui/utils" "^5.16.6 || ^6.0.0"
 
-"@mui/x-license@7.26.0":
-  version "7.26.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-license/-/x-license-7.26.0.tgz#c208ec244176b60ebb1bd6e6b98bf02a10a750b7"
-  integrity sha512-WxwBGk6xXF0vi4IGCCojMHjQsAXvltjP+YgFTTgWVFhIpDFDu89xLOwRnSWrhCwD6dlK/BwKgn2UgxTE8BZGFQ==
+"@mui/x-internals@7.28.0":
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-internals/-/x-internals-7.28.0.tgz#b0a04f4c0f53f2f91d13a46f357f731b77c832c5"
+  integrity sha512-p4GEp/09bLDumktdIMiw+OF4p+pJOOjTG0VUvzNxjbHB9GxbBKoMcHrmyrURqoBnQpWIeFnN/QAoLMFSpfwQbw==
   dependencies:
     "@babel/runtime" "^7.25.7"
-    "@mui/utils" "^5.16.6 || ^6.0.0"
-    "@mui/x-internals" "7.26.0"
+    "@mui/utils" "^5.16.6 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta"
+
+"@mui/x-license@7.28.0":
+  version "7.28.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-license/-/x-license-7.28.0.tgz#ffd4631da266e2e7717d440f45a3e809e36375f7"
+  integrity sha512-z50lVN4KxW+KB3usEnorEarbWtBxpYQrWfkmJqwJZEaeDO870LghBuhXNt4KEE2jqUU64MQCgZRPszIyrAvXfQ==
+  dependencies:
+    "@babel/runtime" "^7.25.7"
+    "@mui/utils" "^5.16.6 || ^6.0.0 || ^7.0.0 || ^7.0.0-beta"
+    "@mui/x-internals" "7.28.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
