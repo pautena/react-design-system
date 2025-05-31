@@ -1,24 +1,24 @@
-import {
-  DrawerNavigation,
-  DrawerNavigationItem,
-  DrawerNavigationCollapsable,
-  DrawerNavigationLink,
-} from "../drawer.types";
-import DiamondIcon from "@mui/icons-material/Diamond";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
-import BrushIcon from "@mui/icons-material/Brush";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
-import FlightLandIcon from "@mui/icons-material/FlightLand";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import ApiIcon from "@mui/icons-material/Api";
 import AutoFixOffIcon from "@mui/icons-material/AutoFixOff";
+import BrushIcon from "@mui/icons-material/Brush";
 import CallMissedIcon from "@mui/icons-material/CallMissed";
+import ChairIcon from "@mui/icons-material/Chair";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import DangerousIcon from "@mui/icons-material/Dangerous";
+import DiamondIcon from "@mui/icons-material/Diamond";
+import FlightLandIcon from "@mui/icons-material/FlightLand";
+import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 import SpellcheckIcon from "@mui/icons-material/Spellcheck";
-import ChairIcon from "@mui/icons-material/Chair";
+import type {
+  DrawerNavigation,
+  DrawerNavigationCollapsable,
+  DrawerNavigationItem,
+  DrawerNavigationLink,
+} from "../drawer.types";
 
 export const mockLinkDrawerNavigationItem: DrawerNavigationLink = {
   id: "item1.1",

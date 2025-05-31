@@ -1,10 +1,10 @@
-import { ReactElement } from "react";
-import { render, screen } from "../tests/testing-library";
-import userEvent from "@testing-library/user-event";
-import { Placeholder, PlaceholderAction } from "./placeholder";
-import { actions as actionData } from "./placeholder.mock";
 import SearchIcon from "@mui/icons-material/Search";
+import userEvent from "@testing-library/user-event";
+import type { ReactElement } from "react";
 import { vi } from "vitest";
+import { render, screen } from "../tests/testing-library";
+import { Placeholder, type PlaceholderAction } from "./placeholder";
+import { actions as actionData } from "./placeholder.mock";
 
 const actions = actionData.map((a) => ({ ...a, onClick: vi.fn() }));
 
@@ -27,7 +27,9 @@ describe("Placeholder", () => {
   it("would render the title", () => {
     renderComponent();
 
-    expect(screen.getByRole("heading", { name: /lorem ipsum/i, level: 1 })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: /lorem ipsum/i, level: 1 }),
+    ).toBeInTheDocument();
   });
 
   it("would render the subtitle", () => {
@@ -63,8 +65,12 @@ describe("Placeholder", () => {
       renderComponent({ actions });
 
       expect(screen.queryAllByRole("button")).toHaveLength(actions.length);
-      expect(screen.queryByRole("button", { name: /add/i })).toBeInTheDocument();
-      expect(screen.queryByRole("button", { name: /edit/i })).toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: /add/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: /edit/i }),
+      ).toBeInTheDocument();
     });
 
     it("would call onClick if a button is clicked", async () => {

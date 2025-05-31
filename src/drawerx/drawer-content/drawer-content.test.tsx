@@ -1,8 +1,8 @@
-import { render, screen } from "../../tests/testing-library";
 import userEvent from "@testing-library/user-event";
+import { render, screen } from "../../tests/testing-library";
+import { DrawerProvider } from "../drawer-context";
 import { mockDrawerNavigation } from "../drawer/drawer.mock";
 import { DrawerContent } from "./drawer-content";
-import { DrawerProvider } from "../drawer-context";
 
 describe("DrawerContent", () => {
   const renderComponent = () => {
@@ -18,7 +18,9 @@ describe("DrawerContent", () => {
     (sectionTitle: RegExp) => {
       renderComponent();
 
-      expect(screen.getByRole("heading", { name: sectionTitle })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: sectionTitle }),
+      ).toBeInTheDocument();
     },
   );
 
@@ -40,7 +42,9 @@ describe("DrawerContent", () => {
   it("should render the item 2.3 as a button", () => {
     renderComponent();
 
-    expect(screen.getByRole("button", { name: /item 2.3/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /item 2.3/i }),
+    ).toBeInTheDocument();
   });
 
   it("shouldn't render the collapsed 2.3 items by default", () => {

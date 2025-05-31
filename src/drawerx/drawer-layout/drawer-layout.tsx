@@ -1,10 +1,14 @@
-import { DrawerProvider, DrawerProviderProps } from "../drawer-context";
-import { DrawerMain } from "../drawer-main";
-import { DrawerAppBar, DrawerAppBarProps } from "../drawer-app-bar";
-import { DrawerContent } from "../drawer-content";
-import { DrawerContentProps, DrawerNavigation, DrawerProps } from "../drawer.types";
+import type { JSXElementConstructor } from "react";
 import { Drawer } from "../drawer";
-import { JSXElementConstructor } from "react";
+import { DrawerAppBar, type DrawerAppBarProps } from "../drawer-app-bar";
+import { DrawerContent } from "../drawer-content";
+import { DrawerProvider, type DrawerProviderProps } from "../drawer-context";
+import { DrawerMain } from "../drawer-main";
+import type {
+  DrawerContentProps,
+  DrawerNavigation,
+  DrawerProps,
+} from "../drawer.types";
 
 /**
  * Interface representing the slots for the DrawerLayout component.
@@ -92,9 +96,16 @@ export const DrawerLayout = ({
 
   return (
     <DrawerProvider {...rest}>
-      <DrawerAppBarSlot title={title} color="inherit" {...slotsProps?.drawerAppBar} />
+      <DrawerAppBarSlot
+        title={title}
+        color="inherit"
+        {...slotsProps?.drawerAppBar}
+      />
       <DrawerSlot {...slotsProps?.drawer}>
-        <DrawerContentSlot navigation={navigation} {...slotsProps?.drawerContent} />
+        <DrawerContentSlot
+          navigation={navigation}
+          {...slotsProps?.drawerContent}
+        />
       </DrawerSlot>
       <DrawerMain>{children}</DrawerMain>
     </DrawerProvider>

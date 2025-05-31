@@ -1,6 +1,6 @@
+import userEvent from "@testing-library/user-event";
 import { render, screen } from "../tests/testing-library";
 import { LinkCard } from "./link-card";
-import userEvent from "@testing-library/user-event";
 
 describe("LinkCard", () => {
   const renderComponent = ({ linkText }: { linkText?: string } = {}) => {
@@ -17,7 +17,9 @@ describe("LinkCard", () => {
   it("should render a title", () => {
     renderComponent();
 
-    expect(screen.getByRole("heading", { level: 6, name: /lorem ipsum/i })).toBeVisible();
+    expect(
+      screen.getByRole("heading", { level: 6, name: /lorem ipsum/i }),
+    ).toBeVisible();
   });
 
   it("should render a message", () => {

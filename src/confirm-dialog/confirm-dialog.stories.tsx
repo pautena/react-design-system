@@ -1,5 +1,5 @@
 import DialogContentText from "@mui/material/DialogContentText";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { StoryDialogManager } from "../storybook";
 import { ConfirmDialog } from "./confirm-dialog";
 
@@ -9,7 +9,9 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: (args) => <StoryDialogManager component={ConfirmDialog} args={args} />,
+  render: (args) => (
+    <StoryDialogManager component={ConfirmDialog} args={args} />
+  ),
 } as Meta<typeof ConfirmDialog>;
 type Story = StoryObj<typeof ConfirmDialog>;
 
@@ -19,8 +21,8 @@ export const Default: Story = {
     title: "Lorem ipsum",
     children: (
       <DialogContentText>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </DialogContentText>
     ),
   },

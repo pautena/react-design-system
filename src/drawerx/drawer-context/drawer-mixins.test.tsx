@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { openedMixin, closedMixin } from "./drawer-mixins";
+import { closedMixin, openedMixin } from "./drawer-mixins";
 
 describe("mixins", () => {
   it("would match a snapshot", () => {

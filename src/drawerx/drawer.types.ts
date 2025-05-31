@@ -1,9 +1,14 @@
-import { CSSProperties, FunctionComponent, PropsWithChildren, ReactElement } from "react";
-import { BulletVariant } from "../bullet";
-import { LabelVariant } from "../label";
-import { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
-import { Theme } from "@mui/material/styles";
-import { DrawerAppBarProps } from "./drawer-app-bar";
+import type { DrawerProps as MuiDrawerProps } from "@mui/material/Drawer";
+import type { Theme } from "@mui/material/styles";
+import type {
+  CSSProperties,
+  FunctionComponent,
+  PropsWithChildren,
+  ReactElement,
+} from "react";
+import type { BulletVariant } from "../bullet";
+import type { LabelVariant } from "../label";
+import type { DrawerAppBarProps } from "./drawer-app-bar";
 
 export type DrawerVariant = "temporary" | "mini" | "persistent";
 export type DrawerState = "open" | "collapse" | "close";
@@ -34,7 +39,10 @@ export interface DrawerNavigationLink {
   bullet?: DrawerItemBullet;
 }
 
-export type DrawerNavigationCollapsable = Pick<DrawerNavigationLink, "id" | "text" | "icon"> & {
+export type DrawerNavigationCollapsable = Pick<
+  DrawerNavigationLink,
+  "id" | "text" | "icon"
+> & {
   kind: "collapsable";
   items: DrawerNavigationItem[];
 };
@@ -60,7 +68,10 @@ export interface DrawerContentProps {
 }
 
 export type DrawerContentComponent = FunctionComponent<DrawerContentProps>;
-export type DrawerContentElement = ReactElement<DrawerContentProps, DrawerContentComponent>;
+export type DrawerContentElement = ReactElement<
+  DrawerContentProps,
+  DrawerContentComponent
+>;
 
 export type DrawerProps = PropsWithChildren<MuiDrawerProps>;
 
@@ -75,8 +86,13 @@ export const getDrawerItemColors = (
   fontWeight: CSSProperties["fontWeight"];
 } => ({
   color: selected ? theme.palette.primary.main : undefined,
-  fontWeight: selected ? theme.typography.fontWeightBold : theme.typography.fontWeightMedium,
+  fontWeight: selected
+    ? theme.typography.fontWeightBold
+    : theme.typography.fontWeightMedium,
 });
 
 export type DrawerAppBarComponent = FunctionComponent<DrawerAppBarProps>;
-export type DrawerAppBarElement = ReactElement<DrawerAppBarProps, DrawerAppBarComponent>;
+export type DrawerAppBarElement = ReactElement<
+  DrawerAppBarProps,
+  DrawerAppBarComponent
+>;

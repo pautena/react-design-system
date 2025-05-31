@@ -1,9 +1,9 @@
 import MuiAutocomplete, {
-  AutocompleteProps as MuiAutocompleteProps,
+  type AutocompleteProps as MuiAutocompleteProps,
 } from "@mui/material/Autocomplete";
-import React from "react";
+import type { ChipTypeMap } from "@mui/material/Chip";
+import type React from "react";
 import { TextField } from "../text-field";
-import { ChipTypeMap } from "@mui/material/Chip";
 
 /**
  * Props for the Autocomplete component.
@@ -15,7 +15,13 @@ export interface AutocompleteProps<
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
 > extends Omit<
-    MuiAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    MuiAutocompleteProps<
+      T,
+      Multiple,
+      DisableClearable,
+      FreeSolo,
+      ChipComponent
+    >,
     "renderInput" | "onChange" | "color"
   > {
   /**
@@ -46,7 +52,13 @@ export interface AutocompleteProps<
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
 > extends Omit<
-    MuiAutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+    MuiAutocompleteProps<
+      T,
+      Multiple,
+      DisableClearable,
+      FreeSolo,
+      ChipComponent
+    >,
     "renderInput" | "onChange" | "color"
   > {
   label: string;
@@ -66,7 +78,13 @@ export const Autocomplete = <
   FreeSolo extends boolean | undefined,
   ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"],
 >(
-  props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  props: AutocompleteProps<
+    T,
+    Multiple,
+    DisableClearable,
+    FreeSolo,
+    ChipComponent
+  >,
 ) => {
   const {
     label,

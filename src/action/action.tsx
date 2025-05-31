@@ -1,12 +1,12 @@
-import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import DialogContentText from "@mui/material/DialogContentText";
-import { Variant } from "@mui/material/styles/createTypography";
-import { ReactElement } from "react";
-import { ActionHeader } from "./action-header";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import type { Variant } from "@mui/material/styles/createTypography";
+import type { ReactElement } from "react";
 import { ConfirmDialog } from "../confirm-dialog";
 import { useDialog } from "../dialog";
+import { ActionHeader } from "./action-header";
 
 export type ActionVariant = "primary" | "error" | "warning" | "success";
 
@@ -122,7 +122,11 @@ export const Action = ({
           </Grid>
         )}
         <Grid item xs={12} mt={1}>
-          <Button color={variant} variant="contained" onClick={handleClickActionButton}>
+          <Button
+            color={variant}
+            variant="contained"
+            onClick={handleClickActionButton}
+          >
             {buttonText}
           </Button>
         </Grid>

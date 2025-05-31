@@ -128,28 +128,30 @@ export interface BasicModelInstance {
  * UTILITIES
  * Some functions used in several places to help to manage models
  */
-const InitialStateZeroValue: Record<ModelFieldTypes | "group" | "group[]", FieldType | undefined> =
-  {
-    string: "",
-    number: 0,
-    boolean: false,
-    enum: "",
-    multienum: [],
-    date: new Date(1970, 0, 1, 0, 0),
-    time: new Date(1970, 0, 1, 0, 0),
-    datetime: new Date(1970, 0, 1, 0, 0),
-    group: {},
-    "group[]": [],
-    "string[]": [],
-    "number[]": [],
-  };
+const InitialStateZeroValue: Record<
+  ModelFieldTypes | "group" | "group[]",
+  FieldType | undefined
+> = {
+  string: "",
+  number: 0,
+  boolean: false,
+  enum: "",
+  multienum: [],
+  date: new Date(1970, 0, 1, 0, 0),
+  time: new Date(1970, 0, 1, 0, 0),
+  datetime: new Date(1970, 0, 1, 0, 0),
+  group: {},
+  "group[]": [],
+  "string[]": [],
+  "number[]": [],
+};
 
 const getFieldValueOrZero = (
   field: ModelField,
   values: BasicModelInstance | GroupInstanceType | undefined,
 ) => {
   return (
-    (values && values[field.id]) ||
+    values?.[field.id] ||
     ("default" in field && field.default) ||
     InitialStateZeroValue[field.type]
   );

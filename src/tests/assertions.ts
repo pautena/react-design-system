@@ -1,12 +1,18 @@
-import { AlertColor } from "@mui/material";
-import { screen, waitForElementToBeRemoved } from "./testing-library";
+import type { AlertColor } from "@mui/material";
 import { format } from "date-fns";
-import { MockInstance } from "../generators/generators.mock";
-import { Mock } from "vitest";
-import { BasicModelInstance, GroupInstanceType, ModelField } from "../generators/generators.model";
+import type { Mock } from "vitest";
+import type { MockInstance } from "../generators/generators.mock";
+import type {
+  BasicModelInstance,
+  GroupInstanceType,
+  ModelField,
+} from "../generators/generators.model";
+import { screen, waitForElementToBeRemoved } from "./testing-library";
 
 export const expectContentPlaceholder = async () => {
-  expect(await screen.findByTestId(/content-placeholder-test/i)).toBeInTheDocument();
+  expect(
+    await screen.findByTestId(/content-placeholder-test/i),
+  ).toBeInTheDocument();
 };
 
 export const assertDatetimeInputValue = (
@@ -23,15 +29,23 @@ export const expectModelFieldInputExist = (fields: ModelField[]) => {
     if (field.type === "group") {
       expectModelFieldInputExist(field.value);
     } else if (field.type === "number") {
-      expect(screen.getByRole("spinbutton", { name: field.name })).toBeInTheDocument();
+      expect(
+        screen.getByRole("spinbutton", { name: field.name }),
+      ).toBeInTheDocument();
     } else if (field.type === "boolean") {
-      expect(screen.getByRole("checkbox", { name: field.name })).toBeInTheDocument();
+      expect(
+        screen.getByRole("checkbox", { name: field.name }),
+      ).toBeInTheDocument();
     } else if (field.type === "enum" || field.type === "multienum") {
       expect(
-        screen.getByRole("combobox", { name: new RegExp(field.name.toLowerCase(), "i") }),
+        screen.getByRole("combobox", {
+          name: new RegExp(field.name.toLowerCase(), "i"),
+        }),
       ).toBeInTheDocument();
     } else if (field.type !== "group[]") {
-      expect(screen.getByRole("textbox", { name: field.name })).toBeInTheDocument();
+      expect(
+        screen.getByRole("textbox", { name: field.name }),
+      ).toBeInTheDocument();
     }
   });
 };
@@ -48,13 +62,23 @@ export const expectModelFieldInputValue = (
       expect(screen.getByDisplayValue(value as number)).toBeInTheDocument();
     } else if (field.type === "boolean") {
       expect(
-        screen.getByRole("checkbox", { name: field.name, checked: value as boolean }),
+        screen.getByRole("checkbox", {
+          name: field.name,
+          checked: value as boolean,
+        }),
       ).toBeInTheDocument();
-    } else if (field.type === "date" || field.type === "time" || field.type === "datetime") {
-      assertDatetimeInputValue(screen.getByRole("textbox", { name: field.name }), {
-        value: value as Date,
-        fmt: field.format,
-      });
+    } else if (
+      field.type === "date" ||
+      field.type === "time" ||
+      field.type === "datetime"
+    ) {
+      assertDatetimeInputValue(
+        screen.getByRole("textbox", { name: field.name }),
+        {
+          value: value as Date,
+          fmt: field.format,
+        },
+      );
     } else if (field.type === "group[]") {
       // Ignore group[] cases
     } else if (field.type.includes("[]")) {
@@ -85,7 +109,9 @@ export const expectModelFieldValue = (
 
   expect(screen.getByRole("label", { name: name })).toBeInTheDocument();
   if (type === "boolean") {
-    expect(screen.getByTestId(value ? "CheckIcon" : "CloseIcon")).toBeInTheDocument();
+    expect(
+      screen.getByTestId(value ? "CheckIcon" : "CloseIcon"),
+    ).toBeInTheDocument();
   } else if (type === "date" || type === "time" || type === "datetime") {
     const formatedValue = format(value as Date, field.format);
     expect(screen.getByLabelText(name)).toHaveTextContent(formatedValue);
@@ -184,7 +210,11 @@ export enum AssertCloseDateUpTo {
   Seconds = 6,
   Milliseconds = 7,
 }
-export const assertCloseDate = (date: Date, expectedDate: Date, upTo: AssertCloseDateUpTo) => {
+export const assertCloseDate = (
+  date: Date,
+  expectedDate: Date,
+  upTo: AssertCloseDateUpTo,
+) => {
   if (upTo >= AssertCloseDateUpTo.Year) {
     expect(date.getFullYear()).toBe(expectedDate.getFullYear());
   }

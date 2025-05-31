@@ -1,9 +1,15 @@
-import { fireEvent, render, RenderOptions, RenderResult } from "@testing-library/react";
-import React, { PropsWithChildren } from "react";
 import { ThemeProvider } from "@emotion/react";
-import { Theme, createTheme, PaletteMode } from "@mui/material";
+import { type PaletteMode, type Theme, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import {
+  type RenderOptions,
+  type RenderResult,
+  fireEvent,
+  render,
+} from "@testing-library/react";
+import type React from "react";
+import type { PropsWithChildren } from "react";
 
 export type TestRouter = "router" | "memory";
 
@@ -21,7 +27,9 @@ const createWrapper =
   ({ children }: PropsWithChildren) => {
     return (
       <ThemeProvider theme={theme}>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>{children}</LocalizationProvider>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          {children}
+        </LocalizationProvider>
       </ThemeProvider>
     );
   };
@@ -32,7 +40,10 @@ interface CustomRenderOptions {
   router?: TestRouter;
 }
 
-const customRender = (ui: React.ReactElement, options: CustomRenderOptions = {}): RenderResult => {
+const customRender = (
+  ui: React.ReactElement,
+  options: CustomRenderOptions = {},
+): RenderResult => {
   const renderOptions = options.renderOptions || {};
   const mode = options.mode || "light";
 

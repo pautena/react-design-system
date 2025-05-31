@@ -1,5 +1,9 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { DummyTabs, TabCardDummy, TabCardDummyProps } from "./tab-card.dummy";
+import type { Meta, StoryObj } from "@storybook/react";
+import {
+  DummyTabs,
+  TabCardDummy,
+  type TabCardDummyProps,
+} from "./tab-card.dummy";
 
 export default {
   title: "Components/Navigation/TabCard",

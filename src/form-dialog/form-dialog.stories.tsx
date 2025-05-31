@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { StoryDialogManager } from "../storybook";
 import { FormDialog } from "./form-dialog";
 
@@ -21,10 +21,22 @@ export const Default: Story = {
     children: (
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <TextField name="message" label="Message" fullWidth required variant="outlined" />
+          <TextField
+            name="message"
+            label="Message"
+            fullWidth
+            required
+            variant="outlined"
+          />
         </Grid>
         <Grid item xs={12}>
-          <TextField name="amount" label="Amount" fullWidth required variant="outlined" />
+          <TextField
+            name="amount"
+            label="Amount"
+            fullWidth
+            required
+            variant="outlined"
+          />
         </Grid>
       </Grid>
     ),

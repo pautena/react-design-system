@@ -1,14 +1,19 @@
+import { addDays, differenceInCalendarDays, format, subDays } from "date-fns";
+import { vi } from "vitest";
 import { fireEvent, render, screen } from "../tests/testing-library";
 import { DateRangeCalendar } from "./date-range-calendar";
-import { vi } from "vitest";
-import { differenceInCalendarDays, format, addDays, subDays } from "date-fns";
 
 describe("DateRangeCalendar", () => {
   const renderComponent = () => {
     const onValueChange = vi.fn();
     const startDate = new Date(2023, 4, 2);
     const endDate = new Date(2023, 4, 24);
-    render(<DateRangeCalendar defaultValue={[startDate, endDate]} onValueChange={onValueChange} />);
+    render(
+      <DateRangeCalendar
+        defaultValue={[startDate, endDate]}
+        onValueChange={onValueChange}
+      />,
+    );
     return { startDate, endDate, onValueChange };
   };
 
@@ -65,7 +70,10 @@ describe("DateRangeCalendar", () => {
       );
 
       expect(onValueChange).toHaveBeenCalledTimes(1);
-      expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 4), endDate], 0);
+      expect(onValueChange).toHaveBeenCalledWith(
+        [new Date(2023, 4, 4), endDate],
+        0,
+      );
     });
 
     it("should call onValueChange when the second date is selected with the second value changed", () => {
@@ -130,7 +138,10 @@ describe("DateRangeCalendar", () => {
       );
 
       expect(onValueChange).toHaveBeenCalledTimes(2);
-      expect(onValueChange).toHaveBeenLastCalledWith([new Date(2023, 4, 6), undefined], 0);
+      expect(onValueChange).toHaveBeenLastCalledWith(
+        [new Date(2023, 4, 6), undefined],
+        0,
+      );
     });
 
     it("should call onValueChange when the first date is bigger than the end date with the end date as undefined", () => {
@@ -143,7 +154,10 @@ describe("DateRangeCalendar", () => {
       );
 
       expect(onValueChange).toHaveBeenCalledTimes(1);
-      expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 28), undefined], 0);
+      expect(onValueChange).toHaveBeenCalledWith(
+        [new Date(2023, 4, 28), undefined],
+        0,
+      );
     });
   });
 });

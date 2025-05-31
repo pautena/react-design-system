@@ -1,21 +1,21 @@
-import { ReactElement } from "react";
-import { Meta, StoryObj } from "@storybook/react";
-import { HeaderLayout, HeaderLayoutProps } from "../header-layout";
-import { withLocalizationProvider } from "../storybook";
-import { withFullHeight } from "../storybook";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useDemoData } from "@mui/x-data-grid-generator";
-import { mockModel, createModelInstance } from "../generators/generators.mock";
-import { action } from "@storybook/addon-actions";
 import { DataGrid } from "@mui/x-data-grid";
-import { Header, HeaderProps, HeaderTab } from "../header";
+import { useDemoData } from "@mui/x-data-grid-generator";
+import { action } from "@storybook/addon-actions";
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ReactElement } from "react";
 import { Content } from "../content";
+import { createModelInstance, mockModel } from "../generators/generators.mock";
+import { Header, type HeaderProps, type HeaderTab } from "../header";
+import { HeaderLayout, type HeaderLayoutProps } from "../header-layout";
+import { ModelForm } from "../model-form";
+import { ObjectDetails } from "../object-details";
 import { SkeletonGrid } from "../skeleton-grid";
+import { withLocalizationProvider } from "../storybook";
+import { withFullHeight } from "../storybook";
 import { TabPanel } from "../tab-panel";
 import { TableList } from "../table-list";
-import { ObjectDetails } from "../object-details";
-import { ModelForm } from "../model-form";
 
 const breadcrumbs = [
   {
@@ -137,7 +137,12 @@ export const Details: Story = {
         actions,
       },
     },
-    children: <ObjectDetails model={mockModel} instance={createModelInstance(mockModel)} />,
+    children: (
+      <ObjectDetails
+        model={mockModel}
+        instance={createModelInstance(mockModel)}
+      />
+    ),
   },
 };
 
@@ -172,7 +177,14 @@ const DataTableContent = () => {
     editable: true,
   });
 
-  return <DataGrid rows={rows} columns={columns as any} pagination sx={{ height: 400 }} />;
+  return (
+    <DataGrid
+      rows={rows}
+      columns={columns as any}
+      pagination
+      sx={{ height: 400 }}
+    />
+  );
 };
 
 export const DataTable: Story = {

@@ -1,9 +1,13 @@
-import { screen, render } from "@testing-library/react";
-import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { columns, Data, data } from "../enhanced-table/enhanced-table.mock";
-import { expectProgressIndicator } from "../tests/assertions";
 import { vi } from "vitest";
+import {
+  type Data,
+  columns,
+  data,
+} from "../enhanced-table/enhanced-table.mock";
+import { expectProgressIndicator } from "../tests/assertions";
+import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 
 function renderInstance({
   defaultSort = "startDate",
@@ -43,7 +47,9 @@ describe("Table", () => {
   it("the defaultSort is indicated", () => {
     renderInstance();
 
-    expect(screen.getByText(/date/i)).toHaveTextContent(/datesorted ascending/i);
+    expect(screen.getByText(/date/i)).toHaveTextContent(
+      /datesorted ascending/i,
+    );
     expect(screen.getByText(/name/i)).toHaveTextContent(/name/i);
     expect(screen.getByText(/garmin/i)).toHaveTextContent(/garmin/i);
   });
@@ -55,7 +61,9 @@ describe("Table", () => {
       await userEvent.click(screen.getByText(/name/i));
 
       expect(screen.getByText(/date/i)).toHaveTextContent(/date/i);
-      expect(screen.getByText(/name/i)).toHaveTextContent(/namesorted ascending/i);
+      expect(screen.getByText(/name/i)).toHaveTextContent(
+        /namesorted ascending/i,
+      );
       expect(screen.getByText(/garmin/i)).toHaveTextContent(/garmin/i);
       expect(onRequestSort).toHaveBeenCalledWith("name", "asc");
     });
@@ -67,7 +75,9 @@ describe("Table", () => {
       await userEvent.click(screen.getByText(/name/i));
 
       expect(screen.getByText(/date/i)).toHaveTextContent(/date/i);
-      expect(screen.getByText(/name/i)).toHaveTextContent(/namesorted descending/i);
+      expect(screen.getByText(/name/i)).toHaveTextContent(
+        /namesorted descending/i,
+      );
       expect(screen.getByText(/garmin/i)).toHaveTextContent(/garmin/i);
       expect(onRequestSort).toHaveBeenCalledTimes(2);
       expect(onRequestSort).toHaveBeenCalledWith("name", "asc");

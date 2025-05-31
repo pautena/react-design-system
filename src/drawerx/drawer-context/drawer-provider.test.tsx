@@ -1,11 +1,11 @@
-import { DrawerProvider, useDrawer } from "./index";
-import { render, screen } from "../../tests/testing-library";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { DrawerState, DrawerVariant } from "../drawer.types";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { render, screen } from "../../tests/testing-library";
+import type { DrawerState, DrawerVariant } from "../drawer.types";
+import { DrawerProvider, useDrawer } from "./index";
 
 const TestContent = () => {
   const {
@@ -42,7 +42,11 @@ describe("DrawerProvider", () => {
     initialState,
     variant,
     clipped,
-  }: { initialState?: DrawerState; variant?: DrawerVariant; clipped?: boolean } = {}) => {
+  }: {
+    initialState?: DrawerState;
+    variant?: DrawerVariant;
+    clipped?: boolean;
+  } = {}) => {
     const onStateChange = vi.fn();
 
     render(
@@ -75,14 +79,13 @@ describe("DrawerProvider", () => {
   });
 
   describe("variant", () => {
-    it.each([["temporary"], ["persistent"], ["mini"]] satisfies [DrawerVariant][])(
-      "should pass the variant %s",
-      (variant) => {
-        renderComponent({ variant });
+    it.each([["temporary"], ["persistent"], ["mini"]] satisfies [
+      DrawerVariant,
+    ][])("should pass the variant %s", (variant) => {
+      renderComponent({ variant });
 
-        expect(screen.getByText(`variant: ${variant}`)).toBeVisible();
-      },
-    );
+      expect(screen.getByText(`variant: ${variant}`)).toBeVisible();
+    });
   });
 
   describe("initialState", () => {

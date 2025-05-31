@@ -1,8 +1,8 @@
 import DialogContentText from "@mui/material/DialogContentText";
-import { render, screen } from "../tests/testing-library";
-import { ConfirmDialog } from "./confirm-dialog";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { render, screen } from "../tests/testing-library";
+import { ConfirmDialog } from "./confirm-dialog";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -116,13 +116,17 @@ describe("ConfirmDialog", () => {
   it("should be able to change the cancel button text", () => {
     renderComponent({ open: true, cancelText: "updated cancel" });
 
-    expect(screen.getByRole("button", { name: /updated cancel/i })).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /updated cancel/i }),
+    ).toBeVisible();
   });
 
   it("should be able to change the confirm button text", () => {
     renderComponent({ open: true, confirmText: "updated confirm" });
 
-    expect(screen.getByRole("button", { name: /updated confirm/i })).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /updated confirm/i }),
+    ).toBeVisible();
   });
 
   describe("loading", () => {
@@ -179,7 +183,9 @@ describe("ConfirmDialog", () => {
 
       await userEvent.type(screen.getByRole("textbox"), "delete permanently");
 
-      expect(screen.getByRole("button", { name: /confirm/i })).not.toBeDisabled();
+      expect(
+        screen.getByRole("button", { name: /confirm/i }),
+      ).not.toBeDisabled();
     });
   });
 });

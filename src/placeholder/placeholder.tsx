@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import type { ReactElement } from "react";
 
 type IconColor =
   | "inherit"
@@ -26,7 +26,10 @@ export interface PlaceholderIconArgs {
   color: IconColor;
 }
 
-export type PlaceholderIcon = ({ size, color }: PlaceholderIconArgs) => ReactElement;
+export type PlaceholderIcon = ({
+  size,
+  color,
+}: PlaceholderIconArgs) => ReactElement;
 
 export interface PlaceholderProps {
   title: string;
@@ -51,11 +54,16 @@ export const Placeholder = ({
       alignItems="center"
       textAlign="center"
     >
-      {icon && icon({ size: iconSize, color: "primary" })}
+      {icon?.({ size: iconSize, color: "primary" })}
       <Typography variant="h4" role="heading" aria-level={1}>
         {title}
       </Typography>
-      <Typography variant="subtitle1" role="heading" aria-level={2} sx={{ mt: 2 }}>
+      <Typography
+        variant="subtitle1"
+        role="heading"
+        aria-level={2}
+        sx={{ mt: 2 }}
+      >
         {subtitle}
       </Typography>
       {actions && (

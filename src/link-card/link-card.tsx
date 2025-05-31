@@ -1,10 +1,15 @@
+import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import { SxProps, Theme, useTheme } from "@mui/material/styles";
 import { grey } from "@mui/material/colors";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 
-export type LinkCardVariant = "primary" | "secondary" | "info" | "warning" | "error";
+export type LinkCardVariant =
+  | "primary"
+  | "secondary"
+  | "info"
+  | "warning"
+  | "error";
 export interface LinkCardProps {
   variant?: LinkCardVariant;
   href: string;
@@ -33,12 +38,18 @@ export const LinkCard = ({
     borderColor: grey[400],
     ":hover": {
       borderColor: palette[variant].main,
-      backgroundColor: palette.mode === "light" ? palette.common.white : grey[800],
+      backgroundColor:
+        palette.mode === "light" ? palette.common.white : grey[800],
     },
   };
 
   return (
-    <Paper component={Link} href={href} variant="outlined" sx={{ ...rootSx, ...sx }}>
+    <Paper
+      component={Link}
+      href={href}
+      variant="outlined"
+      sx={{ ...rootSx, ...sx }}
+    >
       <Typography variant="h6">{title}</Typography>
       <Typography variant="caption" sx={{ mt: 2 }}>
         {message}

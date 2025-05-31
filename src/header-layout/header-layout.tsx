@@ -1,12 +1,16 @@
+import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
+import type {
+  JSXElementConstructor,
+  PropsWithChildren,
+  ReactElement,
+} from "react";
+import { Content, type ContentProps } from "../content";
+import { Header, type HeaderProps } from "../header";
 import { LoadingArea } from "../loading-area";
+import { Placeholder, type PlaceholderIcon } from "../placeholder";
 import { TabProvider } from "../tab-provider";
-import ReportProblemIcon from "@mui/icons-material/ReportProblem";
-import { Placeholder, PlaceholderIcon } from "../placeholder";
-import { Header, HeaderProps } from "../header";
-import { Content, ContentProps } from "../content";
-import { JSXElementConstructor, PropsWithChildren, ReactElement } from "react";
 
 /**
  * Interface representing the slots for the HeaderLayout component.
@@ -91,7 +95,9 @@ export type HeaderLayoutProps = PropsWithChildren<{
   error?: HeaderLayoutError;
 }>;
 
-const DefaultErrorIcon = () => <ReportProblemIcon color="error" sx={{ width: 200, height: 200 }} />;
+const DefaultErrorIcon = () => (
+  <ReportProblemIcon color="error" sx={{ width: 200, height: 200 }} />
+);
 
 /**
  * A layout component that provides a header and content area with optional loading, fetching, and error states.
@@ -128,7 +134,9 @@ export const HeaderLayout = ({
             />
           </Box>
         )}
-        {!loading && !error && <ContentSlot {...slotProps?.content}>{children}</ContentSlot>}
+        {!loading && !error && (
+          <ContentSlot {...slotProps?.content}>{children}</ContentSlot>
+        )}
       </Box>
     </TabProvider>
   );

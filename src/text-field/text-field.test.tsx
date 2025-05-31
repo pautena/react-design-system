@@ -1,9 +1,9 @@
-import { render, screen } from "../tests/testing-library";
-import { TextField } from "./text-field";
 import { faker } from "@faker-js/faker";
 import userEvent from "@testing-library/user-event";
-import { expectProgressIndicator } from "../tests/assertions";
 import { vi } from "vitest";
+import { expectProgressIndicator } from "../tests/assertions";
+import { render, screen } from "../tests/testing-library";
+import { TextField } from "./text-field";
 
 const options = faker.definitions.vehicle?.model || [];
 

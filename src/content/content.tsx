@@ -1,5 +1,5 @@
 import Container from "@mui/material/Container";
-import { ContentProps } from "./content.types";
+import type { ContentProps } from "./content.types";
 
 /**
  * A functional component that renders its children inside a main container.

@@ -1,16 +1,21 @@
-import { useState } from "react";
-import { render, screen, waitFor } from "../tests/testing-library";
-import { ExpandableAlert } from "./expandable-alert";
-import userEvent from "@testing-library/user-event";
-import { vi } from "vitest";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
+import userEvent from "@testing-library/user-event";
+import { useState } from "react";
+import { vi } from "vitest";
+import { render, screen, waitFor } from "../tests/testing-library";
+import { ExpandableAlert } from "./expandable-alert";
 
 const message = "Lorem ipsum dolor sit amet";
 const metadata =
   "Of recommend residence education be on difficult repulsive offending. Judge views had mirth table seems great him for her. Alone all happy asked begin fully stand own get. Excuse ye seeing result of we. See scale dried songs old may not. Promotion did disposing you household any instantly. Hills we do under times at first short an.";
-const arrayMetadata = ["lorem: ipsum", "foo: bar", "header: this", "host: localhost"];
+const arrayMetadata = [
+  "lorem: ipsum",
+  "foo: bar",
+  "header: this",
+  "host: localhost",
+];
 
 describe("ExpandableAlert", () => {
   const renderComponent = ({
@@ -124,7 +129,11 @@ describe("ExpandableAlert", () => {
         <Box>
           <Button onClick={() => setOpen(true)}>snackbar</Button>
           <Snackbar open={open}>
-            <ExpandableAlert severity="info" message="lorem ipsum" onClose={() => setOpen(false)} />
+            <ExpandableAlert
+              severity="info"
+              message="lorem ipsum"
+              onClose={() => setOpen(false)}
+            />
           </Snackbar>
         </Box>
       );

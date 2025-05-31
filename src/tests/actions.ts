@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
-import { screen, fireEvent } from "./testing-library";
 import { format } from "date-fns";
+import { fireEvent, screen } from "./testing-library";
 
 export const typeNumericInput = (element: HTMLElement, value: number) => {
   fireEvent.change(element, { target: { value } });
@@ -11,7 +11,10 @@ export const selectOption = async (element: HTMLElement, option: string) => {
   await userEvent.click(screen.getByRole("option", { name: option }));
 };
 
-export const selectOptions = async (element: HTMLElement, options: string[]) => {
+export const selectOptions = async (
+  element: HTMLElement,
+  options: string[],
+) => {
   await userEvent.click(element);
 
   for (const option of options) {
@@ -46,7 +49,11 @@ export const clearCheckbox = async (element: HTMLInputElement) => {
   }
 };
 
-export const pickDatetime = (element: HTMLInputElement, valueArg: Date, fmt: string) => {
+export const pickDatetime = (
+  element: HTMLInputElement,
+  valueArg: Date,
+  fmt: string,
+) => {
   const value = format(valueArg, fmt);
   fireEvent.change(element, { target: { value } });
 };

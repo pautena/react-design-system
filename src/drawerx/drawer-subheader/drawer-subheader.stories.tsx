@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { DrawerSubheader, DrawerSubheaderProps } from "./drawer-subheader";
+import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../storybook";
 import { DrawerProvider } from "../drawer-context";
-import { DrawerSize } from "../drawer.types";
+import type { DrawerSize } from "../drawer.types";
+import { DrawerSubheader, type DrawerSubheaderProps } from "./drawer-subheader";
 
 type DrawerSubheaderStoryArgs = DrawerSubheaderProps & {
   size?: DrawerSize;

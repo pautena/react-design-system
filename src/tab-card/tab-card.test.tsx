@@ -1,12 +1,18 @@
-import { DummyTabs, TabCardDummy } from "./tab-card.dummy";
-import { screen, render } from "../tests/testing-library";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { render, screen } from "../tests/testing-library";
+import { DummyTabs, TabCardDummy } from "./tab-card.dummy";
 
 describe("TabCard", () => {
   function renderComponent({ initialTab = 0 } = {}) {
     const onChangeTab = vi.fn();
-    render(<TabCardDummy tabs={DummyTabs} initialTab={initialTab} onChangeTab={onChangeTab} />);
+    render(
+      <TabCardDummy
+        tabs={DummyTabs}
+        initialTab={initialTab}
+        onChangeTab={onChangeTab}
+      />,
+    );
     return { onChangeTab };
   }
 
@@ -57,8 +63,12 @@ describe("TabCard", () => {
       await userEvent.click(tab1);
 
       expect(screen.getByText(/panel 1/i)).toBeInTheDocument();
-      expect(screen.getByRole("tab", { name: /tab 1/i, selected: true })).toBeVisible();
-      expect(screen.getByRole("tab", { name: /tab 2.1/i, selected: false })).toBeVisible();
+      expect(
+        screen.getByRole("tab", { name: /tab 1/i, selected: true }),
+      ).toBeVisible();
+      expect(
+        screen.getByRole("tab", { name: /tab 2.1/i, selected: false }),
+      ).toBeVisible();
     });
 
     it("should call onChangeTab", async () => {

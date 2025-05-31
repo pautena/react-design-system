@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { SxProps, Theme, useTheme } from "@mui/material/styles";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 
 export type LabelVariant =
   | "primary"
@@ -72,7 +72,9 @@ export const Label = ({
   };
 
   const bgcolor = colorProp ? colorProp : backgroundColor[variant];
-  const color = colorProp ? palette.getContrastText(colorProp) : textColor[variant];
+  const color = colorProp
+    ? palette.getContrastText(colorProp)
+    : textColor[variant];
 
   return (
     <Box

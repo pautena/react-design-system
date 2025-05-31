@@ -1,15 +1,15 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
-import { FormEvent, useMemo } from "react";
+import { assocPath } from "ramda";
+import { type FormEvent, useMemo } from "react";
 import { useState } from "react";
 import {
-  Model,
-  BasicModelInstance,
-  FieldType,
+  type BasicModelInstance,
+  type FieldType,
+  type Model,
   newInstanceFromValuesOrZeroValue,
 } from "../generators";
 import { ModelFormField } from "./model-form-field";
-import { assocPath } from "ramda";
 
 export interface ModelFormProps<T extends BasicModelInstance> {
   model: Model;
@@ -59,7 +59,11 @@ export const ModelForm = <T extends BasicModelInstance>({
         />
       ))}
       <Grid item xs={12}>
-        <Button type="submit" variant="contained" size={dense ? "small" : "medium"}>
+        <Button
+          type="submit"
+          variant="contained"
+          size={dense ? "small" : "medium"}
+        >
           {saveButtonText}
         </Button>
       </Grid>

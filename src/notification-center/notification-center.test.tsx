@@ -1,23 +1,29 @@
-import { useState } from "react";
-import userEvent from "@testing-library/user-event";
-import { AlertColor } from "@mui/material/Alert";
+import type { AlertColor } from "@mui/material/Alert";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { render, screen, waitForElementToBeRemoved } from "../tests/testing-library";
-import { NotificationCenterProvider } from "./notification-center.provider";
+import userEvent from "@testing-library/user-event";
+import { useState } from "react";
 import { vi } from "vitest";
+import { expectAlert } from "../tests/assertions";
+import { mockConsoleError } from "../tests/mocks";
 import {
+  render,
+  screen,
+  waitForElementToBeRemoved,
+} from "../tests/testing-library";
+import {
+  type Notification,
   NotificationCenterContext,
   NotificationCenterProviderUndefinedError,
   useNotificationCenter,
-  Notification,
 } from "./notification-center.context";
 import { useNotifyWhenValueChanges } from "./notification-center.hooks";
-import { expectAlert } from "../tests/assertions";
-import { mockConsoleError } from "../tests/mocks";
+import { NotificationCenterProvider } from "./notification-center.provider";
 
 describe("NotificationCenterProvider", () => {
-  const renderComponent = ({ autoHideDuration }: { autoHideDuration?: number } = {}) => {
+  const renderComponent = ({
+    autoHideDuration,
+  }: { autoHideDuration?: number } = {}) => {
     const TestContent = () => {
       const { show, hide } = useNotificationCenter();
 
@@ -97,7 +103,9 @@ describe("NotificationCenterProvider", () => {
 
         await userEvent.click(screen.getByRole("button", { name: buttonName }));
 
-        expect(screen.getByRole("alert", { name: severity })).toBeInTheDocument();
+        expect(
+          screen.getByRole("alert", { name: severity }),
+        ).toBeInTheDocument();
       },
     );
   });
@@ -112,7 +120,9 @@ describe("useNotificationCenter", () => {
       return <Box>FailingComponent</Box>;
     };
 
-    expect(() => render(<FailingComponent />)).toThrow(NotificationCenterProviderUndefinedError);
+    expect(() => render(<FailingComponent />)).toThrow(
+      NotificationCenterProviderUndefinedError,
+    );
   });
 });
 

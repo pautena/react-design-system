@@ -1,10 +1,10 @@
-import { render, screen } from "../tests/testing-library";
-import { EditInputType, ValueDatetime } from "./value-datetime";
+import { within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
 import { pickDatetime } from "../tests/actions";
 import { assertDatetimeInputValue } from "../tests/assertions";
-import { vi } from "vitest";
-import { within } from "@testing-library/react";
+import { render, screen } from "../tests/testing-library";
+import { type EditInputType, ValueDatetime } from "./value-datetime";
 
 const DummyValue = new Date(2022, 7, 10, 0, 0);
 const NewValue = new Date(2021, 8, 9, 11, 21);
@@ -46,7 +46,9 @@ describe("ValueDatetime", () => {
   it("would render the label", () => {
     renderComponent({ value: DummyValue });
 
-    expect(screen.getByRole("label", { name: /hello world/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("label", { name: /hello world/i }),
+    ).toBeInTheDocument();
   });
 
   it("would render the value", () => {
@@ -92,12 +94,32 @@ describe("ValueDatetime", () => {
     });
 
     it.each([
-      ["datetime" as EditInputType, NewValue, new Date(2021, 8, 9, 11, 21), datetimeFormat],
-      ["date" as EditInputType, NewDateValue, new Date(2018, 2, 17), dateFormat],
-      ["time" as EditInputType, NewTimeValue, new Date(2022, 7, 10, 11, 21), timeFormat],
+      [
+        "datetime" as EditInputType,
+        NewValue,
+        new Date(2021, 8, 9, 11, 21),
+        datetimeFormat,
+      ],
+      [
+        "date" as EditInputType,
+        NewDateValue,
+        new Date(2018, 2, 17),
+        dateFormat,
+      ],
+      [
+        "time" as EditInputType,
+        NewTimeValue,
+        new Date(2022, 7, 10, 11, 21),
+        timeFormat,
+      ],
     ])(
       "should submit the new value if is edited with type %s",
-      async (editInputType: EditInputType, newValue: Date, expectedDate: Date, fmt: string) => {
+      async (
+        editInputType: EditInputType,
+        newValue: Date,
+        expectedDate: Date,
+        fmt: string,
+      ) => {
         const { onEdit } = renderComponent({
           value: DummyValue,
           editable: true,
@@ -142,7 +164,9 @@ describe("ValueDatetime", () => {
       renderComponent({ editable: true });
 
       expect(
-        within(screen.getByLabelText(/hello world/i)).getByRole("button", { name: /edit/i }),
+        within(screen.getByLabelText(/hello world/i)).getByRole("button", {
+          name: /edit/i,
+        }),
       ).toBeVisible();
     });
   });

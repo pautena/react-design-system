@@ -1,14 +1,14 @@
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { useTheme, Theme, styled } from "@mui/material/styles";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import MenuIcon from "@mui/icons-material/Menu";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
+import type { AppBarProps as MuiAppBarProps } from "@mui/material";
+import MuiAppBar from "@mui/material/AppBar";
+import IconButton from "@mui/material/IconButton";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+import { type Theme, styled, useTheme } from "@mui/material/styles";
 import { useDrawer } from "../drawer-context";
-import { AppBarProps as MuiAppBarProps } from "@mui/material";
-import { DrawerState, DrawerVariant } from "../drawer.types";
+import type { DrawerState, DrawerVariant } from "../drawer.types";
 
 const MyMuiAppBar = styled(MuiAppBar)(({ theme }) => ({
   borderWidth: 0,
@@ -41,7 +41,12 @@ export interface DrawerAppBarProps extends MuiAppBarProps {
 /**
  * DrawerAppBar component that renders an AppBar adapted to work inside a Drawer context.
  */
-export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps) => {
+export const DrawerAppBar = ({
+  title,
+  sx,
+  children,
+  ...rest
+}: DrawerAppBarProps) => {
   const theme = useTheme();
   const { state, variant, switchState, drawerWidth, clipped } = useDrawer();
 
@@ -81,7 +86,8 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
           edge="start"
           sx={{
             marginRight: theme.spacing(2),
-            display: clipped || showMenuButton[variant](state) ? undefined : "none",
+            display:
+              clipped || showMenuButton[variant](state) ? undefined : "none",
           }}
         >
           {state === "open" ? (
@@ -95,7 +101,13 @@ export const DrawerAppBar = ({ title, sx, children, ...rest }: DrawerAppBarProps
           )}
         </IconButton>
         {title && (
-          <Typography variant="h6" component="h1" role="heading" aria-level={1} noWrap>
+          <Typography
+            variant="h6"
+            component="h1"
+            role="heading"
+            aria-level={1}
+            noWrap
+          >
             {title}
           </Typography>
         )}

@@ -1,7 +1,7 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { CenterContainer } from "./center-container";
+import type { Meta, StoryObj } from "@storybook/react";
 import { Label } from "../label";
 import { withContainer } from "../storybook";
+import { CenterContainer } from "./center-container";
 
 export default {
   title: "Components/Containers/CenterContainer",

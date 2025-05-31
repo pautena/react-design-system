@@ -1,3 +1,6 @@
+import ClearIcon from "@mui/icons-material/Clear";
+import SearchIcon from "@mui/icons-material/Search";
+import TuneIcon from "@mui/icons-material/Tune";
 import Button from "@mui/material/Button";
 import Checkbox from "@mui/material/Checkbox";
 import Collapse from "@mui/material/Collapse";
@@ -8,12 +11,9 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
-import { SxProps, Theme } from "@mui/material/styles";
-import { FormEvent, useState } from "react";
-import TuneIcon from "@mui/icons-material/Tune";
-import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
+import type { SxProps, Theme } from "@mui/material/styles";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { type FormEvent, useState } from "react";
 
 export type SearchInputSize = "small" | "medium";
 
@@ -233,7 +233,9 @@ export const SearchInput = <T,>({
                         onChange={(e) =>
                           handleNewData(
                             id,
-                            type === "number" ? parseInt(e.target.value, 10) : e.target.value,
+                            type === "number"
+                              ? Number.parseInt(e.target.value, 10)
+                              : e.target.value,
                           )
                         }
                         fullWidth
@@ -242,7 +244,11 @@ export const SearchInput = <T,>({
                   );
                 })}
               <Grid item xs={12} display="flex" justifyContent="flex-end">
-                <Button color="error" onClick={() => setExpanded(false)} sx={{ mr: 1 }}>
+                <Button
+                  color="error"
+                  onClick={() => setExpanded(false)}
+                  sx={{ mr: 1 }}
+                >
                   Close
                 </Button>
                 <Button type="submit">Search</Button>

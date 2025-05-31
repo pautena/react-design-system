@@ -1,7 +1,7 @@
-import { PropsWithChildren, useContext } from "react";
-import { TabCardContext } from "./tab-card.context";
-import { SxProps, Theme } from "@mui/material";
+import type { SxProps, Theme } from "@mui/material";
 import Box from "@mui/material/Box";
+import { type PropsWithChildren, useContext } from "react";
+import { TabCardContext } from "./tab-card.context";
 
 export type TabCardPanelProps = PropsWithChildren<{
   index: number | number[];

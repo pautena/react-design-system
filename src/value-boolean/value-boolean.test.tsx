@@ -1,8 +1,8 @@
-import { ValueBoolean } from "./value-boolean";
-import { render, screen } from "../tests/testing-library";
+import { within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import { within } from "@testing-library/react";
+import { render, screen } from "../tests/testing-library";
+import { ValueBoolean } from "./value-boolean";
 
 describe("ValueBoolean", () => {
   const renderComponent = ({
@@ -75,7 +75,9 @@ describe("ValueBoolean", () => {
     it("shouldn't render an option to edit if editable is false", () => {
       renderComponent({ value: true, editable: false });
 
-      expect(screen.queryByRole("button", { name: /edit/i })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: /edit/i }),
+      ).not.toBeInTheDocument();
     });
 
     it("should render an option to edit if editable is true", () => {
@@ -98,7 +100,10 @@ describe("ValueBoolean", () => {
     ])(
       "should submit %s if is edited and the initial value is %s",
       async (expectedValue: boolean, initialValue: boolean) => {
-        const { onEdit } = renderComponent({ value: initialValue, editable: true });
+        const { onEdit } = renderComponent({
+          value: initialValue,
+          editable: true,
+        });
 
         await userEvent.click(screen.getByRole("button", { name: /edit/i }));
         await userEvent.click(screen.getByRole("checkbox"));
@@ -134,7 +139,9 @@ describe("ValueBoolean", () => {
       renderComponent({ editable: true });
 
       expect(
-        within(screen.getByLabelText(/hello world/i)).getByRole("button", { name: /edit/i }),
+        within(screen.getByLabelText(/hello world/i)).getByRole("button", {
+          name: /edit/i,
+        }),
       ).toBeVisible();
     });
   });

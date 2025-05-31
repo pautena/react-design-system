@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import type { FormEvent } from "react";
 
 export const getFormData = <T>(e: FormEvent<HTMLFormElement>): T => {
   const data = new FormData(e.currentTarget);

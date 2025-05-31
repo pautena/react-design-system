@@ -1,12 +1,12 @@
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import IconButton from "@mui/material/IconButton";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import { EnhancedTable, HeadCell, Order } from "../enhanced-table";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { BasicModelInstance } from "../generators";
+import IconButton from "@mui/material/IconButton";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import TableCell from "@mui/material/TableCell";
+import TableRow from "@mui/material/TableRow";
 import { useState } from "react";
+import { EnhancedTable, type HeadCell, type Order } from "../enhanced-table";
+import type { BasicModelInstance } from "../generators";
 
 const OptionsId = "__options";
 
@@ -50,7 +50,10 @@ export const TableList = <T extends BasicModelInstance>({
       sort: false,
     },
   ];
-  const [anchorMenuEl, setAnchorMenuEl] = useState<null | { item: T; anchor: HTMLElement }>(null);
+  const [anchorMenuEl, setAnchorMenuEl] = useState<null | {
+    item: T;
+    anchor: HTMLElement;
+  }>(null);
 
   return (
     <>
@@ -67,7 +70,7 @@ export const TableList = <T extends BasicModelInstance>({
             return (
               <TableRow
                 key={row.id}
-                onClick={() => onClick && onClick(row)}
+                onClick={() => onClick?.(row)}
                 role="row"
                 aria-rowindex={i}
                 sx={{ cursor: onClick && "pointer" }}

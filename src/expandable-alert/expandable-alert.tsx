@@ -1,13 +1,13 @@
-import Alert, { alertClasses, AlertColor } from "@mui/material/Alert";
+import CloseIcon from "@mui/icons-material/Close";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Alert, { alertClasses, type AlertColor } from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import AlertTitle from "@mui/material/AlertTitle";
-import { SxProps, Theme } from "@mui/material/styles";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import CloseIcon from "@mui/icons-material/Close";
-import { forwardRef, ReactElement, useState } from "react";
+import type { SxProps, Theme } from "@mui/material/styles";
+import { type ReactElement, forwardRef, useState } from "react";
 import { Board } from "../board";
 
 export interface ExpandableAlertProps {
@@ -29,7 +29,16 @@ const alertSx = {
 
 export const ExpandableAlert = forwardRef<any, ExpandableAlertProps>(
   (
-    { severity, iconMapping, title, message, metadata, metadataComponent, onClose, sx = {} },
+    {
+      severity,
+      iconMapping,
+      title,
+      message,
+      metadata,
+      metadataComponent,
+      onClose,
+      sx = {},
+    },
     ref,
   ) => {
     const [expanded, setExpanded] = useState(false);
@@ -45,7 +54,10 @@ export const ExpandableAlert = forwardRef<any, ExpandableAlertProps>(
               <CloseIcon fontSize="small" />
             </IconButton>
             {metadata && (
-              <IconButton color="inherit" onClick={() => setExpanded((e) => !e)}>
+              <IconButton
+                color="inherit"
+                onClick={() => setExpanded((e) => !e)}
+              >
                 {expanded ? (
                   <ExpandLessIcon fontSize="small" />
                 ) : (

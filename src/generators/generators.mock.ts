@@ -1,7 +1,12 @@
-import { BasicModelInstance, FieldType, Model, ModelField } from "./generators.model";
 import { faker } from "@faker-js/faker";
 import * as R from "ramda";
 import { newArrayWithSize } from "../utils";
+import type {
+  BasicModelInstance,
+  FieldType,
+  Model,
+  ModelField,
+} from "./generators.model";
 
 export const BirthDateFormat = "dd/MM/yyyy";
 export const ReturnTimeFormat = "HH:mm";
@@ -245,10 +250,17 @@ const mockFieldValue: Record<string, () => FieldType> = {
   currency: () => "MXN",
   tradeDate: () => new Date(2012, 2, 11, 8, 25),
   codes: () => [faker.word.noun(), faker.word.noun(), faker.word.noun()],
-  identifiers: () => [faker.number.int(), faker.number.int(), faker.number.int()],
+  identifiers: () => [
+    faker.number.int(),
+    faker.number.int(),
+    faker.number.int(),
+  ],
 };
 
-export const createModelInstance = <T extends BasicModelInstance>(model: Model, seed = 100): T => {
+export const createModelInstance = <T extends BasicModelInstance>(
+  model: Model,
+  seed = 100,
+): T => {
   faker.seed(seed);
   return model.fields.reduce((acc, field) => {
     if (field.type === "group") {
@@ -262,7 +274,8 @@ export const createModelInstance = <T extends BasicModelInstance>(model: Model, 
           {},
         ),
       };
-    } else if (field.type === "group[]") {
+    }
+    if (field.type === "group[]") {
       const numElements = faker.number.int({ min: 2, max: 5 });
       return {
         ...acc,
@@ -276,12 +289,11 @@ export const createModelInstance = <T extends BasicModelInstance>(model: Model, 
           ),
         ),
       };
-    } else {
-      return {
-        ...acc,
-        [field.id]: getModelFieldValue(field),
-      };
     }
+    return {
+      ...acc,
+      [field.id]: getModelFieldValue(field),
+    };
   }, {} as T);
 };
 

@@ -1,9 +1,9 @@
-import { render, screen } from "../../tests/testing-library";
 import userEvent from "@testing-library/user-event";
+import { ContentPlaceholder } from "../../content-placeholder";
 import { expectContentPlaceholder } from "../../tests/assertions";
+import { render, screen } from "../../tests/testing-library";
 import { mockDrawerNavigation } from "../drawer/drawer.mock";
 import { DrawerLayout } from "./drawer-layout";
-import { ContentPlaceholder } from "../../content-placeholder";
 
 describe("DrawerLayout", () => {
   const renderComponent = () => {
@@ -25,7 +25,9 @@ describe("DrawerLayout", () => {
   it("would render an appbar", () => {
     renderComponent();
 
-    expect(screen.getByRole("heading", { level: 1, name: /lorem ipsum/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 1, name: /lorem ipsum/i }),
+    ).toBeInTheDocument();
   });
 
   it("would render the content", async () => {

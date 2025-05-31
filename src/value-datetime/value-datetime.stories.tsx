@@ -1,6 +1,6 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { ValueDatetime } from "./value-datetime";
+import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer, withLocalizationProvider } from "../storybook";
+import { ValueDatetime } from "./value-datetime";
 
 export default {
   title: "Components/Data Display/ValueDatetime",

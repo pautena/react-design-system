@@ -1,8 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { DrawerContent } from "./drawer-content";
-import { mockDrawerNavigation } from "../drawer/drawer.mock";
+import type { Meta, StoryObj } from "@storybook/react";
 import { DrawerProvider } from "../drawer-context";
-import { DrawerContentProps, DrawerSize, DrawerState } from "../drawer.types";
+import type {
+  DrawerContentProps,
+  DrawerSize,
+  DrawerState,
+} from "../drawer.types";
+import { mockDrawerNavigation } from "../drawer/drawer.mock";
+import { DrawerContent } from "./drawer-content";
 
 type DrawerContentArgs = DrawerContentProps & {
   initialState?: DrawerState;
@@ -13,8 +17,17 @@ type DrawerContentArgs = DrawerContentProps & {
 export default {
   title: "Components/Navigation/DrawerContent",
   component: DrawerContent,
-  render: ({ initialState = "open", size = "medium", selectedItemId, ...args }) => (
-    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}>
+  render: ({
+    initialState = "open",
+    size = "medium",
+    selectedItemId,
+    ...args
+  }) => (
+    <DrawerProvider
+      initialState={initialState}
+      selectedItemId={selectedItemId}
+      size={size}
+    >
       <DrawerContent {...args} />
     </DrawerProvider>
   ),

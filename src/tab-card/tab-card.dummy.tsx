@@ -1,11 +1,14 @@
-import { TabCard, TabData } from "./tab-card";
 import Typography from "@mui/material/Typography";
-import { TabCardPanel } from "./tab-card-panel";
 import { Label } from "../label";
+import { TabCard, type TabData } from "./tab-card";
+import { TabCardPanel } from "./tab-card-panel";
 
 export const DummyTabs = [
   { text: "tab 1" },
-  { text: "tab 2.1", icon: <Label text="10" variant="success" sx={{ mr: 1 }} /> },
+  {
+    text: "tab 2.1",
+    icon: <Label text="10" variant="success" sx={{ mr: 1 }} />,
+  },
   { text: "tab 2.2" },
   { text: "tab 3", icon: <Label text="12" variant="error" sx={{ mr: 1 }} /> },
 ];
@@ -16,7 +19,11 @@ export interface TabCardDummyProps {
   onChangeTab: (tab: TabData, index: number) => void;
 }
 
-export function TabCardDummy({ tabs, initialTab, onChangeTab }: TabCardDummyProps) {
+export function TabCardDummy({
+  tabs,
+  initialTab,
+  onChangeTab,
+}: TabCardDummyProps) {
   return (
     <TabCard tabs={tabs} initialTab={initialTab} onChangeTab={onChangeTab}>
       <TabCardPanel index={0} sx={{ p: 2 }}>

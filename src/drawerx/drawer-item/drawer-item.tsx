@@ -1,8 +1,8 @@
-import { DrawerMenuItem } from "./drawer-menu-item";
-import { DrawerNavigationItem } from "../drawer.types";
-import { DrawerItemLink } from "./drawer-item-link";
 import { useDrawer } from "../drawer-context";
 import { DrawerSubheader } from "../drawer-subheader";
+import type { DrawerNavigationItem } from "../drawer.types";
+import { DrawerItemLink } from "./drawer-item-link";
+import { DrawerMenuItem } from "./drawer-menu-item";
 
 export interface DrawerItemProps {
   /**
@@ -32,21 +32,25 @@ export const DrawerItem = ({ item, level = 0 }: DrawerItemProps) => {
         level={level}
       />
     );
-  } else if (item.kind === "header") {
-    return state === "open" && <DrawerSubheader role="heading">{item.text}</DrawerSubheader>;
-  } else {
-    const { id, text, icon, avatar, label, bullet, href } = item;
+  }
+  if (item.kind === "header") {
     return (
-      <DrawerItemLink
-        selected={id === selectedItemId}
-        text={text}
-        icon={icon}
-        avatar={avatar}
-        label={label}
-        bullet={bullet}
-        href={href}
-        level={level}
-      />
+      state === "open" && (
+        <DrawerSubheader role="heading">{item.text}</DrawerSubheader>
+      )
     );
   }
+  const { id, text, icon, avatar, label, bullet, href } = item;
+  return (
+    <DrawerItemLink
+      selected={id === selectedItemId}
+      text={text}
+      icon={icon}
+      avatar={avatar}
+      label={label}
+      bullet={bullet}
+      href={href}
+      level={level}
+    />
+  );
 };

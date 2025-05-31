@@ -1,12 +1,22 @@
-import { SxProps, Theme, styled, useTheme } from "@mui/material/styles";
-import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
-import { paperClasses } from "@mui/material/Paper";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { DrawerComponent, DrawerProps, DrawerState, DrawerVariant } from "../drawer.types";
+import Divider from "@mui/material/Divider";
+import MuiDrawer, { drawerClasses } from "@mui/material/Drawer";
+import IconButton from "@mui/material/IconButton";
+import { paperClasses } from "@mui/material/Paper";
+import {
+  type SxProps,
+  type Theme,
+  styled,
+  useTheme,
+} from "@mui/material/styles";
 import { useDrawer } from "../drawer-context/drawer-context";
 import { closedMixin, openedMixin } from "../drawer-context/drawer-mixins";
+import type {
+  DrawerComponent,
+  DrawerProps,
+  DrawerState,
+  DrawerVariant,
+} from "../drawer.types";
 
 export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -22,7 +32,10 @@ const showCloseButton: Record<DrawerVariant, boolean> = {
   persistent: true,
 };
 
-const muiDrawerVariant: Record<DrawerVariant, "permanent" | "persistent" | "temporary"> = {
+const muiDrawerVariant: Record<
+  DrawerVariant,
+  "permanent" | "persistent" | "temporary"
+> = {
   temporary: "temporary",
   mini: "permanent",
   persistent: "persistent",
@@ -46,7 +59,8 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
  */
 export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
   const theme = useTheme();
-  const { state, switchState, clipped, close, drawerWidth, variant } = useDrawer();
+  const { state, switchState, clipped, close, drawerWidth, variant } =
+    useDrawer();
 
   const sx = {
     width: drawerWidth,

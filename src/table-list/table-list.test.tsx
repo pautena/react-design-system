@@ -1,11 +1,11 @@
-import { render } from "../tests/testing-library";
 import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
-import { TableRowOption, TableList } from "./table-list";
-import { HeadCell } from "../enhanced-table";
+import { type Mock, vi } from "vitest";
+import type { HeadCell } from "../enhanced-table";
+import type { BasicModelInstance } from "../generators/generators.model";
 import { expectProgressIndicator } from "../tests/assertions";
-import { Mock, vi } from "vitest";
-import { BasicModelInstance } from "../generators/generators.model";
+import { render } from "../tests/testing-library";
+import { TableList, type TableRowOption } from "./table-list";
 
 const columns: HeadCell<BasicModelInstance>[] = [
   {
@@ -110,20 +110,26 @@ describe("TableList", () => {
 
     data.forEach(({ id, name, value }) => {
       expect(screen.getByRole("cell", { name: id })).toBeInTheDocument();
-      expect(screen.getByRole("cell", { name: name as string })).toBeInTheDocument();
-      expect(screen.getByRole("cell", { name: value as string })).toBeInTheDocument();
+      expect(
+        screen.getByRole("cell", { name: name as string }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("cell", { name: value as string }),
+      ).toBeInTheDocument();
     });
   });
 
   it("all items are rendered in the correct default order", async () => {
     renderInstance();
 
-    [/item 1/i, /item 2/i, /item 3/i, /item 4/i, /item 5/i].forEach((item, index) => {
-      expect(screen.getByRole("cell", { name: item })).toHaveAttribute(
-        "aria-rowindex",
-        index.toString(),
-      );
-    });
+    [/item 1/i, /item 2/i, /item 3/i, /item 4/i, /item 5/i].forEach(
+      (item, index) => {
+        expect(screen.getByRole("cell", { name: item })).toHaveAttribute(
+          "aria-rowindex",
+          index.toString(),
+        );
+      },
+    );
   });
 
   it("loading is true a loading indicator is displayed", () => {
@@ -184,11 +190,26 @@ describe("TableList", () => {
 
       await userEvents.click(screen.getByText(/name/i));
 
-      expect(screen.getByRole("cell", { name: /item 2/i })).toHaveAttribute("aria-rowindex", "0");
-      expect(screen.getByRole("cell", { name: /item 4/i })).toHaveAttribute("aria-rowindex", "1");
-      expect(screen.getByRole("cell", { name: /item 3/i })).toHaveAttribute("aria-rowindex", "2");
-      expect(screen.getByRole("cell", { name: /item 5/i })).toHaveAttribute("aria-rowindex", "3");
-      expect(screen.getByRole("cell", { name: /item 1/i })).toHaveAttribute("aria-rowindex", "4");
+      expect(screen.getByRole("cell", { name: /item 2/i })).toHaveAttribute(
+        "aria-rowindex",
+        "0",
+      );
+      expect(screen.getByRole("cell", { name: /item 4/i })).toHaveAttribute(
+        "aria-rowindex",
+        "1",
+      );
+      expect(screen.getByRole("cell", { name: /item 3/i })).toHaveAttribute(
+        "aria-rowindex",
+        "2",
+      );
+      expect(screen.getByRole("cell", { name: /item 5/i })).toHaveAttribute(
+        "aria-rowindex",
+        "3",
+      );
+      expect(screen.getByRole("cell", { name: /item 1/i })).toHaveAttribute(
+        "aria-rowindex",
+        "4",
+      );
     });
 
     it("two times it will be desc sorted", async () => {
@@ -197,11 +218,26 @@ describe("TableList", () => {
       await userEvents.click(screen.getByText(/name/i));
       await userEvents.click(screen.getByText(/name/i));
 
-      expect(screen.getByRole("cell", { name: /item 1/i })).toHaveAttribute("aria-rowindex", "0");
-      expect(screen.getByRole("cell", { name: /item 5/i })).toHaveAttribute("aria-rowindex", "1");
-      expect(screen.getByRole("cell", { name: /item 3/i })).toHaveAttribute("aria-rowindex", "2");
-      expect(screen.getByRole("cell", { name: /item 4/i })).toHaveAttribute("aria-rowindex", "3");
-      expect(screen.getByRole("cell", { name: /item 2/i })).toHaveAttribute("aria-rowindex", "4");
+      expect(screen.getByRole("cell", { name: /item 1/i })).toHaveAttribute(
+        "aria-rowindex",
+        "0",
+      );
+      expect(screen.getByRole("cell", { name: /item 5/i })).toHaveAttribute(
+        "aria-rowindex",
+        "1",
+      );
+      expect(screen.getByRole("cell", { name: /item 3/i })).toHaveAttribute(
+        "aria-rowindex",
+        "2",
+      );
+      expect(screen.getByRole("cell", { name: /item 4/i })).toHaveAttribute(
+        "aria-rowindex",
+        "3",
+      );
+      expect(screen.getByRole("cell", { name: /item 2/i })).toHaveAttribute(
+        "aria-rowindex",
+        "4",
+      );
     });
   });
 
@@ -210,11 +246,26 @@ describe("TableList", () => {
 
     await userEvents.click(screen.getByText(/id/i));
 
-    expect(screen.getByRole("cell", { name: /item 1/i })).toHaveAttribute("aria-rowindex", "0");
-    expect(screen.getByRole("cell", { name: /item 2/i })).toHaveAttribute("aria-rowindex", "1");
-    expect(screen.getByRole("cell", { name: /item 3/i })).toHaveAttribute("aria-rowindex", "2");
-    expect(screen.getByRole("cell", { name: /item 4/i })).toHaveAttribute("aria-rowindex", "3");
-    expect(screen.getByRole("cell", { name: /item 5/i })).toHaveAttribute("aria-rowindex", "4");
+    expect(screen.getByRole("cell", { name: /item 1/i })).toHaveAttribute(
+      "aria-rowindex",
+      "0",
+    );
+    expect(screen.getByRole("cell", { name: /item 2/i })).toHaveAttribute(
+      "aria-rowindex",
+      "1",
+    );
+    expect(screen.getByRole("cell", { name: /item 3/i })).toHaveAttribute(
+      "aria-rowindex",
+      "2",
+    );
+    expect(screen.getByRole("cell", { name: /item 4/i })).toHaveAttribute(
+      "aria-rowindex",
+      "3",
+    );
+    expect(screen.getByRole("cell", { name: /item 5/i })).toHaveAttribute(
+      "aria-rowindex",
+      "4",
+    );
   });
 
   it("would call onClick if a row is clicked", async () => {
@@ -257,20 +308,23 @@ describe("TableList", () => {
     it.each([
       [/edit/i, 0],
       [/remove/i, 1],
-    ])("would call the option onClick with the row if %s option is clicked", async (name, i) => {
-      const index = 1;
-      const item = data[index];
-      const option = options[i];
+    ])(
+      "would call the option onClick with the row if %s option is clicked",
+      async (name, i) => {
+        const index = 1;
+        const item = data[index];
+        const option = options[i];
 
-      renderInstance({ options });
+        renderInstance({ options });
 
-      await openOptionsMenu(index);
+        await openOptionsMenu(index);
 
-      await userEvents.click(screen.getByRole("menuitem", { name }));
+        await userEvents.click(screen.getByRole("menuitem", { name }));
 
-      expect(option.onClick).toHaveBeenCalledTimes(1);
-      expect(option.onClick).toHaveBeenCalledWith(item);
-    });
+        expect(option.onClick).toHaveBeenCalledTimes(1);
+        expect(option.onClick).toHaveBeenCalledWith(item);
+      },
+    );
 
     it("would close the menu when an option is clicked", async () => {
       const index = 1;

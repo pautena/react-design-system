@@ -1,5 +1,5 @@
-import { Label, LabelVariant } from "./label";
 import { render, screen } from "../tests/testing-library";
+import { Label, type LabelVariant } from "./label";
 
 describe("Label", () => {
   const renderComponent = (variant: LabelVariant | undefined = undefined) => {
@@ -18,12 +18,18 @@ describe("Label", () => {
     expect(screen.getByRole("label", { name: /default/i })).toBeVisible();
   });
 
-  it.each([["primary"], ["secondary"], ["default"], ["info"], ["warning"], ["error"]])(
-    "renders correctly with variant %s",
-    (variant: string) => {
-      renderComponent(variant as LabelVariant);
+  it.each([
+    ["primary"],
+    ["secondary"],
+    ["default"],
+    ["info"],
+    ["warning"],
+    ["error"],
+  ])("renders correctly with variant %s", (variant: string) => {
+    renderComponent(variant as LabelVariant);
 
-      expect(screen.getByRole("label", { name: `lorem ipsum ${variant} label` })).toBeVisible();
-    },
-  );
+    expect(
+      screen.getByRole("label", { name: `lorem ipsum ${variant} label` }),
+    ).toBeVisible();
+  });
 });

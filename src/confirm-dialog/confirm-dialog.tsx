@@ -1,7 +1,7 @@
+import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { BootstrapDialog } from "../bootstrap-dialog";
-import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
-import TextField from "@mui/material/TextField";
+import type { BootstrapDialogDialogProps } from "../dialog/dialog.types";
 
 type OmitBaseDialogProps =
   | "cancelable"
@@ -14,7 +14,8 @@ type OmitBaseDialogProps =
   | "component"
   | "acceptType";
 
-export interface ConfirmDialogProps extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
+export interface ConfirmDialogProps
+  extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
   /**
    * Text to display on the confirm button.
    */

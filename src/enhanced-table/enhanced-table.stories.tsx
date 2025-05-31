@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { TestTable, columns, data } from "./enhanced-table.mock";
 
 export default {

@@ -1,7 +1,7 @@
-import type { Preview } from "@storybook/react";
-import { createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
-import { Renderer } from "storybook/internal/csf";
+import type { Preview } from "@storybook/react";
+import type { Renderer } from "storybook/internal/csf";
 
 const lightTheme = createTheme();
 const darkTheme = createTheme({

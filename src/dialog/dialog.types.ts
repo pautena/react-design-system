@@ -4,7 +4,14 @@ export interface DialogAction {
   id: string;
   text: string;
   type?: "button" | "submit";
-  color?: "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning";
+  color?:
+    | "inherit"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "error"
+    | "info"
+    | "warning";
   onClick?: () => void;
 }
 

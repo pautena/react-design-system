@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
-import { useNotificationCenter, Notification } from "./notification-center.context";
+import {
+  type Notification,
+  useNotificationCenter,
+} from "./notification-center.context";
 
 export interface NotifyWhenValueChangesOptions<T> {
   from: T;

@@ -1,11 +1,11 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../storybook";
-import { TextField } from "./text-field";
 import { faker } from "@faker-js/faker";
-import { useTheme } from "@mui/material/styles";
+import ClearIcon from "@mui/icons-material/Clear";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import ClearIcon from "@mui/icons-material/Clear";
+import { useTheme } from "@mui/material/styles";
+import type { Meta, StoryObj } from "@storybook/react";
+import { withContainer } from "../storybook";
+import { TextField } from "./text-field";
 
 export default {
   title: "Components/Inputs/TextField",
@@ -113,7 +113,11 @@ type WithBackgroundProps = {
 };
 
 export const WithBackground = {
-  render: ({ bgcolor: bgcolorProp, fetching, loading }: WithBackgroundProps) => {
+  render: ({
+    bgcolor: bgcolorProp,
+    fetching,
+    loading,
+  }: WithBackgroundProps) => {
     const { palette } = useTheme();
     const BackgroundColors: Record<"primary" | "secondary", string> = {
       primary: palette.primary.main,
@@ -124,7 +128,12 @@ export const WithBackground = {
 
     return (
       <Box bgcolor={bgcolor} padding={3}>
-        <TextField label="Car model" hexColor={color} fetching={fetching} loading={loading} />
+        <TextField
+          label="Car model"
+          hexColor={color}
+          fetching={fetching}
+          loading={loading}
+        />
       </Box>
     );
   },

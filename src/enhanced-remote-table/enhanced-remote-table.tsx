@@ -1,11 +1,15 @@
-import { ReactNode, useState } from "react";
-import TableContainer from "@mui/material/TableContainer";
-import TableBody from "@mui/material/TableBody";
-import Table from "@mui/material/Table";
-import TableRow from "@mui/material/TableRow";
 import CircularProgress from "@mui/material/CircularProgress";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
-import { EnhancedTableHead, HeadCell, Order } from "../enhanced-table";
+import TableContainer from "@mui/material/TableContainer";
+import TableRow from "@mui/material/TableRow";
+import { type ReactNode, useState } from "react";
+import {
+  EnhancedTableHead,
+  type HeadCell,
+  type Order,
+} from "../enhanced-table";
 
 export interface EnhancedRemoteTableProps<T> {
   /**
@@ -96,7 +100,10 @@ export const EnhancedRemoteTable = <T,>({
           <TableBody>
             {loading ? (
               <TableRow>
-                <TableCell colSpan={columns.length} sx={{ textAlign: "center" }}>
+                <TableCell
+                  colSpan={columns.length}
+                  sx={{ textAlign: "center" }}
+                >
                   <CircularProgress />
                 </TableCell>
               </TableRow>

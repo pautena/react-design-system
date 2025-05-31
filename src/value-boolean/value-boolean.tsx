@@ -1,20 +1,21 @@
-import { useTheme } from "@mui/material/styles";
+import CheckIcon from "@mui/icons-material/Check";
+import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
 import Typography from "@mui/material/Typography";
-import CheckIcon from "@mui/icons-material/Check";
-import CloseIcon from "@mui/icons-material/Close";
+import { useTheme } from "@mui/material/styles";
 import {
-  BaseValueProps,
+  type BaseValueProps,
   DefaultPlaceholder,
-  EditableValueProps,
-  useEditableValueDisplay,
+  type EditableValueProps,
   ValueEditButton,
   ValueEditButtons,
+  useEditableValueDisplay,
 } from "../value-base";
 import { ValueContent, getValueContentLabelId } from "../value-content";
 
-export type ValueBooleanProps = BaseValueProps<boolean> & EditableValueProps<boolean>;
+export type ValueBooleanProps = BaseValueProps<boolean> &
+  EditableValueProps<boolean>;
 
 /**
  * Displays a boolean value with a label
@@ -29,10 +30,18 @@ export const ValueBoolean = ({
 }: ValueBooleanProps) => {
   const id = getValueContentLabelId(label);
   const { typography } = useTheme();
-  const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
-    useEditableValueDisplay(value, onEdit);
+  const {
+    isEditing,
+    editValue,
+    startEdit,
+    cancelEdit,
+    setEditValue,
+    submitEdit,
+  } = useEditableValueDisplay(value, onEdit);
 
-  const iconSx = { fontSize: dense ? typography.h6.fontSize : typography.h5.fontSize };
+  const iconSx = {
+    fontSize: dense ? typography.h6.fontSize : typography.h5.fontSize,
+  };
 
   return (
     <ValueContent label={label} dense={dense}>
@@ -43,7 +52,10 @@ export const ValueBoolean = ({
             checked={editValue}
             onChange={(e) => setEditValue(e.target.checked)}
           />
-          <ValueEditButtons onClickCancel={cancelEdit} onClickSubmit={submitEdit} />
+          <ValueEditButtons
+            onClickCancel={cancelEdit}
+            onClickSubmit={submitEdit}
+          />
         </Box>
       ) : (
         <Box

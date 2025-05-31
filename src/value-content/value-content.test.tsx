@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
+import userEvent from "@testing-library/user-event";
 import { render, screen } from "../tests/testing-library";
 import { ValueContent } from "./value-content";
-import userEvent from "@testing-library/user-event";
 
 describe("ValueContent", () => {
   const renderComponent = ({
@@ -29,7 +29,9 @@ describe("ValueContent", () => {
   it("shouldn't render a label if hideLabel=true", () => {
     renderComponent({ hideLabel: true });
 
-    expect(screen.queryByRole("label", { name: /lorem ipsum/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("label", { name: /lorem ipsum/i }),
+    ).not.toBeInTheDocument();
   });
 
   describe("tooltip", () => {
@@ -38,13 +40,17 @@ describe("ValueContent", () => {
 
       await userEvent.hover(screen.getByText(/test content/i));
 
-      expect(await screen.findByRole("tooltip", { name: /dolor sit amet/i })).toBeVisible();
+      expect(
+        await screen.findByRole("tooltip", { name: /dolor sit amet/i }),
+      ).toBeVisible();
     });
 
     it("shouldn't render a tooltip if it's not defined", () => {
       renderComponent({ tooltip: undefined });
 
-      expect(screen.queryByRole("tooltip", { name: /dolor sit amet/i })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("tooltip", { name: /dolor sit amet/i }),
+      ).not.toBeInTheDocument();
     });
   });
 

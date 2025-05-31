@@ -1,7 +1,7 @@
-import { render, screen } from "../tests/testing-library";
-import { ValueEditButton, ValueEditButtons } from "./value-edit";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { render, screen } from "../tests/testing-library";
+import { ValueEditButton, ValueEditButtons } from "./value-edit";
 
 describe("ValueEditButton", () => {
   const renderComponent = () => {
@@ -36,7 +36,12 @@ describe("ValueEditButtons", () => {
   const renderComponent = () => {
     const onClickCancel = vi.fn();
     const onClickSubmit = vi.fn();
-    render(<ValueEditButtons onClickCancel={onClickCancel} onClickSubmit={onClickSubmit} />);
+    render(
+      <ValueEditButtons
+        onClickCancel={onClickCancel}
+        onClickSubmit={onClickSubmit}
+      />,
+    );
 
     return { onClickCancel, onClickSubmit };
   };
@@ -51,13 +56,17 @@ describe("ValueEditButtons", () => {
     it("should be accessible", () => {
       renderComponent();
 
-      expect(screen.getByRole("button", { name: /cancel button/i })).toBeVisible();
+      expect(
+        screen.getByRole("button", { name: /cancel button/i }),
+      ).toBeVisible();
     });
 
     it("should call onClickCancel when the button is clicked", async () => {
       const { onClickCancel } = renderComponent();
 
-      await userEvent.click(screen.getByRole("button", { name: /cancel button/i }));
+      await userEvent.click(
+        screen.getByRole("button", { name: /cancel button/i }),
+      );
 
       expect(onClickCancel).toHaveBeenCalledTimes(1);
     });
@@ -73,13 +82,17 @@ describe("ValueEditButtons", () => {
     it("should be accessible", () => {
       renderComponent();
 
-      expect(screen.getByRole("button", { name: /submit button/i })).toBeVisible();
+      expect(
+        screen.getByRole("button", { name: /submit button/i }),
+      ).toBeVisible();
     });
 
     it("should call onClickCancel when the button is clicked", async () => {
       const { onClickSubmit } = renderComponent();
 
-      await userEvent.click(screen.getByRole("button", { name: /submit button/i }));
+      await userEvent.click(
+        screen.getByRole("button", { name: /submit button/i }),
+      );
 
       expect(onClickSubmit).toHaveBeenCalledTimes(1);
     });

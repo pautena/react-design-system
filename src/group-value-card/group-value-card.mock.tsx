@@ -1,9 +1,9 @@
 import { ValueBoolean } from "../value-boolean";
+import { ValueDatetime } from "../value-datetime";
+import { ValueItem } from "../value-item";
 import { ValueRating } from "../value-rating";
 import { ValueText } from "../value-text";
-import { GroupValueCard, GroupValueCardProps } from "./group-value-card";
-import { ValueItem } from "../value-item";
-import { ValueDatetime } from "../value-datetime";
+import { GroupValueCard, type GroupValueCardProps } from "./group-value-card";
 
 export const GroupValueCardDummy = ({
   dense,
@@ -24,10 +24,20 @@ export const GroupValueCardDummy = ({
         <ValueBoolean editable={editable} dense={dense} label="Enabled" value />
       </ValueItem>
       <ValueItem xs={12} sm={6} md={3}>
-        <ValueText editable={editable} dense={dense} label="Quantity" value="1200" />
+        <ValueText
+          editable={editable}
+          dense={dense}
+          label="Quantity"
+          value="1200"
+        />
       </ValueItem>
       <ValueItem xs={12} sm={6} md={3}>
-        <ValueText editable={editable} dense={dense} label="Currency" value="EUR" />
+        <ValueText
+          editable={editable}
+          dense={dense}
+          label="Currency"
+          value="EUR"
+        />
       </ValueItem>
       <ValueItem xs={12} sm={6} md={6}>
         <ValueText
@@ -38,13 +48,28 @@ export const GroupValueCardDummy = ({
         />
       </ValueItem>
       <ValueItem xs={12} sm={6} md={3}>
-        <ValueText editable={editable} dense={dense} label="Status" value="Open" />
+        <ValueText
+          editable={editable}
+          dense={dense}
+          label="Status"
+          value="Open"
+        />
       </ValueItem>
       <ValueItem xs={12} sm={6} md={3}>
-        <ValueText editable={editable} dense={dense} label="Level" value="2144" />
+        <ValueText
+          editable={editable}
+          dense={dense}
+          label="Level"
+          value="2144"
+        />
       </ValueItem>
       <ValueItem xs={12} sm={6} md={3}>
-        <ValueRating editable={editable} dense={dense} label="Rating" value={3} />
+        <ValueRating
+          editable={editable}
+          dense={dense}
+          label="Rating"
+          value={3}
+        />
       </ValueItem>
       <ValueItem xs={12} sm={6} md={3}>
         <ValueDatetime

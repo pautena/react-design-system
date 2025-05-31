@@ -1,5 +1,5 @@
-import { useContext, createContext, ElementType } from "react";
-import { DrawerSize, DrawerState, DrawerVariant } from "../drawer.types";
+import { type ElementType, createContext, useContext } from "react";
+import type { DrawerSize, DrawerState, DrawerVariant } from "../drawer.types";
 
 export interface DrawerContextProps {
   selectedItemId?: string;
@@ -23,8 +23,12 @@ export interface DrawerContextProps {
   setState: (state: DrawerState) => void;
 }
 
-export const DrawerContext = createContext<DrawerContextProps | undefined>(undefined);
-export const UndefinedProvider = new Error("DrawerContext.Provider is required and was undefined");
+export const DrawerContext = createContext<DrawerContextProps | undefined>(
+  undefined,
+);
+export const UndefinedProvider = new Error(
+  "DrawerContext.Provider is required and was undefined",
+);
 
 export const useDrawer = () => {
   const context = useContext(DrawerContext);

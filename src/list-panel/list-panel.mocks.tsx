@@ -1,12 +1,18 @@
 import Box from "@mui/material/Box";
-import { ListPanelItem } from "./list-panel";
+import type { ListPanelItem } from "./list-panel";
 import { useListPanel } from "./list-panel.context";
 
 export const ListPanelDemoContent = () => {
   const selectedId = useListPanel();
 
   return (
-    <Box width={1} display="flex" justifyContent="center" alignItems="center" pt={2}>
+    <Box
+      width={1}
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      pt={2}
+    >
       Panel content. Selected id: {selectedId}
     </Box>
   );
