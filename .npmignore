@@ -1,9 +1,7 @@
 .github
 .husky
 .storybook
-.eslintrc.js
-.prettierignore
-.prettierrc.js
+biome.json
 babel.config.js
 jest.config.js
 jest.setup.ts

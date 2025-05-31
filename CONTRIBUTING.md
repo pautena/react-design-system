@@ -94,7 +94,7 @@ Make sure the following is true:
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
 - The code is formatted. If the code was changed, run `yarn format`.
-- The code is linted. If the code was changed, run `yarn lint:eslint`.
+- The code is linted. If the code was changed, run `yarn lint`.
 - The code is type-safe. If TypeScript sources/declarations were changed, `yarn lint:ts` passed.
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
@@ -109,7 +109,7 @@ Make sure that you add the proper stories to the component Storybook to generate
 
 ### Coding style
 
-Please follow the coding style of the project. MUI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
+Please follow the coding style of the project. MUI uses BiomeJS, so if possible, enable linting in your editor to get real-time feedback.
 
 - `yarn format` reformats the code.
 - `yarn lint` runs manually the linting rules.
