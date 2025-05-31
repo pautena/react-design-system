@@ -1,54 +1,66 @@
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { StoryDialogManager } from "../storybook";
 import { FormDialog } from "./form-dialog";
 
 export default {
-  title: "Components/Dialogs/FormDialog",
-  component: FormDialog,
-  parameters: {
-    layout: "centered",
-  },
-  render: (args) => <StoryDialogManager component={FormDialog} args={args} />,
+	title: "Components/Dialogs/FormDialog",
+	component: FormDialog,
+	parameters: {
+		layout: "centered",
+	},
+	render: (args) => <StoryDialogManager component={FormDialog} args={args} />,
 } as Meta<typeof FormDialog>;
 type Story = StoryObj<typeof FormDialog>;
 
 export const Default: Story = {
-  args: {
-    open: true,
-    title: "Lorem ipsum",
-    children: (
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <TextField name="message" label="Message" fullWidth required variant="outlined" />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField name="amount" label="Amount" fullWidth required variant="outlined" />
-        </Grid>
-      </Grid>
-    ),
-  },
+	args: {
+		open: true,
+		title: "Lorem ipsum",
+		children: (
+			<Grid container spacing={2}>
+				<Grid item xs={12}>
+					<TextField
+						name="message"
+						label="Message"
+						fullWidth
+						required
+						variant="outlined"
+					/>
+				</Grid>
+				<Grid item xs={12}>
+					<TextField
+						name="amount"
+						label="Amount"
+						fullWidth
+						required
+						variant="outlined"
+					/>
+				</Grid>
+			</Grid>
+		),
+	},
 };
 
 export const Loading: Story = {
-  args: {
-    ...Default.args,
-    loading: true,
-  },
+	args: {
+		...Default.args,
+		loading: true,
+	},
 };
 
 export const Disabled: Story = {
-  args: {
-    ...Default.args,
-    disabled: true,
-  },
+	args: {
+		...Default.args,
+		disabled: true,
+	},
 };
 
 export const CustomButtonText: Story = {
-  args: {
-    ...Default.args,
-    submitText: "Create token",
-    cancelText: "Don't create a token",
-  },
+	args: {
+		...Default.args,
+		submitText: "Create token",
+		cancelText: "Don't create a token",
+	},
 };

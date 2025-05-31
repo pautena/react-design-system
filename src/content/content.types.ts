@@ -1,4 +1,4 @@
-import { PropsWithChildren, FunctionComponent, ReactElement } from "react";
+import type { FunctionComponent, PropsWithChildren, ReactElement } from "react";
 
 export type ContentProps = PropsWithChildren;
 export type ContentComponent = FunctionComponent<ContentProps>;

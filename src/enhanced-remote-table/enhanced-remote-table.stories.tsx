@@ -1,22 +1,22 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { columns, data } from "../enhanced-table/enhanced-table.mock";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 
 export default {
-  title: "Components/Tables/EnhancedRemoteTable",
-  component: EnhancedRemoteDummyTable,
-  parameters: {
-    layout: "fullscreen",
-  },
+	title: "Components/Tables/EnhancedRemoteTable",
+	component: EnhancedRemoteDummyTable,
+	parameters: {
+		layout: "fullscreen",
+	},
 } satisfies Meta<typeof EnhancedRemoteDummyTable>;
 type Story = StoryObj<typeof EnhancedRemoteDummyTable>;
 
 export const Default: Story = {
-  args: {
-    columns,
-    data,
-    loading: false,
-    defaultSort: "startDate",
-    defaultOrder: "asc",
-  },
+	args: {
+		columns,
+		data,
+		loading: false,
+		defaultSort: "startDate",
+		defaultOrder: "asc",
+	},
 };
