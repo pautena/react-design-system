@@ -1,5 +1,5 @@
-import { PropTypes } from "@mui/material";
-import { FunctionComponent, ReactElement } from "react";
+import type { PropTypes } from "@mui/material";
+import { FunctionComponent, type ReactElement } from "react";
 
 export type HeaderPreset = PropTypes.Color | "transparent";
 export type HeaderActionVariant = "text" | "outlined" | "contained";

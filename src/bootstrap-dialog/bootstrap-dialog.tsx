@@ -1,13 +1,13 @@
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogActions from "@mui/material/DialogActions";
-import IconButton from "@mui/material/IconButton";
-import DialogContent from "@mui/material/DialogContent";
-import CircularProgress from "@mui/material/CircularProgress";
+import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import CloseIcon from "@mui/icons-material/Close";
-import { BootstrapDialogDialogProps } from "../dialog/dialog.types";
+import CircularProgress from "@mui/material/CircularProgress";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import type { BootstrapDialogDialogProps } from "../dialog/dialog.types";
 
 /**
  * A customizable dialog component. Use it as a base to create more dialogs
@@ -40,7 +40,10 @@ export const BootstrapDialog = ({
       <DialogTitle sx={{ display: "flex", alignItems: "center" }}>
         {title}
         {loading && !acceptable && (
-          <CircularProgress size={20} sx={{ ml: 2, color: (theme) => theme.palette.grey[500] }} />
+          <CircularProgress
+            size={20}
+            sx={{ ml: 2, color: (theme) => theme.palette.grey[500] }}
+          />
         )}
         <IconButton
           disabled={disabled}
@@ -60,11 +63,19 @@ export const BootstrapDialog = ({
         <DialogContent dividers>{children}</DialogContent>
         {hasActions && (
           <DialogActions>
-            {actions.map(({ id, text, type = "button", onClick, color = "primary" }) => (
-              <Button key={id} type={type} disabled={disabled} onClick={onClick} color={color}>
-                {text}
-              </Button>
-            ))}
+            {actions.map(
+              ({ id, text, type = "button", onClick, color = "primary" }) => (
+                <Button
+                  key={id}
+                  type={type}
+                  disabled={disabled}
+                  onClick={onClick}
+                  color={color}
+                >
+                  {text}
+                </Button>
+              ),
+            )}
             {cancelable && (
               <Button
                 color="error"

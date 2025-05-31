@@ -1,19 +1,19 @@
-import { ReactElement } from "react";
 import Avatar from "@mui/material/Avatar";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { SxProps, Theme, useTheme } from "@mui/material/styles";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
+import type { ReactElement } from "react";
 import { Bullet } from "../../bullet";
 import { Label } from "../../label";
+import { useDrawer } from "../drawer-context";
 import {
-  DrawerItemAvatar,
-  DrawerItemBullet,
-  DrawerItemLabel,
+  type DrawerItemAvatar,
+  type DrawerItemBullet,
+  type DrawerItemLabel,
   getDrawerItemColors,
 } from "../drawer.types";
-import { useDrawer } from "../drawer-context";
 
 export interface DrawerItemLinkProps {
   /**
@@ -98,7 +98,12 @@ export const DrawerItemLink = ({
       }}
     >
       {icon && (
-        <ListItemIcon sx={{ color, ...(state === "collapse" && level === 0 && sxCollapsedIcon) }}>
+        <ListItemIcon
+          sx={{
+            color,
+            ...(state === "collapse" && level === 0 && sxCollapsedIcon),
+          }}
+        >
           {icon}
         </ListItemIcon>
       )}
@@ -121,12 +126,18 @@ export const DrawerItemLink = ({
       <ListItemText
         disableTypography
         primary={text}
-        sx={{ color, fontWeight, opacity: state === "collapse" && level === 0 ? 0 : undefined }}
+        sx={{
+          color,
+          fontWeight,
+          opacity: state === "collapse" && level === 0 ? 0 : undefined,
+        }}
       />
       {label && state === "open" && (
         <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />
       )}
-      {bullet && state === "open" && <Bullet variant={bullet.variant} sx={{ ml: 2 }} />}
+      {bullet && state === "open" && (
+        <Bullet variant={bullet.variant} sx={{ ml: 2 }} />
+      )}
     </ListItemButton>
   );
 };

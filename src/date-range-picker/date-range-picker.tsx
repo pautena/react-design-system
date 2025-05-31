@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { format } from "date-fns";
+import EventIcon from "@mui/icons-material/Event";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
-import EventIcon from "@mui/icons-material/Event";
+import TextField from "@mui/material/TextField";
+import { format } from "date-fns";
+import { useState } from "react";
 import { DateRangeCalendar } from "../date-range-calendar";
 
 type DateRange = [Date, Date | undefined];
@@ -79,7 +79,10 @@ export const DateRangePicker = ({
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <IconButton onClick={() => setIsPopoverOpened((o) => !o)} aria-label="open calendar">
+              <IconButton
+                onClick={() => setIsPopoverOpened((o) => !o)}
+                aria-label="open calendar"
+              >
                 <EventIcon />
               </IconButton>
             </InputAdornment>
@@ -88,7 +91,10 @@ export const DateRangePicker = ({
       />
       <Paper>
         <Collapse in={isPopoverOpened} aria-label="calendar collapse">
-          <DateRangeCalendar defaultValue={defaultValue} onValueChange={handleValueChange} />
+          <DateRangeCalendar
+            defaultValue={defaultValue}
+            onValueChange={handleValueChange}
+          />
         </Collapse>
       </Paper>
     </>

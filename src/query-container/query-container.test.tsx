@@ -1,7 +1,11 @@
-import { QueryContainer, QueryContainerError, QueryContainerSuccess } from "./query-container";
-import { render, screen } from "../tests/testing-library";
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
+import { render, screen } from "../tests/testing-library";
+import {
+  QueryContainer,
+  type QueryContainerError,
+  type QueryContainerSuccess,
+} from "./query-container";
 
 describe("QueryContainer", () => {
   const renderComponent = ({
@@ -16,7 +20,12 @@ describe("QueryContainer", () => {
     success?: QueryContainerSuccess;
   } = {}) => {
     return render(
-      <QueryContainer fetching={fetching} loading={loading} error={error} success={success}>
+      <QueryContainer
+        fetching={fetching}
+        loading={loading}
+        error={error}
+        success={success}
+      >
         <Typography>children content</Typography>
       </QueryContainer>,
     );
@@ -78,7 +87,10 @@ describe("QueryContainer", () => {
     it("should render an error alert", () => {
       renderComponent({ error: { message: "Internal error" } });
 
-      expect(screen.getByRole("alert")).toHaveAttribute("aria-describedby", "error");
+      expect(screen.getByRole("alert")).toHaveAttribute(
+        "aria-describedby",
+        "error",
+      );
     });
 
     it("should render the error message if error is defined", () => {
@@ -88,9 +100,13 @@ describe("QueryContainer", () => {
     });
 
     it("should render the error title if error.name is defined", () => {
-      renderComponent({ error: { name: "Internal error", message: "There was an error" } });
+      renderComponent({
+        error: { name: "Internal error", message: "There was an error" },
+      });
 
-      expect(screen.getByRole("heading", { name: /internal error/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /internal error/i }),
+      ).toBeInTheDocument();
     });
 
     it("shouldn't render the error title if error is defined but the error.name not", () => {
@@ -104,7 +120,10 @@ describe("QueryContainer", () => {
     it("should render a success alert", () => {
       renderComponent({ success: { message: "Item added" } });
 
-      expect(screen.getByRole("alert")).toHaveAttribute("aria-describedby", "success");
+      expect(screen.getByRole("alert")).toHaveAttribute(
+        "aria-describedby",
+        "success",
+      );
     });
 
     it("should render the success message if success is defined", () => {
@@ -115,10 +134,15 @@ describe("QueryContainer", () => {
 
     it("should render the success title if success.name is defined", () => {
       renderComponent({
-        success: { name: "Item added", message: "The item has been added successfully" },
+        success: {
+          name: "Item added",
+          message: "The item has been added successfully",
+        },
       });
 
-      expect(screen.getByRole("heading", { name: /item added/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: /item added/i }),
+      ).toBeInTheDocument();
     });
 
     it("shouldn't render the error title if success is defined but the success.name not", () => {

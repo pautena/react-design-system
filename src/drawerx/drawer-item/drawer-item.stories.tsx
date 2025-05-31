@@ -1,12 +1,12 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { DrawerItem, DrawerItemProps } from "./drawer-item";
 import DiamondIcon from "@mui/icons-material/Diamond";
-import {
-  mockMenuDrawerNavigationItem,
-  mockLinkNoIconDrawerNavigationItem,
-} from "../drawer/drawer.mock";
+import type { Meta, StoryObj } from "@storybook/react";
 import { DrawerProvider } from "../drawer-context";
-import { DrawerSize, DrawerState } from "../drawer.types";
+import type { DrawerSize, DrawerState } from "../drawer.types";
+import {
+  mockLinkNoIconDrawerNavigationItem,
+  mockMenuDrawerNavigationItem,
+} from "../drawer/drawer.mock";
+import { DrawerItem, type DrawerItemProps } from "./drawer-item";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
   initialState?: DrawerState;
@@ -20,8 +20,17 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: ({ initialState = "open", size = "medium", selectedItemId, ...args }) => (
-    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}>
+  render: ({
+    initialState = "open",
+    size = "medium",
+    selectedItemId,
+    ...args
+  }) => (
+    <DrawerProvider
+      initialState={initialState}
+      selectedItemId={selectedItemId}
+      size={size}
+    >
       <DrawerItem {...args} />
     </DrawerProvider>
   ),

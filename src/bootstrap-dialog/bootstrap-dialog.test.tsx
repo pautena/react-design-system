@@ -1,9 +1,9 @@
 import DialogContentText from "@mui/material/DialogContentText";
+import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
+import type { DialogAction } from "../dialog/dialog.types";
 import { render, screen } from "../tests/testing-library";
 import { BootstrapDialog } from "./bootstrap-dialog";
-import userEvent from "@testing-library/user-event";
-import { DialogAction } from "../dialog/dialog.types";
-import { vi } from "vitest";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -151,7 +151,9 @@ describe("BootstrapDialog", () => {
     it("should not have the Cancel button as disabled if is false", () => {
       renderComponent({ open: true, disableCancel: false, cancelable: true });
 
-      expect(screen.getByRole("button", { name: /cancel/i })).not.toBeDisabled();
+      expect(
+        screen.getByRole("button", { name: /cancel/i }),
+      ).not.toBeDisabled();
     });
   });
 
@@ -165,20 +167,34 @@ describe("BootstrapDialog", () => {
     it("should not have the Cancel button as disabled if is false", () => {
       renderComponent({ open: true, disableAccept: false, acceptable: true });
 
-      expect(screen.getByRole("button", { name: /accept/i })).not.toBeDisabled();
+      expect(
+        screen.getByRole("button", { name: /accept/i }),
+      ).not.toBeDisabled();
     });
   });
 
   it("should be able to change the cancel button text", () => {
-    renderComponent({ open: true, cancelable: true, cancelText: "updated cancel" });
+    renderComponent({
+      open: true,
+      cancelable: true,
+      cancelText: "updated cancel",
+    });
 
-    expect(screen.getByRole("button", { name: /updated cancel/i })).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /updated cancel/i }),
+    ).toBeVisible();
   });
 
   it("should be able to change the accept button text", () => {
-    renderComponent({ open: true, acceptable: true, acceptText: "updated accept" });
+    renderComponent({
+      open: true,
+      acceptable: true,
+      acceptText: "updated accept",
+    });
 
-    expect(screen.getByRole("button", { name: /updated accept/i })).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /updated accept/i }),
+    ).toBeVisible();
   });
 
   it("should call onCancel if the cancel button is clicked", async () => {
@@ -226,7 +242,12 @@ describe("BootstrapDialog", () => {
   describe("actions", () => {
     it("should render a button for each action", () => {
       const { actions } = createMockActions();
-      renderComponent({ open: true, cancelable: true, callCloseWhenCancel: false, actions });
+      renderComponent({
+        open: true,
+        cancelable: true,
+        callCloseWhenCancel: false,
+        actions,
+      });
 
       expect(screen.getByRole("button", { name: /action 1/i })).toBeVisible();
       expect(screen.getByRole("button", { name: /action 2/i })).toBeVisible();
@@ -234,7 +255,12 @@ describe("BootstrapDialog", () => {
 
     it("should call the action 1 click listener if the action 1 is clicked", async () => {
       const { actions, onClickAction1 } = createMockActions();
-      renderComponent({ open: true, cancelable: true, callCloseWhenCancel: false, actions });
+      renderComponent({
+        open: true,
+        cancelable: true,
+        callCloseWhenCancel: false,
+        actions,
+      });
 
       await userEvent.click(screen.getByRole("button", { name: /action 1/i }));
 
@@ -243,7 +269,12 @@ describe("BootstrapDialog", () => {
 
     it("should call the action 1 click listener if the action 2 is clicked", async () => {
       const { actions, onClickAction2 } = createMockActions();
-      renderComponent({ open: true, cancelable: true, callCloseWhenCancel: false, actions });
+      renderComponent({
+        open: true,
+        cancelable: true,
+        callCloseWhenCancel: false,
+        actions,
+      });
 
       await userEvent.click(screen.getByRole("button", { name: /action 2/i }));
 

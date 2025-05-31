@@ -1,14 +1,18 @@
-import { HeaderLayout, HeaderLayoutError } from "./header-layout";
-import { render, screen } from "../tests/testing-library";
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
+import { render, screen } from "../tests/testing-library";
+import { HeaderLayout, type HeaderLayoutError } from "./header-layout";
 
 describe("HeaderLayout", () => {
   const renderComponent = ({
     loading,
     fetching,
     error,
-  }: { loading?: boolean; fetching?: boolean; error?: HeaderLayoutError } = {}) => {
+  }: {
+    loading?: boolean;
+    fetching?: boolean;
+    error?: HeaderLayoutError;
+  } = {}) => {
     return render(
       <HeaderLayout
         title="Lorem ipsum"
@@ -25,8 +29,12 @@ describe("HeaderLayout", () => {
   it("should render the header", () => {
     renderComponent();
 
-    expect(screen.getByRole("heading", { level: 1, name: /lorem ipsum/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { level: 2, name: /dolor sit amet/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 1, name: /lorem ipsum/i }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 2, name: /dolor sit amet/i }),
+    ).toBeInTheDocument();
   });
 
   it("should render a main element", () => {
@@ -65,7 +73,9 @@ describe("HeaderLayout", () => {
     it("should not render the error if there is no one", () => {
       renderComponent({ error: undefined });
 
-      expect(screen.queryByText(/there has been an error/i)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/there has been an error/i),
+      ).not.toBeInTheDocument();
     });
 
     it("should render a title if there is an error without title", () => {

@@ -1,16 +1,20 @@
-import { ChangeEvent } from "react";
-import { ReactNode, useState } from "react";
+import Search from "@mui/icons-material/Search";
 import Box from "@mui/material/Box";
-import TableContainer from "@mui/material/TableContainer";
-import TextField from "@mui/material/TextField";
-import TableBody from "@mui/material/TableBody";
+import CircularProgress from "@mui/material/CircularProgress";
 import InputAdornment from "@mui/material/InputAdornment";
 import Table from "@mui/material/Table";
-import CircularProgress from "@mui/material/CircularProgress";
+import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import Search from "@mui/icons-material/Search";
-import { EnhancedTableHead, HeadCell, Order } from "./enhanced-table-head";
+import TextField from "@mui/material/TextField";
+import type { ChangeEvent } from "react";
+import { type ReactNode, useState } from "react";
+import {
+  EnhancedTableHead,
+  type HeadCell,
+  type Order,
+} from "./enhanced-table-head";
 
 function getFilter<T>(columns: HeadCell<T>[], search: string) {
   return (d: T) => {
@@ -28,7 +32,10 @@ function getFilter<T>(columns: HeadCell<T>[], search: string) {
   };
 }
 
-function getComparator<T>(order: Order, orderBy: keyof T): (a: T, b: T) => number {
+function getComparator<T>(
+  order: Order,
+  orderBy: keyof T,
+): (a: T, b: T) => number {
   return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
@@ -131,7 +138,9 @@ export const EnhancedTable = <T,>({
                   </InputAdornment>
                 ),
               }}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchFilter(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setSearchFilter(e.target.value)
+              }
             />
           </Box>
         )}
@@ -146,13 +155,19 @@ export const EnhancedTable = <T,>({
             <TableBody>
               {loading ? (
                 <TableRow>
-                  <TableCell colSpan={columns.length} sx={{ textAlign: "center" }}>
+                  <TableCell
+                    colSpan={columns.length}
+                    sx={{ textAlign: "center" }}
+                  >
                     <CircularProgress />
                   </TableCell>
                 </TableRow>
               ) : filteredData.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={columns.length} sx={{ textAlign: "center" }}>
+                  <TableCell
+                    colSpan={columns.length}
+                    sx={{ textAlign: "center" }}
+                  >
                     No data
                   </TableCell>
                 </TableRow>

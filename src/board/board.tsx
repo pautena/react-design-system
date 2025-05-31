@@ -1,12 +1,12 @@
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { useTheme, SxProps, Theme } from "@mui/material/styles";
 import { blueGrey } from "@mui/material/colors";
-import { PropsWithChildren, ReactNode } from "react";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
+import type { PropsWithChildren, ReactNode } from "react";
 
 /**
  * Props for the Board component.
@@ -31,7 +31,12 @@ export type BoardProps = PropsWithChildren<{
  * It supports rendering an array of content lines or a single content string.
  * Additionally, it provides a button to copy the content to the clipboard.
  */
-export const Board = ({ content: contentProp, spacing = 0, children, sx }: BoardProps) => {
+export const Board = ({
+  content: contentProp,
+  spacing = 0,
+  children,
+  sx,
+}: BoardProps) => {
   const { spacing: themeSpacing, typography } = useTheme();
   let copyContent: string;
   let content: ReactNode;
@@ -62,7 +67,13 @@ export const Board = ({ content: contentProp, spacing = 0, children, sx }: Board
     >
       <Box display="flex" flexDirection="row">
         <Box width={1}>{children || content}</Box>
-        <Box sx={{ position: "absolute", top: themeSpacing(0.5), right: themeSpacing(0.5) }}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: themeSpacing(0.5),
+            right: themeSpacing(0.5),
+          }}
+        >
           {copyContent && (
             <IconButton
               aria-label="copy board content"

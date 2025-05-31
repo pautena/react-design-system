@@ -1,20 +1,25 @@
-import { ModelForm } from "./model-form";
-import { fireEvent, render, screen } from "../tests/testing-library";
+import { vi } from "vitest";
 import {
   BirthDateFormat,
-  createModelInstance,
-  MockInstance,
-  mockModel,
+  type MockInstance,
   ReturnTimeFormat,
   TradeDateFormat,
+  createModelInstance,
+  mockModel,
 } from "../generators/generators.mock";
-import { vi } from "vitest";
-import { selectOption, typeNumericInput, pickDatetime, selectOptions } from "../tests/actions";
+import {
+  pickDatetime,
+  selectOption,
+  selectOptions,
+  typeNumericInput,
+} from "../tests/actions";
 import {
   expectModelFieldInputExist,
   expectModelFieldInputValue,
   expectToHaveBeenCalledOnceWithMockInstance,
 } from "../tests/assertions";
+import { fireEvent, render, screen } from "../tests/testing-library";
+import { ModelForm } from "./model-form";
 
 describe("ModelForm", () => {
   const renderComponent = ({
@@ -76,20 +81,42 @@ describe("ModelForm", () => {
     const tradeDate = new Date(2047, 11, 26, 12, 50);
 
     fireEvent.type(screen.getByRole("textbox", { name: "Id" }), "Id-1");
-    fireEvent.type(screen.getByRole("textbox", { name: /first name/i }), "Karianne");
-    fireEvent.type(screen.getByRole("textbox", { name: /middle name/i }), "Noah");
-    fireEvent.type(screen.getByRole("textbox", { name: /last name/i }), "Gorczany");
+    fireEvent.type(
+      screen.getByRole("textbox", { name: /first name/i }),
+      "Karianne",
+    );
+    fireEvent.type(
+      screen.getByRole("textbox", { name: /middle name/i }),
+      "Noah",
+    );
+    fireEvent.type(
+      screen.getByRole("textbox", { name: /last name/i }),
+      "Gorczany",
+    );
     typeNumericInput(screen.getByRole("spinbutton", { name: /age/i }), 37);
-    pickDatetime(screen.getByRole("textbox", { name: /birth date/i }), birthDate, BirthDateFormat);
-    await selectOption(screen.getByRole("button", { name: /model/i }), "Spyder");
-    await selectOption(screen.getByRole("button", { name: /manufacturer/i }), "Bugatti");
+    pickDatetime(
+      screen.getByRole("textbox", { name: /birth date/i }),
+      birthDate,
+      BirthDateFormat,
+    );
+    await selectOption(
+      screen.getByRole("button", { name: /model/i }),
+      "Spyder",
+    );
+    await selectOption(
+      screen.getByRole("button", { name: /manufacturer/i }),
+      "Bugatti",
+    );
     fireEvent.type(screen.getByRole("textbox", { name: /color/i }), "red");
     await selectOptions(screen.getByRole("button", { name: /type/i }), [
       "Coupe",
       "Hatchback",
       "Minivan",
     ]);
-    fireEvent.type(screen.getByRole("textbox", { name: /vin/i }), "46N6UE4VJ2XL28828");
+    fireEvent.type(
+      screen.getByRole("textbox", { name: /vin/i }),
+      "46N6UE4VJ2XL28828",
+    );
     fireEvent.type(screen.getByRole("textbox", { name: /vrm/i }), "NE51AFH");
     pickDatetime(
       screen.getByRole("textbox", { name: /return time/i }),
@@ -99,9 +126,16 @@ describe("ModelForm", () => {
     typeNumericInput(screen.getByRole("spinbutton", { name: /q/i }), 9);
     fireEvent.click(screen.getByRole("checkbox", { name: /available/i }));
     fireEvent.type(screen.getByRole("textbox", { name: /currency/i }), "mxn");
-    pickDatetime(screen.getByRole("textbox", { name: /trade date/i }), tradeDate, TradeDateFormat);
+    pickDatetime(
+      screen.getByRole("textbox", { name: /trade date/i }),
+      tradeDate,
+      TradeDateFormat,
+    );
     fireEvent.type(screen.getByRole("textbox", { name: /codes/i }), "foo,bar");
-    fireEvent.type(screen.getByRole("textbox", { name: /identifiers/i }), "1,2,3");
+    fireEvent.type(
+      screen.getByRole("textbox", { name: /identifiers/i }),
+      "1,2,3",
+    );
 
     fireEvent.click(screen.getByRole("button", { name: /save/i }));
 

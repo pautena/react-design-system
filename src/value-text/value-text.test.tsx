@@ -1,8 +1,8 @@
-import { render, screen } from "../tests/testing-library";
-import { ValueText } from "./value-text";
+import { within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import { within } from "@testing-library/react";
+import { render, screen } from "../tests/testing-library";
+import { ValueText } from "./value-text";
 
 const DummyValue = "Lorem ipsum sit amet";
 
@@ -32,7 +32,9 @@ describe("ValueText", () => {
   it("would render the label", () => {
     renderComponent({ value: DummyValue });
 
-    expect(screen.getByRole("label", { name: /hello world/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("label", { name: /hello world/i }),
+    ).toBeInTheDocument();
   });
 
   it("would render the value", () => {
@@ -130,7 +132,9 @@ describe("ValueText", () => {
       renderComponent({ editable: true });
 
       expect(
-        within(screen.getByLabelText(/hello world/i)).getByRole("button", { name: /edit/i }),
+        within(screen.getByLabelText(/hello world/i)).getByRole("button", {
+          name: /edit/i,
+        }),
       ).toBeVisible();
     });
   });

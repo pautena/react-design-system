@@ -1,13 +1,19 @@
-import { TextFieldProps as MuiTextFieldProps } from "@mui/material/TextField";
-import CircularProgress, { circularProgressClasses } from "@mui/material/CircularProgress";
+import { autocompleteClasses } from "@mui/material/Autocomplete";
+import CircularProgress, {
+  circularProgressClasses,
+} from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
 import FormHelperText from "@mui/material/FormHelperText";
 import { iconButtonClasses } from "@mui/material/IconButton";
-import LinearProgress, { linearProgressClasses } from "@mui/material/LinearProgress";
-import OutlinedInput, { outlinedInputClasses } from "@mui/material/OutlinedInput";
-import InputLabel, { inputLabelClasses } from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-import { autocompleteClasses } from "@mui/material/Autocomplete";
+import InputLabel, { inputLabelClasses } from "@mui/material/InputLabel";
+import LinearProgress, {
+  linearProgressClasses,
+} from "@mui/material/LinearProgress";
+import OutlinedInput, {
+  outlinedInputClasses,
+} from "@mui/material/OutlinedInput";
+import type { TextFieldProps as MuiTextFieldProps } from "@mui/material/TextField";
 import useId from "@mui/utils/useId";
 
 /**
@@ -94,7 +100,9 @@ export const TextField = ({
         endAdornment={
           <InputAdornment position="end">
             {InputProps?.endAdornment}
-            {loading ? <CircularProgress color="inherit" size={20} sx={{ ml: 1 }} /> : null}
+            {loading ? (
+              <CircularProgress color="inherit" size={20} sx={{ ml: 1 }} />
+            ) : null}
           </InputAdornment>
         }
         sx={sx}
@@ -106,7 +114,9 @@ export const TextField = ({
           sx={{ position: "absolute", left: 0, right: 0, bottom: 0 }}
         />
       )}
-      {helperText && <FormHelperText id={helperTextId}>{helperText}</FormHelperText>}
+      {helperText && (
+        <FormHelperText id={helperTextId}>{helperText}</FormHelperText>
+      )}
     </FormControl>
   );
 };

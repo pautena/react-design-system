@@ -1,8 +1,11 @@
-import { useState, PropsWithChildren } from "react";
-import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
-import { Notification, NotificationCenterContext } from "./notification-center.context";
+import Snackbar from "@mui/material/Snackbar";
+import { type PropsWithChildren, useState } from "react";
+import {
+  type Notification,
+  NotificationCenterContext,
+} from "./notification-center.context";
 
 export type NotificationCenterProviderProps = PropsWithChildren<{
   autoHideDuration?: number;
@@ -12,7 +15,9 @@ export const NotificationCenterProvider = ({
   children,
   autoHideDuration = 6000,
 }: NotificationCenterProviderProps) => {
-  const [notification, setNotification] = useState<Notification | undefined>(undefined);
+  const [notification, setNotification] = useState<Notification | undefined>(
+    undefined,
+  );
   const [open, setOpen] = useState(false);
   const show = (notification: Notification) => {
     setNotification(notification);
@@ -42,7 +47,9 @@ export const NotificationCenterProvider = ({
           aria-label={notification?.severity}
           sx={{ width: "100%" }}
         >
-          {notification?.title && <AlertTitle>{notification?.title}</AlertTitle>}
+          {notification?.title && (
+            <AlertTitle>{notification?.title}</AlertTitle>
+          )}
           {notification?.message}
         </Alert>
       </Snackbar>

@@ -1,17 +1,17 @@
 import userEvent from "@testing-library/user-event";
+import { render, screen, within } from "../../tests/testing-library";
+import { DrawerProvider } from "../drawer-context";
+import type { DrawerNavigationItem, DrawerState } from "../drawer.types";
 import {
-  mockMenuDrawerNavigationItem,
   mockLinkAvatarDrawerNavigationItem,
   mockLinkBulletDrawerNavigationItem,
   mockLinkDrawerNavigationItem,
   mockLinkLabelDrawerNavigationItem,
   mockLinkNoIconDrawerNavigationItem,
+  mockMenuDrawerNavigationItem,
   mockMenuInsideMenuDrawerNavigationItem,
 } from "../drawer/drawer.mock";
-import { DrawerNavigationItem, DrawerState } from "../drawer.types";
-import { render, screen, within } from "../../tests/testing-library";
 import { DrawerItem } from "./drawer-item";
-import { DrawerProvider } from "../drawer-context";
 
 describe("DrawerItem", () => {
   const renderComponent = ({
@@ -30,11 +30,17 @@ describe("DrawerItem", () => {
 
   describe("menu item", () => {
     it("should render a text if state is open", () => {
-      renderComponent({ initialState: "open", item: mockMenuDrawerNavigationItem });
+      renderComponent({
+        initialState: "open",
+        item: mockMenuDrawerNavigationItem,
+      });
     });
 
     it("should render the only the icon if state is collapse", async () => {
-      renderComponent({ initialState: "collapse", item: mockMenuDrawerNavigationItem });
+      renderComponent({
+        initialState: "collapse",
+        item: mockMenuDrawerNavigationItem,
+      });
 
       expect(screen.getByTestId("ConnectingAirportsIcon")).toBeVisible();
       expect(screen.getByText(/item 2.3.4.2/i)).not.toBeVisible();
@@ -43,36 +49,56 @@ describe("DrawerItem", () => {
     describe("menu icon", () => {
       describe("status open", () => {
         it("should render the correct icon if the menu is closed", () => {
-          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+          renderComponent({
+            initialState: "open",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
 
           expect(screen.getByTestId("ChevronRightIcon")).toBeVisible();
         });
 
         it("should render the correct icon if the menu is open", async () => {
-          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+          renderComponent({
+            initialState: "open",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
 
-          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+          await userEvent.click(
+            screen.getByRole("button", { name: /item 2.3.4/i }),
+          );
 
           expect(screen.getByTestId("ExpandMoreIcon")).toBeVisible();
         });
 
         it("should render the correct icon if a menu inside a menu is closed", async () => {
-          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+          renderComponent({
+            initialState: "open",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
 
-          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+          await userEvent.click(
+            screen.getByRole("button", { name: /item 2.3.4/i }),
+          );
 
           expect(
-            within(screen.getByRole("button", { name: /item 2.3.4.2/i })).getByTestId(
-              "ChevronRightIcon",
-            ),
+            within(
+              screen.getByRole("button", { name: /item 2.3.4.2/i }),
+            ).getByTestId("ChevronRightIcon"),
           ).toBeVisible();
         });
 
         it("should render the correct icon if a menu inside a menu is open", async () => {
-          renderComponent({ initialState: "open", item: mockMenuInsideMenuDrawerNavigationItem });
+          renderComponent({
+            initialState: "open",
+            item: mockMenuInsideMenuDrawerNavigationItem,
+          });
 
-          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
-          const buttonEl = screen.getByRole("button", { name: /item 2.3.4.2/i });
+          await userEvent.click(
+            screen.getByRole("button", { name: /item 2.3.4/i }),
+          );
+          const buttonEl = screen.getByRole("button", {
+            name: /item 2.3.4.2/i,
+          });
           await userEvent.click(buttonEl);
 
           expect(within(buttonEl).getByTestId("ExpandMoreIcon")).toBeVisible();
@@ -107,12 +133,14 @@ describe("DrawerItem", () => {
             item: mockMenuInsideMenuDrawerNavigationItem,
           });
 
-          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
+          await userEvent.click(
+            screen.getByRole("button", { name: /item 2.3.4/i }),
+          );
 
           expect(
-            within(screen.getByRole("button", { name: /item 2.3.4.2/i })).getByTestId(
-              "ChevronRightIcon",
-            ),
+            within(
+              screen.getByRole("button", { name: /item 2.3.4.2/i }),
+            ).getByTestId("ChevronRightIcon"),
           ).toBeVisible();
         });
 
@@ -122,11 +150,17 @@ describe("DrawerItem", () => {
             item: mockMenuInsideMenuDrawerNavigationItem,
           });
 
-          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4/i }));
-          const buttonEl = screen.getByRole("button", { name: /item 2.3.4.2/i });
+          await userEvent.click(
+            screen.getByRole("button", { name: /item 2.3.4/i }),
+          );
+          const buttonEl = screen.getByRole("button", {
+            name: /item 2.3.4.2/i,
+          });
           await userEvent.click(buttonEl);
 
-          expect(within(buttonEl).getByTestId("ChevronRightIcon")).toBeVisible();
+          expect(
+            within(buttonEl).getByTestId("ChevronRightIcon"),
+          ).toBeVisible();
         });
       });
     });
@@ -137,10 +171,16 @@ describe("DrawerItem", () => {
         async (initialState) => {
           renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
 
-          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4.2/i }));
+          await userEvent.click(
+            screen.getByRole("button", { name: /item 2.3.4.2/i }),
+          );
 
-          expect(screen.getByRole("link", { name: /item 2.3.4.2.1/i })).toBeVisible();
-          expect(screen.getByRole("link", { name: /item 2.3.4.2.2/i })).toBeVisible();
+          expect(
+            screen.getByRole("link", { name: /item 2.3.4.2.1/i }),
+          ).toBeVisible();
+          expect(
+            screen.getByRole("link", { name: /item 2.3.4.2.2/i }),
+          ).toBeVisible();
         },
       );
 
@@ -152,7 +192,9 @@ describe("DrawerItem", () => {
         async (label: string, initialState: DrawerState) => {
           renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
 
-          await userEvent.click(screen.getByRole("button", { name: /item 2.3.4.2/i }));
+          await userEvent.click(
+            screen.getByRole("button", { name: /item 2.3.4.2/i }),
+          );
 
           expect(screen.getByLabelText(label)).toBeVisible();
         },
@@ -169,7 +211,10 @@ describe("DrawerItem", () => {
       });
 
       it.skip("shouldn't render the text if the drawer is collapsed", () => {
-        renderComponent({ item: mockLinkNoIconDrawerNavigationItem, initialState: "collapse" });
+        renderComponent({
+          item: mockLinkNoIconDrawerNavigationItem,
+          initialState: "collapse",
+        });
 
         expect(screen.queryByText(/item 1.1/i)).not.toBeInTheDocument();
       });
@@ -189,7 +234,10 @@ describe("DrawerItem", () => {
       });
 
       it("should render an icon if the drawer is collapsed", () => {
-        renderComponent({ item: mockLinkDrawerNavigationItem, initialState: "collapse" });
+        renderComponent({
+          item: mockLinkDrawerNavigationItem,
+          initialState: "collapse",
+        });
 
         expect(screen.getByTestId("DiamondIcon")).toBeVisible();
       });
@@ -205,11 +253,16 @@ describe("DrawerItem", () => {
       it("shouldn't render an avatar if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
-        expect(screen.queryByRole("img", { name: /avatar 1/i })).not.toBeInTheDocument();
+        expect(
+          screen.queryByRole("img", { name: /avatar 1/i }),
+        ).not.toBeInTheDocument();
       });
 
       it("should render an avatar if the drawer is collapsed", () => {
-        renderComponent({ item: mockLinkAvatarDrawerNavigationItem, initialState: "collapse" });
+        renderComponent({
+          item: mockLinkAvatarDrawerNavigationItem,
+          initialState: "collapse",
+        });
 
         expect(screen.getByRole("img", { name: /avatar 1/i })).toBeVisible();
       });
@@ -226,13 +279,20 @@ describe("DrawerItem", () => {
       it("shouldn't render a label if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
-        expect(screen.queryByRole("label", { name: /10/i })).not.toBeInTheDocument();
+        expect(
+          screen.queryByRole("label", { name: /10/i }),
+        ).not.toBeInTheDocument();
       });
 
       it.skip("shouldn't render a label if the drawer is collapsed", () => {
-        renderComponent({ item: mockLinkLabelDrawerNavigationItem, initialState: "collapse" });
+        renderComponent({
+          item: mockLinkLabelDrawerNavigationItem,
+          initialState: "collapse",
+        });
 
-        expect(screen.queryByRole("label", { name: /10/i })).not.toBeInTheDocument();
+        expect(
+          screen.queryByRole("label", { name: /10/i }),
+        ).not.toBeInTheDocument();
       });
     });
 
@@ -252,7 +312,10 @@ describe("DrawerItem", () => {
       });
 
       it.skip("shouldn't render a bullet if the drawer is collapsed", () => {
-        renderComponent({ item: mockLinkBulletDrawerNavigationItem, initialState: "collapse" });
+        renderComponent({
+          item: mockLinkBulletDrawerNavigationItem,
+          initialState: "collapse",
+        });
 
         expect(screen.queryByRole("bullet")).not.toBeInTheDocument();
       });

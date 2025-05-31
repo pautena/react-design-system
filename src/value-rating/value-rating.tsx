@@ -1,8 +1,12 @@
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
-import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "../value-base";
-import { BaseValueProps, EditableValueProps } from "../value-base";
-import { getValueContentLabelId, ValueContent } from "../value-content";
+import {
+  ValueEditButton,
+  ValueEditButtons,
+  useEditableValueDisplay,
+} from "../value-base";
+import type { BaseValueProps, EditableValueProps } from "../value-base";
+import { ValueContent, getValueContentLabelId } from "../value-content";
 
 export type ValueRatingProps = BaseValueProps<number> & {
   maxRating?: number;
@@ -19,8 +23,14 @@ export const ValueRating = ({
   dense,
   onEdit = () => null,
 }: ValueRatingProps) => {
-  const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
-    useEditableValueDisplay(value, onEdit);
+  const {
+    isEditing,
+    editValue,
+    startEdit,
+    cancelEdit,
+    setEditValue,
+    submitEdit,
+  } = useEditableValueDisplay(value, onEdit);
   const id = getValueContentLabelId(label);
 
   return (
@@ -33,14 +43,21 @@ export const ValueRating = ({
           value={isEditing ? editValue : value}
           onChange={(e, newValue) => {
             if (Number.isNaN(newValue) && (e.currentTarget as any).value) {
-              setEditValue(parseInt((e.currentTarget as any).value, 10));
+              setEditValue(Number.parseInt((e.currentTarget as any).value, 10));
             } else if (newValue) {
               setEditValue(newValue);
             }
           }}
         />
-        {editable && !isEditing && <ValueEditButton dense={dense} onClick={startEdit} />}
-        {isEditing && <ValueEditButtons onClickCancel={cancelEdit} onClickSubmit={submitEdit} />}
+        {editable && !isEditing && (
+          <ValueEditButton dense={dense} onClick={startEdit} />
+        )}
+        {isEditing && (
+          <ValueEditButtons
+            onClickCancel={cancelEdit}
+            onClickSubmit={submitEdit}
+          />
+        )}
       </Box>
     </ValueContent>
   );

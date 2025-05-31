@@ -1,6 +1,6 @@
+import { vi } from "vitest";
 import { fireEvent, render, screen } from "../tests/testing-library";
 import { DateRangePicker } from "./date-range-picker";
-import { vi } from "vitest";
 
 describe("DateRangePicker", () => {
   const renderComponent = () => {
@@ -59,7 +59,10 @@ describe("DateRangePicker", () => {
       );
 
       expect(onValueChange).toHaveBeenCalledTimes(1);
-      expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 4), endDate], 0);
+      expect(onValueChange).toHaveBeenCalledWith(
+        [new Date(2023, 4, 4), endDate],
+        0,
+      );
     });
 
     describe("second value selected", () => {
@@ -103,7 +106,10 @@ describe("DateRangePicker", () => {
         );
 
         expect(onValueChange).toHaveBeenCalledTimes(2);
-        expect(onValueChange).toHaveBeenLastCalledWith([new Date(2023, 4, 6), undefined], 0);
+        expect(onValueChange).toHaveBeenLastCalledWith(
+          [new Date(2023, 4, 6), undefined],
+          0,
+        );
       });
 
       it("should show the date format as end date", () => {
@@ -121,7 +127,9 @@ describe("DateRangePicker", () => {
           }),
         );
 
-        expect(screen.getByRole("textbox")).toHaveValue("2023-05-06 - YYYY-MM-DD");
+        expect(screen.getByRole("textbox")).toHaveValue(
+          "2023-05-06 - YYYY-MM-DD",
+        );
       });
     });
 
@@ -137,7 +145,10 @@ describe("DateRangePicker", () => {
         );
 
         expect(onValueChange).toHaveBeenCalledTimes(1);
-        expect(onValueChange).toHaveBeenCalledWith([new Date(2023, 4, 28), undefined], 0);
+        expect(onValueChange).toHaveBeenCalledWith(
+          [new Date(2023, 4, 28), undefined],
+          0,
+        );
       });
 
       it("should show the date format as end date", () => {
@@ -150,7 +161,9 @@ describe("DateRangePicker", () => {
           }),
         );
 
-        expect(screen.getByRole("textbox")).toHaveValue("2023-05-28 - YYYY-MM-DD");
+        expect(screen.getByRole("textbox")).toHaveValue(
+          "2023-05-28 - YYYY-MM-DD",
+        );
       });
     });
   });

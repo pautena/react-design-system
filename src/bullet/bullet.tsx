@@ -1,7 +1,13 @@
 import Badge from "@mui/material/Badge";
-import { SxProps, Theme } from "@mui/material/styles";
+import type { SxProps, Theme } from "@mui/material/styles";
 
-export type BulletVariant = "primary" | "secondary" | "default" | "info" | "warning" | "error";
+export type BulletVariant =
+  | "primary"
+  | "secondary"
+  | "default"
+  | "info"
+  | "warning"
+  | "error";
 
 export const bulletClasses = {
   root: "RdsBullet-root",

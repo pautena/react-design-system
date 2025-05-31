@@ -1,24 +1,28 @@
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import FormControl from "@mui/material/FormControl";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Grid from "@mui/material/Grid";
 import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import ListItemText from "@mui/material/ListItemText";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import type { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import { SelectChangeEvent } from "@mui/material/Select";
-import { DesktopDatePicker, TimePicker, DateTimePicker } from "@mui/x-date-pickers";
-import { ChangeEvent, ReactElement } from "react";
-import { useGetDefaultThemeColor } from "../utils";
-import { GroupValueCard } from "../group-value-card";
 import {
+  DateTimePicker,
+  DesktopDatePicker,
+  TimePicker,
+} from "@mui/x-date-pickers";
+import type { ChangeEvent, ReactElement } from "react";
+import type {
   ArrayFieldType,
   FieldType,
   ModelField,
   ModelFieldTypes,
 } from "../generators/generators.model";
+import { GroupValueCard } from "../group-value-card";
+import { useGetDefaultThemeColor } from "../utils";
 
 export interface ModelFormField {
   field: ModelField;
@@ -62,7 +66,7 @@ export const ModelFormField = ({
 
     let value: string | number | string[] | number[] = e.target.value;
     if (type === "number" && typeof value === "string") {
-      value = parseInt(e.target.value, 10);
+      value = Number.parseInt(e.target.value, 10);
     } else if (type.includes("[]")) {
       value = e.target.value.split(",");
     }
@@ -73,7 +77,10 @@ export const ModelFormField = ({
     onChangeValue([...path, id], value);
   };
 
-  const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
+  const defaultColor = useGetDefaultThemeColor({
+    lightWeight: 200,
+    darkWeight: 800,
+  });
 
   const {
     id,
@@ -169,7 +176,9 @@ export const ModelFormField = ({
         >
           {field.value.map((fieldValue) => (
             <MenuItem key={fieldValue} value={fieldValue}>
-              <Checkbox checked={((value as any[]) || []).includes(fieldValue)} />
+              <Checkbox
+                checked={((value as any[]) || []).includes(fieldValue)}
+              />
               <ListItemText primary={fieldValue} />
             </MenuItem>
           ))}

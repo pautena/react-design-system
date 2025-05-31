@@ -1,7 +1,7 @@
-import { EnhancedTable } from "./index";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import { HeadCell, Order } from "./enhanced-table-head";
+import type { HeadCell, Order } from "./enhanced-table-head";
+import { EnhancedTable } from "./index";
 
 export const columns: HeadCell<Data>[] = [
   {

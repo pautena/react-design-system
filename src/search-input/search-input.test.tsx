@@ -1,18 +1,24 @@
+import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
+import { pickDatetime, typeNumericInput } from "../tests/actions";
+import { AssertCloseDateUpTo, assertCloseDate } from "../tests/assertions";
 import { render, screen } from "../tests/testing-library";
 import { SearchInput } from "./search-input";
-import userEvent from "@testing-library/user-event";
-import { pickDatetime, typeNumericInput } from "../tests/actions";
-import { assertCloseDate, AssertCloseDateUpTo } from "../tests/assertions";
-import { vi } from "vitest";
 
 const datetimeFormat = "dd-MM-yyyy HH:mm:ss.SSS";
 const createdBefore = new Date(2022, 2, 17, 12, 42);
 
 describe("SearchInput", () => {
   const enterFullSearch = async () => {
-    await userEvent.type(screen.getByRole("textbox", { name: /search/i }), "lorem ipsum");
+    await userEvent.type(
+      screen.getByRole("textbox", { name: /search/i }),
+      "lorem ipsum",
+    );
     await userEvent.click(screen.getByTestId("TuneIcon"));
-    await userEvent.type(screen.getByRole("textbox", { name: /subject/i }), "nice subject");
+    await userEvent.type(
+      screen.getByRole("textbox", { name: /subject/i }),
+      "nice subject",
+    );
     typeNumericInput(screen.getByRole("spinbutton", { name: /amount/i }), 201);
     pickDatetime(
       screen.getByRole("textbox", { name: /created before/i }),
@@ -72,7 +78,9 @@ describe("SearchInput", () => {
     await userEvent.click(screen.getByTestId("TuneIcon"));
     await userEvent.click(screen.getByTestId("TuneIcon"));
 
-    expect(screen.queryByRole("textbox", { name: /subject/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("textbox", { name: /subject/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("should hide the filters if the close button is clicked", async () => {
@@ -81,7 +89,9 @@ describe("SearchInput", () => {
     await userEvent.click(screen.getByTestId("TuneIcon"));
     await userEvent.click(screen.getByRole("button", { name: /close/i }));
 
-    expect(screen.queryByRole("textbox", { name: /subject/i })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("textbox", { name: /subject/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("should crear the search if the clear button is clicked", async () => {
@@ -100,7 +110,10 @@ describe("SearchInput", () => {
     it("should be called when a search is submited", async () => {
       const { onSearch } = renderComponent();
 
-      await userEvent.type(screen.getByRole("textbox", { name: /search/i }), "lorem ipsum");
+      await userEvent.type(
+        screen.getByRole("textbox", { name: /search/i }),
+        "lorem ipsum",
+      );
       await userEvent.click(screen.getByTestId("SearchIcon"));
 
       expect(onSearch).toHaveBeenCalledTimes(1);
@@ -112,7 +125,10 @@ describe("SearchInput", () => {
     it("should be called when a search with filters is submited using the enter button", async () => {
       const { onSearch } = renderComponent();
 
-      await userEvent.type(screen.getByRole("textbox", { name: /search/i }), "lorem ipsum{enter}");
+      await userEvent.type(
+        screen.getByRole("textbox", { name: /search/i }),
+        "lorem ipsum{enter}",
+      );
 
       expect(onSearch).toHaveBeenCalledTimes(1);
       expect(onSearch).toHaveBeenCalledWith({

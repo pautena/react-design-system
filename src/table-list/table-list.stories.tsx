@@ -1,12 +1,13 @@
 import { useDemoData } from "@mui/x-data-grid-generator";
-import { Meta, StoryObj } from "@storybook/react";
-import { TableList, TableListProps } from "./table-list";
 import { action } from "@storybook/addon-actions";
-import { BasicModelInstance } from "../generators/generators.model";
+import type { Meta, StoryObj } from "@storybook/react";
+import type { BasicModelInstance } from "../generators/generators.model";
+import { TableList, type TableListProps } from "./table-list";
 
 const maxColumns = 3;
 
-interface TemplateProps<T extends BasicModelInstance> extends TableListProps<T> {
+interface TemplateProps<T extends BasicModelInstance>
+  extends TableListProps<T> {
   size: number;
   dataSetType: "Commodity" | "Employee";
 }
@@ -31,7 +32,12 @@ const DummyTableList = <T extends BasicModelInstance>({
   }));
 
   return (
-    <TableList {...rest} columns={columns} data={rows as any} onClick={action("onClick row")} />
+    <TableList
+      {...rest}
+      columns={columns}
+      data={rows as any}
+      onClick={action("onClick row")}
+    />
   );
 };
 

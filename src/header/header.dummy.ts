@@ -1,5 +1,5 @@
 import { action } from "@storybook/addon-actions";
-import { HeaderBreadcrumb, HeaderAction, HeaderTab } from "./header.types";
+import type { HeaderAction, HeaderBreadcrumb, HeaderTab } from "./header.types";
 
 export const breadcrumbs: HeaderBreadcrumb[] = [
   {

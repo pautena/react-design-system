@@ -1,6 +1,6 @@
+import type { FormEvent } from "react";
 import { BootstrapDialog } from "../bootstrap-dialog";
-import { FormEvent } from "react";
-import { BootstrapDialogDialogProps } from "../dialog";
+import type { BootstrapDialogDialogProps } from "../dialog";
 import { getFormData } from "../utils/forms";
 
 type OmitBaseDialogProps =
@@ -17,7 +17,8 @@ type OmitBaseDialogProps =
 /**
  * Props for the FormDialog component.
  */
-export interface FormDialogProps<T> extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
+export interface FormDialogProps<T>
+  extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
   /**
    * The text to display on the submit button.
    * @default "Submit"

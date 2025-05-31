@@ -1,11 +1,6 @@
 import Grid from "@mui/material/Grid";
-import { newBreakpointsCounter } from "../utils/breakpoints";
-import { ValueBoolean } from "../value-boolean";
-import { ValueDatetime } from "../value-datetime";
-import { ValueText } from "../value-text";
-import { GroupValueCard } from "../group-value-card";
-import { ValueItem } from "../value-item";
-import {
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import type {
   ArrayGroupField,
   ArrayInstanceType,
   BasicModelInstance,
@@ -14,7 +9,12 @@ import {
   Model,
   ModelField,
 } from "../generators/generators.model";
-import { GridColDef, DataGrid } from "@mui/x-data-grid";
+import { GroupValueCard } from "../group-value-card";
+import { newBreakpointsCounter } from "../utils/breakpoints";
+import { ValueBoolean } from "../value-boolean";
+import { ValueDatetime } from "../value-datetime";
+import { ValueItem } from "../value-item";
+import { ValueText } from "../value-text";
 
 interface SingleDetailValueFactoryOptions {
   dense?: boolean;
@@ -29,12 +29,22 @@ const singleDetailValueFactory = <T extends BasicModelInstance>(
   const value = instance[id];
   if (type === "boolean") {
     return <ValueBoolean dense={dense} label={name} value={value as boolean} />;
-  } else if (type === "date" || type === "time" || type === "datetime") {
-    return <ValueDatetime dense={dense} label={name} value={value as Date} format={field.format} />;
+  }
+  if (type === "date" || type === "time" || type === "datetime") {
+    return (
+      <ValueDatetime
+        dense={dense}
+        label={name}
+        value={value as Date}
+        format={field.format}
+      />
+    );
   }
 
   if (typeof value === "object" && !Array.isArray(value)) {
-    return <ValueText dense={dense} label={name} value={JSON.stringify(value)} />;
+    return (
+      <ValueText dense={dense} label={name} value={JSON.stringify(value)} />
+    );
   }
   return <ValueText dense={dense} label={name} value={value?.toString()} />;
 };
@@ -106,7 +116,15 @@ const ObjectDetailGroup = ({
         const { id, xs, sm, md, lg, xl } = field;
         const bordered = breakpointsCounter.increment(field);
         return (
-          <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl} bordered={bordered}>
+          <ValueItem
+            key={id}
+            xs={xs}
+            sm={sm}
+            md={md}
+            lg={lg}
+            xl={xl}
+            bordered={bordered}
+          >
             {singleDetailValueFactory(field, instance, { dense })}
           </ValueItem>
         );
@@ -153,14 +171,26 @@ export const ObjectDetails = <T extends BasicModelInstance>({
           breakpointsCounter.increment({ xs: 12 });
           return (
             <Grid item key={id} xs={12}>
-              <ObjectArrayGroup field={field} instance={instance[id] as any} dense={dense} />
+              <ObjectArrayGroup
+                field={field}
+                instance={instance[id] as any}
+                dense={dense}
+              />
             </Grid>
           );
         }
 
         const bordered = breakpointsCounter.increment(field);
         return (
-          <ValueItem key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl} bordered={bordered}>
+          <ValueItem
+            key={id}
+            xs={xs}
+            sm={sm}
+            md={md}
+            lg={lg}
+            xl={xl}
+            bordered={bordered}
+          >
             {singleDetailValueFactory(field, instance, { dense })}
           </ValueItem>
         );

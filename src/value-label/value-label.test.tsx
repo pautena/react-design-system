@@ -1,6 +1,6 @@
+import type { LabelVariant } from "../label";
 import { render, screen } from "../tests/testing-library";
 import { ValueLabel } from "./value-label";
-import { LabelVariant } from "../label";
 
 const DummyValueText = "Lorem ipsum sit amet";
 const DummyValueNumber = 1000;
@@ -46,15 +46,22 @@ describe("ValueLabel", () => {
   });
 
   it("would render the value if it is a list of texts", () => {
-    renderComponent({ value: DummyValueTextList, variant: ["error", "warning"] });
+    renderComponent({
+      value: DummyValueTextList,
+      variant: ["error", "warning"],
+    });
 
-    DummyValueTextList.forEach((text) => expect(screen.getByText(text)).toBeVisible());
+    DummyValueTextList.forEach((text) =>
+      expect(screen.getByText(text)).toBeVisible(),
+    );
   });
 
   it("would render the value if it is a list of numbers", () => {
     renderComponent({ value: DummyValueNumberList });
 
-    DummyValueNumberList.forEach((number) => expect(screen.getByText(number)).toBeVisible());
+    DummyValueNumberList.forEach((number) =>
+      expect(screen.getByText(number)).toBeVisible(),
+    );
   });
 
   it("should render the placeholder if value is undefined", () => {
@@ -66,6 +73,8 @@ describe("ValueLabel", () => {
   it("should render the value of the corresponding label", () => {
     renderComponent({ value: DummyValueText });
 
-    expect(screen.getByLabelText(/hello world/i)).toHaveTextContent(DummyValueText);
+    expect(screen.getByLabelText(/hello world/i)).toHaveTextContent(
+      DummyValueText,
+    );
   });
 });

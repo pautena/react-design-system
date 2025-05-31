@@ -1,6 +1,6 @@
+import Typography from "@mui/material/Typography";
 import { render, screen } from "../tests/testing-library";
 import { ValueItem } from "./value-item";
-import Typography from "@mui/material/Typography";
 
 describe("ValueItem", () => {
   const renderComponent = () => {

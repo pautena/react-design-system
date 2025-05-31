@@ -1,18 +1,22 @@
 import Typography from "@mui/material/Typography";
+import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
 import { DrawerContent } from "../drawer-content";
 import { DrawerProvider, useDrawer } from "../drawer-context";
-import { mockDrawerNavigation } from "./drawer.mock";
-import { DrawerState, DrawerVariant } from "../drawer.types";
-import userEvent from "@testing-library/user-event";
+import type { DrawerState, DrawerVariant } from "../drawer.types";
 import { Drawer } from "./drawer";
+import { mockDrawerNavigation } from "./drawer.mock";
 
 describe("Drawer", () => {
   const renderComponent = ({
     initialState = "open",
     variant,
     clipped,
-  }: { initialState?: DrawerState; variant?: DrawerVariant; clipped?: boolean } = {}) => {
+  }: {
+    initialState?: DrawerState;
+    variant?: DrawerVariant;
+    clipped?: boolean;
+  } = {}) => {
     const DrawerContentTest = () => {
       const { state } = useDrawer();
 
@@ -25,7 +29,11 @@ describe("Drawer", () => {
     };
 
     render(
-      <DrawerProvider initialState={initialState} variant={variant} clipped={clipped}>
+      <DrawerProvider
+        initialState={initialState}
+        variant={variant}
+        clipped={clipped}
+      >
         <Drawer>
           <DrawerContentTest />
         </Drawer>
@@ -59,7 +67,11 @@ describe("Drawer", () => {
     );
 
     it("should switch the drawer state if is clicked", async () => {
-      renderComponent({ initialState: "open", variant: "temporary", clipped: false });
+      renderComponent({
+        initialState: "open",
+        variant: "temporary",
+        clipped: false,
+      });
 
       await userEvent.click(screen.getByTestId("ChevronLeftIcon"));
 

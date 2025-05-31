@@ -1,16 +1,19 @@
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
+import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
-import List from "@mui/material/List";
 import Popover from "@mui/material/Popover";
-import { SxProps, useTheme, Theme } from "@mui/material/styles";
-import { ReactElement, useState, useRef, useEffect } from "react";
-import { DrawerNavigationItem, getDrawerItemColors } from "../drawer.types";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { DrawerItem } from "./drawer-item";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
+import { type ReactElement, useEffect, useRef, useState } from "react";
 import { useDrawer } from "../drawer-context";
+import {
+  type DrawerNavigationItem,
+  getDrawerItemColors,
+} from "../drawer.types";
+import { DrawerItem } from "./drawer-item";
 
 export interface DrawerMenuItemProps {
   /**
@@ -99,16 +102,28 @@ export const DrawerMenuItem = ({
           }),
         }}
       >
-        {icon && <ListItemIcon sx={{ color, justifyContent: "center" }}>{icon}</ListItemIcon>}
+        {icon && (
+          <ListItemIcon sx={{ color, justifyContent: "center" }}>
+            {icon}
+          </ListItemIcon>
+        )}
         <ListItemText
           disableTypography
           primary={text}
-          sx={{ color, fontWeight, opacity: state === "collapse" && level === 0 ? 0 : undefined }}
+          sx={{
+            color,
+            fontWeight,
+            opacity: state === "collapse" && level === 0 ? 0 : undefined,
+          }}
         />
         {menuOpen && state === "open" ? (
-          <ExpandMoreIcon sx={[{ color, ml: 2, fontSize: 20 }, collapsedButtonSx]} />
+          <ExpandMoreIcon
+            sx={[{ color, ml: 2, fontSize: 20 }, collapsedButtonSx]}
+          />
         ) : (
-          <ChevronRightIcon sx={[{ color, ml: 2, fontSize: 20 }, collapsedButtonSx]} />
+          <ChevronRightIcon
+            sx={[{ color, ml: 2, fontSize: 20 }, collapsedButtonSx]}
+          />
         )}
       </ListItemButton>
       {state === "open" ? (

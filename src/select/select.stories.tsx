@@ -1,11 +1,11 @@
+import { faker } from "@faker-js/faker";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import { useTheme } from "@mui/material/styles";
-import { Meta, StoryObj } from "@storybook/react";
-import { ReactNode } from "react";
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ReactNode } from "react";
 import { withContainer } from "../storybook";
-import { Select, SelectProps, SelectSize } from "./select";
-import { faker } from "@faker-js/faker";
+import { Select, type SelectProps, type SelectSize } from "./select";
 
 const baseArgs = {
   label: "Car model",
@@ -83,7 +83,9 @@ export const SizeSmall: Story = {
   },
 };
 
-type WithBackgroundProps = TemplateProps<string> & { bgcolor: "primary" | "secondary" };
+type WithBackgroundProps = TemplateProps<string> & {
+  bgcolor: "primary" | "secondary";
+};
 
 export const WithBackground = {
   render: ({ options, bgcolor: bgcolorProp, ...rest }: WithBackgroundProps) => {

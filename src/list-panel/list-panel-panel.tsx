@@ -1,4 +1,4 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { useListPanel } from "./list-panel.context";
 
 export type ListPanelPanelProps = PropsWithChildren<{

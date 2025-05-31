@@ -1,7 +1,18 @@
-import Box, { BoxProps } from "@mui/material/Box";
+import Box, { type BoxProps } from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
-import { DateCalendar, PickersDay, PickersDayProps } from "@mui/x-date-pickers";
-import { endOfWeek, format, isAfter, isBefore, isSameDay, startOfWeek } from "date-fns";
+import {
+  DateCalendar,
+  PickersDay,
+  type PickersDayProps,
+} from "@mui/x-date-pickers";
+import {
+  endOfWeek,
+  format,
+  isAfter,
+  isBefore,
+  isSameDay,
+  startOfWeek,
+} from "date-fns";
 import { useState } from "react";
 
 type DateRange = [Date, Date | undefined];
@@ -37,7 +48,9 @@ const CustomPickersDayBackground = styled(Box, {
   };
 }) as React.ComponentType<CustomPickerDayProps>;
 
-const Day = (props: PickersDayProps<Date> & { dateRange?: DateRange | null }) => {
+const Day = (
+  props: PickersDayProps<Date> & { dateRange?: DateRange | null },
+) => {
   const { day, dateRange, ...other } = props;
 
   if (dateRange == null) {
@@ -87,11 +100,18 @@ export interface DateRangeCalendarProps {
 /**
  * A Date Range Calendar component that allows users to select a range of dates.
  */
-export const DateRangeCalendar = ({ defaultValue, onValueChange }: DateRangeCalendarProps) => {
+export const DateRangeCalendar = ({
+  defaultValue,
+  onValueChange,
+}: DateRangeCalendarProps) => {
   const [value, setValue] = useState(defaultValue);
   const [index, setIndex] = useState(0);
 
-  const setValueRange = (newRange: DateRange, index: number, newIndex: number) => {
+  const setValueRange = (
+    newRange: DateRange,
+    index: number,
+    newIndex: number,
+  ) => {
     setValue(newRange);
     onValueChange(newRange, index);
     setIndex(newIndex);

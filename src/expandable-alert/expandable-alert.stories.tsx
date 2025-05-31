@@ -1,11 +1,11 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { useState } from "react";
-import { ExpandableAlert } from "./expandable-alert";
-import { withContainer } from "../storybook";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Typography from "@mui/material/Typography";
+import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
+import { withContainer } from "../storybook";
+import { ExpandableAlert } from "./expandable-alert";
 
 export default {
   title: "Components/Alerts/ExpandableAlert",
@@ -91,7 +91,12 @@ export const SnackbarAlert = () => {
           onClose={() => setOpen(false)}
           title="Lorem ipsum"
           message="Lorem ipsum dolor sit amet"
-          metadata={["lorem: ipsum", "foo: bar", "header: this", "host: localhost"]}
+          metadata={[
+            "lorem: ipsum",
+            "foo: bar",
+            "header: this",
+            "host: localhost",
+          ]}
         />
       </Snackbar>
     </Box>

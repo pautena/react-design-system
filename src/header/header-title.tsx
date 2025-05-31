@@ -1,7 +1,7 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 export type HeaderTitleProps = PropsWithChildren<{ loading?: boolean }>;
 
@@ -10,7 +10,11 @@ export const HeaderTitle = ({ loading, children }: HeaderTitleProps) => {
 
   if (loading) {
     return (
-      <CircularProgress color="inherit" size={typography.h4.fontSize} aria-label="title loading" />
+      <CircularProgress
+        color="inherit"
+        size={typography.h4.fontSize}
+        aria-label="title loading"
+      />
     );
   }
 

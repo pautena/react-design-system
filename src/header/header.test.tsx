@@ -1,23 +1,26 @@
-import { ReactElement } from "react";
-import { render, screen } from "../tests/testing-library";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
-import { Header } from "./header";
+import type { ReactElement } from "react";
 import { vi } from "vitest";
-import {
+import { Label } from "../label";
+import { TabProvider } from "../tab-provider";
+import { render, screen } from "../tests/testing-library";
+import { Header } from "./header";
+import { actions as actionsData, breadcrumbs, tabs } from "./header.dummy";
+import { WithPanelTabs } from "./header.stories";
+import type {
   HeaderAction,
   HeaderActionVariant,
   HeaderBreadcrumb,
   HeaderPreset,
   HeaderTab,
 } from "./header.types";
-import { breadcrumbs, actions as actionsData, tabs } from "./header.dummy";
-import { TabProvider } from "../tab-provider";
-import { WithPanelTabs } from "./header.stories";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { Label } from "../label";
 
-const actions = actionsData.map((a) => ({ ...a, onClick: a.onClick && vi.fn() }));
+const actions = actionsData.map((a) => ({
+  ...a,
+  onClick: a.onClick && vi.fn(),
+}));
 
 const renderInstance = ({
   title = "Lorem ipsum",
@@ -57,7 +60,9 @@ const renderInstance = ({
         actionsVariant={actionsVariant}
         tabs={tabs}
         tabsMode="panel"
-        navigationButton={navigationButton ? { text: "go back", href: "/back" } : undefined}
+        navigationButton={
+          navigationButton ? { text: "go back", href: "/back" } : undefined
+        }
       />
     </TabProvider>,
   );
@@ -70,7 +75,9 @@ describe("Header", () => {
     it("should render the title", () => {
       renderInstance({ title: "Lorem ipsum" });
 
-      expect(screen.getByRole("heading", { level: 1, name: /lorem ipsum/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { level: 1, name: /lorem ipsum/i }),
+      ).toBeInTheDocument();
     });
 
     it("should render the custom title", () => {
@@ -83,7 +90,9 @@ describe("Header", () => {
         ),
       });
 
-      expect(screen.getByRole("heading", { level: 6, name: /custom title/i })).toBeVisible();
+      expect(
+        screen.getByRole("heading", { level: 6, name: /custom title/i }),
+      ).toBeVisible();
       expect(screen.getByText(/4 items/i)).toBeVisible();
     });
 
@@ -93,7 +102,9 @@ describe("Header", () => {
       expect(
         screen.queryByRole("heading", { level: 1, name: /lorem ipsum/i }),
       ).not.toBeInTheDocument();
-      expect(screen.queryByRole("progressbar", { name: /title loading/i })).toBeInTheDocument();
+      expect(
+        screen.queryByRole("progressbar", { name: /title loading/i }),
+      ).toBeInTheDocument();
     });
   });
 
@@ -101,13 +112,17 @@ describe("Header", () => {
     it("should render when is set", () => {
       renderInstance({ subtitle: "sit amet" });
 
-      expect(screen.queryByRole("heading", { level: 2, name: /sit amet/i })).toBeInTheDocument();
+      expect(
+        screen.queryByRole("heading", { level: 2, name: /sit amet/i }),
+      ).toBeInTheDocument();
     });
 
     it("shouldn't render if it is not set", () => {
       renderInstance({ subtitle: undefined });
 
-      expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("heading", { level: 2 }),
+      ).not.toBeInTheDocument();
     });
 
     it("should render the custom title", () => {
@@ -127,8 +142,12 @@ describe("Header", () => {
     it("should render a loading indicator if title is loading", () => {
       renderInstance({ subtitle: "sit amet", loadingSubtitle: true });
 
-      expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
-      expect(screen.queryByRole("progressbar", { name: /subtitle loading/i })).toBeInTheDocument();
+      expect(
+        screen.queryByRole("heading", { level: 2 }),
+      ).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("progressbar", { name: /subtitle loading/i }),
+      ).toBeInTheDocument();
     });
   });
 
@@ -148,8 +167,12 @@ describe("Header", () => {
 
       expect(screen.getByRole("button", { name: /add/i })).toBeInTheDocument();
       expect(screen.getByRole("button", { name: /edit/i })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /disabled/i })).toBeInTheDocument();
-      expect(screen.getByRole("button", { name: /delete/i })).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /disabled/i }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("button", { name: /delete/i }),
+      ).toBeInTheDocument();
     });
 
     it("clicks an action with an onClick defined it will be called", async () => {
@@ -181,9 +204,15 @@ describe("Header", () => {
     it("should mark as active the selectedTab", () => {
       renderInstance({ tabs, selectedTab: 2 });
 
-      expect(screen.getByRole("tab", { name: /tab 1/i, selected: false })).toBeInTheDocument();
-      expect(screen.getByRole("tab", { name: /tab 2/i, selected: false })).toBeInTheDocument();
-      expect(screen.getByRole("tab", { name: /tab 3/i, selected: true })).toBeInTheDocument();
+      expect(
+        screen.getByRole("tab", { name: /tab 1/i, selected: false }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("tab", { name: /tab 2/i, selected: false }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByRole("tab", { name: /tab 3/i, selected: true }),
+      ).toBeInTheDocument();
     });
 
     it("shouldn't be possible to click a disabled tab", () => {
@@ -193,7 +222,9 @@ describe("Header", () => {
     });
 
     describe("tabMode = panel", () => {
-      const enabledTestCases = tabs.filter((tab) => !tab.disabled).map(({ label }) => [label]);
+      const enabledTestCases = tabs
+        .filter((tab) => !tab.disabled)
+        .map(({ label }) => [label]);
 
       const renderPanelTabsInstance = () => {
         render(<WithPanelTabs />);
@@ -204,9 +235,15 @@ describe("Header", () => {
 
         await userEvent.click(screen.getByRole("tab", { name: /tab 3/i }));
 
-        expect(screen.getByRole("tab", { name: /tab 1/i, selected: false })).toBeInTheDocument();
-        expect(screen.getByRole("tab", { name: /tab 2/i, selected: false })).toBeInTheDocument();
-        expect(screen.getByRole("tab", { name: /tab 3/i, selected: true })).toBeInTheDocument();
+        expect(
+          screen.getByRole("tab", { name: /tab 1/i, selected: false }),
+        ).toBeInTheDocument();
+        expect(
+          screen.getByRole("tab", { name: /tab 2/i, selected: false }),
+        ).toBeInTheDocument();
+        expect(
+          screen.getByRole("tab", { name: /tab 3/i, selected: true }),
+        ).toBeInTheDocument();
       });
 
       it.each(enabledTestCases)(
@@ -232,7 +269,9 @@ describe("Header", () => {
     it("shouldn't render a navigation button if is not set", () => {
       renderInstance({ navigationButton: false });
 
-      expect(screen.queryByRole("link", { name: /go back/i })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("link", { name: /go back/i }),
+      ).not.toBeInTheDocument();
     });
   });
 });

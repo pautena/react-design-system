@@ -1,15 +1,15 @@
-import { useTheme } from "@mui/material/styles";
-import Breadcrumbs from "@mui/material/Breadcrumbs";
-import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
-import { useGetDefaultThemeColor } from "../utils";
-import { HeaderPreset, HeaderProps } from "./header.types";
-import { useTab } from "../tab-provider";
-import { HeaderSubtitle, HeaderTitle } from "./header-title";
+import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
+import Tab from "@mui/material/Tab";
+import Tabs from "@mui/material/Tabs";
+import { useTheme } from "@mui/material/styles";
+import { useTab } from "../tab-provider";
+import { useGetDefaultThemeColor } from "../utils";
+import { HeaderSubtitle, HeaderTitle } from "./header-title";
+import type { HeaderPreset, HeaderProps } from "./header.types";
 
 /**
  * Section used to explain give basic information about the page
@@ -54,7 +54,14 @@ export const Header = ({
   return (
     <Box bgcolor={bgColor} color={textColor}>
       <Container>
-        <Box sx={{ py: 3, display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+        <Box
+          sx={{
+            py: 3,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <Box>
             {navigationButton && (
               <Button
@@ -91,7 +98,9 @@ export const Header = ({
             )}
             <HeaderTitle loading={loadingTitle}>{title}</HeaderTitle>
             {(subtitle || loadingSubtitle) && (
-              <HeaderSubtitle loading={loadingSubtitle}>{subtitle}</HeaderSubtitle>
+              <HeaderSubtitle loading={loadingSubtitle}>
+                {subtitle}
+              </HeaderSubtitle>
             )}
           </Box>
           {actions && (
@@ -107,7 +116,7 @@ export const Header = ({
                   size="small"
                   href={href}
                   onClick={onClick}
-                  sx={{ mr: i != actions.length - 1 ? 1 : 0 }}
+                  sx={{ mr: i !== actions.length - 1 ? 1 : 0 }}
                 >
                   {text}
                 </Button>
@@ -119,15 +128,26 @@ export const Header = ({
           <Tabs
             value={modedSelectedTab}
             textColor="inherit"
-            onChange={tabsMode === "panel" ? (_, index) => setSelectedTab(index) : undefined}
+            onChange={
+              tabsMode === "panel"
+                ? (_, index) => setSelectedTab(index)
+                : undefined
+            }
           >
             {tabs.map(({ id, label, disabled, path, href }) => {
               const tabProps = { label, disabled };
               if (tabsMode === "panel") {
                 return <Tab key={id} {...tabProps} />;
-              } else {
-                return <Tab key={id} {...tabProps} component={Link} href={href} value={path} />;
               }
+              return (
+                <Tab
+                  key={id}
+                  {...tabProps}
+                  component={Link}
+                  href={href}
+                  value={path}
+                />
+              );
             })}
           </Tabs>
         )}

@@ -12,31 +12,33 @@ describe("newBreakpointsCounter", () => {
     expect(breakpointsCounter.xl).toBe(0);
   });
 
-  describe.each([["xs"], ["sm"], ["md"], ["lg"], ["xl"]])("breakpoint %s", (breakpoint: string) => {
-    it.each([
-      [false, [2, 3, 3, 4, 3]],
-      [false, [2, 3, 3, 4, 12, 3]],
-      [false, [6, 6, 6, 6, 6, 12, 3]],
-      [false, [4, 4, 4, 4, 4, 3, 8]],
-      [false, [4, 4, 4, 4, 4, 3, 8]],
-      [true, [1, 2]],
-      [true, [12, 6, 3]],
-      [true, [2, 6, 3]],
-    ])(
-      "should have border=%s if apply %s increments",
-      (expectedBorder: boolean, increments: number[]) => {
-        const breakpointsCounter = newBreakpointsCounter();
+  describe.each([["xs"], ["sm"], ["md"], ["lg"], ["xl"]])(
+    "breakpoint %s",
+    (breakpoint: string) => {
+      it.each([
+        [false, [2, 3, 3, 4, 3]],
+        [false, [2, 3, 3, 4, 12, 3]],
+        [false, [6, 6, 6, 6, 6, 12, 3]],
+        [false, [4, 4, 4, 4, 4, 3, 8]],
+        [false, [4, 4, 4, 4, 4, 3, 8]],
+        [true, [1, 2]],
+        [true, [12, 6, 3]],
+        [true, [2, 6, 3]],
+      ])(
+        "should have border=%s if apply %s increments",
+        (expectedBorder: boolean, increments: number[]) => {
+          const breakpointsCounter = newBreakpointsCounter();
 
-        let border: Record<string, boolean> = {};
-        increments.forEach((increment) => {
-          border = breakpointsCounter.increment({ [breakpoint]: increment }) as Record<
-            string,
-            boolean
-          >;
-        });
+          let border: Record<string, boolean> = {};
+          increments.forEach((increment) => {
+            border = breakpointsCounter.increment({
+              [breakpoint]: increment,
+            }) as Record<string, boolean>;
+          });
 
-        expect(border[breakpoint]).toBe(expectedBorder);
-      },
-    );
-  });
+          expect(border[breakpoint]).toBe(expectedBorder);
+        },
+      );
+    },
+  );
 });

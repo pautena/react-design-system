@@ -1,4 +1,4 @@
-import { ResponsiveStyleValue } from "@mui/system";
+import type { ResponsiveStyleValue } from "@mui/system";
 
 interface Breakpoints {
   xs: number;
@@ -25,7 +25,7 @@ export const newBreakpointsCounter = (breakpoint = 12): BreakpointsCounter => {
       return false;
     }
 
-    if (breakpointsCounter[key] == breakpoint) {
+    if (breakpointsCounter[key] === breakpoint) {
       breakpointsCounter[key] = 0;
     }
 

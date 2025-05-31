@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Grid";
-import { newArrayWithSize } from "../utils";
 import { SkeletonCard } from "../skeleton-card";
+import { newArrayWithSize } from "../utils";
 
 /**
  * Props for the SkeletonGrid component.

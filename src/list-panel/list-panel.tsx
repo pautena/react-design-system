@@ -1,14 +1,14 @@
+import { Link, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
-import { Link, useTheme } from "@mui/material";
-import { PropsWithChildren, useState } from "react";
+import { grey } from "@mui/material/colors";
+import { type PropsWithChildren, useState } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 import { ListPanelContextProvider } from "./list-panel.context";
-import { grey } from "@mui/material/colors";
 
 export interface ListPanelItem {
   id: string;
@@ -69,7 +69,8 @@ export const ListPanel = ({
         <Grid item xs={colBreakpoint} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
             {items.map(({ id, text, tooltip, path, href }) => {
-              const linkProps = listMode === "navigation" ? { component: Link, href } : {};
+              const linkProps =
+                listMode === "navigation" ? { component: Link, href } : {};
 
               const contentEl = (
                 <ListItemButton
@@ -89,7 +90,12 @@ export const ListPanel = ({
               );
 
               return tooltip ? (
-                <Tooltip key={id} title={tooltip} enterDelay={1500} placement="right">
+                <Tooltip
+                  key={id}
+                  title={tooltip}
+                  enterDelay={1500}
+                  placement="right"
+                >
                   {contentEl}
                 </Tooltip>
               ) : (

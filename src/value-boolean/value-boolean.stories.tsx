@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { ValueBoolean } from "./value-boolean";
 export default {
   title: "Components/Data Display/ValueBoolean",

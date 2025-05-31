@@ -2,7 +2,7 @@ import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 import { LoadingArea } from "../loading-area";
 
 export interface QueryContainerError {
@@ -57,8 +57,12 @@ export function QueryContainer({
   success,
   children,
 }: QueryContainerProps) {
-  const fetching = Array.isArray(fetchingProp) ? fetchingProp.some((f) => f) : fetchingProp;
-  const loading = Array.isArray(loadingProp) ? loadingProp.some((f) => f) : loadingProp;
+  const fetching = Array.isArray(fetchingProp)
+    ? fetchingProp.some((f) => f)
+    : fetchingProp;
+  const loading = Array.isArray(loadingProp)
+    ? loadingProp.some((f) => f)
+    : loadingProp;
 
   if (loading) {
     return <LoadingArea />;
@@ -76,8 +80,15 @@ export function QueryContainer({
   return (
     <Box>
       {success && (
-        <Alert severity="success" role="alert" aria-describedby="success" sx={{ mb: 2 }}>
-          {success.name && <AlertTitle role="heading">{success.name}</AlertTitle>}
+        <Alert
+          severity="success"
+          role="alert"
+          aria-describedby="success"
+          sx={{ mb: 2 }}
+        >
+          {success.name && (
+            <AlertTitle role="heading">{success.name}</AlertTitle>
+          )}
           {success.message}
         </Alert>
       )}

@@ -1,10 +1,10 @@
-/* eslint-disable react/display-name */
-import { FunctionComponent, useState } from "react";
-import { Box, Button, SxProps, Theme } from "@mui/material";
-import { NotificationCenterProvider } from "./notification-center";
-import { action } from "@storybook/addon-actions";
+import { Box, Button, type SxProps, type Theme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { action } from "@storybook/addon-actions";
+/* eslint-disable react/display-name */
+import { type FunctionComponent, useState } from "react";
+import { NotificationCenterProvider } from "./notification-center";
 
 const closeDialogAction = action("dialog/close");
 

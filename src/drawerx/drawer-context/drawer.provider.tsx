@@ -1,9 +1,9 @@
-import { ElementType, useState } from "react";
-import { PropsWithChildren } from "react";
-import { DrawerContext } from "./drawer-context";
-import { DrawerSize, DrawerState, DrawerVariant } from "../drawer.types";
-import { drawerWidth } from "./drawer-mixins";
 import { Link } from "@mui/material";
+import { type ElementType, useState } from "react";
+import type { PropsWithChildren } from "react";
+import type { DrawerSize, DrawerState, DrawerVariant } from "../drawer.types";
+import { DrawerContext } from "./drawer-context";
+import { drawerWidth } from "./drawer-mixins";
 
 const initialState: Record<DrawerVariant, DrawerState> = {
   temporary: "close",
@@ -43,7 +43,9 @@ export const DrawerProvider = ({
   LinkComponent = Link,
   onStateChange = () => null,
 }: DrawerProviderProps) => {
-  const [state, setState] = useState<DrawerState>(initialStateProp || initialState[variant]);
+  const [state, setState] = useState<DrawerState>(
+    initialStateProp || initialState[variant],
+  );
 
   const handleChangeState = (newState: DrawerState) => {
     onStateChange(newState);
@@ -60,7 +62,8 @@ export const DrawerProvider = ({
         clipped,
         drawerWidth: drawerWidthProp,
         LinkComponent,
-        switchState: () => handleChangeState(targetStates[variant][state === "open" ? 0 : 1]),
+        switchState: () =>
+          handleChangeState(targetStates[variant][state === "open" ? 0 : 1]),
         collapse: () => handleChangeState("collapse"),
         close: () => handleChangeState("close"),
         open: () => handleChangeState("open"),

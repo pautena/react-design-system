@@ -1,8 +1,8 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { Action } from "./action";
-import { withContainer } from "../storybook";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import type { Meta, StoryObj } from "@storybook/react";
+import { withContainer } from "../storybook";
+import { Action } from "./action";
 
 export default {
   title: "Components/Inputs/Action",
@@ -29,7 +29,8 @@ export const CustomDescription: Story = {
     description: (
       <Box>
         <Typography>
-          This is a test description<Typography fontWeight="bold">with bold text</Typography>
+          This is a test description
+          <Typography fontWeight="bold">with bold text</Typography>
         </Typography>
       </Box>
     ),

@@ -1,14 +1,14 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { Header } from "./header";
-import { breadcrumbs, tabs, actions } from "./header.dummy";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { TabProvider } from "../tab-provider";
-import { Content } from "../content";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import type { Meta, StoryObj } from "@storybook/react";
+import { Content } from "../content";
+import { TabProvider } from "../tab-provider";
+import { Header } from "./header";
+import { actions, breadcrumbs, tabs } from "./header.dummy";
 
-import { TabPanel } from "../tab-panel";
 import { Label } from "../label";
+import { TabPanel } from "../tab-panel";
 
 export default {
   title: "Components/Data Display/Header",
@@ -155,7 +155,12 @@ export const WithActions: Story = {
 
 export const WithPanelTabs = () => (
   <TabProvider>
-    <Header title="Lorem ipsum" subtitle="Dolor sit amet" tabsMode="panel" tabs={tabs} />
+    <Header
+      title="Lorem ipsum"
+      subtitle="Dolor sit amet"
+      tabsMode="panel"
+      tabs={tabs}
+    />
     <Content>
       <TabPanel index={0}>
         <Typography>Panel Tab 1</Typography>

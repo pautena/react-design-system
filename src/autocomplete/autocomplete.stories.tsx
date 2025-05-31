@@ -1,9 +1,9 @@
-import { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../storybook";
-import { Autocomplete } from "./autocomplete";
 import { faker } from "@faker-js/faker";
 import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
+import type { Meta, StoryObj } from "@storybook/react";
+import { withContainer } from "../storybook";
+import { Autocomplete } from "./autocomplete";
 
 export default {
   title: "Components/Inputs/Autocomplete",
@@ -93,7 +93,11 @@ type WithBackgroundProps = {
 };
 
 export const WithBackground = {
-  render: ({ bgcolor: bgcolorProp, loading, fetching }: WithBackgroundProps) => {
+  render: ({
+    bgcolor: bgcolorProp,
+    loading,
+    fetching,
+  }: WithBackgroundProps) => {
     const { palette } = useTheme();
     const BackgroundColors: Record<"primary" | "secondary", string> = {
       primary: palette.primary.main,

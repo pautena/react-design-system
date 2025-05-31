@@ -1,6 +1,8 @@
-import ListSubheader, { ListSubheaderProps } from "@mui/material/ListSubheader";
-import { useDrawer } from "../drawer-context";
 import { useTheme } from "@mui/material";
+import ListSubheader, {
+  type ListSubheaderProps,
+} from "@mui/material/ListSubheader";
+import { useDrawer } from "../drawer-context";
 
 export type DrawerSubheaderProps = ListSubheaderProps;
 

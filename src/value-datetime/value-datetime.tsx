@@ -1,17 +1,27 @@
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { format } from "date-fns";
-import { BaseValueProps, DefaultPlaceholder, EditableValueProps } from "../value-base";
-import { getValueContentLabelId, ValueContent } from "../value-content";
-import { useEditableValueDisplay, ValueEditButton, ValueEditButtons } from "../value-base";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import { format } from "date-fns";
+import {
+  type BaseValueProps,
+  DefaultPlaceholder,
+  type EditableValueProps,
+} from "../value-base";
+import {
+  ValueEditButton,
+  ValueEditButtons,
+  useEditableValueDisplay,
+} from "../value-base";
+import { ValueContent, getValueContentLabelId } from "../value-content";
 
 export type EditInputType = "datetime" | "date" | "time";
 
-export interface ValueDatetimeProps extends BaseValueProps<Date>, EditableValueProps<Date> {
+export interface ValueDatetimeProps
+  extends BaseValueProps<Date>,
+    EditableValueProps<Date> {
   /**
    * Datetime format
    */
@@ -36,8 +46,14 @@ export const ValueDatetime = ({
   dense,
   onEdit = () => null,
 }: ValueDatetimeProps) => {
-  const { isEditing, editValue, startEdit, cancelEdit, setEditValue, submitEdit } =
-    useEditableValueDisplay(valueProp, onEdit);
+  const {
+    isEditing,
+    editValue,
+    startEdit,
+    cancelEdit,
+    setEditValue,
+    submitEdit,
+  } = useEditableValueDisplay(valueProp, onEdit);
   const id = getValueContentLabelId(label);
   const value = (valueProp && format(valueProp, fmt)) || placeholder;
 

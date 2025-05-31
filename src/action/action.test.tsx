@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "../tests/testing-library";
-import { Action } from "./action";
 import { vi } from "vitest";
+import { fireEvent, render, screen } from "../tests/testing-library";
+import { Action } from "./action";
 
 describe("Action", () => {
   const renderComponent = ({
@@ -35,7 +35,9 @@ describe("Action", () => {
   it("should render the title", () => {
     renderComponent();
 
-    expect(screen.getByRole("heading", { name: "Change Username" })).toBeVisible();
+    expect(
+      screen.getByRole("heading", { name: "Change Username" }),
+    ).toBeVisible();
   });
 
   it("should render the description if is defined", () => {
@@ -79,7 +81,10 @@ describe("Action", () => {
   });
 
   it("should call onAction if the dialog is confirmed with a passphrase", () => {
-    const { onAction } = renderComponent({ confirmable: true, passphrase: "yes" });
+    const { onAction } = renderComponent({
+      confirmable: true,
+      passphrase: "yes",
+    });
 
     fireEvent.click(screen.getByRole("button", { name: "Change" }));
 

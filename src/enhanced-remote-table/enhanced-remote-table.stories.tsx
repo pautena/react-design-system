@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
 import { columns, data } from "../enhanced-table/enhanced-table.mock";
 import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 

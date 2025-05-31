@@ -1,9 +1,9 @@
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import { render, screen } from "../tests/testing-library";
-import { FormDialog } from "./form-dialog";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
+import { render, screen } from "../tests/testing-library";
+import { FormDialog } from "./form-dialog";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -38,10 +38,22 @@ describe("FormDialog", () => {
       >
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <TextField name="message" label="Message" fullWidth required variant="outlined" />
+            <TextField
+              name="message"
+              label="Message"
+              fullWidth
+              required
+              variant="outlined"
+            />
           </Grid>
           <Grid item xs={12}>
-            <TextField name="amount" label="Amount" fullWidth required variant="outlined" />
+            <TextField
+              name="amount"
+              label="Amount"
+              fullWidth
+              required
+              variant="outlined"
+            />
           </Grid>
         </Grid>
       </FormDialog>,
@@ -94,8 +106,14 @@ describe("FormDialog", () => {
   it("should call onSubmit if the form is submited", async () => {
     const { onSubmit } = renderComponent({ open: true });
 
-    await userEvent.type(screen.getByRole("textbox", { name: /message/i }), "this is the message");
-    await userEvent.type(screen.getByRole("textbox", { name: /amount/i }), "100");
+    await userEvent.type(
+      screen.getByRole("textbox", { name: /message/i }),
+      "this is the message",
+    );
+    await userEvent.type(
+      screen.getByRole("textbox", { name: /amount/i }),
+      "100",
+    );
     await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
     expect(onSubmit).toHaveBeenCalledTimes(1);
@@ -128,13 +146,17 @@ describe("FormDialog", () => {
   it("should be able to change the cancel button text", () => {
     renderComponent({ open: true, cancelText: "updated cancel" });
 
-    expect(screen.getByRole("button", { name: /updated cancel/i })).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /updated cancel/i }),
+    ).toBeVisible();
   });
 
   it("should be able to change the submit button text", () => {
     renderComponent({ open: true, submitText: "updated submit" });
 
-    expect(screen.getByRole("button", { name: /updated submit/i })).toBeVisible();
+    expect(
+      screen.getByRole("button", { name: /updated submit/i }),
+    ).toBeVisible();
   });
 
   describe("loading", () => {

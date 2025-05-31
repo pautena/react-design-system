@@ -1,10 +1,10 @@
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import { useGetDefaultThemeColor } from "../utils";
-import { ValueItemElement } from "../value-item";
+import type { ValueItemElement } from "../value-item";
 
 /**
  * Props for the GroupValueCard component.
@@ -48,7 +48,10 @@ export const GroupValueCard = ({
   dense,
 }: GroupValueCardProps) => {
   const { typography } = useTheme();
-  const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
+  const defaultColor = useGetDefaultThemeColor({
+    lightWeight: 200,
+    darkWeight: 800,
+  });
 
   return (
     <Paper
@@ -62,7 +65,11 @@ export const GroupValueCard = ({
         py={dense ? 0.5 : 1}
         lineHeight={dense ? 0 : undefined}
       >
-        <Typography variant={dense ? "body1" : "h6"} role="heading" aria-level={1}>
+        <Typography
+          variant={dense ? "body1" : "h6"}
+          role="heading"
+          aria-level={1}
+        >
           {title}
         </Typography>
         {subtitle && (

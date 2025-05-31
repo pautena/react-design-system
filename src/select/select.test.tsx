@@ -1,8 +1,8 @@
-import { SelectLoaded } from "./select.stories";
-import { render, screen } from "../tests/testing-library";
-import userEvent from "@testing-library/user-event";
-import { Select } from "./select";
 import MenuItem from "@mui/material/MenuItem";
+import userEvent from "@testing-library/user-event";
+import { render, screen } from "../tests/testing-library";
+import { Select } from "./select";
+import { SelectLoaded } from "./select.stories";
 
 describe("Select", () => {
   const renderComponent = ({
@@ -32,7 +32,9 @@ describe("Select", () => {
   it("would render a select with a label", () => {
     renderComponent({ label: "Lorem ipsum" });
 
-    expect(screen.getByRole("combobox", { name: /lorem ipsum/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("combobox", { name: /lorem ipsum/i }),
+    ).toBeInTheDocument();
   });
 
   it("would render the value", () => {
@@ -86,7 +88,9 @@ describe("Select", () => {
   it("would render a menu item for each option", async () => {
     const { options } = renderComponent({ label: "Lorem ipsum" });
 
-    await userEvent.click(screen.getByRole("combobox", { name: /lorem ipsum/i }));
+    await userEvent.click(
+      screen.getByRole("combobox", { name: /lorem ipsum/i }),
+    );
 
     options.forEach((option) => {
       expect(screen.getByRole("option", { name: option })).toBeInTheDocument();

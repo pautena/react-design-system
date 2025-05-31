@@ -1,11 +1,11 @@
-import { useState } from "react";
 import CheckIcon from "@mui/icons-material/Check";
 import ClearIcon from "@mui/icons-material/Clear";
-import { SxProps, Theme, useTheme } from "@mui/material/styles";
+import EditIcon from "@mui/icons-material/Edit";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
-import EditIcon from "@mui/icons-material/Edit";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
+import { useState } from "react";
 
 export interface ValueEditButtonsProps {
   onClickCancel: () => void;
@@ -13,7 +13,11 @@ export interface ValueEditButtonsProps {
   sx?: SxProps<Theme>;
 }
 
-export const ValueEditButtons = ({ onClickCancel, onClickSubmit, sx }: ValueEditButtonsProps) => {
+export const ValueEditButtons = ({
+  onClickCancel,
+  onClickSubmit,
+  sx,
+}: ValueEditButtonsProps) => {
   return (
     <InputAdornment position="end" sx={sx}>
       <Button
@@ -61,7 +65,14 @@ export const useEditableValueDisplay = <T,>(
     cancelEdit();
   };
 
-  return { isEditing, cancelEdit, editValue, setEditValue, startEdit, submitEdit };
+  return {
+    isEditing,
+    cancelEdit,
+    editValue,
+    setEditValue,
+    startEdit,
+    submitEdit,
+  };
 };
 
 export interface ValueEditButtonProps {

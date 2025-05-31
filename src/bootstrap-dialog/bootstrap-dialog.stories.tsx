@@ -1,8 +1,8 @@
 import DialogContentText from "@mui/material/DialogContentText";
-import { Meta, StoryObj } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { BootstrapDialog } from "./bootstrap-dialog";
+import type { Meta, StoryObj } from "@storybook/react";
 import { StoryDialogManager } from "../storybook";
+import { BootstrapDialog } from "./bootstrap-dialog";
 
 const onClickAction = action("On click dialog action");
 
@@ -12,7 +12,9 @@ export default {
   parameters: {
     layout: "centered",
   },
-  render: (args) => <StoryDialogManager component={BootstrapDialog} args={args} />,
+  render: (args) => (
+    <StoryDialogManager component={BootstrapDialog} args={args} />
+  ),
 } satisfies Meta<typeof BootstrapDialog>;
 type Story = StoryObj<typeof BootstrapDialog>;
 
@@ -21,8 +23,8 @@ export const Default: Story = {
     title: "Lorem ipsum",
     children: (
       <DialogContentText>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
       </DialogContentText>
     ),
   },

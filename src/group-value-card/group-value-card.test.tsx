@@ -1,6 +1,6 @@
+import { Typography } from "@mui/material";
 import { render, screen } from "../tests/testing-library";
 import { GroupValueCardDummy } from "./group-value-card.mock";
-import { Typography } from "@mui/material";
 
 describe("GroupValueCard", () => {
   const renderComponent = ({
@@ -23,13 +23,17 @@ describe("GroupValueCard", () => {
     it("would not render a subtitle if it's not provided", () => {
       renderComponent({ subtitle: undefined });
 
-      expect(screen.queryByRole("heading", { level: 2 })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("heading", { level: 2 }),
+      ).not.toBeInTheDocument();
     });
 
     it("would render a subtitle if it's provided", () => {
       renderComponent({ subtitle: "Hi. I am batman" });
 
-      expect(screen.getByRole("heading", { level: 2, name: /hi. i am batman/i })).toBeVisible();
+      expect(
+        screen.getByRole("heading", { level: 2, name: /hi. i am batman/i }),
+      ).toBeVisible();
     });
   });
 

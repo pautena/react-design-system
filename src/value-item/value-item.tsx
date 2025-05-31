@@ -1,11 +1,13 @@
-import Grid, { GridProps } from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import { ResponsiveStyleValue } from "@mui/system";
-import { PropsWithChildren, FunctionComponent, ReactElement } from "react";
+import Grid, { type GridProps } from "@mui/material/Grid";
+import type { ResponsiveStyleValue } from "@mui/system";
+import type { FunctionComponent, PropsWithChildren, ReactElement } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 
 export type ValueItemProps = PropsWithChildren<
-  Omit<GridProps, "item" | "container"> & { bordered?: ResponsiveStyleValue<boolean> }
+  Omit<GridProps, "item" | "container"> & {
+    bordered?: ResponsiveStyleValue<boolean>;
+  }
 >;
 export type ValueItemComponent = FunctionComponent<ValueItemProps>;
 export type ValueItemElement = ReactElement<ValueItemProps, ValueItemComponent>;
@@ -15,7 +17,10 @@ export const valueItemClasses = {
   content: "RdsValueItem-content",
 };
 
-const resolveBorderStyle = (bordered: ResponsiveStyleValue<boolean>, color: string) => {
+const resolveBorderStyle = (
+  bordered: ResponsiveStyleValue<boolean>,
+  color: string,
+) => {
   const borderStyle = `solid ${color} 1px`;
   const noBorder = "none";
 
@@ -46,7 +51,10 @@ export const ValueItem: ValueItemComponent = ({
   bordered = true,
   ...rest
 }: ValueItemProps) => {
-  const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
+  const defaultColor = useGetDefaultThemeColor({
+    lightWeight: 200,
+    darkWeight: 800,
+  });
   const borderLeft = resolveBorderStyle(bordered, defaultColor);
   return (
     <Grid item className={valueItemClasses.root} {...rest}>
