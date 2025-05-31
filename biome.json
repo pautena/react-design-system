@@ -26,7 +26,8 @@
 				"noArrayIndexKey": "off"
 			},
 			"a11y": {
-				"useSemanticElements": "off"
+				"useSemanticElements": "off",
+				"useValidAriaRole": "off"
 			},
 			"performance": {
 				"noAccumulatingSpread": "off"

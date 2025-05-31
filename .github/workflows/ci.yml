@@ -22,6 +22,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-      
       - run: yarn
-      - run: yarn check
-      - run: yarn check:ts
-      - run: yarn test
+      - run: yarn run check
+      - run: yarn run check:ts
+      - run: yarn run test

@@ -92,6 +92,7 @@ export const Label = ({
 			whiteSpace="nowrap"
 			borderRadius={2}
 			aria-label={`${text} ${variant} label`}
+			role="label"
 			py={0}
 			px={1}
 			sx={{ cursor: "default", ...sx }}
