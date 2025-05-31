@@ -208,6 +208,7 @@ export const SearchInput = <T,>({
                     return (
                       <Grid key={id} size={{ xs: 12 }}>
                         <DateTimePicker
+                          enableAccessibleFieldDOMStructure={false}
                           label={label}
                           format={dateFormat}
                           value={data[id]}
