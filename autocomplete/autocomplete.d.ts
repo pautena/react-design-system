@@ -36,4 +36,4 @@ export interface AutocompleteProps<T, Multiple extends boolean | undefined, Disa
 /**
  * Autocomplete component that wraps the MUI Autocomplete component with additional props.
  */
-export declare const Autocomplete: <T, Multiple extends boolean | undefined, DisableClearable extends boolean | undefined, FreeSolo extends boolean | undefined, ChipComponent extends React.ElementType = "div">(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>) => import("react/jsx-runtime").JSX.Element;
+export declare const Autocomplete: <T, Multiple extends boolean | undefined, DisableClearable extends boolean | undefined, FreeSolo extends boolean | undefined, ChipComponent extends React.ElementType = ChipTypeMap["defaultComponent"]>(props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent>) => import("react/jsx-runtime").JSX.Element;
