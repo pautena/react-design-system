@@ -1,5 +1,5 @@
 import DialogContentText from "@mui/material/DialogContentText";
-import { action } from "@storybook/addon-actions";
+import { action } from "storybook/actions";
 import type { Meta, StoryObj } from "@storybook/react";
 import { StoryDialogManager } from "../storybook";
 import { BootstrapDialog } from "./bootstrap-dialog";
