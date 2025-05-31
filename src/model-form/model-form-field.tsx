@@ -22,7 +22,6 @@ import type {
   ModelFieldTypes,
 } from "../generators/generators.model";
 import { GroupValueCard } from "../group-value-card";
-import { useGetDefaultThemeColor } from "../utils";
 
 export interface ModelFormField {
   field: ModelField;
@@ -76,11 +75,6 @@ export const ModelFormField = ({
   const handleDateChange = (value: FieldType | null, id: string) => {
     onChangeValue([...path, id], value);
   };
-
-  const defaultColor = useGetDefaultThemeColor({
-    lightWeight: 200,
-    darkWeight: 800,
-  });
 
   const {
     id,
@@ -188,6 +182,7 @@ export const ModelFormField = ({
   } else if (type === "date") {
     fieldInput = (
       <DesktopDatePicker
+        enableAccessibleFieldDOMStructure={false}
         label={name}
         format={field.format}
         value={value}
@@ -205,6 +200,7 @@ export const ModelFormField = ({
   } else if (type === "time") {
     fieldInput = (
       <TimePicker
+        enableAccessibleFieldDOMStructure={false}
         label={name}
         format={field.format}
         value={value}
@@ -222,6 +218,7 @@ export const ModelFormField = ({
   } else if (type === "datetime") {
     fieldInput = (
       <DateTimePicker
+        enableAccessibleFieldDOMStructure={false}
         label={name}
         format={field.format}
         value={value}
@@ -272,7 +269,7 @@ export const ModelFormField = ({
   }
 
   return (
-    <Grid item key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+    <Grid key={id} size={{ xs, sm, md, lg, xl }}>
       {fieldInput}
     </Grid>
   );

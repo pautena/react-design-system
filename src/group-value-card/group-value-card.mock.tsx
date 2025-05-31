@@ -12,7 +12,7 @@ export const GroupValueCardDummy = ({
 }: GroupValueCardProps & { editable?: boolean }) => {
   return (
     <GroupValueCard {...rest} dense={dense}>
-      <ValueItem xs={12} sm={6} md={4}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 4 }}>
         <ValueText
           editable={editable}
           dense={dense}
@@ -20,10 +20,10 @@ export const GroupValueCardDummy = ({
           value="Lorem ipsum sit amet"
         />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={2}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 2 }}>
         <ValueBoolean editable={editable} dense={dense} label="Enabled" value />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={3}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
         <ValueText
           editable={editable}
           dense={dense}
@@ -31,7 +31,7 @@ export const GroupValueCardDummy = ({
           value="1200"
         />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={3}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
         <ValueText
           editable={editable}
           dense={dense}
@@ -39,7 +39,7 @@ export const GroupValueCardDummy = ({
           value="EUR"
         />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={6}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 6 }}>
         <ValueText
           editable={editable}
           dense={dense}
@@ -47,7 +47,7 @@ export const GroupValueCardDummy = ({
           value=" Does it come in black? It's ends here. Hero can be anyone"
         />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={3}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
         <ValueText
           editable={editable}
           dense={dense}
@@ -55,7 +55,7 @@ export const GroupValueCardDummy = ({
           value="Open"
         />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={3}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
         <ValueText
           editable={editable}
           dense={dense}
@@ -63,7 +63,7 @@ export const GroupValueCardDummy = ({
           value="2144"
         />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={3}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
         <ValueRating
           editable={editable}
           dense={dense}
@@ -71,7 +71,7 @@ export const GroupValueCardDummy = ({
           value={3}
         />
       </ValueItem>
-      <ValueItem xs={12} sm={6} md={3}>
+      <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
         <ValueDatetime
           editable={editable}
           dense={dense}

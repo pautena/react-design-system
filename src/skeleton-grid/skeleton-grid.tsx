@@ -22,7 +22,7 @@ export const SkeletonGrid = ({ size = 20 }: SkeletonGridProps) => {
   return (
     <Grid container spacing={2}>
       {newArrayWithSize(size, 0).map((_, i) => (
-        <Grid item key={i} xs={4}>
+        <Grid key={i} size={{ xs: 4 }}>
           <SkeletonCard width={1} />
         </Grid>
       ))}

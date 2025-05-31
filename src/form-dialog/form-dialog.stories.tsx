@@ -20,7 +20,7 @@ export const Default: Story = {
     title: "Lorem ipsum",
     children: (
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField
             name="message"
             label="Message"
@@ -29,7 +29,7 @@ export const Default: Story = {
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={{ xs: 12 }}>
           <TextField
             name="amount"
             label="Amount"

@@ -84,7 +84,7 @@ export const TextField = ({
   return (
     <FormControl sx={hexColorSx} fullWidth={fullWidth}>
       <InputLabel
-        size={size === "small" ? "small" : "normal"}
+        size={size === "small" ? "small" : "medium"}
         id={inputLabelId}
         htmlFor={id}
         {...InputLabelProps}

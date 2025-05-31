@@ -74,6 +74,7 @@ export const ValueDatetime = ({
     >
       {isEditing ? (
         <EditPickerComponent
+          enableAccessibleFieldDOMStructure={false}
           value={editValue}
           format={fmt}
           label={label}

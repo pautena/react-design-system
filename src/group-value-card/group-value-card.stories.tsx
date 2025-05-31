@@ -58,7 +58,7 @@ export const WihtoutSubtitle: Story = {
 
 export const WithImage = () => (
   <GroupValueCard centered title="Hello world" subtitle="Lorem ipsum sit amet">
-    <ValueItem xs={12} bordered={false}>
+    <ValueItem size={{ xs: 12 }} bordered={false}>
       <ValueImage label="Lorem ipsum" value={workInProgressImg} />
     </ValueItem>
   </GroupValueCard>
@@ -66,7 +66,7 @@ export const WithImage = () => (
 
 export const WithDataTable = () => (
   <GroupValueCard title="Hello world" subtitle="Lorem ipsum sit amet">
-    <ValueItem xs={12} bordered={false}>
+    <ValueItem size={{ xs: 12 }} bordered={false}>
       <ValueContent label="lorem ipsum">
         <DatatablePlaceholder />
       </ValueContent>

@@ -66,7 +66,7 @@ export const ListPanel = ({
   return (
     <ListPanelContextProvider value={selectedItem}>
       <Grid container bgcolor={bgColor} height={1}>
-        <Grid item xs={colBreakpoint} pl={1} height={1}>
+        <Grid size={{ xs: colBreakpoint }} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
             {items.map(({ id, text, tooltip, path, href }) => {
               const linkProps =
@@ -104,7 +104,7 @@ export const ListPanel = ({
             })}
           </List>
         </Grid>
-        <Grid item xs={12 - colBreakpoint} pl={1} py={1} pr={1}>
+        <Grid size={{ xs: 12 - colBreakpoint }} pl={1} py={1} pr={1}>
           <Paper
             elevation={0}
             sx={{
