@@ -272,7 +272,7 @@ export const ModelFormField = ({
   }
 
   return (
-    <Grid item key={id} xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
+    <Grid key={id} size={{ xs, sm, md, lg, xl }}>
       {fieldInput}
     </Grid>
   );

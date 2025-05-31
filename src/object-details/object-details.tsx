@@ -76,7 +76,7 @@ const ObjectArrayGroup = ({
 
   return (
     <GroupValueCard title={name} subtitle={description} dense={dense}>
-      <Grid item xs={12}>
+      <Grid size={{ xs: 12 }}>
         <DataGrid
           rows={rows}
           columns={columns}
@@ -116,15 +116,7 @@ const ObjectDetailGroup = ({
         const { id, xs, sm, md, lg, xl } = field;
         const bordered = breakpointsCounter.increment(field);
         return (
-          <ValueItem
-            key={id}
-            xs={xs}
-            sm={sm}
-            md={md}
-            lg={lg}
-            xl={xl}
-            bordered={bordered}
-          >
+          <ValueItem key={id} size={{ xs, sm, md, lg, xl }} bordered={bordered}>
             {singleDetailValueFactory(field, instance, { dense })}
           </ValueItem>
         );
@@ -157,7 +149,7 @@ export const ObjectDetails = <T extends BasicModelInstance>({
         if (type === "group") {
           breakpointsCounter.increment({ xs: 12 });
           return (
-            <Grid item key={id} xs={12}>
+            <Grid size={{ xs: 12 }} key={id}>
               <ObjectDetailGroup
                 field={field}
                 instance={instance[id] as GroupInstanceType}
@@ -170,7 +162,7 @@ export const ObjectDetails = <T extends BasicModelInstance>({
         if (type === "group[]") {
           breakpointsCounter.increment({ xs: 12 });
           return (
-            <Grid item key={id} xs={12}>
+            <Grid size={{ xs: 12 }} key={id}>
               <ObjectArrayGroup
                 field={field}
                 instance={instance[id] as any}
@@ -182,15 +174,7 @@ export const ObjectDetails = <T extends BasicModelInstance>({
 
         const bordered = breakpointsCounter.increment(field);
         return (
-          <ValueItem
-            key={id}
-            xs={xs}
-            sm={sm}
-            md={md}
-            lg={lg}
-            xl={xl}
-            bordered={bordered}
-          >
+          <ValueItem key={id} size={{ xs, sm, md, lg, xl }} bordered={bordered}>
             {singleDetailValueFactory(field, instance, { dense })}
           </ValueItem>
         );

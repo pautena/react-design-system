@@ -57,7 +57,7 @@ export const ValueItem: ValueItemComponent = ({
   });
   const borderLeft = resolveBorderStyle(bordered, defaultColor);
   return (
-    <Grid item className={valueItemClasses.root} {...rest}>
+    <Grid className={valueItemClasses.root} {...rest}>
       <Box className={valueItemClasses.content} px={1} borderLeft={borderLeft}>
         {children}
       </Box>

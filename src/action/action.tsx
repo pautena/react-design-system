@@ -2,7 +2,7 @@ import Button from "@mui/material/Button";
 import DialogContentText from "@mui/material/DialogContentText";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import type { Variant } from "@mui/material/styles/createTypography";
+import type { TypographyVariant } from "@mui/material/styles/createTypography";
 import type { ReactElement } from "react";
 import { ConfirmDialog } from "../confirm-dialog";
 import { useDialog } from "../dialog";
@@ -24,7 +24,7 @@ export interface ActionProps {
   /**
    * The variant of the title.
    */
-  titleVariant?: Extract<Variant, "h4" | "h5" | "h6">;
+  titleVariant?: Extract<TypographyVariant, "h4" | "h5" | "h6">;
 
   /**
    * The description of the action.
@@ -34,7 +34,7 @@ export interface ActionProps {
   /**
    * The variant of the description.
    */
-  descriptionVariant?: Variant;
+  descriptionVariant?: TypographyVariant;
 
   /**
    * The helper text for the action.
@@ -44,7 +44,7 @@ export interface ActionProps {
   /**
    * The variant of the helper text.
    */
-  helperTextVariant?: Variant;
+  helperTextVariant?: TypographyVariant;
 
   /**
    * The text for the action button.
@@ -113,15 +113,15 @@ export const Action = ({
   return (
     <>
       <Grid container spacing={1}>
-        <Grid item xs={12} mb={2}>
+        <Grid size={{ xs: 12 }} mb={2}>
           <ActionHeader title={title} titleVariant={titleVariant} />
         </Grid>
         {description && (
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <Typography variant={descriptionVariant}>{description}</Typography>
           </Grid>
         )}
-        <Grid item xs={12} mt={1}>
+        <Grid size={{ xs: 12 }} mt={1}>
           <Button
             color={variant}
             variant="contained"
@@ -131,7 +131,7 @@ export const Action = ({
           </Button>
         </Grid>
         {helperText && (
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <Typography variant={helperTextVariant}>{helperText}</Typography>
           </Grid>
         )}

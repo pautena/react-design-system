@@ -48,9 +48,7 @@ const CustomPickersDayBackground = styled(Box, {
   };
 }) as React.ComponentType<CustomPickerDayProps>;
 
-const Day = (
-  props: PickersDayProps<Date> & { dateRange?: DateRange | null },
-) => {
+const Day = (props: PickersDayProps & { dateRange?: DateRange | null }) => {
   const { day, dateRange, ...other } = props;
 
   if (dateRange == null) {

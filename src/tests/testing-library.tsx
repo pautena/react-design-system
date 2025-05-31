@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@emotion/react";
 import { type PaletteMode, type Theme, createTheme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import {
   type RenderOptions,
   type RenderResult,

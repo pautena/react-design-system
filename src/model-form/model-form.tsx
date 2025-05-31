@@ -58,7 +58,7 @@ export const ModelForm = <T extends BasicModelInstance>({
           onChangeValue={setKeyValue}
         />
       ))}
-      <Grid item xs={12}>
+      <Grid size={{ xs: 12 }}>
         <Button
           type="submit"
           variant="contained"

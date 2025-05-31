@@ -1,6 +1,6 @@
 import { Box, Button, type SxProps, type Theme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 /* eslint-disable react/display-name */
 import { type FunctionComponent, useState } from "react";
 import { action } from "storybook/actions";

@@ -37,7 +37,7 @@ describe("FormDialog", () => {
         submitText={submitText}
       >
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               name="message"
               label="Message"
@@ -46,7 +46,7 @@ describe("FormDialog", () => {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               name="amount"
               label="Amount"

@@ -191,7 +191,7 @@ export const SearchInput = <T,>({
                 filters.map(({ id, label, type }) => {
                   if (type === "boolean") {
                     return (
-                      <Grid key={id} item xs={12}>
+                      <Grid key={id} size={{ xs: 12 }}>
                         <FormGroup>
                           <FormControlLabel
                             control={<Checkbox />}
@@ -206,7 +206,7 @@ export const SearchInput = <T,>({
 
                   if (type === "datetime") {
                     return (
-                      <Grid key={id} item xs={12}>
+                      <Grid key={id} size={{ xs: 12 }}>
                         <DateTimePicker
                           label={label}
                           format={dateFormat}
@@ -224,7 +224,7 @@ export const SearchInput = <T,>({
                   }
 
                   return (
-                    <Grid key={id} item xs={12}>
+                    <Grid key={id} size={{ xs: 12 }}>
                       <TextField
                         type={type}
                         size="small"
@@ -243,7 +243,7 @@ export const SearchInput = <T,>({
                     </Grid>
                   );
                 })}
-              <Grid item xs={12} display="flex" justifyContent="flex-end">
+              <Grid size={{ xs: 12 }} display="flex" justifyContent="flex-end">
                 <Button
                   color="error"
                   onClick={() => setExpanded(false)}

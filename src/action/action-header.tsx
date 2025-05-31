@@ -1,13 +1,12 @@
 import Typography from "@mui/material/Typography";
-import { useTheme } from "@mui/material/styles";
-import type { Variant } from "@mui/material/styles/createTypography";
+import { type TypographyVariant, useTheme } from "@mui/material/styles";
 
 type ActionVariant = "primary" | "error" | "warning" | "success";
 
 export interface ActionHeaderProps {
   variant?: ActionVariant;
   title: string;
-  titleVariant?: Extract<Variant, "h4" | "h5" | "h6">;
+  titleVariant?: Extract<TypographyVariant, "h4" | "h5" | "h6">;
 }
 
 export const ActionHeader = ({
