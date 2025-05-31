@@ -1,5 +1,5 @@
-import { ReactNode } from '../../node_modules/react';
 import { SelectInputProps } from '@mui/material/Select/SelectInput';
+import { ReactNode } from '../../node_modules/react';
 export type SelectSize = "small" | "medium";
 export interface SelectProps<T> {
     /**

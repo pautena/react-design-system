@@ -1,5 +1,5 @@
-import { PropsWithChildren } from '../../node_modules/react';
 import { SxProps, Theme } from '@mui/material/styles';
+import { PropsWithChildren } from '../../node_modules/react';
 /**
  * Props for the CenterContainer component.
  */

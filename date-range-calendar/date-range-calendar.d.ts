@@ -18,5 +18,5 @@ export interface DateRangeCalendarProps {
 /**
  * A Date Range Calendar component that allows users to select a range of dates.
  */
-export declare const DateRangeCalendar: ({ defaultValue, onValueChange }: DateRangeCalendarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const DateRangeCalendar: ({ defaultValue, onValueChange, }: DateRangeCalendarProps) => import("react/jsx-runtime").JSX.Element;
 export {};

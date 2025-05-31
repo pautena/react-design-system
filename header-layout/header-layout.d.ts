@@ -1,7 +1,7 @@
-import { PlaceholderIcon } from '../placeholder';
-import { HeaderProps } from '../header';
-import { ContentProps } from '../content';
 import { JSXElementConstructor, PropsWithChildren, ReactElement } from '../../node_modules/react';
+import { ContentProps } from '../content';
+import { HeaderProps } from '../header';
+import { PlaceholderIcon } from '../placeholder';
 /**
  * Interface representing the slots for the HeaderLayout component.
  */

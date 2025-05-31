@@ -15,4 +15,4 @@ export type ContentPlaceholderProps = PropsWithChildren<{
 /**
  * A component that serves as a placeholder for content, displaying a skeleton grid.
  */
-export declare const ContentPlaceholder: ({ size, children, p }: ContentPlaceholderProps) => import("react/jsx-runtime").JSX.Element;
+export declare const ContentPlaceholder: ({ size, children, p, }: ContentPlaceholderProps) => import("react/jsx-runtime").JSX.Element;

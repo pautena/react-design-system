@@ -10,7 +10,7 @@ export interface PlaceholderIconArgs {
     size: number;
     color: IconColor;
 }
-export type PlaceholderIcon = ({ size, color }: PlaceholderIconArgs) => ReactElement;
+export type PlaceholderIcon = ({ size, color, }: PlaceholderIconArgs) => ReactElement;
 export interface PlaceholderProps {
     title: string;
     subtitle: string;

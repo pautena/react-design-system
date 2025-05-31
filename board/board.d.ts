@@ -22,4 +22,4 @@ export type BoardProps = PropsWithChildren<{
  * It supports rendering an array of content lines or a single content string.
  * Additionally, it provides a button to copy the content to the clipboard.
  */
-export declare const Board: ({ content: contentProp, spacing, children, sx }: BoardProps) => import("react/jsx-runtime").JSX.Element;
+export declare const Board: ({ content: contentProp, spacing, children, sx, }: BoardProps) => import("react/jsx-runtime").JSX.Element;

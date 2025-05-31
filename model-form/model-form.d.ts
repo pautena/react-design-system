@@ -1,4 +1,4 @@
-import { Model, BasicModelInstance } from '../generators';
+import { BasicModelInstance, Model } from '../generators';
 export interface ModelFormProps<T extends BasicModelInstance> {
     model: Model;
     dense?: boolean;

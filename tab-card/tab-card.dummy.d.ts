@@ -11,4 +11,4 @@ export interface TabCardDummyProps {
     initialTab: number;
     onChangeTab: (tab: TabData, index: number) => void;
 }
-export declare function TabCardDummy({ tabs, initialTab, onChangeTab }: TabCardDummyProps): import("react/jsx-runtime").JSX.Element;
+export declare function TabCardDummy({ tabs, initialTab, onChangeTab, }: TabCardDummyProps): import("react/jsx-runtime").JSX.Element;

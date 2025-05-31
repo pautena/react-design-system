@@ -1,5 +1,5 @@
-import { BaseValueProps } from '../value-base';
 import { LabelVariant } from '../label';
+import { BaseValueProps } from '../value-base';
 export type ValueLabelProps = BaseValueProps<string | number | string[] | number[]> & {
     variant?: LabelVariant | LabelVariant[];
     color?: string | string[];

@@ -14,4 +14,4 @@ export interface SkeletonCardProps {
 /**
  * SkeletonCard component renders a skeleton loading placeholder for a card.
  */
-export declare const SkeletonCard: ({ width, animation }: SkeletonCardProps) => import("react/jsx-runtime").JSX.Element;
+export declare const SkeletonCard: ({ width, animation, }: SkeletonCardProps) => import("react/jsx-runtime").JSX.Element;

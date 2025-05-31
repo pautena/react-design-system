@@ -4,7 +4,7 @@ export interface ValueEditButtonsProps {
     onClickSubmit: () => void;
     sx?: SxProps<Theme>;
 }
-export declare const ValueEditButtons: ({ onClickCancel, onClickSubmit, sx }: ValueEditButtonsProps) => import("react/jsx-runtime").JSX.Element;
+export declare const ValueEditButtons: ({ onClickCancel, onClickSubmit, sx, }: ValueEditButtonsProps) => import("react/jsx-runtime").JSX.Element;
 /**
  * Hook to manage the editing behaviour
  */

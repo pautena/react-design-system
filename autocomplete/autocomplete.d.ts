@@ -1,6 +1,6 @@
 import { AutocompleteProps as MuiAutocompleteProps } from '@mui/material/Autocomplete';
-import { default as React } from '../../node_modules/react';
 import { ChipTypeMap } from '@mui/material/Chip';
+import { default as React } from '../../node_modules/react';
 /**
  * Props for the Autocomplete component.
  */

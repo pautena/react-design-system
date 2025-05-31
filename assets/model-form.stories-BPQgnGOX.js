@@ -1,0 +1,19 @@
+import{m,c as g}from"./generators.mock-CSEH5u_b.js";import{f as F,a as x}from"./storybook-BhLlBB8C.js";import{M}from"./model-form-hpU7rCqp.js";import"./chunk-TVFJBHBT-BUrEn1b-.js";import"./arrays-DN8njEnP.js";import"./_has-aTAOOdsQ.js";import"./jsx-runtime-D_zvdyIk.js";import"./index-B-lxVbXh.js";import"./v4-CtRu48qb.js";import"./index-MPVjHJeJ.js";import"./notification-center.provider-NRwxa4Yv.js";import"./ButtonBase-BNEyy1UI.js";import"./generateUtilityClasses-C0mA1QAX.js";import"./defaultTheme-D1CkU4eW.js";import"./index-RWZtYoiK.js";import"./extendSxProp-CacC3vWi.js";import"./emotion-react.browser.esm-B1ab5vTn.js";import"./memoTheme-L0vtuW4h.js";import"./createSimplePaletteValueFilter-C8wpUTih.js";import"./DefaultPropsProvider-DsKJO0Hi.js";import"./capitalize-BKnSthTY.js";import"./resolveComponentProps-D7k8s6fM.js";import"./useTheme-CkEAvl6p.js";import"./useSlot-D_Ed8wEH.js";import"./ClickAwayListener-CSxt-yVS.js";import"./Grow-CF5vml_o.js";import"./index-vJCRx9DD.js";import"./index-Bzm33-PM.js";import"./Paper-DuuDja31.js";import"./Close-Bd7fRRpH.js";import"./IconButton-poK4IEU9.js";import"./CircularProgress-D3NUXaEm.js";import"./Box-CzrcP6gm.js";import"./format-CAAd5Y45.js";import"./useThemeProps-BbkvGCaA.js";import"./Button-Dyh-ErXE.js";import"./group-value-card-CyvGOzjB.js";import"./theme-BJtnXcPW.js";import"./Grid-Ca03CLp9.js";import"./OutlinedInput-BXBLTviT.js";import"./useFormControl-DTLAn0zY.js";import"./isHostComponent-DVu5iVWx.js";import"./ownerWindow-BRjH2MYD.js";import"./debounce-Be36O1Ab.js";import"./Select-uBt0DaXV.js";import"./index-BZJhLVn1.js";import"./useSlotProps-D0WfOXpj.js";import"./Popover-WKtsi3V2.js";import"./Modal-B5E3roGC.js";import"./Portal-DImdN-2c.js";import"./Fade-DZMeUxL7.js";import"./List-C4j8HkW9.js";import"./useControlled-DTf_Avw_.js";import"./ArrowDropDown-r6vbINwi.js";import"./MenuItem-Dxx1qaOY.js";import"./listItemIconClasses-C3Q9HATY.js";import"./listItemTextClasses-B6dAwr7X.js";import"./dividerClasses-CB1aCiuG.js";import"./FormControlLabel-DNaxlze8.js";import"./SwitchBase-CfEbeh1l.js";import"./ListItemText-BN8Ae5SM.js";import"./TimePicker-DnmaGtHR.js";import"./DateTimePicker-BETkMyzq.js";import"./DateCalendar-D8U9ocXv.js";import"./useEnhancedEffect-yFrINCwp.js";import"./useId-DeR95Z4x.js";import"./Tabs-DIk31egv.js";import"./DialogContent-CdRmrlJR.js";import"./listItemButtonClasses-CXpQu9pe.js";import"./Chip-CjcHaI21.js";import"./Divider-DebnE-j7.js";import"./visuallyHidden-Dan1xhjv.js";import"./FormHelperText-B6Sia_IJ.js";import"./TextField-DU014Dqo.js";import"./InputAdornment-CwaaKf2e.js";import"./Popper-DuvlwXSO.js";const u=g(m),qo={title:"Generators/ModelForm",component:M,decorators:[F(2),x],parameters:{layout:"fullscreen"}},o={args:{model:m,saveButtonText:"add"}},r={args:{model:m,initialValues:u,saveButtonText:"update"}},t={args:{model:m,dense:!0,initialValues:u,saveButtonText:"update"}};var p,i,e;o.parameters={...o.parameters,docs:{...(p=o.parameters)==null?void 0:p.docs,source:{originalSource:`{
+  args: {
+    model: mockModel,
+    saveButtonText: "add"
+  }
+}`,...(e=(i=o.parameters)==null?void 0:i.docs)==null?void 0:e.source}}};var a,s,n;r.parameters={...r.parameters,docs:{...(a=r.parameters)==null?void 0:a.docs,source:{originalSource:`{
+  args: {
+    model: mockModel,
+    initialValues,
+    saveButtonText: "update"
+  }
+}`,...(n=(s=r.parameters)==null?void 0:s.docs)==null?void 0:n.source}}};var d,c,l;t.parameters={...t.parameters,docs:{...(d=t.parameters)==null?void 0:d.docs,source:{originalSource:`{
+  args: {
+    model: mockModel,
+    dense: true,
+    initialValues,
+    saveButtonText: "update"
+  }
+}`,...(l=(c=t.parameters)==null?void 0:c.docs)==null?void 0:l.source}}};const Co=["AddForm","UpdateForm","UpdateFormDense"];export{o as AddForm,r as UpdateForm,t as UpdateFormDense,Co as __namedExportsOrder,qo as default};
