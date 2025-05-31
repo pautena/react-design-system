@@ -1,39 +1,39 @@
-import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import { useGetDefaultThemeColor } from "../utils";
-import type { ValueItemElement } from "../value-item";
+import { ValueItemElement } from "../value-item";
 
 /**
  * Props for the GroupValueCard component.
  */
 export interface GroupValueCardProps {
-	/**
-	 * The main title of the card.
-	 */
-	title: string;
+  /**
+   * The main title of the card.
+   */
+  title: string;
 
-	/**
-	 * An optional subtitle for the card.
-	 */
-	subtitle?: string;
+  /**
+   * An optional subtitle for the card.
+   */
+  subtitle?: string;
 
-	/**
-	 * If true, the content will be centered.
-	 */
-	centered?: boolean;
+  /**
+   * If true, the content will be centered.
+   */
+  centered?: boolean;
 
-	/**
-	 * The children elements to be rendered inside the card.
-	 */
-	children: ValueItemElement | ValueItemElement[];
+  /**
+   * The children elements to be rendered inside the card.
+   */
+  children: ValueItemElement | ValueItemElement[];
 
-	/**
-	 * If true, the card will have a denser layout.
-	 */
-	dense?: boolean;
+  /**
+   * If true, the card will have a denser layout.
+   */
+  dense?: boolean;
 }
 
 /**
@@ -41,56 +41,49 @@ export interface GroupValueCardProps {
  * It supports customization for dense layout and centered content.
  */
 export const GroupValueCard = ({
-	title,
-	subtitle,
-	centered,
-	children,
-	dense,
+  title,
+  subtitle,
+  centered,
+  children,
+  dense,
 }: GroupValueCardProps) => {
-	const { typography } = useTheme();
-	const defaultColor = useGetDefaultThemeColor({
-		lightWeight: 200,
-		darkWeight: 800,
-	});
+  const { typography } = useTheme();
+  const defaultColor = useGetDefaultThemeColor({ lightWeight: 200, darkWeight: 800 });
 
-	return (
-		<Paper
-			sx={{
-				paddingBottom: dense ? 0 : 1,
-			}}
-		>
-			<Box
-				bgcolor={defaultColor}
-				px={dense ? 1 : 2}
-				py={dense ? 0.5 : 1}
-				lineHeight={dense ? 0 : undefined}
-			>
-				<Typography
-					variant={dense ? "body1" : "h6"}
-					role="heading"
-					aria-level={1}
-				>
-					{title}
-				</Typography>
-				{subtitle && (
-					<Typography
-						variant={dense ? "caption" : "body2"}
-						role="heading"
-						aria-level={2}
-						lineHeight={dense ? typography.pxToRem(15) : undefined}
-					>
-						{subtitle}
-					</Typography>
-				)}
-			</Box>
-			<Grid
-				container
-				padding={1}
-				rowSpacing={dense ? 1 : 2}
-				justifyContent={centered ? "center" : "flex-start"}
-			>
-				{children}
-			</Grid>
-		</Paper>
-	);
+  return (
+    <Paper
+      sx={{
+        paddingBottom: dense ? 0 : 1,
+      }}
+    >
+      <Box
+        bgcolor={defaultColor}
+        px={dense ? 1 : 2}
+        py={dense ? 0.5 : 1}
+        lineHeight={dense ? 0 : undefined}
+      >
+        <Typography variant={dense ? "body1" : "h6"} role="heading" aria-level={1}>
+          {title}
+        </Typography>
+        {subtitle && (
+          <Typography
+            variant={dense ? "caption" : "body2"}
+            role="heading"
+            aria-level={2}
+            lineHeight={dense ? typography.pxToRem(15) : undefined}
+          >
+            {subtitle}
+          </Typography>
+        )}
+      </Box>
+      <Grid
+        container
+        padding={1}
+        rowSpacing={dense ? 1 : 2}
+        justifyContent={centered ? "center" : "flex-start"}
+      >
+        {children}
+      </Grid>
+    </Paper>
+  );
 };

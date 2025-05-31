@@ -1,10 +1,10 @@
-import { within } from "@testing-library/react";
+import { render, screen } from "../tests/testing-library";
+import { EditInputType, ValueDatetime } from "./value-datetime";
 import userEvent from "@testing-library/user-event";
-import { vi } from "vitest";
 import { pickDatetime } from "../tests/actions";
 import { assertDatetimeInputValue } from "../tests/assertions";
-import { render, screen } from "../tests/testing-library";
-import { type EditInputType, ValueDatetime } from "./value-datetime";
+import { vi } from "vitest";
+import { within } from "@testing-library/react";
 
 const DummyValue = new Date(2022, 7, 10, 0, 0);
 const NewValue = new Date(2021, 8, 9, 11, 21);
@@ -15,159 +15,135 @@ const dateFormat = "dd-MM-yyyy";
 const timeFormat = "HH:mm";
 
 describe("ValueDatetime", () => {
-	const renderComponent = ({
-		value,
-		placeholder,
-		editable,
-		fmt = datetimeFormat,
-		editInputType = "datetime",
-	}: {
-		value?: Date;
-		placeholder?: string;
-		editable?: boolean;
-		fmt?: string;
-		editInputType?: EditInputType;
-	}) => {
-		const onEdit = vi.fn();
-		render(
-			<ValueDatetime
-				label="Hello world"
-				value={value}
-				placeholder={placeholder}
-				format={fmt}
-				editable={editable}
-				editInputType={editInputType}
-				onEdit={onEdit}
-			/>,
-		);
-		return { onEdit };
-	};
+  const renderComponent = ({
+    value,
+    placeholder,
+    editable,
+    fmt = datetimeFormat,
+    editInputType = "datetime",
+  }: {
+    value?: Date;
+    placeholder?: string;
+    editable?: boolean;
+    fmt?: string;
+    editInputType?: EditInputType;
+  }) => {
+    const onEdit = vi.fn();
+    render(
+      <ValueDatetime
+        label="Hello world"
+        value={value}
+        placeholder={placeholder}
+        format={fmt}
+        editable={editable}
+        editInputType={editInputType}
+        onEdit={onEdit}
+      />,
+    );
+    return { onEdit };
+  };
 
-	it("would render the label", () => {
-		renderComponent({ value: DummyValue });
+  it("would render the label", () => {
+    renderComponent({ value: DummyValue });
 
-		expect(
-			screen.getByRole("label", { name: /hello world/i }),
-		).toBeInTheDocument();
-	});
+    expect(screen.getByRole("label", { name: /hello world/i })).toBeInTheDocument();
+  });
 
-	it("would render the value", () => {
-		renderComponent({ value: DummyValue });
+  it("would render the value", () => {
+    renderComponent({ value: DummyValue });
 
-		expect(screen.getByText(/10-08-2022/i)).toBeInTheDocument();
-	});
+    expect(screen.getByText(/10-08-2022/i)).toBeInTheDocument();
+  });
 
-	it("should render the placeholder if value is undefined", () => {
-		renderComponent({ value: undefined });
+  it("should render the placeholder if value is undefined", () => {
+    renderComponent({ value: undefined });
 
-		expect(screen.getByText(/-/i)).toBeInTheDocument();
-	});
+    expect(screen.getByText(/-/i)).toBeInTheDocument();
+  });
 
-	it("should render the custom placeholder if value is undefined and placeholder has value", () => {
-		renderComponent({ value: undefined, placeholder: "_" });
+  it("should render the custom placeholder if value is undefined and placeholder has value", () => {
+    renderComponent({ value: undefined, placeholder: "_" });
 
-		expect(screen.getByText(/_/i)).toBeInTheDocument();
-	});
+    expect(screen.getByText(/_/i)).toBeInTheDocument();
+  });
 
-	describe("editable", () => {
-		it("shouldn't render an option to edit if editable is false", () => {
-			renderComponent({ value: DummyValue, editable: false });
+  describe("editable", () => {
+    it("shouldn't render an option to edit if editable is false", () => {
+      renderComponent({ value: DummyValue, editable: false });
 
-			expect(screen.queryByTestId("EditIcon")).not.toBeInTheDocument();
-		});
+      expect(screen.queryByTestId("EditIcon")).not.toBeInTheDocument();
+    });
 
-		it("should render an option to edit if editable is true", () => {
-			renderComponent({ value: DummyValue, editable: true });
+    it("should render an option to edit if editable is true", () => {
+      renderComponent({ value: DummyValue, editable: true });
 
-			expect(screen.getByRole("button", { name: /edit/i })).toBeVisible();
-		});
+      expect(screen.getByRole("button", { name: /edit/i })).toBeVisible();
+    });
 
-		it("should render an input with the value if the edit button is clicked", async () => {
-			renderComponent({ value: DummyValue, editable: true });
+    it("should render an input with the value if the edit button is clicked", async () => {
+      renderComponent({ value: DummyValue, editable: true });
 
-			await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
-			assertDatetimeInputValue(screen.getByRole("textbox"), {
-				value: DummyValue,
-				fmt: datetimeFormat,
-			});
-		});
+      assertDatetimeInputValue(screen.getByRole("textbox"), {
+        value: DummyValue,
+        fmt: datetimeFormat,
+      });
+    });
 
-		it.each([
-			[
-				"datetime" as EditInputType,
-				NewValue,
-				new Date(2021, 8, 9, 11, 21),
-				datetimeFormat,
-			],
-			[
-				"date" as EditInputType,
-				NewDateValue,
-				new Date(2018, 2, 17),
-				dateFormat,
-			],
-			[
-				"time" as EditInputType,
-				NewTimeValue,
-				new Date(2022, 7, 10, 11, 21),
-				timeFormat,
-			],
-		])(
-			"should submit the new value if is edited with type %s",
-			async (
-				editInputType: EditInputType,
-				newValue: Date,
-				expectedDate: Date,
-				fmt: string,
-			) => {
-				const { onEdit } = renderComponent({
-					value: DummyValue,
-					editable: true,
-					editInputType,
-					fmt,
-				});
+    it.each([
+      ["datetime" as EditInputType, NewValue, new Date(2021, 8, 9, 11, 21), datetimeFormat],
+      ["date" as EditInputType, NewDateValue, new Date(2018, 2, 17), dateFormat],
+      ["time" as EditInputType, NewTimeValue, new Date(2022, 7, 10, 11, 21), timeFormat],
+    ])(
+      "should submit the new value if is edited with type %s",
+      async (editInputType: EditInputType, newValue: Date, expectedDate: Date, fmt: string) => {
+        const { onEdit } = renderComponent({
+          value: DummyValue,
+          editable: true,
+          editInputType,
+          fmt,
+        });
 
-				await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-				pickDatetime(screen.getByRole("textbox"), newValue, fmt);
-				await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+        await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+        pickDatetime(screen.getByRole("textbox"), newValue, fmt);
+        await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
-				expect(onEdit).toHaveBeenCalledTimes(1);
-				expect(onEdit).toHaveBeenCalledWith(expectedDate);
-			},
-		);
+        expect(onEdit).toHaveBeenCalledTimes(1);
+        expect(onEdit).toHaveBeenCalledWith(expectedDate);
+      },
+    );
 
-		it("should not call onEdit if the edition is cancelled", async () => {
-			const { onEdit } = renderComponent({ value: DummyValue, editable: true });
+    it("should not call onEdit if the edition is cancelled", async () => {
+      const { onEdit } = renderComponent({ value: DummyValue, editable: true });
 
-			await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-			pickDatetime(screen.getByRole("textbox"), NewValue, datetimeFormat);
-			await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      pickDatetime(screen.getByRole("textbox"), NewValue, datetimeFormat);
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
 
-			expect(onEdit).not.toHaveBeenCalled();
-		});
+      expect(onEdit).not.toHaveBeenCalled();
+    });
 
-		it("should have the original value if is edited again after clear a change", async () => {
-			renderComponent({ value: DummyValue, editable: true });
+    it("should have the original value if is edited again after clear a change", async () => {
+      renderComponent({ value: DummyValue, editable: true });
 
-			await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-			pickDatetime(screen.getByRole("textbox"), NewValue, datetimeFormat);
-			await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
-			await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      pickDatetime(screen.getByRole("textbox"), NewValue, datetimeFormat);
+      await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
-			assertDatetimeInputValue(screen.getByRole("textbox"), {
-				value: DummyValue,
-				fmt: datetimeFormat,
-			});
-		});
+      assertDatetimeInputValue(screen.getByRole("textbox"), {
+        value: DummyValue,
+        fmt: datetimeFormat,
+      });
+    });
 
-		it("should have the edit button accessible by label", () => {
-			renderComponent({ editable: true });
+    it("should have the edit button accessible by label", () => {
+      renderComponent({ editable: true });
 
-			expect(
-				within(screen.getByLabelText(/hello world/i)).getByRole("button", {
-					name: /edit/i,
-				}),
-			).toBeVisible();
-		});
-	});
+      expect(
+        within(screen.getByLabelText(/hello world/i)).getByRole("button", { name: /edit/i }),
+      ).toBeVisible();
+    });
+  });
 });
