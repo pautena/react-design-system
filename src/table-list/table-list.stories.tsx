@@ -1,6 +1,6 @@
 import { useDemoData } from "@mui/x-data-grid-generator";
-import { action } from "storybook/actions";
 import type { Meta, StoryObj } from "@storybook/react";
+import { action } from "storybook/actions";
 import type { BasicModelInstance } from "../generators/generators.model";
 import { TableList, type TableListProps } from "./table-list";
 
