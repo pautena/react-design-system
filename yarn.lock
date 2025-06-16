@@ -4627,15 +4627,10 @@ semver@^6.0.0, semver@^6.3.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-6.3.1.tgz#556d2ef8689146e46dcea4bfdd095f3434dffcb4"
   integrity sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==
 
-semver@^7.3.8:
+semver@^7.3.8, semver@^7.6.2:
   version "7.7.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.2.tgz#67d99fdcd35cec21e6f8b87a7fd515a33f982b58"
   integrity sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==
-
-semver@^7.6.2:
-  version "7.7.1"
-  resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.1.tgz#abd5098d82b18c6c81f6074ff2647fd3e7220c9f"
-  integrity sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==
 
 semver@~7.5.4:
   version "7.5.4"
@@ -4707,9 +4702,9 @@ std-env@^3.9.0:
   integrity sha512-UGvjygr6F6tpH7o2qyqR6QYpwraIjKSdtzyBdyytFOHmPZY917kwdwLG0RbOjWOnKmnm3PeHjaoLLMie7kPLQw==
 
 storybook@^9.0.1:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/storybook/-/storybook-9.0.1.tgz#a815a8da705152d54d6411794b25f915f53b3467"
-  integrity sha512-WE6tTNUl0Xwa/vT4dv2PcNUeujE9pKY4ruGVLsNV7r7lvQla5Jsqi/eWePjU3kuTmi2BcQqLXfapMy0kM3dabw==
+  version "9.0.10"
+  resolved "https://registry.yarnpkg.com/storybook/-/storybook-9.0.10.tgz#7fddba1ab12716659e6d080a8fb7be65c78a578c"
+  integrity sha512-wDelDvr1AnlaE8ZZwap9rwOgYBX/kWwX/LTFWWhQKkXxPp/OdRlNIL/0YmUFe8ANiXk5E6MuevW94zW3q5rTqw==
   dependencies:
     "@storybook/global" "^5.0.0"
     "@testing-library/jest-dom" "^6.6.3"
