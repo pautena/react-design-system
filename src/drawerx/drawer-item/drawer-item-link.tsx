@@ -7,13 +7,13 @@ import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 import type { ReactElement } from "react";
 import { Bullet } from "../../bullet";
 import { Label } from "../../label";
-import { useDrawer } from "../drawer-context";
 import {
   type DrawerItemAvatar,
   type DrawerItemBullet,
   type DrawerItemLabel,
   getDrawerItemColors,
 } from "../drawer.types";
+import { useDrawer } from "../drawer-context";
 
 export interface DrawerItemLinkProps {
   /**

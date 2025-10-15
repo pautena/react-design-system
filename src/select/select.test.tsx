@@ -2,16 +2,15 @@ import MenuItem from "@mui/material/MenuItem";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../tests/testing-library";
 import { Select } from "./select";
-import { SelectLoaded } from "./select.stories";
 
 describe("Select", () => {
   const renderComponent = ({
-    label = SelectLoaded.args?.label || "invalid",
+    label = "Dummy select",
     loading = false,
     fetching = false,
   } = {}) => {
-    const options = (SelectLoaded.args?.options as string[]) || [];
-    const value = SelectLoaded.args?.value as string;
+    const options = ["option1", "option2", "option3"];
+    const value = "option1";
 
     render(
       <Select value={value} label={label} loading={loading} fetching={fetching}>

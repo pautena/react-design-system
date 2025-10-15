@@ -1,8 +1,8 @@
 import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
-import { DrawerProvider, useDrawer } from "../drawer-context";
 import type { DrawerState, DrawerVariant } from "../drawer.types";
+import { DrawerProvider, useDrawer } from "../drawer-context";
 import { DrawerAppBar } from "./drawer-app-bar";
 
 describe("DrawerAppBar", () => {

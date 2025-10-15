@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { TestTable, columns, data } from "./enhanced-table.mock";
+import { columns, data, TestTable } from "./enhanced-table.mock";
 
 export default {
   title: "Components/Tables/EnhancedTable",

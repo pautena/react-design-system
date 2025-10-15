@@ -1,14 +1,14 @@
 import type { JSXElementConstructor } from "react";
 import { Drawer } from "../drawer";
-import { DrawerAppBar, type DrawerAppBarProps } from "../drawer-app-bar";
-import { DrawerContent } from "../drawer-content";
-import { DrawerProvider, type DrawerProviderProps } from "../drawer-context";
-import { DrawerMain } from "../drawer-main";
 import type {
   DrawerContentProps,
   DrawerNavigation,
   DrawerProps,
 } from "../drawer.types";
+import { DrawerAppBar, type DrawerAppBarProps } from "../drawer-app-bar";
+import { DrawerContent } from "../drawer-content";
+import { DrawerProvider, type DrawerProviderProps } from "../drawer-context";
+import { DrawerMain } from "../drawer-main";
 
 /**
  * Interface representing the slots for the DrawerLayout component.

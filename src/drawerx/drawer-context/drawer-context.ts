@@ -1,4 +1,4 @@
-import { type ElementType, createContext, useContext } from "react";
+import { createContext, type ElementType, useContext } from "react";
 import type { DrawerSize, DrawerState, DrawerVariant } from "../drawer.types";
 
 export interface DrawerContextProps {

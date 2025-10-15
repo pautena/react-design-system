@@ -31,7 +31,10 @@ describe("SearchInput", () => {
   const renderComponent = ({
     label = "search",
     placeholder,
-  }: { label?: string; placeholder?: string } = {}) => {
+  }: {
+    label?: string;
+    placeholder?: string;
+  } = {}) => {
     const onSearch = vi.fn();
     render(
       <SearchInput

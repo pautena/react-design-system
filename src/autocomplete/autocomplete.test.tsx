@@ -13,7 +13,11 @@ describe("Autocomplete", () => {
     value,
     loading,
     fetching,
-  }: { value?: string; loading?: boolean; fetching?: boolean } = {}) => {
+  }: {
+    value?: string;
+    loading?: boolean;
+    fetching?: boolean;
+  } = {}) => {
     const onChangeValue = vi.fn();
     render(
       <Autocomplete

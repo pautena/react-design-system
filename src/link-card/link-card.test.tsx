@@ -1,4 +1,3 @@
-import userEvent from "@testing-library/user-event";
 import { render, screen } from "../tests/testing-library";
 import { LinkCard } from "./link-card";
 

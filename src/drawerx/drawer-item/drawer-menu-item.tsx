@@ -8,11 +8,11 @@ import ListItemText from "@mui/material/ListItemText";
 import Popover from "@mui/material/Popover";
 import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 import { type ReactElement, useEffect, useRef, useState } from "react";
-import { useDrawer } from "../drawer-context";
 import {
   type DrawerNavigationItem,
   getDrawerItemColors,
 } from "../drawer.types";
+import { useDrawer } from "../drawer-context";
 import { DrawerItem } from "./drawer-item";
 
 export interface DrawerMenuItemProps {

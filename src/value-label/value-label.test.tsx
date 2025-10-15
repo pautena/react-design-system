@@ -51,17 +51,17 @@ describe("ValueLabel", () => {
       variant: ["error", "warning"],
     });
 
-    DummyValueTextList.forEach((text) =>
-      expect(screen.getByText(text)).toBeVisible(),
-    );
+    DummyValueTextList.forEach((text) => {
+      expect(screen.getByText(text)).toBeVisible();
+    });
   });
 
   it("would render the value if it is a list of numbers", () => {
     renderComponent({ value: DummyValueNumberList });
 
-    DummyValueNumberList.forEach((number) =>
-      expect(screen.getByText(number)).toBeVisible(),
-    );
+    DummyValueNumberList.forEach((number) => {
+      expect(screen.getByText(number)).toBeVisible();
+    });
   });
 
   it("should render the placeholder if value is undefined", () => {

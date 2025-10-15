@@ -7,7 +7,10 @@ describe("ValueContent", () => {
   const renderComponent = ({
     tooltip,
     hideLabel,
-  }: { tooltip?: string; hideLabel?: boolean } = {}) => {
+  }: {
+    tooltip?: string;
+    hideLabel?: boolean;
+  } = {}) => {
     render(
       <ValueContent
         label="lorem ipsum"

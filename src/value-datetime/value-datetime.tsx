@@ -9,13 +9,11 @@ import {
   type BaseValueProps,
   DefaultPlaceholder,
   type EditableValueProps,
-} from "../value-base";
-import {
+  useEditableValueDisplay,
   ValueEditButton,
   ValueEditButtons,
-  useEditableValueDisplay,
 } from "../value-base";
-import { ValueContent, getValueContentLabelId } from "../value-content";
+import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export type EditInputType = "datetime" | "date" | "time";
 

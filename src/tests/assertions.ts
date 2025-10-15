@@ -101,9 +101,9 @@ export const expectModelFieldValue = (
   if (type === "group") {
     expect(screen.getByRole("heading", { level: 1, name }));
     expect(screen.getByRole("heading", { level: 2, name: description }));
-    field.value.forEach((groupValue) =>
-      expectModelFieldValue(groupValue, value as GroupInstanceType),
-    );
+    field.value.forEach((groupValue) => {
+      expectModelFieldValue(groupValue, value as GroupInstanceType);
+    });
     return;
   }
 

@@ -5,18 +5,18 @@ import IconButton from "@mui/material/IconButton";
 import { paperClasses } from "@mui/material/Paper";
 import {
   type SxProps,
-  type Theme,
   styled,
+  type Theme,
   useTheme,
 } from "@mui/material/styles";
-import { useDrawer } from "../drawer-context/drawer-context";
-import { closedMixin, openedMixin } from "../drawer-context/drawer-mixins";
 import type {
   DrawerComponent,
   DrawerProps,
   DrawerState,
   DrawerVariant,
 } from "../drawer.types";
+import { useDrawer } from "../drawer-context/drawer-context";
+import { closedMixin, openedMixin } from "../drawer-context/drawer-mixins";
 
 export const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",

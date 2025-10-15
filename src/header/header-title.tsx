@@ -1,6 +1,6 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import type { PropsWithChildren } from "react";
 
 export type HeaderTitleProps = PropsWithChildren<{ loading?: boolean }>;

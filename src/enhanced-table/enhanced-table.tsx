@@ -85,15 +85,6 @@ interface EnhancedTableProps<T> {
    */
   children: (data: T[]) => ReactNode;
 }
-interface EnhancedTableProps<T> {
-  readonly data: T[];
-  search?: boolean;
-  defaultSort: keyof T;
-  defaultOrder?: Order;
-  loading?: boolean;
-  columns: HeadCell<T>[];
-  children: (data: T[]) => ReactNode;
-}
 
 /**
  * EnhancedTable component provides a table with sorting, filtering, and loading states.
@@ -123,62 +114,60 @@ export const EnhancedTable = <T,>({
     .sort(getComparator(order, orderBy));
 
   return (
-    <>
-      <Box sx={{ paddingX: 1, paddingBottom: 2 }}>
-        {search && (
-          <Box paddingY={2}>
-            <TextField
-              fullWidth
-              placeholder="Search"
-              InputProps={{
-                role: "search",
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <Search />
-                  </InputAdornment>
-                ),
-              }}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setSearchFilter(e.target.value)
-              }
-            />
-          </Box>
-        )}
-        <TableContainer>
-          <Table>
-            <EnhancedTableHead
-              order={order}
-              orderBy={orderBy}
-              headCells={columns}
-              onRequestSort={handleRequestSort}
-            />
-            <TableBody>
-              {loading ? (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    sx={{ textAlign: "center" }}
-                  >
-                    <CircularProgress />
-                  </TableCell>
-                </TableRow>
-              ) : filteredData.length === 0 ? (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    sx={{ textAlign: "center" }}
-                  >
-                    No data
-                  </TableCell>
-                </TableRow>
-              ) : (
-                children(filteredData)
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Box>
-    </>
+    <Box sx={{ paddingX: 1, paddingBottom: 2 }}>
+      {search && (
+        <Box paddingY={2}>
+          <TextField
+            fullWidth
+            placeholder="Search"
+            InputProps={{
+              role: "search",
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Search />
+                </InputAdornment>
+              ),
+            }}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setSearchFilter(e.target.value)
+            }
+          />
+        </Box>
+      )}
+      <TableContainer>
+        <Table>
+          <EnhancedTableHead
+            order={order}
+            orderBy={orderBy}
+            headCells={columns}
+            onRequestSort={handleRequestSort}
+          />
+          <TableBody>
+            {loading ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  sx={{ textAlign: "center" }}
+                >
+                  <CircularProgress />
+                </TableCell>
+              </TableRow>
+            ) : filteredData.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  sx={{ textAlign: "center" }}
+                >
+                  No data
+                </TableCell>
+              </TableRow>
+            ) : (
+              children(filteredData)
+            )}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
 };
 

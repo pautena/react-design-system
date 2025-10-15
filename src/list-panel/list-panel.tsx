@@ -1,11 +1,11 @@
 import { Link, useTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import Grid from "@mui/material/Grid";
 import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
-import { grey } from "@mui/material/colors";
 import { type PropsWithChildren, useState } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 import { ListPanelContextProvider } from "./list-panel.context";
@@ -52,10 +52,10 @@ export const ListPanel = ({
   children,
   onSelectedItemChange = () => null,
 }: ListPanelProps) => {
-  const paths = items.map((item) => item.path).filter(Boolean) as string[];
+  const _paths = items.map((item) => item.path).filter(Boolean) as string[];
 
   const bgColor = useGetDefaultThemeColor();
-  const { palette, typography } = useTheme();
+  const { palette } = useTheme();
   const [selectedItem, setSelectedItem] = useState(defaultSelectedItem);
 
   const handleSelectItem = (id: string) => {
@@ -68,7 +68,7 @@ export const ListPanel = ({
       <Grid container bgcolor={bgColor} height={1}>
         <Grid size={{ xs: colBreakpoint }} pl={1} height={1}>
           <List sx={{ height: 1, overflowY: "auto" }}>
-            {items.map(({ id, text, tooltip, path, href }) => {
+            {items.map(({ id, text, tooltip, href }) => {
               const linkProps =
                 listMode === "navigation" ? { component: Link, href } : {};
 

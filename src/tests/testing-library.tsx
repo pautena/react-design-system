@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@emotion/react";
-import { type PaletteMode, type Theme, createTheme } from "@mui/material";
+import { createTheme, type PaletteMode, type Theme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import {
+  fireEvent,
   type RenderOptions,
   type RenderResult,
-  fireEvent,
   render,
 } from "@testing-library/react";
 import type React from "react";

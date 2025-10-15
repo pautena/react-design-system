@@ -3,13 +3,13 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
+import { useTheme } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import { useTheme } from "@mui/material/styles";
 import { useTab } from "../tab-provider";
 import { useGetDefaultThemeColor } from "../utils";
-import { HeaderSubtitle, HeaderTitle } from "./header-title";
 import type { HeaderPreset, HeaderProps } from "./header.types";
+import { HeaderSubtitle, HeaderTitle } from "./header-title";
 
 /**
  * Section used to explain give basic information about the page

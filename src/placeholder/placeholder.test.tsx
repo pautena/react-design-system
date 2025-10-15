@@ -12,7 +12,10 @@ describe("Placeholder", () => {
   const renderComponent = ({
     actions = undefined,
     icon = undefined,
-  }: { actions?: PlaceholderAction[]; icon?: ReactElement } = {}) => {
+  }: {
+    actions?: PlaceholderAction[];
+    icon?: ReactElement;
+  } = {}) => {
     const iconFn = icon ? () => icon : undefined;
     return render(
       <Placeholder

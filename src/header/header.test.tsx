@@ -159,7 +159,9 @@ describe("Header", () => {
       expect(screen.getByRole("link", { name: /item 1/i })).toBeInTheDocument();
     });
   });
-  const paths = (tabs || []).map((tab) => tab.path).filter(Boolean) as string[];
+  const _paths = (tabs || [])
+    .map((tab) => tab.path)
+    .filter(Boolean) as string[];
 
   describe("actions", () => {
     it("should render a list of buttons", () => {
