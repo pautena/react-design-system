@@ -2,12 +2,12 @@ import Box from "@mui/material/Box";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
 import { ListPanel } from "./list-panel";
-import { ListPanelPanel } from "./list-panel-panel";
 import {
   ListPanelDemoContent,
   mockItemsLong,
   mockItemsShort,
 } from "./list-panel.mocks";
+import { ListPanelPanel } from "./list-panel-panel";
 
 export default {
   title: "Components/Containers/ListPanel",

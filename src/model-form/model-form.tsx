@@ -1,8 +1,7 @@
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import { assocPath } from "ramda";
-import { type FormEvent, useMemo } from "react";
-import { useState } from "react";
+import { type FormEvent, useMemo, useState } from "react";
 import {
   type BasicModelInstance,
   type FieldType,

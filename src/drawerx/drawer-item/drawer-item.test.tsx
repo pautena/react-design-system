@@ -1,7 +1,5 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen, within } from "../../tests/testing-library";
-import { DrawerProvider } from "../drawer-context";
-import type { DrawerNavigationItem, DrawerState } from "../drawer.types";
 import {
   mockLinkAvatarDrawerNavigationItem,
   mockLinkBulletDrawerNavigationItem,
@@ -11,6 +9,8 @@ import {
   mockMenuDrawerNavigationItem,
   mockMenuInsideMenuDrawerNavigationItem,
 } from "../drawer/drawer.mock";
+import type { DrawerNavigationItem, DrawerState } from "../drawer.types";
+import { DrawerProvider } from "../drawer-context";
 import { DrawerItem } from "./drawer-item";
 
 describe("DrawerItem", () => {

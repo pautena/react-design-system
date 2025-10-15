@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import type { SxProps, Theme } from "@mui/material/styles";
-import { type PropsWithChildren, ReactNode } from "react";
+import type { PropsWithChildren } from "react";
 
 /**
  * Props for the CenterContainer component.

@@ -12,7 +12,11 @@ describe("TextField", () => {
     value,
     loading,
     fetching,
-  }: { value?: string; loading?: boolean; fetching?: boolean } = {}) => {
+  }: {
+    value?: string;
+    loading?: boolean;
+    fetching?: boolean;
+  } = {}) => {
     const onChange = vi.fn();
     render(
       <TextField

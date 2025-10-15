@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import { Label, type LabelVariant } from "../label";
 import { type BaseValueProps, DefaultPlaceholder } from "../value-base";
-import { ValueContent, getValueContentLabelId } from "../value-content";
+import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export type ValueLabelProps = BaseValueProps<
   string | number | string[] | number[]

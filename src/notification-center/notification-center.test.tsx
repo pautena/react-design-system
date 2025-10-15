@@ -23,7 +23,9 @@ import { NotificationCenterProvider } from "./notification-center.provider";
 describe("NotificationCenterProvider", () => {
   const renderComponent = ({
     autoHideDuration,
-  }: { autoHideDuration?: number } = {}) => {
+  }: {
+    autoHideDuration?: number;
+  } = {}) => {
     const TestContent = () => {
       const { show, hide } = useNotificationCenter();
 

@@ -3,12 +3,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Content } from "../content";
+import { Label } from "../label";
+import { TabPanel } from "../tab-panel";
 import { TabProvider } from "../tab-provider";
 import { Header } from "./header";
 import { actions, breadcrumbs, tabs } from "./header.dummy";
-
-import { Label } from "../label";
-import { TabPanel } from "../tab-panel";
 
 export default {
   title: "Components/Data Display/Header",

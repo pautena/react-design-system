@@ -16,6 +16,8 @@ describe("ObjectDetails", () => {
   it("would render a label/value pair for each detail", () => {
     const { instance, model } = renderComponent();
 
-    model.fields.forEach((detail) => expectModelFieldValue(detail, instance));
+    model.fields.forEach((detail) => {
+      expectModelFieldValue(detail, instance);
+    });
   });
 });

@@ -2,8 +2,8 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import {
-  type Data,
   columns,
+  type Data,
   data,
 } from "../enhanced-table/enhanced-table.mock";
 import { expectProgressIndicator } from "../tests/assertions";
@@ -12,7 +12,10 @@ import { EnhancedRemoteDummyTable } from "./enhanced-remote-table.mock";
 function renderInstance({
   defaultSort = "startDate",
   loading = false,
-}: { defaultSort?: keyof Data; loading?: boolean } = {}) {
+}: {
+  defaultSort?: keyof Data;
+  loading?: boolean;
+} = {}) {
   const onRequestSort = vi.fn();
   render(
     <EnhancedRemoteDummyTable

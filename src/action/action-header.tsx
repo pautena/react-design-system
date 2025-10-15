@@ -1,5 +1,5 @@
-import Typography from "@mui/material/Typography";
 import { type TypographyVariant, useTheme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 
 type ActionVariant = "primary" | "error" | "warning" | "success";
 

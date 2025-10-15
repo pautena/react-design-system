@@ -9,7 +9,11 @@ describe("ValueRating", () => {
     maxRating,
     value = 3,
     editable,
-  }: { maxRating?: number; value?: number; editable?: boolean } = {}) => {
+  }: {
+    maxRating?: number;
+    value?: number;
+    editable?: boolean;
+  } = {}) => {
     const onEdit = vi.fn();
     render(
       <ValueRating

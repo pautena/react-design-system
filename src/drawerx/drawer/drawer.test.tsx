@@ -1,9 +1,9 @@
 import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
+import type { DrawerState, DrawerVariant } from "../drawer.types";
 import { DrawerContent } from "../drawer-content";
 import { DrawerProvider, useDrawer } from "../drawer-context";
-import type { DrawerState, DrawerVariant } from "../drawer.types";
 import { Drawer } from "./drawer";
 import { mockDrawerNavigation } from "./drawer.mock";
 

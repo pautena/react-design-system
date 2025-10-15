@@ -5,15 +5,13 @@ import { useDemoData } from "@mui/x-data-grid-generator";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactElement } from "react";
 import { action } from "storybook/actions";
-import { Content } from "../content";
 import { createModelInstance, mockModel } from "../generators/generators.mock";
-import { Header, type HeaderProps, type HeaderTab } from "../header";
+import type { HeaderProps, HeaderTab } from "../header";
 import { HeaderLayout, type HeaderLayoutProps } from "../header-layout";
 import { ModelForm } from "../model-form";
 import { ObjectDetails } from "../object-details";
 import { SkeletonGrid } from "../skeleton-grid";
-import { withLocalizationProvider } from "../storybook";
-import { withFullHeight } from "../storybook";
+import { withFullHeight, withLocalizationProvider } from "../storybook";
 import { TabPanel } from "../tab-panel";
 import { TableList } from "../table-list";
 

@@ -4,11 +4,11 @@ import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import type { AppBarProps as MuiAppBarProps } from "@mui/material";
 import MuiAppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
+import { styled, type Theme, useTheme } from "@mui/material/styles";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { type Theme, styled, useTheme } from "@mui/material/styles";
-import { useDrawer } from "../drawer-context";
 import type { DrawerState, DrawerVariant } from "../drawer.types";
+import { useDrawer } from "../drawer-context";
 
 const MyMuiAppBar = styled(MuiAppBar)(({ theme }) => ({
   borderWidth: 0,

@@ -1,6 +1,6 @@
 import { Link } from "@mui/material";
-import { type ElementType, useState } from "react";
 import type { PropsWithChildren } from "react";
+import { type ElementType, useState } from "react";
 import type { DrawerSize, DrawerState, DrawerVariant } from "../drawer.types";
 import { DrawerContext } from "./drawer-context";
 import { drawerWidth } from "./drawer-mixins";

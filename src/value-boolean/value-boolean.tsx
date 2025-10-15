@@ -2,17 +2,17 @@ import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import Box from "@mui/material/Box";
 import Switch from "@mui/material/Switch";
-import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+import Typography from "@mui/material/Typography";
 import {
   type BaseValueProps,
   DefaultPlaceholder,
   type EditableValueProps,
+  useEditableValueDisplay,
   ValueEditButton,
   ValueEditButtons,
-  useEditableValueDisplay,
 } from "../value-base";
-import { ValueContent, getValueContentLabelId } from "../value-content";
+import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export type ValueBooleanProps = BaseValueProps<boolean> &
   EditableValueProps<boolean>;

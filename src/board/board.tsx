@@ -1,11 +1,11 @@
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import Box from "@mui/material/Box";
+import { blueGrey } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import Paper from "@mui/material/Paper";
+import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import { blueGrey } from "@mui/material/colors";
-import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 import type { PropsWithChildren, ReactNode } from "react";
 
 /**

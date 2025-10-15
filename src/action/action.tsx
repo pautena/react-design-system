@@ -1,8 +1,8 @@
 import Button from "@mui/material/Button";
 import DialogContentText from "@mui/material/DialogContentText";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import type { TypographyVariant } from "@mui/material/styles/createTypography";
+import Typography from "@mui/material/Typography";
 import type { ReactElement } from "react";
 import { ConfirmDialog } from "../confirm-dialog";
 import { useDialog } from "../dialog";

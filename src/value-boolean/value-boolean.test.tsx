@@ -91,7 +91,7 @@ describe("ValueBoolean", () => {
 
       await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
-      expect(screen.getByRole("checkbox")).toBeChecked();
+      expect(screen.getByRole("switch")).toBeChecked();
     });
 
     it.each([
@@ -106,7 +106,7 @@ describe("ValueBoolean", () => {
         });
 
         await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-        await userEvent.click(screen.getByRole("checkbox"));
+        await userEvent.click(screen.getByRole("switch"));
         await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
         expect(onEdit).toHaveBeenCalledTimes(1);
@@ -118,7 +118,7 @@ describe("ValueBoolean", () => {
       const { onEdit } = renderComponent({ value: true, editable: true });
 
       await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-      await userEvent.click(screen.getByRole("checkbox"));
+      await userEvent.click(screen.getByRole("switch"));
       await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
 
       expect(onEdit).not.toHaveBeenCalled();
@@ -128,11 +128,11 @@ describe("ValueBoolean", () => {
       renderComponent({ value: true, editable: true });
 
       await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-      await userEvent.click(screen.getByRole("checkbox"));
+      await userEvent.click(screen.getByRole("switch"));
       await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
       await userEvent.click(screen.getByRole("button", { name: /edit/i }));
 
-      expect(screen.getByRole("checkbox")).toBeChecked();
+      expect(screen.getByRole("switch")).toBeChecked();
     });
 
     it("should have the edit button accessible by label", () => {

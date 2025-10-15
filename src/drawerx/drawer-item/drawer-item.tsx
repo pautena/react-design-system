@@ -1,6 +1,6 @@
+import type { DrawerNavigationItem } from "../drawer.types";
 import { useDrawer } from "../drawer-context";
 import { DrawerSubheader } from "../drawer-subheader";
-import type { DrawerNavigationItem } from "../drawer.types";
 import { DrawerItemLink } from "./drawer-item-link";
 import { DrawerMenuItem } from "./drawer-menu-item";
 

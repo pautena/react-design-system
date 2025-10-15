@@ -1,11 +1,11 @@
 import { vi } from "vitest";
 import {
   BirthDateFormat,
+  createModelInstance,
   type MockInstance,
+  mockModel,
   ReturnTimeFormat,
   TradeDateFormat,
-  createModelInstance,
-  mockModel,
 } from "../generators/generators.mock";
 import {
   pickDatetime,
@@ -24,7 +24,9 @@ import { ModelForm } from "./model-form";
 describe("ModelForm", () => {
   const renderComponent = ({
     initialValues = undefined,
-  }: { initialValues?: MockInstance } = {}) => {
+  }: {
+    initialValues?: MockInstance;
+  } = {}) => {
     const onSubmit = vi.fn();
     const instance = render(
       <ModelForm

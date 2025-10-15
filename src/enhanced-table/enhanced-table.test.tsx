@@ -2,12 +2,15 @@ import { screen } from "@testing-library/react";
 import userEvents from "@testing-library/user-event";
 import { expectProgressIndicator } from "../tests/assertions";
 import { render } from "../tests/testing-library";
-import { type Data, TestTable, columns, data } from "./enhanced-table.mock";
+import { columns, type Data, data, TestTable } from "./enhanced-table.mock";
 
 const renderInstance = ({
   defaultSort = "startDate",
   loading = false,
-}: { defaultSort?: keyof Data; loading?: boolean } = {}) => {
+}: {
+  defaultSort?: keyof Data;
+  loading?: boolean;
+} = {}) => {
   return render(
     <TestTable
       data={data}

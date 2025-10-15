@@ -1,7 +1,6 @@
 import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import { mockMarkdownContent } from "../tests/mocks/markdown.mock";
 import { render, screen } from "../tests/testing-library";
 import { Board } from "./board";
 

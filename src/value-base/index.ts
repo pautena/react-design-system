@@ -1,2 +1,2 @@
-export * from "./value-edit";
 export * from "./value-displays.types";
+export * from "./value-edit";

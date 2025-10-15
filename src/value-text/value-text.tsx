@@ -6,11 +6,11 @@ import {
   type BaseValueProps,
   DefaultPlaceholder,
   type EditableValueProps,
+  useEditableValueDisplay,
   ValueEditButton,
   ValueEditButtons,
-  useEditableValueDisplay,
 } from "../value-base";
-import { ValueContent, getValueContentLabelId } from "../value-content";
+import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export type ValueTextProps = BaseValueProps<string | number> &
   EditableValueProps<string>;

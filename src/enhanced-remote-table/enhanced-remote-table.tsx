@@ -88,31 +88,26 @@ export const EnhancedRemoteTable = <T,>({
   };
 
   return (
-    <>
-      <TableContainer>
-        <Table>
-          <EnhancedTableHead
-            order={order.order}
-            orderBy={order.orderBy}
-            headCells={columns}
-            onRequestSort={handleRequestSort}
-          />
-          <TableBody>
-            {loading ? (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  sx={{ textAlign: "center" }}
-                >
-                  <CircularProgress />
-                </TableCell>
-              </TableRow>
-            ) : (
-              data.map((d, i) => children(d, i))
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </>
+    <TableContainer>
+      <Table>
+        <EnhancedTableHead
+          order={order.order}
+          orderBy={order.orderBy}
+          headCells={columns}
+          onRequestSort={handleRequestSort}
+        />
+        <TableBody>
+          {loading ? (
+            <TableRow>
+              <TableCell colSpan={columns.length} sx={{ textAlign: "center" }}>
+                <CircularProgress />
+              </TableCell>
+            </TableRow>
+          ) : (
+            data.map((d, i) => children(d, i))
+          )}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };

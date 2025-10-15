@@ -1,10 +1,10 @@
 import { List, useTheme } from "@mui/material";
-import { useDrawer } from "../drawer-context";
-import { DrawerItem } from "../drawer-item";
 import type {
   DrawerContentComponent,
   DrawerContentProps,
 } from "../drawer.types";
+import { useDrawer } from "../drawer-context";
+import { DrawerItem } from "../drawer-item";
 
 /**
  * Content to be shown inside a navigation

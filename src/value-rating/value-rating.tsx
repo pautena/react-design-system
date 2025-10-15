@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
+import type { BaseValueProps, EditableValueProps } from "../value-base";
 import {
+  useEditableValueDisplay,
   ValueEditButton,
   ValueEditButtons,
-  useEditableValueDisplay,
 } from "../value-base";
-import type { BaseValueProps, EditableValueProps } from "../value-base";
-import { ValueContent, getValueContentLabelId } from "../value-content";
+import { getValueContentLabelId, ValueContent } from "../value-content";
 
 export type ValueRatingProps = BaseValueProps<number> & {
   maxRating?: number;

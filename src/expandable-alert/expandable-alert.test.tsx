@@ -21,7 +21,10 @@ describe("ExpandableAlert", () => {
   const renderComponent = ({
     title,
     metadata,
-  }: { title?: string; metadata?: string | string[] } = {}) => {
+  }: {
+    title?: string;
+    metadata?: string | string[];
+  } = {}) => {
     const onClose = vi.fn();
     const copy = vi.fn();
     Object.assign(navigator, {

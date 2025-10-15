@@ -1,7 +1,6 @@
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
-import demoMarkdownContent from "../tests/mocks/markdown.mock.md";
 import { Board } from "./board";
 
 export default {

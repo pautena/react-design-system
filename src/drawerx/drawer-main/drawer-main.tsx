@@ -1,8 +1,8 @@
 import { styled, useTheme } from "@mui/material/styles";
 import type { PropsWithChildren } from "react";
-import { useDrawer } from "../drawer-context/drawer-context";
-import type { DrawerVariant } from "../drawer.types";
 import { DrawerHeader } from "../drawer/drawer";
+import type { DrawerVariant } from "../drawer.types";
+import { useDrawer } from "../drawer-context/drawer-context";
 
 const drawerSpace: Record<DrawerVariant, boolean> = {
   temporary: false,

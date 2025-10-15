@@ -6,7 +6,10 @@ describe("GroupValueCard", () => {
   const renderComponent = ({
     title = "Hello world",
     subtitle = undefined,
-  }: { title?: string; subtitle?: string } = {}) => {
+  }: {
+    title?: string;
+    subtitle?: string;
+  } = {}) => {
     return render(
       <GroupValueCardDummy title={title} subtitle={subtitle}>
         <Typography>Test content</Typography>

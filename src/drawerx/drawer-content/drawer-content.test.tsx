@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
-import { DrawerProvider } from "../drawer-context";
 import { mockDrawerNavigation } from "../drawer/drawer.mock";
+import { DrawerProvider } from "../drawer-context";
 import { DrawerContent } from "./drawer-content";
 
 describe("DrawerContent", () => {

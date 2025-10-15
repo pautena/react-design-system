@@ -1,13 +1,13 @@
 import CloseIcon from "@mui/icons-material/Close";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Alert, { alertClasses, type AlertColor } from "@mui/material/Alert";
+import Alert, { type AlertColor, alertClasses } from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import type { SxProps, Theme } from "@mui/material/styles";
-import { type ReactElement, forwardRef, useState } from "react";
+import { forwardRef, type ReactElement, useState } from "react";
 import { Board } from "../board";
 
 export interface ExpandableAlertProps {
