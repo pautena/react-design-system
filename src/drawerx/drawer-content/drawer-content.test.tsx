@@ -13,16 +13,16 @@ describe("DrawerContent", () => {
     );
   };
 
-  it.each([[/section 2/i], [/section avatar/i]])(
-    "would render the title section %s",
-    (sectionTitle: RegExp) => {
-      renderComponent();
+  it.each([
+    [/section 2/i],
+    [/section avatar/i],
+  ])("would render the title section %s", (sectionTitle: RegExp) => {
+    renderComponent();
 
-      expect(
-        screen.getByRole("heading", { name: sectionTitle }),
-      ).toBeInTheDocument();
-    },
-  );
+    expect(
+      screen.getByRole("heading", { name: sectionTitle }),
+    ).toBeInTheDocument();
+  });
 
   it.each([
     [/item 1.1/i],

@@ -112,29 +112,21 @@ describe("ValueDatetime", () => {
         new Date(2022, 7, 10, 11, 21),
         timeFormat,
       ],
-    ])(
-      "should submit the new value if is edited with type %s",
-      async (
-        editInputType: EditInputType,
-        newValue: Date,
-        expectedDate: Date,
-        fmt: string,
-      ) => {
-        const { onEdit } = renderComponent({
-          value: DummyValue,
-          editable: true,
-          editInputType,
-          fmt,
-        });
+    ])("should submit the new value if is edited with type %s", async (editInputType: EditInputType, newValue: Date, expectedDate: Date, fmt: string) => {
+      const { onEdit } = renderComponent({
+        value: DummyValue,
+        editable: true,
+        editInputType,
+        fmt,
+      });
 
-        await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-        pickDatetime(screen.getByRole("textbox"), newValue, fmt);
-        await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      pickDatetime(screen.getByRole("textbox"), newValue, fmt);
+      await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
-        expect(onEdit).toHaveBeenCalledTimes(1);
-        expect(onEdit).toHaveBeenCalledWith(expectedDate);
-      },
-    );
+      expect(onEdit).toHaveBeenCalledTimes(1);
+      expect(onEdit).toHaveBeenCalledWith(expectedDate);
+    });
 
     it("should not call onEdit if the edition is cancelled", async () => {
       const { onEdit } = renderComponent({ value: DummyValue, editable: true });

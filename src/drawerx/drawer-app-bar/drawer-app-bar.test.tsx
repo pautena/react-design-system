@@ -42,16 +42,13 @@ describe("DrawerAppBar", () => {
       ["persistent" as DrawerVariant, "open" as DrawerState],
       ["persistent" as DrawerVariant, "close" as DrawerState],
       ["mini" as DrawerVariant, "collapse" as DrawerState],
-    ])(
-      "should render a menu button if variant is %s",
-      (variant, initialState) => {
-        renderComponent({ variant, initialState });
+    ])("should render a menu button if variant is %s", (variant, initialState) => {
+      renderComponent({ variant, initialState });
 
-        expect(
-          screen.getByRole("button", { name: /open drawer/i }),
-        ).toBeVisible();
-      },
-    );
+      expect(
+        screen.getByRole("button", { name: /open drawer/i }),
+      ).toBeVisible();
+    });
 
     it("should switch the drawer state if is clicked", async () => {
       renderComponent({ initialState: "open", variant: "temporary" });
@@ -64,16 +61,15 @@ describe("DrawerAppBar", () => {
     });
   });
 
-  it.each([["mini" as DrawerVariant, "open" as DrawerState]])(
-    "should not render a menu button if variant is %s",
-    (variant, initialState) => {
-      renderComponent({ variant, initialState, clipped: false });
+  it.each([
+    ["mini" as DrawerVariant, "open" as DrawerState],
+  ])("should not render a menu button if variant is %s", (variant, initialState) => {
+    renderComponent({ variant, initialState, clipped: false });
 
-      expect(
-        screen.queryByRole("button", { name: /open drawer/i }),
-      ).not.toBeInTheDocument();
-    },
-  );
+    expect(
+      screen.queryByRole("button", { name: /open drawer/i }),
+    ).not.toBeInTheDocument();
+  });
 
   it("should render the children", () => {
     renderComponent();

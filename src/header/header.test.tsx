@@ -248,16 +248,15 @@ describe("Header", () => {
         ).toBeInTheDocument();
       });
 
-      it.each(enabledTestCases)(
-        "if i cliick the tab %s the content of that panel should be rendered",
-        async (label: string) => {
-          renderPanelTabsInstance();
+      it.each(
+        enabledTestCases,
+      )("if i cliick the tab %s the content of that panel should be rendered", async (label: string) => {
+        renderPanelTabsInstance();
 
-          await userEvent.click(screen.getByRole("tab", { name: label }));
+        await userEvent.click(screen.getByRole("tab", { name: label }));
 
-          expect(screen.getByText(`Panel ${label}`)).toBeVisible();
-        },
-      );
+        expect(screen.getByText(`Panel ${label}`)).toBeVisible();
+      });
     });
   });
 

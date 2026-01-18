@@ -308,23 +308,20 @@ describe("TableList", () => {
     it.each([
       [/edit/i, 0],
       [/remove/i, 1],
-    ])(
-      "would call the option onClick with the row if %s option is clicked",
-      async (name, i) => {
-        const index = 1;
-        const item = data[index];
-        const option = options[i];
+    ])("would call the option onClick with the row if %s option is clicked", async (name, i) => {
+      const index = 1;
+      const item = data[index];
+      const option = options[i];
 
-        renderInstance({ options });
+      renderInstance({ options });
 
-        await openOptionsMenu(index);
+      await openOptionsMenu(index);
 
-        await userEvents.click(screen.getByRole("menuitem", { name }));
+      await userEvents.click(screen.getByRole("menuitem", { name }));
 
-        expect(option.onClick).toHaveBeenCalledTimes(1);
-        expect(option.onClick).toHaveBeenCalledWith(item);
-      },
-    );
+      expect(option.onClick).toHaveBeenCalledTimes(1);
+      expect(option.onClick).toHaveBeenCalledWith(item);
+    });
 
     it("would close the menu when an option is clicked", async () => {
       const index = 1;
