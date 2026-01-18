@@ -166,39 +166,35 @@ describe("DrawerItem", () => {
     });
 
     describe("expandable submenus", () => {
-      it.each([["open"], ["collapse"]] satisfies [DrawerState][])(
-        "should render the items if state is %s",
-        async (initialState) => {
-          renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
+      it.each([["open"], ["collapse"]] satisfies [
+        DrawerState,
+      ][])("should render the items if state is %s", async (initialState) => {
+        renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
 
-          await userEvent.click(
-            screen.getByRole("button", { name: /item 2.3.4.2/i }),
-          );
+        await userEvent.click(
+          screen.getByRole("button", { name: /item 2.3.4.2/i }),
+        );
 
-          expect(
-            screen.getByRole("link", { name: /item 2.3.4.2.1/i }),
-          ).toBeVisible();
-          expect(
-            screen.getByRole("link", { name: /item 2.3.4.2.2/i }),
-          ).toBeVisible();
-        },
-      );
+        expect(
+          screen.getByRole("link", { name: /item 2.3.4.2.1/i }),
+        ).toBeVisible();
+        expect(
+          screen.getByRole("link", { name: /item 2.3.4.2.2/i }),
+        ).toBeVisible();
+      });
 
       it.each([
         ["Item 2.3.4.2 popover submenu", "collapse" as DrawerState],
         ["Item 2.3.4.2 collapse submenu", "open" as DrawerState],
-      ])(
-        "should render a '%s' if state is '%s'",
-        async (label: string, initialState: DrawerState) => {
-          renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
+      ])("should render a '%s' if state is '%s'", async (label: string, initialState: DrawerState) => {
+        renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
 
-          await userEvent.click(
-            screen.getByRole("button", { name: /item 2.3.4.2/i }),
-          );
+        await userEvent.click(
+          screen.getByRole("button", { name: /item 2.3.4.2/i }),
+        );
 
-          expect(screen.getByLabelText(label)).toBeVisible();
-        },
-      );
+        expect(screen.getByLabelText(label)).toBeVisible();
+      });
     });
   });
 

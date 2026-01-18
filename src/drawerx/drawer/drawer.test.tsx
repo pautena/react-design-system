@@ -57,14 +57,15 @@ describe("Drawer", () => {
       [false, "persistent", true],
       [true, "mini", false],
       [false, "mini", true],
-    ] satisfies [boolean, DrawerVariant, boolean][])(
-      "should be visible=%s if variant=%s and clipped=%s",
-      (visible, variant, clipped) => {
-        renderComponent({ variant, clipped });
+    ] satisfies [
+      boolean,
+      DrawerVariant,
+      boolean,
+    ][])("should be visible=%s if variant=%s and clipped=%s", (visible, variant, clipped) => {
+      renderComponent({ variant, clipped });
 
-        expect(!!screen.queryByTestId("ChevronLeftIcon")).toBe(visible);
-      },
-    );
+      expect(!!screen.queryByTestId("ChevronLeftIcon")).toBe(visible);
+    });
 
     it("should switch the drawer state if is clicked", async () => {
       renderComponent({

@@ -41,18 +41,15 @@ describe("TabCard", () => {
       [/tab 2.1/i, /panel 2/i],
       [/tab 2.2/i, /panel 2/i],
       [/tab 3/i, /panel 3/i],
-    ])(
-      'click the tab "%s" the "%s" panel is displayed',
-      async (tabName: RegExp, expectedText: RegExp) => {
-        renderComponent();
+    ])('click the tab "%s" the "%s" panel is displayed', async (tabName: RegExp, expectedText: RegExp) => {
+      renderComponent();
 
-        const tab = screen.getByRole("tab", { name: tabName });
-        await userEvent.click(tab);
+      const tab = screen.getByRole("tab", { name: tabName });
+      await userEvent.click(tab);
 
-        expect(screen.getByText(expectedText)).toBeInTheDocument();
-        expect(tab).toHaveAttribute("aria-selected", "true");
-      },
-    );
+      expect(screen.getByText(expectedText)).toBeInTheDocument();
+      expect(tab).toHaveAttribute("aria-selected", "true");
+    });
 
     it('click the tab "tab 2" and click again the tab "tab 1" the "panel 1" is displayed', async () => {
       renderComponent();

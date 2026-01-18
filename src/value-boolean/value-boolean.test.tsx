@@ -97,22 +97,19 @@ describe("ValueBoolean", () => {
     it.each([
       [true, false],
       [false, true],
-    ])(
-      "should submit %s if is edited and the initial value is %s",
-      async (expectedValue: boolean, initialValue: boolean) => {
-        const { onEdit } = renderComponent({
-          value: initialValue,
-          editable: true,
-        });
+    ])("should submit %s if is edited and the initial value is %s", async (expectedValue: boolean, initialValue: boolean) => {
+      const { onEdit } = renderComponent({
+        value: initialValue,
+        editable: true,
+      });
 
-        await userEvent.click(screen.getByRole("button", { name: /edit/i }));
-        await userEvent.click(screen.getByRole("switch"));
-        await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      await userEvent.click(screen.getByRole("switch"));
+      await userEvent.click(screen.getByRole("button", { name: /submit/i }));
 
-        expect(onEdit).toHaveBeenCalledTimes(1);
-        expect(onEdit).toHaveBeenCalledWith(expectedValue);
-      },
-    );
+      expect(onEdit).toHaveBeenCalledTimes(1);
+      expect(onEdit).toHaveBeenCalledWith(expectedValue);
+    });
 
     it("should not call onEdit if the edition is cancelled", async () => {
       const { onEdit } = renderComponent({ value: true, editable: true });

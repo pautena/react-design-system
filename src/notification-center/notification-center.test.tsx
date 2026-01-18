@@ -98,18 +98,13 @@ describe("NotificationCenterProvider", () => {
       ["info", /info/i],
       ["warning", /warning/i],
       ["error", /error/i],
-    ])(
-      "would render a notification with severity %s",
-      async (severity: string, buttonName: RegExp) => {
-        renderComponent();
+    ])("would render a notification with severity %s", async (severity: string, buttonName: RegExp) => {
+      renderComponent();
 
-        await userEvent.click(screen.getByRole("button", { name: buttonName }));
+      await userEvent.click(screen.getByRole("button", { name: buttonName }));
 
-        expect(
-          screen.getByRole("alert", { name: severity }),
-        ).toBeInTheDocument();
-      },
-    );
+      expect(screen.getByRole("alert", { name: severity })).toBeInTheDocument();
+    });
   });
 });
 

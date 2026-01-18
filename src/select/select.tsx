@@ -3,8 +3,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import LinearProgress from "@mui/material/LinearProgress";
-import MuiSelect from "@mui/material/Select";
-import type { SelectInputProps } from "@mui/material/Select/SelectInput";
+import MuiSelect, {
+  type SelectProps as MuiSelectProps,
+} from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
 import { type ReactNode, useId } from "react";
 import { CenterContainer } from "../center-container";
@@ -47,7 +48,7 @@ export interface SelectProps<T> {
   /**
    * The callback function to handle changes to the select input.
    */
-  onChange?: SelectInputProps<T>["onChange"];
+  onChange?: MuiSelectProps<T>["onChange"];
 }
 export interface SelectProps<T> {
   label: string;
@@ -58,7 +59,7 @@ export interface SelectProps<T> {
   color?: string;
   fullWidth?: boolean;
   children?: ReactNode;
-  onChange?: SelectInputProps<T>["onChange"];
+  onChange?: MuiSelectProps<T>["onChange"];
 }
 
 const ProgressSize: Record<SelectSize, number> = {

@@ -89,27 +89,26 @@ describe("DrawerProvider", () => {
   });
 
   describe("initialState", () => {
-    it.each([["open"], ["collapse"], ["close"]] as [DrawerState][])(
-      "should render with state=%s if it's its initialState",
-      (initialState) => {
-        renderComponent({ initialState });
+    it.each([["open"], ["collapse"], ["close"]] as [
+      DrawerState,
+    ][])("should render with state=%s if it's its initialState", (initialState) => {
+      renderComponent({ initialState });
 
-        expect(screen.getByText(`state: ${initialState}`)).toBeVisible();
-      },
-    );
+      expect(screen.getByText(`state: ${initialState}`)).toBeVisible();
+    });
 
     it.each([
       ["temporary", "close"],
       ["persistent", "close"],
       ["mini", "collapse"],
-    ] satisfies [DrawerVariant, DrawerState][])(
-      "should render the %s variant default state",
-      (variant, state) => {
-        renderComponent({ variant });
+    ] satisfies [
+      DrawerVariant,
+      DrawerState,
+    ][])("should render the %s variant default state", (variant, state) => {
+      renderComponent({ variant });
 
-        expect(screen.getByText(`state: ${state}`)).toBeVisible();
-      },
-    );
+      expect(screen.getByText(`state: ${state}`)).toBeVisible();
+    });
   });
 
   it("should change the state to open if open is called", async () => {
@@ -144,16 +143,17 @@ describe("DrawerProvider", () => {
       ["open", "close", "persistent"],
       ["collapse", "open", "mini"],
       ["open", "collapse", "mini"],
-    ] satisfies [DrawerState, DrawerState, DrawerVariant][])(
-      "should change state to %s if state is %s and variant %s",
-      async (expectedState, initialState, variant) => {
-        renderComponent({ initialState, variant });
+    ] satisfies [
+      DrawerState,
+      DrawerState,
+      DrawerVariant,
+    ][])("should change state to %s if state is %s and variant %s", async (expectedState, initialState, variant) => {
+      renderComponent({ initialState, variant });
 
-        await userEvent.click(screen.getByRole("button", { name: /switch/i }));
+      await userEvent.click(screen.getByRole("button", { name: /switch/i }));
 
-        expect(screen.getByText(`state: ${expectedState}`)).toBeVisible();
-      },
-    );
+      expect(screen.getByText(`state: ${expectedState}`)).toBeVisible();
+    });
   });
 
   it("should call onStateChange when the state changes", async () => {
