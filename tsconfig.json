@@ -11,14 +11,15 @@
     "declarationDir": "dist",
     "sourceMap": true,
     "outDir": "dist",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "typeRoots": ["./src/types", "node_modules"],
     "types": ["vitest/globals"],
-    "baseUrl": "."
+    "baseUrl": ".",
+    "noImplicitAny": false
   },
   "include": [
     "setupTests.ts",
