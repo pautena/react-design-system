@@ -15,7 +15,7 @@
     "test:watch": "vitest",
     "coverage": "vitest run --coverarge",
     "storybook": "storybook dev -p 6006",
-    "storybook:build": "storybook build",
+    "storybook:build": "storybook build && node generate-llms.mjs",
     "storybook:deploy": "gh-pages -d storybook-static",
     "lint": "biome check --write --unsafe --no-errors-on-unmatched --files-ignore-unknown=true ./",
     "check": "biome check ./",
