@@ -35,15 +35,6 @@ interface EnhancedTableProps<T> {
      */
     children: (data: T[]) => ReactNode;
 }
-interface EnhancedTableProps<T> {
-    readonly data: T[];
-    search?: boolean;
-    defaultSort: keyof T;
-    defaultOrder?: Order;
-    loading?: boolean;
-    columns: HeadCell<T>[];
-    children: (data: T[]) => ReactNode;
-}
 /**
  * EnhancedTable component provides a table with sorting, filtering, and loading states.
  */

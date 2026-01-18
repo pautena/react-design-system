@@ -1,4 +1,4 @@
-import { SelectInputProps } from '@mui/material/Select/SelectInput';
+import { SelectProps as MuiSelectProps } from '@mui/material/Select';
 import { ReactNode } from '../../node_modules/react';
 export type SelectSize = "small" | "medium";
 export interface SelectProps<T> {
@@ -37,7 +37,7 @@ export interface SelectProps<T> {
     /**
      * The callback function to handle changes to the select input.
      */
-    onChange?: SelectInputProps<T>["onChange"];
+    onChange?: MuiSelectProps<T>["onChange"];
 }
 export interface SelectProps<T> {
     label: string;
@@ -48,7 +48,7 @@ export interface SelectProps<T> {
     color?: string;
     fullWidth?: boolean;
     children?: ReactNode;
-    onChange?: SelectInputProps<T>["onChange"];
+    onChange?: MuiSelectProps<T>["onChange"];
 }
 /**
  * A custom Select component that extends the functionality of the Material-UI Select component.

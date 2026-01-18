@@ -1,4 +1,4 @@
-import { TypographyVariant } from '@mui/material/styles/createTypography';
+import { TypographyProps } from '@mui/material/Typography';
 import { ReactElement } from '../../node_modules/react';
 export type ActionVariant = "primary" | "error" | "warning" | "success";
 export interface ActionProps {
@@ -13,7 +13,7 @@ export interface ActionProps {
     /**
      * The variant of the title.
      */
-    titleVariant?: Extract<TypographyVariant, "h4" | "h5" | "h6">;
+    titleVariant?: Extract<TypographyProps["variant"], "h4" | "h5" | "h6">;
     /**
      * The description of the action.
      */
@@ -21,7 +21,7 @@ export interface ActionProps {
     /**
      * The variant of the description.
      */
-    descriptionVariant?: TypographyVariant;
+    descriptionVariant?: TypographyProps["variant"];
     /**
      * The helper text for the action.
      */
@@ -29,7 +29,7 @@ export interface ActionProps {
     /**
      * The variant of the helper text.
      */
-    helperTextVariant?: TypographyVariant;
+    helperTextVariant?: TypographyProps["variant"];
     /**
      * The text for the action button.
      */

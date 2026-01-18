@@ -1,28 +1,28 @@
 export declare const markdownMuiOptions: {
     overrides: {
         h1: {
-            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material/Typography').TypographyTypeMap<{}, "span">>;
+            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material').TypographyTypeMap<{}, "span">>;
             props: {
                 gutterBottom: boolean;
                 variant: string;
             };
         };
         h2: {
-            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material/Typography').TypographyTypeMap<{}, "span">>;
+            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material').TypographyTypeMap<{}, "span">>;
             props: {
                 gutterBottom: boolean;
                 variant: string;
             };
         };
         h3: {
-            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material/Typography').TypographyTypeMap<{}, "span">>;
+            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material').TypographyTypeMap<{}, "span">>;
             props: {
                 gutterBottom: boolean;
                 variant: string;
             };
         };
         h4: {
-            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material/Typography').TypographyTypeMap<{}, "span">>;
+            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material').TypographyTypeMap<{}, "span">>;
             props: {
                 gutterBottom: boolean;
                 variant: string;
@@ -30,13 +30,13 @@ export declare const markdownMuiOptions: {
             };
         };
         p: {
-            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material/Typography').TypographyTypeMap<{}, "span">>;
+            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material').TypographyTypeMap<{}, "span">>;
             props: {
                 paragraph: boolean;
             };
         };
         a: {
-            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material/Link').LinkTypeMap<{}, "a">>;
+            component: import('@mui/material/OverridableComponent').OverridableComponent<import('@mui/material').LinkTypeMap<{}, "a">>;
         };
         li: {
             component: string;

@@ -1,4 +1,4 @@
-import { ElementType, PropsWithChildren } from '../../../node_modules/react';
+import { PropsWithChildren, ElementType } from '../../../node_modules/react';
 import { DrawerSize, DrawerState, DrawerVariant } from '../drawer.types';
 export type DrawerProviderProps = PropsWithChildren<{
     initialState?: DrawerState;
