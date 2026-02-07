@@ -12,6 +12,9 @@ export default defineConfig({
     },
     rollupOptions: {
       external: [...Object.keys(peerDependencies)],
+      output: {
+        interop: "auto",
+      },
     },
     sourcemap: true,
     emptyOutDir: true,
