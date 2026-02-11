@@ -243,9 +243,8 @@ describe("RemoteDataTable", () => {
     await user.click(await screen.findByRole("button", { name: "Add filter" }));
 
     expect(screen.getByRole("combobox", { name: "Field" })).toBeInTheDocument();
-    expect(
-      screen.getByRole("combobox", { name: "Operator" }),
-    ).toBeInTheDocument();
+    // Operator uses ToggleButtonGroup, not a combobox
+    expect(screen.getByRole("button", { name: "is" })).toBeInTheDocument();
   });
 
   describe("User Interactions", () => {
@@ -395,12 +394,10 @@ describe("RemoteDataTable", () => {
         await user.click(fieldCombobox);
         await user.click(await screen.findByRole("option", { name: "Status" }));
 
-        // Select operator
-        const operatorCombobox = screen.getByRole("combobox", {
-          name: "Operator",
-        });
-        await user.click(operatorCombobox);
-        await user.click(await screen.findByRole("option", { name: "is" }));
+        // Operator is already "is" (eq) by default, which is what we want
+        // Just verify the button is there and selected
+        const isButton = screen.getByRole("button", { name: "is" });
+        expect(isButton).toHaveAttribute("aria-pressed", "true");
 
         // Select value
         const valueCombobox = screen.getByRole("combobox", { name: "Value" });
@@ -485,13 +482,9 @@ describe("RemoteDataTable", () => {
         await user.click(fieldComboboxes[0]);
         await user.click(await screen.findByRole("option", { name: "Name" }));
 
-        const opComboboxes = screen.getAllByRole("combobox", {
-          name: "Operator",
-        });
-        await user.click(opComboboxes[0]);
-        await user.click(
-          await screen.findByRole("option", { name: "contains" }),
-        );
+        // Click the "contains" toggle button for the operator
+        const containsButton = screen.getByRole("button", { name: "contains" });
+        await user.click(containsButton);
 
         const valueInput = screen.getByRole("textbox", { name: "Value" });
         await user.clear(valueInput);
@@ -507,6 +500,8 @@ describe("RemoteDataTable", () => {
         await user.click(fieldComboboxes2[1]);
         await user.click(await screen.findByRole("option", { name: "Status" }));
 
+        // The operator defaults to "is" (eq), which is what we want
+        // Just select the value
         const valueComboboxes = screen.getAllByRole("combobox", {
           name: "Value",
         });
