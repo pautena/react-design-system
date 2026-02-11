@@ -1,1 +1,0 @@
-import{j as e}from"./iframe-EZlCblT_.js";import{B as r}from"./Box-C0oK-ZD8.js";import{C as i}from"./CircularProgress-CWLujbj3.js";const o=()=>e.jsx(r,{width:1,height:1,display:"flex",justifyContent:"center",alignItems:"center",children:e.jsx(i,{})});o.__docgenInfo={description:"Displays a centered loading indicator",methods:[],displayName:"LoadingArea"};export{o as L};

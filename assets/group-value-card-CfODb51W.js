@@ -1,0 +1,34 @@
+import{j as n}from"./iframe-B6ohfiup.js";import{u as m}from"./theme-BtJ43TUN.js";import{u as p}from"./useTheme-DsWhHYnr.js";import{P as d}from"./Paper-CU8usuf0.js";import{B as u}from"./Box-CXgehUqD.js";import{T as r}from"./Typography-DaaAGHYc.js";import{G as c}from"./Grid-Cb8DrkkP.js";const b=({title:a,subtitle:t,centered:o,children:i,dense:e})=>{const{typography:l}=p(),s=m({lightWeight:200,darkWeight:800});return n.jsxs(d,{sx:{paddingBottom:e?0:1},children:[n.jsxs(u,{bgcolor:s,px:e?1:2,py:e?.5:1,lineHeight:e?0:void 0,children:[n.jsx(r,{variant:e?"body1":"h6",role:"heading","aria-level":1,children:a}),t&&n.jsx(r,{variant:e?"caption":"body2",role:"heading","aria-level":2,lineHeight:e?l.pxToRem(15):void 0,children:t})]}),n.jsx(c,{container:!0,padding:1,rowSpacing:e?1:2,justifyContent:o?"center":"flex-start",children:i})]})};b.__docgenInfo={description:`GroupValueCard component renders a card with a title, subtitle, and children content.
+It supports customization for dense layout and centered content.`,methods:[],displayName:"GroupValueCard",props:{title:{required:!0,tsType:{name:"string"},description:"The main title of the card."},subtitle:{required:!1,tsType:{name:"string"},description:"An optional subtitle for the card."},centered:{required:!1,tsType:{name:"boolean"},description:"If true, the content will be centered."},children:{required:!0,tsType:{name:"union",raw:"ValueItemElement | ValueItemElement[]",elements:[{name:"ReactElement",elements:[{name:"PropsWithChildren",elements:[{name:"intersection",raw:`Omit<GridProps, "item" | "container"> & {
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,elements:[{name:"Omit",elements:[{name:"GridProps"},{name:"union",raw:'"item" | "container"',elements:[{name:"literal",value:'"item"'},{name:"literal",value:'"container"'}]}],raw:'Omit<GridProps, "item" | "container">'},{name:"signature",type:"object",raw:`{
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,signature:{properties:[{key:"bordered",value:{name:"ResponsiveStyleValue",elements:[{name:"boolean"}],raw:"ResponsiveStyleValue<boolean>",required:!1}}]}}]}],raw:`PropsWithChildren<
+  Omit<GridProps, "item" | "container"> & {
+    bordered?: ResponsiveStyleValue<boolean>;
+  }
+>`},{name:"FunctionComponent",elements:[{name:"PropsWithChildren",elements:[{name:"intersection",raw:`Omit<GridProps, "item" | "container"> & {
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,elements:[{name:"Omit",elements:[{name:"GridProps"},{name:"union",raw:'"item" | "container"',elements:[{name:"literal",value:'"item"'},{name:"literal",value:'"container"'}]}],raw:'Omit<GridProps, "item" | "container">'},{name:"signature",type:"object",raw:`{
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,signature:{properties:[{key:"bordered",value:{name:"ResponsiveStyleValue",elements:[{name:"boolean"}],raw:"ResponsiveStyleValue<boolean>",required:!1}}]}}]}],raw:`PropsWithChildren<
+  Omit<GridProps, "item" | "container"> & {
+    bordered?: ResponsiveStyleValue<boolean>;
+  }
+>`}],raw:"FunctionComponent<ValueItemProps>"}],raw:"ReactElement<ValueItemProps, ValueItemComponent>"},{name:"Array",elements:[{name:"ReactElement",elements:[{name:"PropsWithChildren",elements:[{name:"intersection",raw:`Omit<GridProps, "item" | "container"> & {
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,elements:[{name:"Omit",elements:[{name:"GridProps"},{name:"union",raw:'"item" | "container"',elements:[{name:"literal",value:'"item"'},{name:"literal",value:'"container"'}]}],raw:'Omit<GridProps, "item" | "container">'},{name:"signature",type:"object",raw:`{
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,signature:{properties:[{key:"bordered",value:{name:"ResponsiveStyleValue",elements:[{name:"boolean"}],raw:"ResponsiveStyleValue<boolean>",required:!1}}]}}]}],raw:`PropsWithChildren<
+  Omit<GridProps, "item" | "container"> & {
+    bordered?: ResponsiveStyleValue<boolean>;
+  }
+>`},{name:"FunctionComponent",elements:[{name:"PropsWithChildren",elements:[{name:"intersection",raw:`Omit<GridProps, "item" | "container"> & {
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,elements:[{name:"Omit",elements:[{name:"GridProps"},{name:"union",raw:'"item" | "container"',elements:[{name:"literal",value:'"item"'},{name:"literal",value:'"container"'}]}],raw:'Omit<GridProps, "item" | "container">'},{name:"signature",type:"object",raw:`{
+  bordered?: ResponsiveStyleValue<boolean>;
+}`,signature:{properties:[{key:"bordered",value:{name:"ResponsiveStyleValue",elements:[{name:"boolean"}],raw:"ResponsiveStyleValue<boolean>",required:!1}}]}}]}],raw:`PropsWithChildren<
+  Omit<GridProps, "item" | "container"> & {
+    bordered?: ResponsiveStyleValue<boolean>;
+  }
+>`}],raw:"FunctionComponent<ValueItemProps>"}],raw:"ReactElement<ValueItemProps, ValueItemComponent>"}],raw:"ValueItemElement[]"}]},description:"The children elements to be rendered inside the card."},dense:{required:!1,tsType:{name:"boolean"},description:"If true, the card will have a denser layout."}}};export{b as G};

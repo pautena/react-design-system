@@ -1,0 +1,5 @@
+import{j as e}from"./iframe-B6ohfiup.js";import{D as s}from"./drawer.provider-DAueDsRI.js";import{D as o}from"./drawer-app-bar-vy7qsmOp.js";import"./preload-helper-PPVm8Dsz.js";import"./Link-BKkOLvyE.js";import"./useTheme-DsWhHYnr.js";import"./memoTheme-CC-1Q7gO.js";import"./createSimplePaletteValueFilter-C0yhpO25.js";import"./generateUtilityClasses-CoM_PQv9.js";import"./Typography-DaaAGHYc.js";import"./ChevronLeft-DeJcRDYW.js";import"./Toolbar-B8c3XPTd.js";import"./IconButton-Cwope62c.js";import"./CircularProgress-DNnVD90t.js";import"./Paper-CU8usuf0.js";const A={title:"Components/Navigation/DrawerAppBar",component:o,parameters:{layout:"fullscreen"},render:a=>e.jsx(s,{children:e.jsx(o,{...a})})},r={args:{title:"Lorem ipsum"}},t={};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {
+    title: "Lorem ipsum"
+  }
+}`,...r.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:"{}",...t.parameters?.docs?.source}}};const B=["Default","WithoutTitle"];export{r as Default,t as WithoutTitle,B as __namedExportsOrder,A as default};
