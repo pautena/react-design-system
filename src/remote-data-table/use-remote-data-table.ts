@@ -33,14 +33,20 @@ const DEFAULT_PAGINATION: PaginationState = {
 export const useRemoteDataTable = (
   options: UseRemoteDataTableOptions = {},
 ): UseRemoteDataTableResult => {
-  const { initialPagination = {}, initialSorting = [], initialFilters = [] } = options;
+  const {
+    initialPagination = {},
+    initialSorting = [],
+    initialFilters = [],
+  } = options;
 
   const resolvedInitialPagination: PaginationState = {
     ...DEFAULT_PAGINATION,
     ...initialPagination,
   };
 
-  const [pagination, setPagination] = useState<PaginationState>(resolvedInitialPagination);
+  const [pagination, setPagination] = useState<PaginationState>(
+    resolvedInitialPagination,
+  );
   const [sorting, setSorting] = useState<SortingState>(initialSorting);
   const [filters, setFilters] = useState<QuerySpecFilter[]>(initialFilters);
 

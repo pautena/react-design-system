@@ -3,7 +3,6 @@ import { useMemo } from "react";
 import type {
   OnChangeFn,
   PaginationState,
-  QuerySpecFilter,
   RemoteDataTableColumn,
   RemoteDataTableQueryBuilderProps,
   SortingState,

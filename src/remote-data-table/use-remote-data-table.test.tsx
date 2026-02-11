@@ -62,7 +62,9 @@ describe("useRemoteDataTable", () => {
     });
 
     it("with custom filters state", () => {
-      const filters = [{ id: "1", field: "status", op: "eq" as const, value: "Active" }];
+      const filters = [
+        { id: "1", field: "status", op: "eq" as const, value: "Active" },
+      ];
       const { result } = renderHook(() =>
         useRemoteDataTable({
           initialFilters: filters,
@@ -115,7 +117,9 @@ describe("useRemoteDataTable", () => {
   it("updates filters state", () => {
     const { result } = renderHook(() => useRemoteDataTable());
 
-    const filters = [{ id: "1", field: "name", op: "ilike" as const, value: "test" }];
+    const filters = [
+      { id: "1", field: "name", op: "ilike" as const, value: "test" },
+    ];
 
     act(() => {
       result.current.onFiltersChange(filters);
@@ -168,7 +172,9 @@ describe("useRemoteDataTable", () => {
   });
 
   it("resets filters to initial state", () => {
-    const initialFilters = [{ id: "1", field: "status", op: "eq" as const, value: "Active" }];
+    const initialFilters = [
+      { id: "1", field: "status", op: "eq" as const, value: "Active" },
+    ];
     const { result } = renderHook(() =>
       useRemoteDataTable({
         initialFilters,
@@ -196,7 +202,9 @@ describe("useRemoteDataTable", () => {
       useRemoteDataTable({
         initialPagination: { pageSize: 25 },
         initialSorting: [{ id: "name", desc: false }],
-        initialFilters: [{ id: "1", field: "status", op: "eq" as const, value: "Active" }],
+        initialFilters: [
+          { id: "1", field: "status", op: "eq" as const, value: "Active" },
+        ],
       }),
     );
 

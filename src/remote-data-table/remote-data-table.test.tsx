@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { vi } from "vitest";
@@ -9,7 +9,6 @@ import {
 } from "./remote-data-table";
 import {
   buildMockItems,
-  type MockItem,
   mockColumnsBasic,
   mockColumnsFull,
   mockQueryFields,
