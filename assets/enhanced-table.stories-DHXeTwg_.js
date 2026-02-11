@@ -1,8 +1,0 @@
-import{T as r,d as o,c as m}from"./enhanced-table.mock-DPeIfWEH.js";import"./iframe-BupHDtd1.js";import"./preload-helper-PPVm8Dsz.js";import"./enhanced-table-DhHA3lzd.js";import"./Search-BxHxrTq5.js";import"./Typography-BHekySi3.js";import"./memoTheme-uoO9vclW.js";import"./generateUtilityClasses-CoM_PQv9.js";import"./createSimplePaletteValueFilter-LbGOAHYa.js";import"./TableCell-BXGk_UU6.js";import"./useSlot-CDAVMGN6.js";import"./Box-BZzEFwUz.js";import"./visuallyHidden-Dan1xhjv.js";import"./TextField-HCk6Ljdm.js";import"./OutlinedInput-BjAMRR9Y.js";import"./useFormControl-DOIECqUk.js";import"./isMuiElement-B9Yk4f5Q.js";import"./ownerWindow-HkKU3E4x.js";import"./ownerDocument-DW-IO8s5.js";import"./debounce-Be36O1Ab.js";import"./Select-DeUb_WaS.js";import"./useSlotProps-CTFGJ4TE.js";import"./Popover-B5lVZexF.js";import"./Grow-CP6B5ywO.js";import"./useTheme-Big8xsoA.js";import"./index-DGx7bEnB.js";import"./index-dSTdg89Q.js";import"./Modal-cEtTgi0S.js";import"./Portal-DP_lpGU5.js";import"./getActiveElement-BQgAPKnO.js";import"./Fade-DI5ShsIQ.js";import"./Paper-ZM7KCuNl.js";import"./List-BXpsKTF1.js";import"./useControlled-sRtPFq0m.js";import"./ArrowDropDown-BTZV4NVw.js";import"./FormHelperText-BvB9GbdA.js";import"./InputAdornment-B2zP22ml.js";import"./CircularProgress-CA-yQluH.js";const M={title:"Components/Tables/EnhancedTable",component:r,parameters:{layout:"fullscreen"}},t={args:{columns:m,data:o,defaultSort:"startDate",defaultOrder:"asc"}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  args: {
-    columns,
-    data,
-    defaultSort: "startDate",
-    defaultOrder: "asc"
-  }
-}`,...t.parameters?.docs?.source}}};const N=["Default"];export{t as Default,N as __namedExportsOrder,M as default};

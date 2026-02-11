@@ -29,6 +29,7 @@ export * from './notification-center';
 export * from './object-details';
 export * from './placeholder';
 export * from './query-container';
+export * from './remote-data-table';
 export * from './select';
 export * from './skeleton-card';
 export * from './skeleton-grid';
