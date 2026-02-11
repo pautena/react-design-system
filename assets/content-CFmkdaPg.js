@@ -1,0 +1,1 @@
+import{j as o}from"./iframe-EZlCblT_.js";import{C as t}from"./Container-enQBmRdh.js";const e=({children:n})=>o.jsx(t,{component:"main",sx:{py:3,flexGrow:1},children:n});e.__docgenInfo={description:"A functional component that renders its children inside a main container.",methods:[],displayName:"Content"};export{e as C};
