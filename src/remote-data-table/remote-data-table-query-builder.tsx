@@ -13,6 +13,8 @@ import {
   Popover,
   Stack,
   TextField,
+  ToggleButton,
+  ToggleButtonGroup,
   Typography,
 } from "@mui/material";
 import { type FocusEvent, type MouseEvent, useMemo, useState } from "react";
@@ -94,22 +96,24 @@ const QueryFilterRow = ({
           </MenuItem>
         ))}
       </TextField>
-      <TextField
-        select
+      <ToggleButtonGroup
+        exclusive
         size="small"
-        label="Operator"
+        color="primary"
         value={filter.op}
-        onChange={(event) =>
-          onOpChange(filter.id, event.target.value as QuerySpecOp)
-        }
-        sx={{ minWidth: 150 }}
+        onChange={(_, value) => {
+          if (value !== null) {
+            onOpChange(filter.id, value as QuerySpecOp);
+          }
+        }}
+        sx={{ minWidth: 150, alignSelf: "center" }}
       >
         {ops.map((op) => (
-          <MenuItem key={op} value={op}>
+          <ToggleButton key={op} value={op}>
             {querySpecOpLabels[op] ?? op}
-          </MenuItem>
+          </ToggleButton>
         ))}
-      </TextField>
+      </ToggleButtonGroup>
       {filter.op === "isnull" ? (
         <TextField
           select
