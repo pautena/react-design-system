@@ -1,7 +1,7 @@
 ---
 project: @pautena/react-design-system
 version: 0.21.0
-generated: 2026-02-11T23:22:22.710Z
+generated: 2026-02-11T23:22:31.553Z
 storybook: ^10.1.11
 base_url: https://pautena.com/react-design-system
 source_index: index.json
