@@ -232,3 +232,38 @@ export const ColorPaper: Story = {
     ),
   ],
 };
+
+export const CustomActionStyles: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "default",
+    breadcrumbs,
+    actions: [
+      {
+        id: "view",
+        text: "View",
+        variant: "text",
+        color: "primary",
+      },
+      {
+        id: "edit",
+        text: "Edit",
+        variant: "outlined",
+        color: "secondary",
+      },
+      {
+        id: "save",
+        text: "Save",
+        variant: "contained",
+        color: "primary",
+      },
+      {
+        id: "delete",
+        text: "Delete",
+        variant: "contained",
+        color: "error",
+      },
+    ],
+  },
+};
