@@ -5,11 +5,21 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    },
+    "./testing": {
+      "types": "./dist/tests/index.d.ts",
+      "import": "./dist/tests/index.mjs"
+    }
+  },
   "files": [
     "/dist"
   ],
   "scripts": {
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && node -e \"const fs=require('fs');const files=['actions','assertions'];files.forEach(f=>{const src='dist/'+f+'.d.ts';const dest='dist/tests/'+f+'.d.ts';if(fs.existsSync(src)){fs.renameSync(src,dest);}});const index=files.map(f=>'export * from \\'./'+f+'\\';').join('\\\\n');fs.writeFileSync('dist/tests/index.d.ts',index);\"",
     "publish:npm": "npm publish --access public",
     "test": "vitest run",
     "test:watch": "vitest",
