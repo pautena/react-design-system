@@ -4,15 +4,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactElement } from "react";
-import { action } from "storybook/actions";
-import { createModelInstance, mockModel } from "../Generators/Generators.mock";
 import type { HeaderProps, HeaderTab } from "../Header";
 import { HeaderLayout, type HeaderLayoutProps } from "../HeaderLayout";
-import { ModelForm } from "../ModelForm";
-import { ObjectDetails } from "../ObjectDetails";
 import { SkeletonGrid } from "../SkeletonGrid";
 import { withFullHeight, withLocalizationProvider } from "../storybook";
-import { TableList } from "../TableList";
 import { TabPanel } from "../TabPanel";
 
 const breadcrumbs = [
