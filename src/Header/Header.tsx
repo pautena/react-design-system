@@ -27,6 +27,7 @@ export default function Header({
   tabs,
   tabsMode = "navigation",
   navigationButton,
+  border = false,
 }: HeaderProps) {
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
@@ -38,6 +39,7 @@ export default function Header({
     secondary: palette.secondary.main,
     inherit: "inherit",
     transparent: "transparent",
+    paper: palette.background.paper,
   };
   const bgColor = bgColorPresets[preset];
   const textColorPresets: Record<HeaderPreset, string> = {
@@ -46,13 +48,18 @@ export default function Header({
     secondary: palette.secondary.contrastText,
     inherit: "inherit",
     transparent: palette.text.primary,
+    paper: palette.text.primary,
   };
   const textColor = textColorPresets[preset];
 
   const modedSelectedTab = selectedTab;
 
   return (
-    <Box bgcolor={bgColor} color={textColor}>
+    <Box
+      bgcolor={bgColor}
+      color={textColor}
+      sx={border ? { borderBottom: 1, borderColor: "divider" } : undefined}
+    >
       <Container>
         <Box
           sx={{

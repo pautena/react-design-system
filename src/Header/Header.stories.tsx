@@ -186,3 +186,49 @@ export const NavigationButton: Story = {
     },
   },
 };
+
+export const WithBorder: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "default",
+    breadcrumbs,
+    actions,
+    border: true,
+  },
+  decorators: [
+    (Story) => (
+      <Box>
+        <Story />
+        <Box p={3}>
+          <Typography>Content below header to show the border</Typography>
+        </Box>
+      </Box>
+    ),
+  ],
+};
+
+export const ColorPaper: Story = {
+  args: {
+    title: "Lorem ipsum",
+    subtitle: "Dolor sit amet",
+    preset: "paper",
+    breadcrumbs,
+    tabs,
+    actions,
+    border: true,
+  },
+  decorators: [
+    (Story) => (
+      <Box>
+        <Story />
+        <Box p={3}>
+          <Typography>
+            Paper preset uses theme background.paper (white in light mode, dark
+            in dark mode)
+          </Typography>
+        </Box>
+      </Box>
+    ),
+  ],
+};

@@ -1,7 +1,7 @@
 import type { PropTypes } from "@mui/material";
 import type { ReactElement } from "react";
 
-export type HeaderPreset = PropTypes.Color | "transparent";
+export type HeaderPreset = PropTypes.Color | "transparent" | "paper";
 export type HeaderActionVariant = "text" | "outlined" | "contained";
 
 export type HeaderAction = {
@@ -91,4 +91,8 @@ export type HeaderProps = {
    * a screen related to the current screen
    */
   navigationButton?: HeaderNavigationButton;
+  /**
+   * Whether to display a border at the bottom of the header
+   */
+  border?: boolean;
 };
