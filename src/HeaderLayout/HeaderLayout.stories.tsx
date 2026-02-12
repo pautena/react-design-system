@@ -4,15 +4,10 @@ import { DataGrid } from "@mui/x-data-grid";
 import { useDemoData } from "@mui/x-data-grid-generator";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactElement } from "react";
-import { action } from "storybook/actions";
-import { createModelInstance, mockModel } from "../Generators/Generators.mock";
 import type { HeaderProps, HeaderTab } from "../Header";
 import { HeaderLayout, type HeaderLayoutProps } from "../HeaderLayout";
-import { ModelForm } from "../ModelForm";
-import { ObjectDetails } from "../ObjectDetails";
 import { SkeletonGrid } from "../SkeletonGrid";
 import { withFullHeight, withLocalizationProvider } from "../storybook";
-import { TableList } from "../TableList";
 import { TabPanel } from "../TabPanel";
 
 const breadcrumbs = [
@@ -81,87 +76,6 @@ export const Skeleton: Story = {
       },
     },
     children: <SkeletonGrid />,
-  },
-};
-
-const ListContent = () => {
-  const { data } = useDemoData({
-    dataSet: "Commodity",
-    rowLength: 100,
-    maxColumns: 3,
-    editable: true,
-  });
-
-  const { rows } = data;
-  const columns = data.columns.map(({ field, headerName }) => ({
-    id: field,
-    label: headerName || "",
-    sort: true,
-    disablePadding: false,
-    numeric: false,
-  }));
-
-  return (
-    <TableList
-      data={rows as any}
-      columns={columns}
-      defaultSort={columns[0].id}
-      defaultOrder="asc"
-    />
-  );
-};
-
-export const List: Story = {
-  args: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    slotProps: {
-      header: {
-        breadcrumbs,
-        actions,
-      },
-    },
-    children: <ListContent />,
-  },
-};
-
-export const Details: Story = {
-  args: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    slotProps: {
-      header: {
-        breadcrumbs,
-        actions,
-      },
-    },
-    children: (
-      <ObjectDetails
-        model={mockModel}
-        instance={createModelInstance(mockModel)}
-      />
-    ),
-  },
-};
-
-export const Form: Story = {
-  args: {
-    title: "Lorem ipsum",
-    subtitle: "Dolor sit amet",
-    slotProps: {
-      header: {
-        breadcrumbs,
-        actions,
-      },
-    },
-    children: (
-      <ModelForm
-        model={mockModel}
-        initialValues={createModelInstance(mockModel)}
-        saveButtonText="Save"
-        onSubmit={action("Save form data")}
-      />
-    ),
   },
 };
 
