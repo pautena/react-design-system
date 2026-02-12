@@ -1896,64 +1896,51 @@
     react-is "^19.2.3"
 
 "@mui/x-data-grid-generator@^8.25.0":
-  version "8.25.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-8.25.0.tgz#f0188dd49497462b9f7e6b78c3b3c7578a29ca8d"
-  integrity sha512-7PGXMPWKwWAOJylwLWokRJPg8b+GsJalq8e3M4i6qGZ5Enqw7wqcZDwfQR0ZMmgvctOb+ufAzHIVvpqD83Cc1Q==
+  version "8.27.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-generator/-/x-data-grid-generator-8.27.0.tgz#fa304950903b46b8b011a859f2fc09d05964f7cd"
+  integrity sha512-NMj4GpWal1vqgC8Lb1+Sb+zErmQnCmQjXXN7Y16HJEJtFNYRpr4xt0m9CxQ07FnLRkUuj1gWWchvVMxe1Q+6hA==
   dependencies:
     "@babel/runtime" "^7.28.4"
-    "@mui/x-data-grid" "8.25.0"
-    "@mui/x-data-grid-premium" "8.25.0"
-    "@mui/x-data-grid-pro" "8.25.0"
-    "@mui/x-internals" "8.25.0"
+    "@mui/x-data-grid" "8.27.0"
+    "@mui/x-data-grid-premium" "8.27.0"
+    "@mui/x-data-grid-pro" "8.27.0"
+    "@mui/x-internals" "8.26.0"
     chance "^1.1.13"
     clsx "^2.1.1"
     lru-cache "^11.2.2"
 
-"@mui/x-data-grid-premium@8.25.0":
-  version "8.25.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-8.25.0.tgz#b7152991249612acd153a776e985f3e492ba07c3"
-  integrity sha512-bemOvF2/gCIm4NhpxtPAF4FOOkURALKwMdmLK9Rtwye4bwm4qmNK7MzzAKp0PBkgUJrxUb0hMLKIvqKMkPx2IQ==
+"@mui/x-data-grid-premium@8.27.0":
+  version "8.27.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-premium/-/x-data-grid-premium-8.27.0.tgz#9978cc28a21771b744cfbe685104292a079ba3ea"
+  integrity sha512-nL30T+5/hTo4bO+GnwsRfEDpdMqGy1AM6nm4dZqYycn/aK5MjwwWZcaP/n2CIKFNUKXQ4N3IQ66MTWqKOwOA/w==
   dependencies:
     "@babel/runtime" "^7.28.4"
     "@mui/utils" "^7.3.5"
-    "@mui/x-data-grid" "8.25.0"
-    "@mui/x-data-grid-pro" "8.25.0"
+    "@mui/x-data-grid" "8.27.0"
+    "@mui/x-data-grid-pro" "8.27.0"
     "@mui/x-internal-exceljs-fork" "4.4.3"
-    "@mui/x-internals" "8.25.0"
-    "@mui/x-license" "8.25.0"
+    "@mui/x-internals" "8.26.0"
+    "@mui/x-license" "8.26.0"
     clsx "^2.1.1"
     prop-types "^15.8.1"
 
-"@mui/x-data-grid-pro@8.25.0":
-  version "8.25.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-8.25.0.tgz#d0bd6a05e8bbf11d496c6db8f91523ca5e583132"
-  integrity sha512-RP9nw321qozu2vjQw8vbTMDoQiZLyhQKp+BtQyBntdPNt3jk7sEk4UZFW58YcLhdjUVwgTtk6pOeBIU6Ztw5dw==
+"@mui/x-data-grid-pro@8.27.0":
+  version "8.27.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid-pro/-/x-data-grid-pro-8.27.0.tgz#0a1fbec366e9b465c8afec1d70d0c7b906772359"
+  integrity sha512-B6zcuknji896vHJ/EvKq+1dVv850xafceX0yb7yyq5EtUqLi00nSTwyCB0JHISjTGmLi6vnGYz20bcRi/fLbrQ==
   dependencies:
     "@babel/runtime" "^7.28.4"
     "@mui/utils" "^7.3.5"
-    "@mui/x-data-grid" "8.25.0"
-    "@mui/x-internals" "8.25.0"
-    "@mui/x-license" "8.25.0"
+    "@mui/x-data-grid" "8.27.0"
+    "@mui/x-internals" "8.26.0"
+    "@mui/x-license" "8.26.0"
     clsx "^2.1.1"
     prop-types "^15.8.1"
 
-"@mui/x-data-grid@8.25.0":
-  version "8.25.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-8.25.0.tgz#87f43e419b88767784fa69f79842b10894169a7c"
-  integrity sha512-Or17TXwjhJetgw374WAGjgGkoKqJZnqCZOXz3sc5/VqMhTf1EsfvglEy0AavbeE9PMceOp8MRdsuLiY8KLEXgQ==
-  dependencies:
-    "@babel/runtime" "^7.28.4"
-    "@mui/utils" "^7.3.5"
-    "@mui/x-internals" "8.25.0"
-    "@mui/x-virtualizer" "0.3.2"
-    clsx "^2.1.1"
-    prop-types "^15.8.1"
-    use-sync-external-store "^1.6.0"
-
-"@mui/x-data-grid@^8.25.0":
-  version "8.26.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-8.26.0.tgz#d68867ff9105e745ffd2dff71c9d8880ff55d72b"
-  integrity sha512-6WDDTYv9ryce7j3S7bPIRMCHvzG8rbU2O/p9/JK+InoZUAL9BaAKwvIjt31KeE0Q5yHiNDd0FWiOUY1vEcoDog==
+"@mui/x-data-grid@8.27.0", "@mui/x-data-grid@^8.25.0":
+  version "8.27.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-data-grid/-/x-data-grid-8.27.0.tgz#3bd758dcbf2eb0ffe61af05ad4c2c13886dd9986"
+  integrity sha512-xfx6jQyqUZQm4ZAxuN91fgdDwNiYtvahGv0wHmDK33DFgq68RrLvKSHUq/k79IY1y8N1jYGI8TT3nOipxorhyg==
   dependencies:
     "@babel/runtime" "^7.28.4"
     "@mui/utils" "^7.3.5"
@@ -1992,16 +1979,6 @@
     unzipper "0.12.1"
     uuid "^8.3.0"
 
-"@mui/x-internals@8.25.0":
-  version "8.25.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-internals/-/x-internals-8.25.0.tgz#93849275bfb3a4e5e0130ae91449bb4f8517a1d7"
-  integrity sha512-RKexkVaK3xvAeLBNeLAw6oJCsQrXkx7TYSRoSUmmJveydqOqoBbimv+nbc8PmL4UL0ShVNkaFL1YWY7kYCCXUA==
-  dependencies:
-    "@babel/runtime" "^7.28.4"
-    "@mui/utils" "^7.3.5"
-    reselect "^5.1.1"
-    use-sync-external-store "^1.6.0"
-
 "@mui/x-internals@8.26.0":
   version "8.26.0"
   resolved "https://registry.yarnpkg.com/@mui/x-internals/-/x-internals-8.26.0.tgz#49caacac954c29a1b10425c67418310ceb9c8cfa"
@@ -2012,14 +1989,14 @@
     reselect "^5.1.1"
     use-sync-external-store "^1.6.0"
 
-"@mui/x-license@8.25.0":
-  version "8.25.0"
-  resolved "https://registry.yarnpkg.com/@mui/x-license/-/x-license-8.25.0.tgz#a1c867e996849f44ed3d57262da66fd5da40448d"
-  integrity sha512-Cdhww3g6SwwNHnkN1SUYhMNPPptct8fkqxXRrbqktt9ReJ2m4zycoV1qI4sEn2ofisiB96vVCV+q/SlV94N61Q==
+"@mui/x-license@8.26.0":
+  version "8.26.0"
+  resolved "https://registry.yarnpkg.com/@mui/x-license/-/x-license-8.26.0.tgz#510bcc6ee4766fa26d8af6977e97d465c257cd6b"
+  integrity sha512-TcYLQXVRSaKjm9zyAxW3bi/+sGR2afsc32oG9ufBBiuNMvRZDghUZj7cKrem4VEKpC4Afsw2du9euv88TVUE1w==
   dependencies:
     "@babel/runtime" "^7.28.4"
     "@mui/utils" "^7.3.5"
-    "@mui/x-internals" "8.25.0"
+    "@mui/x-internals" "8.26.0"
     "@mui/x-telemetry" "8.20.0"
 
 "@mui/x-telemetry@8.20.0":
@@ -2033,15 +2010,6 @@
     conf "^11.0.2"
     is-docker "^4.0.0"
     node-machine-id "^1.1.12"
-
-"@mui/x-virtualizer@0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@mui/x-virtualizer/-/x-virtualizer-0.3.2.tgz#8f1273c847b803e75c8c2e3046cfcb26295774aa"
-  integrity sha512-5RkO+7OZRwlSnIlzlmBfuOsgRx4wtu11SP0gxtp43dVySZSl3iqjQ07YLRNeZrU1yLCxymJBuSP4IKxA8z9Yxg==
-  dependencies:
-    "@babel/runtime" "^7.28.4"
-    "@mui/utils" "^7.3.5"
-    "@mui/x-internals" "8.25.0"
 
 "@mui/x-virtualizer@0.3.3":
   version "0.3.3"
@@ -2333,18 +2301,6 @@
     "@storybook/global" "^5.0.0"
     "@storybook/react-dom-shim" "10.1.11"
     react-docgen "^8.0.2"
-
-"@tanstack/react-table@^8.21.3":
-  version "8.21.3"
-  resolved "https://registry.yarnpkg.com/@tanstack/react-table/-/react-table-8.21.3.tgz#2c38c747a5731c1a07174fda764b9c2b1fb5e91b"
-  integrity sha512-5nNMTSETP4ykGegmVkhjcS8tTLW6Vl4axfEGQN3v0zdHYbK4UfoqfPChclTrJ4EoK9QynqAu9oUf8VEmrpZ5Ww==
-  dependencies:
-    "@tanstack/table-core" "8.21.3"
-
-"@tanstack/table-core@8.21.3":
-  version "8.21.3"
-  resolved "https://registry.yarnpkg.com/@tanstack/table-core/-/table-core-8.21.3.tgz#2977727d8fc8dfa079112d9f4d4c019110f1732c"
-  integrity sha512-ldZXEhOBb8Is7xLs01fR3YEc3DERiz5silj8tnGkFZytt1abEvl/GhUmCE0PMLaMPTa3Jk4HbKmRlHmu+gCftg==
 
 "@testing-library/dom@^10.4.1":
   version "10.4.1"
@@ -4200,15 +4156,10 @@ lru-cache@^10.2.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
   integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
-lru-cache@^11.0.0, lru-cache@^11.2.4:
+lru-cache@^11.0.0, lru-cache@^11.2.2, lru-cache@^11.2.4:
   version "11.2.4"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.2.4.tgz#ecb523ebb0e6f4d837c807ad1abaea8e0619770d"
   integrity sha512-B5Y16Jr9LB9dHVkh6ZevG+vAbOsNOYCX+sXvFWFu7B3Iz5mijW3zdbMyhsh8ANd2mSWBYdJgnqi+mL7/LrOPYg==
-
-lru-cache@^11.2.2:
-  version "11.2.2"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-11.2.2.tgz#40fd37edffcfae4b2940379c0722dc6eeaa75f24"
-  integrity sha512-F9ODfyqML2coTIsQpSkRHnLSZMtkU8Q+mSfcaIyKwy58u+8k5nvAYeiNhsyMARvzNcXJ9QfWVrcPsC9e9rAxtg==
 
 lru-cache@^5.1.1:
   version "5.1.1"
