@@ -9,6 +9,7 @@ import type {
 } from "react";
 import { Content, type ContentProps } from "../Content";
 import { Header, type HeaderProps } from "../Header";
+import { LoadingArea } from "../LoadingArea";
 import { Placeholder, type PlaceholderIcon } from "../Placeholder";
 import { TabProvider } from "../TabProvider";
 

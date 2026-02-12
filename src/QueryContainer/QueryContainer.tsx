@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import LinearProgress from "@mui/material/LinearProgress";
 import type { PropsWithChildren } from "react";
+import { LoadingArea } from "../LoadingArea";
 
 export interface QueryContainerError {
   /**

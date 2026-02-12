@@ -8,6 +8,7 @@ import MuiSelect, {
 } from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
 import { type ReactNode, useId } from "react";
+import { CenterContainer } from "../CenterContainer";
 
 export type SelectSize = "small" | "medium";
 
