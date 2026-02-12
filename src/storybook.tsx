@@ -4,7 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 /* eslint-disable react/display-name */
 import { type FunctionComponent, useState } from "react";
 import { action } from "storybook/actions";
-import { NotificationCenterProvider } from "./notification-center";
+import { NotificationCenterProvider } from "./NotificationCenter";
 
 const closeDialogAction = action("dialog/close");
 
