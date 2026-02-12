@@ -1,9 +1,9 @@
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import LinearProgress from "@mui/material/LinearProgress";
 import type { PropsWithChildren } from "react";
-import { LoadingArea } from "../LoadingArea";
 
 export interface QueryContainerError {
   /**
@@ -65,7 +65,17 @@ export function QueryContainer({
     : loadingProp;
 
   if (loading) {
-    return <LoadingArea />;
+    return (
+      <Box
+        width={1}
+        height={1}
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <CircularProgress />
+      </Box>
+    );
   }
 
   if (error) {

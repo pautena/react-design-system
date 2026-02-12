@@ -1,5 +1,6 @@
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import LinearProgress from "@mui/material/LinearProgress";
 import type {
   JSXElementConstructor,
@@ -8,7 +9,6 @@ import type {
 } from "react";
 import { Content, type ContentProps } from "../Content";
 import { Header, type HeaderProps } from "../Header";
-import { LoadingArea } from "../LoadingArea";
 import { Placeholder, type PlaceholderIcon } from "../Placeholder";
 import { TabProvider } from "../TabProvider";
 
@@ -124,7 +124,17 @@ export const HeaderLayout = ({
             <LinearProgress />
           </Box>
         )}
-        {loading && <LoadingArea />}
+        {loading && (
+          <Box
+            width={1}
+            height={1}
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <CircularProgress />
+          </Box>
+        )}
         {error && (
           <Box mt={4}>
             <Placeholder

@@ -8,7 +8,6 @@ import MuiSelect, {
 } from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
 import { type ReactNode, useId } from "react";
-import { CenterContainer } from "../CenterContainer";
 
 export type SelectSize = "small" | "medium";
 
@@ -87,9 +86,16 @@ export const Select = <T extends ReactNode>({
   const renderValue = (value: T): ReactNode => {
     if (fetching) {
       return (
-        <CenterContainer centerVertical centerHorizontal>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          width={1}
+          height={1}
+        >
           <CircularProgress color="inherit" size={ProgressSize[size]} />
-        </CenterContainer>
+        </Box>
       );
     }
 
