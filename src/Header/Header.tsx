@@ -111,23 +111,25 @@ export default function Header({
             )}
           </Box>
           {actions && (
-            <Box>
-              {actions.map(({ disabled, id, href, onClick, text }, i) => (
-                <Button
-                  component={href ? Link : "button"}
-                  role="button"
-                  color="inherit"
-                  disabled={disabled}
-                  key={id}
-                  variant={actionsVariant}
-                  size="small"
-                  href={href}
-                  onClick={onClick}
-                  sx={{ mr: i !== actions.length - 1 ? 1 : 0 }}
-                >
-                  {text}
-                </Button>
-              ))}
+            <Box display="flex" alignItems="center">
+              {actions.map(
+                ({ disabled, id, href, onClick, text, variant, color }, i) => (
+                  <Button
+                    component={href ? Link : "button"}
+                    role="button"
+                    color={color ?? "inherit"}
+                    disabled={disabled}
+                    key={id}
+                    variant={variant ?? actionsVariant}
+                    size="small"
+                    href={href}
+                    onClick={onClick}
+                    sx={{ mr: i !== actions.length - 1 ? 1 : 0 }}
+                  >
+                    {text}
+                  </Button>
+                ),
+              )}
             </Box>
           )}
         </Box>

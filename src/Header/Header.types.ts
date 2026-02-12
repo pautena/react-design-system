@@ -4,12 +4,23 @@ import type { ReactElement } from "react";
 export type HeaderPreset = PropTypes.Color | "transparent" | "paper";
 export type HeaderActionVariant = "text" | "outlined" | "contained";
 
+export type HeaderActionColor =
+  | "inherit"
+  | "primary"
+  | "secondary"
+  | "success"
+  | "error"
+  | "info"
+  | "warning";
+
 export type HeaderAction = {
   id: string;
   text: string;
   disabled?: boolean;
   href?: string;
   onClick?: () => void;
+  variant?: HeaderActionVariant;
+  color?: HeaderActionColor;
 };
 
 export interface HeaderBreadcrumb {
