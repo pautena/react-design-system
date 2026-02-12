@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
-import { ValueRating } from "./ValueRating";
+import ValueRating from "./ValueRating";
 
 export default {
   title: "Components/Data Display/ValueRating",

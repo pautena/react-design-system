@@ -2,7 +2,7 @@ import { within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "../tests/testing-library";
-import { ValueBoolean } from "./ValueBoolean";
+import ValueBoolean from "./ValueBoolean";
 
 describe("ValueBoolean", () => {
   const renderComponent = ({

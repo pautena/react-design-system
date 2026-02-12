@@ -5,7 +5,7 @@ import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import { withContainer } from "../storybook";
-import { ExpandableAlert } from "./ExpandableAlert";
+import ExpandableAlert from "./ExpandableAlert";
 
 export default {
   title: "Components/Alerts/ExpandableAlert",

@@ -9,12 +9,7 @@ import {
   type Theme,
   useTheme,
 } from "@mui/material/styles";
-import type {
-  DrawerComponent,
-  DrawerProps,
-  DrawerState,
-  DrawerVariant,
-} from "../Drawer.types";
+import type { DrawerProps, DrawerState, DrawerVariant } from "../Drawer.types";
 import { useDrawer } from "../DrawerContext/DrawerContext";
 import { closedMixin, openedMixin } from "../DrawerContext/DrawerMixins";
 
@@ -57,7 +52,7 @@ const variantsSx: Readonly<Record<DrawerVariant, SxGenerator>> = {
 /**
  * Drawer component that provides a customizable drawer interface.
  */
-export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
+export default function Drawer({ children, ...rest }: DrawerProps) {
   const theme = useTheme();
   const { state, switchState, clipped, close, drawerWidth, variant } =
     useDrawer();
@@ -98,4 +93,4 @@ export const Drawer: DrawerComponent = ({ children, ...rest }: DrawerProps) => {
       {children}
     </MuiDrawer>
   );
-};
+}

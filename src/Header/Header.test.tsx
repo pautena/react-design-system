@@ -3,10 +3,10 @@ import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import type { ReactElement } from "react";
 import { vi } from "vitest";
-import { Label } from "../Label";
+import Label from "../Label";
 import { TabProvider } from "../TabProvider";
 import { render, screen } from "../tests/testing-library";
-import { Header } from "./Header";
+import Header from "./Header";
 import { actions as actionsData, breadcrumbs, tabs } from "./Header.dummy";
 import { WithPanelTabs } from "./Header.stories";
 import type {

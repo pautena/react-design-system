@@ -11,7 +11,7 @@ import {
 } from "../Drawer/Drawer.mock";
 import type { DrawerNavigationItem, DrawerState } from "../Drawer.types";
 import { DrawerProvider } from "../DrawerContext";
-import { DrawerItem } from "./DrawerItem";
+import DrawerItem from "./DrawerItem";
 
 describe("DrawerItem", () => {
   const renderComponent = ({

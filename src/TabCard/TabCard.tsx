@@ -62,12 +62,12 @@ export type TabCardProps = PropsWithChildren<{
   onChangeTab?: (tab: TabData, index: number) => void;
 }>;
 
-export const TabCard = ({
+export default function TabCard({
   children,
   tabs,
   initialTab = 0,
   onChangeTab = () => null,
-}: TabCardProps) => {
+}: TabCardProps) {
   const bgColor = useGetDefaultThemeColor();
   const [selectedTab, setSelectedTab] = useState(initialTab);
 
@@ -99,4 +99,4 @@ export const TabCard = ({
       </Paper>
     </TabCardContextProvider>
   );
-};
+}

@@ -89,7 +89,7 @@ interface EnhancedTableProps<T> {
 /**
  * EnhancedTable component provides a table with sorting, filtering, and loading states.
  */
-export const EnhancedTable = <T,>({
+function EnhancedTable<T>({
   children,
   data,
   search,
@@ -97,7 +97,7 @@ export const EnhancedTable = <T,>({
   defaultSort,
   defaultOrder = "asc",
   loading = false,
-}: EnhancedTableProps<T>) => {
+}: EnhancedTableProps<T>) {
   const [searchFilter, setSearchFilter] = useState<string>("");
   const [order, setOrder] = useState<Order>(defaultOrder);
   const [orderBy, setOrderBy] = useState<keyof T>(defaultSort);
@@ -169,8 +169,10 @@ export const EnhancedTable = <T,>({
       </TableContainer>
     </Box>
   );
-};
+}
 
 EnhancedTable.defaultProps = {
   defaultOrder: "asc",
 };
+
+export default EnhancedTable;

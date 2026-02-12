@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
 import { vi } from "vitest";
 import { fireEvent, render, screen } from "../tests/testing-library";
-import { ListPanel, type ListPanelItem } from "./ListPanel";
+import ListPanel, { type ListPanelItem } from "./ListPanel";
 import { ListPanelDemoContent, mockItemsShort } from "./ListPanel.mocks";
-import { ListPanelPanel } from "./ListPanelPanel";
+import ListPanelPanel from "./ListPanelPanel";
 
 describe("ListPanel", () => {
   const renderComponent = ({

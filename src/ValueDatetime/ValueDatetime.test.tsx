@@ -4,7 +4,7 @@ import { vi } from "vitest";
 import { pickDatetime } from "../tests/actions";
 import { assertDatetimeInputValue } from "../tests/assertions";
 import { render, screen } from "../tests/testing-library";
-import { type EditInputType, ValueDatetime } from "./ValueDatetime";
+import ValueDatetime, { type EditInputType } from "./ValueDatetime";
 
 const DummyValue = new Date(2022, 7, 10, 0, 0);
 const NewValue = new Date(2021, 8, 9, 11, 21);

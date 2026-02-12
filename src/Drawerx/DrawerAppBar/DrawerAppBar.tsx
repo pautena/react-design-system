@@ -41,12 +41,12 @@ export interface DrawerAppBarProps extends MuiAppBarProps {
 /**
  * DrawerAppBar component that renders an AppBar adapted to work inside a Drawer context.
  */
-export const DrawerAppBar = ({
+export default function DrawerAppBar({
   title,
   sx,
   children,
   ...rest
-}: DrawerAppBarProps) => {
+}: DrawerAppBarProps) {
   const theme = useTheme();
   const { state, variant, switchState, drawerWidth, clipped } = useDrawer();
 
@@ -115,4 +115,4 @@ export const DrawerAppBar = ({
       </Toolbar>
     </MyMuiAppBar>
   );
-};
+}

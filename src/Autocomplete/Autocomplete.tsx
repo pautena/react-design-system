@@ -3,7 +3,7 @@ import MuiAutocomplete, {
 } from "@mui/material/Autocomplete";
 import type { ChipTypeMap } from "@mui/material/Chip";
 import type React from "react";
-import { TextField } from "../TextField";
+import TextField from "../TextField";
 
 /**
  * Props for the Autocomplete component.
@@ -71,7 +71,7 @@ export interface AutocompleteProps<
 /**
  * Autocomplete component that wraps the MUI Autocomplete component with additional props.
  */
-export const Autocomplete = <
+export default function Autocomplete<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
@@ -85,7 +85,7 @@ export const Autocomplete = <
     FreeSolo,
     ChipComponent
   >,
-) => {
+) {
   const {
     label,
     loading,
@@ -119,4 +119,4 @@ export const Autocomplete = <
       sx={sx}
     />
   );
-};
+}

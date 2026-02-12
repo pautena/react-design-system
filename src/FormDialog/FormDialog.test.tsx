@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "../tests/testing-library";
-import { FormDialog } from "./FormDialog";
+import FormDialog from "./FormDialog";
 
 interface DialogRenderArgs {
   open: boolean;

@@ -13,7 +13,7 @@ import {
   getDrawerItemColors,
 } from "../Drawer.types";
 import { useDrawer } from "../DrawerContext";
-import { DrawerItem } from "./DrawerItem";
+import DrawerItem from "./DrawerItem";
 
 export interface DrawerMenuItemProps {
   /**

@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
 import { render, screen } from "../tests/testing-library";
-import { HeaderLayout, type HeaderLayoutError } from "./HeaderLayout";
+import HeaderLayout, { type HeaderLayoutError } from "./HeaderLayout";
 
 describe("HeaderLayout", () => {
   const renderComponent = ({

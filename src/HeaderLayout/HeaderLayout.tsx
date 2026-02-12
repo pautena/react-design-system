@@ -7,9 +7,9 @@ import type {
   PropsWithChildren,
   ReactElement,
 } from "react";
-import { Content, type ContentProps } from "../Content";
-import { Header, type HeaderProps } from "../Header";
-import { Placeholder, type PlaceholderIcon } from "../Placeholder";
+import Content, { type ContentProps } from "../Content";
+import Header, { type HeaderProps } from "../Header";
+import Placeholder, { type PlaceholderIcon } from "../Placeholder";
 import { TabProvider } from "../TabProvider";
 
 /**
@@ -102,7 +102,7 @@ const DefaultErrorIcon = () => (
 /**
  * A layout component that provides a header and content area with optional loading, fetching, and error states.
  */
-export const HeaderLayout = ({
+export default function HeaderLayout({
   loading,
   title,
   subtitle,
@@ -111,7 +111,7 @@ export const HeaderLayout = ({
   children,
   fetching,
   error,
-}: HeaderLayoutProps) => {
+}: HeaderLayoutProps) {
   const HeaderSlot = slots?.header || Header;
   const ContentSlot = slots?.content || Content;
 
@@ -150,4 +150,4 @@ export const HeaderLayout = ({
       </Box>
     </TabProvider>
   );
-};
+}

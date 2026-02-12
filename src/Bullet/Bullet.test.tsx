@@ -1,5 +1,5 @@
 import { render, screen } from "../tests/testing-library";
-import { Bullet, type BulletVariant } from "./Bullet";
+import Bullet, { type BulletVariant } from "./Bullet";
 
 describe("Bullet", () => {
   const renderComponent = (variant: BulletVariant | undefined = undefined) => {

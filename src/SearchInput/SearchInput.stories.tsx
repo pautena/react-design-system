@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer, withLocalizationProvider } from "../storybook";
-import { SearchInput } from "./SearchInput";
+import SearchInput from "./SearchInput";
 
 export default {
   title: "Components/Inputs/SearchInput",

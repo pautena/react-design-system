@@ -47,7 +47,7 @@ export interface ValueContentProps {
 /**
  * Displays a string value with a label
  */
-export const ValueContent = ({
+export default function ValueContent({
   label,
   hideLabel,
   tooltip,
@@ -55,7 +55,7 @@ export const ValueContent = ({
   children,
   dense,
   sx,
-}: ValueContentProps) => {
+}: ValueContentProps) {
   const { typography } = useTheme();
   const id = getValueContentLabelId(label);
 
@@ -80,4 +80,4 @@ export const ValueContent = ({
       )}
     </Box>
   );
-};
+}

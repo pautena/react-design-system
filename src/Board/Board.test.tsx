@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "../tests/testing-library";
-import { Board } from "./Board";
+import Board from "./Board";
 
 const content = "This is the content";
 

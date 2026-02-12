@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
-import { LinkCard } from "./LinkCard";
+import LinkCard from "./LinkCard";
 
 export default {
   title: "Components/Data Display/LinkCard",

@@ -2,7 +2,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "../tests/testing-library";
-import { ConfirmDialog } from "./ConfirmDialog";
+import ConfirmDialog from "./ConfirmDialog";
 
 interface DialogRenderArgs {
   open: boolean;

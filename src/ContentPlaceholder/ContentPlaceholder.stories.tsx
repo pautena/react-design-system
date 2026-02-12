@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ContentPlaceholder } from "./ContentPlaceholder";
+import ContentPlaceholder from "./ContentPlaceholder";
 
 export default {
   title: "Components/Placeholders/ContentPlaceholder",

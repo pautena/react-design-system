@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
-import { Board } from "./Board";
+import Board from "./Board";
 
 export default {
   title: "Components/Data Display/Board",

@@ -6,7 +6,7 @@ import {
 } from "../Drawer/Drawer.mock";
 import type { DrawerSize, DrawerState } from "../Drawer.types";
 import { DrawerProvider } from "../DrawerContext";
-import { DrawerItem, type DrawerItemProps } from "./DrawerItem";
+import DrawerItem, { type DrawerItemProps } from "./DrawerItem";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
   initialState?: DrawerState;

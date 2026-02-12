@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer, withLocalizationProvider } from "../storybook";
-import { DateRangePicker } from "./DateRangePicker";
+import DateRangePicker from "./DateRangePicker";
 
 export default {
   title: "Components/Inputs/DateRangePicker",

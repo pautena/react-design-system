@@ -1,1 +1,1 @@
-export * from "./DrawerContent";
+export { default, default as DrawerContent } from "./DrawerContent";

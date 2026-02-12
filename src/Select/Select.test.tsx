@@ -1,7 +1,7 @@
 import MenuItem from "@mui/material/MenuItem";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../tests/testing-library";
-import { Select } from "./Select";
+import Select from "./Select";
 
 describe("Select", () => {
   const renderComponent = ({

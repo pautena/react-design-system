@@ -10,7 +10,7 @@ import {
   ValueEditButton,
   ValueEditButtons,
 } from "../ValueBase";
-import { getValueContentLabelId, ValueContent } from "../ValueContent";
+import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
 export type ValueTextProps = BaseValueProps<string | number> &
   EditableValueProps<string>;
@@ -18,14 +18,14 @@ export type ValueTextProps = BaseValueProps<string | number> &
 /**
  * Displays a string value with a label
  */
-export const ValueText = ({
+export default function ValueText({
   label,
   value: valueProp,
   placeholder = DefaultPlaceholder,
   editable,
   dense,
   onEdit = () => null,
-}: ValueTextProps) => {
+}: ValueTextProps) {
   const editInputRef = useRef<HTMLInputElement>(null);
   const {
     isEditing,
@@ -87,4 +87,4 @@ export const ValueText = ({
       )}
     </ValueContent>
   );
-};
+}

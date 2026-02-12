@@ -33,9 +33,11 @@ const StyledDiv = styled("div")(({ theme }) => {
 
 export type DrawerMainProps = PropsWithChildren;
 
-export const DrawerMain = ({ children }: DrawerMainProps) => (
-  <StyledDiv>
-    <DrawerHeader />
-    {children}
-  </StyledDiv>
-);
+export default function DrawerMain({ children }: DrawerMainProps) {
+  return (
+    <StyledDiv>
+      <DrawerHeader />
+      {children}
+    </StyledDiv>
+  );
+}

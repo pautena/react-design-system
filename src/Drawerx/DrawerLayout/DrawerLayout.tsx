@@ -1,14 +1,14 @@
 import type { JSXElementConstructor } from "react";
-import { Drawer } from "../Drawer";
+import Drawer from "../Drawer";
 import type {
   DrawerContentProps,
   DrawerNavigation,
   DrawerProps,
 } from "../Drawer.types";
-import { DrawerAppBar, type DrawerAppBarProps } from "../DrawerAppBar";
-import { DrawerContent } from "../DrawerContent";
+import DrawerAppBar, { type DrawerAppBarProps } from "../DrawerAppBar";
+import DrawerContent from "../DrawerContent";
 import { DrawerProvider, type DrawerProviderProps } from "../DrawerContext";
-import { DrawerMain } from "../DrawerMain";
+import DrawerMain from "../DrawerMain";
 
 /**
  * Interface representing the slots for the DrawerLayout component.
@@ -82,14 +82,14 @@ export interface DrawerLayoutProps extends DrawerProviderProps {
  * DrawerLayout component provides a layout structure with a drawer and an app bar.
  * It allows customization of the drawer, app bar, and drawer content through slots and slot properties.
  */
-export const DrawerLayout = ({
+export default function DrawerLayout({
   children,
   navigation,
   title,
   slots,
   slotsProps,
   ...rest
-}: DrawerLayoutProps) => {
+}: DrawerLayoutProps) {
   const DrawerAppBarSlot = slots?.drawerAppBar ?? DrawerAppBar;
   const DrawerSlot = slots?.drawer ?? Drawer;
   const DrawerContentSlot = slots?.drawerContent ?? DrawerContent;
@@ -110,4 +110,4 @@ export const DrawerLayout = ({
       <DrawerMain>{children}</DrawerMain>
     </DrawerProvider>
   );
-};
+}

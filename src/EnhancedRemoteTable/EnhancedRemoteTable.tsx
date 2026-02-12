@@ -57,7 +57,7 @@ export interface EnhancedRemoteTableProps<T> {
  * EnhancedRemoteTable component provides a table with remote data handling capabilities.
  * It supports sorting and displays a loading indicator while data is being fetched.
  */
-export const EnhancedRemoteTable = <T,>({
+function EnhancedRemoteTable<T>({
   children,
   data,
   loading,
@@ -65,7 +65,7 @@ export const EnhancedRemoteTable = <T,>({
   defaultSort,
   defaultOrder,
   onRequestSort,
-}: EnhancedRemoteTableProps<T>) => {
+}: EnhancedRemoteTableProps<T>) {
   const [order, setOrder] = useState({
     orderBy: defaultSort,
     order: defaultOrder || "asc",
@@ -106,4 +106,6 @@ export const EnhancedRemoteTable = <T,>({
       </Table>
     </TableContainer>
   );
-};
+}
+
+export default EnhancedRemoteTable;

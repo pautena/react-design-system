@@ -1,6 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Placeholder, type PlaceholderIconArgs } from "./Placeholder";
+import Placeholder, { type PlaceholderIconArgs } from "./Placeholder";
 import { actions } from "./Placeholder.mock";
 
 export default {

@@ -42,13 +42,13 @@ export interface LabelProps {
 /**
  * Compact element to represent a text
  */
-export const Label = ({
+export default function Label({
   text,
   color: colorProp,
   variant = "default",
   textTransform = "capitalize",
   sx,
-}: LabelProps) => {
+}: LabelProps) {
   const { palette, typography } = useTheme();
 
   const backgroundColor: Record<LabelVariant, string> = {
@@ -100,4 +100,4 @@ export const Label = ({
       {text}
     </Box>
   );
-};
+}

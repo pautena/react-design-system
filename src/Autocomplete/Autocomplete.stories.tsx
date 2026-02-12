@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { useTheme } from "@mui/material/styles";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
-import { Autocomplete } from "./Autocomplete";
+import Autocomplete from "./Autocomplete";
 
 export default {
   title: "Components/Inputs/Autocomplete",

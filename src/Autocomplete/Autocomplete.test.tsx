@@ -4,7 +4,7 @@ import { vi } from "vitest";
 import { selectOption } from "../tests/actions";
 import { expectProgressIndicator } from "../tests/assertions";
 import { render, screen } from "../tests/testing-library";
-import { Autocomplete } from "./Autocomplete";
+import Autocomplete from "./Autocomplete";
 
 const options: string[] = [...faker.definitions.vehicle.model];
 

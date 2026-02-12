@@ -46,7 +46,7 @@ const resolveBorderStyle = (
 /**
  * `ValueItem` is a component to wrap your value components
  */
-export const ValueItem: ValueItemComponent = ({
+const ValueItem: ValueItemComponent = ({
   children,
   bordered = true,
   ...rest
@@ -64,3 +64,5 @@ export const ValueItem: ValueItemComponent = ({
     </Grid>
   );
 };
+
+export default ValueItem;

@@ -1,5 +1,5 @@
 import { render, screen } from "../tests/testing-library";
-import { LinkCard } from "./LinkCard";
+import LinkCard from "./LinkCard";
 
 describe("LinkCard", () => {
   const renderComponent = ({ linkText }: { linkText?: string } = {}) => {

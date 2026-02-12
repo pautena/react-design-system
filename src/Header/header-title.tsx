@@ -5,7 +5,7 @@ import type { PropsWithChildren } from "react";
 
 export type HeaderTitleProps = PropsWithChildren<{ loading?: boolean }>;
 
-export const HeaderTitle = ({ loading, children }: HeaderTitleProps) => {
+export default function HeaderTitle({ loading, children }: HeaderTitleProps) {
   const { typography } = useTheme();
 
   if (loading) {
@@ -27,11 +27,11 @@ export const HeaderTitle = ({ loading, children }: HeaderTitleProps) => {
   }
 
   return <>{children}</>;
-};
+}
 
 export type HeaderSubtitleProps = PropsWithChildren<{ loading?: boolean }>;
 
-export const HeaderSubtitle = ({ loading, children }: HeaderSubtitleProps) => {
+export function HeaderSubtitle({ loading, children }: HeaderSubtitleProps) {
   const { typography } = useTheme();
 
   if (loading) {
@@ -53,4 +53,4 @@ export const HeaderSubtitle = ({ loading, children }: HeaderSubtitleProps) => {
   }
 
   return <>{children}</>;
-};
+}

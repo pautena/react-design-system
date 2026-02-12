@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withLocalizationProvider } from "../storybook";
-import { DateRangeCalendar } from "./DateRangeCalendar";
+import DateRangeCalendar from "./DateRangeCalendar";
 
 export default {
   title: "Components/Inputs/DateRangeCalendar",

@@ -5,7 +5,7 @@ import IconButton from "@mui/material/IconButton";
 import { useTheme } from "@mui/material/styles";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
-import { TextField } from "./TextField";
+import TextField from "./TextField";
 
 export default {
   title: "Components/Inputs/TextField",

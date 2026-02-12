@@ -19,14 +19,14 @@ export interface LinkCardProps {
   sx?: SxProps<Theme>;
 }
 
-export const LinkCard = ({
+export default function LinkCard({
   variant = "primary",
   title,
   message,
   href,
   linkText,
   sx,
-}: LinkCardProps) => {
+}: LinkCardProps) {
   const { palette } = useTheme();
 
   const rootSx: SxProps<Theme> = {
@@ -61,4 +61,4 @@ export const LinkCard = ({
       )}
     </Paper>
   );
-};
+}

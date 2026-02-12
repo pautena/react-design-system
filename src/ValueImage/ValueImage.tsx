@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import type { BaseValueProps } from "../ValueBase";
-import { ValueContent } from "../ValueContent";
+import ValueContent from "../ValueContent";
 
 export interface ValueImageProps extends BaseValueProps<string> {
   /**
@@ -15,12 +15,12 @@ const DefaultDenseSize = 50;
 /**
  * Displays a image value with a label
  */
-export const ValueImage = ({
+export default function ValueImage({
   label,
   value,
   size: sizeArg,
   dense,
-}: ValueImageProps) => {
+}: ValueImageProps) {
   const size = sizeArg || (dense ? DefaultDenseSize : DefaultSize);
   return (
     <ValueContent label={label} dense={dense}>
@@ -32,4 +32,4 @@ export const ValueImage = ({
       />
     </ValueContent>
   );
-};
+}

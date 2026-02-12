@@ -5,7 +5,7 @@ import { DatatablePlaceholder } from "../tests/datatable-placeholder";
 import { ValueContent } from "../ValueContent";
 import { ValueImage } from "../ValueImage";
 import { ValueItem } from "../ValueItem";
-import { GroupValueCard } from "./GroupValueCard";
+import GroupValueCard from "./GroupValueCard";
 import { GroupValueCardDummy } from "./GroupValueCard.mock";
 
 export default {

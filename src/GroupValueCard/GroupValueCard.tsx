@@ -40,13 +40,13 @@ export interface GroupValueCardProps {
  * GroupValueCard component renders a card with a title, subtitle, and children content.
  * It supports customization for dense layout and centered content.
  */
-export const GroupValueCard = ({
+export default function GroupValueCard({
   title,
   subtitle,
   centered,
   children,
   dense,
-}: GroupValueCardProps) => {
+}: GroupValueCardProps) {
   const { typography } = useTheme();
   const defaultColor = useGetDefaultThemeColor({
     lightWeight: 200,
@@ -93,4 +93,4 @@ export const GroupValueCard = ({
       </Grid>
     </Paper>
   );
-};
+}

@@ -12,7 +12,7 @@ import {
   ValueEditButton,
   ValueEditButtons,
 } from "../ValueBase";
-import { getValueContentLabelId, ValueContent } from "../ValueContent";
+import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
 export type ValueBooleanProps = BaseValueProps<boolean> &
   EditableValueProps<boolean>;
@@ -20,14 +20,14 @@ export type ValueBooleanProps = BaseValueProps<boolean> &
 /**
  * Displays a boolean value with a label
  */
-export const ValueBoolean = ({
+export default function ValueBoolean({
   label,
   value,
   placeholder = DefaultPlaceholder,
   editable,
   dense,
   onEdit = () => null,
-}: ValueBooleanProps) => {
+}: ValueBooleanProps) {
   const id = getValueContentLabelId(label);
   const { typography } = useTheme();
   const {
@@ -77,4 +77,4 @@ export const ValueBoolean = ({
       )}
     </ValueContent>
   );
-};
+}

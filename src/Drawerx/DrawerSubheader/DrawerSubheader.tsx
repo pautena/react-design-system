@@ -9,7 +9,7 @@ export type DrawerSubheaderProps = ListSubheaderProps;
 /**
  * A functional component that renders a `ListSubheader` with custom styles.
  */
-export const DrawerSubheader = ({ sx, ...rest }: DrawerSubheaderProps) => {
+export default function DrawerSubheader({ sx, ...rest }: DrawerSubheaderProps) {
   const { size } = useDrawer();
   const { typography } = useTheme();
 
@@ -22,4 +22,4 @@ export const DrawerSubheader = ({ sx, ...rest }: DrawerSubheaderProps) => {
       }}
     />
   );
-};
+}

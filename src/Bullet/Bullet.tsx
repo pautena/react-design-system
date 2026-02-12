@@ -27,7 +27,7 @@ export interface BulletProps {
 /**
  * Dot to attract the user attention
  */
-export const Bullet = ({ variant = "primary", sx }: BulletProps) => {
+export default function Bullet({ variant = "primary", sx }: BulletProps) {
   return (
     <Badge
       color={variant}
@@ -38,4 +38,4 @@ export const Bullet = ({ variant = "primary", sx }: BulletProps) => {
       sx={sx}
     />
   );
-};
+}

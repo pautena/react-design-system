@@ -13,7 +13,7 @@ import {
   ValueEditButton,
   ValueEditButtons,
 } from "../ValueBase";
-import { getValueContentLabelId, ValueContent } from "../ValueContent";
+import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
 export type EditInputType = "datetime" | "date" | "time";
 
@@ -34,7 +34,7 @@ export interface ValueDatetimeProps
 /**
  * Displays a formated datetime with a label
  */
-export const ValueDatetime = ({
+export default function ValueDatetime({
   label,
   value: valueProp,
   format: fmt,
@@ -43,7 +43,7 @@ export const ValueDatetime = ({
   editInputType = "datetime",
   dense,
   onEdit = () => null,
-}: ValueDatetimeProps) => {
+}: ValueDatetimeProps) {
   const {
     isEditing,
     editValue,
@@ -110,4 +110,4 @@ export const ValueDatetime = ({
       )}
     </ValueContent>
   );
-};
+}

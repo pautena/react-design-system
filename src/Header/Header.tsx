@@ -9,13 +9,13 @@ import Tabs from "@mui/material/Tabs";
 import { useTab } from "../TabProvider";
 import { useGetDefaultThemeColor } from "../utils";
 import type { HeaderPreset, HeaderProps } from "./Header.types";
-import { HeaderSubtitle, HeaderTitle } from "./header-title";
+import HeaderTitle, { HeaderSubtitle } from "./header-title";
 
 /**
  * Section used to explain give basic information about the page
  * and put the main actions
  */
-export const Header = ({
+export default function Header({
   title = "",
   loadingTitle,
   subtitle,
@@ -27,7 +27,7 @@ export const Header = ({
   tabs,
   tabsMode = "navigation",
   navigationButton,
-}: HeaderProps) => {
+}: HeaderProps) {
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
   const [selectedTab, setSelectedTab] = useTab();
@@ -154,4 +154,4 @@ export const Header = ({
       </Container>
     </Box>
   );
-};
+}

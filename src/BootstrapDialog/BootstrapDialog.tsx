@@ -12,7 +12,7 @@ import type { BootstrapDialogDialogProps } from "../Dialog/Dialog.types";
 /**
  * A customizable dialog component. Use it as a base to create more dialogs
  */
-export const BootstrapDialog = ({
+export default function BootstrapDialog({
   open,
   title,
   component,
@@ -32,7 +32,7 @@ export const BootstrapDialog = ({
   onCancel = () => null,
   onClose,
   acceptType = "button",
-}: BootstrapDialogDialogProps) => {
+}: BootstrapDialogDialogProps) {
   const hasActions = actions.length > 0 || acceptable || cancelable;
 
   return (
@@ -106,4 +106,4 @@ export const BootstrapDialog = ({
       </Box>
     </Dialog>
   );
-};
+}
