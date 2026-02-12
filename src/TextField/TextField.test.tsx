@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { expectProgressIndicator } from "../tests/assertions";
 import { render, screen } from "../tests/testing-library";
-import { TextField } from "./TextField";
+import TextField from "./TextField";
 
 const options = faker.definitions.vehicle?.model || [];
 

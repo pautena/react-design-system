@@ -1,9 +1,9 @@
 import userEvent from "@testing-library/user-event";
-import { ContentPlaceholder } from "../../ContentPlaceholder";
+import ContentPlaceholder from "../../ContentPlaceholder";
 import { expectContentPlaceholder } from "../../tests/assertions";
 import { render, screen } from "../../tests/testing-library";
 import { mockDrawerNavigation } from "../Drawer/Drawer.mock";
-import { DrawerLayout } from "./DrawerLayout";
+import DrawerLayout from "./DrawerLayout";
 
 describe("DrawerLayout", () => {
   const renderComponent = () => {

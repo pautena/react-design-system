@@ -2,7 +2,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import type { Meta, StoryObj } from "@storybook/react";
 import { action } from "storybook/actions";
 import { StoryDialogManager } from "../storybook";
-import { BootstrapDialog } from "./BootstrapDialog";
+import BootstrapDialog from "./BootstrapDialog";
 
 const onClickAction = action("On click dialog action");
 

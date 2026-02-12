@@ -1,6 +1,6 @@
 import workInProgressImg from "../stories/assets/work-in-progress.jpg";
 import { render, screen } from "../tests/testing-library";
-import { ValueImage } from "./ValueImage";
+import ValueImage from "./ValueImage";
 
 describe("ValueImage", () => {
   const renderComponent = () => {

@@ -6,7 +6,7 @@ import type {
   DrawerState,
 } from "../Drawer.types";
 import { DrawerProvider } from "../DrawerContext";
-import { DrawerContent } from "./DrawerContent";
+import DrawerContent from "./DrawerContent";
 
 type DrawerContentArgs = DrawerContentProps & {
   initialState?: DrawerState;

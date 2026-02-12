@@ -3,7 +3,7 @@ import { vi } from "vitest";
 import { pickDatetime, typeNumericInput } from "../tests/actions";
 import { AssertCloseDateUpTo, assertCloseDate } from "../tests/assertions";
 import { render, screen } from "../tests/testing-library";
-import { SearchInput } from "./SearchInput";
+import SearchInput from "./SearchInput";
 
 const datetimeFormat = "dd-MM-yyyy HH:mm:ss.SSS";
 const createdBefore = new Date(2022, 2, 17, 12, 42);

@@ -1,8 +1,7 @@
 import Typography from "@mui/material/Typography";
 import { expectProgressIndicator } from "../tests/assertions";
 import { render, screen } from "../tests/testing-library";
-import {
-  QueryContainer,
+import QueryContainer, {
   type QueryContainerError,
   type QueryContainerSuccess,
 } from "./QueryContainer";

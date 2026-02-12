@@ -1,7 +1,7 @@
 import { addDays, differenceInCalendarDays, format, subDays } from "date-fns";
 import { vi } from "vitest";
 import { fireEvent, render, screen } from "../tests/testing-library";
-import { DateRangeCalendar } from "./DateRangeCalendar";
+import DateRangeCalendar from "./DateRangeCalendar";
 
 describe("DateRangeCalendar", () => {
   const renderComponent = () => {

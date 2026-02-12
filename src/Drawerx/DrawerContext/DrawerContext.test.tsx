@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
 import { mockConsoleError } from "../../tests/mocks";
 import { render } from "../../tests/testing-library";
-import { Drawer } from "../Drawer";
+import Drawer from "../Drawer";
 import { mockDrawerNavigation } from "../Drawer/Drawer.mock";
-import { DrawerContent } from "../DrawerContent";
+import DrawerContent from "../DrawerContent";
 import { UndefinedProvider } from "./DrawerContext";
 
 describe("DrawerContext", () => {

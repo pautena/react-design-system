@@ -6,7 +6,7 @@ import { Content } from "../Content";
 import { Label } from "../Label";
 import { TabPanel } from "../TabPanel";
 import { TabProvider } from "../TabProvider";
-import { Header } from "./Header";
+import Header from "./Header";
 import { actions, breadcrumbs, tabs } from "./Header.dummy";
 
 export default {

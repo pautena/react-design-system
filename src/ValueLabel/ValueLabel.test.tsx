@@ -1,6 +1,6 @@
 import type { LabelVariant } from "../Label";
 import { render, screen } from "../tests/testing-library";
-import { ValueLabel } from "./ValueLabel";
+import ValueLabel from "./ValueLabel";
 
 const DummyValueText = "Lorem ipsum sit amet";
 const DummyValueNumber = 1000;

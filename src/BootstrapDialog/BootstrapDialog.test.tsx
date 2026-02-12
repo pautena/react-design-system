@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import type { DialogAction } from "../Dialog/Dialog.types";
 import { render, screen } from "../tests/testing-library";
-import { BootstrapDialog } from "./BootstrapDialog";
+import BootstrapDialog from "./BootstrapDialog";
 
 interface DialogRenderArgs {
   open: boolean;

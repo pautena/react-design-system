@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../tests/testing-library";
-import { ValueContent } from "./ValueContent";
+import ValueContent from "./ValueContent";
 
 describe("ValueContent", () => {
   const renderComponent = ({

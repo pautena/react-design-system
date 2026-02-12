@@ -5,7 +5,7 @@ import { DrawerAppBar } from "../DrawerAppBar";
 import { DrawerContent } from "../DrawerContent";
 import { DrawerProvider } from "../DrawerContext";
 import { DrawerMain } from "../DrawerMain";
-import { Drawer } from "./Drawer";
+import Drawer from "./Drawer";
 import { mockDrawerNavigation } from "./Drawer.mock";
 
 interface DrawerDemoArgs {

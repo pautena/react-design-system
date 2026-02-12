@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import type { ReactElement } from "react";
 import { vi } from "vitest";
 import { render, screen } from "../tests/testing-library";
-import { Placeholder, type PlaceholderAction } from "./Placeholder";
+import Placeholder, { type PlaceholderAction } from "./Placeholder";
 import { actions as actionData } from "./Placeholder.mock";
 
 const actions = actionData.map((a) => ({ ...a, onClick: vi.fn() }));

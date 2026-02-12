@@ -1,7 +1,7 @@
 import DialogContentText from "@mui/material/DialogContentText";
 import type { Meta, StoryObj } from "@storybook/react";
 import { StoryDialogManager } from "../storybook";
-import { ConfirmDialog } from "./ConfirmDialog";
+import ConfirmDialog from "./ConfirmDialog";
 
 export default {
   title: "Components/Dialogs/ConfirmDialog",

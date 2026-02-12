@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withPadding } from "../storybook";
-import { QueryContainer, type QueryContainerProps } from "./QueryContainer";
+import QueryContainer, { type QueryContainerProps } from "./QueryContainer";
 
 export default {
   title: "Components/Feedback/QueryContainer",

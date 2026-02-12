@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { vi } from "vitest";
 import { render, screen, waitFor } from "../tests/testing-library";
-import { ExpandableAlert } from "./ExpandableAlert";
+import ExpandableAlert from "./ExpandableAlert";
 
 const message = "Lorem ipsum dolor sit amet";
 const metadata =

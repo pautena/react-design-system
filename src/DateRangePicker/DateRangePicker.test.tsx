@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 import { fireEvent, render, screen } from "../tests/testing-library";
-import { DateRangePicker } from "./DateRangePicker";
+import DateRangePicker from "./DateRangePicker";
 
 describe("DateRangePicker", () => {
   const renderComponent = () => {

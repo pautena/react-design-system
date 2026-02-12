@@ -3,7 +3,7 @@ import { ValueDatetime } from "../ValueDatetime";
 import { ValueItem } from "../ValueItem";
 import { ValueRating } from "../ValueRating";
 import { ValueText } from "../ValueText";
-import { GroupValueCard, type GroupValueCardProps } from "./GroupValueCard";
+import GroupValueCard, { type GroupValueCardProps } from "./GroupValueCard";
 
 export const GroupValueCardDummy = ({
   dense,

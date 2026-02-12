@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactNode } from "react";
 import { withContainer } from "../storybook";
-import { Select, type SelectProps, type SelectSize } from "./Select";
+import Select, { type SelectProps, type SelectSize } from "./Select";
 
 const baseArgs = {
   label: "Car model",

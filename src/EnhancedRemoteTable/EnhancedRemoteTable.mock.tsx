@@ -2,7 +2,7 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import type { HeadCell, Order } from "../EnhancedTable";
 import type { Data } from "../EnhancedTable/EnhancedTable.mock";
-import { EnhancedRemoteTable } from "./EnhancedRemoteTable";
+import EnhancedRemoteTable from "./EnhancedRemoteTable";
 
 export interface EnhancedRemoteDummyTableProps {
   data: Data[];
