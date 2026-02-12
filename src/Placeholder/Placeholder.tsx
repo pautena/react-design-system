@@ -39,13 +39,13 @@ export interface PlaceholderProps {
   actions?: PlaceholderAction[];
 }
 
-export const Placeholder = ({
+export default function Placeholder({
   title,
   subtitle,
   icon,
   iconSize = 200,
   actions,
-}: PlaceholderProps) => {
+}: PlaceholderProps) {
   return (
     <Box
       display="flex"
@@ -84,4 +84,4 @@ export const Placeholder = ({
       )}
     </Box>
   );
-};
+}

@@ -6,7 +6,7 @@ import Paper from "@mui/material/Paper";
 import TextField from "@mui/material/TextField";
 import { format } from "date-fns";
 import { useState } from "react";
-import { DateRangeCalendar } from "../DateRangeCalendar";
+import DateRangeCalendar from "../DateRangeCalendar";
 
 type DateRange = [Date, Date | undefined];
 
@@ -52,14 +52,14 @@ export interface DateRangePickerProps {
 /**
  * DateRangePicker component allows users to select a date range.
  */
-export const DateRangePicker = ({
+export default function DateRangePicker({
   defaultValue,
   format: fmt,
   label,
   fullWidth,
   onValueChange,
   size = "medium",
-}: DateRangePickerProps) => {
+}: DateRangePickerProps) {
   const [isPopoverOpened, setIsPopoverOpened] = useState(false);
   const [value, setValue] = useState(defaultValue);
 
@@ -99,4 +99,4 @@ export const DateRangePicker = ({
       </Paper>
     </>
   );
-};
+}

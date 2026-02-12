@@ -1,6 +1,6 @@
 import type { DrawerNavigationItem } from "../Drawer.types";
 import { useDrawer } from "../DrawerContext";
-import { DrawerSubheader } from "../DrawerSubheader";
+import DrawerSubheader from "../DrawerSubheader";
 import { DrawerItemLink } from "./DrawerItemLink";
 import { DrawerMenuItem } from "./DrawerMenuItem";
 
@@ -18,7 +18,7 @@ export interface DrawerItemProps {
 /**
  * Component representing a drawer item in the navigation drawer.
  */
-export const DrawerItem = ({ item, level = 0 }: DrawerItemProps) => {
+export default function DrawerItem({ item, level = 0 }: DrawerItemProps) {
   const { selectedItemId, state } = useDrawer();
   if (item.kind === "collapsable") {
     const { id, text, icon, items } = item;
@@ -53,4 +53,4 @@ export const DrawerItem = ({ item, level = 0 }: DrawerItemProps) => {
       level={level}
     />
   );
-};
+}

@@ -6,7 +6,7 @@ import {
   ValueEditButton,
   ValueEditButtons,
 } from "../ValueBase";
-import { getValueContentLabelId, ValueContent } from "../ValueContent";
+import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
 export type ValueRatingProps = BaseValueProps<number> & {
   maxRating?: number;
@@ -15,14 +15,14 @@ export type ValueRatingProps = BaseValueProps<number> & {
 /**
  * Displays a number using stars
  */
-export const ValueRating = ({
+export default function ValueRating({
   label,
   value = 0,
   maxRating = 5,
   editable,
   dense,
   onEdit = () => null,
-}: ValueRatingProps) => {
+}: ValueRatingProps) {
   const {
     isEditing,
     editValue,
@@ -61,4 +61,4 @@ export const ValueRating = ({
       </Box>
     </ValueContent>
   );
-};
+}

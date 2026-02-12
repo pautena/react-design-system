@@ -44,14 +44,14 @@ export type ListPanelProps = PropsWithChildren<{
 /**
  * ListPanel component renders a panel with a list of items and a content area.
  */
-export const ListPanel = ({
+export default function ListPanel({
   items,
   defaultSelectedItem,
   colBreakpoint = 3,
   listMode = "panel",
   children,
   onSelectedItemChange = () => null,
-}: ListPanelProps) => {
+}: ListPanelProps) {
   const _paths = items.map((item) => item.path).filter(Boolean) as string[];
 
   const bgColor = useGetDefaultThemeColor();
@@ -119,4 +119,4 @@ export const ListPanel = ({
       </Grid>
     </ListPanelContextProvider>
   );
-};
+}

@@ -31,12 +31,12 @@ export type BoardProps = PropsWithChildren<{
  * It supports rendering an array of content lines or a single content string.
  * Additionally, it provides a button to copy the content to the clipboard.
  */
-export const Board = ({
+export default function Board({
   content: contentProp,
   spacing = 0,
   children,
   sx,
-}: BoardProps) => {
+}: BoardProps) {
   const { spacing: themeSpacing, typography } = useTheme();
   let copyContent: string;
   let content: ReactNode;
@@ -89,4 +89,4 @@ export const Board = ({
       </Box>
     </Paper>
   );
-};
+}

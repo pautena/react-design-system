@@ -40,7 +40,7 @@ export type TextFieldProps = MuiTextFieldProps & {
  * A customizable TextField component that extends the functionality of the Material-UI TextField component
  * and supports various props for styling and functionality.
  */
-export const TextField = ({
+export default function TextField({
   id: overrideId,
   label,
   InputLabelProps,
@@ -53,7 +53,7 @@ export const TextField = ({
   fullWidth,
   sx,
   ...rest
-}: TextFieldProps) => {
+}: TextFieldProps) {
   const id = useId(overrideId);
   const helperTextId = helperText && id ? `${id}-helper-text` : undefined;
   const inputLabelId = label && id ? `${id}-label` : undefined;
@@ -119,4 +119,4 @@ export const TextField = ({
       )}
     </FormControl>
   );
-};
+}

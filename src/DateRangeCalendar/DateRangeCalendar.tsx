@@ -98,10 +98,10 @@ export interface DateRangeCalendarProps {
 /**
  * A Date Range Calendar component that allows users to select a range of dates.
  */
-export const DateRangeCalendar = ({
+export default function DateRangeCalendar({
   defaultValue,
   onValueChange,
-}: DateRangeCalendarProps) => {
+}: DateRangeCalendarProps) {
   const [value, setValue] = useState(defaultValue);
   const [index, setIndex] = useState(0);
 
@@ -150,4 +150,4 @@ export const DateRangeCalendar = ({
       aria-label="calendar range picker"
     />
   );
-};
+}

@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
-import { Label, type LabelVariant } from "../Label";
+import Label, { type LabelVariant } from "../Label";
 import { type BaseValueProps, DefaultPlaceholder } from "../ValueBase";
-import { getValueContentLabelId, ValueContent } from "../ValueContent";
+import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
 export type ValueLabelProps = BaseValueProps<
   string | number | string[] | number[]
@@ -13,13 +13,13 @@ export type ValueLabelProps = BaseValueProps<
 /**
  * Displays a label component value with a label
  */
-export const ValueLabel = ({
+export default function ValueLabel({
   label,
   value: valueProp,
   placeholder = DefaultPlaceholder,
   color,
   variant,
-}: ValueLabelProps) => {
+}: ValueLabelProps) {
   const id = getValueContentLabelId(label);
   const value = Array.isArray(valueProp) ? (
     valueProp.map((value, i) => (
@@ -45,4 +45,4 @@ export const ValueLabel = ({
       </Grid>
     </ValueContent>
   );
-};
+}

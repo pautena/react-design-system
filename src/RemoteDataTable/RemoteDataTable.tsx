@@ -90,7 +90,7 @@ const defaultPageSizeOptions = [10, 25, 50];
  * />
  * ```
  */
-export const RemoteDataTable = <TData,>({
+function RemoteDataTable<TData>({
   data,
   columns,
   getRowId,
@@ -104,7 +104,7 @@ export const RemoteDataTable = <TData,>({
   pageSizeOptions = defaultPageSizeOptions,
   onRowClick,
   query,
-}: RemoteDataTableProps<TData>) => {
+}: RemoteDataTableProps<TData>) {
   const resolvedPageSizeOptions = useMemo(
     () => (pageSizeOptions.length ? pageSizeOptions : defaultPageSizeOptions),
     [pageSizeOptions],
@@ -133,4 +133,6 @@ export const RemoteDataTable = <TData,>({
       />
     </Paper>
   );
-};
+}
+
+export default RemoteDataTable;

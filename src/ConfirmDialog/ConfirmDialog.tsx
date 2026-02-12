@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
-import { BootstrapDialog } from "../BootstrapDialog";
+import BootstrapDialog from "../BootstrapDialog";
 import type { BootstrapDialogDialogProps } from "../Dialog/Dialog.types";
 
 type OmitBaseDialogProps =
@@ -43,7 +43,7 @@ export interface ConfirmDialogProps
  * with customizable title, confirmation and cancellation actions.
  * It optionally requires a passphrase to enable the confirmation action.
  */
-export const ConfirmDialog = ({
+export default function ConfirmDialog({
   open,
   title,
   loading,
@@ -54,7 +54,7 @@ export const ConfirmDialog = ({
   children,
   onConfirm,
   onCancel,
-}: ConfirmDialogProps) => {
+}: ConfirmDialogProps) {
   const [inputPassphrase, setInputPassphrase] = useState("");
   const validPassphrase = !passphrase || inputPassphrase === passphrase;
 
@@ -86,4 +86,4 @@ export const ConfirmDialog = ({
       )}
     </BootstrapDialog>
   );
-};
+}

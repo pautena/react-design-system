@@ -5,7 +5,7 @@ export type ListPanelPanelProps = PropsWithChildren<{
   ids: string[];
 }>;
 
-export const ListPanelPanel = ({ ids, children }: ListPanelPanelProps) => {
+export default function ListPanelPanel({ ids, children }: ListPanelPanelProps) {
   const selectedId = useListPanel();
 
   if (selectedId && !ids.includes(selectedId)) {
@@ -13,4 +13,4 @@ export const ListPanelPanel = ({ ids, children }: ListPanelPanelProps) => {
   }
 
   return <>{children}</>;
-};
+}

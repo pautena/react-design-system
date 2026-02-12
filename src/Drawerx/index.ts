@@ -1,7 +1,10 @@
-export * from "./Drawer/Drawer";
+export { DrawerHeader, default as Drawer } from "./Drawer/Drawer";
 export * from "./Drawer.types";
-export * from "./DrawerAppBar";
-export * from "./DrawerContent/DrawerContent";
+export type { DrawerAppBarProps } from "./DrawerAppBar";
+export { default as DrawerAppBar } from "./DrawerAppBar";
+export { default as DrawerContent } from "./DrawerContent/DrawerContent";
 export * from "./DrawerContext/DrawerContext";
-export * from "./DrawerMain/DrawerMain";
-export * from "./DrawerSubheader/DrawerSubheader";
+export type { DrawerMainProps } from "./DrawerMain";
+export { default as DrawerMain } from "./DrawerMain/DrawerMain";
+export type { DrawerSubheaderProps } from "./DrawerSubheader";
+export { default as DrawerSubheader } from "./DrawerSubheader/DrawerSubheader";

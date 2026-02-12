@@ -70,7 +70,7 @@ const ProgressSize: Record<SelectSize, number> = {
  * A custom Select component that extends the functionality of the Material-UI Select component.
  * This component supports additional features such as loading and fetching states, custom colors, and full-width display.
  */
-export const Select = <T extends ReactNode>({
+function Select<T extends ReactNode>({
   label,
   value,
   loading = false,
@@ -80,7 +80,7 @@ export const Select = <T extends ReactNode>({
   color,
   children,
   onChange,
-}: SelectProps<T>) => {
+}: SelectProps<T>) {
   const id = useId();
 
   const renderValue = (value: T): ReactNode => {
@@ -152,4 +152,6 @@ export const Select = <T extends ReactNode>({
       </MuiSelect>
     </StyledFormControl>
   );
-};
+}
+
+export default Select;

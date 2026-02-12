@@ -13,11 +13,11 @@ export interface ValueEditButtonsProps {
   sx?: SxProps<Theme>;
 }
 
-export const ValueEditButtons = ({
+export function ValueEditButtons({
   onClickCancel,
   onClickSubmit,
   sx,
-}: ValueEditButtonsProps) => {
+}: ValueEditButtonsProps) {
   return (
     <InputAdornment position="end" sx={sx}>
       <Button
@@ -40,7 +40,7 @@ export const ValueEditButtons = ({
       />
     </InputAdornment>
   );
-};
+}
 
 /**
  * Hook to manage the editing behaviour
@@ -80,7 +80,7 @@ export interface ValueEditButtonProps {
   onClick: () => void;
 }
 
-export const ValueEditButton = ({ dense, onClick }: ValueEditButtonProps) => {
+export function ValueEditButton({ dense, onClick }: ValueEditButtonProps) {
   const { typography } = useTheme();
   return (
     <IconButton
@@ -92,4 +92,4 @@ export const ValueEditButton = ({ dense, onClick }: ValueEditButtonProps) => {
       <EditIcon sx={{ fontSize: typography.pxToRem(dense ? 18 : 24) }} />
     </IconButton>
   );
-};
+}

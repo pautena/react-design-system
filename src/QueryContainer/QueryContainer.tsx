@@ -50,7 +50,7 @@ export type QueryContainerProps = PropsWithChildren<{
 /**
  * Component to show different indicators based on the usual api query statuses
  */
-export function QueryContainer({
+export default function QueryContainer({
   fetching: fetchingProp = false,
   loading: loadingProp = false,
   error,

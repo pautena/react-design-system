@@ -8,7 +8,11 @@ export type TabCardPanelProps = PropsWithChildren<{
   sx?: SxProps<Theme>;
 }>;
 
-export const TabCardPanel = ({ index, children, sx }: TabCardPanelProps) => {
+export default function TabCardPanel({
+  index,
+  children,
+  sx,
+}: TabCardPanelProps) {
   const [value] = useContext(TabCardContext);
   let isTab = value === index;
   if (Array.isArray(index)) {
@@ -16,4 +20,4 @@ export const TabCardPanel = ({ index, children, sx }: TabCardPanelProps) => {
   }
 
   return isTab ? <Box sx={sx}>{children}</Box> : null;
-};
+}

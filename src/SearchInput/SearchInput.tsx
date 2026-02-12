@@ -105,7 +105,7 @@ const createInitialData = <T,>(filters: SearchFilter[]) => {
 /**
  * A generic search input component that supports various types of filters.
  */
-export const SearchInput = <T,>({
+function SearchInput<T>({
   label,
   placeholder,
   helperText,
@@ -115,7 +115,7 @@ export const SearchInput = <T,>({
   filters = [],
   onSearch,
   sx,
-}: SearchInputProps<T>) => {
+}: SearchInputProps<T>) {
   const { initialData, fields } = createInitialData(filters);
   const [data, setData] = useState<any>(initialData);
   const [changedFields, setChangedFields] = useState(fields);
@@ -260,4 +260,6 @@ export const SearchInput = <T,>({
       )}
     </form>
   );
-};
+}
+
+export default SearchInput;

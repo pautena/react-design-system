@@ -47,7 +47,7 @@ export interface FormDialogProps<T>
  * A generic form dialog component that wraps a BootstrapDialog and handles form submission.
  * Put your form inside and receive the data validated using the input name field.
  */
-export const FormDialog = <T,>({
+export default function FormDialog<T>({
   open,
   title,
   loading,
@@ -57,7 +57,7 @@ export const FormDialog = <T,>({
   children,
   onSubmit,
   onCancel,
-}: FormDialogProps<T>) => {
+}: FormDialogProps<T>) {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -86,4 +86,4 @@ export const FormDialog = <T,>({
       {children}
     </BootstrapDialog>
   );
-};
+}

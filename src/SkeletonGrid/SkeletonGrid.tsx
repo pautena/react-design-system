@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import { SkeletonCard } from "../SkeletonCard";
+import SkeletonCard from "../SkeletonCard";
 import { newArrayWithSize } from "../utils";
 
 /**
@@ -18,7 +18,7 @@ export interface SkeletonGridProps {
 /**
  * SkeletonGrid component renders a grid of skeleton cards.
  */
-export const SkeletonGrid = ({ size = 20 }: SkeletonGridProps) => {
+export default function SkeletonGrid({ size = 20 }: SkeletonGridProps) {
   return (
     <Grid container spacing={2}>
       {newArrayWithSize(size, 0).map((_, i) => (
@@ -28,4 +28,4 @@ export const SkeletonGrid = ({ size = 20 }: SkeletonGridProps) => {
       ))}
     </Grid>
   );
-};
+}
