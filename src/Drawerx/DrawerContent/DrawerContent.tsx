@@ -1,8 +1,5 @@
 import { List, useTheme } from "@mui/material";
-import type {
-  DrawerContentComponent,
-  DrawerContentProps,
-} from "../Drawer.types";
+import type { DrawerContentProps } from "../Drawer.types";
 import { useDrawer } from "../DrawerContext";
 import DrawerItem from "../DrawerItem";
 

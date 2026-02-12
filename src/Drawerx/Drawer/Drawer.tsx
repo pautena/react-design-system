@@ -9,12 +9,7 @@ import {
   type Theme,
   useTheme,
 } from "@mui/material/styles";
-import type {
-  DrawerComponent,
-  DrawerProps,
-  DrawerState,
-  DrawerVariant,
-} from "../Drawer.types";
+import type { DrawerProps, DrawerState, DrawerVariant } from "../Drawer.types";
 import { useDrawer } from "../DrawerContext/DrawerContext";
 import { closedMixin, openedMixin } from "../DrawerContext/DrawerMixins";
 
