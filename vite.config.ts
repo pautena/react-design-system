@@ -5,15 +5,18 @@ import { peerDependencies } from "./package.json";
 export default defineConfig({
   build: {
     lib: {
-      entry: "./src/index.ts",
-      name: "vite-react-ts-button",
-      fileName: (format) => `index.${format}.js`,
-      formats: ["cjs", "es"],
+      entry: {
+        index: "./src/index.ts",
+        "tests/index": "./src/tests/index.ts",
+      },
+      formats: ["es"],
     },
     rollupOptions: {
-      external: [...Object.keys(peerDependencies)],
+      external: [...Object.keys(peerDependencies), "@testing-library/react"],
       output: {
         interop: "auto",
+        preserveModules: true,
+        preserveModulesRoot: "src",
       },
     },
     sourcemap: true,
@@ -22,6 +25,13 @@ export default defineConfig({
   plugins: [
     dts({
       tsconfigPath: "./tsconfig.build.json",
+      exclude: ["src/tests/**/*"],
+    }),
+    dts({
+      tsconfigPath: "./tsconfig.tests.json",
+      include: ["src/tests/**/*"],
+      insertTypesEntry: false,
+      rollupTypes: false,
     }),
   ],
 });
