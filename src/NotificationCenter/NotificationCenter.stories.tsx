@@ -62,3 +62,33 @@ export const Default = () => {
     </ContentPlaceholder>
   );
 };
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `import { NotificationCenterProvider, useNotificationCenter } from './NotificationCenter';
+
+function App() {
+  return (
+    <NotificationCenterProvider>
+      <MyComponent />
+    </NotificationCenterProvider>
+  );
+}
+
+function MyComponent() {
+  const { show, hide } = useNotificationCenter();
+
+  const handleClick = () => {
+    show({
+      severity: "success",
+      title: "Success",
+      message: "Operation completed successfully"
+    });
+  };
+
+  return <button onClick={handleClick}>Show Notification</button>;
+}`,
+    },
+  },
+};

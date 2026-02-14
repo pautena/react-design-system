@@ -8,6 +8,37 @@ export default {
   component: ConfirmDialog,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        transform: (code: string, storyContext: any) => {
+          const { args } = storyContext;
+          const props = Object.entries(args)
+            .filter(([key]) => key !== "children")
+            .map(([key, value]) => {
+              if (typeof value === "boolean" && value === true) {
+                return key;
+              }
+              if (typeof value === "string") {
+                return `${key}="${value}"`;
+              }
+              if (typeof value === "function") {
+                return `${key}={${key}}`;
+              }
+              return `${key}={${JSON.stringify(value)}}`;
+            })
+            .filter(Boolean)
+            .join("\n  ");
+
+          return `<ConfirmDialog
+  ${props}
+  onConfirm={handleConfirm}
+  onCancel={handleCancel}
+>
+  {children}
+</ConfirmDialog>`;
+        },
+      },
+    },
   },
   argTypes: {
     open: {
@@ -43,22 +74,42 @@ export const Default: Story = {
       </DialogContentText>
     ),
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ConfirmDialog
-  open={open}
-  title="Lorem ipsum"
-  onClose={handleClose}
-  onConfirm={handleConfirm}
-  onCancel={handleCancel}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</ConfirmDialog>`,
-      },
+};
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `import { useState } from 'react';
+import { ConfirmDialog } from './ConfirmDialog';
+
+function MyComponent() {
+  const [open, setOpen] = useState(false);
+
+  const handleConfirm = () => {
+    // Handle confirmation
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Confirm Dialog</button>
+      <ConfirmDialog
+        open={open}
+        title="Lorem ipsum"
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      >
+        <DialogContentText>
+          Are you sure you want to proceed?
+        </DialogContentText>
+      </ConfirmDialog>
+    </>
+  );
+}`,
     },
   },
 };
@@ -68,50 +119,12 @@ export const Loading: Story = {
     ...Default.args,
     loading: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ConfirmDialog
-  open={open}
-  title="Lorem ipsum"
-  loading
-  onClose={handleClose}
-  onConfirm={handleConfirm}
-  onCancel={handleCancel}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</ConfirmDialog>`,
-      },
-    },
-  },
 };
 
 export const Disabled: Story = {
   args: {
     ...Default.args,
     disabled: true,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ConfirmDialog
-  open={open}
-  title="Lorem ipsum"
-  disabled
-  onClose={handleClose}
-  onConfirm={handleConfirm}
-  onCancel={handleCancel}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</ConfirmDialog>`,
-      },
-    },
   },
 };
 
@@ -120,26 +133,6 @@ export const CustomButtonText: Story = {
     ...Default.args,
     confirmText: "Create token",
     cancelText: "Don't create a token",
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ConfirmDialog
-  open={open}
-  title="Lorem ipsum"
-  confirmText="Create token"
-  cancelText="Don't create a token"
-  onClose={handleClose}
-  onConfirm={handleConfirm}
-  onCancel={handleCancel}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</ConfirmDialog>`,
-      },
-    },
   },
 };
 
@@ -152,23 +145,5 @@ export const Passphrase: Story = {
       </DialogContentText>
     ),
     passphrase: "delete permanently",
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<ConfirmDialog
-  open={open}
-  title="Lorem ipsum"
-  passphrase="delete permanently"
-  onClose={handleClose}
-  onConfirm={handleConfirm}
-  onCancel={handleCancel}
->
-  <DialogContentText sx={{ mb: 1 }}>
-    Write the passphrase to confirm your action
-  </DialogContentText>
-</ConfirmDialog>`,
-      },
-    },
   },
 };

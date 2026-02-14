@@ -11,6 +11,39 @@ export default {
   component: BootstrapDialog,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        transform: (code: string, storyContext: any) => {
+          const { args } = storyContext;
+          const props = Object.entries(args)
+            .filter(([key]) => key !== "children")
+            .map(([key, value]) => {
+              if (typeof value === "boolean" && value === true) {
+                return key;
+              }
+              if (typeof value === "string") {
+                return `${key}="${value}"`;
+              }
+              if (typeof value === "function") {
+                return `${key}={${key}}`;
+              }
+              if (Array.isArray(value)) {
+                return `${key}={${JSON.stringify(value, null, 2).replace(/"(\w+)":/g, "$1:")}}`;
+              }
+              return `${key}={${JSON.stringify(value)}}`;
+            })
+            .filter(Boolean)
+            .join("\n  ");
+
+          return `<BootstrapDialog
+  ${props}
+  onClose={handleClose}
+>
+  {children}
+</BootstrapDialog>`;
+        },
+      },
+    },
   },
   render: (args) => (
     <StoryDialogManager component={BootstrapDialog} args={args} />
@@ -28,20 +61,32 @@ export const Default: Story = {
       </DialogContentText>
     ),
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<BootstrapDialog
-  open={open}
-  title="Lorem ipsum"
-  onClose={handleClose}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</BootstrapDialog>`,
-      },
+};
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `import { useState } from 'react';
+import { BootstrapDialog } from './BootstrapDialog';
+
+function MyComponent() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Dialog</button>
+      <BootstrapDialog
+        open={open}
+        title="Lorem ipsum"
+        onClose={() => setOpen(false)}
+      >
+        <DialogContentText>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </DialogContentText>
+      </BootstrapDialog>
+    </>
+  );
+}`,
     },
   },
 };
@@ -51,26 +96,6 @@ export const AcceptableAndCancelable: Story = {
     ...Default.args,
     acceptable: true,
     cancelable: true,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<BootstrapDialog
-  open={open}
-  title="Lorem ipsum"
-  acceptable
-  cancelable
-  onClose={handleClose}
-  onCancel={handleCancel}
-  onAccept={handleAccept}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</BootstrapDialog>`,
-      },
-    },
   },
 };
 
@@ -92,37 +117,6 @@ export const WithExtraActions: Story = {
       },
     ],
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<BootstrapDialog
-  open={open}
-  title="Lorem ipsum"
-  cancelable
-  onClose={handleClose}
-  onCancel={handleCancel}
-  actions={[
-    {
-      id: "action1",
-      text: "Action 1",
-      color: "error",
-      onClick: handleAction1,
-    },
-    {
-      id: "action2",
-      text: "Action 2",
-      onClick: handleAction2,
-    },
-  ]}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</BootstrapDialog>`,
-      },
-    },
-  },
 };
 
 export const LoadingWithAcceptable: Story = {
@@ -131,25 +125,6 @@ export const LoadingWithAcceptable: Story = {
     acceptable: true,
     loading: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<BootstrapDialog
-  open={open}
-  title="Lorem ipsum"
-  acceptable
-  loading
-  onClose={handleClose}
-  onAccept={handleAccept}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</BootstrapDialog>`,
-      },
-    },
-  },
 };
 
 export const Loading: Story = {
@@ -157,61 +132,12 @@ export const Loading: Story = {
     ...Default.args,
     loading: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<BootstrapDialog
-  open={open}
-  title="Lorem ipsum"
-  loading
-  onClose={handleClose}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</BootstrapDialog>`,
-      },
-    },
-  },
 };
 
 export const Disabled: Story = {
   args: {
     ...WithExtraActions.args,
     disabled: true,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<BootstrapDialog
-  open={open}
-  title="Lorem ipsum"
-  cancelable
-  disabled
-  onClose={handleClose}
-  onCancel={handleCancel}
-  actions={[
-    {
-      id: "action1",
-      text: "Action 1",
-      color: "error",
-      onClick: handleAction1,
-    },
-    {
-      id: "action2",
-      text: "Action 2",
-      onClick: handleAction2,
-    },
-  ]}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</BootstrapDialog>`,
-      },
-    },
   },
 };
 
@@ -222,27 +148,5 @@ export const CustomTexts: Story = {
     cancelable: true,
     cancelText: "Cancel updated",
     acceptText: "Accept updated",
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<BootstrapDialog
-  open={open}
-  title="Lorem ipsum"
-  acceptable
-  cancelable
-  cancelText="Cancel updated"
-  acceptText="Accept updated"
-  onClose={handleClose}
-  onCancel={handleCancel}
-  onAccept={handleAccept}
->
-  <DialogContentText>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua.
-  </DialogContentText>
-</BootstrapDialog>`,
-      },
-    },
   },
 };

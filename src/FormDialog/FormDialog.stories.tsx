@@ -9,6 +9,37 @@ export default {
   component: FormDialog,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        transform: (code: string, storyContext: any) => {
+          const { args } = storyContext;
+          const props = Object.entries(args)
+            .filter(([key]) => key !== "children")
+            .map(([key, value]) => {
+              if (typeof value === "boolean" && value === true) {
+                return key;
+              }
+              if (typeof value === "string") {
+                return `${key}="${value}"`;
+              }
+              if (typeof value === "function") {
+                return `${key}={${key}}`;
+              }
+              return `${key}={${JSON.stringify(value)}}`;
+            })
+            .filter(Boolean)
+            .join("\n  ");
+
+          return `<FormDialog
+  ${props}
+  onSubmit={handleSubmit}
+  onCancel={handleCancel}
+>
+  {children}
+</FormDialog>`;
+        },
+      },
+    },
   },
   argTypes: {
     open: {
@@ -58,38 +89,52 @@ export const Default: Story = {
       </Grid>
     ),
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<FormDialog
-  open={open}
-  title="Lorem ipsum"
-  onClose={handleClose}
-  onSubmit={handleSubmit}
-  onCancel={handleCancel}
->
-  <Grid container spacing={2}>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="message"
-        label="Message"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="amount"
-        label="Amount"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-  </Grid>
-</FormDialog>`,
-      },
+};
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `import { useState } from 'react';
+import { FormDialog } from './FormDialog';
+
+function MyComponent() {
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    
+    // Handle form submission
+    console.log(data);
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Form Dialog</button>
+      <FormDialog
+        open={open}
+        title="Create Item"
+        onSubmit={handleSubmit}
+        onCancel={handleCancel}
+      >
+        <Grid container spacing={2}>
+          <Grid size={{ xs: 12 }}>
+            <TextField name="message" label="Message" fullWidth required />
+          </Grid>
+          <Grid size={{ xs: 12 }}>
+            <TextField name="amount" label="Amount" fullWidth required />
+          </Grid>
+        </Grid>
+      </FormDialog>
+    </>
+  );
+}`,
     },
   },
 };
@@ -99,82 +144,12 @@ export const Loading: Story = {
     ...Default.args,
     loading: true,
   },
-  parameters: {
-    docs: {
-      source: {
-        code: `<FormDialog
-  open={open}
-  title="Lorem ipsum"
-  loading
-  onClose={handleClose}
-  onSubmit={handleSubmit}
-  onCancel={handleCancel}
->
-  <Grid container spacing={2}>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="message"
-        label="Message"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="amount"
-        label="Amount"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-  </Grid>
-</FormDialog>`,
-      },
-    },
-  },
 };
 
 export const Disabled: Story = {
   args: {
     ...Default.args,
     disabled: true,
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<FormDialog
-  open={open}
-  title="Lorem ipsum"
-  disabled
-  onClose={handleClose}
-  onSubmit={handleSubmit}
-  onCancel={handleCancel}
->
-  <Grid container spacing={2}>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="message"
-        label="Message"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="amount"
-        label="Amount"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-  </Grid>
-</FormDialog>`,
-      },
-    },
   },
 };
 
@@ -183,41 +158,5 @@ export const CustomButtonText: Story = {
     ...Default.args,
     submitText: "Create token",
     cancelText: "Don't create a token",
-  },
-  parameters: {
-    docs: {
-      source: {
-        code: `<FormDialog
-  open={open}
-  title="Lorem ipsum"
-  submitText="Create token"
-  cancelText="Don't create a token"
-  onClose={handleClose}
-  onSubmit={handleSubmit}
-  onCancel={handleCancel}
->
-  <Grid container spacing={2}>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="message"
-        label="Message"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-    <Grid size={{ xs: 12 }}>
-      <TextField
-        name="amount"
-        label="Amount"
-        fullWidth
-        required
-        variant="outlined"
-      />
-    </Grid>
-  </Grid>
-</FormDialog>`,
-      },
-    },
   },
 };
