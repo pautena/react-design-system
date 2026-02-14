@@ -18,6 +18,9 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    docs: {
+      toc: true,
+    },
   },
   decorators: [
     withThemeFromJSXProvider<Renderer>({
@@ -30,7 +33,6 @@ const preview: Preview = {
       GlobalStyles: CssBaseline,
     }),
   ],
-  tags: ["autodocs"],
 };
 
 export default preview;
