@@ -6,7 +6,7 @@ import { withContainer } from "../storybook";
 import Autocomplete from "./Autocomplete";
 
 export default {
-  title: "Components/Inputs/Autocomplete",
+  title: "Inputs/Autocomplete",
   component: Autocomplete,
   decorators: [withContainer({ width: 300 })],
   parameters: {

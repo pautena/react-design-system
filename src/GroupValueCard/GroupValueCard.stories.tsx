@@ -9,7 +9,7 @@ import GroupValueCard from "./GroupValueCard";
 import { GroupValueCardDummy } from "./GroupValueCard.mock";
 
 export default {
-  title: "Components/Data display/GroupValueCard",
+  title: "Data Display/GroupValueCard",
   component: GroupValueCardDummy,
   decorators: [withPadding(2), withLocalizationProvider],
   parameters: {

@@ -4,7 +4,7 @@ import { StoryDialogManager } from "../storybook";
 import ConfirmDialog from "./ConfirmDialog";
 
 export default {
-  title: "Components/Dialogs/ConfirmDialog",
+  title: "Dialogs/ConfirmDialog",
   component: ConfirmDialog,
   parameters: {
     layout: "centered",

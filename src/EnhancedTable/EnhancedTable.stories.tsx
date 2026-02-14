@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { columns, data, TestTable } from "./EnhancedTable.mock";
 
 export default {
-  title: "Components/Tables/EnhancedTable",
+  title: "Tables/EnhancedTable",
   component: TestTable,
   parameters: {
     layout: "fullscreen",

@@ -11,7 +11,7 @@ const DummyError = {
 };
 
 export default {
-  title: "Components/Feedback/NotificationCenter",
+  title: "Feedback/NotificationCenter",
   component: ContentPlaceholder,
   decorators: [
     (Story) => (

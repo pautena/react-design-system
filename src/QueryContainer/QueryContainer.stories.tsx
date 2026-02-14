@@ -5,7 +5,7 @@ import { withPadding } from "../storybook";
 import QueryContainer, { type QueryContainerProps } from "./QueryContainer";
 
 export default {
-  title: "Components/Feedback/QueryContainer",
+  title: "Feedback/QueryContainer",
   component: QueryContainer,
   decorators: [withPadding()],
   parameters: {

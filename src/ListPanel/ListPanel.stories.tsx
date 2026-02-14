@@ -10,7 +10,7 @@ import {
 import ListPanelPanel from "./ListPanelPanel";
 
 export default {
-  title: "Components/Containers/ListPanel",
+  title: "Containers/ListPanel",
   component: ListPanel,
   decorators: [withContainer({ width: 800, height: 600 })],
   render: (args) => (

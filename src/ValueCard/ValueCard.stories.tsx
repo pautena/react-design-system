@@ -4,7 +4,7 @@ import { ValueText } from "../ValueText";
 import ValueCard from "./ValueCard";
 
 export default {
-  title: "Components/Data Display/ValueCard",
+  title: "Data Display/ValueCard",
   component: ValueCard,
   parameters: {
     layout: "centered",

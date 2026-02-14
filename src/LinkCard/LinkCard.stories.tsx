@@ -3,7 +3,7 @@ import { withContainer } from "../storybook";
 import LinkCard from "./LinkCard";
 
 export default {
-  title: "Components/Data Display/LinkCard",
+  title: "Data Display/LinkCard",
   component: LinkCard,
   decorators: [withContainer({ width: 400 })],
   parameters: {

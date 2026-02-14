@@ -3,7 +3,7 @@ import { columns, data } from "../EnhancedTable/EnhancedTable.mock";
 import { EnhancedRemoteDummyTable } from "./EnhancedRemoteTable.mock";
 
 export default {
-  title: "Components/Tables/EnhancedRemoteTable",
+  title: "Tables/EnhancedRemoteTable",
   component: EnhancedRemoteDummyTable,
   parameters: {
     layout: "fullscreen",

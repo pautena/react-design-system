@@ -3,7 +3,7 @@ import { SkeletonGrid } from "../SkeletonGrid";
 import Content from "./Content";
 
 export default {
-  title: "Components/Containers/Content",
+  title: "Containers/Content",
   component: Content,
   parameters: {
     layout: "fullscreen",

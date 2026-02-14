@@ -3,7 +3,7 @@ import { ValueText } from "../ValueText";
 import ValueItem from "./ValueItem";
 
 export default {
-  title: "Components/Data Display/ValueItem",
+  title: "Data Display/ValueItem",
   component: ValueItem,
   parameters: {
     layout: "centered",

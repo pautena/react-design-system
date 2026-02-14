@@ -3,7 +3,7 @@ import { withContainer, withLocalizationProvider } from "../storybook";
 import SearchInput from "./SearchInput";
 
 export default {
-  title: "Components/Inputs/SearchInput",
+  title: "Inputs/SearchInput",
   component: SearchInput,
   decorators: [withLocalizationProvider],
   parameters: {

@@ -3,7 +3,7 @@ import { withContainer, withLocalizationProvider } from "../storybook";
 import DateRangePicker from "./DateRangePicker";
 
 export default {
-  title: "Components/Inputs/DateRangePicker",
+  title: "Inputs/DateRangePicker",
   component: DateRangePicker,
   decorators: [withLocalizationProvider, withContainer({ width: 300 })],
   parameters: {

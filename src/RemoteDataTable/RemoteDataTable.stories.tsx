@@ -105,7 +105,7 @@ const RemoteDataTableStory = (props: RemoteDataTableStoryProps) => {
 };
 
 export default {
-  title: "Components/Tables/RemoteDataTable",
+  title: "Tables/RemoteDataTable",
   component: RemoteDataTableStory,
   decorators: [withPadding()],
   parameters: {

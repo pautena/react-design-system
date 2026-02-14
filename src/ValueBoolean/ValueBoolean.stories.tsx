@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ValueBoolean from "./ValueBoolean";
 export default {
-  title: "Components/Data Display/ValueBoolean",
+  title: "Data Display/ValueBoolean",
   component: ValueBoolean,
   parameters: {
     layout: "centered",

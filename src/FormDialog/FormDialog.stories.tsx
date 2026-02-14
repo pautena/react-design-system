@@ -5,7 +5,7 @@ import { StoryDialogManager } from "../storybook";
 import FormDialog from "./FormDialog";
 
 export default {
-  title: "Components/Dialogs/FormDialog",
+  title: "Dialogs/FormDialog",
   component: FormDialog,
   parameters: {
     layout: "centered",

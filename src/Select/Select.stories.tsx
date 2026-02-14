@@ -34,7 +34,7 @@ const DemoSelect = ({ options, ...rest }: TemplateProps<string>) => {
 };
 
 export default {
-  title: "Components/Inputs/Select",
+  title: "Inputs/Select",
   component: DemoSelect,
   decorators: [withContainer({ width: 200 })],
   parameters: {

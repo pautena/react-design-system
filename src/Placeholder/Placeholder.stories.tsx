@@ -4,7 +4,7 @@ import Placeholder, { type PlaceholderIconArgs } from "./Placeholder";
 import { actions } from "./Placeholder.mock";
 
 export default {
-  title: "Components/Placeholders/Placeholder",
+  title: "Placeholders/Placeholder",
   component: Placeholder,
   parameters: {
     layout: "fullscreen",

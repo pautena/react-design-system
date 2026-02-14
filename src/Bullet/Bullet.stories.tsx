@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Bullet from "./Bullet";
 
 export default {
-  title: "Components/Data Display/Bullet",
+  title: "Data Display/Bullet",
   component: Bullet,
   parameters: {
     layout: "centered",

@@ -7,7 +7,7 @@ import BootstrapDialog from "./BootstrapDialog";
 const onClickAction = action("On click dialog action");
 
 export default {
-  title: "Components/Dialogs/BootstrapDialog",
+  title: "Dialogs/BootstrapDialog",
   component: BootstrapDialog,
   parameters: {
     layout: "centered",
