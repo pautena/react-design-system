@@ -11,10 +11,23 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-docs",
     "@storybook/addon-themes",
+    {
+      name: "@storybook/addon-mcp",
+      options: {
+        toolsets: {
+          dev: true, // UI building instructions + story URLs
+          docs: true, // Component documentation
+        },
+        experimentalFormat: "markdown",
+      },
+    },
   ],
   framework: {
     name: "@storybook/react-vite",
     options: {},
+  },
+  features: {
+    experimentalComponentsManifest: true,
   },
 };
 export default config;

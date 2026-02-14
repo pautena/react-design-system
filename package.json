@@ -26,7 +26,7 @@
     "coverage": "vitest run --coverarge",
     "storybook": "storybook dev -p 6006",
     "storybook:build": "storybook build && node generate-llms.mjs",
-    "storybook:deploy": "gh-pages -d storybook-static",
+    "storybook:prod": "storybook dev --ci --no-open --host 0.0.0.0 --port 6006",
     "lint": "biome check --write --unsafe --no-errors-on-unmatched --files-ignore-unknown=true ./",
     "check": "biome check ./",
     "check:ts": "tsc -p ."
@@ -59,6 +59,7 @@
     "@faker-js/faker": "^10.3.0",
     "@storybook/addon-docs": "^10.2.8",
     "@storybook/addon-links": "^10.2.8",
+    "@storybook/addon-mcp": "^0.2.2",
     "@storybook/addon-onboarding": "^10.2.8",
     "@storybook/addon-themes": "^10.2.8",
     "@storybook/react": "^10.2.8",
@@ -71,7 +72,6 @@
     "@types/react": "^19.2.14",
     "babel-loader": "^10.0.0",
     "babel-plugin-module-resolver": "^5.0.2",
-    "gh-pages": "^6.3.0",
     "globals": "^17.3.0",
     "husky": "^9.1.7",
     "jsdom": "^28.0.0",
@@ -104,5 +104,5 @@
   "bugs": {
     "url": "https://github.com/pautena/react-design-system/issues"
   },
-  "homepage": "https://pautena.com/react-design-system/"
+  "homepage": "https://react-design-system.pautena.com/"
 }
