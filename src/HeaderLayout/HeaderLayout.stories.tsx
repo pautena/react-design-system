@@ -1,9 +1,8 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
-import type { ReactElement } from "react";
-import type { HeaderProps, HeaderTab } from "../Header";
-import { HeaderLayout, type HeaderLayoutProps } from "../HeaderLayout";
+import type { HeaderTab } from "../Header";
+import { HeaderLayout } from "../HeaderLayout";
 import { SkeletonGrid } from "../SkeletonGrid";
 import { withFullHeight, withLocalizationProvider } from "../storybook";
 import { TabPanel } from "../TabPanel";
@@ -45,24 +44,15 @@ const tabs: HeaderTab[] = [
   },
 ];
 
-interface HeaderLayoutStoryProps extends HeaderLayoutProps {
-  headerProps: HeaderProps;
-  children: ReactElement;
-}
-
-const DummyHeaderLayout = ({ children, ...rest }: HeaderLayoutStoryProps) => {
-  return <HeaderLayout {...rest}>{children}</HeaderLayout>;
-};
-
 export default {
   title: "Layouts/HeaderLayout",
-  component: DummyHeaderLayout,
+  component: HeaderLayout,
   decorators: [withFullHeight, withLocalizationProvider],
   parameters: {
     layout: "fullscreen",
   },
-} satisfies Meta<typeof DummyHeaderLayout>;
-type Story = StoryObj<typeof DummyHeaderLayout>;
+} satisfies Meta<typeof HeaderLayout>;
+type Story = StoryObj<typeof HeaderLayout>;
 
 export const Skeleton: Story = {
   args: {

@@ -17,20 +17,48 @@ const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
   persistent: ["close", "open"],
 };
 
-export type DrawerProviderProps = PropsWithChildren<{
+export interface DrawerProviderProps extends PropsWithChildren {
+  /**
+   * Initial state of the drawer
+   */
   initialState?: DrawerState;
+  /**
+   * Size of the drawer
+   * @default "medium"
+   */
   size?: DrawerSize;
+  /**
+   * Whether the drawer is clipped under the app bar
+   * @default true
+   */
   clipped?: boolean;
+  /**
+   * Width of the drawer in pixels
+   */
   drawerWidth?: number;
+  /**
+   * Variant of the drawer behavior
+   * - temporary: slides over content, closes on backdrop click
+   * - persistent: pushes content when open
+   * - mini: shows icons only when collapsed
+   * @default "temporary"
+   */
   variant?: DrawerVariant;
+  /**
+   * ID of the currently selected navigation item
+   */
   selectedItemId?: string;
   /**
    * The component used to render a link when the `href` prop is provided.
    * @default 'a'
    */
   LinkComponent?: ElementType;
+  /**
+   * Callback fired when the drawer state changes
+   * @param newState - The new drawer state
+   */
   onStateChange?: (newState: DrawerState) => void;
-}>;
+}
 
 export const DrawerProvider = ({
   children,
