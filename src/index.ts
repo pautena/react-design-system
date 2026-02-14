@@ -44,8 +44,6 @@ export { default as Placeholder } from "./Placeholder";
 export * from "./QueryContainer";
 export * from "./RemoteDataTable";
 export { default as RemoteDataTable } from "./RemoteDataTable";
-export * from "./SearchInput";
-export { default as SearchInput } from "./SearchInput";
 export * from "./Select";
 export { default as Select } from "./Select";
 export * from "./SkeletonCard";

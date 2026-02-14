@@ -12,6 +12,11 @@ export default {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    options: {
+      description: "List of available options for the autocomplete",
+    },
+  },
 } satisfies Meta<typeof Autocomplete>;
 type Story = StoryObj<typeof Autocomplete>;
 
