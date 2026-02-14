@@ -19,7 +19,7 @@ export interface SkeletonCardProps {
 /**
  * SkeletonCard component renders a skeleton loading placeholder for a card.
  */
-export default function SkeletonCard({
+export function SkeletonCard({
   width = "100%",
   animation = false,
 }: SkeletonCardProps) {
@@ -41,3 +41,5 @@ export default function SkeletonCard({
     </Box>
   );
 }
+
+export default SkeletonCard;

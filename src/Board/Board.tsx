@@ -31,7 +31,7 @@ export type BoardProps = PropsWithChildren<{
  * It supports rendering an array of content lines or a single content string.
  * Additionally, it provides a button to copy the content to the clipboard.
  */
-export default function Board({
+export function Board({
   content: contentProp,
   spacing = 0,
   children,
@@ -90,3 +90,5 @@ export default function Board({
     </Paper>
   );
 }
+
+export default Board;

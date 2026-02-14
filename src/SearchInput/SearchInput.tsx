@@ -15,14 +15,34 @@ import TextField from "@mui/material/TextField";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { type FormEvent, useState } from "react";
 
+/**
+ * Search input size variants
+ */
 export type SearchInputSize = "small" | "medium";
 
+/**
+ * Filter field configuration for search
+ */
 export interface SearchFilter {
+  /**
+   * Unique identifier
+   */
   id: string;
+  /**
+   * Display label
+   */
   label: string;
+  /**
+   * Field data type
+   */
   type: "text" | "number" | "boolean" | "datetime";
 }
 
+/**
+ * Props for the SearchInput component
+ *
+ * @template T - The type of search query data
+ */
 export interface SearchInputProps<T> {
   /**
    * The label for the search input.
@@ -94,7 +114,7 @@ const createInitialData = <T,>(filters: SearchFilter[]) => {
 /**
  * A generic search input component that supports various types of filters.
  */
-function SearchInput<T>({
+export function SearchInput<T>({
   label,
   placeholder,
   helperText,

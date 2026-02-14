@@ -44,7 +44,7 @@ export type ListPanelProps = PropsWithChildren<{
 /**
  * ListPanel component renders a panel with a list of items and a content area.
  */
-export default function ListPanel({
+export function ListPanel({
   items,
   defaultSelectedItem,
   colBreakpoint = 3,
@@ -120,3 +120,5 @@ export default function ListPanel({
     </ListPanelContextProvider>
   );
 }
+
+export default ListPanel;

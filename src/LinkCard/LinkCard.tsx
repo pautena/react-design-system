@@ -10,16 +10,42 @@ export type LinkCardVariant =
   | "info"
   | "warning"
   | "error";
+
+/**
+ * Props for the LinkCard component
+ */
 export interface LinkCardProps {
+  /**
+   * Color variant of the card
+   * @default "primary"
+   */
   variant?: LinkCardVariant;
+  /**
+   * URL to navigate to
+   */
   href: string;
+  /**
+   * Card title
+   */
   title: string;
+  /**
+   * Card message content
+   */
   message: string;
+  /**
+   * Custom text for the link
+   */
   linkText?: string;
+  /**
+   * Custom styles
+   */
   sx?: SxProps<Theme>;
 }
 
-export default function LinkCard({
+/**
+ * Clickable card component that acts as a styled link
+ */
+export function LinkCard({
   variant = "primary",
   title,
   message,
@@ -62,3 +88,5 @@ export default function LinkCard({
     </Paper>
   );
 }
+
+export default LinkCard;

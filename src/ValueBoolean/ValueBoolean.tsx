@@ -14,13 +14,19 @@ import {
 } from "../ValueBase";
 import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
+/**
+ * Props for the ValueBoolean component
+ *
+ * @extends BaseValueProps
+ * @extends EditableValueProps
+ */
 export type ValueBooleanProps = BaseValueProps<boolean> &
   EditableValueProps<boolean>;
 
 /**
  * Displays a boolean value with a label
  */
-export default function ValueBoolean({
+export function ValueBoolean({
   label,
   value,
   placeholder = DefaultPlaceholder,
@@ -78,3 +84,5 @@ export default function ValueBoolean({
     </ValueContent>
   );
 }
+
+export default ValueBoolean;

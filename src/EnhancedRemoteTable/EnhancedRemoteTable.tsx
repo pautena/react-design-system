@@ -7,6 +7,11 @@ import TableRow from "@mui/material/TableRow";
 import { type ReactNode, useState } from "react";
 import { EnhancedTableHead, type HeadCell, type Order } from "../EnhancedTable";
 
+/**
+ * Props for the EnhancedRemoteTable component
+ *
+ * @template T - The type of data being displayed in the table
+ */
 export interface EnhancedRemoteTableProps<T> {
   /**
    * The array of data to be displayed in the table.
@@ -48,7 +53,7 @@ export interface EnhancedRemoteTableProps<T> {
  * EnhancedRemoteTable component provides a table with remote data handling capabilities.
  * It supports sorting and displays a loading indicator while data is being fetched.
  */
-function EnhancedRemoteTable<T>({
+export function EnhancedRemoteTable<T>({
   children,
   data,
   loading,

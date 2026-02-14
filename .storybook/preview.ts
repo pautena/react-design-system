@@ -17,11 +17,13 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      expanded: true,
     },
     docs: {
       toc: true,
     },
   },
+  tags: ["autodocs"],
   decorators: [
     withThemeFromJSXProvider<Renderer>({
       themes: {

@@ -13,27 +13,83 @@ export type HeaderActionColor =
   | "info"
   | "warning";
 
+/**
+ * Action button configuration for the header
+ */
 export type HeaderAction = {
+  /**
+   * Unique identifier
+   */
   id: string;
+  /**
+   * Button text label
+   */
   text: string;
+  /**
+   * Whether the action is disabled
+   */
   disabled?: boolean;
+  /**
+   * Navigation URL when clicked
+   */
   href?: string;
+  /**
+   * Click handler function
+   */
   onClick?: () => void;
+  /**
+   * Button style variant
+   * @default "contained"
+   */
   variant?: HeaderActionVariant;
+  /**
+   * Button color theme
+   * @default "primary"
+   */
   color?: HeaderActionColor;
 };
 
+/**
+ * Breadcrumb navigation item
+ */
 export interface HeaderBreadcrumb {
+  /**
+   * Unique identifier
+   */
   id: string;
+  /**
+   * Display text
+   */
   text: string;
+  /**
+   * Navigation URL
+   */
   link: string;
 }
 
+/**
+ * Tab configuration for the header
+ */
 export interface HeaderTab {
+  /**
+   * Unique identifier
+   */
   id: string;
+  /**
+   * Tab label text
+   */
   label: string;
+  /**
+   * Whether the tab is disabled
+   */
   disabled?: boolean;
+  /**
+   * Navigation URL for the tab
+   */
   href?: string;
+  /**
+   * Route path pattern for active state matching
+   */
   path?: string;
 }
 

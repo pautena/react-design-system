@@ -102,7 +102,7 @@ const DefaultErrorIcon = () => (
 /**
  * A layout component that provides a header and content area with optional loading, fetching, and error states.
  */
-export default function HeaderLayout({
+export function HeaderLayout({
   loading,
   title,
   subtitle,
@@ -151,3 +151,5 @@ export default function HeaderLayout({
     </TabProvider>
   );
 }
+
+export default HeaderLayout;

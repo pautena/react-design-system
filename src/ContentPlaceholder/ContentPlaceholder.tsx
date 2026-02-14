@@ -19,7 +19,7 @@ export type ContentPlaceholderProps = PropsWithChildren<{
 /**
  * A component that serves as a placeholder for content, displaying a skeleton grid.
  */
-export default function ContentPlaceholder({
+export function ContentPlaceholder({
   size = 20,
   children,
   p,
@@ -35,3 +35,5 @@ export default function ContentPlaceholder({
     </Container>
   );
 }
+
+export default ContentPlaceholder;

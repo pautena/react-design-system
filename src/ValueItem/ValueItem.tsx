@@ -9,7 +9,15 @@ export type ValueItemProps = PropsWithChildren<
     bordered?: ResponsiveStyleValue<boolean>;
   }
 >;
+
+/**
+ * ValueItem component type
+ */
 export type ValueItemComponent = FunctionComponent<ValueItemProps>;
+
+/**
+ * ValueItem element type
+ */
 export type ValueItemElement = ReactElement<ValueItemProps, ValueItemComponent>;
 
 export const valueItemClasses = {

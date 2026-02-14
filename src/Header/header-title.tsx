@@ -3,8 +3,19 @@ import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import type { PropsWithChildren } from "react";
 
-export type HeaderTitleProps = PropsWithChildren<{ loading?: boolean }>;
+/**
+ * Props for the HeaderTitle component
+ */
+export type HeaderTitleProps = PropsWithChildren<{
+  /**
+   * Whether to show a loading indicator
+   */
+  loading?: boolean;
+}>;
 
+/**
+ * Header title component with optional loading state
+ */
 export default function HeaderTitle({ loading, children }: HeaderTitleProps) {
   const { typography } = useTheme();
 
@@ -29,8 +40,19 @@ export default function HeaderTitle({ loading, children }: HeaderTitleProps) {
   return <>{children}</>;
 }
 
-export type HeaderSubtitleProps = PropsWithChildren<{ loading?: boolean }>;
+/**
+ * Props for the HeaderSubtitle component
+ */
+export type HeaderSubtitleProps = PropsWithChildren<{
+  /**
+   * Whether to show a loading indicator
+   */
+  loading?: boolean;
+}>;
 
+/**
+ * Header subtitle component with optional loading state
+ */
 export function HeaderSubtitle({ loading, children }: HeaderSubtitleProps) {
   const { typography } = useTheme();
 

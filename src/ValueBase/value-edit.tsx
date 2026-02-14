@@ -7,12 +7,27 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 import { useState } from "react";
 
+/**
+ * Props for the ValueEditButtons component
+ */
 export interface ValueEditButtonsProps {
+  /**
+   * Callback when cancel button is clicked
+   */
   onClickCancel: () => void;
+  /**
+   * Callback when submit button is clicked
+   */
   onClickSubmit: () => void;
+  /**
+   * Custom styles
+   */
   sx?: SxProps<Theme>;
 }
 
+/**
+ * Cancel and submit buttons for editable value components
+ */
 export function ValueEditButtons({
   onClickCancel,
   onClickSubmit,
@@ -75,11 +90,23 @@ export const useEditableValueDisplay = <T,>(
   };
 };
 
+/**
+ * Props for the ValueEditButton component
+ */
 export interface ValueEditButtonProps {
+  /**
+   * Whether to use dense spacing
+   */
   dense?: boolean;
+  /**
+   * Click handler for edit button
+   */
   onClick: () => void;
 }
 
+/**
+ * Edit button for value components
+ */
 export function ValueEditButton({ dense, onClick }: ValueEditButtonProps) {
   const { typography } = useTheme();
   return (

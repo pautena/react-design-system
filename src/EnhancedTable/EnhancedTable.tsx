@@ -89,7 +89,7 @@ interface EnhancedTableProps<T> {
 /**
  * EnhancedTable component provides a table with sorting, filtering, and loading states.
  */
-function EnhancedTable<T>({
+export function EnhancedTable<T>({
   children,
   data,
   search,

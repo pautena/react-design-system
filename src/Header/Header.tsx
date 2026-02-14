@@ -15,7 +15,7 @@ import HeaderTitle, { HeaderSubtitle } from "./header-title";
  * Section used to explain give basic information about the page
  * and put the main actions
  */
-export default function Header({
+export function Header({
   title = "",
   loadingTitle,
   subtitle,
@@ -164,3 +164,5 @@ export default function Header({
     </Box>
   );
 }
+
+export default Header;

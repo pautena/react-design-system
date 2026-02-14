@@ -13,6 +13,9 @@ export const bulletClasses = {
   root: "RdsBullet-root",
 };
 
+/**
+ * Props for the Bullet component
+ */
 export interface BulletProps {
   /**
    * Color palette used to draw the component
@@ -27,7 +30,7 @@ export interface BulletProps {
 /**
  * Dot to attract the user attention
  */
-export default function Bullet({ variant = "primary", sx }: BulletProps) {
+export function Bullet({ variant = "primary", sx }: BulletProps) {
   return (
     <Badge
       color={variant}
@@ -39,3 +42,5 @@ export default function Bullet({ variant = "primary", sx }: BulletProps) {
     />
   );
 }
+
+export default Bullet;

@@ -1,11 +1,23 @@
 import Box from "@mui/material/Box";
 import { useTab } from "../TabProvider";
 
+/**
+ * Props for the TabPanel component
+ */
 interface TabPanelProps {
+  /**
+   * Panel content
+   */
   children?: React.ReactNode;
+  /**
+   * Tab index or array of indices that this panel corresponds to
+   */
   index: number | number[];
 }
 
+/**
+ * Content panel that displays when its associated tab is active
+ */
 export function TabPanel({ children, index }: TabPanelProps) {
   const [value] = useTab();
   let isTab = value === index;

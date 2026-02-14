@@ -52,7 +52,7 @@ export interface DateRangePickerProps {
 /**
  * DateRangePicker component allows users to select a date range.
  */
-export default function DateRangePicker({
+export function DateRangePicker({
   defaultValue,
   format: fmt,
   label,
@@ -100,3 +100,5 @@ export default function DateRangePicker({
     </>
   );
 }
+
+export default DateRangePicker;

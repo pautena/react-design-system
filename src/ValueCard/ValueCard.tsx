@@ -6,6 +6,8 @@ export type ValueCardProps = PropsWithChildren;
 /**
  * Container to show a labeled value
  */
-export default function ValueCard({ children }: ValueCardProps) {
+export function ValueCard({ children }: ValueCardProps) {
   return <Paper sx={{ p: 2 }}>{children}</Paper>;
 }
+
+export default ValueCard;

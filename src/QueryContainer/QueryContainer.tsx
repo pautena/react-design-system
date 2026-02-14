@@ -50,7 +50,7 @@ export type QueryContainerProps = PropsWithChildren<{
 /**
  * Component to show different indicators based on the usual api query statuses
  */
-export default function QueryContainer({
+export function QueryContainer({
   fetching: fetchingProp = false,
   loading: loadingProp = false,
   error,
@@ -107,3 +107,5 @@ export default function QueryContainer({
     </Box>
   );
 }
+
+export default QueryContainer;
