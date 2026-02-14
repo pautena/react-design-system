@@ -42,7 +42,6 @@ coverage
 !README.md
 
 # Docker
-docker-compose.yml
 .dockerignore
 
 # CI/CD
