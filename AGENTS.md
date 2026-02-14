@@ -112,8 +112,6 @@ yarn check:ts     # Run TypeScript checks
 │   ├── date-range-picker
 │   ├── dialog
 │   ├── drawerx
-│   ├── enhanced-remote-table
-│   ├── enhanced-table
 │   ├── expandable-alert
 │   ├── form-dialog
 │   ├── generators
@@ -270,7 +268,6 @@ type Story = StoryObj<typeof ComponentName>;
 **Story Categories:**
 - `Components/Data Display/...` - Board, Header, Label, ValueCard
 - `Components/Inputs/...` - Autocomplete, TextField, Select
-- `Components/Tables/...` - EnhancedTable
 - `Components/Dialogs/...` - ConfirmDialog, FormDialog
 - `Components/Navigation/...` - Drawer components
 
@@ -368,11 +365,11 @@ function RemoteDataTable<TData>({ ... }) {...}
 **Interface-level JSDoc with @template:**
 ```typescript
 /**
- * Props for the EnhancedTable component.
+ * Props for a generic component.
  *
- * @template T - The type of data being displayed in the table.
+ * @template T - The type of data being displayed.
  */
-interface EnhancedTableProps<T> { ... }
+interface ComponentProps<T> { ... }
 ```
 
 **JSDoc Tags Used:**

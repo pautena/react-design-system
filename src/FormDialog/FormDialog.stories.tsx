@@ -11,7 +11,7 @@ export default {
     layout: "centered",
     docs: {
       source: {
-        transform: (code: string, storyContext: any) => {
+        transform: (_code: string, storyContext: any) => {
           const { args } = storyContext;
           const props = Object.entries(args)
             .filter(([key]) => key !== "children")

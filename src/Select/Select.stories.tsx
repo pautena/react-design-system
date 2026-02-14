@@ -21,7 +21,7 @@ interface TemplateProps<T extends ReactNode> extends SelectProps<T> {
   options: T[];
 }
 
-const DemoSelect = ({ options, ...rest }: TemplateProps<string>) => {
+const _DemoSelect = ({ options, ...rest }: TemplateProps<string>) => {
   return (
     <Select {...rest}>
       {options.map((option) => (
