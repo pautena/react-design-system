@@ -43,15 +43,6 @@ export interface EnhancedRemoteTableProps<T> {
    */
   onRequestSort: (col: keyof T, orderBy: "asc" | "desc") => void;
 }
-export interface EnhancedRemoteTableProps<T> {
-  data: T[];
-  loading: boolean;
-  defaultSort: keyof T;
-  defaultOrder?: Order;
-  columns: HeadCell<T>[];
-  children: (data: T, index: number) => ReactNode;
-  onRequestSort: (col: keyof T, orderBy: "asc" | "desc") => void;
-}
 
 /**
  * EnhancedRemoteTable component provides a table with remote data handling capabilities.

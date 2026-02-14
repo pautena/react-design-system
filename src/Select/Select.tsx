@@ -49,17 +49,6 @@ export interface SelectProps<T> {
    */
   onChange?: MuiSelectProps<T>["onChange"];
 }
-export interface SelectProps<T> {
-  label: string;
-  value: T;
-  loading?: boolean;
-  fetching?: boolean;
-  size?: SelectSize;
-  color?: string;
-  fullWidth?: boolean;
-  children?: ReactNode;
-  onChange?: MuiSelectProps<T>["onChange"];
-}
 
 const ProgressSize: Record<SelectSize, number> = {
   small: 15,

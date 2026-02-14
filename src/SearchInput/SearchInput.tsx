@@ -61,17 +61,6 @@ export interface SearchInputProps<T> {
    */
   onSearch: (data: T) => void;
 }
-export interface SearchInputProps<T> {
-  label?: string;
-  placeholder?: string;
-  fullWidth?: boolean;
-  helperText?: string;
-  size?: SearchInputSize;
-  filters?: SearchFilter[];
-  sx?: SxProps<Theme>;
-  dateFormat?: string;
-  onSearch: (data: T) => void;
-}
 
 const filtersSx = {
   position: "absolute",
