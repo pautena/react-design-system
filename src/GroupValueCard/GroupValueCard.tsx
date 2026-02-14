@@ -40,7 +40,7 @@ export interface GroupValueCardProps {
  * GroupValueCard component renders a card with a title, subtitle, and children content.
  * It supports customization for dense layout and centered content.
  */
-export default function GroupValueCard({
+export function GroupValueCard({
   title,
   subtitle,
   centered,
@@ -94,3 +94,5 @@ export default function GroupValueCard({
     </Paper>
   );
 }
+
+export default GroupValueCard;

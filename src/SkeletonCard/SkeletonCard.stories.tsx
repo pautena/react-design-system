@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import SkeletonCard from "./SkeletonCard";
 
 export default {
-  title: "Components/Placeholders/SkeletonCard",
+  title: "Placeholders/SkeletonCard",
   component: SkeletonCard,
   parameters: {
     layout: "fullscreen",

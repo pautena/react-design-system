@@ -3,7 +3,7 @@ import { withContainer } from "../storybook";
 import ValueText from "./ValueText";
 
 export default {
-  title: "Components/Data Display/ValueText",
+  title: "Data Display/ValueText",
   component: ValueText,
   decorators: [withContainer({ width: 200 })],
   parameters: {

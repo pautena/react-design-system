@@ -2,11 +2,7 @@ import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import LinearProgress from "@mui/material/LinearProgress";
-import type {
-  JSXElementConstructor,
-  PropsWithChildren,
-  ReactElement,
-} from "react";
+import type { JSXElementConstructor, ReactElement } from "react";
 import Content, { type ContentProps } from "../Content";
 import Header, { type HeaderProps } from "../Header";
 import Placeholder, { type PlaceholderIcon } from "../Placeholder";
@@ -64,7 +60,7 @@ export interface HeaderLayoutError {
   message: string;
 }
 
-export type HeaderLayoutProps = PropsWithChildren<{
+export interface HeaderLayoutProps {
   /**
    * The title to be displayed in the header.
    */
@@ -93,7 +89,11 @@ export type HeaderLayoutProps = PropsWithChildren<{
    * Optional error object to be displayed in the header layout.
    */
   error?: HeaderLayoutError;
-}>;
+  /**
+   * Content to display in the layout area
+   */
+  children?: React.ReactNode;
+}
 
 const DefaultErrorIcon = () => (
   <ReportProblemIcon color="error" sx={{ width: 200, height: 200 }} />
@@ -102,7 +102,7 @@ const DefaultErrorIcon = () => (
 /**
  * A layout component that provides a header and content area with optional loading, fetching, and error states.
  */
-export default function HeaderLayout({
+export function HeaderLayout({
   loading,
   title,
   subtitle,
@@ -151,3 +151,5 @@ export default function HeaderLayout({
     </TabProvider>
   );
 }
+
+export default HeaderLayout;

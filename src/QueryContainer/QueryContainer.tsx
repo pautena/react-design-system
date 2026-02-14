@@ -3,7 +3,6 @@ import AlertTitle from "@mui/material/AlertTitle";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import LinearProgress from "@mui/material/LinearProgress";
-import type { PropsWithChildren } from "react";
 
 export interface QueryContainerError {
   /**
@@ -27,7 +26,7 @@ export interface QueryContainerSuccess {
   message: string;
 }
 
-export type QueryContainerProps = PropsWithChildren<{
+export interface QueryContainerProps {
   /**
    * There is a query in progress and we have available data
    */
@@ -45,12 +44,16 @@ export type QueryContainerProps = PropsWithChildren<{
    * The query has finished successfully
    */
   success?: QueryContainerSuccess;
-}>;
+  /**
+   * Content to display when not in loading/error/success state
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * Component to show different indicators based on the usual api query statuses
  */
-export default function QueryContainer({
+export function QueryContainer({
   fetching: fetchingProp = false,
   loading: loadingProp = false,
   error,
@@ -107,3 +110,5 @@ export default function QueryContainer({
     </Box>
   );
 }
+
+export default QueryContainer;

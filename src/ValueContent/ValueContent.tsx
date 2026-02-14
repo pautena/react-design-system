@@ -6,6 +6,9 @@ import Typography from "@mui/material/Typography";
 export const getValueContentLabelId = (label: string): string =>
   `label-${label.replace(/ /g, "-")}`;
 
+/**
+ * Props for the ValueContent component
+ */
 export interface ValueContentProps {
   /**
    * Name of the displayed value
@@ -47,7 +50,7 @@ export interface ValueContentProps {
 /**
  * Displays a string value with a label
  */
-export default function ValueContent({
+export function ValueContent({
   label,
   hideLabel,
   tooltip,
@@ -81,3 +84,5 @@ export default function ValueContent({
     </Box>
   );
 }
+
+export default ValueContent;

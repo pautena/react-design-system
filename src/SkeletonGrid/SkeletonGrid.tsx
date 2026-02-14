@@ -18,7 +18,7 @@ export interface SkeletonGridProps {
 /**
  * SkeletonGrid component renders a grid of skeleton cards.
  */
-export default function SkeletonGrid({ size = 20 }: SkeletonGridProps) {
+export function SkeletonGrid({ size = 20 }: SkeletonGridProps) {
   return (
     <Grid container spacing={2}>
       {newArrayWithSize(size, 0).map((_, i) => (
@@ -29,3 +29,5 @@ export default function SkeletonGrid({ size = 20 }: SkeletonGridProps) {
     </Grid>
   );
 }
+
+export default SkeletonGrid;

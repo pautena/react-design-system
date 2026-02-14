@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Label from "./Label";
 
 export default {
-  title: "Components/Data Display/Label",
+  title: "Data Display/Label",
   component: Label,
   parameters: {
     layout: "centered",

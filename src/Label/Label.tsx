@@ -14,6 +14,9 @@ export const labelClasses = {
   root: "RdsLabel-root",
 };
 
+/**
+ * Props for the Label component
+ */
 export interface LabelProps {
   /**
    * Content of the component
@@ -42,7 +45,7 @@ export interface LabelProps {
 /**
  * Compact element to represent a text
  */
-export default function Label({
+export function Label({
   text,
   color: colorProp,
   variant = "default",
@@ -101,3 +104,5 @@ export default function Label({
     </Box>
   );
 }
+
+export default Label;

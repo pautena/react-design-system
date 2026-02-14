@@ -17,6 +17,9 @@ import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
 export type EditInputType = "datetime" | "date" | "time";
 
+/**
+ * Props for the ValueDatetime component
+ */
 export interface ValueDatetimeProps
   extends BaseValueProps<Date>,
     EditableValueProps<Date> {
@@ -34,7 +37,7 @@ export interface ValueDatetimeProps
 /**
  * Displays a formated datetime with a label
  */
-export default function ValueDatetime({
+export function ValueDatetime({
   label,
   value: valueProp,
   format: fmt,
@@ -111,3 +114,5 @@ export default function ValueDatetime({
     </ValueContent>
   );
 }
+
+export default ValueDatetime;

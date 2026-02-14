@@ -12,7 +12,7 @@ import type { BootstrapDialogDialogProps } from "../Dialog/Dialog.types";
 /**
  * A customizable dialog component. Use it as a base to create more dialogs
  */
-export default function BootstrapDialog({
+export function BootstrapDialog({
   open,
   title,
   component,
@@ -107,3 +107,5 @@ export default function BootstrapDialog({
     </Dialog>
   );
 }
+
+export default BootstrapDialog;

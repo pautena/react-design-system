@@ -6,12 +6,12 @@ import Paper from "@mui/material/Paper";
 import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
-import type { PropsWithChildren, ReactNode } from "react";
+import type { ReactNode } from "react";
 
 /**
  * Props for the Board component.
  */
-export type BoardProps = PropsWithChildren<{
+export interface BoardProps {
   /**
    * The content to be displayed on the board. It can be a single string or an array of strings.
    */
@@ -24,14 +24,18 @@ export type BoardProps = PropsWithChildren<{
    * Optional styling properties for the board, using the theme's styling system.
    */
   sx?: SxProps<Theme>;
-}>;
+  /**
+   * Optional children to render instead of the content
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * Board component that displays content within a styled Paper component.
  * It supports rendering an array of content lines or a single content string.
  * Additionally, it provides a button to copy the content to the clipboard.
  */
-export default function Board({
+export function Board({
   content: contentProp,
   spacing = 0,
   children,
@@ -90,3 +94,5 @@ export default function Board({
     </Paper>
   );
 }
+
+export default Board;

@@ -3,17 +3,28 @@ import Label, { type LabelVariant } from "../Label";
 import { type BaseValueProps, DefaultPlaceholder } from "../ValueBase";
 import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
+/**
+ * Props for the ValueLabel component
+ *
+ * @extends BaseValueProps
+ */
 export type ValueLabelProps = BaseValueProps<
   string | number | string[] | number[]
 > & {
+  /**
+   * Label color variant or array of variants for multiple labels
+   */
   variant?: LabelVariant | LabelVariant[];
+  /**
+   * Custom color or array of colors for multiple labels
+   */
   color?: string | string[];
 };
 
 /**
  * Displays a label component value with a label
  */
-export default function ValueLabel({
+export function ValueLabel({
   label,
   value: valueProp,
   placeholder = DefaultPlaceholder,
@@ -46,3 +57,5 @@ export default function ValueLabel({
     </ValueContent>
   );
 }
+
+export default ValueLabel;

@@ -1,9 +1,8 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Decorator, Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 import { withPadding } from "../storybook";
 import RemoteDataTable, {
   type QuerySpecFilter,
-  type RemoteDataTableProps,
   type SortingState,
 } from "./RemoteDataTable";
 import {
@@ -13,20 +12,6 @@ import {
   mockQueryFields,
 } from "./RemoteDataTable.mocks";
 import { useRemoteDataTable } from "./use-remote-data-table";
-
-type RemoteDataTableStoryProps = Omit<
-  RemoteDataTableProps<MockItem>,
-  | "data"
-  | "columns"
-  | "pagination"
-  | "onPaginationChange"
-  | "rowCount"
-  | "sorting"
-  | "onSortingChange"
-> & {
-  initialSorting?: SortingState;
-  enableQueryBuilder?: boolean;
-};
 
 const sortItems = (items: MockItem[], sorting: SortingState) => {
   if (!sorting.length) {
@@ -64,75 +49,79 @@ const sortItems = (items: MockItem[], sorting: SortingState) => {
   });
 };
 
-const RemoteDataTableStory = (props: RemoteDataTableStoryProps) => {
-  const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
-  const [sorting, setSorting] = useState<SortingState>(
-    props.initialSorting ?? [],
-  );
-  const [filters, setFilters] = useState<QuerySpecFilter[]>([]);
-  const sortedItems = useMemo(() => sortItems(mockItems, sorting), [sorting]);
-  const items = useMemo(
-    () =>
-      sortedItems.slice(
-        pagination.pageIndex * pagination.pageSize,
-        pagination.pageIndex * pagination.pageSize + pagination.pageSize,
-      ),
-    [pagination.pageIndex, pagination.pageSize, sortedItems],
-  );
+const withRemoteDataTableState =
+  (initialSorting: SortingState = [], enableQueryBuilder = false): Decorator =>
+  (_Story, context) => {
+    const [pagination, setPagination] = useState({
+      pageIndex: 0,
+      pageSize: 10,
+    });
+    const [sorting, setSorting] = useState<SortingState>(initialSorting);
+    const [filters, setFilters] = useState<QuerySpecFilter[]>([]);
+    const sortedItems = useMemo(() => sortItems(mockItems, sorting), [sorting]);
+    const items = useMemo(
+      () =>
+        sortedItems.slice(
+          pagination.pageIndex * pagination.pageSize,
+          pagination.pageIndex * pagination.pageSize + pagination.pageSize,
+        ),
+      [pagination.pageIndex, pagination.pageSize, sortedItems],
+    );
 
-  return (
-    <RemoteDataTable
-      {...props}
-      data={items}
-      columns={mockColumnsFull}
-      rowCount={mockItems.length}
-      pagination={pagination}
-      onPaginationChange={setPagination}
-      sorting={sorting}
-      onSortingChange={setSorting}
-      query={
-        props.enableQueryBuilder
-          ? {
-              fields: mockQueryFields,
-              filters,
-              onFiltersChange: setFilters,
-              placeholder: "Filter items...",
-            }
-          : undefined
-      }
-    />
-  );
-};
+    return (
+      <RemoteDataTable
+        {...context.args}
+        data={items}
+        columns={mockColumnsFull}
+        rowCount={mockItems.length}
+        pagination={pagination}
+        onPaginationChange={setPagination}
+        sorting={sorting}
+        onSortingChange={setSorting}
+        query={
+          enableQueryBuilder
+            ? {
+                fields: mockQueryFields,
+                filters,
+                onFiltersChange: setFilters,
+                placeholder: "Filter items...",
+              }
+            : undefined
+        }
+      />
+    );
+  };
 
 export default {
-  title: "Components/Tables/RemoteDataTable",
-  component: RemoteDataTableStory,
+  title: "Tables/RemoteDataTable",
+  component: RemoteDataTable,
   decorators: [withPadding()],
   parameters: {
     layout: "fullscreen",
   },
-} satisfies Meta<typeof RemoteDataTableStory>;
+} satisfies Meta<typeof RemoteDataTable>;
 
-type Story = StoryObj<typeof RemoteDataTableStory>;
+type Story = StoryObj<typeof RemoteDataTable>;
 
 export const Default: Story = {
   args: {
     pageSizeOptions: [5, 10, 25],
   },
+  decorators: [withRemoteDataTableState()],
 };
 
 export const SortedByCreatedDate: Story = {
   args: {
     pageSizeOptions: [5, 10, 25],
-    initialSorting: [{ id: "createdAt", desc: true }],
   },
+  decorators: [withRemoteDataTableState([{ id: "createdAt", desc: true }])],
 };
 
 export const WithQueryBuilder: Story = {
   args: {
     pageSizeOptions: [5, 10, 25],
-    enableQueryBuilder: true,
   },
+  decorators: [withRemoteDataTableState([], true)],
 };
 
 /**

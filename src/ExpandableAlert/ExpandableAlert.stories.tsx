@@ -8,7 +8,7 @@ import { withContainer } from "../storybook";
 import ExpandableAlert from "./ExpandableAlert";
 
 export default {
-  title: "Components/Alerts/ExpandableAlert",
+  title: "Alerts/ExpandableAlert",
   component: ExpandableAlert,
   decorators: [withContainer({ width: 500 })],
   parameters: {

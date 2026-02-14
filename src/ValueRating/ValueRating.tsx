@@ -8,14 +8,24 @@ import {
 } from "../ValueBase";
 import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
+/**
+ * Props for the ValueRating component
+ *
+ * @extends BaseValueProps
+ * @extends EditableValueProps
+ */
 export type ValueRatingProps = BaseValueProps<number> & {
+  /**
+   * Maximum number of stars to display
+   * @default 5
+   */
   maxRating?: number;
 } & EditableValueProps<number>;
 
 /**
  * Displays a number using stars
  */
-export default function ValueRating({
+export function ValueRating({
   label,
   value = 0,
   maxRating = 5,
@@ -62,3 +72,5 @@ export default function ValueRating({
     </ValueContent>
   );
 }
+
+export default ValueRating;

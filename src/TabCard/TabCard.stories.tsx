@@ -6,7 +6,7 @@ import {
 } from "./TabCard.dummy";
 
 export default {
-  title: "Components/Navigation/TabCard",
+  title: "Navigation/TabCard",
   component: TabCardDummy,
   parameters: {
     layout: "centered",

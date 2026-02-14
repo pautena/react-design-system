@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import SkeletonGrid from "./SkeletonGrid";
 
 export default {
-  title: "Components/Placeholders/SkeletonGrid",
+  title: "Placeholders/SkeletonGrid",
   component: SkeletonGrid,
   parameters: {
     layout: "fullscreen",

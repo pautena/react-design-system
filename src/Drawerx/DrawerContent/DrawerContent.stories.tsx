@@ -15,7 +15,7 @@ type DrawerContentArgs = DrawerContentProps & {
 };
 
 export default {
-  title: "Components/Navigation/DrawerContent",
+  title: "Navigation/DrawerContent",
   component: DrawerContent,
   render: ({
     initialState = "open",

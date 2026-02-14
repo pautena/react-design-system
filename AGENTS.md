@@ -112,8 +112,6 @@ yarn check:ts     # Run TypeScript checks
 │   ├── date-range-picker
 │   ├── dialog
 │   ├── drawerx
-│   ├── enhanced-remote-table
-│   ├── enhanced-table
 │   ├── expandable-alert
 │   ├── form-dialog
 │   ├── generators
@@ -209,18 +207,254 @@ yarn format
 
 ## Detected Patterns
 
-**Folder Patterns**:
-| Directory | Naming | Notes |
-|-----------|--------|-------|
-| `src` | PascalCase | Component source code |
-| `src/stories` | kebab-case | Storybook documentation |
+### Component Structure Patterns
 
-**File Patterns**:
-| Directory | Pattern | Companion Files |
-|-----------|---------|-----------------|
-| `src` | `*.tsx` | Story files in same directory |
-| `src/stories` | `*.mdx` | Story documentation |
-| `src/stories` | `*.stories.tsx` | Storybook stories |
+**Standard Component (4-file minimum):**
+```
+ComponentName/
+├── ComponentName.tsx          # Main component
+├── ComponentName.stories.tsx  # Storybook stories
+├── ComponentName.test.tsx     # Tests
+└── index.ts                   # Exports
+```
+
+**Extended Component (with types/mocks):**
+```
+ComponentName/
+├── ComponentName.tsx
+├── ComponentName.types.ts     # Type definitions
+├── ComponentName.dummy.ts     # Mock data
+├── ComponentName.stories.tsx
+├── ComponentName.test.tsx
+└── index.ts
+```
+
+**Nested Multi-component:**
+```
+ComponentName/
+├── ComponentName.types.ts     # Shared types
+├── SubComponent1/
+│   ├── SubComponent1.tsx
+│   ├── SubComponent1.stories.tsx
+│   ├── SubComponent1.test.tsx
+│   └── index.ts
+└── index.ts                   # Aggregates exports
+```
+
+### Naming Conventions
+
+**Folders & Files:**
+| Pattern | Usage | Example |
+|---------|-------|---------|
+| PascalCase | Component directories and files | `TextField/TextField.tsx` |
+| kebab-case | Story documentation | `src/stories/data-display.mdx` |
+| lowercase | Utility/helper files | `src/tests/testing-library.tsx` |
+
+### Story File Patterns (*.stories.tsx)
+
+**Meta Export Structure:**
+```typescript
+import type { Meta, StoryObj } from "@storybook/react";
+import ComponentName from "./ComponentName";
+
+export default {
+  title: "Components/{Category}/{ComponentName}",
+  component: ComponentName,
+  parameters: { layout: "centered" | "fullscreen" },
+} satisfies Meta<typeof ComponentName>;
+type Story = StoryObj<typeof ComponentName>;
+```
+
+**Story Categories:**
+- `Components/Data Display/...` - Board, Header, Label, ValueCard
+- `Components/Inputs/...` - Autocomplete, TextField, Select
+- `Components/Dialogs/...` - ConfirmDialog, FormDialog
+- `Components/Navigation/...` - Drawer components
+
+**Story Variants Pattern:**
+```typescript
+export const Default: Story = { args: {...} };
+export const Loading: Story = { args: { ...Default.args, loading: true } };
+export const SizeSmall: Story = { args: { ...Default.args, size: "small" } };
+export const ColorPrimary: Story = { args: { preset: "primary" } };
+```
+
+**Decorators (reusable in src/storybook.tsx):**
+- `withContainer({ width, height, bordered })` - Layout wrapper
+- `withNotificationCenter` - Notification context
+- `withFullHeight`, `withPadding`, `withLocalizationProvider`
+
+### Export Patterns
+
+**Component index.ts:**
+```typescript
+// Pattern: Types + dual default export
+export type { ComponentProps } from "./Component";
+export { default, default as Component } from "./Component";
+
+// With separate types file:
+export type { ComponentProps } from "./Component.types";
+export { default, default as Component } from "./Component";
+```
+
+**Main library export (src/index.ts):**
+```typescript
+export * from "./ComponentName";
+export { default as ComponentName } from "./ComponentName";
+```
+
+### Props Documentation
+
+**JSDoc on all props:**
+```typescript
+export interface ComponentProps {
+  /**
+   * Content of the component
+   */
+  text: string;
+  /**
+   * Color palette variant
+   */
+  variant?: "primary" | "secondary";
+  /**
+   * Custom styles
+   */
+  sx?: SxProps<Theme>;
+  /**
+   * Callback function when submit is clicked
+   * @param data - The submitted data
+   */
+  onSubmit?: (data: T) => void;
+  /**
+   * Message to display when empty
+   * @default "No data available"
+   */
+  emptyMessage?: string;
+}
+```
+
+**Component-level JSDoc (simple):**
+```typescript
+/**
+ * Compact element to represent a text
+ */
+export default function Label({ ... }: LabelProps) {...}
+```
+
+**Component-level JSDoc (complex with @example):**
+```typescript
+/**
+ * A table component designed for displaying remote/server-side data with built-in
+ * pagination, sorting, and filtering capabilities.
+ *
+ * This component is fully controlled - all state must be managed by parent.
+ * Use the `useRemoteDataTable` hook to manage this state.
+ *
+ * @example
+ * ```tsx
+ * const tableState = useRemoteDataTable({
+ *   initialPagination: { pageSize: 25 }
+ * });
+ *
+ * <RemoteDataTable data={items} columns={columns} {...tableState} />
+ * ```
+ */
+function RemoteDataTable<TData>({ ... }) {...}
+```
+
+**Interface-level JSDoc with @template:**
+```typescript
+/**
+ * Props for a generic component.
+ *
+ * @template T - The type of data being displayed.
+ */
+interface ComponentProps<T> { ... }
+```
+
+**JSDoc Tags Used:**
+- `@param` - Only for callback function parameters
+- `@default` - For optional props with default values
+- `@template` - For generic type parameters
+- `@example` - Only for complex components with non-obvious usage
+- `@extends` - When extending MUI or other types
+
+### MDX Documentation
+
+**Category Overview Files (src/stories/):**
+- `introduction.mdx` - Getting started
+- `components.mdx` - Component index
+- `{category}.mdx` - Per-category showcases (inputs, data-display, dialogs, tables, navigation, etc.)
+
+**MDX Pattern:**
+```mdx
+import * as ComponentStories from "../ComponentName/ComponentName.stories";
+import { Component } from "../ComponentName";
+
+<Meta title="Components/CategoryName" />
+
+# CategoryName
+
+<Description of={Component} />
+<Canvas of={ComponentStories.Default} />
+```
+
+### Test Patterns
+
+**Structure:**
+```typescript
+import { render, screen } from "../tests/testing-library";
+import Component from "./Component";
+
+describe("Component", () => {
+  const renderComponent = (props) => render(<Component {...props} />);
+  
+  it("renders the component", () => {
+    renderComponent({ text: "lorem" });
+    expect(screen.getByText("lorem")).toBeInTheDocument();
+  });
+  
+  it.each([["primary"], ["secondary"]])("variant %s", (variant) => {
+    renderComponent({ variant });
+    expect(screen.getByRole("label")).toBeVisible();
+  });
+});
+```
+
+**Test utilities:** Centralized in `src/tests/testing-library.tsx`
+
+### Documentation Requirements
+
+**REQUIRED: All new components and props MUST include JSDoc documentation:**
+
+- **Every component** must have a JSDoc comment describing its purpose
+  - Simple components: Brief 1-line description
+  - Complex components: Multi-line with behavior details + `@example` if usage is non-obvious
+- **Every prop/property** in exported interfaces must have a JSDoc comment
+  - Brief description of what the prop does
+  - Use `@default` tag for optional props with default values
+  - Use `@param` for callback function parameters
+- **Generic types** must document type parameters with `@template`
+- **Extended types** should use `@extends` to document inheritance
+
+**Examples:**
+```typescript
+// GOOD ✅
+export interface ButtonProps {
+  /** Label text displayed on the button */
+  label: string;
+  /** Button color variant
+   * @default "primary"
+   */
+  variant?: "primary" | "secondary";
+}
+
+// BAD ❌ - Missing JSDoc
+export interface ButtonProps {
+  label: string;
+  variant?: "primary" | "secondary";
+}
+```
 
 ## Dependencies
 

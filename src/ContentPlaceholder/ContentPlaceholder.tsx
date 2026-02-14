@@ -1,11 +1,10 @@
 import Container from "@mui/material/Container";
-import type { PropsWithChildren } from "react";
 import SkeletonGrid from "../SkeletonGrid";
 
 /**
  * Props for the ContentPlaceholder component.
  */
-export type ContentPlaceholderProps = PropsWithChildren<{
+export interface ContentPlaceholderProps {
   /**
    * Optional size of the placeholder.
    */
@@ -14,12 +13,16 @@ export type ContentPlaceholderProps = PropsWithChildren<{
    * Optional padding for the placeholder.
    */
   p?: number;
-}>;
+  /**
+   * Content to display before the skeleton grid
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * A component that serves as a placeholder for content, displaying a skeleton grid.
  */
-export default function ContentPlaceholder({
+export function ContentPlaceholder({
   size = 20,
   children,
   p,
@@ -35,3 +38,5 @@ export default function ContentPlaceholder({
     </Container>
   );
 }
+
+export default ContentPlaceholder;

@@ -10,14 +10,41 @@ import type { SxProps, Theme } from "@mui/material/styles";
 import { forwardRef, type ReactElement, useState } from "react";
 import Board from "../Board";
 
+/**
+ * Props for the ExpandableAlert component
+ */
 export interface ExpandableAlertProps {
+  /**
+   * Alert severity level
+   */
   severity: AlertColor;
+  /**
+   * Custom icon mapping for different severity levels
+   */
   iconMapping?: Partial<Record<AlertColor, React.ReactNode>>;
+  /**
+   * Alert title
+   */
   title?: string;
+  /**
+   * Alert message content
+   */
   message: string;
+  /**
+   * Additional metadata to display in expandable section
+   */
   metadata?: string | string[];
+  /**
+   * Custom component to render in expandable section
+   */
   metadataComponent?: ReactElement;
+  /**
+   * Callback when alert is closed
+   */
   onClose: () => void;
+  /**
+   * Custom styles
+   */
   sx?: SxProps<Theme>;
 }
 
@@ -27,7 +54,10 @@ const alertSx = {
   },
 };
 
-export default forwardRef<any, ExpandableAlertProps>(
+/**
+ * Alert component with expandable metadata section
+ */
+const ExpandableAlert = forwardRef<any, ExpandableAlertProps>(
   (
     {
       severity,
@@ -82,3 +112,7 @@ export default forwardRef<any, ExpandableAlertProps>(
     );
   },
 );
+
+ExpandableAlert.displayName = "ExpandableAlert";
+
+export default ExpandableAlert;

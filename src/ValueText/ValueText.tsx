@@ -12,13 +12,19 @@ import {
 } from "../ValueBase";
 import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
+/**
+ * Props for the ValueText component
+ *
+ * @extends BaseValueProps
+ * @extends EditableValueProps
+ */
 export type ValueTextProps = BaseValueProps<string | number> &
   EditableValueProps<string>;
 
 /**
  * Displays a string value with a label
  */
-export default function ValueText({
+export function ValueText({
   label,
   value: valueProp,
   placeholder = DefaultPlaceholder,
@@ -88,3 +94,5 @@ export default function ValueText({
     </ValueContent>
   );
 }
+
+export default ValueText;

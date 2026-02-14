@@ -1,15 +1,26 @@
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Snackbar from "@mui/material/Snackbar";
-import { type PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import {
   type Notification,
   NotificationCenterContext,
 } from "./NotificationCenter.context";
 
-export type NotificationCenterProviderProps = PropsWithChildren<{
+/**
+ * Props for the NotificationCenterProvider component
+ */
+export interface NotificationCenterProviderProps {
+  /**
+   * Duration in milliseconds before auto-hiding notifications
+   * @default 6000
+   */
   autoHideDuration?: number;
-}>;
+  /**
+   * Content to wrap with notification context
+   */
+  children?: React.ReactNode;
+}
 
 export const NotificationCenterProvider = ({
   children,

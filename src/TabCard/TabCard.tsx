@@ -3,17 +3,21 @@ import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import {
-  type PropsWithChildren,
-  type ReactElement,
-  type SyntheticEvent,
-  useState,
-} from "react";
+import { type ReactElement, type SyntheticEvent, useState } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 import { TabCardContextProvider } from "./TabCard.context";
 
+/**
+ * Tab configuration data
+ */
 export interface TabData {
+  /**
+   * Tab label text
+   */
   text: string;
+  /**
+   * Optional icon element
+   */
   icon?: ReactElement;
 }
 
@@ -56,13 +60,35 @@ const StyledTab = styled(Tab)(({ theme }) => ({
   },
 }));
 
-export type TabCardProps = PropsWithChildren<{
+/**
+ * Props for the TabCard component
+ */
+export interface TabCardProps {
+  /**
+   * Array of tab configurations
+   */
   tabs: TabData[];
+  /**
+   * Index of the initially selected tab
+   * @default 0
+   */
   initialTab?: number;
+  /**
+   * Callback when tab selection changes
+   * @param tab - The selected tab data
+   * @param index - Index of the selected tab
+   */
   onChangeTab?: (tab: TabData, index: number) => void;
-}>;
+  /**
+   * Content to display in the tab panels
+   */
+  children?: React.ReactNode;
+}
 
-export default function TabCard({
+/**
+ * Card component with tabbed navigation
+ */
+export function TabCard({
   children,
   tabs,
   initialTab = 0,
@@ -100,3 +126,5 @@ export default function TabCard({
     </TabCardContextProvider>
   );
 }
+
+export default TabCard;

@@ -98,7 +98,7 @@ export interface DateRangeCalendarProps {
 /**
  * A Date Range Calendar component that allows users to select a range of dates.
  */
-export default function DateRangeCalendar({
+export function DateRangeCalendar({
   defaultValue,
   onValueChange,
 }: DateRangeCalendarProps) {
@@ -151,3 +151,5 @@ export default function DateRangeCalendar({
     />
   );
 }
+
+export default DateRangeCalendar;

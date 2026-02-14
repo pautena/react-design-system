@@ -7,10 +7,43 @@ import BootstrapDialog from "./BootstrapDialog";
 const onClickAction = action("On click dialog action");
 
 export default {
-  title: "Components/Dialogs/BootstrapDialog",
+  title: "Dialogs/BootstrapDialog",
   component: BootstrapDialog,
   parameters: {
     layout: "centered",
+    docs: {
+      source: {
+        transform: (_code: string, storyContext: any) => {
+          const { args } = storyContext;
+          const props = Object.entries(args)
+            .filter(([key]) => key !== "children")
+            .map(([key, value]) => {
+              if (typeof value === "boolean" && value === true) {
+                return key;
+              }
+              if (typeof value === "string") {
+                return `${key}="${value}"`;
+              }
+              if (typeof value === "function") {
+                return `${key}={${key}}`;
+              }
+              if (Array.isArray(value)) {
+                return `${key}={${JSON.stringify(value, null, 2).replace(/"(\w+)":/g, "$1:")}}`;
+              }
+              return `${key}={${JSON.stringify(value)}}`;
+            })
+            .filter(Boolean)
+            .join("\n  ");
+
+          return `<BootstrapDialog
+  ${props}
+  onClose={handleClose}
+>
+  {children}
+</BootstrapDialog>`;
+        },
+      },
+    },
   },
   render: (args) => (
     <StoryDialogManager component={BootstrapDialog} args={args} />
@@ -27,6 +60,34 @@ export const Default: Story = {
         tempor incididunt ut labore et dolore magna aliqua.
       </DialogContentText>
     ),
+  },
+};
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `import { useState } from 'react';
+import { BootstrapDialog } from './BootstrapDialog';
+
+function MyComponent() {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Dialog</button>
+      <BootstrapDialog
+        open={open}
+        title="Lorem ipsum"
+        onClose={() => setOpen(false)}
+      >
+        <DialogContentText>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </DialogContentText>
+      </BootstrapDialog>
+    </>
+  );
+}`,
+    },
   },
 };
 

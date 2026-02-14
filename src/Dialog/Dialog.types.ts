@@ -1,9 +1,26 @@
 import type { ReactNode } from "react";
 
+/**
+ * Action button configuration for dialogs
+ */
 export interface DialogAction {
+  /**
+   * Unique identifier
+   */
   id: string;
+  /**
+   * Button text label
+   */
   text: string;
+  /**
+   * Button type attribute
+   * @default "button"
+   */
   type?: "button" | "submit";
+  /**
+   * Button color theme
+   * @default "primary"
+   */
   color?:
     | "inherit"
     | "primary"
@@ -12,6 +29,9 @@ export interface DialogAction {
     | "error"
     | "info"
     | "warning";
+  /**
+   * Click handler function
+   */
   onClick?: () => void;
 }
 

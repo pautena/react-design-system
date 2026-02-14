@@ -71,7 +71,7 @@ export interface AutocompleteProps<
 /**
  * Autocomplete component that wraps the MUI Autocomplete component with additional props.
  */
-export default function Autocomplete<
+export function Autocomplete<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
@@ -120,3 +120,5 @@ export default function Autocomplete<
     />
   );
 }
+
+export default Autocomplete;

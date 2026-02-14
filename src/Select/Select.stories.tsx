@@ -21,7 +21,7 @@ interface TemplateProps<T extends ReactNode> extends SelectProps<T> {
   options: T[];
 }
 
-const DemoSelect = ({ options, ...rest }: TemplateProps<string>) => {
+const _DemoSelect = ({ options, ...rest }: TemplateProps<string>) => {
   return (
     <Select {...rest}>
       {options.map((option) => (
@@ -34,14 +34,29 @@ const DemoSelect = ({ options, ...rest }: TemplateProps<string>) => {
 };
 
 export default {
-  title: "Components/Inputs/Select",
-  component: DemoSelect,
+  title: "Inputs/Select",
+  component: Select,
   decorators: [withContainer({ width: 200 })],
   parameters: {
     layout: "centered",
   },
-} satisfies Meta<typeof DemoSelect>;
-type Story = StoryObj<typeof DemoSelect>;
+  args: {
+    ...baseArgs,
+  },
+  render: (args) => {
+    const { options, ...rest } = args as TemplateProps<string>;
+    return (
+      <Select {...rest}>
+        {options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    );
+  },
+} satisfies Meta<typeof Select>;
+type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
   args: {

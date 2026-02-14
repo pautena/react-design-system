@@ -4,7 +4,7 @@ import { withContainer } from "../storybook";
 import Board from "./Board";
 
 export default {
-  title: "Components/Data Display/Board",
+  title: "Data Display/Board",
   component: Board,
   decorators: [withContainer({ width: 500 })],
   parameters: {

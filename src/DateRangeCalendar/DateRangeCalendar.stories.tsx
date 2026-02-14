@@ -3,7 +3,7 @@ import { withLocalizationProvider } from "../storybook";
 import DateRangeCalendar from "./DateRangeCalendar";
 
 export default {
-  title: "Components/Inputs/DateRangeCalendar",
+  title: "Inputs/DateRangeCalendar",
   component: DateRangeCalendar,
   decorators: [withLocalizationProvider],
   parameters: {

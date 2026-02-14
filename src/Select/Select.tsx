@@ -9,8 +9,16 @@ import MuiSelect, {
 import { styled } from "@mui/material/styles";
 import { type ReactNode, useId } from "react";
 
+/**
+ * Select input size variants
+ */
 export type SelectSize = "small" | "medium";
 
+/**
+ * Props for the Select component
+ *
+ * @template T - The type of the selected value
+ */
 export interface SelectProps<T> {
   /**
    * The label for the select input.
@@ -49,17 +57,6 @@ export interface SelectProps<T> {
    */
   onChange?: MuiSelectProps<T>["onChange"];
 }
-export interface SelectProps<T> {
-  label: string;
-  value: T;
-  loading?: boolean;
-  fetching?: boolean;
-  size?: SelectSize;
-  color?: string;
-  fullWidth?: boolean;
-  children?: ReactNode;
-  onChange?: MuiSelectProps<T>["onChange"];
-}
 
 const ProgressSize: Record<SelectSize, number> = {
   small: 15,
@@ -70,7 +67,7 @@ const ProgressSize: Record<SelectSize, number> = {
  * A custom Select component that extends the functionality of the Material-UI Select component.
  * This component supports additional features such as loading and fetching states, custom colors, and full-width display.
  */
-function Select<T extends ReactNode>({
+export function Select<T extends ReactNode>({
   label,
   value,
   loading = false,

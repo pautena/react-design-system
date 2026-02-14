@@ -8,7 +8,7 @@ import { withContainer } from "../storybook";
 import TextField from "./TextField";
 
 export default {
-  title: "Components/Inputs/TextField",
+  title: "Inputs/TextField",
   component: TextField,
   decorators: [withContainer({ width: 200 })],
   parameters: {

@@ -6,11 +6,16 @@ import { withContainer } from "../storybook";
 import Autocomplete from "./Autocomplete";
 
 export default {
-  title: "Components/Inputs/Autocomplete",
+  title: "Inputs/Autocomplete",
   component: Autocomplete,
   decorators: [withContainer({ width: 300 })],
   parameters: {
     layout: "centered",
+  },
+  argTypes: {
+    options: {
+      description: "List of available options for the autocomplete",
+    },
   },
 } satisfies Meta<typeof Autocomplete>;
 type Story = StoryObj<typeof Autocomplete>;

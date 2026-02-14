@@ -14,14 +14,19 @@ type OmitBaseDialogProps =
   | "component"
   | "acceptType";
 
+/**
+ * Props for the ConfirmDialog component
+ */
 export interface ConfirmDialogProps
   extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
   /**
    * Text to display on the confirm button.
+   * @default "Confirm"
    */
   confirmText?: string;
   /**
    * Text to display on the cancel button.
+   * @default "Cancel"
    */
   cancelText?: string;
   /**
@@ -43,7 +48,7 @@ export interface ConfirmDialogProps
  * with customizable title, confirmation and cancellation actions.
  * It optionally requires a passphrase to enable the confirmation action.
  */
-export default function ConfirmDialog({
+export function ConfirmDialog({
   open,
   title,
   loading,
@@ -87,3 +92,5 @@ export default function ConfirmDialog({
     </BootstrapDialog>
   );
 }
+
+export default ConfirmDialog;

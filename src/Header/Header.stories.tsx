@@ -10,7 +10,7 @@ import Header from "./Header";
 import { actions, breadcrumbs, tabs } from "./Header.dummy";
 
 export default {
-  title: "Components/Data Display/Header",
+  title: "Data Display/Header",
   component: Header,
   parameters: {
     layout: "fullscreen",

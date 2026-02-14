@@ -4,7 +4,7 @@ import { withContainer } from "../storybook";
 import ValueImage from "./ValueImage";
 
 export default {
-  title: "Components/Data Display/ValueImage",
+  title: "Data Display/ValueImage",
   component: ValueImage,
   decorators: [withContainer({ width: 200 })],
   parameters: {

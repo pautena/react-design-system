@@ -3,7 +3,7 @@ import { withContainer } from "../storybook";
 import ValueRating from "./ValueRating";
 
 export default {
-  title: "Components/Data Display/ValueRating",
+  title: "Data Display/ValueRating",
   component: ValueRating,
   decorators: [withContainer({ width: 200 })],
   parameters: {

@@ -16,6 +16,8 @@ type OmitBaseDialogProps =
 
 /**
  * Props for the FormDialog component.
+ *
+ * @template T - The type of data returned from the form.
  */
 export interface FormDialogProps<T>
   extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
@@ -47,7 +49,7 @@ export interface FormDialogProps<T>
  * A generic form dialog component that wraps a BootstrapDialog and handles form submission.
  * Put your form inside and receive the data validated using the input name field.
  */
-export default function FormDialog<T>({
+export function FormDialog<T>({
   open,
   title,
   loading,
@@ -87,3 +89,5 @@ export default function FormDialog<T>({
     </BootstrapDialog>
   );
 }
+
+export default FormDialog;
