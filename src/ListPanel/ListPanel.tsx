@@ -6,7 +6,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Paper from "@mui/material/Paper";
 import Tooltip from "@mui/material/Tooltip";
-import { type PropsWithChildren, useState } from "react";
+import { useState } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 import { ListPanelContextProvider } from "./ListPanel.context";
 
@@ -18,7 +18,7 @@ export interface ListPanelItem {
   path?: string;
 }
 
-export type ListPanelProps = PropsWithChildren<{
+export interface ListPanelProps {
   /**
    * The ID of the item that should be selected by default.
    */
@@ -39,7 +39,11 @@ export type ListPanelProps = PropsWithChildren<{
    * Callback function that is called when the selected item changes.
    */
   onSelectedItemChange?: (id: string) => void;
-}>;
+  /**
+   * Content to display in the panel area
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * ListPanel component renders a panel with a list of items and a content area.

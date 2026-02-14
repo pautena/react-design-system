@@ -1,17 +1,20 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
-import type { PropsWithChildren } from "react";
 
 /**
  * Props for the HeaderTitle component
  */
-export type HeaderTitleProps = PropsWithChildren<{
+export interface HeaderTitleProps {
   /**
    * Whether to show a loading indicator
    */
   loading?: boolean;
-}>;
+  /**
+   * The title content to display
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * Header title component with optional loading state
@@ -43,12 +46,16 @@ export default function HeaderTitle({ loading, children }: HeaderTitleProps) {
 /**
  * Props for the HeaderSubtitle component
  */
-export type HeaderSubtitleProps = PropsWithChildren<{
+export interface HeaderSubtitleProps {
   /**
    * Whether to show a loading indicator
    */
   loading?: boolean;
-}>;
+  /**
+   * The subtitle content to display
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * Header subtitle component with optional loading state

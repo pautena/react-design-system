@@ -1,7 +1,14 @@
 import Paper from "@mui/material/Paper";
-import type { PropsWithChildren } from "react";
 
-export type ValueCardProps = PropsWithChildren;
+/**
+ * Props for the ValueCard component
+ */
+export interface ValueCardProps {
+  /**
+   * Content to display in the card
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * Container to show a labeled value

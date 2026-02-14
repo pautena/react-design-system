@@ -1,9 +1,14 @@
-import type { FunctionComponent, PropsWithChildren, ReactElement } from "react";
+import type { FunctionComponent, ReactElement } from "react";
 
 /**
  * Props for the Content component
  */
-export type ContentProps = PropsWithChildren;
+export interface ContentProps {
+  /**
+   * Content to display
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * Content component type

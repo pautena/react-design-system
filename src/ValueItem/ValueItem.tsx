@@ -1,14 +1,22 @@
 import Box from "@mui/material/Box";
 import Grid, { type GridProps } from "@mui/material/Grid";
 import type { ResponsiveStyleValue } from "@mui/system";
-import type { FunctionComponent, PropsWithChildren, ReactElement } from "react";
+import type { FunctionComponent, ReactElement } from "react";
 import { useGetDefaultThemeColor } from "../utils";
 
-export type ValueItemProps = PropsWithChildren<
-  Omit<GridProps, "item" | "container"> & {
-    bordered?: ResponsiveStyleValue<boolean>;
-  }
->;
+/**
+ * Props for the ValueItem component
+ */
+export interface ValueItemProps extends Omit<GridProps, "item" | "container"> {
+  /**
+   * Whether to display a border
+   */
+  bordered?: ResponsiveStyleValue<boolean>;
+  /**
+   * Content to display
+   */
+  children?: React.ReactNode;
+}
 
 /**
  * ValueItem component type
