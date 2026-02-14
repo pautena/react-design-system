@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import workInProgressImg from "../stories/assets/work-in-progress.jpg";
 import { withLocalizationProvider, withPadding } from "../storybook";
-import { DatatablePlaceholder } from "../tests/datatable-placeholder";
+import { TablePlaceholder } from "../tests/table-placeholder";
 import { ValueContent } from "../ValueContent";
 import { ValueImage } from "../ValueImage";
 import { ValueItem } from "../ValueItem";
@@ -68,7 +68,7 @@ export const WithDataTable = () => (
   <GroupValueCard title="Hello world" subtitle="Lorem ipsum sit amet">
     <ValueItem size={{ xs: 12 }} bordered={false}>
       <ValueContent label="lorem ipsum">
-        <DatatablePlaceholder />
+        <TablePlaceholder />
       </ValueContent>
     </ValueItem>
   </GroupValueCard>

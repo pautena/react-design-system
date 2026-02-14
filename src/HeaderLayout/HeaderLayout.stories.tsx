@@ -1,7 +1,5 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { DataGrid } from "@mui/x-data-grid";
-import { useDemoData } from "@mui/x-data-grid-generator";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactElement } from "react";
 import type { HeaderProps, HeaderTab } from "../Header";
@@ -9,6 +7,7 @@ import { HeaderLayout, type HeaderLayoutProps } from "../HeaderLayout";
 import { SkeletonGrid } from "../SkeletonGrid";
 import { withFullHeight, withLocalizationProvider } from "../storybook";
 import { TabPanel } from "../TabPanel";
+import { TablePlaceholder } from "../tests/table-placeholder";
 
 const breadcrumbs = [
   {
@@ -79,26 +78,6 @@ export const Skeleton: Story = {
   },
 };
 
-const DataTableContent = () => {
-  const {
-    data: { rows, columns },
-  } = useDemoData({
-    dataSet: "Commodity",
-    rowLength: 100,
-    maxColumns: 7,
-    editable: true,
-  });
-
-  return (
-    <DataGrid
-      rows={rows}
-      columns={columns as any}
-      pagination
-      sx={{ height: 400 }}
-    />
-  );
-};
-
 export const DataTable: Story = {
   args: {
     title: "Lorem ipsum",
@@ -109,7 +88,7 @@ export const DataTable: Story = {
         actions,
       },
     },
-    children: <DataTableContent />,
+    children: <TablePlaceholder />,
   },
 };
 
