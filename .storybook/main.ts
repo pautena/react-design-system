@@ -24,10 +24,44 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "@storybook/react-vite",
-    options: {},
+    options: {
+      builder: {
+        viteConfigPath: undefined,
+      },
+    },
+  },
+  viteFinal: async (config) => {
+    return {
+      ...config,
+      optimizeDeps: {
+        ...config.optimizeDeps,
+        include: [
+          ...(config.optimizeDeps?.include || []),
+          "@mui/material",
+          "@mui/icons-material",
+          "@emotion/react",
+          "@emotion/styled",
+        ],
+      },
+      server: {
+        ...config.server,
+        fs: {
+          strict: true,
+        },
+      },
+      build: {
+        ...config.build,
+        sourcemap: false,
+        minify: false,
+      },
+    };
   },
   features: {
     experimentalComponentsManifest: true,
+  },
+  core: {
+    disableTelemetry: true,
+    enableCrashReports: false,
   },
 };
 export default config;

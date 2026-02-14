@@ -24,7 +24,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "coverage": "vitest run --coverarge",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "NODE_OPTIONS='--max-old-space-size=512' storybook dev -p 6006",
     "storybook:build": "storybook build && node generate-llms.mjs",
     "storybook:prod": "storybook dev --ci --no-open --host 0.0.0.0 --port 6006",
     "lint": "biome check --write --unsafe --no-errors-on-unmatched --files-ignore-unknown=true ./",
