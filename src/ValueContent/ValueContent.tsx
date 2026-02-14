@@ -73,7 +73,7 @@ export default function ValueContent({
       )}
       {tooltip ? (
         <Tooltip title={tooltip} placement="top" enterDelay={tooltipEnterDelay}>
-          {children}
+          <span>{children}</span>
         </Tooltip>
       ) : (
         children
