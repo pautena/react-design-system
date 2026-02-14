@@ -12,8 +12,41 @@ import type { HeaderPreset, HeaderProps } from "./Header.types";
 import HeaderTitle, { HeaderSubtitle } from "./header-title";
 
 /**
- * Section used to explain give basic information about the page
- * and put the main actions
+ * Section used to provide basic information about the page
+ * and display main actions
+ *
+ * Supports extensive customization through slots and slotProps.
+ * Each internal element (breadcrumbs, title, actions, tabs) can be
+ * customized or replaced.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <Header
+ *   title="Dashboard"
+ *   subtitle="Welcome back"
+ *   breadcrumbs={[{id: '1', text: 'Home', link: '/'}]}
+ *   actions={[{id: 'add', text: 'Add', onClick: handleAdd}]}
+ * />
+ *
+ * // Custom breadcrumb separator
+ * <Header
+ *   title="Settings"
+ *   breadcrumbs={breadcrumbs}
+ *   slotProps={{
+ *     breadcrumbs: { separator: '/' }
+ *   }}
+ * />
+ *
+ * // Custom action button styling
+ * <Header
+ *   title="Users"
+ *   actions={actions}
+ *   slotProps={{
+ *     actionButton: { size: 'large', variant: 'contained' }
+ *   }}
+ * />
+ * ```
  */
 export function Header({
   title = "",
@@ -28,10 +61,27 @@ export function Header({
   tabsMode = "navigation",
   navigationButton,
   border = false,
+  slots,
+  slotProps,
 }: HeaderProps) {
   const { palette } = useTheme();
   const defaultColor = useGetDefaultThemeColor();
   const [selectedTab, setSelectedTab] = useTab();
+
+  // Slot components with defaults
+  const RootComponent = slots?.root ?? Box;
+  const ContainerComponent = slots?.container ?? Container;
+  const ContentContainerComponent = slots?.contentContainer ?? Box;
+  const TitleContainerComponent = slots?.titleContainer ?? Box;
+  const NavigationButtonComponent = slots?.navigationButton ?? Button;
+  const BreadcrumbsComponent = slots?.breadcrumbs ?? Breadcrumbs;
+  const BreadcrumbLinkComponent = slots?.breadcrumbLink ?? Link;
+  const TitleComponent = slots?.title ?? HeaderTitle;
+  const SubtitleComponent = slots?.subtitle ?? HeaderSubtitle;
+  const ActionsContainerComponent = slots?.actionsContainer ?? Box;
+  const ActionButtonComponent = slots?.actionButton ?? Button;
+  const TabsComponent = slots?.tabs ?? Tabs;
+  const TabComponent = slots?.tab ?? Tab;
 
   const bgColorPresets: Record<HeaderPreset, string> = {
     default: defaultColor,
@@ -55,66 +105,80 @@ export function Header({
   const modedSelectedTab = selectedTab;
 
   return (
-    <Box
+    <RootComponent
       bgcolor={bgColor}
       color={textColor}
       sx={border ? { borderBottom: 1, borderColor: "divider" } : undefined}
+      {...slotProps?.root}
     >
-      <Container>
-        <Box
+      <ContainerComponent {...slotProps?.container}>
+        <ContentContainerComponent
           sx={{
             py: 3,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
           }}
+          {...slotProps?.contentContainer}
         >
-          <Box>
+          <TitleContainerComponent {...slotProps?.titleContainer}>
             {navigationButton && (
-              <Button
+              <NavigationButtonComponent
                 href={navigationButton.href}
                 size="small"
                 color="inherit"
                 LinkComponent={Link}
                 startIcon={navigationButton.icon}
                 sx={{ mb: 1 }}
+                {...slotProps?.navigationButton}
               >
                 {navigationButton.text}
-              </Button>
+              </NavigationButtonComponent>
             )}
             {breadcrumbs?.length && (
-              <Breadcrumbs
+              <BreadcrumbsComponent
                 color="inherit"
                 separator="›"
                 aria-label="breadcrumb"
                 sx={{ marginTop: 1 }}
+                {...slotProps?.breadcrumbs}
               >
                 {breadcrumbs.map(({ id, link, text }) => (
-                  <Link
+                  <BreadcrumbLinkComponent
                     key={id}
                     underline="hover"
                     color="inherit"
                     href={link}
                     variant="body2"
                     role="link"
+                    {...slotProps?.breadcrumbLink}
                   >
                     {text}
-                  </Link>
+                  </BreadcrumbLinkComponent>
                 ))}
-              </Breadcrumbs>
+              </BreadcrumbsComponent>
             )}
-            <HeaderTitle loading={loadingTitle}>{title}</HeaderTitle>
+            <TitleComponent loading={loadingTitle} {...slotProps?.title}>
+              {title}
+            </TitleComponent>
             {(subtitle || loadingSubtitle) && (
-              <HeaderSubtitle loading={loadingSubtitle}>
+              <SubtitleComponent
+                loading={loadingSubtitle}
+                {...slotProps?.subtitle}
+              >
                 {subtitle}
-              </HeaderSubtitle>
+              </SubtitleComponent>
             )}
-          </Box>
+          </TitleContainerComponent>
           {actions && (
-            <Box display="flex" alignItems="center">
+            <ActionsContainerComponent
+              display="flex"
+              alignItems="center"
+              {...slotProps?.actionsContainer}
+            >
               {actions.map(
                 ({ disabled, id, href, onClick, text, variant, color }, i) => (
-                  <Button
+                  <ActionButtonComponent
                     component={href ? Link : "button"}
                     role="button"
                     color={color ?? "inherit"}
@@ -125,16 +189,17 @@ export function Header({
                     href={href}
                     onClick={onClick}
                     sx={{ mr: i !== actions.length - 1 ? 1 : 0 }}
+                    {...slotProps?.actionButton}
                   >
                     {text}
-                  </Button>
+                  </ActionButtonComponent>
                 ),
               )}
-            </Box>
+            </ActionsContainerComponent>
           )}
-        </Box>
+        </ContentContainerComponent>
         {tabs && (
-          <Tabs
+          <TabsComponent
             value={modedSelectedTab}
             textColor="inherit"
             onChange={
@@ -142,26 +207,35 @@ export function Header({
                 ? (_, index) => setSelectedTab(index)
                 : undefined
             }
+            {...slotProps?.tabs}
           >
             {tabs.map(({ id, label, disabled, path, href }) => {
-              const tabProps = { label, disabled };
+              const baseTabProps = { label, disabled };
               if (tabsMode === "panel") {
-                return <Tab key={id} {...tabProps} />;
+                return (
+                  <TabComponent
+                    key={id}
+                    {...baseTabProps}
+                    {...slotProps?.tab}
+                  />
+                );
               }
               return (
-                <Tab
+                <TabComponent
                   key={id}
-                  {...tabProps}
+                  {...baseTabProps}
                   component={Link}
+                  // @ts-expect-error - href is valid when using component={Link}
                   href={href}
                   value={path}
+                  {...slotProps?.tab}
                 />
               );
             })}
-          </Tabs>
+          </TabsComponent>
         )}
-      </Container>
-    </Box>
+      </ContainerComponent>
+    </RootComponent>
   );
 }
 

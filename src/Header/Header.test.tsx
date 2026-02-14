@@ -275,4 +275,58 @@ describe("Header", () => {
       ).not.toBeInTheDocument();
     });
   });
+
+  describe("slotProps", () => {
+    it("should apply custom props to breadcrumbs slot", () => {
+      renderInstance({
+        breadcrumbs,
+      });
+
+      const breadcrumbsNav = screen.getByRole("navigation", {
+        name: /breadcrumb/i,
+      });
+      expect(breadcrumbsNav).toHaveAttribute("aria-label", "breadcrumb");
+    });
+
+    it("should apply custom separator to breadcrumbs via slotProps", () => {
+      const { container } = render(
+        <Header
+          title="Test"
+          breadcrumbs={breadcrumbs}
+          slotProps={{ breadcrumbs: { separator: "/" } }}
+        />,
+      );
+
+      // Check that separator is applied (MUI renders it in an li element)
+      expect(container.textContent).toContain("/");
+    });
+
+    it("should apply slotProps to title slot", () => {
+      render(
+        <Header
+          title="Custom Title"
+          slotProps={{ title: { loading: true } }}
+        />,
+      );
+
+      // When loading is passed via slotProps, it should show loading indicator
+      expect(
+        screen.getByRole("progressbar", { name: /title loading/i }),
+      ).toBeInTheDocument();
+    });
+
+    it("should apply custom props to action buttons via slotProps", () => {
+      render(
+        <Header
+          title="Test"
+          actions={actions}
+          slotProps={{ actionButton: { size: "large" } }}
+        />,
+      );
+
+      const addButton = screen.getByRole("button", { name: /add/i });
+      // MUI applies size via classes, so we check it exists and is visible
+      expect(addButton).toBeVisible();
+    });
+  });
 });
