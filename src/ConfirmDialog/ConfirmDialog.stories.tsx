@@ -9,6 +9,23 @@ export default {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    open: {
+      description: "Whether the dialog is open.",
+    },
+    title: {
+      description: "The title of the dialog.",
+    },
+    loading: {
+      description: "Whether the dialog is in a loading state.",
+    },
+    disabled: {
+      description: "Whether the dialog is disabled.",
+    },
+    children: {
+      description: "Children to be rendered inside the dialog.",
+    },
+  },
   render: (args) => (
     <StoryDialogManager component={ConfirmDialog} args={args} />
   ),
@@ -26,12 +43,49 @@ export const Default: Story = {
       </DialogContentText>
     ),
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ConfirmDialog
+  open={open}
+  title="Lorem ipsum"
+  onClose={handleClose}
+  onConfirm={handleConfirm}
+  onCancel={handleCancel}
+>
+  <DialogContentText>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </DialogContentText>
+</ConfirmDialog>`,
+      },
+    },
+  },
 };
 
 export const Loading: Story = {
   args: {
     ...Default.args,
     loading: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ConfirmDialog
+  open={open}
+  title="Lorem ipsum"
+  loading
+  onClose={handleClose}
+  onConfirm={handleConfirm}
+  onCancel={handleCancel}
+>
+  <DialogContentText>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </DialogContentText>
+</ConfirmDialog>`,
+      },
+    },
   },
 };
 
@@ -40,6 +94,25 @@ export const Disabled: Story = {
     ...Default.args,
     disabled: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ConfirmDialog
+  open={open}
+  title="Lorem ipsum"
+  disabled
+  onClose={handleClose}
+  onConfirm={handleConfirm}
+  onCancel={handleCancel}
+>
+  <DialogContentText>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </DialogContentText>
+</ConfirmDialog>`,
+      },
+    },
+  },
 };
 
 export const CustomButtonText: Story = {
@@ -47,6 +120,26 @@ export const CustomButtonText: Story = {
     ...Default.args,
     confirmText: "Create token",
     cancelText: "Don't create a token",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ConfirmDialog
+  open={open}
+  title="Lorem ipsum"
+  confirmText="Create token"
+  cancelText="Don't create a token"
+  onClose={handleClose}
+  onConfirm={handleConfirm}
+  onCancel={handleCancel}
+>
+  <DialogContentText>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua.
+  </DialogContentText>
+</ConfirmDialog>`,
+      },
+    },
   },
 };
 
@@ -59,5 +152,23 @@ export const Passphrase: Story = {
       </DialogContentText>
     ),
     passphrase: "delete permanently",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<ConfirmDialog
+  open={open}
+  title="Lorem ipsum"
+  passphrase="delete permanently"
+  onClose={handleClose}
+  onConfirm={handleConfirm}
+  onCancel={handleCancel}
+>
+  <DialogContentText sx={{ mb: 1 }}>
+    Write the passphrase to confirm your action
+  </DialogContentText>
+</ConfirmDialog>`,
+      },
+    },
   },
 };

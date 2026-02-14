@@ -35,8 +35,6 @@ export * from "./HeaderLayout";
 export { default as HeaderLayout } from "./HeaderLayout";
 export * from "./Label";
 export { default as Label } from "./Label";
-export * from "./LinkCard";
-export { default as LinkCard } from "./LinkCard";
 export * from "./ListPanel";
 export { default as ListPanel } from "./ListPanel";
 export * from "./Markdown";

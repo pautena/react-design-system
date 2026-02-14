@@ -21,10 +21,12 @@ export interface ConfirmDialogProps
   extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
   /**
    * Text to display on the confirm button.
+   * @default "Confirm"
    */
   confirmText?: string;
   /**
    * Text to display on the cancel button.
+   * @default "Cancel"
    */
   cancelText?: string;
   /**

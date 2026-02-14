@@ -8,12 +8,11 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  render: () => (
-    <Content>
-      <SkeletonGrid />
-    </Content>
-  ),
 } satisfies Meta<typeof Content>;
 type Story = StoryObj<typeof Content>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    children: <SkeletonGrid />,
+  },
+};

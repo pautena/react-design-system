@@ -10,6 +10,23 @@ export default {
   parameters: {
     layout: "centered",
   },
+  argTypes: {
+    open: {
+      description: "Whether the dialog is open.",
+    },
+    title: {
+      description: "The title of the dialog.",
+    },
+    loading: {
+      description: "Whether the dialog is in a loading state.",
+    },
+    disabled: {
+      description: "Whether the dialog is disabled.",
+    },
+    children: {
+      description: "Children to be rendered inside the dialog.",
+    },
+  },
   render: (args) => <StoryDialogManager component={FormDialog} args={args} />,
 } as Meta<typeof FormDialog>;
 type Story = StoryObj<typeof FormDialog>;
@@ -41,12 +58,81 @@ export const Default: Story = {
       </Grid>
     ),
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<FormDialog
+  open={open}
+  title="Lorem ipsum"
+  onClose={handleClose}
+  onSubmit={handleSubmit}
+  onCancel={handleCancel}
+>
+  <Grid container spacing={2}>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="message"
+        label="Message"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="amount"
+        label="Amount"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+  </Grid>
+</FormDialog>`,
+      },
+    },
+  },
 };
 
 export const Loading: Story = {
   args: {
     ...Default.args,
     loading: true,
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<FormDialog
+  open={open}
+  title="Lorem ipsum"
+  loading
+  onClose={handleClose}
+  onSubmit={handleSubmit}
+  onCancel={handleCancel}
+>
+  <Grid container spacing={2}>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="message"
+        label="Message"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="amount"
+        label="Amount"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+  </Grid>
+</FormDialog>`,
+      },
+    },
   },
 };
 
@@ -55,6 +141,41 @@ export const Disabled: Story = {
     ...Default.args,
     disabled: true,
   },
+  parameters: {
+    docs: {
+      source: {
+        code: `<FormDialog
+  open={open}
+  title="Lorem ipsum"
+  disabled
+  onClose={handleClose}
+  onSubmit={handleSubmit}
+  onCancel={handleCancel}
+>
+  <Grid container spacing={2}>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="message"
+        label="Message"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="amount"
+        label="Amount"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+  </Grid>
+</FormDialog>`,
+      },
+    },
+  },
 };
 
 export const CustomButtonText: Story = {
@@ -62,5 +183,41 @@ export const CustomButtonText: Story = {
     ...Default.args,
     submitText: "Create token",
     cancelText: "Don't create a token",
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: `<FormDialog
+  open={open}
+  title="Lorem ipsum"
+  submitText="Create token"
+  cancelText="Don't create a token"
+  onClose={handleClose}
+  onSubmit={handleSubmit}
+  onCancel={handleCancel}
+>
+  <Grid container spacing={2}>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="message"
+        label="Message"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+    <Grid size={{ xs: 12 }}>
+      <TextField
+        name="amount"
+        label="Amount"
+        fullWidth
+        required
+        variant="outlined"
+      />
+    </Grid>
+  </Grid>
+</FormDialog>`,
+      },
+    },
   },
 };

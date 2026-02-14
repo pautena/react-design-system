@@ -16,6 +16,8 @@ type OmitBaseDialogProps =
 
 /**
  * Props for the FormDialog component.
+ *
+ * @template T - The type of data returned from the form.
  */
 export interface FormDialogProps<T>
   extends Omit<BootstrapDialogDialogProps, OmitBaseDialogProps> {
