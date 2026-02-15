@@ -176,7 +176,7 @@ export function Select<T extends ReactNode>({
   const id = useId();
 
   // Slot components with defaults
-  const FormControlComponent = slots?.formControl ?? FormControl;
+  const _FormControlComponent = slots?.formControl ?? FormControl;
   const InputLabelComponent = slots?.inputLabel ?? InputLabel;
   const SelectComponent = slots?.select ?? MuiSelect;
   const RenderValueContainerComponent = slots?.renderValueContainer ?? Box;
