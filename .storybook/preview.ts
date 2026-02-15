@@ -20,7 +20,6 @@ const preview: Preview = {
       expanded: true,
     },
   },
-  tags: ["autodocs"],
   decorators: [
     withThemeFromJSXProvider<Renderer>({
       themes: {
