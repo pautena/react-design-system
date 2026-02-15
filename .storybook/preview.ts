@@ -19,11 +19,7 @@ const preview: Preview = {
       },
       expanded: true,
     },
-    docs: {
-      toc: true,
-    },
   },
-  tags: ["autodocs"],
   decorators: [
     withThemeFromJSXProvider<Renderer>({
       themes: {
@@ -35,6 +31,7 @@ const preview: Preview = {
       GlobalStyles: CssBaseline,
     }),
   ],
+  tags: ["autodocs"],
 };
 
 export default preview;
