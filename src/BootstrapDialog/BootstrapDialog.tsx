@@ -11,6 +11,31 @@ import type { BootstrapDialogDialogProps } from "../Dialog/Dialog.types";
 
 /**
  * A customizable dialog component. Use it as a base to create more dialogs
+ *
+ * Supports extensive customization through slots and slotProps.
+ * Each internal element can be customized or replaced.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <BootstrapDialog
+ *   open={true}
+ *   title="Confirm Action"
+ *   onClose={handleClose}
+ *   acceptable
+ *   cancelable
+ * >
+ *   Are you sure?
+ * </BootstrapDialog>
+ *
+ * // Custom close button
+ * <BootstrapDialog
+ *   title="Settings"
+ *   slotProps={{
+ *     closeButton: { color: 'error' }
+ *   }}
+ * />
+ * ```
  */
 export function BootstrapDialog({
   open,
@@ -32,20 +57,42 @@ export function BootstrapDialog({
   onCancel = () => null,
   onClose,
   acceptType = "button",
+  slots,
+  slotProps,
 }: BootstrapDialogDialogProps) {
   const hasActions = actions.length > 0 || acceptable || cancelable;
 
+  // Slot components with defaults
+  const DialogComponent = slots?.dialog ?? Dialog;
+  const DialogTitleComponent = slots?.dialogTitle ?? DialogTitle;
+  const TitleContainerComponent = slots?.titleContainer ?? Box;
+  const LoadingIndicatorComponent = slots?.loadingIndicator ?? CircularProgress;
+  const CloseButtonComponent = slots?.closeButton ?? IconButton;
+  const CloseIconComponent = slots?.closeIcon ?? CloseIcon;
+  const ContentWrapperComponent = slots?.contentWrapper ?? Box;
+  const DialogContentComponent = slots?.dialogContent ?? DialogContent;
+  const DialogActionsComponent = slots?.dialogActions ?? DialogActions;
+  const ActionButtonComponent = slots?.actionButton ?? Button;
+  const CancelButtonComponent = slots?.cancelButton ?? Button;
+  const AcceptButtonComponent = slots?.acceptButton ?? Button;
+
   return (
-    <Dialog open={open} onClose={onClose}>
-      <DialogTitle sx={{ display: "flex", alignItems: "center" }}>
-        {title}
-        {loading && !acceptable && (
-          <CircularProgress
-            size={20}
-            sx={{ ml: 2, color: (theme) => theme.palette.grey[500] }}
-          />
-        )}
-        <IconButton
+    <DialogComponent open={open} onClose={onClose} {...slotProps?.dialog}>
+      <DialogTitleComponent
+        sx={{ display: "flex", alignItems: "center" }}
+        {...slotProps?.dialogTitle}
+      >
+        <TitleContainerComponent {...slotProps?.titleContainer}>
+          {title}
+          {loading && !acceptable && (
+            <LoadingIndicatorComponent
+              size={20}
+              sx={{ ml: 2, color: (theme) => theme.palette.grey[500] }}
+              {...slotProps?.loadingIndicator}
+            />
+          )}
+        </TitleContainerComponent>
+        <CloseButtonComponent
           disabled={disabled}
           aria-label="close"
           onClick={onClose}
@@ -55,29 +102,37 @@ export function BootstrapDialog({
             top: 8,
             color: (theme) => theme.palette.grey[500],
           }}
+          {...slotProps?.closeButton}
         >
-          <CloseIcon />
-        </IconButton>
-      </DialogTitle>
-      <Box component={component} {...componentProps}>
-        <DialogContent dividers>{children}</DialogContent>
+          <CloseIconComponent />
+        </CloseButtonComponent>
+      </DialogTitleComponent>
+      <ContentWrapperComponent
+        component={component}
+        {...componentProps}
+        {...slotProps?.contentWrapper}
+      >
+        <DialogContentComponent dividers {...slotProps?.dialogContent}>
+          {children}
+        </DialogContentComponent>
         {hasActions && (
-          <DialogActions>
+          <DialogActionsComponent {...slotProps?.dialogActions}>
             {actions.map(
               ({ id, text, type = "button", onClick, color = "primary" }) => (
-                <Button
+                <ActionButtonComponent
                   key={id}
                   type={type}
                   disabled={disabled}
                   onClick={onClick}
                   color={color}
+                  {...slotProps?.actionButton}
                 >
                   {text}
-                </Button>
+                </ActionButtonComponent>
               ),
             )}
             {cancelable && (
-              <Button
+              <CancelButtonComponent
                 color="error"
                 disabled={disabled || disableCancel}
                 onClick={() => {
@@ -86,25 +141,27 @@ export function BootstrapDialog({
                     onClose();
                   }
                 }}
+                {...slotProps?.cancelButton}
               >
                 {cancelText}
-              </Button>
+              </CancelButtonComponent>
             )}
 
             {acceptable && (
-              <Button
+              <AcceptButtonComponent
                 type={acceptType}
                 loading={loading}
                 disabled={disabled || disableAccept}
                 onClick={onAccept}
+                {...slotProps?.acceptButton}
               >
                 {acceptText}
-              </Button>
+              </AcceptButtonComponent>
             )}
-          </DialogActions>
+          </DialogActionsComponent>
         )}
-      </Box>
-    </Dialog>
+      </ContentWrapperComponent>
+    </DialogComponent>
   );
 }
 

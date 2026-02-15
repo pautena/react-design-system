@@ -150,3 +150,32 @@ export const CustomTexts: Story = {
     acceptText: "Accept updated",
   },
 };
+
+export const WithSlotPropsCustomization: Story = {
+  args: {
+    title: "Slot Props Demo",
+    acceptable: true,
+    cancelable: true,
+    loading: true,
+    children: (
+      <DialogContentText>
+        Customized dialog with larger buttons and custom close button color.
+      </DialogContentText>
+    ),
+    slotProps: {
+      closeButton: {
+        color: "error",
+      },
+      acceptButton: {
+        size: "large",
+        variant: "contained",
+      },
+      cancelButton: {
+        size: "large",
+      },
+      loadingIndicator: {
+        size: 24,
+      },
+    },
+  },
+};
