@@ -19,9 +19,6 @@ const preview: Preview = {
       },
       expanded: true,
     },
-    docs: {
-      toc: true,
-    },
   },
   tags: ["autodocs"],
   decorators: [
@@ -35,6 +32,7 @@ const preview: Preview = {
       GlobalStyles: CssBaseline,
     }),
   ],
+  tags: ["autodocs"],
 };
 
 export default preview;

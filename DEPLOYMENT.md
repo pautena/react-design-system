@@ -23,73 +23,17 @@ Every push to `main` branch triggers GitHub Actions to:
 
 **View images:** https://github.com/pautena/react-design-system/pkgs/container/react-design-system-mcp
 
-### 2. Docker Compose Configuration
+### 2. Deploy via Portainer
 
-The `docker-compose.yml` file is maintained in your deployment repository (not in this repo).
-
-**Example docker-compose.yml:**
-
-```yaml
-version: '3.8'
-
-services:
-  storybook-mcp:
-    image: ghcr.io/pautena/react-design-system-mcp:latest
-    container_name: react-design-system-mcp
-    restart: unless-stopped
-    expose:
-      - "6006"
-    environment:
-      - NODE_ENV=production
-      - PORT=6006
-    healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://localhost:6006', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    labels:
-      # Enable Traefik
-      - "traefik.enable=true"
-      
-      # HTTP Router
-      - "traefik.http.routers.storybook-mcp.rule=Host(`react-design-system.pautena.com`)"
-      - "traefik.http.routers.storybook-mcp.entrypoints=websecure"
-      - "traefik.http.routers.storybook-mcp.tls=true"
-      - "traefik.http.routers.storybook-mcp.tls.certresolver=letsencrypt"
-      
-      # Service
-      - "traefik.http.services.storybook-mcp.loadbalancer.server.port=6006"
-      
-      # CORS Headers for MCP
-      - "traefik.http.middlewares.storybook-cors.headers.accesscontrolallowmethods=GET,POST,OPTIONS"
-      - "traefik.http.middlewares.storybook-cors.headers.accesscontrolalloworiginlist=*"
-      - "traefik.http.middlewares.storybook-cors.headers.accesscontrolallowheaders=DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,X-MCP-Toolsets"
-      - "traefik.http.routers.storybook-mcp.middlewares=storybook-cors"
-      
-    networks:
-      - traefik-public
-
-networks:
-  traefik-public:
-    external: true
-```
-
-**Note:** Adjust Traefik labels according to your setup:
-- **Network name:** Change `traefik-public` if different
-- **Entrypoint:** Change `websecure` if different
-- **Cert resolver:** Change `letsencrypt` if different
-
-### 3. Deploy via Portainer
-
-#### Initial Deployment (Using Deployment Repository)
+#### Initial Deployment
 
 1. **Create Stack in Portainer:**
    - Navigate to **Stacks** → **Add Stack**
    - Name: `react-design-system-mcp`
-   - Build method: **Repository** or **Web editor**
-   - If using repository: Point to your deployment repo containing docker-compose.yml
-   - If using web editor: Paste the docker-compose.yml content above
+   - Build method: **Repository**
+   - Repository URL: `https://github.com/pautena/react-design-system.git`
+   - Reference: `main`
+   - Compose path: `docker-compose.yml`
    - Click **Deploy the stack**
 
 2. **Verify Deployment:**
@@ -122,11 +66,10 @@ networks:
 ```bash
 ssh user@your-server
 
-# Navigate to your deployment directory with docker-compose.yml
-cd /path/to/deployment
-
-# Pull latest image
-docker compose pull
+# Clone or pull latest
+git clone https://github.com/pautena/react-design-system.git
+# OR
+cd react-design-system && git pull
 
 # Deploy
 docker compose up -d
