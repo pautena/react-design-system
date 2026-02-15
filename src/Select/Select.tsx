@@ -1,18 +1,82 @@
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
-import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
-import LinearProgress from "@mui/material/LinearProgress";
+import Box, { type BoxProps } from "@mui/material/Box";
+import CircularProgress, {
+  type CircularProgressProps,
+} from "@mui/material/CircularProgress";
+import FormControl, { type FormControlProps } from "@mui/material/FormControl";
+import InputLabel, { type InputLabelProps } from "@mui/material/InputLabel";
+import LinearProgress, {
+  type LinearProgressProps,
+} from "@mui/material/LinearProgress";
 import MuiSelect, {
   type SelectProps as MuiSelectProps,
 } from "@mui/material/Select";
 import { styled } from "@mui/material/styles";
-import { type ReactNode, useId } from "react";
+import { type JSXElementConstructor, type ReactNode, useId } from "react";
 
 /**
  * Select input size variants
  */
 export type SelectSize = "small" | "medium";
+
+/**
+ * Interface representing the slots for the Select component.
+ */
+export interface SelectSlots {
+  /**
+   * Root form control component
+   */
+  formControl?: JSXElementConstructor<FormControlProps>;
+  /**
+   * Input label component
+   */
+  inputLabel?: JSXElementConstructor<InputLabelProps>;
+  /**
+   * Select component
+   */
+  select?: JSXElementConstructor<MuiSelectProps<any>>;
+  /**
+   * Render value container component
+   */
+  renderValueContainer?: JSXElementConstructor<BoxProps>;
+  /**
+   * Loading indicator component (when fetching)
+   */
+  loadingIndicator?: JSXElementConstructor<CircularProgressProps>;
+  /**
+   * Fetching indicator component (when loading)
+   */
+  fetchingIndicator?: JSXElementConstructor<LinearProgressProps>;
+}
+
+/**
+ * Interface representing the slot properties for the Select component.
+ */
+export interface SelectSlotProps {
+  /**
+   * Props for the form control
+   */
+  formControl?: Partial<FormControlProps>;
+  /**
+   * Props for the input label
+   */
+  inputLabel?: Partial<InputLabelProps>;
+  /**
+   * Props for the select (onChange is managed by the component)
+   */
+  select?: Partial<Omit<MuiSelectProps<any>, "onChange">>;
+  /**
+   * Props for the render value container
+   */
+  renderValueContainer?: Partial<BoxProps>;
+  /**
+   * Props for the loading indicator
+   */
+  loadingIndicator?: Partial<CircularProgressProps>;
+  /**
+   * Props for the fetching indicator
+   */
+  fetchingIndicator?: Partial<LinearProgressProps>;
+}
 
 /**
  * Props for the Select component
@@ -56,6 +120,14 @@ export interface SelectProps<T> {
    * The callback function to handle changes to the select input.
    */
   onChange?: MuiSelectProps<T>["onChange"];
+  /**
+   * Optional slots for custom rendering within the select
+   */
+  slots?: SelectSlots;
+  /**
+   * Optional props for the slots
+   */
+  slotProps?: SelectSlotProps;
 }
 
 const ProgressSize: Record<SelectSize, number> = {
@@ -66,6 +138,27 @@ const ProgressSize: Record<SelectSize, number> = {
 /**
  * A custom Select component that extends the functionality of the Material-UI Select component.
  * This component supports additional features such as loading and fetching states, custom colors, and full-width display.
+ *
+ * Supports extensive customization through slots and slotProps.
+ *
+ * @example
+ * ```tsx
+ * // Basic usage
+ * <Select label="Country" value={country} onChange={handleChange}>
+ *   <MenuItem value="us">United States</MenuItem>
+ *   <MenuItem value="uk">United Kingdom</MenuItem>
+ * </Select>
+ *
+ * // With custom loading indicator
+ * <Select
+ *   label="Status"
+ *   value={status}
+ *   loading
+ *   slotProps={{
+ *     loadingIndicator: { size: 24 }
+ *   }}
+ * />
+ * ```
  */
 export function Select<T extends ReactNode>({
   label,
@@ -77,34 +170,54 @@ export function Select<T extends ReactNode>({
   color,
   children,
   onChange,
+  slots,
+  slotProps,
 }: SelectProps<T>) {
   const id = useId();
+
+  // Slot components with defaults
+  const _FormControlComponent = slots?.formControl ?? FormControl;
+  const InputLabelComponent = slots?.inputLabel ?? InputLabel;
+  const SelectComponent = slots?.select ?? MuiSelect;
+  const RenderValueContainerComponent = slots?.renderValueContainer ?? Box;
+  const LoadingIndicatorComponent = slots?.loadingIndicator ?? CircularProgress;
+  const FetchingIndicatorComponent = slots?.fetchingIndicator ?? LinearProgress;
 
   const renderValue = (value: T): ReactNode => {
     if (fetching) {
       return (
-        <Box
+        <RenderValueContainerComponent
           display="flex"
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
           width={1}
           height={1}
+          {...slotProps?.renderValueContainer}
         >
-          <CircularProgress color="inherit" size={ProgressSize[size]} />
-        </Box>
+          <LoadingIndicatorComponent
+            color="inherit"
+            size={ProgressSize[size]}
+            {...slotProps?.loadingIndicator}
+          />
+        </RenderValueContainerComponent>
       );
     }
 
     if (loading) {
       return (
-        <Box display="flex" flexDirection="column">
+        <RenderValueContainerComponent
+          display="flex"
+          flexDirection="column"
+          {...slotProps?.renderValueContainer}
+        >
           {value}
-          <LinearProgress
+          <FetchingIndicatorComponent
             color="inherit"
             sx={{ position: "absolute", left: 0, right: 0, bottom: 0 }}
+            {...slotProps?.fetchingIndicator}
           />
-        </Box>
+        </RenderValueContainerComponent>
       );
     }
 
@@ -133,20 +246,23 @@ export function Select<T extends ReactNode>({
   });
 
   return (
-    <StyledFormControl fullWidth={fullWidth}>
-      <InputLabel id={id}>{label}</InputLabel>
-      <MuiSelect
+    <StyledFormControl fullWidth={fullWidth} {...slotProps?.formControl}>
+      <InputLabelComponent id={id} {...slotProps?.inputLabel}>
+        {label}
+      </InputLabelComponent>
+      <SelectComponent
+        {...slotProps?.select}
         labelId={id}
         id={id}
         value={value}
         label={label}
-        onChange={onChange}
+        onChange={onChange as any}
         disabled={fetching}
         size={size}
         renderValue={renderValue}
       >
         {children}
-      </MuiSelect>
+      </SelectComponent>
     </StyledFormControl>
   );
 }

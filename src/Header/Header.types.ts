@@ -1,5 +1,15 @@
-import type { PropTypes } from "@mui/material";
-import type { ReactElement } from "react";
+import type {
+  BoxProps,
+  BreadcrumbsProps,
+  ButtonProps,
+  ContainerProps,
+  LinkProps,
+  PropTypes,
+  TabProps,
+  TabsProps,
+} from "@mui/material";
+import type { JSXElementConstructor, ReactElement } from "react";
+import type { HeaderSubtitleProps, HeaderTitleProps } from "./header-title";
 
 export type HeaderPreset = PropTypes.Color | "transparent" | "paper";
 export type HeaderActionVariant = "text" | "outlined" | "contained";
@@ -108,6 +118,122 @@ export interface HeaderNavigationButton {
   icon?: ReactElement;
 }
 
+/**
+ * Interface representing the slots for the Header component.
+ */
+export interface HeaderSlots {
+  /**
+   * Root container element
+   */
+  root?: JSXElementConstructor<BoxProps>;
+  /**
+   * Container element wrapping the header content
+   */
+  container?: JSXElementConstructor<ContainerProps>;
+  /**
+   * Container for header content (title/subtitle/breadcrumbs area)
+   */
+  contentContainer?: JSXElementConstructor<BoxProps>;
+  /**
+   * Container for title and subtitle area
+   */
+  titleContainer?: JSXElementConstructor<BoxProps>;
+  /**
+   * Navigation button component
+   */
+  navigationButton?: JSXElementConstructor<ButtonProps>;
+  /**
+   * Breadcrumbs container component
+   */
+  breadcrumbs?: JSXElementConstructor<BreadcrumbsProps>;
+  /**
+   * Individual breadcrumb link component
+   */
+  breadcrumbLink?: JSXElementConstructor<LinkProps>;
+  /**
+   * Title component
+   */
+  title?: JSXElementConstructor<HeaderTitleProps>;
+  /**
+   * Subtitle component
+   */
+  subtitle?: JSXElementConstructor<HeaderSubtitleProps>;
+  /**
+   * Container for action buttons
+   */
+  actionsContainer?: JSXElementConstructor<BoxProps>;
+  /**
+   * Individual action button component
+   */
+  actionButton?: JSXElementConstructor<ButtonProps>;
+  /**
+   * Tabs container component
+   */
+  tabs?: JSXElementConstructor<TabsProps>;
+  /**
+   * Individual tab component
+   */
+  tab?: JSXElementConstructor<TabProps>;
+}
+
+/**
+ * Interface representing the slot properties for the Header component.
+ */
+export interface HeaderSlotProps {
+  /**
+   * Props for the root container
+   */
+  root?: Partial<BoxProps>;
+  /**
+   * Props for the container element
+   */
+  container?: Partial<ContainerProps>;
+  /**
+   * Props for the content container
+   */
+  contentContainer?: Partial<BoxProps>;
+  /**
+   * Props for the title container
+   */
+  titleContainer?: Partial<BoxProps>;
+  /**
+   * Props for the navigation button
+   */
+  navigationButton?: Partial<ButtonProps>;
+  /**
+   * Props for the breadcrumbs
+   */
+  breadcrumbs?: Partial<BreadcrumbsProps>;
+  /**
+   * Props for individual breadcrumb links
+   */
+  breadcrumbLink?: Partial<LinkProps>;
+  /**
+   * Props for the title component
+   */
+  title?: Partial<HeaderTitleProps>;
+  /**
+   * Props for the subtitle component
+   */
+  subtitle?: Partial<HeaderSubtitleProps>;
+  /**
+   * Props for the actions container
+   */
+  actionsContainer?: Partial<BoxProps>;
+  /**
+   * Props for individual action buttons
+   */
+  actionButton?: Partial<ButtonProps>;
+  /**
+   * Props for the tabs container
+   */
+  tabs?: Partial<TabsProps>;
+  /**
+   * Props for individual tabs
+   */
+  tab?: Partial<TabProps>;
+}
+
 export type HeaderProps = {
   /**
    * Title of the header
@@ -162,4 +288,12 @@ export type HeaderProps = {
    * Whether to display a border at the bottom of the header
    */
   border?: boolean;
+  /**
+   * Optional slots for custom rendering within the header
+   */
+  slots?: HeaderSlots;
+  /**
+   * Optional props for the slots
+   */
+  slotProps?: HeaderSlotProps;
 };

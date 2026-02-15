@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../storybook";
 import Autocomplete from "./Autocomplete";
@@ -129,4 +129,64 @@ export const WithBackground = {
     loading: true,
     fetching: true,
   },
+};
+
+/**
+ * Example demonstrating slot props customization.
+ * Both autocomplete and text field components can be customized.
+ */
+export const WithSlotPropsCustomization: Story = {
+  render: (args) => {
+    // Custom styled text field wrapper
+    const CustomFieldWrapper = styled(Box)(({ theme }) => ({
+      "& .MuiTextField-root": {
+        "& .MuiOutlinedInput-root": {
+          backgroundColor: theme.palette.primary.light,
+          borderRadius: 16,
+          "& fieldset": {
+            borderColor: theme.palette.primary.main,
+            borderWidth: 2,
+          },
+          "&:hover fieldset": {
+            borderColor: theme.palette.primary.dark,
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: theme.palette.primary.dark,
+          },
+        },
+        "& .MuiInputLabel-root": {
+          color: theme.palette.primary.main,
+          fontWeight: 600,
+        },
+      },
+    }));
+
+    return (
+      <CustomFieldWrapper>
+        <Autocomplete
+          {...args}
+          slotProps={{
+            autocomplete: {
+              sx: {
+                "& .MuiAutocomplete-popupIndicator": {
+                  color: "primary.main",
+                },
+                "& .MuiAutocomplete-clearIndicator": {
+                  color: "primary.main",
+                },
+              },
+            },
+            textField: {
+              helperText: "Customized autocomplete with styled components",
+            },
+          }}
+        />
+      </CustomFieldWrapper>
+    );
+  },
+  args: {
+    label: "Car model",
+    options,
+  },
+  decorators: [withContainer({ width: 350 })],
 };

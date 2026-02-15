@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
-import { useTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ReactNode } from "react";
 import { withContainer } from "../storybook";
@@ -129,4 +129,63 @@ export const WithBackground = {
     bgcolor: "secondary",
     ...baseArgs,
   },
+};
+
+/**
+ * Example demonstrating slot props customization.
+ * All internal elements can be replaced with custom components and styled.
+ */
+export const WithSlotPropsCustomization: Story = {
+  render: (args) => {
+    // Custom styled components
+    const CustomFormControl = styled(Box)(({ theme }) => ({
+      display: "flex",
+      flexDirection: "column",
+      gap: theme.spacing(1),
+      padding: theme.spacing(2),
+      border: `2px dashed ${theme.palette.primary.main}`,
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: theme.palette.background.paper,
+    }));
+
+    const CustomLabel = styled(Box)(({ theme }) => ({
+      fontSize: "0.875rem",
+      fontWeight: 600,
+      color: theme.palette.primary.main,
+      textTransform: "uppercase",
+      letterSpacing: "0.5px",
+    }));
+
+    const { options, ...rest } = args as TemplateProps<string>;
+
+    return (
+      <Select
+        {...rest}
+        slots={{
+          formControl: CustomFormControl as any,
+          inputLabel: CustomLabel as any,
+        }}
+        slotProps={{
+          select: {
+            sx: {
+              backgroundColor: "primary.light",
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "primary.main",
+              },
+            },
+          },
+        }}
+      >
+        {options.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </Select>
+    );
+  },
+  args: {
+    ...baseArgs,
+  },
+  decorators: [withContainer({ width: 300 })],
 };

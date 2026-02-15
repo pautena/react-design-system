@@ -144,3 +144,20 @@ export const WithBackground = {
     fetching: true,
   },
 };
+
+export const WithSlotPropsCustomization: Story = {
+  args: {
+    label: "Username",
+    loading: true,
+    helperText: "Enter your username",
+    slotProps: {
+      loadingIndicator: {
+        size: 24,
+        color: "primary",
+      },
+      helperText: {
+        sx: { fontWeight: "bold" },
+      },
+    },
+  },
+};
