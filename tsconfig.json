@@ -17,7 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "typeRoots": ["./src/types", "node_modules"],
-    "types": ["vitest/globals"],
+    "types": ["node", "vitest/globals"],
     "baseUrl": ".",
     "noImplicitAny": false
   },
@@ -28,5 +28,5 @@
     "src/components/feedback/feedback.stories.mdx",
     "src/components/alerts/alerts.stories.mdx"
   ],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "scripts"]
 }
