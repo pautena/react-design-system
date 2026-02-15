@@ -1,0 +1,8 @@
+import{j as t}from"./iframe-D9_KR-Vm.js";import{useMDXComponents as e}from"./index-DR3i2sFP.js";import{M as n,D as p,C as m}from"./blocks-BRopPwPW.js";import{E as a,D as s}from"./ExpandableAlert.stories-1aGV2tKj.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DC4ANDc3.js";import"./index-DJQ4Myga.js";import"./storybook-BiVruKJY.js";import"./NotificationCenter.provider-DmDmO-iN.js";import"./Typography-2wT6CWDx.js";import"./memoTheme-CqkFtSQ1.js";import"./generateUtilityClasses-CoM_PQv9.js";import"./createSimplePaletteValueFilter-6wxtO0wC.js";import"./useSlot-i-Ylfmke.js";import"./useTheme-I0hne2ge.js";import"./Grow-Cifmxdwe.js";import"./ownerDocument-DW-IO8s5.js";import"./Paper-VO7GYAI2.js";import"./IconButton-B1MZngJm.js";import"./CircularProgress-DXln3DRW.js";import"./Box-Be92HNMn.js";import"./useThemeProps-DEraMp6x.js";import"./Button-23wGEqNA.js";import"./Close-Dc_IoJrS.js";import"./ExpandMore-RAx-jHmk.js";import"./Board-COuu-Eiv.js";import"./Tooltip-B6t1Hqun.js";import"./useControlled-C4oHesDw.js";import"./Popper-DYxDBVHG.js";import"./Portal-CiO3u9yz.js";import"./useSlotProps-DH3MFQW8.js";import"./Collapse-D4dnzegL.js";function i(o){const r={a:"a",h1:"h1",h2:"h2",p:"p",...e(),...o.components};return t.jsxs(t.Fragment,{children:[`
+`,t.jsx(n,{title:"Alerts"}),`
+`,t.jsx(r.h1,{id:"alerts",children:"Alerts"}),`
+`,t.jsx(r.h2,{id:"expandablealert",children:"ExpandableAlert"}),`
+`,`
+`,t.jsx(p,{of:a}),`
+`,t.jsx(r.p,{children:t.jsx(r.a,{href:"?path=/docs/alerts-expandablealert--docs",children:"ExpandableAlert Stories"})}),`
+`,t.jsx(m,{of:s})]})}function K(o={}){const{wrapper:r}={...e(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(i,{...o})}):i(o)}export{K as default};
