@@ -28,5 +28,5 @@
     "src/components/feedback/feedback.stories.mdx",
     "src/components/alerts/alerts.stories.mdx"
   ],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "scripts"]
 }
