@@ -1,13 +1,13 @@
 import type { StoryEntry } from "../types/index.js";
-import { StringUtils } from "../utils/StringUtils.js";
-import type { ComponentDescriptionExtractor } from "./ComponentDescriptionExtractor.js";
+import { normalizeTitle } from "../utils/string-utils.ts";
+import type { ComponentDescriptionExtractor } from "./component-description-extractor.ts";
 
 export class EntryFormatter {
   constructor(private descriptionExtractor: ComponentDescriptionExtractor) {}
 
   formatLabel(entry: StoryEntry): string {
-    const title = StringUtils.normalizeTitle(entry.title) || "Untitled";
-    const name = StringUtils.normalizeTitle(entry.name);
+    const title = normalizeTitle(entry.title) || "Untitled";
+    const name = normalizeTitle(entry.name);
     const trimmedName = name && name !== "default" ? name : "";
     return trimmedName ? `${title} - ${trimmedName}` : title;
   }
@@ -38,7 +38,7 @@ export class EntryFormatter {
     entry: StoryEntry,
     docsLookup: Map<string, StoryEntry[]>,
   ): Promise<string> {
-    const docKey = StringUtils.normalizeTitle(entry.title) || "Untitled";
+    const docKey = normalizeTitle(entry.title) || "Untitled";
     const docLink = docsLookup.get(docKey)?.[0];
     const description = await this.descriptionExtractor.extract(entry);
     const title = this.formatLabel(entry);

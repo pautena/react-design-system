@@ -2,15 +2,15 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { PROJECT_ROOT } from "../constants/index.js";
 import type { StoryEntry } from "../types/index.js";
-import { FileSystemUtils } from "../utils/FileSystemUtils.js";
-import { StringUtils } from "../utils/StringUtils.js";
+import { fileExists } from "../utils/file-system-utils.ts";
+import { normalizeTitle, toKebabCase } from "../utils/string-utils.ts";
 
 export class ComponentDescriptionExtractor {
   private descriptionCache = new Map<string, string>();
   private filePathCache = new Map<string, string | null>();
 
   getComponentName(entry: StoryEntry): string {
-    const title = StringUtils.normalizeTitle(entry.title) || "";
+    const title = normalizeTitle(entry.title) || "";
     const segments = title.split("/");
     return segments[segments.length - 1]?.trim() || "";
   }
@@ -22,7 +22,24 @@ export class ComponentDescriptionExtractor {
       return this.filePathCache.get(componentName)!;
     }
 
-    const kebab = StringUtils.toKebabCase(componentName);
+    const kebab = toKebabCase(componentName);
+
+    // Try PascalCase first (project uses PascalCase directories)
+    const baseDirPascal = path.join(PROJECT_ROOT, "src", componentName);
+    const candidatesPascal = [
+      path.join(baseDirPascal, `${componentName}.tsx`),
+      path.join(baseDirPascal, `${kebab}.tsx`),
+      path.join(baseDirPascal, "index.tsx"),
+    ];
+
+    for (const candidate of candidatesPascal) {
+      if (await fileExists(candidate)) {
+        this.filePathCache.set(componentName, candidate);
+        return candidate;
+      }
+    }
+
+    // Fallback to kebab-case
     const baseDir = path.join(PROJECT_ROOT, "src", kebab);
     const candidates = [
       path.join(baseDir, `${kebab}.tsx`),
@@ -31,7 +48,7 @@ export class ComponentDescriptionExtractor {
     ];
 
     for (const candidate of candidates) {
-      if (await FileSystemUtils.fileExists(candidate)) {
+      if (await fileExists(candidate)) {
         this.filePathCache.set(componentName, candidate);
         return candidate;
       }
@@ -42,11 +59,7 @@ export class ComponentDescriptionExtractor {
   }
 
   private stripBlockCommentMarkers(block: string): string[] {
-    return block
-      .split("\n")
-      .map((line) => line.replace(/^\s*\*\s?/, "").trim())
-      .filter(Boolean)
-      .filter((line) => !line.startsWith("@"));
+    return block.split("\n").map((line) => line.replace(/^\s*\*\s?/, ""));
   }
 
   private extractComponentJsDoc(
@@ -55,28 +68,79 @@ export class ComponentDescriptionExtractor {
   ): string {
     if (!content || !componentName) return "";
 
-    const pattern = new RegExp(
-      `/\\*\\*([\\s\\S]*?)\\*/\\s*export\\s+(?:const|function|class)\\s+${componentName}\\b`,
+    // Find the export function/const/class line
+    const exportPattern = new RegExp(
+      `export\\s+(?:function|const|class)\\s+${componentName}\\b`,
     );
-    const match = content.match(pattern);
-    if (!match) return "";
+    const exportMatch = exportPattern.exec(content);
+    if (!exportMatch) return "";
 
-    const lines = this.stripBlockCommentMarkers(match[1]);
-    return lines.join(" ").trim();
+    // Look backwards from the export to find the NEAREST JSDoc block
+    // Match from the end: optional whitespace, then */, then JSDoc content, then /**
+    const beforeExport = content.substring(0, exportMatch.index);
+    const jsdocPattern = /\/\*\*([^*](?:(?!\*\/)[\s\S])*)\*\/\s*$/;
+    const jsdocMatch = beforeExport.match(jsdocPattern);
+
+    if (!jsdocMatch) return "";
+
+    const lines = this.stripBlockCommentMarkers(jsdocMatch[1]);
+
+    // Process the lines to separate description from examples
+    const result: string[] = [];
+    let inExample = false;
+    const exampleLines: string[] = [];
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+
+      if (trimmed.startsWith("@example")) {
+        inExample = true;
+        continue;
+      }
+
+      if (inExample) {
+        exampleLines.push(line);
+      } else if (trimmed) {
+        result.push(trimmed);
+      }
+    }
+
+    // Build final output
+    let output = result.join(" ").trim();
+
+    if (exampleLines.length > 0) {
+      // Clean up example lines and format properly
+      const exampleText = exampleLines.join("\n").trim();
+      output += `\n\n**Example:**\n\n${exampleText}`;
+    }
+
+    return output;
   }
 
   private extractLastJsDocBlock(content: string): string {
     if (!content) return "";
 
-    const matches = content.matchAll(/\/\*\*([\s\S]*?)\*\//g);
-    let last = "";
-    for (const match of matches) {
+    // Find all JSDoc blocks that are NOT before interfaces
+    const matches = Array.from(content.matchAll(/\/\*\*([\s\S]*?)\*\//g));
+
+    for (let i = matches.length - 1; i >= 0; i--) {
+      const match = matches[i];
+      const afterComment = content.slice(match.index! + match[0].length);
+
+      // Skip if followed by interface/type declaration
+      if (
+        afterComment.trim().match(/^(export\s+)?interface|^(export\s+)?type/)
+      ) {
+        continue;
+      }
+
       const lines = this.stripBlockCommentMarkers(match[1]);
       if (lines.length > 0) {
-        last = lines.join(" ").trim();
+        return lines.join(" ").trim();
       }
     }
-    return last;
+
+    return "";
   }
 
   async extractFromFile(entry: StoryEntry): Promise<string> {

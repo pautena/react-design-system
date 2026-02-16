@@ -10,20 +10,20 @@ import type {
   PackageJson,
   ProjectMetadata,
 } from "../types/index.js";
-import { FileSystemUtils } from "../utils/FileSystemUtils.js";
+import { readJson, tryReadJson } from "../utils/file-system-utils.ts";
 
 export class ProjectMetadataLoader {
   async loadPackageJson(): Promise<PackageJson | null> {
-    return await FileSystemUtils.tryReadJson<PackageJson>(PACKAGE_JSON_PATH);
+    return await tryReadJson<PackageJson>(PACKAGE_JSON_PATH);
   }
 
   async loadIndexData(): Promise<LoadIndexResult> {
-    const indexData = await FileSystemUtils.tryReadJson<IndexData>(INDEX_PATH);
+    const indexData = await tryReadJson<IndexData>(INDEX_PATH);
     if (indexData) {
       return { source: "index.json", data: indexData };
     }
 
-    const storiesData = await FileSystemUtils.readJson<IndexData>(STORIES_PATH);
+    const storiesData = await readJson<IndexData>(STORIES_PATH);
     return { source: "stories.json", data: storiesData };
   }
 

@@ -9,11 +9,15 @@ import {
   type Theme,
   useTheme,
 } from "@mui/material/styles";
+import type React from "react";
 import type { DrawerProps, DrawerState, DrawerVariant } from "../Drawer.types";
 import { useDrawer } from "../DrawerContext/DrawerContext";
 import { closedMixin, openedMixin } from "../DrawerContext/DrawerMixins";
 
-export const DrawerHeader = styled("div")(({ theme }) => ({
+export const DrawerHeader: React.ComponentType<{
+  children?: React.ReactNode;
+  className?: string;
+}> = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "flex-end",

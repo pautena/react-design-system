@@ -1,6 +1,6 @@
 import type { IndexData, StoryEntry } from "../types/index.js";
-import { StringUtils } from "../utils/StringUtils.js";
-import type { EntryFormatter } from "./EntryFormatter.js";
+import { normalizeTitle } from "../utils/string-utils.ts";
+import type { EntryFormatter } from "./entry-formatter.ts";
 
 export class EntryProcessor {
   constructor(private formatter: EntryFormatter) {}
@@ -30,7 +30,7 @@ export class EntryProcessor {
   buildDocsLookup(docs: StoryEntry[]): Map<string, StoryEntry[]> {
     const lookup = new Map<string, StoryEntry[]>();
     for (const entry of docs) {
-      const key = StringUtils.normalizeTitle(entry.title) || "Untitled";
+      const key = normalizeTitle(entry.title) || "Untitled";
       if (!lookup.has(key)) {
         lookup.set(key, []);
       }

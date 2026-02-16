@@ -1,8 +1,8 @@
-import { ComponentDescriptionExtractor } from "./lib/domain/ComponentDescriptionExtractor";
-import { EntryFormatter } from "./lib/domain/EntryFormatter";
-import { EntryProcessor } from "./lib/domain/EntryProcessor";
-import { ProjectMetadataLoader } from "./lib/domain/ProjectMetadataLoader";
-import { LlmsTxtGenerator } from "./lib/generator/LlmsTxtGenerator";
+import { ComponentDescriptionExtractor } from "./lib/domain/component-description-extractor";
+import { EntryFormatter } from "./lib/domain/entry-formatter";
+import { EntryProcessor } from "./lib/domain/entry-processor";
+import { ProjectMetadataLoader } from "./lib/domain/project-metadata-loader";
+import { LlmsTxtGenerator } from "./lib/generator/llms-txt-generator";
 
 const main = async (): Promise<void> => {
   try {
@@ -14,6 +14,7 @@ const main = async (): Promise<void> => {
       formatter,
       processor,
       metadataLoader,
+      descriptionExtractor,
     );
 
     await generator.generate();
