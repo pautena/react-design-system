@@ -17,7 +17,7 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "typeRoots": ["./src/types", "node_modules"],
-    "types": ["node", "vitest/globals"],
+    "types": ["vitest/globals"],
     "baseUrl": ".",
     "noImplicitAny": false
   },
