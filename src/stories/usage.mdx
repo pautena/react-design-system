@@ -5,8 +5,95 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 # Usage
 
-To use the components in your React project, you can import them as shown below:
+## Basic Import
 
-```javascript
-import { DrawerLayout } from "@pautena/react-design-system";
+Import components from the main package:
+
+```jsx
+import { DrawerLayout, Header, Label, ValueCard } from "@pautena/react-design-system";
 ```
+
+## Setup with MUI ThemeProvider
+
+All components require MUI's ThemeProvider:
+
+```jsx
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { Header } from "@pautena/react-design-system";
+
+const theme = createTheme();
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header title="My App" subtitle="Dashboard" />
+      {/* Your components */}
+    </ThemeProvider>
+  );
+}
+```
+
+## Component Examples
+
+### Data Display
+
+```jsx
+import { Label, ValueText, ValueCard } from "@pautena/react-design-system";
+
+function UserProfile() {
+  return (
+    <>
+      <Label text="Active" preset="success" />
+      <ValueText label="Email" value="user@example.com" />
+      <ValueCard title="Revenue" value="$1,234" />
+    </>
+  );
+}
+```
+
+### Layouts
+
+```jsx
+import { DrawerLayout } from "@pautena/react-design-system";
+
+function Dashboard() {
+  return (
+    <DrawerLayout
+      header={{ title: "Dashboard" }}
+      menu={[
+        { label: "Home", onClick: () => {} },
+        { label: "Settings", onClick: () => {} },
+      ]}
+    >
+      {/* Your page content */}
+    </DrawerLayout>
+  );
+}
+```
+
+## Testing Utilities
+
+Import testing helpers for unit tests:
+
+```jsx
+import { render, screen } from "@pautena/react-design-system/testing";
+import { Label } from "@pautena/react-design-system";
+
+test("renders label", () => {
+  render(<Label text="Active" />);
+  expect(screen.getByText("Active")).toBeInTheDocument();
+});
+```
+
+The testing export includes:
+- Pre-configured render with MUI ThemeProvider
+- All exports from `@testing-library/react`
+- Custom testing utilities
+
+## Next Steps
+
+Explore the component library:
+- [Components](?path=/docs/components--docs) - Browse all available components
+- [Layouts](?path=/docs/layouts-layouts--docs) - Page layout components
