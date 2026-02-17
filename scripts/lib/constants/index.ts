@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 // scripts/lib/constants/index.ts - go up 3 levels to get to project root
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export const PROJECT_ROOT = path.resolve(__dirname, "..", "..", "..");
-export const OUTPUT_DIR = path.join(__dirname, "..", "..", "storybook-static");
+export const OUTPUT_DIR = path.join(PROJECT_ROOT, "storybook-static");
 export const INDEX_PATH = path.join(OUTPUT_DIR, "index.json");
 export const STORIES_PATH = path.join(OUTPUT_DIR, "stories.json");
 export const OUTPUT_PATH = path.join(OUTPUT_DIR, "llms.txt");

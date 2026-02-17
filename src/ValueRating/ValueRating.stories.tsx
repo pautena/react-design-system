@@ -34,22 +34,3 @@ export const Max: Story = {
     maxRating: 7,
   },
 };
-
-export const Editable: Story = {
-  args: {
-    label: "Lorem",
-    value: 4,
-    maxRating: 7,
-    editable: true,
-  },
-};
-
-export const DenseEditable: Story = {
-  args: {
-    label: "Lorem",
-    value: 4,
-    maxRating: 7,
-    dense: true,
-    editable: true,
-  },
-};

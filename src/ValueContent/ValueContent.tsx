@@ -16,11 +16,6 @@ export interface ValueContentProps {
   label: string;
 
   /**
-   * If true, the label will not be shown
-   */
-  hideLabel?: boolean;
-
-  /**
    * If defined, a tooltip is going to be added arround the children;
    */
   tooltip?: string;
@@ -52,7 +47,6 @@ export interface ValueContentProps {
  */
 export function ValueContent({
   label,
-  hideLabel,
   tooltip,
   tooltipEnterDelay = 2000,
   children,
@@ -64,16 +58,14 @@ export function ValueContent({
 
   return (
     <Box width={1} lineHeight={dense ? 0 : undefined} sx={sx}>
-      {!hideLabel && (
-        <Typography
-          variant={dense ? "caption" : "subtitle2"}
-          role="label"
-          id={id}
-          lineHeight={dense ? typography.pxToRem(15) : undefined}
-        >
-          {label}
-        </Typography>
-      )}
+      <Typography
+        variant={dense ? "caption" : "subtitle2"}
+        role="label"
+        id={id}
+        lineHeight={dense ? typography.pxToRem(15) : undefined}
+      >
+        {label}
+      </Typography>
       {tooltip ? (
         <Tooltip title={tooltip} placement="top" enterDelay={tooltipEnterDelay}>
           <span>{children}</span>

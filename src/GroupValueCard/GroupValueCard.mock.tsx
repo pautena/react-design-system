@@ -7,73 +7,44 @@ import GroupValueCard, { type GroupValueCardProps } from "./GroupValueCard";
 
 export const GroupValueCardDummy = ({
   dense,
-  editable,
   ...rest
-}: GroupValueCardProps & { editable?: boolean }) => {
+}: GroupValueCardProps) => {
   return (
     <GroupValueCard {...rest} dense={dense}>
       <ValueItem size={{ xs: 12, sm: 6, md: 4 }}>
         <ValueText
-          editable={editable}
           dense={dense}
           label="Hello world"
           value="Lorem ipsum sit amet"
         />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 2 }}>
-        <ValueBoolean editable={editable} dense={dense} label="Enabled" value />
+        <ValueBoolean dense={dense} label="Enabled" value />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
-        <ValueText
-          editable={editable}
-          dense={dense}
-          label="Quantity"
-          value="1200"
-        />
+        <ValueText dense={dense} label="Quantity" value="1200" />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
-        <ValueText
-          editable={editable}
-          dense={dense}
-          label="Currency"
-          value="EUR"
-        />
+        <ValueText dense={dense} label="Currency" value="EUR" />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 6 }}>
         <ValueText
-          editable={editable}
           dense={dense}
           label="I am Batman"
           value=" Does it come in black? It's ends here. Hero can be anyone"
         />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
-        <ValueText
-          editable={editable}
-          dense={dense}
-          label="Status"
-          value="Open"
-        />
+        <ValueText dense={dense} label="Status" value="Open" />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
-        <ValueText
-          editable={editable}
-          dense={dense}
-          label="Level"
-          value="2144"
-        />
+        <ValueText dense={dense} label="Level" value="2144" />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
-        <ValueRating
-          editable={editable}
-          dense={dense}
-          label="Rating"
-          value={3}
-        />
+        <ValueRating dense={dense} label="Rating" value={3} />
       </ValueItem>
       <ValueItem size={{ xs: 12, sm: 6, md: 3 }}>
         <ValueDatetime
-          editable={editable}
           dense={dense}
           label="Created at"
           value={new Date(2022, 5, 1)}

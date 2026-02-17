@@ -4,20 +4,9 @@ import { render, screen } from "../tests/testing-library";
 import ValueContent from "./ValueContent";
 
 describe("ValueContent", () => {
-  const renderComponent = ({
-    tooltip,
-    hideLabel,
-  }: {
-    tooltip?: string;
-    hideLabel?: boolean;
-  } = {}) => {
+  const renderComponent = ({ tooltip }: { tooltip?: string } = {}) => {
     render(
-      <ValueContent
-        label="lorem ipsum"
-        tooltip={tooltip}
-        tooltipEnterDelay={0}
-        hideLabel={hideLabel}
-      >
+      <ValueContent label="lorem ipsum" tooltip={tooltip} tooltipEnterDelay={0}>
         <Typography>Test content</Typography>
       </ValueContent>,
     );
@@ -27,14 +16,6 @@ describe("ValueContent", () => {
     renderComponent();
 
     expect(screen.getByRole("label", { name: /lorem ipsum/i })).toBeVisible();
-  });
-
-  it("shouldn't render a label if hideLabel=true", () => {
-    renderComponent({ hideLabel: true });
-
-    expect(
-      screen.queryByRole("label", { name: /lorem ipsum/i }),
-    ).not.toBeInTheDocument();
   });
 
   describe("tooltip", () => {
