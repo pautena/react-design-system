@@ -12,7 +12,18 @@ export default defineConfig({
       formats: ["es"],
     },
     rollupOptions: {
-      external: [...Object.keys(peerDependencies), "@testing-library/react"],
+      external: [
+        ...Object.keys(peerDependencies),
+        /^@testing-library\//,
+        /^@mui\//,
+        /^@emotion\//,
+        /^react/,
+        /^date-fns/,
+        /^aria-query/,
+        /^dom-accessibility-api/,
+        /^lz-string/,
+        /^pretty-format/,
+      ],
       output: {
         interop: "auto",
         preserveModules: true,
