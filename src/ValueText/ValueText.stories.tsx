@@ -41,14 +41,6 @@ export const TruncatedText: Story = {
   },
 };
 
-export const TruncatedTextEditable: Story = {
-  args: {
-    label: "Lorem",
-    value: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    editable: true,
-  },
-};
-
 export const Placeholder: Story = {
   args: {
     label: "Lorem",
@@ -59,22 +51,5 @@ export const CustomPlaceholder: Story = {
   args: {
     label: "Lorem",
     placeholder: ".",
-  },
-};
-
-export const Editable: Story = {
-  args: {
-    label: "Lorem",
-    value: "lorem ipsum",
-    editable: true,
-  },
-};
-
-export const DenseEditable: Story = {
-  args: {
-    label: "Lorem",
-    value: "lorem ipsum",
-    dense: true,
-    editable: true,
   },
 };
