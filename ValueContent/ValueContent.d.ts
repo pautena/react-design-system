@@ -9,10 +9,6 @@ export interface ValueContentProps {
      */
     label: string;
     /**
-     * If true, the label will not be shown
-     */
-    hideLabel?: boolean;
-    /**
      * If defined, a tooltip is going to be added arround the children;
      */
     tooltip?: string;
@@ -37,5 +33,5 @@ export interface ValueContentProps {
 /**
  * Displays a string value with a label
  */
-export declare function ValueContent({ label, hideLabel, tooltip, tooltipEnterDelay, children, dense, sx, }: ValueContentProps): import("react/jsx-runtime").JSX.Element;
+export declare function ValueContent({ label, tooltip, tooltipEnterDelay, children, dense, sx, }: ValueContentProps): import("react/jsx-runtime").JSX.Element;
 export default ValueContent;

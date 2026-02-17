@@ -1,894 +1,772 @@
----
-project: @pautena/react-design-system
-version: 0.21.0
-generated: 2026-02-15T21:38:30.159Z
-storybook: ^10.2.8
-base_url: https://react-design-system.pautena.com
-source_index: index.json
----
+# @pautena/react-design-system
+
+My custom design system on top of MUI
+
+## Inputs
+
+### Autocomplete
+
+Autocomplete component that wraps the MUI Autocomplete component with additional props. Supports extensive customization through slots and slotProps.
+
+**Example:**
+
+```tsx
+// Basic usage
+<Autocomplete
+  label="Country"
+  options={countries}
+  onChangeValue={handleChange}
+/>
+
+// With slot customization
+<Autocomplete
+  label="Country"
+  options={countries}
+  slots={{
+    textField: CustomTextField
+  }}
+  slotProps={{
+    autocomplete: { size: "small" },
+    textField: { variant: "filled" }
+  }}
+/>
+```
+
+**Props:**
+- `autocomplete`: `Partial<
+    Omit<MuiAutocompleteProps<any, any, any, any>, "onChange" | "renderInput">
+  >` - Props for the autocomplete component (onChange is managed by the component)
+- `textField`: `Partial<TextFieldProps>` - Props for the text field
+
+**Stories:**
+- [Default](./?path=/story/inputs-autocomplete--default)
+- [Helper Text](./?path=/story/inputs-autocomplete--helper-text)
+- [Loading](./?path=/story/inputs-autocomplete--loading)
+- [Loading With Value](./?path=/story/inputs-autocomplete--loading-with-value)
+- [Fetching](./?path=/story/inputs-autocomplete--fetching)
+- [Loading And Fetching](./?path=/story/inputs-autocomplete--loading-and-fetching)
+- [Size Small](./?path=/story/inputs-autocomplete--size-small)
+- [Size Small Loading](./?path=/story/inputs-autocomplete--size-small-loading)
+- [Size Small Fetching](./?path=/story/inputs-autocomplete--size-small-fetching)
+- [With Background](./?path=/story/inputs-autocomplete--with-background)
+- [With Slot Props Customization](./?path=/story/inputs-autocomplete--with-slot-props-customization)
+
+[View Documentation](./?path=/docs/inputs-autocomplete--docs)
+
+### DateRangeCalendar
+
+A Date Range Calendar component that allows users to select a range of dates.
+
+**Props:**
+- `defaultValue`: `DateRange` (required) - The default date range value.
+
+**Stories:**
+- [Default](./?path=/story/inputs-daterangecalendar--default)
+
+[View Documentation](./?path=/docs/inputs-daterangecalendar--docs)
+
+### DateRangePicker
+
+DateRangePicker component allows users to select a date range.
+
+**Props:**
+- `label`: `string` (required) - The label for the date range picker.
+- `defaultValue`: `DateRange` (required) - The default value for the date range picker.
+- `format`: `string` (required) - The format in which the date range should be displayed.
+
+**Stories:**
+- [Default](./?path=/story/inputs-daterangepicker--default)
+- [Small](./?path=/story/inputs-daterangepicker--small)
+
+[View Documentation](./?path=/docs/inputs-daterangepicker--docs)
+
+### Select
+
+A custom Select component that extends the functionality of the Material-UI Select component. This component supports additional features such as loading and fetching states, custom colors, and full-width display. Supports extensive customization through slots and slotProps.
+
+**Example:**
+
+```tsx
+// Basic usage
+<Select label="Country" value={country} onChange={handleChange}>
+  <MenuItem value="us">United States</MenuItem>
+  <MenuItem value="uk">United Kingdom</MenuItem>
+</Select>
+
+// With custom loading indicator
+<Select
+  label="Status"
+  value={status}
+  loading
+  slotProps={{
+    loadingIndicator: { size: 24 }
+  }}
+/>
+```
+
+**Props:**
+- `formControl`: `Partial<FormControlProps>` - Props for the form control
+- `inputLabel`: `Partial<InputLabelProps>` - Props for the input label
+- `select`: `Partial<Omit<MuiSelectProps<any>, "onChange">>` - Props for the select (onChange is managed by the component)
+- `renderValueContainer`: `Partial<BoxProps>` - Props for the render value container
+- `loadingIndicator`: `Partial<CircularProgressProps>` - Props for the loading indicator
+- `fetchingIndicator`: `Partial<LinearProgressProps>` - Props for the fetching indicator
+
+**Stories:**
+- [Default](./?path=/story/inputs-select--default)
+- [Without Full Width](./?path=/story/inputs-select--without-full-width)
+- [Select Loaded](./?path=/story/inputs-select--select-loaded)
+- [Loading](./?path=/story/inputs-select--loading)
+- [Fetching](./?path=/story/inputs-select--fetching)
+- [Size Small](./?path=/story/inputs-select--size-small)
+- [With Background](./?path=/story/inputs-select--with-background)
+- [With Slot Props Customization](./?path=/story/inputs-select--with-slot-props-customization)
+
+[View Documentation](./?path=/docs/inputs-select--docs)
+
+### TextField
+
+A customizable TextField component that extends the functionality of the Material-UI TextField component and supports various props for styling and functionality. Supports extensive customization through slots and slotProps.
+
+**Example:**
+
+```tsx
+// Basic usage
+<TextField label="Email" />
+
+// With loading state
+<TextField label="Search" loading />
+
+// Custom loading indicator size
+<TextField
+  label="Username"
+  loading
+  slotProps={{
+    loadingIndicator: { size: 24 }
+  }}
+/>
+```
+
+**Props:**
+- `formControl`: `Partial<FormControlProps>` - Props for the form control
+- `inputLabel`: `Partial<MuiInputLabelProps>` - Props for the input label
+- `input`: `Partial<OutlinedInputProps>` - Props for the input
+- `inputAdornment`: `Partial<InputAdornmentProps>` - Props for the input adornment
+- `loadingIndicator`: `Partial<CircularProgressProps>` - Props for the loading indicator
+- `fetchingIndicator`: `Partial<LinearProgressProps>` - Props for the fetching indicator
+- `helperText`: `Partial<FormHelperTextProps>` - Props for the helper text
+
+**Stories:**
+- [Default](./?path=/story/inputs-textfield--default)
+- [Helper Text](./?path=/story/inputs-textfield--helper-text)
+- [Loading](./?path=/story/inputs-textfield--loading)
+- [Loading With Value](./?path=/story/inputs-textfield--loading-with-value)
+- [Fetching](./?path=/story/inputs-textfield--fetching)
+- [Loading And Fetching](./?path=/story/inputs-textfield--loading-and-fetching)
+- [Fetching With End Adornment](./?path=/story/inputs-textfield--fetching-with-end-adornment)
+- [Size Small](./?path=/story/inputs-textfield--size-small)
+- [Size Small Fetching](./?path=/story/inputs-textfield--size-small-fetching)
+- [Disabled](./?path=/story/inputs-textfield--disabled)
+- [Size Small Loading](./?path=/story/inputs-textfield--size-small-loading)
+- [With Background](./?path=/story/inputs-textfield--with-background)
+- [With Slot Props Customization](./?path=/story/inputs-textfield--with-slot-props-customization)
+
+[View Documentation](./?path=/docs/inputs-textfield--docs)
+
+## Data Display
+
+### Board
+
+Board component that displays content within a styled Paper component. It supports rendering an array of content lines or a single content string. Additionally, it provides a button to copy the content to the clipboard.
+
+**Props:**
+- `content`: `string | string[]` (required) - The content to be displayed on the board. It can be a single string or an array of strings.
+- `spacing`: `0 | 1 | 2 | 3 | 4 | 5` - Optional spacing value for the board. It can be one of the values: 0, 1, 2, 3, 4, or 5.
+- `sx`: `SxProps<Theme>` - Optional styling properties for the board, using the theme's styling system.
+- `children`: `React.ReactNode` - Optional children to render instead of the content
+
+**Stories:**
+- [Default](./?path=/story/data-display-board--default)
+- [Array Paragraph](./?path=/story/data-display-board--array-paragraph)
+- [Array List](./?path=/story/data-display-board--array-list)
+- [Children](./?path=/story/data-display-board--children)
+
+[View Documentation](./?path=/docs/data-display-board--docs)
+
+### Bullet
+
+Dot to attract the user attention
+
+**Props:**
+- `variant`: `BulletVariant` - Color palette used to draw the component
+- `sx`: `SxProps<Theme>` - Custom styles
+
+**Stories:**
+- [Default](./?path=/story/data-display-bullet--default)
+- [Primary Variant](./?path=/story/data-display-bullet--primary-variant)
+- [Secondary Variant](./?path=/story/data-display-bullet--secondary-variant)
+- [Default Variant](./?path=/story/data-display-bullet--default-variant)
+- [Info Variant](./?path=/story/data-display-bullet--info-variant)
+- [Warning Variant](./?path=/story/data-display-bullet--warning-variant)
+- [Error Variant](./?path=/story/data-display-bullet--error-variant)
+
+[View Documentation](./?path=/docs/data-display-bullet--docs)
+
+### GroupValueCard
+
+GroupValueCard component renders a card with a title, subtitle, and children content. It supports customization for dense layout and centered content.
+
+**Props:**
+- `title`: `string` (required) - The main title of the card.
+- `subtitle`: `string` - An optional subtitle for the card.
+- `centered`: `boolean` - If true, the content will be centered.
+- `children`: `ValueItemElement | ValueItemElement[]` (required) - The children elements to be rendered inside the card.
+- `dense`: `boolean` - If true, the card will have a denser layout.
+
+**Stories:**
+- [Default](./?path=/story/data-display-groupvaluecard--default)
+- [Dense](./?path=/story/data-display-groupvaluecard--dense)
+- [Wihtout Subtitle](./?path=/story/data-display-groupvaluecard--wihtout-subtitle)
+- [With Image](./?path=/story/data-display-groupvaluecard--with-image)
+- [With Data Table](./?path=/story/data-display-groupvaluecard--with-data-table)
+
+[View Documentation](./?path=/docs/data-display-groupvaluecard--docs)
+
+### Header
+
+Section used to provide basic information about the page and display main actions Supports extensive customization through slots and slotProps. Each internal element (breadcrumbs, title, actions, tabs) can be customized or replaced.
+
+**Example:**
+
+```tsx
+// Basic usage
+<Header
+  title="Dashboard"
+  subtitle="Welcome back"
+  breadcrumbs={[{id: '1', text: 'Home', link: '/'}]}
+  actions={[{id: 'add', text: 'Add', onClick: handleAdd}]}
+/>
+
+// Custom breadcrumb separator
+<Header
+  title="Settings"
+  breadcrumbs={breadcrumbs}
+  slotProps={{
+    breadcrumbs: { separator: '/' }
+  }}
+/>
+
+// Custom action button styling
+<Header
+  title="Users"
+  actions={actions}
+  slotProps={{
+    actionButton: { size: 'large', variant: 'contained' }
+  }}
+/>
+```
+
+**Stories:**
+- [Default](./?path=/story/data-display-header--default)
+- [Only Title](./?path=/story/data-display-header--only-title)
+- [Custom Title](./?path=/story/data-display-header--custom-title)
+- [Title Loading](./?path=/story/data-display-header--title-loading)
+- [Custom Subtitle](./?path=/story/data-display-header--custom-subtitle)
+- [Subtitle Loading](./?path=/story/data-display-header--subtitle-loading)
+- [Color Inherit](./?path=/story/data-display-header--color-inherit)
+- [Color Primary](./?path=/story/data-display-header--color-primary)
+- [Color Secondary](./?path=/story/data-display-header--color-secondary)
+- [Color Default](./?path=/story/data-display-header--color-default)
+- [Color Transparent](./?path=/story/data-display-header--color-transparent)
+- [With Subheader](./?path=/story/data-display-header--with-subheader)
+- [With Breadcumbs](./?path=/story/data-display-header--with-breadcumbs)
+- [With Actions](./?path=/story/data-display-header--with-actions)
+- [With Panel Tabs](./?path=/story/data-display-header--with-panel-tabs)
+- [Navigation Button](./?path=/story/data-display-header--navigation-button)
+- [With Border](./?path=/story/data-display-header--with-border)
+- [Color Paper](./?path=/story/data-display-header--color-paper)
+- [Custom Action Styles](./?path=/story/data-display-header--custom-action-styles)
+- [With Slot Props Customization](./?path=/story/data-display-header--with-slot-props-customization)
+
+[View Documentation](./?path=/docs/data-display-header--docs)
+
+### Label
+
+Compact element to represent a text
+
+**Props:**
+- `text`: `string` (required) - Content of the component
+- `variant`: `LabelVariant` - Color palette used to draw the component
+- `color`: `string` - Background color. Overrides variant
+- `sx`: `SxProps<Theme>` - Custom styles
+- `textTransform`: `"none" | "capitalize" | "uppercase"` - Show the text as uppercase
+
+**Stories:**
+- [Default](./?path=/story/data-display-label--default)
+- [Primary](./?path=/story/data-display-label--primary)
+- [Secondary](./?path=/story/data-display-label--secondary)
+- [Info](./?path=/story/data-display-label--info)
+- [Warning](./?path=/story/data-display-label--warning)
+- [Error](./?path=/story/data-display-label--error)
+- [Light Color](./?path=/story/data-display-label--light-color)
+- [Dark Color](./?path=/story/data-display-label--dark-color)
+
+[View Documentation](./?path=/docs/data-display-label--docs)
+
+### ValueBoolean
+
+Displays a boolean value with a label
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueboolean--default)
+- [True](./?path=/story/data-display-valueboolean--true)
+- [False](./?path=/story/data-display-valueboolean--false)
+- [Dense](./?path=/story/data-display-valueboolean--dense)
+
+[View Documentation](./?path=/docs/data-display-valueboolean--docs)
+
+### ValueCard
+
+Container to show a labeled value
+
+**Props:**
+- `children`: `React.ReactNode` - Content to display in the card
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuecard--default)
+
+[View Documentation](./?path=/docs/data-display-valuecard--docs)
+
+### ValueDatetime
+
+Displays a formated datetime with a label
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuedatetime--default)
+- [Dense](./?path=/story/data-display-valuedatetime--dense)
+- [Placeholder](./?path=/story/data-display-valuedatetime--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuedatetime--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuedatetime--docs)
+
+### ValueImage
+
+Displays a image value with a label
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueimage--default)
+- [Dense](./?path=/story/data-display-valueimage--dense)
+- [Custom Size](./?path=/story/data-display-valueimage--custom-size)
+
+[View Documentation](./?path=/docs/data-display-valueimage--docs)
+
+### ValueItem
+
+`ValueItem` is a component to wrap your value components
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueitem--default)
+- [Borderless](./?path=/story/data-display-valueitem--borderless)
+- [Breakpoints Border](./?path=/story/data-display-valueitem--breakpoints-border)
+- [Breakpoints Array Border](./?path=/story/data-display-valueitem--breakpoints-array-border)
+
+[View Documentation](./?path=/docs/data-display-valueitem--docs)
+
+### ValueLabel
+
+Displays a label component value with a label
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuelabel--default)
+- [Variant](./?path=/story/data-display-valuelabel--variant)
+- [Number As Value](./?path=/story/data-display-valuelabel--number-as-value)
+- [Text List](./?path=/story/data-display-valuelabel--text-list)
+- [Number List](./?path=/story/data-display-valuelabel--number-list)
+- [List Single Variant](./?path=/story/data-display-valuelabel--list-single-variant)
+- [List Multiple Variants](./?path=/story/data-display-valuelabel--list-multiple-variants)
+- [Placeholder](./?path=/story/data-display-valuelabel--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuelabel--custom-placeholder)
+- [List Single Color](./?path=/story/data-display-valuelabel--list-single-color)
+- [List Multiple Colors](./?path=/story/data-display-valuelabel--list-multiple-colors)
+
+[View Documentation](./?path=/docs/data-display-valuelabel--docs)
+
+### ValueRating
+
+Displays a number using stars
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuerating--default)
+- [Dense](./?path=/story/data-display-valuerating--dense)
+- [Max](./?path=/story/data-display-valuerating--max)
+
+[View Documentation](./?path=/docs/data-display-valuerating--docs)
+
+### ValueText
+
+Displays a string value with a label
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuetext--default)
+- [Dense](./?path=/story/data-display-valuetext--dense)
+- [Number As Value](./?path=/story/data-display-valuetext--number-as-value)
+- [Truncated Text](./?path=/story/data-display-valuetext--truncated-text)
+- [Placeholder](./?path=/story/data-display-valuetext--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuetext--docs)
+
+## Dialogs
+
+### BootstrapDialog
+
+A customizable dialog component. Use it as a base to create more dialogs Supports extensive customization through slots and slotProps. Each internal element can be customized or replaced.
+
+**Example:**
+
+```tsx
+// Basic usage
+<BootstrapDialog
+  open={true}
+  title="Confirm Action"
+  onClose={handleClose}
+  acceptable
+  cancelable
+>
+  Are you sure?
+</BootstrapDialog>
+
+// Custom close button
+<BootstrapDialog
+  title="Settings"
+  slotProps={{
+    closeButton: { color: 'error' }
+  }}
+/>
+```
 
-# @pautena/react-design-system Storybook
+**Stories:**
+- [Default](./?path=/story/dialogs-bootstrapdialog--default)
+- [Acceptable And Cancelable](./?path=/story/dialogs-bootstrapdialog--acceptable-and-cancelable)
+- [With Extra Actions](./?path=/story/dialogs-bootstrapdialog--with-extra-actions)
+- [Loading With Acceptable](./?path=/story/dialogs-bootstrapdialog--loading-with-acceptable)
+- [Loading](./?path=/story/dialogs-bootstrapdialog--loading)
+- [Disabled](./?path=/story/dialogs-bootstrapdialog--disabled)
+- [Custom Texts](./?path=/story/dialogs-bootstrapdialog--custom-texts)
+- [With Slot Props Customization](./?path=/story/dialogs-bootstrapdialog--with-slot-props-customization)
 
-> Machine-readable index of Storybook docs and stories.
+[View Documentation](./?path=/docs/dialogs-bootstrapdialog--docs)
 
-Generated from Storybook static build data to help LLMs navigate story and docs pages.
+### ConfirmDialog
 
-## Usage
-- Use ?path=/docs/... for docs pages
-- Use ?path=/story/... for interactive stories
+ConfirmDialog component renders a dialog to ask a user to confirm an action with customizable title, confirmation and cancellation actions. It optionally requires a passphrase to enable the confirmation action.
 
-## Index
-- [index.json](./index.json)
+**Stories:**
+- [Default](./?path=/story/dialogs-confirmdialog--default)
+- [Loading](./?path=/story/dialogs-confirmdialog--loading)
+- [Disabled](./?path=/story/dialogs-confirmdialog--disabled)
+- [Custom Button Text](./?path=/story/dialogs-confirmdialog--custom-button-text)
+- [Passphrase](./?path=/story/dialogs-confirmdialog--passphrase)
 
-## Docs
+[View Documentation](./?path=/docs/dialogs-confirmdialog--docs)
 
-### Alerts - Docs
+### FormDialog
 
-#### Alerts - Docs
-- [Alerts - Docs](./?path=/docs/alerts--docs) {id:alerts--docs} [docs]
+A generic form dialog component that wraps a BootstrapDialog and handles form submission. Put your form inside and receive the data validated using the input name field.
 
-### Alerts
+**Stories:**
+- [Default](./?path=/story/dialogs-formdialog--default)
+- [Loading](./?path=/story/dialogs-formdialog--loading)
+- [Disabled](./?path=/story/dialogs-formdialog--disabled)
+- [Custom Button Text](./?path=/story/dialogs-formdialog--custom-button-text)
 
-#### Alerts/ExpandableAlert - Docs
-- [Alerts/ExpandableAlert - Docs](./?path=/docs/alerts-expandablealert--docs) {id:alerts-expandablealert--docs} [docs]
+[View Documentation](./?path=/docs/dialogs-formdialog--docs)
 
-### Components - Docs
+## Containers
 
-#### Components - Docs
-- [Components - Docs](./?path=/docs/components--docs) {id:components--docs} [docs]
+### Content
 
-### Containers - Docs
+A functional component that renders its children inside a main container.
 
-#### Containers - Docs
-- [Containers - Docs](./?path=/docs/containers--docs) {id:containers--docs} [docs]
+**Stories:**
+- [Default](./?path=/story/containers-content--default)
 
-### Containers
+[View Documentation](./?path=/docs/containers-content--docs)
 
-#### Containers/Content - Docs
-- [Containers/Content - Docs](./?path=/docs/containers-content--docs) {id:containers-content--docs} [docs]
+### ListPanel
 
-#### Containers/ListPanel - Docs
-- [Containers/ListPanel - Docs](./?path=/docs/containers-listpanel--docs) {id:containers-listpanel--docs} [docs]
+ListPanel component renders a panel with a list of items and a content area.
 
-### Data Display - Docs
+**Props:**
+- `defaultSelectedItem`: `string` - The ID of the item that should be selected by default.
+- `items`: `ListPanelItem[]` (required) - The list of items to be displayed in the panel.
+- `listMode`: `"panel" | "navigation"` - The mode of the list, either "panel" or "navigation".
+- `colBreakpoint`: `number` - The breakpoint for column layout.
+- `onSelectedItemChange`: `(id: string) => void` - Callback function that is called when the selected item changes.
+- `children`: `React.ReactNode` - Content to display in the panel area
 
-#### Data Display - Docs
-- [Data Display - Docs](./?path=/docs/data-display--docs) {id:data-display--docs} [docs]
+**Stories:**
+- [Default](./?path=/story/containers-listpanel--default)
+- [Long](./?path=/story/containers-listpanel--long)
 
-### Data Display
+[View Documentation](./?path=/docs/containers-listpanel--docs)
 
-#### Data Display/Board - Docs
-- [Data Display/Board - Docs](./?path=/docs/data-display-board--docs) {id:data-display-board--docs} [docs]
+## Placeholders
 
-#### Data Display/Bullet - Docs
-- [Data Display/Bullet - Docs](./?path=/docs/data-display-bullet--docs) {id:data-display-bullet--docs} [docs]
+### ContentPlaceholder
 
-#### Data Display/GroupValueCard - Docs
-- [Data Display/GroupValueCard - Docs](./?path=/docs/data-display-groupvaluecard--docs) {id:data-display-groupvaluecard--docs} [docs]
+A component that serves as a placeholder for content, displaying a skeleton grid.
 
-#### Data Display/Header - Docs
-- [Data Display/Header - Docs](./?path=/docs/data-display-header--docs) {id:data-display-header--docs} [docs]
+**Props:**
+- `size`: `number` - Optional size of the placeholder.
+- `p`: `number` - Optional padding for the placeholder.
+- `children`: `React.ReactNode` - Content to display before the skeleton grid
 
-#### Data Display/Label - Docs
-- [Data Display/Label - Docs](./?path=/docs/data-display-label--docs) {id:data-display-label--docs} [docs]
+**Stories:**
+- [Default](./?path=/story/placeholders-contentplaceholder--default)
 
-#### Data Display/ValueBoolean - Docs
-- [Data Display/ValueBoolean - Docs](./?path=/docs/data-display-valueboolean--docs) {id:data-display-valueboolean--docs} [docs]
+[View Documentation](./?path=/docs/placeholders-contentplaceholder--docs)
 
-#### Data Display/ValueCard - Docs
-- [Data Display/ValueCard - Docs](./?path=/docs/data-display-valuecard--docs) {id:data-display-valuecard--docs} [docs]
+### Placeholder
 
-#### Data Display/ValueDatetime - Docs
-- [Data Display/ValueDatetime - Docs](./?path=/docs/data-display-valuedatetime--docs) {id:data-display-valuedatetime--docs} [docs]
+Empty state placeholder with optional icon and actions
 
-#### Data Display/ValueImage - Docs
-- [Data Display/ValueImage - Docs](./?path=/docs/data-display-valueimage--docs) {id:data-display-valueimage--docs} [docs]
+**Props:**
+- `title`: `string` (required) - Main title text
+- `subtitle`: `string` (required) - Subtitle or description text
+- `icon`: `PlaceholderIcon` - Custom icon render function
+- `actions`: `PlaceholderAction[]` - Action buttons to display
 
-#### Data Display/ValueItem - Docs
-- [Data Display/ValueItem - Docs](./?path=/docs/data-display-valueitem--docs) {id:data-display-valueitem--docs} [docs]
+**Stories:**
+- [Default](./?path=/story/placeholders-placeholder--default)
+- [With Icon](./?path=/story/placeholders-placeholder--with-icon)
+- [With Actions](./?path=/story/placeholders-placeholder--with-actions)
 
-#### Data Display/ValueLabel - Docs
-- [Data Display/ValueLabel - Docs](./?path=/docs/data-display-valuelabel--docs) {id:data-display-valuelabel--docs} [docs]
+[View Documentation](./?path=/docs/placeholders-placeholder--docs)
 
-#### Data Display/ValueRating - Docs
-- [Data Display/ValueRating - Docs](./?path=/docs/data-display-valuerating--docs) {id:data-display-valuerating--docs} [docs]
+### SkeletonCard
 
-#### Data Display/ValueText - Docs
-- [Data Display/ValueText - Docs](./?path=/docs/data-display-valuetext--docs) {id:data-display-valuetext--docs} [docs]
+SkeletonCard component renders a skeleton loading placeholder for a card.
 
-### Dialogs - Docs
+**Props:**
+- `width`: `number | string` - The width of the skeleton card. Can be a number (interpreted as pixels) or a string (e.g., "100%", "50px").
+- `animation`: `"pulse" | "wave" | false` - The animation style for the skeleton card. Can be "pulse", "wave", or false to disable animation.
 
-#### Dialogs - Docs
-- [Dialogs - Docs](./?path=/docs/dialogs--docs) {id:dialogs--docs} [docs]
+**Stories:**
+- [Default](./?path=/story/placeholders-skeletoncard--default)
 
-### Dialogs
+[View Documentation](./?path=/docs/placeholders-skeletoncard--docs)
 
-#### Dialogs/BootstrapDialog - Docs
-- [Dialogs/BootstrapDialog - Docs](./?path=/docs/dialogs-bootstrapdialog--docs) {id:dialogs-bootstrapdialog--docs} [docs]
+### SkeletonGrid
 
-#### Dialogs/ConfirmDialog - Docs
-- [Dialogs/ConfirmDialog - Docs](./?path=/docs/dialogs-confirmdialog--docs) {id:dialogs-confirmdialog--docs} [docs]
+SkeletonGrid component renders a grid of skeleton cards.
 
-#### Dialogs/FormDialog - Docs
-- [Dialogs/FormDialog - Docs](./?path=/docs/dialogs-formdialog--docs) {id:dialogs-formdialog--docs} [docs]
+**Props:**
+- `size`: `number` - Optional size of the skeleton grid.
 
-### Feedback - Docs
+**Stories:**
+- [Default](./?path=/story/placeholders-skeletongrid--default)
 
-#### Feedback - Docs
-- [Feedback - Docs](./?path=/docs/feedback--docs) {id:feedback--docs} [docs]
+[View Documentation](./?path=/docs/placeholders-skeletongrid--docs)
 
-### Feedback
+## Navigation
 
-#### Feedback/NotificationCenter - Docs
-- [Feedback/NotificationCenter - Docs](./?path=/docs/feedback-notificationcenter--docs) {id:feedback-notificationcenter--docs} [docs]
+### Drawer
 
-#### Feedback/QueryContainer - Docs
-- [Feedback/QueryContainer - Docs](./?path=/docs/feedback-querycontainer--docs) {id:feedback-querycontainer--docs} [docs]
+**Stories:**
+- [Default](./?path=/story/navigation-drawer--default)
 
-### Inputs - Docs
+[View Documentation](./?path=/docs/navigation-drawer--docs)
 
-#### Inputs - Docs
-- [Inputs - Docs](./?path=/docs/inputs--docs) {id:inputs--docs} [docs]
+### Drawer demo
 
-### Inputs
+**Stories:**
+- [Temporary](./?path=/story/navigation-drawer-demo--temporary)
+- [Temporary Clipped](./?path=/story/navigation-drawer-demo--temporary-clipped)
+- [Persistent](./?path=/story/navigation-drawer-demo--persistent)
+- [Persistent Clipped](./?path=/story/navigation-drawer-demo--persistent-clipped)
+- [Mini Drawer](./?path=/story/navigation-drawer-demo--mini-drawer)
 
-#### Inputs/Autocomplete - Docs
-- [Inputs/Autocomplete - Docs](./?path=/docs/inputs-autocomplete--docs) {id:inputs-autocomplete--docs} [docs]
+[View Documentation](./?path=/docs/navigation-drawer-demo--docs)
 
-#### Inputs/DateRangeCalendar - Docs
-- [Inputs/DateRangeCalendar - Docs](./?path=/docs/inputs-daterangecalendar--docs) {id:inputs-daterangecalendar--docs} [docs]
+### DrawerAppBar
 
-#### Inputs/DateRangePicker - Docs
-- [Inputs/DateRangePicker - Docs](./?path=/docs/inputs-daterangepicker--docs) {id:inputs-daterangepicker--docs} [docs]
+**Stories:**
+- [Default](./?path=/story/navigation-drawerappbar--default)
+- [Without Title](./?path=/story/navigation-drawerappbar--without-title)
 
-#### Inputs/Select - Docs
-- [Inputs/Select - Docs](./?path=/docs/inputs-select--docs) {id:inputs-select--docs} [docs]
+[View Documentation](./?path=/docs/navigation-drawerappbar--docs)
 
-#### Inputs/TextField - Docs
-- [Inputs/TextField - Docs](./?path=/docs/inputs-textfield--docs) {id:inputs-textfield--docs} [docs]
+### DrawerContent
 
-### Installation - Docs
+**Stories:**
+- [Default](./?path=/story/navigation-drawercontent--default)
+- [Small](./?path=/story/navigation-drawercontent--small)
+- [Collapsed](./?path=/story/navigation-drawercontent--collapsed)
 
-#### Installation - Docs
-- [Installation - Docs](./?path=/docs/installation--docs) {id:installation--docs} [docs]
+[View Documentation](./?path=/docs/navigation-drawercontent--docs)
 
-### Introduction - Docs
+### DrawerItem
 
-#### Introduction - Docs
-- [Introduction - Docs](./?path=/docs/introduction--docs) {id:introduction--docs} [docs]
+**Stories:**
+- [Item (open)](./?path=/story/navigation-draweritem--default)
+- [Item (icon,open)](./?path=/story/navigation-draweritem--item-with-icon)
+- [Item (avatar,open)](./?path=/story/navigation-draweritem--item-with-avatar)
+- [Item (icon,label,open)](./?path=/story/navigation-draweritem--item-with-label)
+- [Item (icon,bullet,open)](./?path=/story/navigation-draweritem--item-with-bullet)
+- [Item (icon,label,selected,open)](./?path=/story/navigation-draweritem--item-selected)
+- [Item (icon,label,small,open)](./?path=/story/navigation-draweritem--item-size-small-with-icon)
+- [Item (avatar,small,open)](./?path=/story/navigation-draweritem--item-size-small-with-avatar)
+- [Item (icon,label,selected,small,open)](./?path=/story/navigation-draweritem--item-size-small-selected)
+- [Menu (open)](./?path=/story/navigation-draweritem--menu-not-selected)
+- [Menu (selected,open)](./?path=/story/navigation-draweritem--menu-selected)
+- [Menu (small,open)](./?path=/story/navigation-draweritem--menu-no-selected-small)
+- [Menu (small,selected,open)](./?path=/story/navigation-draweritem--menu-selected-small)
 
-### Layouts - Docs
+[View Documentation](./?path=/docs/navigation-draweritem--docs)
 
-#### Layouts - Docs
-- [Layouts - Docs](./?path=/docs/layouts--docs) {id:layouts--docs} [docs]
+### DrawerSubheader
 
-### Layouts
+**Stories:**
+- [Default](./?path=/story/navigation-drawersubheader--default)
+- [Small](./?path=/story/navigation-drawersubheader--small)
 
-#### Layouts/DrawerLayout - Docs
-- [Layouts/DrawerLayout - Docs](./?path=/docs/layouts-drawerlayout--docs) {id:layouts-drawerlayout--docs} [docs]
+[View Documentation](./?path=/docs/navigation-drawersubheader--docs)
 
-#### Layouts/HeaderLayout - Docs
-- [Layouts/HeaderLayout - Docs](./?path=/docs/layouts-headerlayout--docs) {id:layouts-headerlayout--docs} [docs]
+### TabCard
 
-### Navigation - Docs
+Card component with tabbed navigation
 
-#### Navigation - Docs
-- [Navigation - Docs](./?path=/docs/navigation--docs) {id:navigation--docs} [docs]
+**Props:**
+- `tabs`: `TabData[]` (required) - Array of tab configurations
+- `children`: `React.ReactNode` - Content to display in the tab panels
 
-### Navigation
+**Stories:**
+- [Default](./?path=/story/navigation-tabcard--default)
 
-#### Navigation/Drawer - Docs
-- [Navigation/Drawer - Docs](./?path=/docs/navigation-drawer--docs) {id:navigation-drawer--docs} [docs]
+[View Documentation](./?path=/docs/navigation-tabcard--docs)
 
-#### Navigation/Drawer demo - Docs
-- [Navigation/Drawer demo - Docs](./?path=/docs/navigation-drawer-demo--docs) {id:navigation-drawer-demo--docs} [docs]
+## Layouts
 
-#### Navigation/DrawerAppBar - Docs
-- [Navigation/DrawerAppBar - Docs](./?path=/docs/navigation-drawerappbar--docs) {id:navigation-drawerappbar--docs} [docs]
+### DrawerLayout
 
-#### Navigation/DrawerContent - Docs
-- [Navigation/DrawerContent - Docs](./?path=/docs/navigation-drawercontent--docs) {id:navigation-drawercontent--docs} [docs]
+**Stories:**
+- [Temporary](./?path=/story/layouts-drawerlayout--temporary)
+- [Persistent](./?path=/story/layouts-drawerlayout--persistent)
+- [No Clipped](./?path=/story/layouts-drawerlayout--no-clipped)
+- [Mini](./?path=/story/layouts-drawerlayout--mini)
+- [Mini Small](./?path=/story/layouts-drawerlayout--mini-small)
+- [Custom Link Component](./?path=/story/layouts-drawerlayout--custom-link-component)
 
-#### Navigation/DrawerItem - Docs
-- [Navigation/DrawerItem - Docs](./?path=/docs/navigation-draweritem--docs) {id:navigation-draweritem--docs} [docs]
+[View Documentation](./?path=/docs/layouts-drawerlayout--docs)
 
-#### Navigation/DrawerSubheader - Docs
-- [Navigation/DrawerSubheader - Docs](./?path=/docs/navigation-drawersubheader--docs) {id:navigation-drawersubheader--docs} [docs]
+### HeaderLayout
 
-#### Navigation/TabCard - Docs
-- [Navigation/TabCard - Docs](./?path=/docs/navigation-tabcard--docs) {id:navigation-tabcard--docs} [docs]
+A layout component that provides a header and content area with optional loading, fetching, and error states.
 
-### Placeholders - Docs
+**Props:**
+- `header`: `HeaderProps` - Props for the header slot.
+- `content`: `ContentProps` - Props for the content slot.
 
-#### Placeholders - Docs
-- [Placeholders - Docs](./?path=/docs/placeholders--docs) {id:placeholders--docs} [docs]
+**Stories:**
+- [Skeleton](./?path=/story/layouts-headerlayout--skeleton)
+- [Data Table](./?path=/story/layouts-headerlayout--data-table)
+- [Tabs](./?path=/story/layouts-headerlayout--tabs)
+- [Loading](./?path=/story/layouts-headerlayout--loading)
+- [Fetching](./?path=/story/layouts-headerlayout--fetching)
+- [Error](./?path=/story/layouts-headerlayout--error)
 
-### Placeholders
+[View Documentation](./?path=/docs/layouts-headerlayout--docs)
 
-#### Placeholders/ContentPlaceholder - Docs
-- [Placeholders/ContentPlaceholder - Docs](./?path=/docs/placeholders-contentplaceholder--docs) {id:placeholders-contentplaceholder--docs} [docs]
+## Alerts
 
-#### Placeholders/Placeholder - Docs
-- [Placeholders/Placeholder - Docs](./?path=/docs/placeholders-placeholder--docs) {id:placeholders-placeholder--docs} [docs]
+### ExpandableAlert
 
-#### Placeholders/SkeletonCard - Docs
-- [Placeholders/SkeletonCard - Docs](./?path=/docs/placeholders-skeletoncard--docs) {id:placeholders-skeletoncard--docs} [docs]
+Alert component with expandable metadata section
 
-#### Placeholders/SkeletonGrid - Docs
-- [Placeholders/SkeletonGrid - Docs](./?path=/docs/placeholders-skeletongrid--docs) {id:placeholders-skeletongrid--docs} [docs]
+**Props:**
+- `severity`: `AlertColor` (required) - Alert severity level
+- `iconMapping`: `Partial<Record<AlertColor, React.ReactNode>>` - Custom icon mapping for different severity levels
+- `title`: `string` - Alert title
+- `message`: `string` (required) - Alert message content
+- `metadata`: `string | string[]` - Additional metadata to display in expandable section
+- `metadataComponent`: `ReactElement` - Custom component to render in expandable section
+- `onClose`: `() => void` (required) - Callback when alert is closed
+- `sx`: `SxProps<Theme>` - Custom styles
 
-### Tables - Docs
+**Stories:**
+- [Default](./?path=/story/alerts-expandablealert--default)
+- [Success](./?path=/story/alerts-expandablealert--success)
+- [Error](./?path=/story/alerts-expandablealert--error)
+- [Warning](./?path=/story/alerts-expandablealert--warning)
+- [Wihtout Metadata](./?path=/story/alerts-expandablealert--wihtout-metadata)
+- [Metadata Custom Component](./?path=/story/alerts-expandablealert--metadata-custom-component)
+- [Snackbar Alert](./?path=/story/alerts-expandablealert--snackbar-alert)
 
-#### Tables - Docs
-- [Tables - Docs](./?path=/docs/tables--docs) {id:tables--docs} [docs]
+[View Documentation](./?path=/docs/alerts-expandablealert--docs)
 
-### Tables
+## Feedback
 
-#### Tables/RemoteDataTable - Docs
-- [Tables/RemoteDataTable - Docs](./?path=/docs/tables-remotedatatable--docs) {id:tables-remotedatatable--docs} [docs]
+### NotificationCenter
 
-### Usage - Docs
+**Stories:**
+- [Default](./?path=/story/feedback-notificationcenter--default)
 
-#### Usage - Docs
-- [Usage - Docs](./?path=/docs/usage--docs) {id:usage--docs} [docs]
+[View Documentation](./?path=/docs/feedback-notificationcenter--docs)
 
-## Stories
+### QueryContainer
 
-### Alerts
+Component to show different indicators based on the usual api query statuses
 
-#### Alerts/ExpandableAlert - Default
-- [Alerts/ExpandableAlert - Default](./?path=/story/alerts-expandablealert--default) {id:alerts-expandablealert--default} [story] [Docs](./?path=/docs/alerts-expandablealert--docs)
+**Props:**
+- `fetching`: `boolean | boolean[]` - There is a query in progress and we have available data
+- `loading`: `boolean | boolean[]` - There is a query in progress and we don't have available data
+- `error`: `QueryContainerError` - The query has returned an error
+- `success`: `QueryContainerSuccess` - The query has finished successfully
+- `children`: `React.ReactNode` - Content to display when not in loading/error/success state
 
-#### Alerts/ExpandableAlert - Error
-- [Alerts/ExpandableAlert - Error](./?path=/story/alerts-expandablealert--error) {id:alerts-expandablealert--error} [story] [Docs](./?path=/docs/alerts-expandablealert--docs)
+**Stories:**
+- [Default](./?path=/story/feedback-querycontainer--default)
+- [Fetching](./?path=/story/feedback-querycontainer--fetching)
+- [Fetching And Loading](./?path=/story/feedback-querycontainer--fetching-and-loading)
+- [Error](./?path=/story/feedback-querycontainer--error)
+- [Error With Only Message](./?path=/story/feedback-querycontainer--error-with-only-message)
+- [Success](./?path=/story/feedback-querycontainer--success)
+- [Success With Only Message](./?path=/story/feedback-querycontainer--success-with-only-message)
+- [Content](./?path=/story/feedback-querycontainer--content)
 
-#### Alerts/ExpandableAlert - Metadata Custom Component
-- [Alerts/ExpandableAlert - Metadata Custom Component](./?path=/story/alerts-expandablealert--metadata-custom-component) {id:alerts-expandablealert--metadata-custom-component} [story] [Docs](./?path=/docs/alerts-expandablealert--docs)
+[View Documentation](./?path=/docs/feedback-querycontainer--docs)
 
-#### Alerts/ExpandableAlert - Snackbar Alert
-- [Alerts/ExpandableAlert - Snackbar Alert](./?path=/story/alerts-expandablealert--snackbar-alert) {id:alerts-expandablealert--snackbar-alert} [story] [Docs](./?path=/docs/alerts-expandablealert--docs)
+## Tables
 
-#### Alerts/ExpandableAlert - Success
-- [Alerts/ExpandableAlert - Success](./?path=/story/alerts-expandablealert--success) {id:alerts-expandablealert--success} [story] [Docs](./?path=/docs/alerts-expandablealert--docs)
+### RemoteDataTable
 
-#### Alerts/ExpandableAlert - Warning
-- [Alerts/ExpandableAlert - Warning](./?path=/story/alerts-expandablealert--warning) {id:alerts-expandablealert--warning} [story] [Docs](./?path=/docs/alerts-expandablealert--docs)
+A table component designed for displaying remote/server-side data with built-in pagination, sorting, and filtering capabilities. This component is fully controlled - all state (pagination, sorting, filters) must be managed by the parent component. For convenience, use the `useRemoteDataTable` hook to manage this state.
 
-#### Alerts/ExpandableAlert - Without Metadata
-- [Alerts/ExpandableAlert - Without Metadata](./?path=/story/alerts-expandablealert--wihtout-metadata) {id:alerts-expandablealert--wihtout-metadata} [story] [Docs](./?path=/docs/alerts-expandablealert--docs)
+**Example:**
 
-### Containers
+```tsx
+const tableState = useRemoteDataTable({
+  initialPagination: { pageSize: 25 }
+});
 
-#### Containers/Content - Default
-- [Containers/Content - Default](./?path=/story/containers-content--default) {id:containers-content--default} [story] [Docs](./?path=/docs/containers-content--docs)
+<RemoteDataTable
+  data={items}
+  columns={columns}
+  {...tableState}
+  query={{
+    fields: queryFields,
+    filters: tableState.filters,
+    onFiltersChange: tableState.onFiltersChange
+  }}
+/>
+```
 
-#### Containers/ListPanel - Default
-- [Containers/ListPanel - Default](./?path=/story/containers-listpanel--default) {id:containers-listpanel--default} [story] [Docs](./?path=/docs/containers-listpanel--docs)
+**Stories:**
+- [Default](./?path=/story/tables-remotedatatable--default)
+- [Sorted By Created Date](./?path=/story/tables-remotedatatable--sorted-by-created-date)
+- [With Query Builder](./?path=/story/tables-remotedatatable--with-query-builder)
+- [Using Hook](./?path=/story/tables-remotedatatable--using-hook)
 
-#### Containers/ListPanel - Long
-- [Containers/ListPanel - Long](./?path=/story/containers-listpanel--long) {id:containers-listpanel--long} [story] [Docs](./?path=/docs/containers-listpanel--docs)
+[View Documentation](./?path=/docs/tables-remotedatatable--docs)
 
-### Data Display
-
-#### Data Display/Board - Array List
-- [Data Display/Board - Array List](./?path=/story/data-display-board--array-list) {id:data-display-board--array-list} [story] [Docs](./?path=/docs/data-display-board--docs)
-
-#### Data Display/Board - Array Paragraph
-- [Data Display/Board - Array Paragraph](./?path=/story/data-display-board--array-paragraph) {id:data-display-board--array-paragraph} [story] [Docs](./?path=/docs/data-display-board--docs)
-
-#### Data Display/Board - Children
-- [Data Display/Board - Children](./?path=/story/data-display-board--children) {id:data-display-board--children} [story] [Docs](./?path=/docs/data-display-board--docs)
-
-#### Data Display/Board - Default
-- [Data Display/Board - Default](./?path=/story/data-display-board--default) {id:data-display-board--default} [story] [Docs](./?path=/docs/data-display-board--docs)
-
-#### Data Display/Bullet - Default
-- [Data Display/Bullet - Default](./?path=/story/data-display-bullet--default) {id:data-display-bullet--default} [story] [Docs](./?path=/docs/data-display-bullet--docs)
-
-#### Data Display/Bullet - Default Variant
-- [Data Display/Bullet - Default Variant](./?path=/story/data-display-bullet--default-variant) {id:data-display-bullet--default-variant} [story] [Docs](./?path=/docs/data-display-bullet--docs)
-
-#### Data Display/Bullet - Error Variant
-- [Data Display/Bullet - Error Variant](./?path=/story/data-display-bullet--error-variant) {id:data-display-bullet--error-variant} [story] [Docs](./?path=/docs/data-display-bullet--docs)
-
-#### Data Display/Bullet - Info Variant
-- [Data Display/Bullet - Info Variant](./?path=/story/data-display-bullet--info-variant) {id:data-display-bullet--info-variant} [story] [Docs](./?path=/docs/data-display-bullet--docs)
-
-#### Data Display/Bullet - Primary Variant
-- [Data Display/Bullet - Primary Variant](./?path=/story/data-display-bullet--primary-variant) {id:data-display-bullet--primary-variant} [story] [Docs](./?path=/docs/data-display-bullet--docs)
-
-#### Data Display/Bullet - Secondary Variant
-- [Data Display/Bullet - Secondary Variant](./?path=/story/data-display-bullet--secondary-variant) {id:data-display-bullet--secondary-variant} [story] [Docs](./?path=/docs/data-display-bullet--docs)
-
-#### Data Display/Bullet - Warning Variant
-- [Data Display/Bullet - Warning Variant](./?path=/story/data-display-bullet--warning-variant) {id:data-display-bullet--warning-variant} [story] [Docs](./?path=/docs/data-display-bullet--docs)
-
-#### Data Display/GroupValueCard - Default
-- [Data Display/GroupValueCard - Default](./?path=/story/data-display-groupvaluecard--default) {id:data-display-groupvaluecard--default} [story] [Docs](./?path=/docs/data-display-groupvaluecard--docs)
-
-#### Data Display/GroupValueCard - Dense
-- [Data Display/GroupValueCard - Dense](./?path=/story/data-display-groupvaluecard--dense) {id:data-display-groupvaluecard--dense} [story] [Docs](./?path=/docs/data-display-groupvaluecard--docs)
-
-#### Data Display/GroupValueCard - Editable
-- [Data Display/GroupValueCard - Editable](./?path=/story/data-display-groupvaluecard--editable) {id:data-display-groupvaluecard--editable} [story] [Docs](./?path=/docs/data-display-groupvaluecard--docs)
-
-#### Data Display/GroupValueCard - Editable Dense
-- [Data Display/GroupValueCard - Editable Dense](./?path=/story/data-display-groupvaluecard--editable-dense) {id:data-display-groupvaluecard--editable-dense} [story] [Docs](./?path=/docs/data-display-groupvaluecard--docs)
-
-#### Data Display/GroupValueCard - With Data Table
-- [Data Display/GroupValueCard - With Data Table](./?path=/story/data-display-groupvaluecard--with-data-table) {id:data-display-groupvaluecard--with-data-table} [story] [Docs](./?path=/docs/data-display-groupvaluecard--docs)
-
-#### Data Display/GroupValueCard - With Image
-- [Data Display/GroupValueCard - With Image](./?path=/story/data-display-groupvaluecard--with-image) {id:data-display-groupvaluecard--with-image} [story] [Docs](./?path=/docs/data-display-groupvaluecard--docs)
-
-#### Data Display/GroupValueCard - Without Subtitle
-- [Data Display/GroupValueCard - Without Subtitle](./?path=/story/data-display-groupvaluecard--wihtout-subtitle) {id:data-display-groupvaluecard--wihtout-subtitle} [story] [Docs](./?path=/docs/data-display-groupvaluecard--docs)
-
-#### Data Display/Header - Color Default
-- [Data Display/Header - Color Default](./?path=/story/data-display-header--color-default) {id:data-display-header--color-default} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Color Inherit
-- [Data Display/Header - Color Inherit](./?path=/story/data-display-header--color-inherit) {id:data-display-header--color-inherit} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Color Paper
-- [Data Display/Header - Color Paper](./?path=/story/data-display-header--color-paper) {id:data-display-header--color-paper} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Color Primary
-- [Data Display/Header - Color Primary](./?path=/story/data-display-header--color-primary) {id:data-display-header--color-primary} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Color Secondary
-- [Data Display/Header - Color Secondary](./?path=/story/data-display-header--color-secondary) {id:data-display-header--color-secondary} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Color Transparent
-- [Data Display/Header - Color Transparent](./?path=/story/data-display-header--color-transparent) {id:data-display-header--color-transparent} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Custom Action Styles
-- [Data Display/Header - Custom Action Styles](./?path=/story/data-display-header--custom-action-styles) {id:data-display-header--custom-action-styles} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Custom Subtitle
-- [Data Display/Header - Custom Subtitle](./?path=/story/data-display-header--custom-subtitle) {id:data-display-header--custom-subtitle} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Custom Title
-- [Data Display/Header - Custom Title](./?path=/story/data-display-header--custom-title) {id:data-display-header--custom-title} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Default
-- [Data Display/Header - Default](./?path=/story/data-display-header--default) {id:data-display-header--default} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Navigation Button
-- [Data Display/Header - Navigation Button](./?path=/story/data-display-header--navigation-button) {id:data-display-header--navigation-button} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Only Title
-- [Data Display/Header - Only Title](./?path=/story/data-display-header--only-title) {id:data-display-header--only-title} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Subtitle Loading
-- [Data Display/Header - Subtitle Loading](./?path=/story/data-display-header--subtitle-loading) {id:data-display-header--subtitle-loading} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - Title Loading
-- [Data Display/Header - Title Loading](./?path=/story/data-display-header--title-loading) {id:data-display-header--title-loading} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - With Actions
-- [Data Display/Header - With Actions](./?path=/story/data-display-header--with-actions) {id:data-display-header--with-actions} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - With Border
-- [Data Display/Header - With Border](./?path=/story/data-display-header--with-border) {id:data-display-header--with-border} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - With Breadcrumbs
-- [Data Display/Header - With Breadcrumbs](./?path=/story/data-display-header--with-breadcumbs) {id:data-display-header--with-breadcumbs} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - With Panel Tabs
-- [Data Display/Header - With Panel Tabs](./?path=/story/data-display-header--with-panel-tabs) {id:data-display-header--with-panel-tabs} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - With Slot Props Customization
-- [Data Display/Header - With Slot Props Customization](./?path=/story/data-display-header--with-slot-props-customization) {id:data-display-header--with-slot-props-customization} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Header - With Subheader
-- [Data Display/Header - With Subheader](./?path=/story/data-display-header--with-subheader) {id:data-display-header--with-subheader} [story] [Docs](./?path=/docs/data-display-header--docs)
-
-#### Data Display/Label - Dark Color
-- [Data Display/Label - Dark Color](./?path=/story/data-display-label--dark-color) {id:data-display-label--dark-color} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/Label - Default
-- [Data Display/Label - Default](./?path=/story/data-display-label--default) {id:data-display-label--default} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/Label - Error
-- [Data Display/Label - Error](./?path=/story/data-display-label--error) {id:data-display-label--error} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/Label - Info
-- [Data Display/Label - Info](./?path=/story/data-display-label--info) {id:data-display-label--info} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/Label - Light Color
-- [Data Display/Label - Light Color](./?path=/story/data-display-label--light-color) {id:data-display-label--light-color} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/Label - Primary
-- [Data Display/Label - Primary](./?path=/story/data-display-label--primary) {id:data-display-label--primary} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/Label - Secondary
-- [Data Display/Label - Secondary](./?path=/story/data-display-label--secondary) {id:data-display-label--secondary} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/Label - Warning
-- [Data Display/Label - Warning](./?path=/story/data-display-label--warning) {id:data-display-label--warning} [story] [Docs](./?path=/docs/data-display-label--docs)
-
-#### Data Display/ValueBoolean - Default
-- [Data Display/ValueBoolean - Default](./?path=/story/data-display-valueboolean--default) {id:data-display-valueboolean--default} [story] [Docs](./?path=/docs/data-display-valueboolean--docs)
-
-#### Data Display/ValueBoolean - Dense
-- [Data Display/ValueBoolean - Dense](./?path=/story/data-display-valueboolean--dense) {id:data-display-valueboolean--dense} [story] [Docs](./?path=/docs/data-display-valueboolean--docs)
-
-#### Data Display/ValueBoolean - Dense Editable
-- [Data Display/ValueBoolean - Dense Editable](./?path=/story/data-display-valueboolean--dense-editable) {id:data-display-valueboolean--dense-editable} [story] [Docs](./?path=/docs/data-display-valueboolean--docs)
-
-#### Data Display/ValueBoolean - Editable
-- [Data Display/ValueBoolean - Editable](./?path=/story/data-display-valueboolean--editable) {id:data-display-valueboolean--editable} [story] [Docs](./?path=/docs/data-display-valueboolean--docs)
-
-#### Data Display/ValueBoolean - False
-- [Data Display/ValueBoolean - False](./?path=/story/data-display-valueboolean--false) {id:data-display-valueboolean--false} [story] [Docs](./?path=/docs/data-display-valueboolean--docs)
-
-#### Data Display/ValueBoolean - True
-- [Data Display/ValueBoolean - True](./?path=/story/data-display-valueboolean--true) {id:data-display-valueboolean--true} [story] [Docs](./?path=/docs/data-display-valueboolean--docs)
-
-#### Data Display/ValueCard - Default
-- [Data Display/ValueCard - Default](./?path=/story/data-display-valuecard--default) {id:data-display-valuecard--default} [story] [Docs](./?path=/docs/data-display-valuecard--docs)
-
-#### Data Display/ValueDatetime - Custom Placeholder
-- [Data Display/ValueDatetime - Custom Placeholder](./?path=/story/data-display-valuedatetime--custom-placeholder) {id:data-display-valuedatetime--custom-placeholder} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueDatetime - Default
-- [Data Display/ValueDatetime - Default](./?path=/story/data-display-valuedatetime--default) {id:data-display-valuedatetime--default} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueDatetime - Dense
-- [Data Display/ValueDatetime - Dense](./?path=/story/data-display-valuedatetime--dense) {id:data-display-valuedatetime--dense} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueDatetime - Dense Editable
-- [Data Display/ValueDatetime - Dense Editable](./?path=/story/data-display-valuedatetime--dense-editable) {id:data-display-valuedatetime--dense-editable} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueDatetime - Editable Date
-- [Data Display/ValueDatetime - Editable Date](./?path=/story/data-display-valuedatetime--editable-date) {id:data-display-valuedatetime--editable-date} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueDatetime - Editable Datetime
-- [Data Display/ValueDatetime - Editable Datetime](./?path=/story/data-display-valuedatetime--editable-datetime) {id:data-display-valuedatetime--editable-datetime} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueDatetime - Editable Time
-- [Data Display/ValueDatetime - Editable Time](./?path=/story/data-display-valuedatetime--editable-time) {id:data-display-valuedatetime--editable-time} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueDatetime - Placeholder
-- [Data Display/ValueDatetime - Placeholder](./?path=/story/data-display-valuedatetime--placeholder) {id:data-display-valuedatetime--placeholder} [story] [Docs](./?path=/docs/data-display-valuedatetime--docs)
-
-#### Data Display/ValueImage - Custom Size
-- [Data Display/ValueImage - Custom Size](./?path=/story/data-display-valueimage--custom-size) {id:data-display-valueimage--custom-size} [story] [Docs](./?path=/docs/data-display-valueimage--docs)
-
-#### Data Display/ValueImage - Default
-- [Data Display/ValueImage - Default](./?path=/story/data-display-valueimage--default) {id:data-display-valueimage--default} [story] [Docs](./?path=/docs/data-display-valueimage--docs)
-
-#### Data Display/ValueImage - Dense
-- [Data Display/ValueImage - Dense](./?path=/story/data-display-valueimage--dense) {id:data-display-valueimage--dense} [story] [Docs](./?path=/docs/data-display-valueimage--docs)
-
-#### Data Display/ValueItem - Borderless
-- [Data Display/ValueItem - Borderless](./?path=/story/data-display-valueitem--borderless) {id:data-display-valueitem--borderless} [story] [Docs](./?path=/docs/data-display-valueitem--docs)
-
-#### Data Display/ValueItem - Breakpoints Array Border
-- [Data Display/ValueItem - Breakpoints Array Border](./?path=/story/data-display-valueitem--breakpoints-array-border) {id:data-display-valueitem--breakpoints-array-border} [story] [Docs](./?path=/docs/data-display-valueitem--docs)
-
-#### Data Display/ValueItem - Breakpoints Border
-- [Data Display/ValueItem - Breakpoints Border](./?path=/story/data-display-valueitem--breakpoints-border) {id:data-display-valueitem--breakpoints-border} [story] [Docs](./?path=/docs/data-display-valueitem--docs)
-
-#### Data Display/ValueItem - Default
-- [Data Display/ValueItem - Default](./?path=/story/data-display-valueitem--default) {id:data-display-valueitem--default} [story] [Docs](./?path=/docs/data-display-valueitem--docs)
-
-#### Data Display/ValueLabel - Custom Placeholder
-- [Data Display/ValueLabel - Custom Placeholder](./?path=/story/data-display-valuelabel--custom-placeholder) {id:data-display-valuelabel--custom-placeholder} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - Default
-- [Data Display/ValueLabel - Default](./?path=/story/data-display-valuelabel--default) {id:data-display-valuelabel--default} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - List Multiple Colors
-- [Data Display/ValueLabel - List Multiple Colors](./?path=/story/data-display-valuelabel--list-multiple-colors) {id:data-display-valuelabel--list-multiple-colors} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - List Multiple Variants
-- [Data Display/ValueLabel - List Multiple Variants](./?path=/story/data-display-valuelabel--list-multiple-variants) {id:data-display-valuelabel--list-multiple-variants} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - List Single Color
-- [Data Display/ValueLabel - List Single Color](./?path=/story/data-display-valuelabel--list-single-color) {id:data-display-valuelabel--list-single-color} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - List Single Variant
-- [Data Display/ValueLabel - List Single Variant](./?path=/story/data-display-valuelabel--list-single-variant) {id:data-display-valuelabel--list-single-variant} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - Number As Value
-- [Data Display/ValueLabel - Number As Value](./?path=/story/data-display-valuelabel--number-as-value) {id:data-display-valuelabel--number-as-value} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - Number List
-- [Data Display/ValueLabel - Number List](./?path=/story/data-display-valuelabel--number-list) {id:data-display-valuelabel--number-list} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - Placeholder
-- [Data Display/ValueLabel - Placeholder](./?path=/story/data-display-valuelabel--placeholder) {id:data-display-valuelabel--placeholder} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - Text List
-- [Data Display/ValueLabel - Text List](./?path=/story/data-display-valuelabel--text-list) {id:data-display-valuelabel--text-list} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueLabel - Variant
-- [Data Display/ValueLabel - Variant](./?path=/story/data-display-valuelabel--variant) {id:data-display-valuelabel--variant} [story] [Docs](./?path=/docs/data-display-valuelabel--docs)
-
-#### Data Display/ValueRating - Default
-- [Data Display/ValueRating - Default](./?path=/story/data-display-valuerating--default) {id:data-display-valuerating--default} [story] [Docs](./?path=/docs/data-display-valuerating--docs)
-
-#### Data Display/ValueRating - Dense
-- [Data Display/ValueRating - Dense](./?path=/story/data-display-valuerating--dense) {id:data-display-valuerating--dense} [story] [Docs](./?path=/docs/data-display-valuerating--docs)
-
-#### Data Display/ValueRating - Dense Editable
-- [Data Display/ValueRating - Dense Editable](./?path=/story/data-display-valuerating--dense-editable) {id:data-display-valuerating--dense-editable} [story] [Docs](./?path=/docs/data-display-valuerating--docs)
-
-#### Data Display/ValueRating - Editable
-- [Data Display/ValueRating - Editable](./?path=/story/data-display-valuerating--editable) {id:data-display-valuerating--editable} [story] [Docs](./?path=/docs/data-display-valuerating--docs)
-
-#### Data Display/ValueRating - Max
-- [Data Display/ValueRating - Max](./?path=/story/data-display-valuerating--max) {id:data-display-valuerating--max} [story] [Docs](./?path=/docs/data-display-valuerating--docs)
-
-#### Data Display/ValueText - Custom Placeholder
-- [Data Display/ValueText - Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder) {id:data-display-valuetext--custom-placeholder} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Default
-- [Data Display/ValueText - Default](./?path=/story/data-display-valuetext--default) {id:data-display-valuetext--default} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Dense
-- [Data Display/ValueText - Dense](./?path=/story/data-display-valuetext--dense) {id:data-display-valuetext--dense} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Dense Editable
-- [Data Display/ValueText - Dense Editable](./?path=/story/data-display-valuetext--dense-editable) {id:data-display-valuetext--dense-editable} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Editable
-- [Data Display/ValueText - Editable](./?path=/story/data-display-valuetext--editable) {id:data-display-valuetext--editable} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Number As Value
-- [Data Display/ValueText - Number As Value](./?path=/story/data-display-valuetext--number-as-value) {id:data-display-valuetext--number-as-value} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Placeholder
-- [Data Display/ValueText - Placeholder](./?path=/story/data-display-valuetext--placeholder) {id:data-display-valuetext--placeholder} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Truncated Text
-- [Data Display/ValueText - Truncated Text](./?path=/story/data-display-valuetext--truncated-text) {id:data-display-valuetext--truncated-text} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-#### Data Display/ValueText - Truncated Text Editable
-- [Data Display/ValueText - Truncated Text Editable](./?path=/story/data-display-valuetext--truncated-text-editable) {id:data-display-valuetext--truncated-text-editable} [story] [Docs](./?path=/docs/data-display-valuetext--docs)
-
-### Dialogs
-
-#### Dialogs/BootstrapDialog - Acceptable And Cancelable
-- [Dialogs/BootstrapDialog - Acceptable And Cancelable](./?path=/story/dialogs-bootstrapdialog--acceptable-and-cancelable) {id:dialogs-bootstrapdialog--acceptable-and-cancelable} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/BootstrapDialog - Custom Texts
-- [Dialogs/BootstrapDialog - Custom Texts](./?path=/story/dialogs-bootstrapdialog--custom-texts) {id:dialogs-bootstrapdialog--custom-texts} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/BootstrapDialog - Default
-- [Dialogs/BootstrapDialog - Default](./?path=/story/dialogs-bootstrapdialog--default) {id:dialogs-bootstrapdialog--default} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/BootstrapDialog - Disabled
-- [Dialogs/BootstrapDialog - Disabled](./?path=/story/dialogs-bootstrapdialog--disabled) {id:dialogs-bootstrapdialog--disabled} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/BootstrapDialog - Loading
-- [Dialogs/BootstrapDialog - Loading](./?path=/story/dialogs-bootstrapdialog--loading) {id:dialogs-bootstrapdialog--loading} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/BootstrapDialog - Loading With Acceptable
-- [Dialogs/BootstrapDialog - Loading With Acceptable](./?path=/story/dialogs-bootstrapdialog--loading-with-acceptable) {id:dialogs-bootstrapdialog--loading-with-acceptable} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/BootstrapDialog - With Extra Actions
-- [Dialogs/BootstrapDialog - With Extra Actions](./?path=/story/dialogs-bootstrapdialog--with-extra-actions) {id:dialogs-bootstrapdialog--with-extra-actions} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/BootstrapDialog - With Slot Props Customization
-- [Dialogs/BootstrapDialog - With Slot Props Customization](./?path=/story/dialogs-bootstrapdialog--with-slot-props-customization) {id:dialogs-bootstrapdialog--with-slot-props-customization} [story] [Docs](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-#### Dialogs/ConfirmDialog - Custom Button Text
-- [Dialogs/ConfirmDialog - Custom Button Text](./?path=/story/dialogs-confirmdialog--custom-button-text) {id:dialogs-confirmdialog--custom-button-text} [story] [Docs](./?path=/docs/dialogs-confirmdialog--docs)
-
-#### Dialogs/ConfirmDialog - Default
-- [Dialogs/ConfirmDialog - Default](./?path=/story/dialogs-confirmdialog--default) {id:dialogs-confirmdialog--default} [story] [Docs](./?path=/docs/dialogs-confirmdialog--docs)
-
-#### Dialogs/ConfirmDialog - Disabled
-- [Dialogs/ConfirmDialog - Disabled](./?path=/story/dialogs-confirmdialog--disabled) {id:dialogs-confirmdialog--disabled} [story] [Docs](./?path=/docs/dialogs-confirmdialog--docs)
-
-#### Dialogs/ConfirmDialog - Loading
-- [Dialogs/ConfirmDialog - Loading](./?path=/story/dialogs-confirmdialog--loading) {id:dialogs-confirmdialog--loading} [story] [Docs](./?path=/docs/dialogs-confirmdialog--docs)
-
-#### Dialogs/ConfirmDialog - Passphrase
-- [Dialogs/ConfirmDialog - Passphrase](./?path=/story/dialogs-confirmdialog--passphrase) {id:dialogs-confirmdialog--passphrase} [story] [Docs](./?path=/docs/dialogs-confirmdialog--docs)
-
-#### Dialogs/FormDialog - Custom Button Text
-- [Dialogs/FormDialog - Custom Button Text](./?path=/story/dialogs-formdialog--custom-button-text) {id:dialogs-formdialog--custom-button-text} [story] [Docs](./?path=/docs/dialogs-formdialog--docs)
-
-#### Dialogs/FormDialog - Default
-- [Dialogs/FormDialog - Default](./?path=/story/dialogs-formdialog--default) {id:dialogs-formdialog--default} [story] [Docs](./?path=/docs/dialogs-formdialog--docs)
-
-#### Dialogs/FormDialog - Disabled
-- [Dialogs/FormDialog - Disabled](./?path=/story/dialogs-formdialog--disabled) {id:dialogs-formdialog--disabled} [story] [Docs](./?path=/docs/dialogs-formdialog--docs)
-
-#### Dialogs/FormDialog - Loading
-- [Dialogs/FormDialog - Loading](./?path=/story/dialogs-formdialog--loading) {id:dialogs-formdialog--loading} [story] [Docs](./?path=/docs/dialogs-formdialog--docs)
-
-### Feedback
-
-#### Feedback/NotificationCenter - Default
-- [Feedback/NotificationCenter - Default](./?path=/story/feedback-notificationcenter--default) {id:feedback-notificationcenter--default} [story] [Docs](./?path=/docs/feedback-notificationcenter--docs)
-
-#### Feedback/QueryContainer - Content
-- [Feedback/QueryContainer - Content](./?path=/story/feedback-querycontainer--content) {id:feedback-querycontainer--content} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-#### Feedback/QueryContainer - Default
-- [Feedback/QueryContainer - Default](./?path=/story/feedback-querycontainer--default) {id:feedback-querycontainer--default} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-#### Feedback/QueryContainer - Error
-- [Feedback/QueryContainer - Error](./?path=/story/feedback-querycontainer--error) {id:feedback-querycontainer--error} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-#### Feedback/QueryContainer - Error With Only Message
-- [Feedback/QueryContainer - Error With Only Message](./?path=/story/feedback-querycontainer--error-with-only-message) {id:feedback-querycontainer--error-with-only-message} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-#### Feedback/QueryContainer - Fetching
-- [Feedback/QueryContainer - Fetching](./?path=/story/feedback-querycontainer--fetching) {id:feedback-querycontainer--fetching} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-#### Feedback/QueryContainer - Fetching And Loading
-- [Feedback/QueryContainer - Fetching And Loading](./?path=/story/feedback-querycontainer--fetching-and-loading) {id:feedback-querycontainer--fetching-and-loading} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-#### Feedback/QueryContainer - Success
-- [Feedback/QueryContainer - Success](./?path=/story/feedback-querycontainer--success) {id:feedback-querycontainer--success} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-#### Feedback/QueryContainer - Success With Only Message
-- [Feedback/QueryContainer - Success With Only Message](./?path=/story/feedback-querycontainer--success-with-only-message) {id:feedback-querycontainer--success-with-only-message} [story] [Docs](./?path=/docs/feedback-querycontainer--docs)
-
-### Inputs
-
-#### Inputs/Autocomplete - Default
-- [Inputs/Autocomplete - Default](./?path=/story/inputs-autocomplete--default) {id:inputs-autocomplete--default} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Fetching
-- [Inputs/Autocomplete - Fetching](./?path=/story/inputs-autocomplete--fetching) {id:inputs-autocomplete--fetching} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Helper Text
-- [Inputs/Autocomplete - Helper Text](./?path=/story/inputs-autocomplete--helper-text) {id:inputs-autocomplete--helper-text} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Loading
-- [Inputs/Autocomplete - Loading](./?path=/story/inputs-autocomplete--loading) {id:inputs-autocomplete--loading} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Loading And Fetching
-- [Inputs/Autocomplete - Loading And Fetching](./?path=/story/inputs-autocomplete--loading-and-fetching) {id:inputs-autocomplete--loading-and-fetching} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Loading With Value
-- [Inputs/Autocomplete - Loading With Value](./?path=/story/inputs-autocomplete--loading-with-value) {id:inputs-autocomplete--loading-with-value} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Size Small
-- [Inputs/Autocomplete - Size Small](./?path=/story/inputs-autocomplete--size-small) {id:inputs-autocomplete--size-small} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Size Small Fetching
-- [Inputs/Autocomplete - Size Small Fetching](./?path=/story/inputs-autocomplete--size-small-fetching) {id:inputs-autocomplete--size-small-fetching} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - Size Small Loading
-- [Inputs/Autocomplete - Size Small Loading](./?path=/story/inputs-autocomplete--size-small-loading) {id:inputs-autocomplete--size-small-loading} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - With Background
-- [Inputs/Autocomplete - With Background](./?path=/story/inputs-autocomplete--with-background) {id:inputs-autocomplete--with-background} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/Autocomplete - With Slot Props Customization
-- [Inputs/Autocomplete - With Slot Props Customization](./?path=/story/inputs-autocomplete--with-slot-props-customization) {id:inputs-autocomplete--with-slot-props-customization} [story] [Docs](./?path=/docs/inputs-autocomplete--docs)
-
-#### Inputs/DateRangeCalendar - Default
-- [Inputs/DateRangeCalendar - Default](./?path=/story/inputs-daterangecalendar--default) {id:inputs-daterangecalendar--default} [story] [Docs](./?path=/docs/inputs-daterangecalendar--docs)
-
-#### Inputs/DateRangePicker - Default
-- [Inputs/DateRangePicker - Default](./?path=/story/inputs-daterangepicker--default) {id:inputs-daterangepicker--default} [story] [Docs](./?path=/docs/inputs-daterangepicker--docs)
-
-#### Inputs/DateRangePicker - Small
-- [Inputs/DateRangePicker - Small](./?path=/story/inputs-daterangepicker--small) {id:inputs-daterangepicker--small} [story] [Docs](./?path=/docs/inputs-daterangepicker--docs)
-
-#### Inputs/Select - Default
-- [Inputs/Select - Default](./?path=/story/inputs-select--default) {id:inputs-select--default} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/Select - Fetching
-- [Inputs/Select - Fetching](./?path=/story/inputs-select--fetching) {id:inputs-select--fetching} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/Select - Loading
-- [Inputs/Select - Loading](./?path=/story/inputs-select--loading) {id:inputs-select--loading} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/Select - Select Loaded
-- [Inputs/Select - Select Loaded](./?path=/story/inputs-select--select-loaded) {id:inputs-select--select-loaded} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/Select - Size Small
-- [Inputs/Select - Size Small](./?path=/story/inputs-select--size-small) {id:inputs-select--size-small} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/Select - With Background
-- [Inputs/Select - With Background](./?path=/story/inputs-select--with-background) {id:inputs-select--with-background} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/Select - With Slot Props Customization
-- [Inputs/Select - With Slot Props Customization](./?path=/story/inputs-select--with-slot-props-customization) {id:inputs-select--with-slot-props-customization} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/Select - Without Full Width
-- [Inputs/Select - Without Full Width](./?path=/story/inputs-select--without-full-width) {id:inputs-select--without-full-width} [story] [Docs](./?path=/docs/inputs-select--docs)
-
-#### Inputs/TextField - Default
-- [Inputs/TextField - Default](./?path=/story/inputs-textfield--default) {id:inputs-textfield--default} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Disabled
-- [Inputs/TextField - Disabled](./?path=/story/inputs-textfield--disabled) {id:inputs-textfield--disabled} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Fetching
-- [Inputs/TextField - Fetching](./?path=/story/inputs-textfield--fetching) {id:inputs-textfield--fetching} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Fetching With End Adornment
-- [Inputs/TextField - Fetching With End Adornment](./?path=/story/inputs-textfield--fetching-with-end-adornment) {id:inputs-textfield--fetching-with-end-adornment} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Helper Text
-- [Inputs/TextField - Helper Text](./?path=/story/inputs-textfield--helper-text) {id:inputs-textfield--helper-text} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Loading
-- [Inputs/TextField - Loading](./?path=/story/inputs-textfield--loading) {id:inputs-textfield--loading} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Loading And Fetching
-- [Inputs/TextField - Loading And Fetching](./?path=/story/inputs-textfield--loading-and-fetching) {id:inputs-textfield--loading-and-fetching} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Loading With Value
-- [Inputs/TextField - Loading With Value](./?path=/story/inputs-textfield--loading-with-value) {id:inputs-textfield--loading-with-value} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Size Small
-- [Inputs/TextField - Size Small](./?path=/story/inputs-textfield--size-small) {id:inputs-textfield--size-small} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Size Small Fetching
-- [Inputs/TextField - Size Small Fetching](./?path=/story/inputs-textfield--size-small-fetching) {id:inputs-textfield--size-small-fetching} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - Size Small Loading
-- [Inputs/TextField - Size Small Loading](./?path=/story/inputs-textfield--size-small-loading) {id:inputs-textfield--size-small-loading} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - With Background
-- [Inputs/TextField - With Background](./?path=/story/inputs-textfield--with-background) {id:inputs-textfield--with-background} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-#### Inputs/TextField - With Slot Props Customization
-- [Inputs/TextField - With Slot Props Customization](./?path=/story/inputs-textfield--with-slot-props-customization) {id:inputs-textfield--with-slot-props-customization} [story] [Docs](./?path=/docs/inputs-textfield--docs)
-
-### Layouts
-
-#### Layouts/DrawerLayout - Custom Link Component
-- [Layouts/DrawerLayout - Custom Link Component](./?path=/story/layouts-drawerlayout--custom-link-component) {id:layouts-drawerlayout--custom-link-component} [story] [Docs](./?path=/docs/layouts-drawerlayout--docs)
-
-#### Layouts/DrawerLayout - Mini
-- [Layouts/DrawerLayout - Mini](./?path=/story/layouts-drawerlayout--mini) {id:layouts-drawerlayout--mini} [story] [Docs](./?path=/docs/layouts-drawerlayout--docs)
-
-#### Layouts/DrawerLayout - Mini Small
-- [Layouts/DrawerLayout - Mini Small](./?path=/story/layouts-drawerlayout--mini-small) {id:layouts-drawerlayout--mini-small} [story] [Docs](./?path=/docs/layouts-drawerlayout--docs)
-
-#### Layouts/DrawerLayout - No Clipped
-- [Layouts/DrawerLayout - No Clipped](./?path=/story/layouts-drawerlayout--no-clipped) {id:layouts-drawerlayout--no-clipped} [story] [Docs](./?path=/docs/layouts-drawerlayout--docs)
-
-#### Layouts/DrawerLayout - Persistent
-- [Layouts/DrawerLayout - Persistent](./?path=/story/layouts-drawerlayout--persistent) {id:layouts-drawerlayout--persistent} [story] [Docs](./?path=/docs/layouts-drawerlayout--docs)
-
-#### Layouts/DrawerLayout - Temporary
-- [Layouts/DrawerLayout - Temporary](./?path=/story/layouts-drawerlayout--temporary) {id:layouts-drawerlayout--temporary} [story] [Docs](./?path=/docs/layouts-drawerlayout--docs)
-
-#### Layouts/HeaderLayout - Data Table
-- [Layouts/HeaderLayout - Data Table](./?path=/story/layouts-headerlayout--data-table) {id:layouts-headerlayout--data-table} [story] [Docs](./?path=/docs/layouts-headerlayout--docs)
-
-#### Layouts/HeaderLayout - Error
-- [Layouts/HeaderLayout - Error](./?path=/story/layouts-headerlayout--error) {id:layouts-headerlayout--error} [story] [Docs](./?path=/docs/layouts-headerlayout--docs)
-
-#### Layouts/HeaderLayout - Fetching
-- [Layouts/HeaderLayout - Fetching](./?path=/story/layouts-headerlayout--fetching) {id:layouts-headerlayout--fetching} [story] [Docs](./?path=/docs/layouts-headerlayout--docs)
-
-#### Layouts/HeaderLayout - Loading
-- [Layouts/HeaderLayout - Loading](./?path=/story/layouts-headerlayout--loading) {id:layouts-headerlayout--loading} [story] [Docs](./?path=/docs/layouts-headerlayout--docs)
-
-#### Layouts/HeaderLayout - Skeleton
-- [Layouts/HeaderLayout - Skeleton](./?path=/story/layouts-headerlayout--skeleton) {id:layouts-headerlayout--skeleton} [story] [Docs](./?path=/docs/layouts-headerlayout--docs)
-
-#### Layouts/HeaderLayout - Tabs
-- [Layouts/HeaderLayout - Tabs](./?path=/story/layouts-headerlayout--tabs) {id:layouts-headerlayout--tabs} [story] [Docs](./?path=/docs/layouts-headerlayout--docs)
-
-### Navigation
-
-#### Navigation/Drawer - Default
-- [Navigation/Drawer - Default](./?path=/story/navigation-drawer--default) {id:navigation-drawer--default} [story] [Docs](./?path=/docs/navigation-drawer--docs)
-
-#### Navigation/Drawer demo - Mini Drawer
-- [Navigation/Drawer demo - Mini Drawer](./?path=/story/navigation-drawer-demo--mini-drawer) {id:navigation-drawer-demo--mini-drawer} [story] [Docs](./?path=/docs/navigation-drawer-demo--docs)
-
-#### Navigation/Drawer demo - Persistent
-- [Navigation/Drawer demo - Persistent](./?path=/story/navigation-drawer-demo--persistent) {id:navigation-drawer-demo--persistent} [story] [Docs](./?path=/docs/navigation-drawer-demo--docs)
-
-#### Navigation/Drawer demo - Persistent Clipped
-- [Navigation/Drawer demo - Persistent Clipped](./?path=/story/navigation-drawer-demo--persistent-clipped) {id:navigation-drawer-demo--persistent-clipped} [story] [Docs](./?path=/docs/navigation-drawer-demo--docs)
-
-#### Navigation/Drawer demo - Temporary
-- [Navigation/Drawer demo - Temporary](./?path=/story/navigation-drawer-demo--temporary) {id:navigation-drawer-demo--temporary} [story] [Docs](./?path=/docs/navigation-drawer-demo--docs)
-
-#### Navigation/Drawer demo - Temporary Clipped
-- [Navigation/Drawer demo - Temporary Clipped](./?path=/story/navigation-drawer-demo--temporary-clipped) {id:navigation-drawer-demo--temporary-clipped} [story] [Docs](./?path=/docs/navigation-drawer-demo--docs)
-
-#### Navigation/DrawerAppBar - Default
-- [Navigation/DrawerAppBar - Default](./?path=/story/navigation-drawerappbar--default) {id:navigation-drawerappbar--default} [story] [Docs](./?path=/docs/navigation-drawerappbar--docs)
-
-#### Navigation/DrawerAppBar - Without Title
-- [Navigation/DrawerAppBar - Without Title](./?path=/story/navigation-drawerappbar--without-title) {id:navigation-drawerappbar--without-title} [story] [Docs](./?path=/docs/navigation-drawerappbar--docs)
-
-#### Navigation/DrawerContent - Collapsed
-- [Navigation/DrawerContent - Collapsed](./?path=/story/navigation-drawercontent--collapsed) {id:navigation-drawercontent--collapsed} [story] [Docs](./?path=/docs/navigation-drawercontent--docs)
-
-#### Navigation/DrawerContent - Default
-- [Navigation/DrawerContent - Default](./?path=/story/navigation-drawercontent--default) {id:navigation-drawercontent--default} [story] [Docs](./?path=/docs/navigation-drawercontent--docs)
-
-#### Navigation/DrawerContent - Small
-- [Navigation/DrawerContent - Small](./?path=/story/navigation-drawercontent--small) {id:navigation-drawercontent--small} [story] [Docs](./?path=/docs/navigation-drawercontent--docs)
-
-#### Navigation/DrawerItem - Item (avatar,open)
-- [Navigation/DrawerItem - Item (avatar,open)](./?path=/story/navigation-draweritem--item-with-avatar) {id:navigation-draweritem--item-with-avatar} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (avatar,small,open)
-- [Navigation/DrawerItem - Item (avatar,small,open)](./?path=/story/navigation-draweritem--item-size-small-with-avatar) {id:navigation-draweritem--item-size-small-with-avatar} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (icon,bullet,open)
-- [Navigation/DrawerItem - Item (icon,bullet,open)](./?path=/story/navigation-draweritem--item-with-bullet) {id:navigation-draweritem--item-with-bullet} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (icon,label,open)
-- [Navigation/DrawerItem - Item (icon,label,open)](./?path=/story/navigation-draweritem--item-with-label) {id:navigation-draweritem--item-with-label} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (icon,label,selected,open)
-- [Navigation/DrawerItem - Item (icon,label,selected,open)](./?path=/story/navigation-draweritem--item-selected) {id:navigation-draweritem--item-selected} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (icon,label,selected,small,open)
-- [Navigation/DrawerItem - Item (icon,label,selected,small,open)](./?path=/story/navigation-draweritem--item-size-small-selected) {id:navigation-draweritem--item-size-small-selected} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (icon,label,small,open)
-- [Navigation/DrawerItem - Item (icon,label,small,open)](./?path=/story/navigation-draweritem--item-size-small-with-icon) {id:navigation-draweritem--item-size-small-with-icon} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (icon,open)
-- [Navigation/DrawerItem - Item (icon,open)](./?path=/story/navigation-draweritem--item-with-icon) {id:navigation-draweritem--item-with-icon} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Item (open)
-- [Navigation/DrawerItem - Item (open)](./?path=/story/navigation-draweritem--default) {id:navigation-draweritem--default} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Menu (open)
-- [Navigation/DrawerItem - Menu (open)](./?path=/story/navigation-draweritem--menu-not-selected) {id:navigation-draweritem--menu-not-selected} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Menu (selected,open)
-- [Navigation/DrawerItem - Menu (selected,open)](./?path=/story/navigation-draweritem--menu-selected) {id:navigation-draweritem--menu-selected} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Menu (small,open)
-- [Navigation/DrawerItem - Menu (small,open)](./?path=/story/navigation-draweritem--menu-no-selected-small) {id:navigation-draweritem--menu-no-selected-small} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerItem - Menu (small,selected,open)
-- [Navigation/DrawerItem - Menu (small,selected,open)](./?path=/story/navigation-draweritem--menu-selected-small) {id:navigation-draweritem--menu-selected-small} [story] [Docs](./?path=/docs/navigation-draweritem--docs)
-
-#### Navigation/DrawerSubheader - Default
-- [Navigation/DrawerSubheader - Default](./?path=/story/navigation-drawersubheader--default) {id:navigation-drawersubheader--default} [story] [Docs](./?path=/docs/navigation-drawersubheader--docs)
-
-#### Navigation/DrawerSubheader - Small
-- [Navigation/DrawerSubheader - Small](./?path=/story/navigation-drawersubheader--small) {id:navigation-drawersubheader--small} [story] [Docs](./?path=/docs/navigation-drawersubheader--docs)
-
-#### Navigation/TabCard - Default
-- [Navigation/TabCard - Default](./?path=/story/navigation-tabcard--default) {id:navigation-tabcard--default} [story] [Docs](./?path=/docs/navigation-tabcard--docs)
-
-### Placeholders
-
-#### Placeholders/ContentPlaceholder - Default
-- [Placeholders/ContentPlaceholder - Default](./?path=/story/placeholders-contentplaceholder--default) {id:placeholders-contentplaceholder--default} [story] [Docs](./?path=/docs/placeholders-contentplaceholder--docs)
-
-#### Placeholders/Placeholder - Default
-- [Placeholders/Placeholder - Default](./?path=/story/placeholders-placeholder--default) {id:placeholders-placeholder--default} [story] [Docs](./?path=/docs/placeholders-placeholder--docs)
-
-#### Placeholders/Placeholder - With Actions
-- [Placeholders/Placeholder - With Actions](./?path=/story/placeholders-placeholder--with-actions) {id:placeholders-placeholder--with-actions} [story] [Docs](./?path=/docs/placeholders-placeholder--docs)
-
-#### Placeholders/Placeholder - With Icon
-- [Placeholders/Placeholder - With Icon](./?path=/story/placeholders-placeholder--with-icon) {id:placeholders-placeholder--with-icon} [story] [Docs](./?path=/docs/placeholders-placeholder--docs)
-
-#### Placeholders/SkeletonCard - Default
-- [Placeholders/SkeletonCard - Default](./?path=/story/placeholders-skeletoncard--default) {id:placeholders-skeletoncard--default} [story] [Docs](./?path=/docs/placeholders-skeletoncard--docs)
-
-#### Placeholders/SkeletonGrid - Default
-- [Placeholders/SkeletonGrid - Default](./?path=/story/placeholders-skeletongrid--default) {id:placeholders-skeletongrid--default} [story] [Docs](./?path=/docs/placeholders-skeletongrid--docs)
-
-### Tables
-
-#### Tables/RemoteDataTable - Default
-- [Tables/RemoteDataTable - Default](./?path=/story/tables-remotedatatable--default) {id:tables-remotedatatable--default} [story] [Docs](./?path=/docs/tables-remotedatatable--docs)
-
-#### Tables/RemoteDataTable - Sorted By Created Date
-- [Tables/RemoteDataTable - Sorted By Created Date](./?path=/story/tables-remotedatatable--sorted-by-created-date) {id:tables-remotedatatable--sorted-by-created-date} [story] [Docs](./?path=/docs/tables-remotedatatable--docs)
-
-#### Tables/RemoteDataTable - Using Hook
-- [Tables/RemoteDataTable - Using Hook](./?path=/story/tables-remotedatatable--using-hook) {id:tables-remotedatatable--using-hook} [story] [Docs](./?path=/docs/tables-remotedatatable--docs)
-
-#### Tables/RemoteDataTable - With Query Builder
-- [Tables/RemoteDataTable - With Query Builder](./?path=/story/tables-remotedatatable--with-query-builder) {id:tables-remotedatatable--with-query-builder} [story] [Docs](./?path=/docs/tables-remotedatatable--docs)

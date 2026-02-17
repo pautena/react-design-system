@@ -17,14 +17,4 @@ export interface BaseValueProps<T> {
      */
     dense?: boolean;
 }
-export interface EditableValueProps<T> {
-    /**
-     * This field can be edited or not
-     */
-    editable?: boolean;
-    /**
-     * Callback executed when the value is edited
-     */
-    onEdit?: (value?: T) => void;
-}
 export declare const DefaultPlaceholder = "-";

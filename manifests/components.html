@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">40 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/40 info</a><span class="filter-pill ok" aria-disabled="true">213 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">40 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/40 info</a><span class="filter-pill ok" aria-disabled="true">200 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -3172,7 +3172,7 @@ import TextField from "@mui/material/TextField";</code></pre>
       <div class="badges">
         <label for="c-19-data-display-groupvaluecard-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-19-data-display-groupvaluecard-stories" class="badge ok as-toggle">7 stories</label>
+        <label for="c-19-data-display-groupvaluecard-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/GroupValueCard/GroupValueCard.stories.tsx">data-display-groupvaluecard · ./src/GroupValueCard/GroupValueCard.stories.tsx</div>
@@ -3331,105 +3331,6 @@ title: string</code></pre>
       &lt;ValueItem key=&quot;9&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
         &lt;ValueDatetime
           dense
-          label=&quot;Created at&quot;
-          value={new Date(2022, 5, 1)}
-          format=&quot;yyyy-MM-dd&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-    ]}&lt;/GroupValueCard&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">EditableDense</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const EditableDense = () =&gt; &lt;GroupValueCard&gt;{[
-      &lt;ValueItem key=&quot;1&quot; size={{ xs: 12, sm: 6, md: 4 }}&gt;
-        &lt;ValueText
-          editable
-          dense
-          label=&quot;Hello world&quot;
-          value=&quot;Lorem ipsum sit amet&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;2&quot; size={{ xs: 12, sm: 6, md: 2 }}&gt;
-        &lt;ValueBoolean editable dense label=&quot;Enabled&quot; value /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;3&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable dense label=&quot;Quantity&quot; value=&quot;1200&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;4&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable dense label=&quot;Currency&quot; value=&quot;EUR&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;5&quot; size={{ xs: 12, sm: 6, md: 6 }}&gt;
-        &lt;ValueText
-          editable
-          dense
-          label=&quot;I am Batman&quot;
-          value=&quot; Does it come in black? It&#39;s ends here. Hero can be anyone&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;6&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable dense label=&quot;Status&quot; value=&quot;Open&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;7&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable dense label=&quot;Level&quot; value=&quot;2144&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;8&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueRating editable dense label=&quot;Rating&quot; value={3} /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;9&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueDatetime
-          editable
-          dense
-          label=&quot;Created at&quot;
-          value={new Date(2022, 5, 1)}
-          format=&quot;yyyy-MM-dd&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-    ]}&lt;/GroupValueCard&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Editable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Editable = () =&gt; &lt;GroupValueCard&gt;{[
-      &lt;ValueItem key=&quot;1&quot; size={{ xs: 12, sm: 6, md: 4 }}&gt;
-        &lt;ValueText editable label=&quot;Hello world&quot; value=&quot;Lorem ipsum sit amet&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;2&quot; size={{ xs: 12, sm: 6, md: 2 }}&gt;
-        &lt;ValueBoolean editable label=&quot;Enabled&quot; value /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;3&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable label=&quot;Quantity&quot; value=&quot;1200&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;4&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable label=&quot;Currency&quot; value=&quot;EUR&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;5&quot; size={{ xs: 12, sm: 6, md: 6 }}&gt;
-        &lt;ValueText
-          editable
-          label=&quot;I am Batman&quot;
-          value=&quot; Does it come in black? It&#39;s ends here. Hero can be anyone&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;6&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable label=&quot;Status&quot; value=&quot;Open&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;7&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText editable label=&quot;Level&quot; value=&quot;2144&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;8&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueRating editable label=&quot;Rating&quot; value={3} /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;9&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueDatetime
-          editable
           label=&quot;Created at&quot;
           value={new Date(2022, 5, 1)}
           format=&quot;yyyy-MM-dd&quot;
@@ -5848,9 +5749,9 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueBoolean</h2>
       <div class="badges">
-        <label for="c-32-data-display-valueboolean-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-32-data-display-valueboolean-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-32-data-display-valueboolean-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-32-data-display-valueboolean-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueBoolean/ValueBoolean.stories.tsx">data-display-valueboolean · ./src/ValueBoolean/ValueBoolean.stories.tsx</div>
@@ -5873,7 +5774,7 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">6 prop types</span>
+              <span class="badge ok">4 prop types</span>
             </div>
             <pre><code>Component: src/ValueBoolean/ValueBoolean.tsx::ValueBoolean</code></pre>
             <pre><code>Props:</code></pre>
@@ -5884,19 +5785,9 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
 dense?: boolean
 
 /**
- * This field can be edited or not
- */
-editable?: boolean
-
-/**
  * Name of the displayed value
  */
 label: string
-
-/**
- * Callback executed when the value is edited
- */
-onEdit?: (value?: T) =&gt; void = () =&gt; null
 
 /**
  * String rendered if value is undefined
@@ -5948,24 +5839,6 @@ value?: T</code></pre>
               
               
               <pre><code>const False = () =&gt; &lt;ValueBoolean label=&quot;Lorem ipsum&quot; value={false} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Editable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Editable = () =&gt; &lt;ValueBoolean label=&quot;Lorem ipsum&quot; value={false} editable /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">DenseEditable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const DenseEditable = () =&gt; &lt;ValueBoolean label=&quot;Lorem ipsum&quot; value={false} dense editable /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -6063,9 +5936,9 @@ children?: React.ReactNode</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueDatetime</h2>
       <div class="badges">
-        <label for="c-34-data-display-valuedatetime-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-34-data-display-valuedatetime-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-34-data-display-valuedatetime-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-34-data-display-valuedatetime-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueDatetime/ValueDatetime.stories.tsx">data-display-valuedatetime · ./src/ValueDatetime/ValueDatetime.stories.tsx</div>
@@ -6088,7 +5961,7 @@ children?: React.ReactNode</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">8 prop types</span>
+              <span class="badge ok">5 prop types</span>
             </div>
             <pre><code>Component: src/ValueDatetime/ValueDatetime.tsx::ValueDatetime</code></pre>
             <pre><code>Props:</code></pre>
@@ -6099,16 +5972,6 @@ children?: React.ReactNode</code></pre>
 dense?: boolean
 
 /**
- * This field can be edited or not
- */
-editable?: boolean
-
-/**
- * Edit input type
- */
-editInputType?: &quot;datetime&quot; | &quot;date&quot; | &quot;time&quot; = &quot;datetime&quot;
-
-/**
  * Datetime format
  */
 format: string
@@ -6117,11 +5980,6 @@ format: string
  * Name of the displayed value
  */
 label: string
-
-/**
- * Callback executed when the value is edited
- */
-onEdit?: (value?: T) =&gt; void = () =&gt; null
 
 /**
  * String rendered if value is undefined
@@ -6182,63 +6040,6 @@ value?: Date</code></pre>
               
               
               <pre><code>const CustomPlaceholder = () =&gt; &lt;ValueDatetime label=&quot;Lorem&quot; format=&quot;yyyy/MM/dd&quot; placeholder=&quot;.&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">EditableDatetime</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const EditableDatetime = () =&gt; &lt;ValueDatetime
-    label=&quot;Lorem&quot;
-    value={new Date(2022, 8, 22, 12, 25)}
-    format=&quot;yyyy/MM/dd HH:mm&quot;
-    editable
-    editInputType=&quot;datetime&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">EditableTime</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const EditableTime = () =&gt; &lt;ValueDatetime
-    label=&quot;Lorem&quot;
-    value={new Date(2022, 8, 22, 12, 25)}
-    format=&quot;HH:mm&quot;
-    editable
-    editInputType=&quot;time&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">EditableDate</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const EditableDate = () =&gt; &lt;ValueDatetime
-    label=&quot;Lorem&quot;
-    value={new Date(2022, 8, 22)}
-    format=&quot;yyyy/MM/dd&quot;
-    editable
-    editInputType=&quot;date&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">DenseEditable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const DenseEditable = () =&gt; &lt;ValueDatetime
-    label=&quot;Lorem&quot;
-    value={new Date(2022, 8, 22)}
-    format=&quot;yyyy/MM/dd&quot;
-    editable
-    editInputType=&quot;date&quot;
-    dense /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -6674,9 +6475,9 @@ variant?: LabelVariant | LabelVariant[]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueRating</h2>
       <div class="badges">
-        <label for="c-38-data-display-valuerating-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-38-data-display-valuerating-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-38-data-display-valuerating-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-38-data-display-valuerating-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueRating/ValueRating.stories.tsx">data-display-valuerating · ./src/ValueRating/ValueRating.stories.tsx</div>
@@ -6699,7 +6500,7 @@ variant?: LabelVariant | LabelVariant[]</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">7 prop types</span>
+              <span class="badge ok">5 prop types</span>
             </div>
             <pre><code>Component: src/ValueRating/ValueRating.tsx::ValueRating</code></pre>
             <pre><code>Props:</code></pre>
@@ -6708,11 +6509,6 @@ variant?: LabelVariant | LabelVariant[]</code></pre>
  * False by default
  */
 dense?: boolean
-
-/**
- * This field can be edited or not
- */
-editable?: boolean
 
 /**
  * Name of the displayed value
@@ -6724,11 +6520,6 @@ label: string
  * @default 5
  */
 maxRating?: number = 5
-
-/**
- * Callback executed when the value is edited
- */
-onEdit?: (value?: T) =&gt; void = () =&gt; null
 
 /**
  * String rendered if value is undefined
@@ -6781,24 +6572,6 @@ value?: T = 0</code></pre>
               
               <pre><code>const Max = () =&gt; &lt;ValueRating label=&quot;Lorem&quot; value={4} maxRating={7} /&gt;;</code></pre>
             </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Editable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Editable = () =&gt; &lt;ValueRating label=&quot;Lorem&quot; value={4} maxRating={7} editable /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">DenseEditable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const DenseEditable = () =&gt; &lt;ValueRating label=&quot;Lorem&quot; value={4} maxRating={7} dense editable /&gt;;</code></pre>
-            </div>
         </div>
   </div>
 </article>
@@ -6813,9 +6586,9 @@ value?: T = 0</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueText</h2>
       <div class="badges">
-        <label for="c-39-data-display-valuetext-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-39-data-display-valuetext-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-39-data-display-valuetext-stories" class="badge ok as-toggle">9 stories</label>
+        <label for="c-39-data-display-valuetext-stories" class="badge ok as-toggle">6 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueText/ValueText.stories.tsx">data-display-valuetext · ./src/ValueText/ValueText.stories.tsx</div>
@@ -6838,7 +6611,7 @@ value?: T = 0</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">6 prop types</span>
+              <span class="badge ok">4 prop types</span>
             </div>
             <pre><code>Component: src/ValueText/ValueText.tsx::ValueText</code></pre>
             <pre><code>Props:</code></pre>
@@ -6849,19 +6622,9 @@ value?: T = 0</code></pre>
 dense?: boolean
 
 /**
- * This field can be edited or not
- */
-editable?: boolean
-
-/**
  * Name of the displayed value
  */
 label: string
-
-/**
- * Callback executed when the value is edited
- */
-onEdit?: (value?: T) =&gt; void = () =&gt; null
 
 /**
  * String rendered if value is undefined
@@ -6927,18 +6690,6 @@ value?: T</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">TruncatedTextEditable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const TruncatedTextEditable = () =&gt; &lt;ValueText
-    label=&quot;Lorem&quot;
-    value=&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit&quot;
-    editable /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
                 <span class="ex-name">Placeholder</span>
                 <span class="badge ok">story ok</span>
               </div>
@@ -6954,24 +6705,6 @@ value?: T</code></pre>
               
               
               <pre><code>const CustomPlaceholder = () =&gt; &lt;ValueText label=&quot;Lorem&quot; placeholder=&quot;.&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Editable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Editable = () =&gt; &lt;ValueText label=&quot;Lorem&quot; value=&quot;lorem ipsum&quot; editable /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">DenseEditable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const DenseEditable = () =&gt; &lt;ValueText label=&quot;Lorem&quot; value=&quot;lorem ipsum&quot; dense editable /&gt;;</code></pre>
             </div>
         </div>
   </div>

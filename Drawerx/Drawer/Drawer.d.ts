@@ -1,6 +1,9 @@
-import { Theme } from '@mui/material/styles';
+import { default as React } from '../../../node_modules/react';
 import { DrawerProps } from '../Drawer.types';
-export declare const DrawerHeader: import('@emotion/styled').StyledComponent<import('@mui/system').MUIStyledCommonProps<Theme>, import('../../../node_modules/react').DetailedHTMLProps<import('../../../node_modules/react').HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>;
+export declare const DrawerHeader: React.ComponentType<{
+    children?: React.ReactNode;
+    className?: string;
+}>;
 /**
  * Drawer component that provides a customizable drawer interface.
  */
