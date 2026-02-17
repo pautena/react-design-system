@@ -7,14 +7,71 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 This project is available as an npm package [@pautena/react-design-system](https://www.npmjs.com/package/@pautena/react-design-system).
 
-npm:
+## Prerequisites
+
+- **Node.js**: v18+ recommended
+- **React**: v17+, v18+, or v19+
+
+## Install Package
+
+Using npm:
 
 ```bash
-npm install @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid
+npm install @pautena/react-design-system
 ```
 
-yarn:
+Using yarn:
 
 ```bash
-yarn add @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid react-dom
+yarn add @pautena/react-design-system
 ```
+
+## Install Peer Dependencies
+
+This library requires MUI and its dependencies:
+
+Using npm:
+
+```bash
+npm install @emotion/react @emotion/styled @mui/material @mui/icons-material @mui/x-date-pickers date-fns
+```
+
+Using yarn:
+
+```bash
+yarn add @emotion/react @emotion/styled @mui/material @mui/icons-material @mui/x-date-pickers date-fns
+```
+
+### Optional Dependencies
+
+If you plan to use data grid components:
+
+```bash
+npm install @mui/x-data-grid
+# or
+yarn add @mui/x-data-grid
+```
+
+## Setup MUI Theme
+
+Wrap your app with MUI's `ThemeProvider`:
+
+```jsx
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const theme = createTheme({
+  // Your theme customization
+});
+
+function App() {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      {/* Your app */}
+    </ThemeProvider>
+  );
+}
+```
+
+For more MUI theme configuration, see [MUI theming docs](https://mui.com/material-ui/customization/theming/).
