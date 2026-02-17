@@ -1,14 +1,17 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "rootDir": "src/tests",
+    "rootDir": "src",
     "typeRoots": ["./src/types"]
   },
-  "include": ["src/tests/**/*"],
+  "include": ["src/tests/**/*", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": [
     "dist",
     "node_modules",
     "src/tests/**/*.test.ts",
-    "src/tests/**/*.test.tsx"
+    "src/tests/**/*.test.tsx",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx"
   ]
 }
