@@ -208,7 +208,7 @@ export function TextField({
       {...slotProps?.formControl}
     >
       <InputLabelComponent
-        size={size === "small" ? "small" : "normal"}
+        size={size === "small" ? "small" : "medium"}
         id={inputLabelId}
         htmlFor={id}
         {...InputLabelProps}

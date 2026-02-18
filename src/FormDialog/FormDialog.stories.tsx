@@ -68,7 +68,7 @@ export const Default: Story = {
     title: "Lorem ipsum",
     children: (
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             name="message"
             label="Message"
@@ -77,7 +77,7 @@ export const Default: Story = {
             variant="outlined"
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <TextField
             name="amount"
             label="Amount"
@@ -124,10 +124,10 @@ function MyComponent() {
         onCancel={handleCancel}
       >
         <Grid container spacing={2}>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <TextField name="message" label="Message" fullWidth required />
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={12}>
             <TextField name="amount" label="Amount" fullWidth required />
           </Grid>
         </Grid>
