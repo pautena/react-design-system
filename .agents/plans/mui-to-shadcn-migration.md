@@ -1,7 +1,7 @@
 # MUI → shadcn/ui Migration Plan v2.0.0
 ## AI-Ready Design System with MCP Integration
 
-**Status**: 📋 Draft  
+**Status**: 🚧 Active (Phase 0 complete, Phase 1 next)  
 **Created**: 2026-02-18  
 **Branch**: Feature branches from `main`  
 **Target Version**: 2.0.0 (released as 2.0.0-alpha.x tags)  
@@ -30,6 +30,7 @@ Transform the MUI-based design system into an **AI-native, shadcn-powered compon
 | **Styling**          | Tailwind CSS + CSS variables         |
 | **Base Components**  | shadcn/ui + Base UI (headless)       |
 | **Headless UI**      | Base UI (@base-ui/react)             |
+| **Project Layout**   | shadcn Vite-style (`src/components/ui`, `src/hooks`, `src/lib/utils.ts`) |
 | **Icons**            | Lucide React                         |
 | **Distribution**     | NPM package                          |
 | **AI Integration**   | Full MCP registry support            |
@@ -108,35 +109,40 @@ react-design-system/
 ├── components.json              # shadcn + MCP config
 ├── registry.json                # MCP registry definition
 ├── src/
-│   ├── lib/
-│   │   └── utils.ts            # cn() utility
 │   ├── components/
-│   │   └── ui/                 # shadcn base components (~30 components)
-│   │       ├── button.tsx
-│   │       ├── input.tsx
-│   │       ├── card.tsx
-│   │       └── ...
-│   ├── hooks/
-│   │   └── use-mobile.ts       # shadcn sidebar hook
-│   ├── components/             # Your custom components
+│   │   ├── ui/                 # shadcn-generated base components (~30 files)
+│   │   │   ├── button.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── card.tsx
+│   │   │   └── ...
+│   │   ├── bullet/             # custom DS components (migrated from MUI)
 │   │   ├── label/
-│   │   │   ├── label.tsx
-│   │   │   ├── label.stories.tsx
-│   │   │   ├── label.test.tsx
-│   │   │   └── index.ts
 │   │   ├── value-card/
 │   │   ├── remote-data-table/
 │   │   └── ...
+│   ├── hooks/
+│   │   └── use-mobile.ts       # shadcn sidebar support hook
+│   ├── lib/
+│   │   └── utils.ts            # cn() utility (single source)
 │   ├── styles/
 │   │   └── globals.css         # Tailwind + CSS variables
 │   └── index.ts                # Public API exports
-├── registry/                   # MCP registry files (auto-generated)
-│   └── components/
+├── public/
+│   └── r/                      # MCP registry output (auto-generated JSON)
+│       ├── index.json
 │       ├── label.json
-│       ├── value-card.json
 │       └── ...
 └── dist/                       # Build output for npm
 ```
+
+### Structure Rules (Non-Negotiable)
+
+- `src/components/ui/*` is the only location for shadcn-generated base components.
+- `src/hooks/use-mobile.ts` is generated support code for sidebar patterns.
+- `src/lib/utils.ts` is the only `cn()` helper file.
+- Do not create or reintroduce `src/lib/shadcn/*`.
+- Do not create `src/lib/hooks/use-mobile.ts` (legacy path).
+- Storybook/docs/examples must import from `@/components/ui/*` and `@/hooks/*`.
 
 ### Component Pattern
 
@@ -482,7 +488,7 @@ BREAKING CHANGE:
 **Agent**: @planner (spec only, no implementation)  
 **Skills**: None (infrastructure setup)  
 **Branch**: `feat/phase-0-foundation`  
-**Status**: Ready for merge
+**Status**: Completed locally (pending PR merge)
 
 #### Tasks
 - [x] Create feature branch: `git checkout -b feat/phase-0-foundation`
@@ -493,7 +499,7 @@ BREAKING CHANGE:
 - [x] **Restore MUI versions to v7.3.8 (material), v8.27.0 (date-pickers)**
 - [x] Configure Tailwind CSS with theme
 - [x] Create CSS variables theme system
-- [x] Update Vite configuration for Tailwind
+- [x] Keep Vite in library mode (do not switch to app-template config)
 - [x] Update Storybook configuration
 - [x] Create `registry.json` manifest (empty items array)
 - [x] Add `build:registry` script to package.json
@@ -502,15 +508,15 @@ BREAKING CHANGE:
 - [x] Create documentation structure (MIGRATION.md, etc.)
 - [x] Test foundation (build, storybook, tests)
 - [x] All checks passing (lint, check, check:ts, build, test)
+- [x] Normalize structure to shadcn Vite-style paths (`src/components/ui`, `src/hooks`, `src/lib/utils.ts`)
+- [x] Remove legacy path (`src/lib/shadcn/*`)
 - [ ] Update PR #637 with all Phase 0 changes
 - [ ] Merge PR to `main` after review
 - [ ] Create git tag `2.0.0-alpha.0` on `main`
 
 **Base UI Migration Status**:
-- ✅ **Migrated to Base UI (9 components)**: Accordion, Checkbox, Collapsible, Dialog, Popover, Progress, Sheet, Switch, Tabs, Tooltip
-- ⏸️ **Kept on Radix (10 packages)**:
-  - **By Design (4)**: Avatar, Separator, Label, Slot (no Base UI equivalent)
-  - **Complex Components (6)**: RadioGroup, Select, DropdownMenu, ContextMenu, Menubar, NavigationMenu (defer to Phase 1+)
+- ✅ shadcn base components regenerated with Base UI style in `src/components/ui/*`
+- ✅ No runtime Radix dependency required for current shadcn base layer
 
 **Deliverables**:
 - ✅ Working shadcn/ui setup with Base UI as headless layer
@@ -1180,10 +1186,10 @@ None - all key decisions made.
 ```json
 {
   "dependencies": {
-    "@radix-ui/react-*": "^1.0.0",
+    "@base-ui/react": "^1.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0",
+    "tailwind-merge": "^3.0.0",
     "lucide-react": "^0.300.0",
     "sonner": "^1.0.0"
   },
@@ -1205,6 +1211,7 @@ None - all key decisions made.
 ```json
 {
   "removed": [
+    "@radix-ui/react-*",
     "@mui/material",
     "@mui/icons-material",
     "@emotion/react",
@@ -1276,9 +1283,9 @@ None - all key decisions made.
 ## Next Actions
 
 **Immediate:**
-1. ✅ Migration plan created → **DONE**
-2. ⏳ Awaiting user approval
-3. ⏳ Start Phase 0 (Foundation setup) → **PENDING APPROVAL**
+1. ✅ Phase 0 foundation complete (structure normalized)
+2. ⏳ Update/merge PR #637 with latest structure + dependency cleanup
+3. ⏳ Start Phase 1 (Bullet + Label) using `@/components/ui/*` imports only
 
 **After Phase 0:**
 - Execute Phase 1 (Pilot components)
@@ -1288,8 +1295,8 @@ None - all key decisions made.
 
 **Commands to Start:**
 ```bash
-# When approved, user says "Start Phase 0"
-# Planner agent will coordinate with react-developer agent
+# Start Phase 1 branch work
+git checkout -b feat/phase-1-bullet-label
 ```
 
 ---
