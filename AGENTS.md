@@ -9,7 +9,7 @@ My custom design system on top of MUI, with a bunch of components to be able to 
 ## Installation
 
 ```bash
-yarn install
+npm install
 ```
 
 ## Commands
@@ -50,9 +50,9 @@ yarn install
 
 Common development tasks:
 
-- **Run locally**: yarn storybook
-- **Run tests**: yarn test
-- **Deploy**: yarn storybook:deploy
+- **Run locally**: npm run storybook
+- **Run tests**: npm test
+- **Deploy**: npm run storybook:deploy
 
 ## Environments
 
@@ -61,7 +61,7 @@ Common development tasks:
 **Prerequisites:**
 
 - Node.js v24+
-- Yarn package manager
+- npm package manager
 
 **Setup:**
 
@@ -69,7 +69,7 @@ Common development tasks:
 # Clone and install
 git clone https://github.com/pautena/react-design-system.git
 cd react-design-system
-yarn install
+npm install
 
 
 ```
@@ -77,17 +77,17 @@ yarn install
 **Running:**
 
 ```bash
-yarn storybook          # Start storybook development server
+npm run storybook       # Start storybook development server
                        # Available at http://localhost:6006
 ```
 
 **Common tasks:**
 
 ```bash
-yarn test         # Run tests
-yarn build        # Build the component library
-yarn lint         # Run linter
-yarn check:ts     # Run TypeScript checks
+npm test         # Run tests
+npm run build    # Build the component library
+npm run lint     # Run linter
+npm run check:ts # Run TypeScript checks
 ```
 
 ## Architecture
@@ -173,8 +173,8 @@ yarn check:ts     # Run TypeScript checks
 **Testing**:
 
 - Framework: Vitest with React Testing Library
-- Run: `yarn test`
-- Coverage: `yarn coverage`
+- Run: `npm test`
+- Coverage: `npm run coverage`
 
 **Database**:
 
@@ -183,7 +183,7 @@ yarn check:ts     # Run TypeScript checks
 **Local Services**:
 
 ```bash
-yarn storybook
+npm run storybook
 ```
 
 ## Code Quality
@@ -191,17 +191,17 @@ yarn storybook
 **Linting/Formatting**:
 
 ```bash
-yarn lint
-yarn check
-yarn check:ts
-yarn format
+npm run lint
+npm run check
+npm run check:ts
+npm run format
 ```
 
 **Pre-commit**: Husky pre-commit hooks that run:
 
-- yarn run check
-- yarn run check:ts
-- yarn run test
+- npm run check
+- npm run check:ts
+- npm run test
 
 **Type Checking**: Strict TypeScript with biome
 

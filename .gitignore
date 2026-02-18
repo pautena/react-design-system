@@ -3,7 +3,6 @@ node_modules
 yarn-error.log
 types/
 !src/types
-package-lock.json
 # Build folders
 dist
 storybook-static
