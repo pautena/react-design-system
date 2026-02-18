@@ -29,5 +29,14 @@ const config: StorybookConfig = {
   features: {
     experimentalComponentsManifest: true,
   },
+  async viteFinal(config) {
+    // Ensure Base UI package exports are properly resolved
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      include: [...(config.optimizeDeps?.include || []), "@base-ui/react"],
+    };
+
+    return config;
+  },
 };
 export default config;
