@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { StorybookConfig } from "@storybook/react-vite";
 
 const config: StorybookConfig = {
@@ -34,6 +35,15 @@ const config: StorybookConfig = {
     config.optimizeDeps = {
       ...config.optimizeDeps,
       include: [...(config.optimizeDeps?.include || []), "@base-ui/react"],
+    };
+
+    // Add path alias resolution for @/ -> src/
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        "@": path.resolve(__dirname, "../src"),
+      },
     };
 
     return config;
