@@ -16,6 +16,20 @@ export interface ValueItemProps extends Omit<GridProps, "item" | "container"> {
    * Content to display
    */
   children?: React.ReactNode;
+  /**
+   * Grid size configuration (MUI v7 style, will be converted to v6)
+   */
+  size?:
+    | boolean
+    | "auto"
+    | number
+    | {
+        xs?: boolean | "auto" | number;
+        sm?: boolean | "auto" | number;
+        md?: boolean | "auto" | number;
+        lg?: boolean | "auto" | number;
+        xl?: boolean | "auto" | number;
+      };
 }
 
 /**
@@ -65,6 +79,7 @@ const resolveBorderStyle = (
 const ValueItem: ValueItemComponent = ({
   children,
   bordered = true,
+  size,
   ...rest
 }: ValueItemProps) => {
   const defaultColor = useGetDefaultThemeColor({
@@ -72,8 +87,17 @@ const ValueItem: ValueItemComponent = ({
     darkWeight: 800,
   });
   const borderLeft = resolveBorderStyle(bordered, defaultColor);
+
+  // Convert size prop to MUI v6 Grid props (xs, sm, md, lg, xl)
+  const gridSizeProps =
+    typeof size === "object" && size !== null
+      ? size
+      : size !== undefined
+        ? { xs: size }
+        : {};
+
   return (
-    <Grid className={valueItemClasses.root} {...rest}>
+    <Grid className={valueItemClasses.root} {...gridSizeProps} {...rest}>
       <Box className={valueItemClasses.content} px={1} borderLeft={borderLeft}>
         {children}
       </Box>
