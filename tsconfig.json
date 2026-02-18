@@ -19,6 +19,9 @@
     "typeRoots": ["./src/types", "node_modules"],
     "types": ["vitest/globals"],
     "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "noImplicitAny": false
   },
   "include": [
