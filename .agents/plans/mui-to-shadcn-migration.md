@@ -28,7 +28,8 @@ Transform the MUI-based design system into an **AI-native, shadcn-powered compon
 | **Versioning**       | 2.0.0-alpha.x tags on `main`         |
 | **V1 Status**        | Frozen (critical bugs only)          |
 | **Styling**          | Tailwind CSS + CSS variables         |
-| **Base Components**  | shadcn/ui (selected categories)      |
+| **Base Components**  | shadcn/ui + Base UI (headless)       |
+| **Headless UI**      | Base UI (@base-ui/react)             |
 | **Icons**            | Lucide React                         |
 | **Distribution**     | NPM package                          |
 | **AI Integration**   | Full MCP registry support            |
@@ -65,11 +66,11 @@ Transform the MUI-based design system into an **AI-native, shadcn-powered compon
 **Utilities (2)**
 - utils (various), tests
 
-### Dependencies to Remove
-- `@mui/material` → shadcn/ui + Radix UI
-- `@emotion/react`, `@emotion/styled` → Tailwind CSS
+### Dependencies to Remove/Update
+- `@mui/material` (KEEP at v7.3.8) → Gradually phase out, use alongside Base UI
+- `@emotion/react`, `@emotion/styled` → Remove after MUI components migrated
 - `@mui/icons-material` → lucide-react
-- `@mui/x-date-pickers` → Optional peer dep (keep for now)
+- `@mui/x-date-pickers` (KEEP at v8.27.0) → Optional peer dep for date components
 
 ---
 
@@ -79,17 +80,22 @@ Transform the MUI-based design system into an **AI-native, shadcn-powered compon
 
 ```
 Your Design System (v2.0.0)
-├── shadcn/ui Base Components (installed in lib)
-│   ├── Core: Button, Input, Label, Card
-│   ├── Forms: Select, Checkbox, Radio, Switch, Textarea
-│   ├── Data: Table, Badge, Skeleton, Separator
-│   ├── Overlays: Dialog, Sheet, Popover, Tooltip
-│   ├── Feedback: Alert, Toast/Sonner, Progress, Spinner
-│   └── Navigation: Tabs, Sidebar, Breadcrumb, Pagination
+├── Base UI Headless Components (@base-ui/react)
+│   ├── Primitives: Button, Input, Checkbox, Radio, Switch, Slider
+│   ├── Overlays: Dialog, Popover, Tooltip, Menu
+│   ├── Forms: Select, NumberField, Field
+│   └── Feedback: Alert, Progress, Accordion
 │
-└── Your Custom Components (built on shadcn primitives)
-    ├── Label (enhanced shadcn Badge)
-    ├── ValueCard (composite with Card + custom logic)
+├── shadcn/ui Styled Components (installed in lib/shadcn/)
+│   ├── Styled with Tailwind using Base UI primitives where possible
+│   ├── Core: Button, Input, Label, Card
+│   ├── Data: Table, Badge, Skeleton, Separator
+│   ├── Navigation: Tabs, Sidebar, Breadcrumb, Pagination
+│   └── Feedback: Alert, Toast/Sonner, Progress
+│
+└── Your Custom Components (built on Base UI + shadcn)
+    ├── Label (Base UI + Tailwind variants)
+    ├── ValueCard (Base UI Dialog + Card + custom logic)
     ├── RemoteDataTable (shadcn Table + TanStack Table)
     ├── NotificationCenter (shadcn Toast/Sonner wrapper)
     └── ... all your domain-specific components
@@ -254,6 +260,71 @@ export function Label({ text, variant, size, className, ...props }: LabelProps) 
 
 ---
 
+## Headless UI Strategy: Base UI
+
+### Why Base UI over Radix UI?
+
+**Base UI** (`@base-ui/react` v1.2.0) is the official headless component library from MUI:
+
+- **From MUI Team**: Same team behind Material UI, ensuring quality & longevity
+- **Modern Architecture**: Built with React 19 patterns, Floating UI integration
+- **Composability First**: Designed for flexibility without visual opinions
+- **Better Alignment**: Natural fit alongside existing MUI dependencies
+- **Active Development**: Recently released v1.0.0 (Dec 2025), actively maintained
+
+### Base UI Components Available
+
+Base UI provides headless primitives for:
+
+**Form Controls**:
+- Button, Checkbox, Radio, RadioGroup, Switch, Slider, NumberField, Field
+
+**Overlays**:
+- Dialog, Popover, Tooltip, Menu (Dropdown, Context)
+
+**Data Display**:
+- AlertDialog, Progress, Accordion, Collapsible
+
+**Navigation**:
+- Tabs, Breadcrumbs, Pagination (planned)
+
+### Integration Strategy
+
+1. **Phase 0 Fix**: Replace Radix UI primitives with Base UI equivalents
+2. **shadcn Components**: Adapt shadcn components to use Base UI as headless layer
+3. **Custom Components**: Build on Base UI + Tailwind for full control
+4. **Gradual Adoption**: Start with simple components, expand as needed
+
+### Migration Path (Radix → Base UI)
+
+| Radix Component | Base UI Equivalent | Status |
+|-----------------|-------------------|--------|
+| `@radix-ui/react-dialog` | `@base-ui/react/Dialog` | Replace |
+| `@radix-ui/react-popover` | `@base-ui/react/Popover` | Replace |
+| `@radix-ui/react-tooltip` | `@base-ui/react/Tooltip` | Replace |
+| `@radix-ui/react-checkbox` | `@base-ui/react/Checkbox` | Replace |
+| `@radix-ui/react-radio-group` | `@base-ui/react/RadioGroup` | Replace |
+| `@radix-ui/react-switch` | `@base-ui/react/Switch` | Replace |
+| `@radix-ui/react-tabs` | `@base-ui/react/Tabs` | Replace |
+| `@radix-ui/react-accordion` | `@base-ui/react/Accordion` | Replace |
+| `@radix-ui/react-select` | `@base-ui/react/Select` | Replace |
+| `@radix-ui/react-progress` | `@base-ui/react/Progress` | Replace |
+| `@radix-ui/react-dropdown-menu` | `@base-ui/react/Menu` | Replace |
+| `@radix-ui/react-context-menu` | `@base-ui/react/Menu` | Replace |
+| `@radix-ui/react-menubar` | `@base-ui/react/Menu` | Replace |
+| `@radix-ui/react-collapsible` | `@base-ui/react/Collapsible` | Replace |
+
+**Keep for now** (no Base UI equivalent yet):
+- `@radix-ui/react-avatar` → Use shadcn Avatar as-is
+- `@radix-ui/react-separator` → Use shadcn Separator as-is
+- `@radix-ui/react-label` → Use shadcn Label as-is
+- `@radix-ui/react-slot` → Keep (utility, not a component)
+- `react-day-picker` → Keep (calendar component)
+- `cmdk` → Keep (command palette)
+- `sonner` → Keep (toast notifications)
+
+---
+
 ## Workflow
 
 ### Per-Component Migration Process
@@ -397,16 +468,25 @@ BREAKING CHANGE:
 
 ## Execution Phases
 
-### Phase 0: Foundation & shadcn Setup ✅ COMPLETE
+### Phase 0: Foundation & shadcn Setup ✅ COMPLETE (NEEDS FIXES)
 
 **Agent**: @planner (spec only, no implementation)  
 **Skills**: None (infrastructure setup)
+
+**ISSUES FOUND**:
+- ❌ MUI versions downgraded (need to restore v7.3.8 material, v8.27.0 date-pickers)
+- ❌ Using Radix UI (should use Base UI @base-ui/react instead)
+- ✅ Tailwind, CVA, Lucide correctly installed
+- ✅ shadcn base components installed
+- ✅ Registry framework created
 
 #### Tasks
 - [x] Create feature branch: `git checkout -b feat/phase-0-foundation`
 - [x] Install core dependencies (Tailwind, CVA, Lucide)
 - [x] Initialize shadcn/ui (`npx shadcn@latest init`)
 - [x] Install ~30 shadcn base components
+- [ ] **FIX: Replace Radix UI with Base UI (@base-ui/react)**
+- [ ] **FIX: Restore MUI versions to v7.3.8 (material), v8.27.0 (date-pickers)**
 - [x] Configure Tailwind CSS with theme
 - [x] Create CSS variables theme system
 - [x] Update Vite configuration for Tailwind
@@ -417,16 +497,19 @@ BREAKING CHANGE:
 - [x] Update package.json (v2.0.0-alpha.0)
 - [x] Create documentation structure (MIGRATION.md, etc.)
 - [x] Test foundation (build, storybook, tests)
-- [ ] Create PR to `main`
-- [ ] Merge to `main` after review
+- [ ] **Apply fixes and re-test**
+- [ ] Update PR #637 with fixes
+- [ ] Merge PR to `main` after review
 - [ ] Create git tag `2.0.0-alpha.0` on `main`
 
 **Deliverables**:
 - ✅ Working shadcn/ui setup
-- ✅ ~30 base components installed
+- ✅ ~30 base components installed (need to migrate to Base UI)
 - ✅ MCP registry framework
 - ✅ Documentation structure
 - ✅ Existing MUI components still work
+- ❌ **PENDING: Base UI integration instead of Radix UI**
+- ❌ **PENDING: MUI version restoration**
 
 **Files Created**:
 ```
@@ -893,8 +976,8 @@ llms.txt                        # AI context file (root)
 
 | Phase | Status      | Components           | Started    | Completed  | Notes |
 | ----- | ----------- | -------------------- | ---------- | ---------- | ----- |
-| 0     | ✅ Complete | Foundation           | 2026-02-18 | 2026-02-18 | Commit 59f5ab4 |
-| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | -     |
+| 0     | 🔄 In Progress | Foundation        | 2026-02-18 | -          | Commit 564bcbc, PR #637 - **NEEDS FIXES**: Base UI migration, MUI version restoration |
+| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | Blocked by Phase 0 fixes |
 | 2     | ⏳ Planned  | 8 components         | -          | -          | -     |
 | 3     | ⏳ Planned  | 7 components         | -          | -          | -     |
 | 4     | ⏳ Planned  | 3 components         | -          | -          | -     |
@@ -928,18 +1011,27 @@ llms.txt                        # AI context file (root)
   - Added Appendix H with Phase 9 comprehensive details
   - Deleted redundant plan files (registry-automation-summary.md, phase-9-examples-summary.md)
   - Single source of truth: `mui-to-shadcn-migration.md`
-- ✅ **Phase 0: Foundation & shadcn Setup - COMPLETE**
+- 🔄 **Phase 0: Foundation & shadcn Setup - IN PROGRESS (FIXES NEEDED)**
   - Installed Tailwind CSS, CVA, Lucide React, Sonner
-  - Initialized shadcn/ui with ~33 base components
+  - Initialized shadcn/ui with ~33 base components (using Radix UI)
   - Configured Tailwind with CSS variables theme (light/dark)
   - Created MCP registry framework (registry.json)
   - Added build:registry script for automated registry generation
   - Updated package.json to v2.0.0-alpha.0
   - Created MIGRATION.md documentation
   - Branch: feat/phase-0-foundation
-  - Commit: 59f5ab4
-  - Status: Ready for PR to main
-- ⏳ Next: Create PR for Phase 0, then start Phase 1
+  - Commits: 59f5ab4, 564bcbc
+  - PR: #637 - https://github.com/pautena/react-design-system/pull/637
+  - **ISSUES DISCOVERED**:
+    - ❌ MUI versions downgraded (v7.3.8→v6.0.0 material, v8.27.0→v7.0.0 date-pickers)
+    - ❌ Using Radix UI instead of Base UI (@base-ui/react)
+  - **REQUIRED FIXES**:
+    1. Restore MUI versions: @mui/material ^7.3.8, @mui/x-date-pickers ^8.27.0
+    2. Replace Radix UI packages with Base UI (@base-ui/react)
+    3. Update shadcn components to use Base UI primitives
+    4. Re-test build, storybook, tests
+    5. Update PR #637 with fixes
+- ⏳ Next: Complete Phase 0 fixes, merge PR, then start Phase 1
 
 ---
 
