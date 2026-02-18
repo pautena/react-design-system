@@ -20,7 +20,7 @@ const main = async (): Promise<void> => {
     await generator.generate();
   } catch (error) {
     console.error("❌ Failed to generate llms.txt.");
-    console.error("Run `yarn storybook:build` first.");
+    console.error("Run `npm run storybook:build` first.");
     console.error(error);
     process.exit(1);
   }
