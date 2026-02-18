@@ -1,4 +1,4 @@
-import path, { dirname, join } from "node:path";
+import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
 
@@ -48,6 +48,12 @@ const config: StorybookConfig = {
         ...config.resolve?.alias,
         "@": join(__dirname, "../src"),
       },
+    };
+
+    // Ensure PostCSS processes Tailwind CSS
+    config.css = {
+      ...config.css,
+      postcss: join(__dirname, "../postcss.config.js"),
     };
 
     return config;
