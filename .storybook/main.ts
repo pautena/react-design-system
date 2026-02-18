@@ -50,12 +50,6 @@ const config: StorybookConfig = {
       },
     };
 
-    // Ensure PostCSS processes Tailwind CSS
-    config.css = {
-      ...config.css,
-      postcss: join(__dirname, "../postcss.config.js"),
-    };
-
     return config;
   },
 };
