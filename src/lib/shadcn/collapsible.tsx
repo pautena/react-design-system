@@ -1,6 +1,6 @@
 "use client";
 
-import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react";
 
 const Collapsible = CollapsiblePrimitive.Root;
 

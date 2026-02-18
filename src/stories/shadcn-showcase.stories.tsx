@@ -150,21 +150,21 @@ export const AllComponents: Story = {
 
       <section>
         <h2 className="text-2xl font-bold mb-4">Accordion (Base UI)</h2>
-        <Accordion type="single" collapsible className="w-[400px]">
-          <AccordionItem value="item-1">
+        <Accordion defaultValue={[0]} className="w-[400px]">
+          <AccordionItem value={0}>
             <AccordionTrigger>Is it accessible?</AccordionTrigger>
             <AccordionContent>
               Yes. It adheres to the WAI-ARIA design pattern.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-2">
+          <AccordionItem value={1}>
             <AccordionTrigger>Is it styled?</AccordionTrigger>
             <AccordionContent>
               Yes. It comes with default styles that matches the other
               components aesthetic.
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="item-3">
+          <AccordionItem value={2}>
             <AccordionTrigger>Is it animated?</AccordionTrigger>
             <AccordionContent>
               Yes. It's animated by default, but you can disable it if you
@@ -177,8 +177,8 @@ export const AllComponents: Story = {
       <section>
         <h2 className="text-2xl font-bold mb-4">Dialog (Base UI)</h2>
         <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline">Open Dialog</Button>
+          <DialogTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">
+            Open Dialog
           </DialogTrigger>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>

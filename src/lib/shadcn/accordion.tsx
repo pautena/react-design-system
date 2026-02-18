@@ -1,4 +1,4 @@
-import { Accordion as AccordionPrimitive } from "@base-ui/react/accordion";
+import { Accordion as AccordionPrimitive } from "@base-ui/react";
 import { ChevronDown } from "lucide-react";
 import * as React from "react";
 
