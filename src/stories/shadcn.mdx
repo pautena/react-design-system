@@ -34,7 +34,7 @@ These components use **Base UI** instead of Radix UI:
 
 ## Available Components
 
-All shadcn/ui components are available in `src/lib/shadcn/`:
+All shadcn/ui components are available in `src/components/ui/`:
 
 ### Layout & Structure
 - **Card** - Container with header, content, footer
@@ -123,12 +123,12 @@ All components use CSS variables defined in `src/styles/globals.css`:
 
 ## Usage
 
-Import components from `@/lib/shadcn/`:
+Import components from `@/components/ui/`:
 
 ```tsx
-import { Button } from "@/lib/shadcn/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/lib/shadcn/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/lib/shadcn/dialog";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 function MyComponent() {
   return (
@@ -138,9 +138,7 @@ function MyComponent() {
       </CardHeader>
       <CardContent>
         <Dialog>
-          <DialogTrigger asChild>
-            <Button>Open Dialog</Button>
-          </DialogTrigger>
+          <DialogTrigger render={<Button>Open Dialog</Button>} />
           <DialogContent>
             <p>Dialog content</p>
           </DialogContent>

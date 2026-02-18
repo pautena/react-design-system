@@ -86,7 +86,7 @@ Your Design System (v2.0.0)
 │   ├── Forms: Select, NumberField, Field
 │   └── Feedback: Alert, Progress, Accordion
 │
-├── shadcn/ui Styled Components (installed in lib/shadcn/)
+├── shadcn/ui Styled Components (installed in src/components/ui/)
 │   ├── Styled with Tailwind using Base UI primitives where possible
 │   ├── Core: Button, Input, Label, Card
 │   ├── Data: Table, Badge, Skeleton, Separator
@@ -109,12 +109,15 @@ react-design-system/
 ├── registry.json                # MCP registry definition
 ├── src/
 │   ├── lib/
-│   │   ├── utils.ts            # cn() utility
-│   │   └── shadcn/             # shadcn base components (~30 components)
+│   │   └── utils.ts            # cn() utility
+│   ├── components/
+│   │   └── ui/                 # shadcn base components (~30 components)
 │   │       ├── button.tsx
 │   │       ├── input.tsx
 │   │       ├── card.tsx
 │   │       └── ...
+│   ├── hooks/
+│   │   └── use-mobile.ts       # shadcn sidebar hook
 │   ├── components/             # Your custom components
 │   │   ├── label/
 │   │   │   ├── label.tsx
@@ -528,7 +531,8 @@ tailwind.config.ts       # Tailwind configuration
 postcss.config.js        # PostCSS configuration
 src/styles/globals.css   # CSS variables theme
 src/lib/utils.ts         # cn() utility
-src/lib/shadcn/*         # shadcn base components (~30 files)
+src/components/ui/*      # shadcn base components (~30 files)
+src/hooks/use-mobile.ts  # shadcn sidebar hook
 public/r/                # Registry output directory (auto-generated)
 MIGRATION.md             # Migration documentation
 ```
@@ -985,8 +989,8 @@ llms.txt                        # AI context file (root)
 
 | Phase | Status      | Components           | Started    | Completed  | Notes |
 | ----- | ----------- | -------------------- | ---------- | ---------- | ----- |
-| 0     | 🔄 In Progress | Foundation        | 2026-02-18 | -          | Commit 564bcbc, PR #637 - **NEEDS FIXES**: Base UI migration, MUI version restoration |
-| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | Blocked by Phase 0 fixes |
+| 0     | ✅ Complete | Foundation        | 2026-02-18 | 2026-02-18 | Base UI migration done, Tailwind fixed, shadcn moved to `src/components/ui` |
+| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | Ready to start |
 | 2     | ⏳ Planned  | 8 components         | -          | -          | -     |
 | 3     | ⏳ Planned  | 7 components         | -          | -          | -     |
 | 4     | ⏳ Planned  | 3 components         | -          | -          | -     |
@@ -1041,6 +1045,16 @@ llms.txt                        # AI context file (root)
     4. Re-test build, storybook, tests
     5. Update PR #637 with fixes
 - ⏳ Next: Complete Phase 0 fixes, merge PR, then start Phase 1
+- ✅ **Phase 0 fixes completed and normalized to recommended shadcn layout**
+  - Regenerated shadcn components using Base UI style into `src/components/ui/*`
+  - Moved generated hook to `src/hooks/use-mobile.ts`
+  - Updated `components.json` aliases to recommended structure:
+    - `ui`: `@/components/ui`
+    - `components`: `@/components`
+    - `hooks`: `@/hooks`
+    - `lib`: `@/lib`
+  - Updated Storybook docs/stories to import from `@/components/ui/*`
+  - Removed legacy `src/lib/shadcn/*` path to avoid dual sources of truth
 
 ---
 
@@ -1365,7 +1379,7 @@ Create your component with shadcn patterns:
 
 ```typescript
 // src/components/value-card/value-card.tsx
-import { Card } from "@/lib/shadcn/card"
+import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 export function ValueCard({ className, ...props }) {
@@ -1576,11 +1590,11 @@ jobs:
 ```
 
 **Q: How do I detect `registryDependencies` automatically?**  
-**A:** Look at your component imports. If it imports from `@/lib/shadcn/*` or other internal components, those are registryDependencies.
+**A:** Look at your component imports. If it imports from `@/components/ui/*` or other internal components, those are registryDependencies.
 
 Example:
 ```typescript
-import { Card } from "@/lib/shadcn/card"  // ← registryDependency: "card"
+import { Card } from "@/components/ui/card"  // ← registryDependency: "card"
 import { Badge } from "@/components/badge"  // ← registryDependency: "badge"
 import { clsx } from "clsx"  // ← dependency: "clsx"
 ```

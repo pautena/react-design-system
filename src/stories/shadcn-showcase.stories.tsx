@@ -4,9 +4,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../lib/shadcn/accordion";
-import { Badge } from "../lib/shadcn/badge";
-import { Button } from "../lib/shadcn/button";
+} from "../components/ui/accordion";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
 import {
   Card,
   CardContent,
@@ -14,8 +14,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../lib/shadcn/card";
-import { Checkbox } from "../lib/shadcn/checkbox";
+} from "../components/ui/card";
+import { Checkbox } from "../components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -24,10 +24,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../lib/shadcn/dialog";
-import { Progress } from "../lib/shadcn/progress";
-import { Switch } from "../lib/shadcn/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../lib/shadcn/tabs";
+} from "../components/ui/dialog";
+import { Progress } from "../components/ui/progress";
+import { Switch } from "../components/ui/switch";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../components/ui/tabs";
 
 /**
  * Showcase of shadcn/ui components migrated to Base UI (@base-ui/react)

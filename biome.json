@@ -92,14 +92,16 @@
       }
     },
     {
-      "includes": ["src/lib/shadcn/**/*.tsx"],
+      "includes": ["src/components/ui/**/*.tsx"],
       "linter": {
         "rules": {
           "suspicious": {
             "noDocumentCookie": "off"
           },
           "a11y": {
-            "useFocusableInteractive": "off"
+            "useFocusableInteractive": "off",
+            "noLabelWithoutControl": "off",
+            "useKeyWithClickEvents": "off"
           }
         }
       }

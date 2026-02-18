@@ -10,9 +10,14 @@
     "cssVariables": true,
     "prefix": ""
   },
+  "iconLibrary": "lucide",
+  "rtl": false,
   "aliases": {
-    "components": "@/lib/shadcn",
+    "components": "@/components",
     "utils": "@/lib/utils",
-    "ui": "@/lib/shadcn"
-  }
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {}
 }
