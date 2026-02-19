@@ -246,7 +246,7 @@ ComponentName/
 **Folders & Files:**
 | Pattern | Usage | Example |
 |---------|-------|---------|
-| PascalCase | Component directories and files | `TextField/TextField.tsx` |
+| kebab-case | Component directories and files | `text-field/text-field.tsx` |
 | kebab-case | Story documentation | `src/stories/data-display.mdx` |
 | lowercase | Utility/helper files | `src/tests/testing-library.tsx` |
 
@@ -532,3 +532,13 @@ Keep updated when changing:
 
 This is an auto-generated file that contains project context for AI agents.
 
+### Public API Export Rule
+
+- Any reusable component intended for package consumers must be exported from `src/index.ts`.
+- Do not require consumers to import from internal paths like `@/components/*`.
+- New component checklist is not complete until `src/index.ts` is updated and importable from `@pautena/react-design-system`.
+
+### Component Naming Rule
+
+- Component folders and component file names must use kebab-case.
+- Preferred pattern: `src/components/<component-name>/<component-name>.tsx`.

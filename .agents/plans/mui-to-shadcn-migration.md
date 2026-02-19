@@ -143,6 +143,8 @@ react-design-system/
 - Do not create or reintroduce `src/lib/shadcn/*`.
 - Do not create `src/lib/hooks/use-mobile.ts` (legacy path).
 - Storybook/docs/examples must import from `@/components/ui/*` and `@/hooks/*`.
+- Any component intended for package consumers must be re-exported from `src/index.ts`.
+- Consumer-facing docs/examples must show imports from `@pautena/react-design-system`, not internal `@/` paths.
 
 ### Component Pattern
 
@@ -434,6 +436,8 @@ export { default } from "./component-name"
 // src/index.ts
 export * from "./components/{component-name}"
 ```
+
+Required: if a component is meant to be used by package consumers, `src/index.ts` must be updated so it is importable from `@pautena/react-design-system`.
 
 #### **8. Build Registry**
 ```bash
