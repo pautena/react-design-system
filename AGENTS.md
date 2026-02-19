@@ -542,3 +542,10 @@ This is an auto-generated file that contains project context for AI agents.
 
 - Component folders and component file names must use kebab-case.
 - Preferred pattern: `src/components/<component-name>/<component-name>.tsx`.
+
+### shadcn/Base UI Parity Rule
+
+- For `src/components/ui/*`, use `shadcn` CLI as source of truth and regenerate via `npx shadcn@latest add --all --overwrite --yes` when syncing.
+- Keep `components.json` style set to Base UI variant (`base-vega`) unless explicitly changing design language.
+- Prefer exact generated shadcn/Base UI classes and structure; avoid manual visual drift from generated output.
+- Keep shadcn look parity in Storybook by ensuring `src/styles/globals.css` tokens and `.storybook/preview.ts` theme wiring remain active.
