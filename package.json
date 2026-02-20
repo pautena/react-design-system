@@ -82,7 +82,7 @@
     "@fontsource-variable/geist": "^5.2.8",
     "@storybook/addon-docs": "^10.2.8",
     "@storybook/addon-links": "^10.2.8",
-    "@storybook/addon-mcp": "^0.2.2",
+    "@storybook/addon-mcp": "^0.3.1",
     "@storybook/addon-onboarding": "^10.2.8",
     "@storybook/addon-themes": "^10.2.8",
     "@storybook/react": "^10.2.8",
