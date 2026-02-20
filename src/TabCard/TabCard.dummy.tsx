@@ -1,5 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { Label } from "../Label";
+import { Badge } from "../components/badge";
 import TabCard, { type TabData } from "./TabCard";
 import TabCardPanel from "./TabCardPanel";
 
@@ -7,10 +7,10 @@ export const DummyTabs = [
   { text: "tab 1" },
   {
     text: "tab 2.1",
-    icon: <Label text="10" variant="success" sx={{ mr: 1 }} />,
+    icon: <Badge text="10" variant="success" className="mr-2" />,
   },
   { text: "tab 2.2" },
-  { text: "tab 3", icon: <Label text="12" variant="error" sx={{ mr: 1 }} /> },
+  { text: "tab 3", icon: <Badge text="12" variant="error" className="mr-2" /> },
 ];
 
 export interface TabCardDummyProps {

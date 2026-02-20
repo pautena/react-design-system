@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Bullet from "./Bullet";
+import Bullet from "./bullet";
 
 export default {
   title: "Data Display/Bullet",

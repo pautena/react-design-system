@@ -1,4 +1,4 @@
-import type { LabelVariant } from "../Label";
+import type { BadgeVariant } from "../components/badge";
 import { render, screen } from "../tests/testing-library";
 import ValueLabel from "./ValueLabel";
 
@@ -15,7 +15,7 @@ describe("ValueLabel", () => {
   }: {
     value?: string | number | string[] | number[];
     placeholder?: string;
-    variant?: LabelVariant | LabelVariant[];
+    variant?: BadgeVariant | BadgeVariant[];
   }) => {
     render(
       <ValueLabel

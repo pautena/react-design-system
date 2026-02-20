@@ -5,8 +5,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { type SxProps, type Theme, useTheme } from "@mui/material/styles";
 import type { ReactElement } from "react";
-import { Bullet } from "../../Bullet";
-import { Label } from "../../Label";
+import { Badge } from "../../components/badge";
+import { Bullet } from "../../components/bullet";
 import {
   type DrawerItemAvatar,
   type DrawerItemBullet,
@@ -133,10 +133,10 @@ export const DrawerItemLink = ({
         }}
       />
       {label && state === "open" && (
-        <Label text={label.text} variant={label.variant} sx={{ ml: 2 }} />
+        <Badge text={label.text} variant={label.variant} className="ml-2" />
       )}
       {bullet && state === "open" && (
-        <Bullet variant={bullet.variant} sx={{ ml: 2 }} />
+        <Bullet variant={bullet.variant} className="ml-4" />
       )}
     </ListItemButton>
   );

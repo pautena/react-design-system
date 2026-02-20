@@ -138,6 +138,10 @@ react-design-system/
 ### Structure Rules (Non-Negotiable)
 
 - `src/components/ui/*` is the only location for shadcn-generated base components.
+- Treat `src/components/ui/*` as low-level primitives (shadcn-managed), not the primary public package API.
+- For consumer-facing/public APIs, create wrappers in `src/components/<component-name>/<component-name>.tsx` and export wrappers from `src/index.ts`.
+- All newly migrated/custom components must live under `src/components/*`.
+- Component folder names and file names must be kebab-case (example: `src/components/value-card/value-card.tsx`).
 - `src/hooks/use-mobile.ts` is generated support code for sidebar patterns.
 - `src/lib/utils.ts` is the only `cn()` helper file.
 - Do not create or reintroduce `src/lib/shadcn/*`.
@@ -554,7 +558,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 1: Pilot Components 🧪
+### ✓ Phase 1: Pilot Components 🧪
 
 **Agent**: @react-developer  
 **Skills**: code-react-unit-testing, code-react-storybook
@@ -752,7 +756,7 @@ MIGRATION.md             # Migration documentation
    - Replace MUI Table components → shadcn Table
    - RemoteDataTablePagination → shadcn Pagination
    - RemoteDataTableQueryBuilder → Custom filter UI
-   - Maintain all props & APIs
+   - Props and APIs can be redesigned freely
    - Test sorting, pagination, filtering thoroughly
 
 2. ListPanel - List container
@@ -764,7 +768,7 @@ MIGRATION.md             # Migration documentation
 - All RemoteDataTable features work
 - Sorting, pagination, filtering perfect
 - Performance maintained
-- API unchanged (or minimal breaking changes)
+- Breaking API changes accepted when needed
 - Merge all PRs to `main` before tagging
 - Create git tag `2.0.0-alpha.7` on `main` when complete
 
@@ -1000,7 +1004,7 @@ llms.txt                        # AI context file (root)
 | Phase | Status      | Components           | Started    | Completed  | Notes |
 | ----- | ----------- | -------------------- | ---------- | ---------- | ----- |
 | 0     | ✅ Complete | Foundation        | 2026-02-18 | 2026-02-18 | Base UI migration done, Tailwind fixed, shadcn moved to `src/components/ui` |
-| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | Ready to start |
+| 1     | ✅ Complete | Bullet, Label        | 2026-02-20 | 2026-02-20 | Migrated to shadcn Badge + registry entries |
 | 2     | ⏳ Planned  | 8 components         | -          | -          | -     |
 | 3     | ⏳ Planned  | 7 components         | -          | -          | -     |
 | 4     | ⏳ Planned  | 3 components         | -          | -          | -     |
@@ -1016,6 +1020,14 @@ llms.txt                        # AI context file (root)
 ---
 
 ## Progress Log
+
+### 2026-02-20
+- ✅ Phase 1 completed
+  - Migrated `Bullet` from MUI Badge to shadcn Badge + cva variants
+  - Migrated `Label` from MUI Box to Tailwind + cva variants
+  - Added `bullet` and `label` entries to `registry.json`
+  - Added/updated tests and stories for migrated components
+  - Full test suite passing (426 passed, 3 skipped)
 
 ### 2026-02-18
 - ✅ Migration plan created
@@ -1121,6 +1133,7 @@ AI tools can:
 **Fully acceptable** - v2.0.0 is a major rewrite
 - Work on feature branches, merge to `main` via PRs
 - Released incrementally as `2.0.0-alpha.x` tags on `main` after phase completion
+- No prop-level backward compatibility guarantee
 - `sx` prop → `className`
 - MUI theme → CSS variables
 - Icon library change
@@ -1257,7 +1270,7 @@ None - all key decisions made.
    ```
 
 5. **Component Props**
-   - Some props renamed/removed (documented per-component)
+   - Props may be renamed/removed aggressively (documented per-component)
    - Generally simpler, more standard HTML props
 
 ### Related Documentation

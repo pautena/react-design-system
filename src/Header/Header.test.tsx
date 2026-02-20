@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import type { ReactElement } from "react";
 import { vi } from "vitest";
-import Label from "../Label";
+import Badge from "../components/badge";
 import { TabProvider } from "../TabProvider";
 import { render, screen } from "../tests/testing-library";
 import Header from "./Header";
@@ -85,7 +85,7 @@ describe("Header", () => {
         title: (
           <Box display="flex" flexDirection="row" alignItems="center">
             <Typography variant="h6">custom title</Typography>
-            <Label variant="primary" text="4 items" sx={{ ml: 1 }} />
+            <Badge variant="primary" text="4 items" className="ml-2" />
           </Box>
         ),
       });
@@ -130,7 +130,7 @@ describe("Header", () => {
         subtitle: (
           <Box display="flex" flexDirection="row" alignItems="center">
             <Typography variant="body2">Dolor sit amet</Typography>
-            <Label variant="error" text="since yesterday" sx={{ ml: 1 }} />
+            <Badge variant="error" text="since yesterday" className="ml-2" />
           </Box>
         ),
       });

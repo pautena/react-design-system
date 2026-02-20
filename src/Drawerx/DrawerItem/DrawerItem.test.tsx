@@ -268,16 +268,13 @@ describe("DrawerItem", () => {
       it("should render a label when is set", () => {
         renderComponent({ item: mockLinkLabelDrawerNavigationItem });
 
-        const label = screen.getByRole("label", { name: "10 error label" });
-        expect(label).toBeVisible();
+        expect(screen.getByText("10")).toBeVisible();
       });
 
       it("shouldn't render a label if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
-        expect(
-          screen.queryByRole("label", { name: /10/i }),
-        ).not.toBeInTheDocument();
+        expect(screen.queryByText("10")).not.toBeInTheDocument();
       });
 
       it.skip("shouldn't render a label if the drawer is collapsed", () => {
@@ -286,9 +283,7 @@ describe("DrawerItem", () => {
           initialState: "collapse",
         });
 
-        expect(
-          screen.queryByRole("label", { name: /10/i }),
-        ).not.toBeInTheDocument();
+        expect(screen.queryByText("10")).not.toBeInTheDocument();
       });
     });
 
@@ -296,7 +291,9 @@ describe("DrawerItem", () => {
       it("should render a bullet when is set", () => {
         renderComponent({ item: mockLinkBulletDrawerNavigationItem });
 
-        const bullet = screen.getByRole("bullet");
+        const bullet = screen.getByRole("status", {
+          name: /secondary bullet/i,
+        });
         expect(bullet).toBeVisible();
         expect(bullet).toHaveAttribute("aria-describedby", "secondary");
       });
@@ -304,7 +301,9 @@ describe("DrawerItem", () => {
       it("shouldn't render a bullet if is not set", () => {
         renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
 
-        expect(screen.queryByRole("bullet")).not.toBeInTheDocument();
+        expect(
+          screen.queryByRole("status", { name: /secondary bullet/i }),
+        ).not.toBeInTheDocument();
       });
 
       it.skip("shouldn't render a bullet if the drawer is collapsed", () => {
@@ -313,7 +312,9 @@ describe("DrawerItem", () => {
           initialState: "collapse",
         });
 
-        expect(screen.queryByRole("bullet")).not.toBeInTheDocument();
+        expect(
+          screen.queryByRole("status", { name: /secondary bullet/i }),
+        ).not.toBeInTheDocument();
       });
     });
   });

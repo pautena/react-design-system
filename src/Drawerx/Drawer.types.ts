@@ -6,8 +6,8 @@ import type {
   PropsWithChildren,
   ReactElement,
 } from "react";
-import type { BulletVariant } from "../Bullet";
-import type { LabelVariant } from "../Label";
+import type { BadgeVariant } from "../components/badge";
+import type { BulletVariant } from "../components/bullet";
 import type { DrawerAppBarProps } from "./DrawerAppBar";
 
 /**
@@ -50,7 +50,7 @@ export interface DrawerItemLabel {
   /**
    * Label color variant
    */
-  variant: LabelVariant;
+  variant: BadgeVariant;
 }
 
 /**

@@ -1,5 +1,5 @@
-import { render, screen } from "../tests/testing-library";
-import Bullet, { type BulletVariant } from "./Bullet";
+import { render, screen } from "../../tests/testing-library";
+import Bullet, { type BulletVariant } from "./bullet";
 
 describe("Bullet", () => {
   const renderComponent = (variant: BulletVariant | undefined = undefined) => {
@@ -9,10 +9,9 @@ describe("Bullet", () => {
   it("renders as primary without a variant", () => {
     renderComponent(undefined);
 
-    expect(screen.getByRole("bullet")).toHaveAttribute(
-      "aria-describedby",
-      "primary",
-    );
+    expect(
+      screen.getByRole("status", { name: /primary bullet/i }),
+    ).toHaveAttribute("aria-describedby", "primary");
   });
 
   it.each([
@@ -25,9 +24,8 @@ describe("Bullet", () => {
   ])("renders correctly with variant %s", (variant: string) => {
     renderComponent(variant as BulletVariant);
 
-    expect(screen.getByRole("bullet")).toHaveAttribute(
-      "aria-describedby",
-      variant,
-    );
+    expect(
+      screen.getByRole("status", { name: `${variant} bullet` }),
+    ).toHaveAttribute("aria-describedby", variant);
   });
 });

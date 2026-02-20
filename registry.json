@@ -2,5 +2,35 @@
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "pautena",
   "homepage": "https://react-design-system.pautena.com",
-  "items": []
+  "items": [
+    {
+      "name": "bullet",
+      "type": "registry:ui",
+      "title": "Bullet",
+      "description": "Dot indicator used to attract user attention",
+      "registryDependencies": ["badge"],
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "src/components/bullet/bullet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Compact element to represent text",
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "src/components/badge/badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    }
+  ]
 }
