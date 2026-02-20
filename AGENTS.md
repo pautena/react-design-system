@@ -555,3 +555,7 @@ This is an auto-generated file that contains project context for AI agents.
 - Treat `src/components/ui/*` as low-level primitives (internal building blocks, shadcn-managed).
 - For any consumer-facing/public component, create a wrapper in `src/components/<component-name>/<component-name>.tsx` (kebab-case) and export that wrapper from `src/index.ts`.
 - Use `src/components/ui/*` directly only for internal composition/prototyping, not as the primary public package API.
+
+### Test Interaction Rule
+
+- In React unit tests, click interactions must use `@testing-library/user-event` (for example, `await user.click(...)`) instead of calling DOM `.click()` directly.

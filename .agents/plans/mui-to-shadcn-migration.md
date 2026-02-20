@@ -366,6 +366,14 @@ For each component:
 - Plan composition strategy
 
 #### **3. Implement New Version**
+Preferred path: use the local OpenCode slash command to scaffold the wrapper pattern.
+
+```bash
+/create-component {component-name} "optional context: variants, behavior, accessibility, usage"
+```
+
+The command creates/updates the standard files under `src/components/{component-name}/` and updates `src/index.ts` export wiring. Then refine implementation details as needed for migrated behavior.
+
 ```typescript
 // Structure:
 // src/components/{component-name}/{component-name}.tsx
@@ -1399,7 +1407,13 @@ public/r/
 
 **Step 1: Migrate Component to shadcn**
 
-Create your component with shadcn patterns:
+Use the project command to generate the component skeleton first:
+
+```bash
+/create-component value-card "card component to display key-value data; depends on card and badge"
+```
+
+Then adjust the generated component to match migration requirements and final API:
 
 ```typescript
 // src/components/value-card/value-card.tsx
