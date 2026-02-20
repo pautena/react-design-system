@@ -13,6 +13,9 @@ const darkTheme = createTheme({
 
 const preview: Preview = {
   parameters: {
+    actions: {
+      argTypesRegex: "^on[A-Z].*",
+    },
     backgrounds: {
       default: "light",
       values: [

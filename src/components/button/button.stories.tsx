@@ -4,6 +4,9 @@ import Button from "./button";
 export default {
   title: "Inputs/Button",
   component: Button,
+  argTypes: {
+    onClick: { action: "clicked" },
+  },
   parameters: {
     layout: "centered",
   },
