@@ -12,6 +12,9 @@ export * from "./Content";
 export { default as Content } from "./Content";
 export * from "./ContentPlaceholder";
 export { default as ContentPlaceholder } from "./ContentPlaceholder";
+// shadcn/ui base components
+export * from "./components/ui/badge";
+export * from "./components/ui/button";
 export * from "./DateRangeCalendar";
 export { default as DateRangeCalendar } from "./DateRangeCalendar";
 export * from "./DateRangePicker";

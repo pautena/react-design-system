@@ -2,6 +2,7 @@ import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
 import { withThemeFromJSXProvider } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react";
 import type { Renderer } from "storybook/internal/csf";
+import "../src/styles/globals.css";
 
 const lightTheme = createTheme();
 const darkTheme = createTheme({
@@ -12,6 +13,13 @@ const darkTheme = createTheme({
 
 const preview: Preview = {
   parameters: {
+    backgrounds: {
+      default: "light",
+      values: [
+        { name: "light", value: "oklch(1 0 0)" },
+        { name: "dark", value: "oklch(0.145 0 0)" },
+      ],
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -19,8 +27,26 @@ const preview: Preview = {
       },
       expanded: true,
     },
+    docs: {
+      canvas: {
+        className: "bg-background text-foreground",
+      },
+    },
   },
   decorators: [
+    (Story, context) => {
+      const root = document.documentElement;
+      const selectedTheme = context.globals.theme;
+
+      root.classList.remove("light", "dark");
+      if (selectedTheme === "dark") {
+        root.classList.add("dark");
+      } else {
+        root.classList.add("light");
+      }
+
+      return Story();
+    },
     withThemeFromJSXProvider<Renderer>({
       themes: {
         light: lightTheme,

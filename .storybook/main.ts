@@ -1,4 +1,9 @@
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import type { StorybookConfig } from "@storybook/react-vite";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const config: StorybookConfig = {
   stories: [
@@ -28,6 +33,24 @@ const config: StorybookConfig = {
   },
   features: {
     experimentalComponentsManifest: true,
+  },
+  async viteFinal(config) {
+    // Ensure Base UI package exports are properly resolved
+    config.optimizeDeps = {
+      ...config.optimizeDeps,
+      include: [...(config.optimizeDeps?.include || []), "@base-ui/react"],
+    };
+
+    // Add path alias resolution for @/ -> src/
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        "@": join(__dirname, "../src"),
+      },
+    };
+
+    return config;
   },
 };
 export default config;

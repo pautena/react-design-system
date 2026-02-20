@@ -1,7 +1,7 @@
 # MUI → shadcn/ui Migration Plan v2.0.0
 ## AI-Ready Design System with MCP Integration
 
-**Status**: 📋 Draft  
+**Status**: 🚧 Active (Phase 0 complete, Phase 1 next)  
 **Created**: 2026-02-18  
 **Branch**: Feature branches from `main`  
 **Target Version**: 2.0.0 (released as 2.0.0-alpha.x tags)  
@@ -28,7 +28,9 @@ Transform the MUI-based design system into an **AI-native, shadcn-powered compon
 | **Versioning**       | 2.0.0-alpha.x tags on `main`         |
 | **V1 Status**        | Frozen (critical bugs only)          |
 | **Styling**          | Tailwind CSS + CSS variables         |
-| **Base Components**  | shadcn/ui (selected categories)      |
+| **Base Components**  | shadcn/ui + Base UI (headless)       |
+| **Headless UI**      | Base UI (@base-ui/react)             |
+| **Project Layout**   | shadcn Vite-style (`src/components/ui`, `src/hooks`, `src/lib/utils.ts`) |
 | **Icons**            | Lucide React                         |
 | **Distribution**     | NPM package                          |
 | **AI Integration**   | Full MCP registry support            |
@@ -65,11 +67,11 @@ Transform the MUI-based design system into an **AI-native, shadcn-powered compon
 **Utilities (2)**
 - utils (various), tests
 
-### Dependencies to Remove
-- `@mui/material` → shadcn/ui + Radix UI
-- `@emotion/react`, `@emotion/styled` → Tailwind CSS
+### Dependencies to Remove/Update
+- `@mui/material` (KEEP at v7.3.8) → Gradually phase out, use alongside Base UI
+- `@emotion/react`, `@emotion/styled` → Remove after MUI components migrated
 - `@mui/icons-material` → lucide-react
-- `@mui/x-date-pickers` → Optional peer dep (keep for now)
+- `@mui/x-date-pickers` (KEEP at v8.27.0) → Optional peer dep for date components
 
 ---
 
@@ -79,17 +81,22 @@ Transform the MUI-based design system into an **AI-native, shadcn-powered compon
 
 ```
 Your Design System (v2.0.0)
-├── shadcn/ui Base Components (installed in lib)
-│   ├── Core: Button, Input, Label, Card
-│   ├── Forms: Select, Checkbox, Radio, Switch, Textarea
-│   ├── Data: Table, Badge, Skeleton, Separator
-│   ├── Overlays: Dialog, Sheet, Popover, Tooltip
-│   ├── Feedback: Alert, Toast/Sonner, Progress, Spinner
-│   └── Navigation: Tabs, Sidebar, Breadcrumb, Pagination
+├── Base UI Headless Components (@base-ui/react)
+│   ├── Primitives: Button, Input, Checkbox, Radio, Switch, Slider
+│   ├── Overlays: Dialog, Popover, Tooltip, Menu
+│   ├── Forms: Select, NumberField, Field
+│   └── Feedback: Alert, Progress, Accordion
 │
-└── Your Custom Components (built on shadcn primitives)
-    ├── Label (enhanced shadcn Badge)
-    ├── ValueCard (composite with Card + custom logic)
+├── shadcn/ui Styled Components (installed in src/components/ui/)
+│   ├── Styled with Tailwind using Base UI primitives where possible
+│   ├── Core: Button, Input, Label, Card
+│   ├── Data: Table, Badge, Skeleton, Separator
+│   ├── Navigation: Tabs, Sidebar, Breadcrumb, Pagination
+│   └── Feedback: Alert, Toast/Sonner, Progress
+│
+└── Your Custom Components (built on Base UI + shadcn)
+    ├── Label (Base UI + Tailwind variants)
+    ├── ValueCard (Base UI Dialog + Card + custom logic)
     ├── RemoteDataTable (shadcn Table + TanStack Table)
     ├── NotificationCenter (shadcn Toast/Sonner wrapper)
     └── ... all your domain-specific components
@@ -102,32 +109,42 @@ react-design-system/
 ├── components.json              # shadcn + MCP config
 ├── registry.json                # MCP registry definition
 ├── src/
-│   ├── lib/
-│   │   ├── utils.ts            # cn() utility
-│   │   └── shadcn/             # shadcn base components (~30 components)
-│   │       ├── button.tsx
-│   │       ├── input.tsx
-│   │       ├── card.tsx
-│   │       └── ...
-│   ├── components/             # Your custom components
+│   ├── components/
+│   │   ├── ui/                 # shadcn-generated base components (~30 files)
+│   │   │   ├── button.tsx
+│   │   │   ├── input.tsx
+│   │   │   ├── card.tsx
+│   │   │   └── ...
+│   │   ├── bullet/             # custom DS components (migrated from MUI)
 │   │   ├── label/
-│   │   │   ├── label.tsx
-│   │   │   ├── label.stories.tsx
-│   │   │   ├── label.test.tsx
-│   │   │   └── index.ts
 │   │   ├── value-card/
 │   │   ├── remote-data-table/
 │   │   └── ...
+│   ├── hooks/
+│   │   └── use-mobile.ts       # shadcn sidebar support hook
+│   ├── lib/
+│   │   └── utils.ts            # cn() utility (single source)
 │   ├── styles/
 │   │   └── globals.css         # Tailwind + CSS variables
 │   └── index.ts                # Public API exports
-├── registry/                   # MCP registry files (auto-generated)
-│   └── components/
+├── public/
+│   └── r/                      # MCP registry output (auto-generated JSON)
+│       ├── index.json
 │       ├── label.json
-│       ├── value-card.json
 │       └── ...
 └── dist/                       # Build output for npm
 ```
+
+### Structure Rules (Non-Negotiable)
+
+- `src/components/ui/*` is the only location for shadcn-generated base components.
+- `src/hooks/use-mobile.ts` is generated support code for sidebar patterns.
+- `src/lib/utils.ts` is the only `cn()` helper file.
+- Do not create or reintroduce `src/lib/shadcn/*`.
+- Do not create `src/lib/hooks/use-mobile.ts` (legacy path).
+- Storybook/docs/examples must import from `@/components/ui/*` and `@/hooks/*`.
+- Any component intended for package consumers must be re-exported from `src/index.ts`.
+- Consumer-facing docs/examples must show imports from `@pautena/react-design-system`, not internal `@/` paths.
 
 ### Component Pattern
 
@@ -254,6 +271,77 @@ export function Label({ text, variant, size, className, ...props }: LabelProps) 
 
 ---
 
+## Headless UI Strategy: Base UI
+
+### Why Base UI over Radix UI?
+
+**Base UI** (`@base-ui/react` v1.2.0) is the official headless component library from MUI:
+
+- **From MUI Team**: Same team behind Material UI, ensuring quality & longevity
+- **Modern Architecture**: Built with React 19 patterns, Floating UI integration
+- **Composability First**: Designed for flexibility without visual opinions
+- **Better Alignment**: Natural fit alongside existing MUI dependencies
+- **Active Development**: Recently released v1.0.0 (Dec 2025), actively maintained
+
+### Base UI Components Available
+
+Base UI provides headless primitives for:
+
+**Form Controls**:
+- Button, Checkbox, Radio, RadioGroup, Switch, Slider, NumberField, Field
+
+**Overlays**:
+- Dialog, Popover, Tooltip, Menu (Dropdown, Context)
+
+**Data Display**:
+- AlertDialog, Progress, Accordion, Collapsible
+
+**Navigation**:
+- Tabs, Breadcrumbs, Pagination (planned)
+
+### Integration Strategy
+
+1. **Phase 0 Fix**: Replace Radix UI primitives with Base UI equivalents
+2. **shadcn Components**: Adapt shadcn components to use Base UI as headless layer
+3. **Custom Components**: Build on Base UI + Tailwind for full control
+4. **Gradual Adoption**: Start with simple components, expand as needed
+
+### Migration Path (Radix → Base UI)
+
+| Radix Component | Base UI Equivalent | Status | Migrated In |
+|-----------------|-------------------|--------|-------------|
+| `@radix-ui/react-dialog` | `@base-ui/react/Dialog` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-popover` | `@base-ui/react/Popover` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-tooltip` | `@base-ui/react/Tooltip` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-checkbox` | `@base-ui/react/Checkbox` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-switch` | `@base-ui/react/Switch` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-tabs` | `@base-ui/react/Tabs` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-accordion` | `@base-ui/react/Accordion` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-progress` | `@base-ui/react/Progress` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-collapsible` | `@base-ui/react/Collapsible` | ✅ Migrated | Phase 0 |
+| `@radix-ui/react-radio-group` | `@base-ui/react/RadioGroup` | ⏸️ Deferred | Phase 1+ |
+| `@radix-ui/react-select` | `@base-ui/react/Select` | ⏸️ Deferred | Phase 1+ |
+| `@radix-ui/react-dropdown-menu` | `@base-ui/react/Menu` | ⏸️ Deferred | Phase 1+ |
+| `@radix-ui/react-context-menu` | `@base-ui/react/Menu` | ⏸️ Deferred | Phase 1+ |
+| `@radix-ui/react-menubar` | `@base-ui/react/Menu` | ⏸️ Deferred | Phase 1+ |
+
+**Keep permanently** (no Base UI equivalent or utility):
+- `@radix-ui/react-avatar` → Keep (no Base UI equivalent)
+- `@radix-ui/react-separator` → Keep (no Base UI equivalent)
+- `@radix-ui/react-label` → Keep (no Base UI equivalent)
+- `@radix-ui/react-slot` → Keep (utility for composition, not a component)
+- `react-day-picker` → Keep (calendar component)
+- `cmdk` → Keep (command palette)
+- `sonner` → Keep (toast notifications)
+
+**Phase 0 Results**:
+- ✅ 9 components migrated to Base UI
+- ✅ 9 Radix packages removed
+- ⏸️ 5 complex components deferred (RadioGroup, Select, Menus)
+- 🔒 4 components kept by design (Avatar, Separator, Label, Slot)
+
+---
+
 ## Workflow
 
 ### Per-Component Migration Process
@@ -349,6 +437,8 @@ export { default } from "./component-name"
 export * from "./components/{component-name}"
 ```
 
+Required: if a component is meant to be used by package consumers, `src/index.ts` must be updated so it is importable from `@pautena/react-design-system`.
+
 #### **8. Build Registry**
 ```bash
 yarn build:registry
@@ -397,36 +487,51 @@ BREAKING CHANGE:
 
 ## Execution Phases
 
-### Phase 0: Foundation & shadcn Setup ⚙️
+### Phase 0: Foundation & shadcn Setup ✅ COMPLETE
 
 **Agent**: @planner (spec only, no implementation)  
-**Skills**: None (infrastructure setup)
+**Skills**: None (infrastructure setup)  
+**Branch**: `feat/phase-0-foundation`  
+**Status**: Completed locally (pending PR merge)
 
 #### Tasks
-- [ ] Create feature branch: `git checkout -b feat/phase-0-foundation`
-- [ ] Install core dependencies (Tailwind, CVA, Lucide)
-- [ ] Initialize shadcn/ui (`npx shadcn@latest init`)
-- [ ] Install ~30 shadcn base components
-- [ ] Configure Tailwind CSS with theme
-- [ ] Create CSS variables theme system
-- [ ] Update Vite configuration for Tailwind
-- [ ] Update Storybook configuration
-- [ ] Create `registry.json` manifest (empty items array)
-- [ ] Add `build:registry` script to package.json
-- [ ] Test registry build: `yarn build:registry`
-- [ ] Update package.json (v2.0.0-alpha.0)
-- [ ] Create documentation structure (MIGRATION.md, etc.)
-- [ ] Test foundation (build, storybook, tests)
-- [ ] Create PR to `main`
-- [ ] Merge to `main` after review
+- [x] Create feature branch: `git checkout -b feat/phase-0-foundation`
+- [x] Install core dependencies (Tailwind, CVA, Lucide)
+- [x] Initialize shadcn/ui (`npx shadcn@latest init`)
+- [x] Install ~30 shadcn base components
+- [x] **Migrate 9 shadcn components from Radix UI to Base UI**
+- [x] **Restore MUI versions to v7.3.8 (material), v8.27.0 (date-pickers)**
+- [x] Configure Tailwind CSS with theme
+- [x] Create CSS variables theme system
+- [x] Keep Vite in library mode (do not switch to app-template config)
+- [x] Update Storybook configuration
+- [x] Create `registry.json` manifest (empty items array)
+- [x] Add `build:registry` script to package.json
+- [x] Test registry build: `yarn build:registry`
+- [x] Update package.json (v2.0.0-alpha.0)
+- [x] Create documentation structure (MIGRATION.md, etc.)
+- [x] Test foundation (build, storybook, tests)
+- [x] All checks passing (lint, check, check:ts, build, test)
+- [x] Normalize structure to shadcn Vite-style paths (`src/components/ui`, `src/hooks`, `src/lib/utils.ts`)
+- [x] Remove legacy path (`src/lib/shadcn/*`)
+- [ ] Update PR #637 with all Phase 0 changes
+- [ ] Merge PR to `main` after review
 - [ ] Create git tag `2.0.0-alpha.0` on `main`
 
+**Base UI Migration Status**:
+- ✅ shadcn base components regenerated with Base UI style in `src/components/ui/*`
+- ✅ No runtime Radix dependency required for current shadcn base layer
+
 **Deliverables**:
-- ✅ Working shadcn/ui setup
-- ✅ ~30 base components installed
+- ✅ Working shadcn/ui setup with Base UI as headless layer
+- ✅ ~30 base components installed, 9 migrated to Base UI
 - ✅ MCP registry framework
-- ✅ Documentation structure
+- ✅ Documentation structure (MIGRATION.md)
 - ✅ Existing MUI components still work
+- ✅ Base UI @1.2.0 installed and working
+- ✅ MUI v7.3.8 + date-pickers v8.27.0 restored
+- ✅ All tests passing (425 passed, 3 skipped)
+- ✅ Zero TypeScript errors
 
 **Files Created**:
 ```
@@ -436,7 +541,8 @@ tailwind.config.ts       # Tailwind configuration
 postcss.config.js        # PostCSS configuration
 src/styles/globals.css   # CSS variables theme
 src/lib/utils.ts         # cn() utility
-src/lib/shadcn/*         # shadcn base components (~30 files)
+src/components/ui/*      # shadcn base components (~30 files)
+src/hooks/use-mobile.ts  # shadcn sidebar hook
 public/r/                # Registry output directory (auto-generated)
 MIGRATION.md             # Migration documentation
 ```
@@ -893,8 +999,8 @@ llms.txt                        # AI context file (root)
 
 | Phase | Status      | Components           | Started    | Completed  | Notes |
 | ----- | ----------- | -------------------- | ---------- | ---------- | ----- |
-| 0     | ⏳ Planned  | Foundation           | -          | -          | -     |
-| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | -     |
+| 0     | ✅ Complete | Foundation        | 2026-02-18 | 2026-02-18 | Base UI migration done, Tailwind fixed, shadcn moved to `src/components/ui` |
+| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | Ready to start |
 | 2     | ⏳ Planned  | 8 components         | -          | -          | -     |
 | 3     | ⏳ Planned  | 7 components         | -          | -          | -     |
 | 4     | ⏳ Planned  | 3 components         | -          | -          | -     |
@@ -928,7 +1034,37 @@ llms.txt                        # AI context file (root)
   - Added Appendix H with Phase 9 comprehensive details
   - Deleted redundant plan files (registry-automation-summary.md, phase-9-examples-summary.md)
   - Single source of truth: `mui-to-shadcn-migration.md`
-- ⏳ Awaiting approval to start Phase 0
+- 🔄 **Phase 0: Foundation & shadcn Setup - IN PROGRESS (FIXES NEEDED)**
+  - Installed Tailwind CSS, CVA, Lucide React, Sonner
+  - Initialized shadcn/ui with ~33 base components (using Radix UI)
+  - Configured Tailwind with CSS variables theme (light/dark)
+  - Created MCP registry framework (registry.json)
+  - Added build:registry script for automated registry generation
+  - Updated package.json to v2.0.0-alpha.0
+  - Created MIGRATION.md documentation
+  - Branch: feat/phase-0-foundation
+  - Commits: 59f5ab4, 564bcbc
+  - PR: #637 - https://github.com/pautena/react-design-system/pull/637
+  - **ISSUES DISCOVERED**:
+    - ❌ MUI versions downgraded (v7.3.8→v6.0.0 material, v8.27.0→v7.0.0 date-pickers)
+    - ❌ Using Radix UI instead of Base UI (@base-ui/react)
+  - **REQUIRED FIXES**:
+    1. Restore MUI versions: @mui/material ^7.3.8, @mui/x-date-pickers ^8.27.0
+    2. Replace Radix UI packages with Base UI (@base-ui/react)
+    3. Update shadcn components to use Base UI primitives
+    4. Re-test build, storybook, tests
+    5. Update PR #637 with fixes
+- ⏳ Next: Complete Phase 0 fixes, merge PR, then start Phase 1
+- ✅ **Phase 0 fixes completed and normalized to recommended shadcn layout**
+  - Regenerated shadcn components using Base UI style into `src/components/ui/*`
+  - Moved generated hook to `src/hooks/use-mobile.ts`
+  - Updated `components.json` aliases to recommended structure:
+    - `ui`: `@/components/ui`
+    - `components`: `@/components`
+    - `hooks`: `@/hooks`
+    - `lib`: `@/lib`
+  - Updated Storybook docs/stories to import from `@/components/ui/*`
+  - Removed legacy `src/lib/shadcn/*` path to avoid dual sources of truth
 
 ---
 
@@ -1054,10 +1190,10 @@ None - all key decisions made.
 ```json
 {
   "dependencies": {
-    "@radix-ui/react-*": "^1.0.0",
+    "@base-ui/react": "^1.2.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "tailwind-merge": "^2.0.0",
+    "tailwind-merge": "^3.0.0",
     "lucide-react": "^0.300.0",
     "sonner": "^1.0.0"
   },
@@ -1079,6 +1215,7 @@ None - all key decisions made.
 ```json
 {
   "removed": [
+    "@radix-ui/react-*",
     "@mui/material",
     "@mui/icons-material",
     "@emotion/react",
@@ -1150,9 +1287,9 @@ None - all key decisions made.
 ## Next Actions
 
 **Immediate:**
-1. ✅ Migration plan created → **DONE**
-2. ⏳ Awaiting user approval
-3. ⏳ Start Phase 0 (Foundation setup) → **PENDING APPROVAL**
+1. ✅ Phase 0 foundation complete (structure normalized)
+2. ⏳ Update/merge PR #637 with latest structure + dependency cleanup
+3. ⏳ Start Phase 1 (Bullet + Label) using `@/components/ui/*` imports only
 
 **After Phase 0:**
 - Execute Phase 1 (Pilot components)
@@ -1162,8 +1299,8 @@ None - all key decisions made.
 
 **Commands to Start:**
 ```bash
-# When approved, user says "Start Phase 0"
-# Planner agent will coordinate with react-developer agent
+# Start Phase 1 branch work
+git checkout -b feat/phase-1-bullet-label
 ```
 
 ---
@@ -1253,7 +1390,7 @@ Create your component with shadcn patterns:
 
 ```typescript
 // src/components/value-card/value-card.tsx
-import { Card } from "@/lib/shadcn/card"
+import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 
 export function ValueCard({ className, ...props }) {
@@ -1464,11 +1601,11 @@ jobs:
 ```
 
 **Q: How do I detect `registryDependencies` automatically?**  
-**A:** Look at your component imports. If it imports from `@/lib/shadcn/*` or other internal components, those are registryDependencies.
+**A:** Look at your component imports. If it imports from `@/components/ui/*` or other internal components, those are registryDependencies.
 
 Example:
 ```typescript
-import { Card } from "@/lib/shadcn/card"  // ← registryDependency: "card"
+import { Card } from "@/components/ui/card"  // ← registryDependency: "card"
 import { Badge } from "@/components/badge"  // ← registryDependency: "badge"
 import { clsx } from "clsx"  // ← dependency: "clsx"
 ```

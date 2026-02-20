@@ -72,6 +72,7 @@ const ValueItem: ValueItemComponent = ({
     darkWeight: 800,
   });
   const borderLeft = resolveBorderStyle(bordered, defaultColor);
+
   return (
     <Grid className={valueItemClasses.root} {...rest}>
       <Box className={valueItemClasses.content} px={1} borderLeft={borderLeft}>

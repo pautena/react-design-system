@@ -1,0 +1,56 @@
+<Meta title="shadcn/Introduction" />
+
+# shadcn/ui Components
+
+This library currently keeps only the base `Button` and `Badge` in `src/components/ui/`.
+
+## Available Components
+
+- **Button** - Action button with variants and sizes.
+- **Badge** - Compact status/tag element with variants.
+
+## Interactive Showcase
+
+Visit the **shadcn/Button** and **shadcn/Badge** stories to see the currently available components.
+
+## Examples
+
+See the **shadcn/Button** and **shadcn/Badge** stories for variants.
+
+## Theme System
+
+All components use CSS variables defined in `src/styles/globals.css`:
+
+```css
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --secondary: 210 40% 96.1%;
+  /* ... more variables */
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  /* ... dark mode values */
+}
+```
+
+## Usage
+
+Import components from `@/components/ui/`:
+
+```tsx
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+
+function MyComponent() {
+  return (
+    <div className="flex items-center gap-2">
+      <Button>Save</Button>
+      <Badge>New</Badge>
+    </div>
+  );
+}
+```
