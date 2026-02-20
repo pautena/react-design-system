@@ -756,7 +756,7 @@ MIGRATION.md             # Migration documentation
    - Replace MUI Table components → shadcn Table
    - RemoteDataTablePagination → shadcn Pagination
    - RemoteDataTableQueryBuilder → Custom filter UI
-   - Maintain all props & APIs
+   - Props and APIs can be redesigned freely
    - Test sorting, pagination, filtering thoroughly
 
 2. ListPanel - List container
@@ -768,7 +768,7 @@ MIGRATION.md             # Migration documentation
 - All RemoteDataTable features work
 - Sorting, pagination, filtering perfect
 - Performance maintained
-- API unchanged (or minimal breaking changes)
+- Breaking API changes accepted when needed
 - Merge all PRs to `main` before tagging
 - Create git tag `2.0.0-alpha.7` on `main` when complete
 
@@ -1133,6 +1133,7 @@ AI tools can:
 **Fully acceptable** - v2.0.0 is a major rewrite
 - Work on feature branches, merge to `main` via PRs
 - Released incrementally as `2.0.0-alpha.x` tags on `main` after phase completion
+- No prop-level backward compatibility guarantee
 - `sx` prop → `className`
 - MUI theme → CSS variables
 - Icon library change
@@ -1269,7 +1270,7 @@ None - all key decisions made.
    ```
 
 5. **Component Props**
-   - Some props renamed/removed (documented per-component)
+   - Props may be renamed/removed aggressively (documented per-component)
    - Generally simpler, more standard HTML props
 
 ### Related Documentation

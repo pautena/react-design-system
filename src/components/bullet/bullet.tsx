@@ -1,5 +1,4 @@
 import { cva } from "class-variance-authority";
-import type { CSSProperties } from "react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -40,50 +39,15 @@ export interface BulletProps {
    */
   variant?: BulletVariant;
   /**
-   * Legacy style object preserved for backward compatibility
-   */
-  sx?: {
-    ml?: number | string;
-    mr?: number | string;
-    mt?: number | string;
-    mb?: number | string;
-  } & CSSProperties;
-  /**
    * Additional CSS classes for custom styling
    */
   className?: string;
 }
 
-function toCssSpacing(
-  value: number | string | undefined,
-): string | number | undefined {
-  if (typeof value === "number") {
-    return `${value * 8}px`;
-  }
-
-  return value;
-}
-
-function toInlineStyle(sx: BulletProps["sx"]): CSSProperties | undefined {
-  if (!sx) {
-    return undefined;
-  }
-
-  const { ml, mr, mt, mb, ...rest } = sx;
-
-  return {
-    ...rest,
-    marginLeft: toCssSpacing(ml),
-    marginRight: toCssSpacing(mr),
-    marginTop: toCssSpacing(mt),
-    marginBottom: toCssSpacing(mb),
-  };
-}
-
 /**
  * Dot to attract the user attention
  */
-export function Bullet({ variant = "primary", sx, className }: BulletProps) {
+export function Bullet({ variant = "primary", className }: BulletProps) {
   return (
     <Badge
       variant="outline"
@@ -96,7 +60,6 @@ export function Bullet({ variant = "primary", sx, className }: BulletProps) {
       role="status"
       aria-label={`${variant} bullet`}
       aria-describedby={variant}
-      style={toInlineStyle(sx)}
     />
   );
 }

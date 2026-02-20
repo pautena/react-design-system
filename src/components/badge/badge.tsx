@@ -10,7 +10,10 @@ export type BadgeVariant =
   | "error"
   | "success";
 
-const variantMap: Record<BadgeVariant, ComponentProps<typeof UiBadge>["variant"]> = {
+const variantMap: Record<
+  BadgeVariant,
+  ComponentProps<typeof UiBadge>["variant"]
+> = {
   default: "default",
   primary: "default",
   secondary: "secondary",
@@ -23,7 +26,8 @@ const variantMap: Record<BadgeVariant, ComponentProps<typeof UiBadge>["variant"]
 /**
  * Props for the Badge component
  */
-export interface BadgeProps extends Omit<ComponentProps<typeof UiBadge>, "children" | "variant"> {
+export interface BadgeProps
+  extends Omit<ComponentProps<typeof UiBadge>, "children" | "variant"> {
   /**
    * Content of the component
    */

@@ -136,7 +136,7 @@ export const DrawerItemLink = ({
         <Badge text={label.text} variant={label.variant} className="ml-2" />
       )}
       {bullet && state === "open" && (
-        <Bullet variant={bullet.variant} sx={{ ml: 2 }} />
+        <Bullet variant={bullet.variant} className="ml-4" />
       )}
     </ListItemButton>
   );
