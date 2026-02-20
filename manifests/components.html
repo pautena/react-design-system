@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">41 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">2/41 infos</a><span class="filter-pill ok" aria-disabled="true">211 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">41 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/41 info</a><span class="filter-pill ok" aria-disabled="true">216 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1478,7 +1478,7 @@ variant?: | &quot;primary&quot;
 <article
   class="card 
   no-error 
-  has-info 
+  no-info 
   no-story-error"
   role="listitem"
   aria-label="Button">
@@ -1486,45 +1486,50 @@ variant?: | &quot;primary&quot;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Button</h2>
       <div class="badges">
-        <label for="c-5-shadcn-button-props" class="badge ok as-toggle">2 prop types</label>
-        <label for="c-5-shadcn-button-info" class="badge info as-toggle">1 info</label>
-        <label for="c-5-shadcn-button-stories" class="badge ok as-toggle">10 stories</label>
+        <label for="c-5-inputs-button-props" class="badge ok as-toggle">1 prop type</label>
+        
+        <label for="c-5-inputs-button-stories" class="badge ok as-toggle">15 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/stories/button.stories.tsx">shadcn-button · ./src/stories/button.stories.tsx</div>
+    <div class="meta" title="./src/components/button/button.stories.tsx">inputs-button · ./src/components/button/button.stories.tsx</div>
     
-    
+    <div class="hint">Consumer-facing button wrapper for public package API</div>
     
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-5-shadcn-button-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-5-shadcn-button-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-5-shadcn-button-props" class="tg tg-props" type="checkbox" hidden />
+  
+  <input id="c-5-inputs-button-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-5-inputs-button-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
     
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
     
         <div class="panel panel-props">
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">2 prop types</span>
+              <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/components/ui/button.tsx::Button</code></pre>
+            <pre><code>Component: src/components/button/button.tsx::Button</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>size?: any = &quot;default&quot;
-
-variant?: any = &quot;default&quot;</code></pre>
+            <pre><code>/**
+ * Color palette used to draw the component
+ * @default &quot;default&quot;
+ */
+variant?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;default&quot;
+| &quot;info&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;success&quot;
+| &quot;outline&quot;
+| &quot;ghost&quot;
+| &quot;destructive&quot;
+| &quot;link&quot; = &quot;default&quot;</code></pre>
           </div>
         </div>
     
@@ -1547,7 +1552,16 @@ variant?: any = &quot;default&quot;</code></pre>
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;Button&gt;Button&lt;/Button&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; &lt;Button variant=&quot;default&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Primary</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Primary = () =&gt; &lt;Button variant=&quot;primary&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1556,16 +1570,43 @@ variant?: any = &quot;default&quot;</code></pre>
               </div>
               
               
-              <pre><code>const Secondary = () =&gt; &lt;Button variant=&quot;secondary&quot;&gt;Secondary&lt;/Button&gt;;</code></pre>
+              <pre><code>const Secondary = () =&gt; &lt;Button variant=&quot;secondary&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Destructive</span>
+                <span class="ex-name">Info</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Destructive = () =&gt; &lt;Button variant=&quot;destructive&quot;&gt;Destructive&lt;/Button&gt;;</code></pre>
+              <pre><code>const Info = () =&gt; &lt;Button variant=&quot;info&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Warning</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Warning = () =&gt; &lt;Button variant=&quot;warning&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Error</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Error = () =&gt; &lt;Button variant=&quot;error&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Success</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Success = () =&gt; &lt;Button variant=&quot;success&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1574,7 +1615,7 @@ variant?: any = &quot;default&quot;</code></pre>
               </div>
               
               
-              <pre><code>const Outline = () =&gt; &lt;Button variant=&quot;outline&quot;&gt;Outline&lt;/Button&gt;;</code></pre>
+              <pre><code>const Outline = () =&gt; &lt;Button variant=&quot;outline&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1583,7 +1624,16 @@ variant?: any = &quot;default&quot;</code></pre>
               </div>
               
               
-              <pre><code>const Ghost = () =&gt; &lt;Button variant=&quot;ghost&quot;&gt;Ghost&lt;/Button&gt;;</code></pre>
+              <pre><code>const Ghost = () =&gt; &lt;Button variant=&quot;ghost&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Destructive</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Destructive = () =&gt; &lt;Button variant=&quot;destructive&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1592,7 +1642,7 @@ variant?: any = &quot;default&quot;</code></pre>
               </div>
               
               
-              <pre><code>const Link = () =&gt; &lt;Button variant=&quot;link&quot;&gt;Link&lt;/Button&gt;;</code></pre>
+              <pre><code>const Link = () =&gt; &lt;Button variant=&quot;link&quot;&gt;Click me&lt;/Button&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">

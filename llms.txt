@@ -8,22 +8,6 @@ AI-ready design system built on shadcn/ui with MCP support
 
 [View Documentation](./?path=/docs/shadcn-introduction--docs)
 
-### Button
-
-**Stories:**
-- [Default](./?path=/story/shadcn-button--default)
-- [Secondary](./?path=/story/shadcn-button--secondary)
-- [Destructive](./?path=/story/shadcn-button--destructive)
-- [Outline](./?path=/story/shadcn-button--outline)
-- [Ghost](./?path=/story/shadcn-button--ghost)
-- [Link](./?path=/story/shadcn-button--link)
-- [Size Extra Small](./?path=/story/shadcn-button--size-extra-small)
-- [Size Small](./?path=/story/shadcn-button--size-small)
-- [Size Large](./?path=/story/shadcn-button--size-large)
-- [Size Icon](./?path=/story/shadcn-button--size-icon)
-
-[View Documentation](./?path=/docs/shadcn-button--docs)
-
 ## Inputs
 
 ### Autocomplete
@@ -194,6 +178,27 @@ A customizable TextField component that extends the functionality of the Materia
 - [With Slot Props Customization](./?path=/story/inputs-textfield--with-slot-props-customization)
 
 [View Documentation](./?path=/docs/inputs-textfield--docs)
+
+### Button
+
+**Stories:**
+- [Default](./?path=/story/inputs-button--default)
+- [Primary](./?path=/story/inputs-button--primary)
+- [Secondary](./?path=/story/inputs-button--secondary)
+- [Info](./?path=/story/inputs-button--info)
+- [Warning](./?path=/story/inputs-button--warning)
+- [Error](./?path=/story/inputs-button--error)
+- [Success](./?path=/story/inputs-button--success)
+- [Outline](./?path=/story/inputs-button--outline)
+- [Ghost](./?path=/story/inputs-button--ghost)
+- [Destructive](./?path=/story/inputs-button--destructive)
+- [Link](./?path=/story/inputs-button--link)
+- [Size Extra Small](./?path=/story/inputs-button--size-extra-small)
+- [Size Small](./?path=/story/inputs-button--size-small)
+- [Size Large](./?path=/story/inputs-button--size-large)
+- [Size Icon](./?path=/story/inputs-button--size-icon)
+
+[View Documentation](./?path=/docs/inputs-button--docs)
 
 ## Data Display
 

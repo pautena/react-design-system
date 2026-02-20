@@ -1,0 +1,6 @@
+import{j as r}from"./iframe-BSF_zI2e.js";import{c as t,a as l}from"./utils-CoZSTMEW.js";import{B as n}from"./badge-Ba7mIITK.js";const i={root:"RdsBullet-root"},o=l("bg-primary",{variants:{variant:{primary:"bg-blue-500",secondary:"bg-violet-500",default:"bg-zinc-400",info:"bg-sky-500",warning:"bg-amber-500",error:"bg-red-500"}},defaultVariants:{variant:"primary"}});function s({variant:e="primary",className:a}){return r.jsx(n,{variant:"outline",className:t(i.root,"inline-flex size-2.5 min-w-0 rounded-full border-0 p-0",o({variant:e}),a),role:"status","aria-label":`${e} bullet`,"aria-describedby":e})}s.__docgenInfo={description:"Dot to attract the user attention",methods:[],displayName:"Bullet",props:{variant:{required:!1,tsType:{name:"union",raw:`| "primary"
+| "secondary"
+| "default"
+| "info"
+| "warning"
+| "error"`,elements:[{name:"literal",value:'"primary"'},{name:"literal",value:'"secondary"'},{name:"literal",value:'"default"'},{name:"literal",value:'"info"'},{name:"literal",value:'"warning"'},{name:"literal",value:'"error"'}]},description:"Color palette used to draw the component",defaultValue:{value:'"primary"',computed:!1}},className:{required:!1,tsType:{name:"string"},description:"Additional CSS classes for custom styling"}}};export{s as B};
