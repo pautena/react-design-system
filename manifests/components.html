@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/42 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">3/42 infos</a><span class="filter-pill ok" aria-disabled="true">216 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">41 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">2/41 infos</a><span class="filter-pill ok" aria-disabled="true">211 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -781,107 +781,61 @@ import Box from "@mui/material/Box";</code></pre>
 </article>
 <article
   class="card 
-  has-error 
-  has-info 
+  no-error 
+  no-info 
   no-story-error"
   role="listitem"
   aria-label="Badge">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-err"></span> Badge</h2>
+      <h2><span class="status-dot dot-ok"></span> Badge</h2>
       <div class="badges">
-        <label for="c-1-shadcn-badge-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-1-shadcn-badge-info" class="badge info as-toggle">1 info</label>
-        <label for="c-1-shadcn-badge-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-1-data-display-badge-props" class="badge ok as-toggle">2 prop types</label>
+        
+        <label for="c-1-data-display-badge-stories" class="badge ok as-toggle">11 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/stories/badge.stories.tsx">shadcn-badge · ./src/stories/badge.stories.tsx</div>
+    <div class="meta" title="./src/components/badge/badge.stories.tsx">data-display-badge · ./src/components/badge/badge.stories.tsx</div>
     
-    
+    <div class="hint">Compact badge wrapper for consumer-facing API</div>
     
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-1-shadcn-badge-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-1-shadcn-badge-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-1-shadcn-badge-stories" class="tg tg-stories" type="checkbox" hidden />
   
+  
+  <input id="c-1-data-display-badge-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-1-data-display-badge-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
-        <div class="panel panel-err">
-          
-    <div class="note err">
-      <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>File: /home/runner/work/react-design-system/react-design-system/src/components/ui/badge.tsx
-Error:
-No suitable component definition found.
-You can debug your component file in this playground: https://react-docgen.dev/playground
-Code:
-import { mergeProps } from &quot;@base-ui/react/merge-props&quot;;
-import { useRender } from &quot;@base-ui/react/use-render&quot;;
-import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
-
-import { cn } from &quot;@/lib/utils&quot;;
-
-const badgeVariants = cva(
-  &quot;h-5 gap-1 rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&amp;&gt;svg]:size-3! inline-flex items-center justify-center w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive overflow-hidden group/badge&quot;,
-  {
-    variants: {
-      variant: {
-        default: &quot;bg-primary text-primary-foreground [a]:hover:bg-primary/80&quot;,
-        secondary:
-          &quot;bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80&quot;,
-        destructive:
-          &quot;bg-destructive/10 [a]:hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 text-destructive dark:bg-destructive/20&quot;,
-        outline:
-          &quot;border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground&quot;,
-        ghost:
-          &quot;hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50&quot;,
-        link: &quot;text-primary underline-offset-4 hover:underline&quot;,
-      },
-    },
-    defaultVariants: {
-      variant: &quot;default&quot;,
-    },
-  },
-);
-
-function Badge({
-  className,
-  variant = &quot;default&quot;,
-  render,
-  ...props
-}: useRender.ComponentProps&lt;&quot;span&quot;&gt; &amp; VariantProps&lt;typeof badgeVariants&gt;) {
-  return useRender({
-    defaultTagName: &quot;span&quot;,
-    props: mergeProps&lt;&quot;span&quot;&gt;(
-      {
-        className: cn(badgeVariants({ variant }), className),
-      },
-      props,
-    ),
-    render,
-    state: {
-      slot: &quot;badge&quot;,
-      variant,
-    },
-  });
-}
-
-export { Badge, badgeVariants };
-</code></pre></div>
-    </div>
-        </div>
     
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
     
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types</span>
+              <span class="badge ok">2 prop types</span>
+            </div>
+            <pre><code>Component: src/components/badge/badge.tsx::Badge</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Content of the component
+ */
+text: string
+
+/**
+ * Color palette used to draw the component
+ */
+variant?: | &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;default&quot;
+| &quot;info&quot;
+| &quot;warning&quot;
+| &quot;error&quot;
+| &quot;success&quot; = &quot;default&quot;</code></pre>
+          </div>
+        </div>
     
         <div class="panel panel-stories">
           
@@ -902,7 +856,16 @@ export { Badge, badgeVariants };
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;Badge&gt;Default&lt;/Badge&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; &lt;Badge text=&quot;lorem&quot; variant=&quot;default&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Primary</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Primary = () =&gt; &lt;Badge text=&quot;lorem&quot; variant=&quot;primary&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -911,7 +874,7 @@ export { Badge, badgeVariants };
               </div>
               
               
-              <pre><code>const Secondary = () =&gt; &lt;Badge variant=&quot;secondary&quot;&gt;Secondary&lt;/Badge&gt;;</code></pre>
+              <pre><code>const Secondary = () =&gt; &lt;Badge text=&quot;lorem&quot; variant=&quot;secondary&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -920,7 +883,7 @@ export { Badge, badgeVariants };
               </div>
               
               
-              <pre><code>const Destructive = () =&gt; &lt;Badge variant=&quot;destructive&quot;&gt;Destructive&lt;/Badge&gt;;</code></pre>
+              <pre><code>const Destructive = () =&gt; &lt;Badge text=&quot;Destructive&quot; variant=&quot;error&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -929,7 +892,7 @@ export { Badge, badgeVariants };
               </div>
               
               
-              <pre><code>const Outline = () =&gt; &lt;Badge variant=&quot;outline&quot;&gt;Outline&lt;/Badge&gt;;</code></pre>
+              <pre><code>const Outline = () =&gt; &lt;Badge text=&quot;Outline&quot; variant=&quot;info&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -938,7 +901,7 @@ export { Badge, badgeVariants };
               </div>
               
               
-              <pre><code>const Ghost = () =&gt; &lt;Badge variant=&quot;ghost&quot;&gt;Ghost&lt;/Badge&gt;;</code></pre>
+              <pre><code>const Ghost = () =&gt; &lt;Badge text=&quot;Ghost&quot; variant=&quot;default&quot; className=&quot;bg-transparent hover:bg-muted&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -947,7 +910,46 @@ export { Badge, badgeVariants };
               </div>
               
               
-              <pre><code>const Link = () =&gt; &lt;Badge variant=&quot;link&quot;&gt;Link&lt;/Badge&gt;;</code></pre>
+              <pre><code>const Link = () =&gt; &lt;Badge
+    text=&quot;Link&quot;
+    variant=&quot;default&quot;
+    className=&quot;bg-transparent p-0 text-primary underline-offset-4 hover:underline&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Info</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Info = () =&gt; &lt;Badge text=&quot;lorem&quot; variant=&quot;info&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Warning</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Warning = () =&gt; &lt;Badge text=&quot;lorem&quot; variant=&quot;warning&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Error</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Error = () =&gt; &lt;Badge text=&quot;lorem&quot; variant=&quot;error&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Success</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Success = () =&gt; &lt;Badge text=&quot;lorem&quot; variant=&quot;success&quot; /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -1354,7 +1356,7 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
         <label for="c-4-data-display-bullet-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Bullet/Bullet.stories.tsx">data-display-bullet · ./src/Bullet/Bullet.stories.tsx</div>
+    <div class="meta" title="./src/components/bullet/bullet.stories.tsx">data-display-bullet · ./src/components/bullet/bullet.stories.tsx</div>
     
     <div class="hint">Dot to attract the user attention</div>
     
@@ -1376,12 +1378,12 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">2 prop types</span>
             </div>
-            <pre><code>Component: src/Bullet/Bullet.tsx::Bullet</code></pre>
+            <pre><code>Component: src/components/bullet/bullet.tsx::Bullet</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Custom styles
+ * Additional CSS classes for custom styling
  */
-sx?: SxProps&lt;Theme&gt;
+className?: string
 
 /**
  * Color palette used to draw the component
@@ -3838,8 +3840,8 @@ title?: string | ReactElement = &quot;&quot;</code></pre>
                   <span class="ex-name">Imports</span>
                 </div>
                 <pre><code>import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Badge, Content, Header, TabPanel, TabProvider } from "@pautena/react-design-system";
 import Box from "@mui/material/Box";
-import { Content, Header, Label, TabPanel, TabProvider } from "@pautena/react-design-system";
 import Typography from "@mui/material/Typography";</code></pre>
               </div>
           
@@ -3877,7 +3879,7 @@ import Typography from "@mui/material/Typography";</code></pre>
               <pre><code>const CustomTitle = () =&gt; &lt;Header
     title={(&lt;Box display=&quot;flex&quot; flexDirection=&quot;row&quot; alignItems=&quot;center&quot;&gt;
       &lt;Typography variant=&quot;h6&quot;&gt;Lorem ipsum&lt;/Typography&gt;
-      &lt;Label variant=&quot;primary&quot; text=&quot;4 items&quot; sx={{ ml: 1 }} /&gt;
+      &lt;Badge variant=&quot;primary&quot; text=&quot;4 items&quot; className=&quot;ml-2&quot; /&gt;
     &lt;/Box&gt;)} /&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -3899,7 +3901,7 @@ import Typography from "@mui/material/Typography";</code></pre>
               <pre><code>const CustomSubtitle = () =&gt; &lt;Header
     subtitle={(&lt;Box display=&quot;flex&quot; flexDirection=&quot;row&quot; alignItems=&quot;center&quot;&gt;
       &lt;Typography variant=&quot;body2&quot;&gt;Dolor sit amet&lt;/Typography&gt;
-      &lt;Label variant=&quot;error&quot; text=&quot;since yesterday&quot; sx={{ ml: 1 }} /&gt;
+      &lt;Badge variant=&quot;error&quot; text=&quot;since yesterday&quot; className=&quot;ml-2&quot; /&gt;
     &lt;/Box&gt;)} /&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -4398,174 +4400,14 @@ import Typography from "@mui/material/Typography";</code></pre>
   no-info 
   no-story-error"
   role="listitem"
-  aria-label="Label">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-ok"></span> Label</h2>
-      <div class="badges">
-        <label for="c-24-data-display-label-props" class="badge ok as-toggle">5 prop types</label>
-        
-        <label for="c-24-data-display-label-stories" class="badge ok as-toggle">8 stories</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/Label/Label.stories.tsx">data-display-label · ./src/Label/Label.stories.tsx</div>
-    
-    <div class="hint">Compact element to represent a text</div>
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  
-  
-  <input id="c-24-data-display-label-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-24-data-display-label-props" class="tg tg-props" type="checkbox" hidden />
-
-  <div class="panels">
-    
-    
-    
-        <div class="panel panel-props">
-          <div class="note ok">
-            <div class="row">
-              <span class="ex-name">Prop types</span>
-              <span class="badge ok">5 prop types</span>
-            </div>
-            <pre><code>Component: src/Label/Label.tsx::Label</code></pre>
-            <pre><code>Props:</code></pre>
-            <pre><code>/**
- * Background color. Overrides variant
- */
-color?: string
-
-/**
- * Custom styles
- */
-sx?: SxProps&lt;Theme&gt;
-
-/**
- * Content of the component
- */
-text: string
-
-/**
- * Show the text as uppercase
- */
-textTransform?: &quot;none&quot; | &quot;capitalize&quot; | &quot;uppercase&quot; = &quot;capitalize&quot;
-
-/**
- * Color palette used to draw the component
- */
-variant?: | &quot;primary&quot;
-| &quot;secondary&quot;
-| &quot;default&quot;
-| &quot;info&quot;
-| &quot;warning&quot;
-| &quot;error&quot;
-| &quot;success&quot; = &quot;default&quot;</code></pre>
-          </div>
-        </div>
-    
-        <div class="panel panel-stories">
-          
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import { Label } from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Default = () =&gt; &lt;Label text=&quot;lorem&quot; variant=&quot;default&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Primary</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Primary = () =&gt; &lt;Label text=&quot;lorem&quot; variant=&quot;primary&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Secondary</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Secondary = () =&gt; &lt;Label text=&quot;lorem&quot; variant=&quot;secondary&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Info</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Info = () =&gt; &lt;Label text=&quot;lorem&quot; variant=&quot;info&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Warning</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Warning = () =&gt; &lt;Label text=&quot;lorem&quot; variant=&quot;warning&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Error</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Error = () =&gt; &lt;Label text=&quot;lorem&quot; variant=&quot;error&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">LightColor</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const LightColor = () =&gt; &lt;Label text=&quot;lorem&quot; color=&quot;#36e3cd&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">DarkColor</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const DarkColor = () =&gt; &lt;Label text=&quot;lorem&quot; color=&quot;#9b3242&quot; /&gt;;</code></pre>
-            </div>
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  no-error 
-  no-info 
-  no-story-error"
-  role="listitem"
   aria-label="ListPanel">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ListPanel</h2>
       <div class="badges">
-        <label for="c-25-containers-listpanel-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-24-containers-listpanel-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-25-containers-listpanel-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-24-containers-listpanel-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ListPanel/ListPanel.stories.tsx">containers-listpanel · ./src/ListPanel/ListPanel.stories.tsx</div>
@@ -4577,8 +4419,8 @@ variant?: | &quot;primary&quot;
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-25-containers-listpanel-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-25-containers-listpanel-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-24-containers-listpanel-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-24-containers-listpanel-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4679,9 +4521,9 @@ import { ListPanel, ListPanelDemoContent, ListPanelPanel } from "@pautena/react-
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Placeholder</h2>
       <div class="badges">
-        <label for="c-26-placeholders-placeholder-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-25-placeholders-placeholder-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-26-placeholders-placeholder-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-25-placeholders-placeholder-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Placeholder/Placeholder.stories.tsx">placeholders-placeholder · ./src/Placeholder/Placeholder.stories.tsx</div>
@@ -4693,8 +4535,8 @@ import { ListPanel, ListPanelDemoContent, ListPanelPanel } from "@pautena/react-
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-26-placeholders-placeholder-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-26-placeholders-placeholder-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-25-placeholders-placeholder-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-25-placeholders-placeholder-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4806,9 +4648,9 @@ import SearchIcon from "@mui/icons-material/Search";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> QueryContainer</h2>
       <div class="badges">
-        <label for="c-27-feedback-querycontainer-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-26-feedback-querycontainer-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-27-feedback-querycontainer-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-26-feedback-querycontainer-stories" class="badge ok as-toggle">8 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/QueryContainer/QueryContainer.stories.tsx">feedback-querycontainer · ./src/QueryContainer/QueryContainer.stories.tsx</div>
@@ -4820,8 +4662,8 @@ import SearchIcon from "@mui/icons-material/Search";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-27-feedback-querycontainer-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-27-feedback-querycontainer-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-26-feedback-querycontainer-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-26-feedback-querycontainer-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5044,9 +4886,9 @@ import Typography from "@mui/material/Typography";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RemoteDataTable</h2>
       <div class="badges">
-        <label for="c-28-tables-remotedatatable-props" class="badge ok as-toggle">13 prop types</label>
+        <label for="c-27-tables-remotedatatable-props" class="badge ok as-toggle">13 prop types</label>
         
-        <label for="c-28-tables-remotedatatable-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-27-tables-remotedatatable-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/RemoteDataTable/RemoteDataTable.stories.tsx">tables-remotedatatable · ./src/RemoteDataTable/RemoteDataTable.stories.tsx</div>
@@ -5058,8 +4900,8 @@ import Typography from "@mui/material/Typography";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-28-tables-remotedatatable-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-28-tables-remotedatatable-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-27-tables-remotedatatable-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-27-tables-remotedatatable-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5288,9 +5130,9 @@ sorting?: Array&lt;{
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Select</h2>
       <div class="badges">
-        <label for="c-29-inputs-select-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-28-inputs-select-props" class="badge ok as-toggle">11 prop types</label>
         
-        <label for="c-29-inputs-select-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-28-inputs-select-stories" class="badge ok as-toggle">8 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Select/Select.stories.tsx">inputs-select · ./src/Select/Select.stories.tsx</div>
@@ -5302,8 +5144,8 @@ sorting?: Array&lt;{
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-29-inputs-select-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-29-inputs-select-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-28-inputs-select-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-28-inputs-select-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5607,9 +5449,9 @@ import { Select } from "@pautena/react-design-system";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SkeletonCard</h2>
       <div class="badges">
-        <label for="c-30-placeholders-skeletoncard-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-29-placeholders-skeletoncard-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-30-placeholders-skeletoncard-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-29-placeholders-skeletoncard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/SkeletonCard/SkeletonCard.stories.tsx">placeholders-skeletoncard · ./src/SkeletonCard/SkeletonCard.stories.tsx</div>
@@ -5621,8 +5463,8 @@ import { Select } from "@pautena/react-design-system";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-30-placeholders-skeletoncard-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-30-placeholders-skeletoncard-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-29-placeholders-skeletoncard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-29-placeholders-skeletoncard-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5683,9 +5525,9 @@ width?: number | string = &quot;100%&quot;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SkeletonGrid</h2>
       <div class="badges">
-        <label for="c-31-placeholders-skeletongrid-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-30-placeholders-skeletongrid-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-31-placeholders-skeletongrid-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-30-placeholders-skeletongrid-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/SkeletonGrid/SkeletonGrid.stories.tsx">placeholders-skeletongrid · ./src/SkeletonGrid/SkeletonGrid.stories.tsx</div>
@@ -5697,8 +5539,8 @@ width?: number | string = &quot;100%&quot;</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-31-placeholders-skeletongrid-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-31-placeholders-skeletongrid-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-30-placeholders-skeletongrid-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-30-placeholders-skeletongrid-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5754,9 +5596,9 @@ size?: number = 20</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TabCardDummy</h2>
       <div class="badges">
-        <label for="c-32-navigation-tabcard-props" class="badge ok as-toggle">3 prop types</label>
-        <label for="c-32-navigation-tabcard-info" class="badge info as-toggle">1 info</label>
-        <label for="c-32-navigation-tabcard-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-31-navigation-tabcard-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-31-navigation-tabcard-info" class="badge info as-toggle">1 info</label>
+        <label for="c-31-navigation-tabcard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/TabCard/TabCard.stories.tsx">navigation-tabcard · ./src/TabCard/TabCard.stories.tsx</div>
@@ -5767,9 +5609,9 @@ size?: number = 20</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-32-navigation-tabcard-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-32-navigation-tabcard-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-32-navigation-tabcard-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-31-navigation-tabcard-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-31-navigation-tabcard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-31-navigation-tabcard-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5835,9 +5677,9 @@ tabs: TabData[]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TextField</h2>
       <div class="badges">
-        <label for="c-33-inputs-textfield-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-32-inputs-textfield-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-33-inputs-textfield-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-32-inputs-textfield-stories" class="badge ok as-toggle">13 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/TextField/TextField.stories.tsx">inputs-textfield · ./src/TextField/TextField.stories.tsx</div>
@@ -5849,8 +5691,8 @@ tabs: TabData[]</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-33-inputs-textfield-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-33-inputs-textfield-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-32-inputs-textfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-32-inputs-textfield-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6080,9 +5922,9 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueBoolean</h2>
       <div class="badges">
-        <label for="c-34-data-display-valueboolean-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-33-data-display-valueboolean-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-34-data-display-valueboolean-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-33-data-display-valueboolean-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueBoolean/ValueBoolean.stories.tsx">data-display-valueboolean · ./src/ValueBoolean/ValueBoolean.stories.tsx</div>
@@ -6094,8 +5936,8 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-34-data-display-valueboolean-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-34-data-display-valueboolean-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-33-data-display-valueboolean-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-33-data-display-valueboolean-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6194,9 +6036,9 @@ value?: T</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueCard</h2>
       <div class="badges">
-        <label for="c-35-data-display-valuecard-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-34-data-display-valuecard-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-35-data-display-valuecard-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-34-data-display-valuecard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueCard/ValueCard.stories.tsx">data-display-valuecard · ./src/ValueCard/ValueCard.stories.tsx</div>
@@ -6208,8 +6050,8 @@ value?: T</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-35-data-display-valuecard-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-35-data-display-valuecard-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-34-data-display-valuecard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-34-data-display-valuecard-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6267,9 +6109,9 @@ children?: React.ReactNode</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueDatetime</h2>
       <div class="badges">
-        <label for="c-36-data-display-valuedatetime-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-35-data-display-valuedatetime-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-36-data-display-valuedatetime-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-35-data-display-valuedatetime-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueDatetime/ValueDatetime.stories.tsx">data-display-valuedatetime · ./src/ValueDatetime/ValueDatetime.stories.tsx</div>
@@ -6281,8 +6123,8 @@ children?: React.ReactNode</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-36-data-display-valuedatetime-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-36-data-display-valuedatetime-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-35-data-display-valuedatetime-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-35-data-display-valuedatetime-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6386,9 +6228,9 @@ value?: Date</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueImage</h2>
       <div class="badges">
-        <label for="c-37-data-display-valueimage-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-36-data-display-valueimage-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-37-data-display-valueimage-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-36-data-display-valueimage-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueImage/ValueImage.stories.tsx">data-display-valueimage · ./src/ValueImage/ValueImage.stories.tsx</div>
@@ -6400,8 +6242,8 @@ value?: Date</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-37-data-display-valueimage-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-37-data-display-valueimage-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-36-data-display-valueimage-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-36-data-display-valueimage-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6496,9 +6338,9 @@ value?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueItem</h2>
       <div class="badges">
-        <label for="c-38-data-display-valueitem-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-37-data-display-valueitem-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-38-data-display-valueitem-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-37-data-display-valueitem-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueItem/ValueItem.stories.tsx">data-display-valueitem · ./src/ValueItem/ValueItem.stories.tsx</div>
@@ -6510,8 +6352,8 @@ value?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-38-data-display-valueitem-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-38-data-display-valueitem-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-37-data-display-valueitem-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-37-data-display-valueitem-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6613,9 +6455,9 @@ children?: React.ReactNode</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueLabel</h2>
       <div class="badges">
-        <label for="c-39-data-display-valuelabel-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-38-data-display-valuelabel-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-39-data-display-valuelabel-stories" class="badge ok as-toggle">11 stories</label>
+        <label for="c-38-data-display-valuelabel-stories" class="badge ok as-toggle">9 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueLabel/ValueLabel.stories.tsx">data-display-valuelabel · ./src/ValueLabel/ValueLabel.stories.tsx</div>
@@ -6627,8 +6469,8 @@ children?: React.ReactNode</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-39-data-display-valuelabel-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-39-data-display-valuelabel-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-38-data-display-valuelabel-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-38-data-display-valuelabel-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6638,16 +6480,11 @@ children?: React.ReactNode</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">6 prop types</span>
+              <span class="badge ok">5 prop types</span>
             </div>
             <pre><code>Component: src/ValueLabel/ValueLabel.tsx::ValueLabel</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Custom color or array of colors for multiple labels
- */
-color?: string | string[]
-
-/**
  * The value has to be displayed as compact or not.
  * False by default
  */
@@ -6671,7 +6508,7 @@ value?: T
 /**
  * Label color variant or array of variants for multiple labels
  */
-variant?: LabelVariant | LabelVariant[]</code></pre>
+variant?: BadgeVariant | BadgeVariant[]</code></pre>
           </div>
         </div>
     
@@ -6771,27 +6608,6 @@ variant?: LabelVariant | LabelVariant[]</code></pre>
               
               <pre><code>const CustomPlaceholder = () =&gt; &lt;ValueLabel label=&quot;Lorem&quot; placeholder=&quot;.&quot; /&gt;;</code></pre>
             </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ListSingleColor</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ListSingleColor = () =&gt; &lt;ValueLabel label=&quot;Lorem&quot; value={[&quot;ipsum sit&quot;, &quot;amet&quot;, &quot;dolor&quot;]} color=&quot;#9b3242&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ListMultipleColors</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ListMultipleColors = () =&gt; &lt;ValueLabel
-    label=&quot;Lorem&quot;
-    value={[&quot;ipsum sit&quot;, &quot;amet&quot;, &quot;dolor&quot;]}
-    color={[&quot;#9b3242&quot;, &quot;#36e3cd&quot;]} /&gt;;</code></pre>
-            </div>
         </div>
   </div>
 </article>
@@ -6806,9 +6622,9 @@ variant?: LabelVariant | LabelVariant[]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueRating</h2>
       <div class="badges">
-        <label for="c-40-data-display-valuerating-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-39-data-display-valuerating-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-40-data-display-valuerating-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-39-data-display-valuerating-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueRating/ValueRating.stories.tsx">data-display-valuerating · ./src/ValueRating/ValueRating.stories.tsx</div>
@@ -6820,8 +6636,8 @@ variant?: LabelVariant | LabelVariant[]</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-40-data-display-valuerating-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-40-data-display-valuerating-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-39-data-display-valuerating-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-39-data-display-valuerating-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6917,9 +6733,9 @@ value?: T = 0</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueText</h2>
       <div class="badges">
-        <label for="c-41-data-display-valuetext-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-40-data-display-valuetext-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-41-data-display-valuetext-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-40-data-display-valuetext-stories" class="badge ok as-toggle">6 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ValueText/ValueText.stories.tsx">data-display-valuetext · ./src/ValueText/ValueText.stories.tsx</div>
@@ -6931,8 +6747,8 @@ value?: T = 0</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-41-data-display-valuetext-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-41-data-display-valuetext-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-40-data-display-valuetext-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-40-data-display-valuetext-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -7041,190 +6857,7 @@ value?: T</code></pre>
   </div>
 </article>
     </div>
-    <div class="error-groups" role="region" aria-label="Prop type error groups">
-        <section class="group">
-          <input id="no-component-definition-found-toggle" class="group-tg" type="checkbox" hidden />
-          <label for="no-component-definition-found-toggle" class="group-header">
-            <span class="caret">▸</span>
-            <span class="group-title">No component definition found</span>
-            <span class="group-count">1</span>
-          </label>
-          <div class="group-cards">
-<article
-  class="card 
-  has-error 
-  has-info 
-  no-story-error"
-  role="listitem"
-  aria-label="Badge">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-err"></span> Badge</h2>
-      <div class="badges">
-        <label for="c-error-0-shadcn-badge-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-error-0-shadcn-badge-info" class="badge info as-toggle">1 info</label>
-        <label for="c-error-0-shadcn-badge-stories" class="badge ok as-toggle">6 stories</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/stories/badge.stories.tsx">shadcn-badge · ./src/stories/badge.stories.tsx</div>
     
-    
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-error-0-shadcn-badge-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-error-0-shadcn-badge-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-error-0-shadcn-badge-stories" class="tg tg-stories" type="checkbox" hidden />
-  
-
-  <div class="panels">
-    
-        <div class="panel panel-err">
-          
-    <div class="note err">
-      <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>File: /home/runner/work/react-design-system/react-design-system/src/components/ui/badge.tsx
-Error:
-No suitable component definition found.
-You can debug your component file in this playground: https://react-docgen.dev/playground
-Code:
-import { mergeProps } from &quot;@base-ui/react/merge-props&quot;;
-import { useRender } from &quot;@base-ui/react/use-render&quot;;
-import { cva, type VariantProps } from &quot;class-variance-authority&quot;;
-
-import { cn } from &quot;@/lib/utils&quot;;
-
-const badgeVariants = cva(
-  &quot;h-5 gap-1 rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium transition-all has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&amp;&gt;svg]:size-3! inline-flex items-center justify-center w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive overflow-hidden group/badge&quot;,
-  {
-    variants: {
-      variant: {
-        default: &quot;bg-primary text-primary-foreground [a]:hover:bg-primary/80&quot;,
-        secondary:
-          &quot;bg-secondary text-secondary-foreground [a]:hover:bg-secondary/80&quot;,
-        destructive:
-          &quot;bg-destructive/10 [a]:hover:bg-destructive/20 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 text-destructive dark:bg-destructive/20&quot;,
-        outline:
-          &quot;border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground&quot;,
-        ghost:
-          &quot;hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50&quot;,
-        link: &quot;text-primary underline-offset-4 hover:underline&quot;,
-      },
-    },
-    defaultVariants: {
-      variant: &quot;default&quot;,
-    },
-  },
-);
-
-function Badge({
-  className,
-  variant = &quot;default&quot;,
-  render,
-  ...props
-}: useRender.ComponentProps&lt;&quot;span&quot;&gt; &amp; VariantProps&lt;typeof badgeVariants&gt;) {
-  return useRender({
-    defaultTagName: &quot;span&quot;,
-    props: mergeProps&lt;&quot;span&quot;&gt;(
-      {
-        className: cn(badgeVariants({ variant }), className),
-      },
-      props,
-    ),
-    render,
-    state: {
-      slot: &quot;badge&quot;,
-      variant,
-    },
-  });
-}
-
-export { Badge, badgeVariants };
-</code></pre></div>
-    </div>
-        </div>
-    
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
-    
-    
-        <div class="panel panel-stories">
-          
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import { Badge } from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Default = () =&gt; &lt;Badge&gt;Default&lt;/Badge&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Secondary</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Secondary = () =&gt; &lt;Badge variant=&quot;secondary&quot;&gt;Secondary&lt;/Badge&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Destructive</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Destructive = () =&gt; &lt;Badge variant=&quot;destructive&quot;&gt;Destructive&lt;/Badge&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Outline</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Outline = () =&gt; &lt;Badge variant=&quot;outline&quot;&gt;Outline&lt;/Badge&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Ghost</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Ghost = () =&gt; &lt;Badge variant=&quot;ghost&quot;&gt;Ghost&lt;/Badge&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Link</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Link = () =&gt; &lt;Badge variant=&quot;link&quot;&gt;Link&lt;/Badge&gt;;</code></pre>
-            </div>
-        </div>
-  </div>
-</article></div>
-        </section>
-      </div>
   </div>
 </main>
 </body>

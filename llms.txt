@@ -8,18 +8,6 @@ AI-ready design system built on shadcn/ui with MCP support
 
 [View Documentation](./?path=/docs/shadcn-introduction--docs)
 
-### Badge
-
-**Stories:**
-- [Default](./?path=/story/shadcn-badge--default)
-- [Secondary](./?path=/story/shadcn-badge--secondary)
-- [Destructive](./?path=/story/shadcn-badge--destructive)
-- [Outline](./?path=/story/shadcn-badge--outline)
-- [Ghost](./?path=/story/shadcn-badge--ghost)
-- [Link](./?path=/story/shadcn-badge--link)
-
-[View Documentation](./?path=/docs/shadcn-badge--docs)
-
 ### Button
 
 **Stories:**
@@ -227,25 +215,6 @@ Board component that displays content within a styled Paper component. It suppor
 
 [View Documentation](./?path=/docs/data-display-board--docs)
 
-### Bullet
-
-Dot to attract the user attention
-
-**Props:**
-- `variant`: `BulletVariant` - Color palette used to draw the component
-- `sx`: `SxProps<Theme>` - Custom styles
-
-**Stories:**
-- [Default](./?path=/story/data-display-bullet--default)
-- [Primary Variant](./?path=/story/data-display-bullet--primary-variant)
-- [Secondary Variant](./?path=/story/data-display-bullet--secondary-variant)
-- [Default Variant](./?path=/story/data-display-bullet--default-variant)
-- [Info Variant](./?path=/story/data-display-bullet--info-variant)
-- [Warning Variant](./?path=/story/data-display-bullet--warning-variant)
-- [Error Variant](./?path=/story/data-display-bullet--error-variant)
-
-[View Documentation](./?path=/docs/data-display-bullet--docs)
-
 ### GroupValueCard
 
 GroupValueCard component renders a card with a title, subtitle, and children content. It supports customization for dense layout and centered content.
@@ -324,29 +293,6 @@ Section used to provide basic information about the page and display main action
 
 [View Documentation](./?path=/docs/data-display-header--docs)
 
-### Label
-
-Compact element to represent a text
-
-**Props:**
-- `text`: `string` (required) - Content of the component
-- `variant`: `LabelVariant` - Color palette used to draw the component
-- `color`: `string` - Background color. Overrides variant
-- `sx`: `SxProps<Theme>` - Custom styles
-- `textTransform`: `"none" | "capitalize" | "uppercase"` - Show the text as uppercase
-
-**Stories:**
-- [Default](./?path=/story/data-display-label--default)
-- [Primary](./?path=/story/data-display-label--primary)
-- [Secondary](./?path=/story/data-display-label--secondary)
-- [Info](./?path=/story/data-display-label--info)
-- [Warning](./?path=/story/data-display-label--warning)
-- [Error](./?path=/story/data-display-label--error)
-- [Light Color](./?path=/story/data-display-label--light-color)
-- [Dark Color](./?path=/story/data-display-label--dark-color)
-
-[View Documentation](./?path=/docs/data-display-label--docs)
-
 ### ValueBoolean
 
 Displays a boolean value with a label
@@ -420,8 +366,6 @@ Displays a label component value with a label
 - [List Multiple Variants](./?path=/story/data-display-valuelabel--list-multiple-variants)
 - [Placeholder](./?path=/story/data-display-valuelabel--placeholder)
 - [Custom Placeholder](./?path=/story/data-display-valuelabel--custom-placeholder)
-- [List Single Color](./?path=/story/data-display-valuelabel--list-single-color)
-- [List Multiple Colors](./?path=/story/data-display-valuelabel--list-multiple-colors)
 
 [View Documentation](./?path=/docs/data-display-valuelabel--docs)
 
@@ -449,6 +393,36 @@ Displays a string value with a label
 - [Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder)
 
 [View Documentation](./?path=/docs/data-display-valuetext--docs)
+
+### Badge
+
+**Stories:**
+- [Default](./?path=/story/data-display-badge--default)
+- [Primary](./?path=/story/data-display-badge--primary)
+- [Secondary](./?path=/story/data-display-badge--secondary)
+- [Destructive](./?path=/story/data-display-badge--destructive)
+- [Outline](./?path=/story/data-display-badge--outline)
+- [Ghost](./?path=/story/data-display-badge--ghost)
+- [Link](./?path=/story/data-display-badge--link)
+- [Info](./?path=/story/data-display-badge--info)
+- [Warning](./?path=/story/data-display-badge--warning)
+- [Error](./?path=/story/data-display-badge--error)
+- [Success](./?path=/story/data-display-badge--success)
+
+[View Documentation](./?path=/docs/data-display-badge--docs)
+
+### Bullet
+
+**Stories:**
+- [Default](./?path=/story/data-display-bullet--default)
+- [Primary Variant](./?path=/story/data-display-bullet--primary-variant)
+- [Secondary Variant](./?path=/story/data-display-bullet--secondary-variant)
+- [Default Variant](./?path=/story/data-display-bullet--default-variant)
+- [Info Variant](./?path=/story/data-display-bullet--info-variant)
+- [Warning Variant](./?path=/story/data-display-bullet--warning-variant)
+- [Error Variant](./?path=/story/data-display-bullet--error-variant)
+
+[View Documentation](./?path=/docs/data-display-bullet--docs)
 
 ## Dialogs
 

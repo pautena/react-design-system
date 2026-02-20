@@ -1,8 +1,8 @@
 import { DrawerProps as MuiDrawerProps } from '@mui/material/Drawer';
 import { Theme } from '@mui/material/styles';
 import { CSSProperties, FunctionComponent, PropsWithChildren, ReactElement } from '../../node_modules/react';
-import { BulletVariant } from '../Bullet';
-import { LabelVariant } from '../Label';
+import { BadgeVariant } from '../components/badge';
+import { BulletVariant } from '../components/bullet';
 import { DrawerAppBarProps } from './DrawerAppBar';
 /**
  * Drawer display variants
@@ -40,7 +40,7 @@ export interface DrawerItemLabel {
     /**
      * Label color variant
      */
-    variant: LabelVariant;
+    variant: BadgeVariant;
 }
 /**
  * Bullet indicator configuration for drawer items
