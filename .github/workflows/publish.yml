@@ -27,6 +27,14 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Publish package on NPM
-        run: npm publish --access public
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if [[ "$VERSION" == *-* ]]; then
+            TAG=$(node -p "require('./package.json').version.split('-')[1].split('.')[0]")
+          else
+            TAG="latest"
+          fi
+
+          npm publish --access public --tag "$TAG"
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
