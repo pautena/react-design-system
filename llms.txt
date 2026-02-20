@@ -1,6 +1,40 @@
 # @pautena/react-design-system
 
-My custom design system on top of MUI
+AI-ready design system built on shadcn/ui with MCP support
+
+## shadcn
+
+### Introduction
+
+[View Documentation](./?path=/docs/shadcn-introduction--docs)
+
+### Badge
+
+**Stories:**
+- [Default](./?path=/story/shadcn-badge--default)
+- [Secondary](./?path=/story/shadcn-badge--secondary)
+- [Destructive](./?path=/story/shadcn-badge--destructive)
+- [Outline](./?path=/story/shadcn-badge--outline)
+- [Ghost](./?path=/story/shadcn-badge--ghost)
+- [Link](./?path=/story/shadcn-badge--link)
+
+[View Documentation](./?path=/docs/shadcn-badge--docs)
+
+### Button
+
+**Stories:**
+- [Default](./?path=/story/shadcn-button--default)
+- [Secondary](./?path=/story/shadcn-button--secondary)
+- [Destructive](./?path=/story/shadcn-button--destructive)
+- [Outline](./?path=/story/shadcn-button--outline)
+- [Ghost](./?path=/story/shadcn-button--ghost)
+- [Link](./?path=/story/shadcn-button--link)
+- [Size Extra Small](./?path=/story/shadcn-button--size-extra-small)
+- [Size Small](./?path=/story/shadcn-button--size-small)
+- [Size Large](./?path=/story/shadcn-button--size-large)
+- [Size Icon](./?path=/story/shadcn-button--size-icon)
+
+[View Documentation](./?path=/docs/shadcn-button--docs)
 
 ## Inputs
 
