@@ -549,3 +549,9 @@ This is an auto-generated file that contains project context for AI agents.
 - Keep `components.json` style set to Base UI variant (`base-vega`) unless explicitly changing design language.
 - Prefer exact generated shadcn/Base UI classes and structure; avoid manual visual drift from generated output.
 - Keep shadcn look parity in Storybook by ensuring `src/styles/globals.css` tokens and `.storybook/preview.ts` theme wiring remain active.
+
+### Primitive vs Wrapper Rule
+
+- Treat `src/components/ui/*` as low-level primitives (internal building blocks, shadcn-managed).
+- For any consumer-facing/public component, create a wrapper in `src/components/<component-name>/<component-name>.tsx` (kebab-case) and export that wrapper from `src/index.ts`.
+- Use `src/components/ui/*` directly only for internal composition/prototyping, not as the primary public package API.

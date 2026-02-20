@@ -1,5 +1,5 @@
 import Grid from "@mui/material/Grid";
-import Label, { type LabelVariant } from "../Label";
+import Badge, { type BadgeVariant } from "../components/badge";
 import { type BaseValueProps, DefaultPlaceholder } from "../ValueBase";
 import ValueContent, { getValueContentLabelId } from "../ValueContent";
 
@@ -14,11 +14,7 @@ export type ValueLabelProps = BaseValueProps<
   /**
    * Label color variant or array of variants for multiple labels
    */
-  variant?: LabelVariant | LabelVariant[];
-  /**
-   * Custom color or array of colors for multiple labels
-   */
-  color?: string | string[];
+  variant?: BadgeVariant | BadgeVariant[];
 };
 
 /**
@@ -28,24 +24,21 @@ export function ValueLabel({
   label,
   value: valueProp,
   placeholder = DefaultPlaceholder,
-  color,
   variant,
 }: ValueLabelProps) {
   const id = getValueContentLabelId(label);
   const value = Array.isArray(valueProp) ? (
     valueProp.map((value, i) => (
-      <Label
+      <Badge
         text={value.toString() || placeholder}
         variant={Array.isArray(variant) ? variant[i] : variant}
-        color={Array.isArray(color) ? color[i] : color}
         key={i}
       />
     ))
   ) : (
-    <Label
+    <Badge
       text={valueProp?.toString() || placeholder}
       variant={Array.isArray(variant) ? variant[0] : variant}
-      color={Array.isArray(color) ? color[0] : color}
     />
   );
 

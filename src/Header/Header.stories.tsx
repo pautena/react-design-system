@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
 import { Content } from "../Content";
-import { Label } from "../Label";
+import { Badge } from "../components/badge";
 import { TabPanel } from "../TabPanel";
 import { TabProvider } from "../TabProvider";
 import Header from "./Header";
@@ -40,7 +40,7 @@ export const CustomTitle: Story = {
     title: (
       <Box display="flex" flexDirection="row" alignItems="center">
         <Typography variant="h6">Lorem ipsum</Typography>
-        <Label variant="primary" text="4 items" sx={{ ml: 1 }} />
+        <Badge variant="primary" text="4 items" className="ml-2" />
       </Box>
     ),
   },
@@ -59,7 +59,7 @@ export const CustomSubtitle: Story = {
     subtitle: (
       <Box display="flex" flexDirection="row" alignItems="center">
         <Typography variant="body2">Dolor sit amet</Typography>
-        <Label variant="error" text="since yesterday" sx={{ ml: 1 }} />
+        <Badge variant="error" text="since yesterday" className="ml-2" />
       </Box>
     ),
   },

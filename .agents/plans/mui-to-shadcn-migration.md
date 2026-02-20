@@ -138,6 +138,10 @@ react-design-system/
 ### Structure Rules (Non-Negotiable)
 
 - `src/components/ui/*` is the only location for shadcn-generated base components.
+- Treat `src/components/ui/*` as low-level primitives (shadcn-managed), not the primary public package API.
+- For consumer-facing/public APIs, create wrappers in `src/components/<component-name>/<component-name>.tsx` and export wrappers from `src/index.ts`.
+- All newly migrated/custom components must live under `src/components/*`.
+- Component folder names and file names must be kebab-case (example: `src/components/value-card/value-card.tsx`).
 - `src/hooks/use-mobile.ts` is generated support code for sidebar patterns.
 - `src/lib/utils.ts` is the only `cn()` helper file.
 - Do not create or reintroduce `src/lib/shadcn/*`.
@@ -554,7 +558,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 1: Pilot Components 🧪
+### ✓ Phase 1: Pilot Components 🧪
 
 **Agent**: @react-developer  
 **Skills**: code-react-unit-testing, code-react-storybook
@@ -1000,7 +1004,7 @@ llms.txt                        # AI context file (root)
 | Phase | Status      | Components           | Started    | Completed  | Notes |
 | ----- | ----------- | -------------------- | ---------- | ---------- | ----- |
 | 0     | ✅ Complete | Foundation        | 2026-02-18 | 2026-02-18 | Base UI migration done, Tailwind fixed, shadcn moved to `src/components/ui` |
-| 1     | ⏳ Planned  | Bullet, Label        | -          | -          | Ready to start |
+| 1     | ✅ Complete | Bullet, Label        | 2026-02-20 | 2026-02-20 | Migrated to shadcn Badge + registry entries |
 | 2     | ⏳ Planned  | 8 components         | -          | -          | -     |
 | 3     | ⏳ Planned  | 7 components         | -          | -          | -     |
 | 4     | ⏳ Planned  | 3 components         | -          | -          | -     |
@@ -1016,6 +1020,14 @@ llms.txt                        # AI context file (root)
 ---
 
 ## Progress Log
+
+### 2026-02-20
+- ✅ Phase 1 completed
+  - Migrated `Bullet` from MUI Badge to shadcn Badge + cva variants
+  - Migrated `Label` from MUI Box to Tailwind + cva variants
+  - Added `bullet` and `label` entries to `registry.json`
+  - Added/updated tests and stories for migrated components
+  - Full test suite passing (426 passed, 3 skipped)
 
 ### 2026-02-18
 - ✅ Migration plan created
