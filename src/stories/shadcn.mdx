@@ -2,104 +2,20 @@
 
 # shadcn/ui Components
 
-This design system now includes **shadcn/ui** components built on **Base UI** (@base-ui/react) headless primitives.
-
-## What's New in v2.0.0-alpha
-
-### Phase 0: Foundation Complete ✅
-
-We've successfully migrated the foundation to shadcn/ui with Base UI as the headless layer:
-
-- ✅ **Tailwind CSS** - Utility-first styling with CSS variables theme system
-- ✅ **Base UI** (@base-ui/react v1.2.0) - Official MUI headless primitives
-- ✅ **33+ shadcn components** installed and ready to use
-- ✅ **9 components migrated to Base UI** (Accordion, Checkbox, Collapsible, Dialog, Popover, Progress, Sheet, Switch, Tabs, Tooltip)
-
-## Migrated Components (Base UI)
-
-These components use **Base UI** instead of Radix UI:
-
-| Component | Status | Description |
-|-----------|--------|-------------|
-| **Accordion** | ✅ Migrated | Collapsible content sections |
-| **Checkbox** | ✅ Migrated | Checkbox form control |
-| **Collapsible** | ✅ Migrated | Expandable content area |
-| **Dialog** | ✅ Migrated | Modal dialog window |
-| **Popover** | ✅ Migrated | Floating content overlay |
-| **Progress** | ✅ Migrated | Progress indicator |
-| **Sheet** | ✅ Migrated | Slide-out panel (uses Dialog) |
-| **Switch** | ✅ Migrated | Toggle switch control |
-| **Tabs** | ✅ Migrated | Tabbed navigation |
-| **Tooltip** | ✅ Migrated | Hover tooltip |
+This library currently keeps only the base `Button` and `Badge` in `src/components/ui/`.
 
 ## Available Components
 
-All shadcn/ui components are available in `src/components/ui/`:
-
-### Layout & Structure
-- **Card** - Container with header, content, footer
-- **Separator** - Visual divider
-- **Aspect Ratio** - Maintain aspect ratio wrapper
-
-### Buttons & Actions
-- **Button** - Primary action buttons with variants
-- **Toggle** - Toggle button state
-- **Toggle Group** - Grouped toggle buttons
-
-### Form Controls
-- **Input** - Text input field
-- **Textarea** - Multi-line text input
-- **Checkbox** - Checkbox control (Base UI)
-- **Switch** - Toggle switch (Base UI)
-- **Select** - Dropdown select
-- **Radio Group** - Radio button group
-- **Slider** - Range slider
-
-### Data Display
-- **Badge** - Status badges and tags
-- **Avatar** - User avatar with fallback
-- **Progress** - Progress bar (Base UI)
-- **Table** - Data tables
-- **Skeleton** - Loading placeholders
-
-### Navigation
-- **Tabs** - Tab navigation (Base UI)
-- **Breadcrumb** - Breadcrumb navigation
-- **Pagination** - Page navigation
-- **Sidebar** - Collapsible sidebar
-
-### Overlays
-- **Dialog** - Modal dialogs (Base UI)
-- **Sheet** - Slide-out panels (Base UI)
-- **Popover** - Floating popovers (Base UI)
-- **Tooltip** - Hover tooltips (Base UI)
-- **Dropdown Menu** - Context menus
-- **Context Menu** - Right-click menus
-- **Menubar** - Menu bar navigation
-
-### Feedback
-- **Alert** - Alert messages
-- **Toast** - Toast notifications (Sonner)
-- **Accordion** - Collapsible sections (Base UI)
-- **Collapsible** - Expandable content (Base UI)
-
-### Utilities
-- **Command** - Command palette (cmdk)
-- **Calendar** - Date picker calendar
-- **Scroll Area** - Custom scrollbars
+- **Button** - Action button with variants and sizes.
+- **Badge** - Compact status/tag element with variants.
 
 ## Interactive Showcase
 
-Visit the **shadcn/Showcase** story to see interactive examples of all components.
+Visit the **shadcn/Button** and **shadcn/Badge** stories to see the currently available components.
 
 ## Examples
 
-See the **shadcn/Showcase** story for interactive examples including:
-- Buttons (all variants and sizes)
-- Badges (all variants)
-- Cards (with headers, content, and footers)
-- Form controls (Checkbox, Switch)
-- And more!
+See the **shadcn/Button** and **shadcn/Badge** stories for variants.
 
 ## Theme System
 
@@ -127,30 +43,14 @@ Import components from `@/components/ui/`:
 
 ```tsx
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Badge } from "@/components/ui/badge";
 
 function MyComponent() {
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Example</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Dialog>
-          <DialogTrigger render={<Button>Open Dialog</Button>} />
-          <DialogContent>
-            <p>Dialog content</p>
-          </DialogContent>
-        </Dialog>
-      </CardContent>
-    </Card>
+    <div className="flex items-center gap-2">
+      <Button>Save</Button>
+      <Badge>New</Badge>
+    </div>
   );
 }
 ```
-
-## Next Steps
-
-**Phase 1** will migrate the first custom components (Bullet, Label) to use shadcn/ui patterns.
-
-See the [Migration Plan](?path=/docs/introduction--docs) for details.
