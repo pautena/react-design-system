@@ -14,8 +14,10 @@ export * from "./components/badge";
 export { default as Badge } from "./components/badge";
 export * from "./components/bullet";
 export { default as Bullet } from "./components/bullet";
+export * from "./components/button";
+export { default as Button } from "./components/button";
 // shadcn/ui base components
-export * from "./components/ui/button";
+export { Button as BaseButton, buttonVariants } from "./components/ui/button";
 export * from "./DateRangeCalendar";
 export { default as DateRangeCalendar } from "./DateRangeCalendar";
 export * from "./DateRangePicker";
