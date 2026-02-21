@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../../storybook";
+import { withContainer } from "../../../storybook";
 import TextField from "./text-field";
 
 export default {
-  title: "Inputs/TextField",
+  title: "forms/TextField",
   component: TextField,
   decorators: [withContainer({ width: 260 })],
   parameters: {
@@ -26,6 +26,14 @@ export const HelperText: Story = {
   },
 };
 
+export const Error: Story = {
+  args: {
+    ...Default.args,
+    helperText: "Use the official model name",
+    error: "Model is required",
+  },
+};
+
 export const Loading: Story = {
   args: {
     ...Default.args,
@@ -33,10 +41,17 @@ export const Loading: Story = {
   },
 };
 
-export const Fetching: Story = {
+export const Disabled: Story = {
   args: {
     ...Default.args,
-    fetching: true,
+    disabled: true,
+  },
+};
+
+export const Placeholder: Story = {
+  args: {
+    ...Default.args,
+    placeholder: "Type a car model...",
   },
 };
 

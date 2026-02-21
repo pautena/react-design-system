@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
 import type { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../../storybook";
+import { withContainer } from "../../../storybook";
 import Select, { type SelectOption } from "./select";
 
 const options: SelectOption[] = faker.definitions.vehicle.model
@@ -8,7 +8,7 @@ const options: SelectOption[] = faker.definitions.vehicle.model
   .map((option) => ({ value: option, label: option }));
 
 export default {
-  title: "Inputs/Select",
+  title: "forms/Select",
   component: Select,
   decorators: [withContainer({ width: 260 })],
   parameters: {
@@ -39,6 +39,14 @@ export const Fetching: Story = {
   args: {
     ...Default.args,
     fetching: true,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    ...Default.args,
+    helperText: "Select your vehicle model",
+    error: "A model selection is required",
   },
 };
 

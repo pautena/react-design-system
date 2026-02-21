@@ -1,12 +1,12 @@
 import { faker } from "@faker-js/faker";
 import type { Meta, StoryObj } from "@storybook/react";
-import { withContainer } from "../../storybook";
+import { withContainer } from "../../../storybook";
 import Autocomplete from "./autocomplete";
 
 const options: string[] = [...faker.definitions.vehicle.model];
 
 export default {
-  title: "Inputs/Autocomplete",
+  title: "forms/Autocomplete",
   component: Autocomplete,
   decorators: [withContainer({ width: 320 })],
   parameters: {

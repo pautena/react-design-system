@@ -1,5 +1,16 @@
 import { Loader2 } from "lucide-react";
-import type { ReactElement, ReactNode, SelectHTMLAttributes } from "react";
+import type {
+  ChangeEvent,
+  ReactElement,
+  ReactNode,
+  SelectHTMLAttributes,
+} from "react";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
 import { cn } from "@/lib/utils";
 
 /**
@@ -39,6 +50,14 @@ export interface SelectProps
    */
   options?: SelectOption[];
   /**
+   * Helper text rendered below the select.
+   */
+  helperText?: ReactNode;
+  /**
+   * Error text rendered below the select.
+   */
+  error?: ReactNode;
+  /**
    * Shows a spinner while value is loading.
    * @default false
    */
@@ -66,6 +85,12 @@ export interface SelectProps
    * Optional option children for compatibility.
    */
   children?: ReactNode;
+  /**
+   * Called when the select value changes.
+   * @param e - Native select change event.
+   * @param value - Trimmed selected value.
+   */
+  onChangeValue?: (e: ChangeEvent<HTMLSelectElement>, value: string) => void;
 }
 
 const fromChildren = (children: ReactNode): SelectOption[] => {
@@ -92,6 +117,8 @@ export function Select({
   label,
   value,
   options,
+  helperText,
+  error,
   loading = false,
   fetching = false,
   size = "medium",
@@ -99,18 +126,22 @@ export function Select({
   className,
   color,
   children,
+  onChange,
+  onChangeValue,
   disabled,
   ...props
 }: SelectProps) {
   const selectId = id ?? `${label}-select`;
   const allOptions = options ?? fromChildren(children);
   const activeValue = fetching ? "" : value;
+  const hasError = Boolean(error);
 
   return (
-    <div className={cn("space-y-1", fullWidth && "w-full", className)}>
-      <label htmlFor={selectId} className="text-sm font-medium text-foreground">
-        {label}
-      </label>
+    <Field
+      data-invalid={hasError || undefined}
+      className={cn(fullWidth && "w-full", className)}
+    >
+      <FieldLabel htmlFor={selectId}>{label}</FieldLabel>
 
       <div className="relative">
         <select
@@ -119,10 +150,15 @@ export function Select({
           disabled={disabled || fetching}
           aria-busy={loading || fetching}
           className={cn(
-            "w-full rounded-md border border-input bg-background pr-9 text-sm outline-none",
+            "w-full rounded-md border border-input bg-background pr-9 text-sm outline-none aria-invalid:border-destructive",
             size === "small" ? "h-9 px-2" : "h-10 px-3",
             (disabled || fetching) && "opacity-70",
           )}
+          aria-invalid={hasError || undefined}
+          onChange={(e) => {
+            onChange?.(e);
+            onChangeValue?.(e, e.target.value.trim());
+          }}
           style={color ? { borderColor: color, color } : undefined}
           {...props}
         >
@@ -144,7 +180,11 @@ export function Select({
           />
         )}
       </div>
-    </div>
+
+      {helperText ? <FieldDescription>{helperText}</FieldDescription> : null}
+
+      {error ? <FieldError>{error}</FieldError> : null}
+    </Field>
   );
 }
 

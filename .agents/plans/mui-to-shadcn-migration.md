@@ -138,6 +138,7 @@ react-design-system/
 ### Structure Rules (Non-Negotiable)
 
 - `src/components/ui/*` is the only location for shadcn-generated base components.
+- Never create files in `src/components/ui/*` manually; always generate primitives via `npx shadcn@latest add <component>` (example: `npx shadcn@latest add field`).
 - Treat `src/components/ui/*` as low-level primitives (shadcn-managed), not the primary public package API.
 - For consumer-facing/public APIs, create wrappers in `src/components/<component-name>/<component-name>.tsx` and export wrappers from `src/index.ts`.
 - All newly migrated/custom components must live under `src/components/*`.

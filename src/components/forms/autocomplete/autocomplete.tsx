@@ -1,7 +1,9 @@
 import { Loader2 } from "lucide-react";
 import {
+  type ChangeEvent,
   type InputHTMLAttributes,
   type KeyboardEvent,
+  type MouseEvent,
   type ReactNode,
   useEffect,
   useMemo,
@@ -61,9 +63,13 @@ export interface AutocompleteProps<T>
   fetching?: boolean;
   /**
    * Called when user selects a value.
-   * @param value - Selected option.
+   * @param e - Input or option interaction event.
+   * @param value - Trimmed selected value label.
    */
-  onChangeValue?: (value: T) => void;
+  onChangeValue?: (
+    e: ChangeEvent<HTMLInputElement> | MouseEvent<HTMLButtonElement>,
+    value: string,
+  ) => void;
   /**
    * Converts options into labels.
    */
@@ -115,11 +121,11 @@ export function Autocomplete<T>({
 
   const inputId = id ?? `${label}-autocomplete`;
 
-  const handleSelect = (option: T) => {
+  const handleSelect = (e: MouseEvent<HTMLButtonElement>, option: T) => {
     const nextValue = optionLabel(option);
     setInputValue(nextValue);
     setOpen(false);
-    onChangeValue?.(option);
+    onChangeValue?.(e, nextValue.trim());
   };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -150,6 +156,7 @@ export function Autocomplete<T>({
           onChange={(event) => {
             setInputValue(event.target.value);
             setOpen(true);
+            onChangeValue?.(event, event.target.value.trim());
           }}
           className={cn(
             "w-full rounded-md border border-input bg-background pr-9 text-sm outline-none",
@@ -184,7 +191,7 @@ export function Autocomplete<T>({
                   role="option"
                   aria-selected={labelValue === inputValue}
                   className="block w-full cursor-pointer rounded-sm px-2 py-1.5 text-left text-sm hover:bg-accent hover:text-accent-foreground"
-                  onClick={() => handleSelect(option)}
+                  onClick={(e) => handleSelect(e, option)}
                 >
                   {labelValue}
                 </button>

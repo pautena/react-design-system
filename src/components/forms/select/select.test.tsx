@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { vi } from "vitest";
-import { render, screen } from "../../tests/testing-library";
+import { render, screen } from "../../../tests/testing-library";
 import Select from "./select";
 
 describe("Select", () => {
@@ -9,10 +9,19 @@ describe("Select", () => {
     label = "Dummy select",
     loading = false,
     fetching = false,
+    helperText,
+    error,
+  }: {
+    label?: string;
+    loading?: boolean;
+    fetching?: boolean;
+    helperText?: string;
+    error?: string;
   } = {}) => {
     const options = ["option1", "option2", "option3"];
     const value = "option1";
     const onChange = vi.fn();
+    const onChangeValue = vi.fn();
 
     render(
       <Select
@@ -20,7 +29,10 @@ describe("Select", () => {
         label={label}
         loading={loading}
         fetching={fetching}
+        helperText={helperText}
+        error={error}
         onChange={onChange}
+        onChangeValue={onChangeValue}
         options={options.map((option) => ({ value: option, label: option }))}
       />,
     );
@@ -29,6 +41,7 @@ describe("Select", () => {
       options,
       value,
       onChange,
+      onChangeValue,
     };
   };
 
@@ -74,6 +87,7 @@ describe("Select", () => {
   it("calls onChange when selecting a different value", async () => {
     const user = userEvent.setup();
     const onChange = vi.fn();
+    const onChangeValue = vi.fn();
 
     const ControlledSelect = () => {
       const [value, setValue] = useState("option1");
@@ -91,6 +105,7 @@ describe("Select", () => {
             setValue(event.target.value);
             onChange(event);
           }}
+          onChangeValue={onChangeValue}
         />
       );
     };
@@ -100,6 +115,26 @@ describe("Select", () => {
     await user.selectOptions(screen.getByRole("combobox"), "option2");
 
     expect(onChange).toHaveBeenCalled();
+    expect(onChangeValue).toHaveBeenCalled();
+    expect(onChangeValue.mock.calls.at(-1)?.[1]).toBe("option2");
     expect(screen.getByRole("combobox")).toHaveValue("option2");
+  });
+
+  it("renders helper text", () => {
+    renderComponent({ helperText: "Select your vehicle model" });
+
+    expect(screen.getByText(/select your vehicle model/i)).toBeVisible();
+  });
+
+  it("renders error text and marks select invalid", () => {
+    renderComponent({ error: "Please select a model" });
+
+    expect(screen.getByRole("alert")).toHaveTextContent(
+      /please select a model/i,
+    );
+    expect(screen.getByRole("combobox")).toHaveAttribute(
+      "aria-invalid",
+      "true",
+    );
   });
 });

@@ -1,9 +1,9 @@
 import { faker } from "@faker-js/faker";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import { selectOption } from "../../tests/actions";
-import { expectProgressIndicator } from "../../tests/assertions";
-import { render, screen } from "../../tests/testing-library";
+import { selectOption } from "../../../tests/actions";
+import { expectProgressIndicator } from "../../../tests/assertions";
+import { render, screen } from "../../../tests/testing-library";
 import Autocomplete from "./autocomplete";
 
 const options: string[] = [...faker.definitions.vehicle.model];
@@ -53,7 +53,7 @@ describe("Autocomplete", () => {
     await selectOption(screen.getByRole("combobox"), "Model T");
 
     expect(onChangeValue).toHaveBeenCalledTimes(1);
-    expect(onChangeValue).toHaveBeenCalledWith("Model T");
+    expect(onChangeValue).toHaveBeenCalledWith(expect.any(Object), "Model T");
   });
 
   it("filters options when user types", async () => {
