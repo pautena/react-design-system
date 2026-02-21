@@ -1,5 +1,3 @@
-import "./styles/globals.css";
-
 export * from "./Autocomplete";
 export { default as Autocomplete } from "./Autocomplete";
 export * from "./Board";

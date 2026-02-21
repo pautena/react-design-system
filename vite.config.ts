@@ -12,6 +12,7 @@ export default defineConfig({
     lib: {
       entry: {
         index: "./src/index.ts",
+        styles: "./src/styles.ts",
         "tests/index": "./src/tests/index.ts",
       },
       formats: ["es"],
