@@ -1,4 +1,4 @@
-import { ValueItemElement } from '../ValueItem';
+import { ValueItemElement } from '../components/value-item';
 /**
  * Props for the GroupValueCard component.
  */

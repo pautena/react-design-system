@@ -298,107 +298,6 @@ Section used to provide basic information about the page and display main action
 
 [View Documentation](./?path=/docs/data-display-header--docs)
 
-### ValueBoolean
-
-Displays a boolean value with a label
-
-**Stories:**
-- [Default](./?path=/story/data-display-valueboolean--default)
-- [True](./?path=/story/data-display-valueboolean--true)
-- [False](./?path=/story/data-display-valueboolean--false)
-- [Dense](./?path=/story/data-display-valueboolean--dense)
-
-[View Documentation](./?path=/docs/data-display-valueboolean--docs)
-
-### ValueCard
-
-Container to show a labeled value
-
-**Props:**
-- `children`: `React.ReactNode` - Content to display in the card
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuecard--default)
-
-[View Documentation](./?path=/docs/data-display-valuecard--docs)
-
-### ValueDatetime
-
-Displays a formated datetime with a label
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuedatetime--default)
-- [Dense](./?path=/story/data-display-valuedatetime--dense)
-- [Placeholder](./?path=/story/data-display-valuedatetime--placeholder)
-- [Custom Placeholder](./?path=/story/data-display-valuedatetime--custom-placeholder)
-
-[View Documentation](./?path=/docs/data-display-valuedatetime--docs)
-
-### ValueImage
-
-Displays a image value with a label
-
-**Stories:**
-- [Default](./?path=/story/data-display-valueimage--default)
-- [Dense](./?path=/story/data-display-valueimage--dense)
-- [Custom Size](./?path=/story/data-display-valueimage--custom-size)
-
-[View Documentation](./?path=/docs/data-display-valueimage--docs)
-
-### ValueItem
-
-`ValueItem` is a component to wrap your value components
-
-**Stories:**
-- [Default](./?path=/story/data-display-valueitem--default)
-- [Borderless](./?path=/story/data-display-valueitem--borderless)
-- [Breakpoints Border](./?path=/story/data-display-valueitem--breakpoints-border)
-- [Breakpoints Array Border](./?path=/story/data-display-valueitem--breakpoints-array-border)
-
-[View Documentation](./?path=/docs/data-display-valueitem--docs)
-
-### ValueLabel
-
-Displays a label component value with a label
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuelabel--default)
-- [Variant](./?path=/story/data-display-valuelabel--variant)
-- [Number As Value](./?path=/story/data-display-valuelabel--number-as-value)
-- [Text List](./?path=/story/data-display-valuelabel--text-list)
-- [Number List](./?path=/story/data-display-valuelabel--number-list)
-- [List Single Variant](./?path=/story/data-display-valuelabel--list-single-variant)
-- [List Multiple Variants](./?path=/story/data-display-valuelabel--list-multiple-variants)
-- [Placeholder](./?path=/story/data-display-valuelabel--placeholder)
-- [Custom Placeholder](./?path=/story/data-display-valuelabel--custom-placeholder)
-
-[View Documentation](./?path=/docs/data-display-valuelabel--docs)
-
-### ValueRating
-
-Displays a number using stars
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuerating--default)
-- [Dense](./?path=/story/data-display-valuerating--dense)
-- [Max](./?path=/story/data-display-valuerating--max)
-
-[View Documentation](./?path=/docs/data-display-valuerating--docs)
-
-### ValueText
-
-Displays a string value with a label
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuetext--default)
-- [Dense](./?path=/story/data-display-valuetext--dense)
-- [Number As Value](./?path=/story/data-display-valuetext--number-as-value)
-- [Truncated Text](./?path=/story/data-display-valuetext--truncated-text)
-- [Placeholder](./?path=/story/data-display-valuetext--placeholder)
-- [Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder)
-
-[View Documentation](./?path=/docs/data-display-valuetext--docs)
-
 ### Badge
 
 **Stories:**
@@ -428,6 +327,88 @@ Displays a string value with a label
 - [Error Variant](./?path=/story/data-display-bullet--error-variant)
 
 [View Documentation](./?path=/docs/data-display-bullet--docs)
+
+### ValueBoolean
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueboolean--default)
+- [True](./?path=/story/data-display-valueboolean--true)
+- [False](./?path=/story/data-display-valueboolean--false)
+- [Dense](./?path=/story/data-display-valueboolean--dense)
+
+[View Documentation](./?path=/docs/data-display-valueboolean--docs)
+
+### ValueCard
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuecard--default)
+
+[View Documentation](./?path=/docs/data-display-valuecard--docs)
+
+### ValueDatetime
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuedatetime--default)
+- [Dense](./?path=/story/data-display-valuedatetime--dense)
+- [Placeholder](./?path=/story/data-display-valuedatetime--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuedatetime--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuedatetime--docs)
+
+### ValueImage
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueimage--default)
+- [Dense](./?path=/story/data-display-valueimage--dense)
+- [Custom Size](./?path=/story/data-display-valueimage--custom-size)
+
+[View Documentation](./?path=/docs/data-display-valueimage--docs)
+
+### ValueItem
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueitem--default)
+- [Borderless](./?path=/story/data-display-valueitem--borderless)
+- [Breakpoints Border](./?path=/story/data-display-valueitem--breakpoints-border)
+- [Breakpoints Array Border](./?path=/story/data-display-valueitem--breakpoints-array-border)
+
+[View Documentation](./?path=/docs/data-display-valueitem--docs)
+
+### ValueLabel
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuelabel--default)
+- [Variant](./?path=/story/data-display-valuelabel--variant)
+- [Number As Value](./?path=/story/data-display-valuelabel--number-as-value)
+- [Text List](./?path=/story/data-display-valuelabel--text-list)
+- [Number List](./?path=/story/data-display-valuelabel--number-list)
+- [List Single Variant](./?path=/story/data-display-valuelabel--list-single-variant)
+- [List Multiple Variants](./?path=/story/data-display-valuelabel--list-multiple-variants)
+- [Placeholder](./?path=/story/data-display-valuelabel--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuelabel--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuelabel--docs)
+
+### ValueRating
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuerating--default)
+- [Dense](./?path=/story/data-display-valuerating--dense)
+- [Max](./?path=/story/data-display-valuerating--max)
+
+[View Documentation](./?path=/docs/data-display-valuerating--docs)
+
+### ValueText
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuetext--default)
+- [Dense](./?path=/story/data-display-valuetext--dense)
+- [Number As Value](./?path=/story/data-display-valuetext--number-as-value)
+- [Truncated Text](./?path=/story/data-display-valuetext--truncated-text)
+- [Placeholder](./?path=/story/data-display-valuetext--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuetext--docs)
 
 ## Dialogs
 

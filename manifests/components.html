@@ -5977,9 +5977,9 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
         <label for="c-33-data-display-valueboolean-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueBoolean/ValueBoolean.stories.tsx">data-display-valueboolean · ./src/ValueBoolean/ValueBoolean.stories.tsx</div>
+    <div class="meta" title="./src/components/value-boolean/value-boolean.stories.tsx">data-display-valueboolean · ./src/components/value-boolean/value-boolean.stories.tsx</div>
     
-    <div class="hint">Displays a boolean value with a label</div>
+    <div class="hint">Displays a boolean value with a label.</div>
     
   </div>
 
@@ -5999,26 +5999,26 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">4 prop types</span>
             </div>
-            <pre><code>Component: src/ValueBoolean/ValueBoolean.tsx::ValueBoolean</code></pre>
+            <pre><code>Component: src/components/value-boolean/value-boolean.tsx::ValueBoolean</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The value has to be displayed as compact or not.
- * False by default
+ * Whether the value is displayed in compact mode.
+ * @default false
  */
 dense?: boolean
 
 /**
- * Name of the displayed value
+ * Name of the displayed value.
  */
 label: string
 
 /**
- * String rendered if value is undefined
+ * String rendered if value is undefined.
  */
 placeholder?: string = &quot;-&quot;
 
 /**
- * Value displayed
+ * Value displayed.
  */
 value?: T</code></pre>
           </div>
@@ -6091,9 +6091,9 @@ value?: T</code></pre>
         <label for="c-34-data-display-valuecard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueCard/ValueCard.stories.tsx">data-display-valuecard · ./src/ValueCard/ValueCard.stories.tsx</div>
+    <div class="meta" title="./src/components/value-card/value-card.stories.tsx">data-display-valuecard · ./src/components/value-card/value-card.stories.tsx</div>
     
-    <div class="hint">Container to show a labeled value</div>
+    <div class="hint">Container to show labeled values.</div>
     
   </div>
 
@@ -6113,12 +6113,12 @@ value?: T</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/ValueCard/ValueCard.tsx::ValueCard</code></pre>
+            <pre><code>Component: src/components/value-card/value-card.tsx::ValueCard</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Content to display in the card
+ * Content to display in the card.
  */
-children?: React.ReactNode</code></pre>
+children?: ReactNode</code></pre>
           </div>
         </div>
     
@@ -6164,9 +6164,9 @@ children?: React.ReactNode</code></pre>
         <label for="c-35-data-display-valuedatetime-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueDatetime/ValueDatetime.stories.tsx">data-display-valuedatetime · ./src/ValueDatetime/ValueDatetime.stories.tsx</div>
+    <div class="meta" title="./src/components/value-datetime/value-datetime.stories.tsx">data-display-valuedatetime · ./src/components/value-datetime/value-datetime.stories.tsx</div>
     
-    <div class="hint">Displays a formated datetime with a label</div>
+    <div class="hint">Displays a formatted datetime with a label.</div>
     
   </div>
 
@@ -6186,31 +6186,31 @@ children?: React.ReactNode</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">5 prop types</span>
             </div>
-            <pre><code>Component: src/ValueDatetime/ValueDatetime.tsx::ValueDatetime</code></pre>
+            <pre><code>Component: src/components/value-datetime/value-datetime.tsx::ValueDatetime</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The value has to be displayed as compact or not.
- * False by default
+ * Whether the value is displayed in compact mode.
+ * @default false
  */
 dense?: boolean
 
 /**
- * Datetime format
+ * Datetime format.
  */
 format: string
 
 /**
- * Name of the displayed value
+ * Name of the displayed value.
  */
 label: string
 
 /**
- * String rendered if value is undefined
+ * String rendered if value is undefined.
  */
 placeholder?: string = &quot;-&quot;
 
 /**
- * Value displayed
+ * Value displayed.
  */
 value?: Date</code></pre>
           </div>
@@ -6283,9 +6283,9 @@ value?: Date</code></pre>
         <label for="c-36-data-display-valueimage-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueImage/ValueImage.stories.tsx">data-display-valueimage · ./src/ValueImage/ValueImage.stories.tsx</div>
+    <div class="meta" title="./src/components/value-image/value-image.stories.tsx">data-display-valueimage · ./src/components/value-image/value-image.stories.tsx</div>
     
-    <div class="hint">Displays a image value with a label</div>
+    <div class="hint">Displays an image value with a label.</div>
     
   </div>
 
@@ -6305,31 +6305,31 @@ value?: Date</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">5 prop types</span>
             </div>
-            <pre><code>Component: src/ValueImage/ValueImage.tsx::ValueImage</code></pre>
+            <pre><code>Component: src/components/value-image/value-image.tsx::ValueImage</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The value has to be displayed as compact or not.
- * False by default
+ * Whether the value is displayed in compact mode.
+ * @default false
  */
 dense?: boolean
 
 /**
- * Name of the displayed value
+ * Name of the displayed value.
  */
 label: string
 
 /**
- * String rendered if value is undefined
+ * String rendered if value is undefined.
  */
 placeholder?: string
 
 /**
- * Image size
+ * Image size.
  */
 size?: number
 
 /**
- * Value displayed
+ * Value displayed.
  */
 value?: string</code></pre>
           </div>
@@ -6388,14 +6388,14 @@ value?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueItem</h2>
       <div class="badges">
-        <label for="c-37-data-display-valueitem-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-37-data-display-valueitem-props" class="badge ok as-toggle">1 prop type</label>
         
         <label for="c-37-data-display-valueitem-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueItem/ValueItem.stories.tsx">data-display-valueitem · ./src/ValueItem/ValueItem.stories.tsx</div>
+    <div class="meta" title="./src/components/value-item/value-item.stories.tsx">data-display-valueitem · ./src/components/value-item/value-item.stories.tsx</div>
     
-    <div class="hint">`ValueItem` is a component to wrap your value components</div>
+    <div class="hint">Wraps value display components and applies consistent spacing and borders.</div>
     
   </div>
 
@@ -6413,19 +6413,11 @@ value?: string</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">2 prop types</span>
+              <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/ValueItem/ValueItem.tsx::default</code></pre>
+            <pre><code>Component: src/components/value-item/value-item.tsx::ValueItem</code></pre>
             <pre><code>Props:</code></pre>
-            <pre><code>/**
- * Whether to display a border
- */
-bordered?: ResponsiveStyleValue&lt;boolean&gt; = true
-
-/**
- * Content to display
- */
-children?: React.ReactNode</code></pre>
+            <pre><code>bordered?: any = true</code></pre>
           </div>
         </div>
     
@@ -6510,9 +6502,9 @@ children?: React.ReactNode</code></pre>
         <label for="c-38-data-display-valuelabel-stories" class="badge ok as-toggle">9 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueLabel/ValueLabel.stories.tsx">data-display-valuelabel · ./src/ValueLabel/ValueLabel.stories.tsx</div>
+    <div class="meta" title="./src/components/value-label/value-label.stories.tsx">data-display-valuelabel · ./src/components/value-label/value-label.stories.tsx</div>
     
-    <div class="hint">Displays a label component value with a label</div>
+    <div class="hint">Displays badge values with a label.</div>
     
   </div>
 
@@ -6532,31 +6524,31 @@ children?: React.ReactNode</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">5 prop types</span>
             </div>
-            <pre><code>Component: src/ValueLabel/ValueLabel.tsx::ValueLabel</code></pre>
+            <pre><code>Component: src/components/value-label/value-label.tsx::ValueLabel</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The value has to be displayed as compact or not.
- * False by default
+ * Whether the value is displayed in compact mode.
+ * @default false
  */
 dense?: boolean
 
 /**
- * Name of the displayed value
+ * Name of the displayed value.
  */
 label: string
 
 /**
- * String rendered if value is undefined
+ * String rendered if value is undefined.
  */
 placeholder?: string = &quot;-&quot;
 
 /**
- * Value displayed
+ * Value displayed.
  */
 value?: T
 
 /**
- * Label color variant or array of variants for multiple labels
+ * Label color variant or array of variants for multiple labels.
  */
 variant?: BadgeVariant | BadgeVariant[]</code></pre>
           </div>
@@ -6677,9 +6669,9 @@ variant?: BadgeVariant | BadgeVariant[]</code></pre>
         <label for="c-39-data-display-valuerating-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueRating/ValueRating.stories.tsx">data-display-valuerating · ./src/ValueRating/ValueRating.stories.tsx</div>
+    <div class="meta" title="./src/components/value-rating/value-rating.stories.tsx">data-display-valuerating · ./src/components/value-rating/value-rating.stories.tsx</div>
     
-    <div class="hint">Displays a number using stars</div>
+    <div class="hint">Displays a number using stars.</div>
     
   </div>
 
@@ -6699,32 +6691,32 @@ variant?: BadgeVariant | BadgeVariant[]</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">5 prop types</span>
             </div>
-            <pre><code>Component: src/ValueRating/ValueRating.tsx::ValueRating</code></pre>
+            <pre><code>Component: src/components/value-rating/value-rating.tsx::ValueRating</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The value has to be displayed as compact or not.
- * False by default
+ * Whether the value is displayed in compact mode.
+ * @default false
  */
 dense?: boolean
 
 /**
- * Name of the displayed value
+ * Name of the displayed value.
  */
 label: string
 
 /**
- * Maximum number of stars to display
+ * Maximum number of stars to display.
  * @default 5
  */
 maxRating?: number = 5
 
 /**
- * String rendered if value is undefined
+ * String rendered if value is undefined.
  */
 placeholder?: string
 
 /**
- * Value displayed
+ * Value displayed.
  */
 value?: T = 0</code></pre>
           </div>
@@ -6788,9 +6780,9 @@ value?: T = 0</code></pre>
         <label for="c-40-data-display-valuetext-stories" class="badge ok as-toggle">6 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ValueText/ValueText.stories.tsx">data-display-valuetext · ./src/ValueText/ValueText.stories.tsx</div>
+    <div class="meta" title="./src/components/value-text/value-text.stories.tsx">data-display-valuetext · ./src/components/value-text/value-text.stories.tsx</div>
     
-    <div class="hint">Displays a string value with a label</div>
+    <div class="hint">Displays a string or number value with a label.</div>
     
   </div>
 
@@ -6810,26 +6802,26 @@ value?: T = 0</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">4 prop types</span>
             </div>
-            <pre><code>Component: src/ValueText/ValueText.tsx::ValueText</code></pre>
+            <pre><code>Component: src/components/value-text/value-text.tsx::ValueText</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The value has to be displayed as compact or not.
- * False by default
+ * Whether the value is displayed in compact mode.
+ * @default false
  */
 dense?: boolean
 
 /**
- * Name of the displayed value
+ * Name of the displayed value.
  */
 label: string
 
 /**
- * String rendered if value is undefined
+ * String rendered if value is undefined.
  */
 placeholder?: string = &quot;-&quot;
 
 /**
- * Value displayed
+ * Value displayed.
  */
 value?: T</code></pre>
           </div>
