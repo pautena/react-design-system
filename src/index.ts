@@ -22,6 +22,8 @@ export * from "./components/forms/select";
 export { default as Select } from "./components/forms/select";
 export * from "./components/forms/text-field";
 export { default as TextField } from "./components/forms/text-field";
+export * from "./components/forms/textarea-field";
+export { default as TextareaField } from "./components/forms/textarea-field";
 export * from "./components/group-value-card";
 export { default as GroupValueCard } from "./components/group-value-card";
 export * from "./components/markdown";
