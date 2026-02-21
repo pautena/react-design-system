@@ -1,8 +1,8 @@
-import { ValueBoolean } from "../ValueBoolean";
-import { ValueDatetime } from "../ValueDatetime";
+import { ValueBoolean } from "../components/value-boolean";
+import { ValueDatetime } from "../components/value-datetime";
+import { ValueRating } from "../components/value-rating";
+import { ValueText } from "../components/value-text";
 import { ValueItem } from "../ValueItem";
-import { ValueRating } from "../ValueRating";
-import { ValueText } from "../ValueText";
 import GroupValueCard, { type GroupValueCardProps } from "./GroupValueCard";
 
 export const GroupValueCardDummy = ({
