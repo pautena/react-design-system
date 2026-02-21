@@ -31,6 +31,120 @@
         }
       ],
       "category": "Data Display"
+    },
+    {
+      "name": "value-content",
+      "type": "registry:ui",
+      "title": "ValueContent",
+      "description": "Base labeled container for value display components",
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "src/components/value-content/value-content.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "value-text",
+      "type": "registry:ui",
+      "title": "ValueText",
+      "description": "Labeled text or numeric value renderer",
+      "registryDependencies": ["value-content"],
+      "files": [
+        {
+          "path": "src/components/value-text/value-text.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "value-boolean",
+      "type": "registry:ui",
+      "title": "ValueBoolean",
+      "description": "Labeled boolean value renderer with check and close icons",
+      "registryDependencies": ["value-content"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/value-boolean/value-boolean.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "value-datetime",
+      "type": "registry:ui",
+      "title": "ValueDatetime",
+      "description": "Labeled date and time formatter",
+      "registryDependencies": ["value-content"],
+      "dependencies": ["date-fns"],
+      "files": [
+        {
+          "path": "src/components/value-datetime/value-datetime.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "value-label",
+      "type": "registry:ui",
+      "title": "ValueLabel",
+      "description": "Labeled badge list renderer",
+      "registryDependencies": ["badge", "value-content"],
+      "files": [
+        {
+          "path": "src/components/value-label/value-label.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "value-rating",
+      "type": "registry:ui",
+      "title": "ValueRating",
+      "description": "Labeled star rating renderer",
+      "registryDependencies": ["value-content"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/value-rating/value-rating.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "value-image",
+      "type": "registry:ui",
+      "title": "ValueImage",
+      "description": "Labeled image value renderer",
+      "registryDependencies": ["value-content"],
+      "files": [
+        {
+          "path": "src/components/value-image/value-image.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "markdown",
+      "type": "registry:ui",
+      "title": "Markdown",
+      "description": "Tailwind-based markdown override options",
+      "files": [
+        {
+          "path": "src/components/markdown/markdown.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
     }
   ]
 }
