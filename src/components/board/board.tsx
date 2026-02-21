@@ -57,7 +57,9 @@ export function Board({
         className,
       )}
     >
-      <div className="pr-8">{children ?? content}</div>
+      <div className="flex min-h-7 items-center pr-8">
+        {children ?? content}
+      </div>
       {copyContent ? (
         <button
           type="button"
