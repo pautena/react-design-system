@@ -9,6 +9,13 @@ import {
   useMemo,
   useState,
 } from "react";
+import {
+  Field,
+  FieldDescription,
+  FieldError,
+  FieldLabel,
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 /**
@@ -43,6 +50,10 @@ export interface AutocompleteProps<T>
    */
   helperText?: ReactNode;
   /**
+   * Error text rendered below the field.
+   */
+  error?: ReactNode;
+  /**
    * Input size variant.
    * @default "medium"
    */
@@ -56,11 +67,6 @@ export interface AutocompleteProps<T>
    * @default false
    */
   loading?: boolean;
-  /**
-   * Temporarily hides options while fetching.
-   * @default false
-   */
-  fetching?: boolean;
   /**
    * Called when user selects a value.
    * @param e - Input or option interaction event.
@@ -87,14 +93,15 @@ export function Autocomplete<T>({
   options,
   value,
   helperText,
+  error,
   size = "medium",
   color,
   loading = false,
-  fetching = false,
   className,
   disabled,
   onChangeValue,
   getOptionLabel,
+  "aria-invalid": ariaInvalid,
   ...props
 }: AutocompleteProps<T>) {
   const optionLabel = (option: T) => getOptionLabel?.(option) ?? String(option);
@@ -109,17 +116,14 @@ export function Autocomplete<T>({
   }, [value]);
 
   const renderedOptions = useMemo(() => {
-    if (fetching) {
-      return [] as T[];
-    }
-
     const query = inputValue.toLowerCase();
     return options.filter((option) =>
       optionLabel(option).toLowerCase().includes(query),
     );
-  }, [fetching, inputValue, options]);
+  }, [inputValue, options]);
 
   const inputId = id ?? `${label}-autocomplete`;
+  const hasError = Boolean(error);
 
   const handleSelect = (e: MouseEvent<HTMLButtonElement>, option: T) => {
     const nextValue = optionLabel(option);
@@ -135,21 +139,23 @@ export function Autocomplete<T>({
   };
 
   return (
-    <div className={cn("space-y-1", className)}>
-      <label htmlFor={inputId} className="text-sm font-medium text-foreground">
-        {label}
-      </label>
+    <Field
+      data-invalid={hasError || undefined}
+      className={cn("gap-1.5", className)}
+    >
+      <FieldLabel htmlFor={inputId}>{label}</FieldLabel>
 
       <div className="relative">
-        <input
+        <Input
           id={inputId}
           role="combobox"
           aria-expanded={open}
           aria-controls={`${inputId}-listbox`}
           aria-autocomplete="list"
-          aria-busy={loading || fetching}
+          aria-busy={loading}
+          aria-invalid={ariaInvalid || hasError || undefined}
           value={inputValue}
-          disabled={disabled || fetching}
+          disabled={disabled}
           onFocus={() => setOpen(true)}
           onClick={() => setOpen(true)}
           onKeyDown={handleKeyDown}
@@ -159,15 +165,16 @@ export function Autocomplete<T>({
             onChangeValue?.(event, event.target.value.trim());
           }}
           className={cn(
-            "w-full rounded-md border border-input bg-background pr-9 text-sm outline-none",
+            "w-full text-sm pr-9",
             size === "small" ? "h-9 px-2" : "h-10 px-3",
-            (disabled || fetching) && "opacity-70",
+            hasError && "border-destructive",
+            disabled && "opacity-70",
           )}
           style={color ? { borderColor: color, color } : undefined}
           {...props}
         />
 
-        {(loading || fetching) && (
+        {loading && (
           <Loader2
             role="progressbar"
             aria-label="loading"
@@ -201,10 +208,12 @@ export function Autocomplete<T>({
         ) : null}
       </div>
 
-      {helperText ? (
-        <p className="text-xs text-muted-foreground">{helperText}</p>
+      {helperText && !hasError ? (
+        <FieldDescription>{helperText}</FieldDescription>
       ) : null}
-    </div>
+
+      {error ? <FieldError>{error}</FieldError> : null}
+    </Field>
   );
 }
 

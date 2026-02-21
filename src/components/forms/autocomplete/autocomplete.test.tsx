@@ -12,11 +12,9 @@ describe("Autocomplete", () => {
   const renderComponent = ({
     value,
     loading,
-    fetching,
   }: {
     value?: string;
     loading?: boolean;
-    fetching?: boolean;
   } = {}) => {
     const onChangeValue = vi.fn();
 
@@ -24,7 +22,6 @@ describe("Autocomplete", () => {
       <Autocomplete
         label="Car model"
         loading={loading}
-        fetching={fetching}
         value={value}
         options={options}
         onChangeValue={onChangeValue}
@@ -68,12 +65,6 @@ describe("Autocomplete", () => {
 
   it("renders a loading indicator when loading", () => {
     renderComponent({ loading: true });
-
-    expectProgressIndicator();
-  });
-
-  it("renders a loading indicator when fetching", () => {
-    renderComponent({ fetching: true });
 
     expectProgressIndicator();
   });

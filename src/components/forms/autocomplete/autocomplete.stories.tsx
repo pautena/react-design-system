@@ -37,10 +37,25 @@ export const Loading: Story = {
   },
 };
 
-export const Fetching: Story = {
+export const Error: Story = {
   args: {
     ...Default.args,
-    fetching: true,
+    helperText: "Select your vehicle model",
+    error: "A model selection is required",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+
+export const Placeholder: Story = {
+  args: {
+    ...Default.args,
+    placeholder: "Type a car model...",
   },
 };
 
