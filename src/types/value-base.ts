@@ -1,22 +1,22 @@
 export interface BaseValueProps<T> {
   /**
-   * Name of the displayed value
+   * Name of the displayed value.
    */
   label: string;
 
   /**
-   * Value displayed
+   * Value displayed.
    */
   value?: T;
 
   /**
-   * String rendered if value is undefined
+   * String rendered if value is undefined.
    */
   placeholder?: string;
 
   /**
-   * The value has to be displayed as compact or not.
-   * False by default
+   * Whether the value is displayed in compact mode.
+   * @default false
    */
   dense?: boolean;
 }

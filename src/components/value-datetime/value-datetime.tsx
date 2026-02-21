@@ -2,7 +2,7 @@ import { format } from "date-fns";
 import ValueContent, {
   getValueContentLabelId,
 } from "@/components/value-content";
-import { type BaseValueProps, DefaultPlaceholder } from "@/ValueBase";
+import { type BaseValueProps, DefaultPlaceholder } from "@/types/value-base";
 
 /**
  * Props for the ValueDatetime component.

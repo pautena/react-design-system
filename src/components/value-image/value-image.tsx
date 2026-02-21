@@ -1,5 +1,5 @@
 import ValueContent from "@/components/value-content";
-import type { BaseValueProps } from "@/ValueBase";
+import type { BaseValueProps } from "@/types/value-base";
 
 /**
  * Props for the ValueImage component.
