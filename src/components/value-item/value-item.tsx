@@ -39,6 +39,21 @@ export const valueItemClasses = {
   content: "RdsValueItem-content",
 };
 
+const sizeClassMap: Record<number, string> = {
+  1: "col-span-1",
+  2: "col-span-2",
+  3: "col-span-3",
+  4: "col-span-4",
+  5: "col-span-5",
+  6: "col-span-6",
+  7: "col-span-7",
+  8: "col-span-8",
+  9: "col-span-9",
+  10: "col-span-10",
+  11: "col-span-11",
+  12: "col-span-12",
+};
+
 const responsivePrefix: Record<Breakpoint, string> = {
   xs: "",
   sm: "sm:",
@@ -49,6 +64,56 @@ const responsivePrefix: Record<Breakpoint, string> = {
 
 const borderClass = (enabled: boolean, prefix = "") =>
   enabled ? `${prefix}border-l ${prefix}border-border` : `${prefix}border-l-0`;
+
+const normalizeSize = (size?: number) => {
+  if (!size) {
+    return 12;
+  }
+
+  if (size < 1) {
+    return 1;
+  }
+
+  if (size > 12) {
+    return 12;
+  }
+
+  return Math.round(size);
+};
+
+const sizeClass = (size?: number, prefix = "") =>
+  `${prefix}${sizeClassMap[normalizeSize(size)]}`;
+
+const resolveSizeClasses = (size?: ResponsiveValue<number>) => {
+  if (!size) {
+    return sizeClass(12);
+  }
+
+  if (Array.isArray(size)) {
+    const breakpoints: Breakpoint[] = ["xs", "sm", "md", "lg", "xl"];
+
+    return size
+      .map((value, index) => {
+        const breakpoint = breakpoints[index];
+        if (!breakpoint) {
+          return "";
+        }
+
+        return sizeClass(value, responsivePrefix[breakpoint]);
+      })
+      .join(" ");
+  }
+
+  if (typeof size === "object") {
+    return (Object.keys(size) as Breakpoint[])
+      .map((breakpoint) =>
+        sizeClass(size[breakpoint], responsivePrefix[breakpoint]),
+      )
+      .join(" ");
+  }
+
+  return sizeClass(size);
+};
 
 const resolveBorderClasses = (bordered: ResponsiveValue<boolean>) => {
   if (Array.isArray(bordered)) {
@@ -85,15 +150,23 @@ const resolveBorderClasses = (bordered: ResponsiveValue<boolean>) => {
 export const ValueItem: ValueItemComponent = ({
   children,
   bordered = true,
-  size: _size,
+  size,
   className,
   ...rest
 }) => {
   return (
-    <div className={cn(valueItemClasses.root, className)} {...rest}>
+    <div
+      className={cn(
+        "min-w-0",
+        valueItemClasses.root,
+        resolveSizeClasses(size),
+        className,
+      )}
+      {...rest}
+    >
       <div
         className={cn(
-          "px-1",
+          "h-full px-1",
           valueItemClasses.content,
           resolveBorderClasses(bordered),
         )}

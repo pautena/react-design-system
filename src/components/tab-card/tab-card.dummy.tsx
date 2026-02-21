@@ -1,7 +1,6 @@
-import Typography from "@mui/material/Typography";
-import { Badge } from "../components/badge";
-import TabCard, { type TabData } from "./TabCard";
-import TabCardPanel from "./TabCardPanel";
+import { Badge } from "@/components/badge";
+import TabCard, { type TabData } from "./tab-card";
+import TabCardPanel from "./tab-card-panel";
 
 export const DummyTabs = [
   { text: "tab 1" },
@@ -10,7 +9,10 @@ export const DummyTabs = [
     icon: <Badge text="10" variant="success" className="mr-2" />,
   },
   { text: "tab 2.2" },
-  { text: "tab 3", icon: <Badge text="12" variant="error" className="mr-2" /> },
+  {
+    text: "tab 3",
+    icon: <Badge text="12" variant="error" className="mr-2" />,
+  },
 ];
 
 export interface TabCardDummyProps {
@@ -26,14 +28,14 @@ export function TabCardDummy({
 }: TabCardDummyProps) {
   return (
     <TabCard tabs={tabs} initialTab={initialTab} onChangeTab={onChangeTab}>
-      <TabCardPanel index={0} sx={{ p: 2 }}>
-        <Typography>Panel 1</Typography>
+      <TabCardPanel index={0} sx={{ padding: "0.5rem" }}>
+        <p>Panel 1</p>
       </TabCardPanel>
-      <TabCardPanel index={[1, 2]} sx={{ p: 2 }}>
-        <Typography>Panel 2</Typography>
+      <TabCardPanel index={[1, 2]} sx={{ padding: "0.5rem" }}>
+        <p>Panel 2</p>
       </TabCardPanel>
-      <TabCardPanel index={3} sx={{ p: 2 }}>
-        <Typography>Panel 3</Typography>
+      <TabCardPanel index={3} sx={{ padding: "0.5rem" }}>
+        <p>Panel 3</p>
       </TabCardPanel>
     </TabCard>
   );
