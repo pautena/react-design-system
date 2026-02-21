@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">41 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/41 info</a><span class="filter-pill ok" aria-disabled="true">216 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">41 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/41 info</a><span class="filter-pill ok" aria-disabled="true">214 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -967,12 +967,12 @@ variant?: | &quot;primary&quot;
       <div class="badges">
         <label for="c-2-data-display-board-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-2-data-display-board-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-2-data-display-board-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Board/Board.stories.tsx">data-display-board · ./src/Board/Board.stories.tsx</div>
+    <div class="meta" title="./src/components/board/board.stories.tsx">data-display-board · ./src/components/board/board.stories.tsx</div>
     
-    <div class="hint">Board component that displays content within a styled Paper component. It supports rendering an array of content lines or a single content string. Additionally, it provides a button to copy the content to the clipboard.</div>
+    <div class="hint">Surface for displaying and copying plain content.</div>
     
   </div>
 
@@ -992,27 +992,28 @@ variant?: | &quot;primary&quot;
               <span class="ex-name">Prop types</span>
               <span class="badge ok">4 prop types</span>
             </div>
-            <pre><code>Component: src/Board/Board.tsx::Board</code></pre>
+            <pre><code>Component: src/components/board/board.tsx::Board</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Optional children to render instead of the content
+ * Optional custom children rendered instead of the default content.
  */
-children?: React.ReactNode
+children?: ReactNode
 
 /**
- * The content to be displayed on the board. It can be a single string or an array of strings.
+ * Additional CSS classes for custom styling.
  */
-content: string | string[]
+className?: string
 
 /**
- * Optional spacing value for the board. It can be one of the values: 0, 1, 2, 3, 4, or 5.
+ * The content to display and copy to clipboard.
  */
-spacing?: 0 | 1 | 2 | 3 | 4 | 5 = 0
+content?: string | string[]
 
 /**
- * Optional styling properties for the board, using the theme&#39;s styling system.
+ * Vertical spacing between lines when content is an array.
+ * @default 0
  */
-sx?: SxProps&lt;Theme&gt;</code></pre>
+spacing?: 0 | 1 | 2 | 3 | 4 | 5 = 0</code></pre>
           </div>
         </div>
     
@@ -1024,8 +1025,7 @@ sx?: SxProps&lt;Theme&gt;</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Board } from "@pautena/react-design-system";
-import Typography from "@mui/material/Typography";</code></pre>
+                <pre><code>import { Board } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -1037,22 +1037,7 @@ import Typography from "@mui/material/Typography";</code></pre>
               
               
               <pre><code>const Default = () =&gt; &lt;Board
-    content=&quot;Of recommend residence education be on difficult repulsive offending. Judge views had mirth table seems great him for her. Alone all happy asked begin fully stand own get. Excuse ye seeing result of we. See scale dried songs old may not. Promotion did disposing you household any instantly. Hills we do under times at first short an.&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ArrayParagraph</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ArrayParagraph = () =&gt; &lt;Board
-    content={[
-      &quot;Of recommend residence education be on difficult repulsive offending. Judge views had mirth table seems great him for her. Alone all happy asked begin fully stand own get. Excuse ye seeing result of we. See scale dried songs old may not. Promotion did disposing you household any instantly. Hills we do under times at first short an.&quot;,
-      &quot;His having within saw become ask passed misery giving. Recommend questions get too fulfilled. He fact in we case miss sake. Entrance be throwing he do blessing up. Hearts warmth in genius do garden advice mr it garret. Collected preserved are middleton dependent residence but him how. Handsome weddings yet mrs you has carriage packages. Preferred joy agreement put continual elsewhere delivered now. Mrs exercise felicity had men speaking met. Rich deal mrs part led pure will but.&quot;,
-      &quot;Boy desirous families prepared gay reserved add ecstatic say. Replied joy age visitor nothing cottage. Mrs door paid led loud sure easy read. Hastily at perhaps as neither or ye fertile tedious visitor. Use fine bed none call busy dull when. Quiet ought match my right by table means. Principles up do in me favourable affronting. Twenty mother denied effect we to do on.&quot;,
-    ]}
-    spacing={1} /&gt;;</code></pre>
+    content=&quot;Of recommend residence education be on difficult repulsive offending.&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -1070,10 +1055,10 @@ import Typography from "@mui/material/Typography";</code></pre>
               </div>
               
               
-              <pre><code>const Children = () =&gt; &lt;Board&gt;(&lt;&gt;
-      &lt;Typography variant=&quot;h2&quot;&gt;First line&lt;/Typography&gt;
-      &lt;Typography variant=&quot;subtitle1&quot;&gt;Second line&lt;/Typography&gt;
-      &lt;Typography variant=&quot;h6&quot;&gt;Third line&lt;/Typography&gt;
+              <pre><code>const Children = () =&gt; &lt;Board content=&quot;row 1\nrow 2\nrow 3&quot;&gt;(&lt;&gt;
+      &lt;h3 className=&quot;text-lg font-semibold&quot;&gt;First line&lt;/h3&gt;
+      &lt;p className=&quot;text-sm&quot;&gt;Second line&lt;/p&gt;
+      &lt;p className=&quot;text-xs uppercase tracking-wide&quot;&gt;Third line&lt;/p&gt;
     &lt;/&gt;)&lt;/Board&gt;;</code></pre>
             </div>
         </div>
@@ -3553,14 +3538,14 @@ import TextField from "@mui/material/TextField";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> GroupValueCard</h2>
       <div class="badges">
-        <label for="c-21-data-display-groupvaluecard-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-21-data-display-groupvaluecard-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-21-data-display-groupvaluecard-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-21-data-display-groupvaluecard-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/GroupValueCard/GroupValueCard.stories.tsx">data-display-groupvaluecard · ./src/GroupValueCard/GroupValueCard.stories.tsx</div>
+    <div class="meta" title="./src/components/group-value-card/group-value-card.stories.tsx">data-display-groupvaluecard · ./src/components/group-value-card/group-value-card.stories.tsx</div>
     
-    <div class="hint">GroupValueCard component renders a card with a title, subtitle, and children content. It supports customization for dense layout and centered content.</div>
+    <div class="hint">Card wrapper for grouped value display.</div>
     
   </div>
 
@@ -3578,32 +3563,37 @@ import TextField from "@mui/material/TextField";</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">5 prop types</span>
+              <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/GroupValueCard/GroupValueCard.tsx::GroupValueCard</code></pre>
+            <pre><code>Component: src/components/group-value-card/group-value-card.tsx::GroupValueCard</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * If true, the content will be centered.
+ * Whether to center card content.
  */
 centered?: boolean
 
 /**
- * The children elements to be rendered inside the card.
+ * Value item elements rendered in the content area.
  */
-children: ValueItemElement | ValueItemElement[]
+children: ValueItemElement | ValueItemElement[] | ReactNode
 
 /**
- * If true, the card will have a denser layout.
+ * Additional CSS classes for custom styling.
+ */
+className?: string
+
+/**
+ * Compact style mode.
  */
 dense?: boolean
 
 /**
- * An optional subtitle for the card.
+ * Optional subtitle shown below the title.
  */
 subtitle?: string
 
 /**
- * The main title of the card.
+ * Main title of the card.
  */
 title: string</code></pre>
           </div>
@@ -3617,17 +3607,7 @@ title: string</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import {
-    GroupValueCard,
-    TablePlaceholder,
-    ValueBoolean,
-    ValueContent,
-    ValueDatetime,
-    ValueImage,
-    ValueItem,
-    ValueRating,
-    ValueText,
-} from "@pautena/react-design-system";</code></pre>
+                <pre><code>import { GroupValueCard, ValueBoolean, ValueItem, ValueText } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -3639,39 +3619,11 @@ title: string</code></pre>
               
               
               <pre><code>const Default = () =&gt; &lt;GroupValueCard title=&quot;Hello world&quot; subtitle=&quot;Lorem ipsum sit amet&quot;&gt;{[
-      &lt;ValueItem key=&quot;1&quot; size={{ xs: 12, sm: 6, md: 4 }}&gt;
+      &lt;ValueItem key=&quot;1&quot; size={{ xs: 12, md: 8 }}&gt;
         &lt;ValueText label=&quot;Hello world&quot; value=&quot;Lorem ipsum sit amet&quot; /&gt;
       &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;2&quot; size={{ xs: 12, sm: 6, md: 2 }}&gt;
+      &lt;ValueItem key=&quot;2&quot; size={{ xs: 12, md: 4 }}&gt;
         &lt;ValueBoolean label=&quot;Enabled&quot; value /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;3&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText label=&quot;Quantity&quot; value=&quot;1200&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;4&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText label=&quot;Currency&quot; value=&quot;EUR&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;5&quot; size={{ xs: 12, sm: 6, md: 6 }}&gt;
-        &lt;ValueText
-          label=&quot;I am Batman&quot;
-          value=&quot; Does it come in black? It&#39;s ends here. Hero can be anyone&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;6&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText label=&quot;Status&quot; value=&quot;Open&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;7&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText label=&quot;Level&quot; value=&quot;2144&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;8&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueRating label=&quot;Rating&quot; value={3} /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;9&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueDatetime
-          label=&quot;Created at&quot;
-          value={new Date(2022, 5, 1)}
-          format=&quot;yyyy-MM-dd&quot;
-        /&gt;
       &lt;/ValueItem&gt;,
     ]}&lt;/GroupValueCard&gt;;</code></pre>
             </div>
@@ -3682,84 +3634,7 @@ title: string</code></pre>
               </div>
               
               
-              <pre><code>const Dense = () =&gt; &lt;GroupValueCard dense&gt;{[
-      &lt;ValueItem key=&quot;1&quot; size={{ xs: 12, sm: 6, md: 4 }}&gt;
-        &lt;ValueText dense label=&quot;Hello world&quot; value=&quot;Lorem ipsum sit amet&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;2&quot; size={{ xs: 12, sm: 6, md: 2 }}&gt;
-        &lt;ValueBoolean dense label=&quot;Enabled&quot; value /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;3&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText dense label=&quot;Quantity&quot; value=&quot;1200&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;4&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText dense label=&quot;Currency&quot; value=&quot;EUR&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;5&quot; size={{ xs: 12, sm: 6, md: 6 }}&gt;
-        &lt;ValueText
-          dense
-          label=&quot;I am Batman&quot;
-          value=&quot; Does it come in black? It&#39;s ends here. Hero can be anyone&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;6&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText dense label=&quot;Status&quot; value=&quot;Open&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;7&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueText dense label=&quot;Level&quot; value=&quot;2144&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;8&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueRating dense label=&quot;Rating&quot; value={3} /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;9&quot; size={{ xs: 12, sm: 6, md: 3 }}&gt;
-        &lt;ValueDatetime
-          dense
-          label=&quot;Created at&quot;
-          value={new Date(2022, 5, 1)}
-          format=&quot;yyyy-MM-dd&quot;
-        /&gt;
-      &lt;/ValueItem&gt;,
-    ]}&lt;/GroupValueCard&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WihtoutSubtitle</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WihtoutSubtitle = () =&gt; &lt;GroupValueCard title=&quot;Hello world&quot;&gt;{[
-      &lt;ValueItem key=&quot;1&quot; size={{ xs: 12, sm: 6, md: 4 }}&gt;
-        &lt;ValueText label=&quot;Hello world&quot; value=&quot;Lorem ipsum sit amet&quot; /&gt;
-      &lt;/ValueItem&gt;,
-      &lt;ValueItem key=&quot;2&quot; size={{ xs: 12, sm: 6, md: 2 }}&gt;
-        &lt;ValueBoolean label=&quot;Enabled&quot; value /&gt;
-      &lt;/ValueItem&gt;,
-    ]}&lt;/GroupValueCard&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithImage</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithImage = () =&gt; &lt;GroupValueCard title=&quot;Hello world&quot; subtitle=&quot;Lorem ipsum sit amet&quot; centered&gt;(&lt;ValueItem size={{ xs: 12 }} bordered={false}&gt;
-      &lt;ValueImage label=&quot;Lorem ipsum&quot; value={workInProgressImg} /&gt;
-    &lt;/ValueItem&gt;)&lt;/GroupValueCard&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithDataTable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithDataTable = () =&gt; &lt;GroupValueCard title=&quot;Hello world&quot; subtitle=&quot;Lorem ipsum sit amet&quot;&gt;(&lt;ValueItem size={{ xs: 12 }} bordered={false}&gt;
-      &lt;ValueContent label=&quot;lorem ipsum&quot;&gt;
-        &lt;TablePlaceholder /&gt;
-      &lt;/ValueContent&gt;
-    &lt;/ValueItem&gt;)&lt;/GroupValueCard&gt;;</code></pre>
+              <pre><code>const Dense = () =&gt; &lt;GroupValueCard dense /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -5501,12 +5376,12 @@ import { Select } from "@pautena/react-design-system";</code></pre>
       <div class="badges">
         <label for="c-29-placeholders-skeletoncard-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-29-placeholders-skeletoncard-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-29-placeholders-skeletoncard-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/SkeletonCard/SkeletonCard.stories.tsx">placeholders-skeletoncard · ./src/SkeletonCard/SkeletonCard.stories.tsx</div>
+    <div class="meta" title="./src/components/skeleton-card/skeleton-card.stories.tsx">placeholders-skeletoncard · ./src/components/skeleton-card/skeleton-card.stories.tsx</div>
     
-    <div class="hint">SkeletonCard component renders a skeleton loading placeholder for a card.</div>
+    <div class="hint">Loading placeholder for card-shaped content.</div>
     
   </div>
 
@@ -5526,15 +5401,17 @@ import { Select } from "@pautena/react-design-system";</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">2 prop types</span>
             </div>
-            <pre><code>Component: src/SkeletonCard/SkeletonCard.tsx::SkeletonCard</code></pre>
+            <pre><code>Component: src/components/skeleton-card/skeleton-card.tsx::SkeletonCard</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The animation style for the skeleton card. Can be &quot;pulse&quot;, &quot;wave&quot;, or false to disable animation.
+ * Animation mode.
+ * @default false
  */
 animation?: &quot;pulse&quot; | &quot;wave&quot; | false = false
 
 /**
- * The width of the skeleton card. Can be a number (interpreted as pixels) or a string (e.g., &quot;100%&quot;, &quot;50px&quot;).
+ * Width of the skeleton card.
+ * @default &quot;100%&quot;
  */
 width?: number | string = &quot;100%&quot;</code></pre>
           </div>
@@ -5561,6 +5438,15 @@ width?: number | string = &quot;100%&quot;</code></pre>
               
               <pre><code>const Default = () =&gt; &lt;SkeletonCard width={250} /&gt;;</code></pre>
             </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Animated</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Animated = () =&gt; &lt;SkeletonCard width={250} animation=&quot;pulse&quot; /&gt;;</code></pre>
+            </div>
         </div>
   </div>
 </article>
@@ -5577,12 +5463,12 @@ width?: number | string = &quot;100%&quot;</code></pre>
       <div class="badges">
         <label for="c-30-placeholders-skeletongrid-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-30-placeholders-skeletongrid-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-30-placeholders-skeletongrid-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/SkeletonGrid/SkeletonGrid.stories.tsx">placeholders-skeletongrid · ./src/SkeletonGrid/SkeletonGrid.stories.tsx</div>
+    <div class="meta" title="./src/components/skeleton-grid/skeleton-grid.stories.tsx">placeholders-skeletongrid · ./src/components/skeleton-grid/skeleton-grid.stories.tsx</div>
     
-    <div class="hint">SkeletonGrid component renders a grid of skeleton cards.</div>
+    <div class="hint">Grid of skeleton cards for loading list and gallery states.</div>
     
   </div>
 
@@ -5602,10 +5488,11 @@ width?: number | string = &quot;100%&quot;</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/SkeletonGrid/SkeletonGrid.tsx::SkeletonGrid</code></pre>
+            <pre><code>Component: src/components/skeleton-grid/skeleton-grid.tsx::SkeletonGrid</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Optional size of the skeleton grid.
+ * Number of skeleton cards to display.
+ * @default 20
  */
 size?: number = 20</code></pre>
           </div>
@@ -5632,6 +5519,15 @@ size?: number = 20</code></pre>
               
               <pre><code>const Default = () =&gt; &lt;SkeletonGrid /&gt;;</code></pre>
             </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Compact</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Compact = () =&gt; &lt;SkeletonGrid size={6} /&gt;;</code></pre>
+            </div>
         </div>
   </div>
 </article>
@@ -5651,7 +5547,7 @@ size?: number = 20</code></pre>
         <label for="c-31-navigation-tabcard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
-    <div class="meta" title="./src/TabCard/TabCard.stories.tsx">navigation-tabcard · ./src/TabCard/TabCard.stories.tsx</div>
+    <div class="meta" title="./src/components/tab-card/tab-card.stories.tsx">navigation-tabcard · ./src/components/tab-card/tab-card.stories.tsx</div>
     
     
     
@@ -5680,7 +5576,7 @@ size?: number = 20</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">3 prop types</span>
             </div>
-            <pre><code>Component: src/TabCard/TabCard.dummy.tsx::TabCardDummy</code></pre>
+            <pre><code>Component: src/components/tab-card/tab-card.dummy.tsx::TabCardDummy</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>initialTab: number
 
@@ -5698,7 +5594,7 @@ tabs: TabData[]</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { TabCardDummy } from "@pautena/react-design-system";</code></pre>
+                <pre><code>import { Badge, TabCardDummy } from "@pautena/react-design-system";</code></pre>
               </div>
           
           

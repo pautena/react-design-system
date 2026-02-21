@@ -1,0 +1,1 @@
+import{g as e}from"./styled-CxtL0g1W.js";import{g as s}from"./Typography-CCBxMdr1.js";function a(t){return e("MuiListItemText",t)}const l=s("MuiListItemText",["root","multiline","dense","inset","primary","secondary"]);export{a as g,l};

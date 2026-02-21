@@ -200,216 +200,6 @@ A customizable TextField component that extends the functionality of the Materia
 
 [View Documentation](./?path=/docs/inputs-button--docs)
 
-## Data Display
-
-### Board
-
-Board component that displays content within a styled Paper component. It supports rendering an array of content lines or a single content string. Additionally, it provides a button to copy the content to the clipboard.
-
-**Props:**
-- `content`: `string | string[]` (required) - The content to be displayed on the board. It can be a single string or an array of strings.
-- `spacing`: `0 | 1 | 2 | 3 | 4 | 5` - Optional spacing value for the board. It can be one of the values: 0, 1, 2, 3, 4, or 5.
-- `sx`: `SxProps<Theme>` - Optional styling properties for the board, using the theme's styling system.
-- `children`: `React.ReactNode` - Optional children to render instead of the content
-
-**Stories:**
-- [Default](./?path=/story/data-display-board--default)
-- [Array Paragraph](./?path=/story/data-display-board--array-paragraph)
-- [Array List](./?path=/story/data-display-board--array-list)
-- [Children](./?path=/story/data-display-board--children)
-
-[View Documentation](./?path=/docs/data-display-board--docs)
-
-### GroupValueCard
-
-GroupValueCard component renders a card with a title, subtitle, and children content. It supports customization for dense layout and centered content.
-
-**Props:**
-- `title`: `string` (required) - The main title of the card.
-- `subtitle`: `string` - An optional subtitle for the card.
-- `centered`: `boolean` - If true, the content will be centered.
-- `children`: `ValueItemElement | ValueItemElement[]` (required) - The children elements to be rendered inside the card.
-- `dense`: `boolean` - If true, the card will have a denser layout.
-
-**Stories:**
-- [Default](./?path=/story/data-display-groupvaluecard--default)
-- [Dense](./?path=/story/data-display-groupvaluecard--dense)
-- [Wihtout Subtitle](./?path=/story/data-display-groupvaluecard--wihtout-subtitle)
-- [With Image](./?path=/story/data-display-groupvaluecard--with-image)
-- [With Data Table](./?path=/story/data-display-groupvaluecard--with-data-table)
-
-[View Documentation](./?path=/docs/data-display-groupvaluecard--docs)
-
-### Header
-
-Section used to provide basic information about the page and display main actions Supports extensive customization through slots and slotProps. Each internal element (breadcrumbs, title, actions, tabs) can be customized or replaced.
-
-**Example:**
-
-```tsx
-// Basic usage
-<Header
-  title="Dashboard"
-  subtitle="Welcome back"
-  breadcrumbs={[{id: '1', text: 'Home', link: '/'}]}
-  actions={[{id: 'add', text: 'Add', onClick: handleAdd}]}
-/>
-
-// Custom breadcrumb separator
-<Header
-  title="Settings"
-  breadcrumbs={breadcrumbs}
-  slotProps={{
-    breadcrumbs: { separator: '/' }
-  }}
-/>
-
-// Custom action button styling
-<Header
-  title="Users"
-  actions={actions}
-  slotProps={{
-    actionButton: { size: 'large', variant: 'contained' }
-  }}
-/>
-```
-
-**Stories:**
-- [Default](./?path=/story/data-display-header--default)
-- [Only Title](./?path=/story/data-display-header--only-title)
-- [Custom Title](./?path=/story/data-display-header--custom-title)
-- [Title Loading](./?path=/story/data-display-header--title-loading)
-- [Custom Subtitle](./?path=/story/data-display-header--custom-subtitle)
-- [Subtitle Loading](./?path=/story/data-display-header--subtitle-loading)
-- [Color Inherit](./?path=/story/data-display-header--color-inherit)
-- [Color Primary](./?path=/story/data-display-header--color-primary)
-- [Color Secondary](./?path=/story/data-display-header--color-secondary)
-- [Color Default](./?path=/story/data-display-header--color-default)
-- [Color Transparent](./?path=/story/data-display-header--color-transparent)
-- [With Subheader](./?path=/story/data-display-header--with-subheader)
-- [With Breadcumbs](./?path=/story/data-display-header--with-breadcumbs)
-- [With Actions](./?path=/story/data-display-header--with-actions)
-- [With Panel Tabs](./?path=/story/data-display-header--with-panel-tabs)
-- [Navigation Button](./?path=/story/data-display-header--navigation-button)
-- [With Border](./?path=/story/data-display-header--with-border)
-- [Color Paper](./?path=/story/data-display-header--color-paper)
-- [Custom Action Styles](./?path=/story/data-display-header--custom-action-styles)
-- [With Slot Props Customization](./?path=/story/data-display-header--with-slot-props-customization)
-
-[View Documentation](./?path=/docs/data-display-header--docs)
-
-### Badge
-
-**Stories:**
-- [Default](./?path=/story/data-display-badge--default)
-- [Primary](./?path=/story/data-display-badge--primary)
-- [Secondary](./?path=/story/data-display-badge--secondary)
-- [Destructive](./?path=/story/data-display-badge--destructive)
-- [Outline](./?path=/story/data-display-badge--outline)
-- [Ghost](./?path=/story/data-display-badge--ghost)
-- [Link](./?path=/story/data-display-badge--link)
-- [Info](./?path=/story/data-display-badge--info)
-- [Warning](./?path=/story/data-display-badge--warning)
-- [Error](./?path=/story/data-display-badge--error)
-- [Success](./?path=/story/data-display-badge--success)
-
-[View Documentation](./?path=/docs/data-display-badge--docs)
-
-### Bullet
-
-**Stories:**
-- [Default](./?path=/story/data-display-bullet--default)
-- [Primary Variant](./?path=/story/data-display-bullet--primary-variant)
-- [Secondary Variant](./?path=/story/data-display-bullet--secondary-variant)
-- [Default Variant](./?path=/story/data-display-bullet--default-variant)
-- [Info Variant](./?path=/story/data-display-bullet--info-variant)
-- [Warning Variant](./?path=/story/data-display-bullet--warning-variant)
-- [Error Variant](./?path=/story/data-display-bullet--error-variant)
-
-[View Documentation](./?path=/docs/data-display-bullet--docs)
-
-### ValueBoolean
-
-**Stories:**
-- [Default](./?path=/story/data-display-valueboolean--default)
-- [True](./?path=/story/data-display-valueboolean--true)
-- [False](./?path=/story/data-display-valueboolean--false)
-- [Dense](./?path=/story/data-display-valueboolean--dense)
-
-[View Documentation](./?path=/docs/data-display-valueboolean--docs)
-
-### ValueCard
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuecard--default)
-
-[View Documentation](./?path=/docs/data-display-valuecard--docs)
-
-### ValueDatetime
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuedatetime--default)
-- [Dense](./?path=/story/data-display-valuedatetime--dense)
-- [Placeholder](./?path=/story/data-display-valuedatetime--placeholder)
-- [Custom Placeholder](./?path=/story/data-display-valuedatetime--custom-placeholder)
-
-[View Documentation](./?path=/docs/data-display-valuedatetime--docs)
-
-### ValueImage
-
-**Stories:**
-- [Default](./?path=/story/data-display-valueimage--default)
-- [Dense](./?path=/story/data-display-valueimage--dense)
-- [Custom Size](./?path=/story/data-display-valueimage--custom-size)
-
-[View Documentation](./?path=/docs/data-display-valueimage--docs)
-
-### ValueItem
-
-**Stories:**
-- [Default](./?path=/story/data-display-valueitem--default)
-- [Borderless](./?path=/story/data-display-valueitem--borderless)
-- [Breakpoints Border](./?path=/story/data-display-valueitem--breakpoints-border)
-- [Breakpoints Array Border](./?path=/story/data-display-valueitem--breakpoints-array-border)
-
-[View Documentation](./?path=/docs/data-display-valueitem--docs)
-
-### ValueLabel
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuelabel--default)
-- [Variant](./?path=/story/data-display-valuelabel--variant)
-- [Number As Value](./?path=/story/data-display-valuelabel--number-as-value)
-- [Text List](./?path=/story/data-display-valuelabel--text-list)
-- [Number List](./?path=/story/data-display-valuelabel--number-list)
-- [List Single Variant](./?path=/story/data-display-valuelabel--list-single-variant)
-- [List Multiple Variants](./?path=/story/data-display-valuelabel--list-multiple-variants)
-- [Placeholder](./?path=/story/data-display-valuelabel--placeholder)
-- [Custom Placeholder](./?path=/story/data-display-valuelabel--custom-placeholder)
-
-[View Documentation](./?path=/docs/data-display-valuelabel--docs)
-
-### ValueRating
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuerating--default)
-- [Dense](./?path=/story/data-display-valuerating--dense)
-- [Max](./?path=/story/data-display-valuerating--max)
-
-[View Documentation](./?path=/docs/data-display-valuerating--docs)
-
-### ValueText
-
-**Stories:**
-- [Default](./?path=/story/data-display-valuetext--default)
-- [Dense](./?path=/story/data-display-valuetext--dense)
-- [Number As Value](./?path=/story/data-display-valuetext--number-as-value)
-- [Truncated Text](./?path=/story/data-display-valuetext--truncated-text)
-- [Placeholder](./?path=/story/data-display-valuetext--placeholder)
-- [Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder)
-
-[View Documentation](./?path=/docs/data-display-valuetext--docs)
-
 ## Dialogs
 
 ### BootstrapDialog
@@ -540,26 +330,17 @@ Empty state placeholder with optional icon and actions
 
 ### SkeletonCard
 
-SkeletonCard component renders a skeleton loading placeholder for a card.
-
-**Props:**
-- `width`: `number | string` - The width of the skeleton card. Can be a number (interpreted as pixels) or a string (e.g., "100%", "50px").
-- `animation`: `"pulse" | "wave" | false` - The animation style for the skeleton card. Can be "pulse", "wave", or false to disable animation.
-
 **Stories:**
 - [Default](./?path=/story/placeholders-skeletoncard--default)
+- [Animated](./?path=/story/placeholders-skeletoncard--animated)
 
 [View Documentation](./?path=/docs/placeholders-skeletoncard--docs)
 
 ### SkeletonGrid
 
-SkeletonGrid component renders a grid of skeleton cards.
-
-**Props:**
-- `size`: `number` - Optional size of the skeleton grid.
-
 **Stories:**
 - [Default](./?path=/story/placeholders-skeletongrid--default)
+- [Compact](./?path=/story/placeholders-skeletongrid--compact)
 
 [View Documentation](./?path=/docs/placeholders-skeletongrid--docs)
 
@@ -629,12 +410,6 @@ SkeletonGrid component renders a grid of skeleton cards.
 
 ### TabCard
 
-Card component with tabbed navigation
-
-**Props:**
-- `tabs`: `TabData[]` (required) - Array of tab configurations
-- `children`: `React.ReactNode` - Content to display in the tab panels
-
 **Stories:**
 - [Default](./?path=/story/navigation-tabcard--default)
 
@@ -698,6 +473,195 @@ Alert component with expandable metadata section
 - [Snackbar Alert](./?path=/story/alerts-expandablealert--snackbar-alert)
 
 [View Documentation](./?path=/docs/alerts-expandablealert--docs)
+
+## Data Display
+
+### Header
+
+Section used to provide basic information about the page and display main actions Supports extensive customization through slots and slotProps. Each internal element (breadcrumbs, title, actions, tabs) can be customized or replaced.
+
+**Example:**
+
+```tsx
+// Basic usage
+<Header
+  title="Dashboard"
+  subtitle="Welcome back"
+  breadcrumbs={[{id: '1', text: 'Home', link: '/'}]}
+  actions={[{id: 'add', text: 'Add', onClick: handleAdd}]}
+/>
+
+// Custom breadcrumb separator
+<Header
+  title="Settings"
+  breadcrumbs={breadcrumbs}
+  slotProps={{
+    breadcrumbs: { separator: '/' }
+  }}
+/>
+
+// Custom action button styling
+<Header
+  title="Users"
+  actions={actions}
+  slotProps={{
+    actionButton: { size: 'large', variant: 'contained' }
+  }}
+/>
+```
+
+**Stories:**
+- [Default](./?path=/story/data-display-header--default)
+- [Only Title](./?path=/story/data-display-header--only-title)
+- [Custom Title](./?path=/story/data-display-header--custom-title)
+- [Title Loading](./?path=/story/data-display-header--title-loading)
+- [Custom Subtitle](./?path=/story/data-display-header--custom-subtitle)
+- [Subtitle Loading](./?path=/story/data-display-header--subtitle-loading)
+- [Color Inherit](./?path=/story/data-display-header--color-inherit)
+- [Color Primary](./?path=/story/data-display-header--color-primary)
+- [Color Secondary](./?path=/story/data-display-header--color-secondary)
+- [Color Default](./?path=/story/data-display-header--color-default)
+- [Color Transparent](./?path=/story/data-display-header--color-transparent)
+- [With Subheader](./?path=/story/data-display-header--with-subheader)
+- [With Breadcumbs](./?path=/story/data-display-header--with-breadcumbs)
+- [With Actions](./?path=/story/data-display-header--with-actions)
+- [With Panel Tabs](./?path=/story/data-display-header--with-panel-tabs)
+- [Navigation Button](./?path=/story/data-display-header--navigation-button)
+- [With Border](./?path=/story/data-display-header--with-border)
+- [Color Paper](./?path=/story/data-display-header--color-paper)
+- [Custom Action Styles](./?path=/story/data-display-header--custom-action-styles)
+- [With Slot Props Customization](./?path=/story/data-display-header--with-slot-props-customization)
+
+[View Documentation](./?path=/docs/data-display-header--docs)
+
+### Badge
+
+**Stories:**
+- [Default](./?path=/story/data-display-badge--default)
+- [Primary](./?path=/story/data-display-badge--primary)
+- [Secondary](./?path=/story/data-display-badge--secondary)
+- [Destructive](./?path=/story/data-display-badge--destructive)
+- [Outline](./?path=/story/data-display-badge--outline)
+- [Ghost](./?path=/story/data-display-badge--ghost)
+- [Link](./?path=/story/data-display-badge--link)
+- [Info](./?path=/story/data-display-badge--info)
+- [Warning](./?path=/story/data-display-badge--warning)
+- [Error](./?path=/story/data-display-badge--error)
+- [Success](./?path=/story/data-display-badge--success)
+
+[View Documentation](./?path=/docs/data-display-badge--docs)
+
+### Board
+
+**Stories:**
+- [Default](./?path=/story/data-display-board--default)
+- [Array List](./?path=/story/data-display-board--array-list)
+- [Children](./?path=/story/data-display-board--children)
+
+[View Documentation](./?path=/docs/data-display-board--docs)
+
+### Bullet
+
+**Stories:**
+- [Default](./?path=/story/data-display-bullet--default)
+- [Primary Variant](./?path=/story/data-display-bullet--primary-variant)
+- [Secondary Variant](./?path=/story/data-display-bullet--secondary-variant)
+- [Default Variant](./?path=/story/data-display-bullet--default-variant)
+- [Info Variant](./?path=/story/data-display-bullet--info-variant)
+- [Warning Variant](./?path=/story/data-display-bullet--warning-variant)
+- [Error Variant](./?path=/story/data-display-bullet--error-variant)
+
+[View Documentation](./?path=/docs/data-display-bullet--docs)
+
+### GroupValueCard
+
+**Stories:**
+- [Default](./?path=/story/data-display-groupvaluecard--default)
+- [Dense](./?path=/story/data-display-groupvaluecard--dense)
+
+[View Documentation](./?path=/docs/data-display-groupvaluecard--docs)
+
+### ValueBoolean
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueboolean--default)
+- [True](./?path=/story/data-display-valueboolean--true)
+- [False](./?path=/story/data-display-valueboolean--false)
+- [Dense](./?path=/story/data-display-valueboolean--dense)
+
+[View Documentation](./?path=/docs/data-display-valueboolean--docs)
+
+### ValueCard
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuecard--default)
+
+[View Documentation](./?path=/docs/data-display-valuecard--docs)
+
+### ValueDatetime
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuedatetime--default)
+- [Dense](./?path=/story/data-display-valuedatetime--dense)
+- [Placeholder](./?path=/story/data-display-valuedatetime--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuedatetime--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuedatetime--docs)
+
+### ValueImage
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueimage--default)
+- [Dense](./?path=/story/data-display-valueimage--dense)
+- [Custom Size](./?path=/story/data-display-valueimage--custom-size)
+
+[View Documentation](./?path=/docs/data-display-valueimage--docs)
+
+### ValueItem
+
+**Stories:**
+- [Default](./?path=/story/data-display-valueitem--default)
+- [Borderless](./?path=/story/data-display-valueitem--borderless)
+- [Breakpoints Border](./?path=/story/data-display-valueitem--breakpoints-border)
+- [Breakpoints Array Border](./?path=/story/data-display-valueitem--breakpoints-array-border)
+
+[View Documentation](./?path=/docs/data-display-valueitem--docs)
+
+### ValueLabel
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuelabel--default)
+- [Variant](./?path=/story/data-display-valuelabel--variant)
+- [Number As Value](./?path=/story/data-display-valuelabel--number-as-value)
+- [Text List](./?path=/story/data-display-valuelabel--text-list)
+- [Number List](./?path=/story/data-display-valuelabel--number-list)
+- [List Single Variant](./?path=/story/data-display-valuelabel--list-single-variant)
+- [List Multiple Variants](./?path=/story/data-display-valuelabel--list-multiple-variants)
+- [Placeholder](./?path=/story/data-display-valuelabel--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuelabel--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuelabel--docs)
+
+### ValueRating
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuerating--default)
+- [Dense](./?path=/story/data-display-valuerating--dense)
+- [Max](./?path=/story/data-display-valuerating--max)
+
+[View Documentation](./?path=/docs/data-display-valuerating--docs)
+
+### ValueText
+
+**Stories:**
+- [Default](./?path=/story/data-display-valuetext--default)
+- [Dense](./?path=/story/data-display-valuetext--dense)
+- [Number As Value](./?path=/story/data-display-valuetext--number-as-value)
+- [Truncated Text](./?path=/story/data-display-valuetext--truncated-text)
+- [Placeholder](./?path=/story/data-display-valuetext--placeholder)
+- [Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder)
+
+[View Documentation](./?path=/docs/data-display-valuetext--docs)
 
 ## Feedback
 

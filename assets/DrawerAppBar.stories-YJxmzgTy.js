@@ -1,5 +1,0 @@
-import{j as t}from"./iframe-CnbMuzLM.js";import{D as s}from"./Drawer.provider-DXa27qVc.js";import{D as o}from"./DrawerAppBar-B0COHNpv.js";import"./preload-helper-PPVm8Dsz.js";import"./Link-wIRlWhck.js";import"./useTheme-DnF_gfMc.js";import"./memoTheme-BsYj_Q0c.js";import"./Typography-DvHYNeI8.js";import"./ChevronLeft-CFzrBXjD.js";import"./Toolbar-plRn6Sgf.js";import"./IconButton-BPiEJA8y.js";import"./CircularProgress-CWaDErbR.js";import"./Paper-Bjk2txYz.js";const w={title:"Navigation/DrawerAppBar",component:o,parameters:{layout:"fullscreen"},render:a=>t.jsx(s,{children:t.jsx(o,{...a})})},r={args:{title:"Lorem ipsum"}},e={};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
-  args: {
-    title: "Lorem ipsum"
-  }
-}`,...r.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:"{}",...e.parameters?.docs?.source}}};const h=["Default","WithoutTitle"];export{r as Default,e as WithoutTitle,h as __namedExportsOrder,w as default};
