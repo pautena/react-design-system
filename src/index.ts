@@ -18,6 +18,8 @@ export * from "./components/button";
 export { default as Button } from "./components/button";
 export * from "./components/forms/autocomplete";
 export { default as Autocomplete } from "./components/forms/autocomplete";
+export * from "./components/forms/checkbox-field";
+export { default as CheckboxField } from "./components/forms/checkbox-field";
 export * from "./components/forms/select";
 export { default as Select } from "./components/forms/select";
 export * from "./components/forms/text-field";
