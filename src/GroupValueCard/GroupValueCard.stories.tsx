@@ -3,12 +3,12 @@ import { ValueBoolean } from "../components/value-boolean";
 import { ValueContent } from "../components/value-content";
 import { ValueDatetime } from "../components/value-datetime";
 import { ValueImage } from "../components/value-image";
+import { ValueItem } from "../components/value-item";
 import { ValueRating } from "../components/value-rating";
 import { ValueText } from "../components/value-text";
 import workInProgressImg from "../stories/assets/work-in-progress.jpg";
 import { withLocalizationProvider, withPadding } from "../storybook";
 import { TablePlaceholder } from "../tests/table-placeholder";
-import { ValueItem } from "../ValueItem";
 import GroupValueCard from "./GroupValueCard";
 
 export default {

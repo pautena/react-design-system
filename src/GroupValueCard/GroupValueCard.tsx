@@ -3,8 +3,8 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
+import type { ValueItemElement } from "../components/value-item";
 import { useGetDefaultThemeColor } from "../utils";
-import type { ValueItemElement } from "../ValueItem";
 
 /**
  * Props for the GroupValueCard component.

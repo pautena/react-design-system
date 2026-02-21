@@ -1,12 +1,11 @@
-import Typography from "@mui/material/Typography";
-import { render, screen } from "../tests/testing-library";
-import ValueItem from "./ValueItem";
+import { render, screen } from "../../tests/testing-library";
+import ValueItem from "./value-item";
 
 describe("ValueItem", () => {
   const renderComponent = () => {
     render(
       <ValueItem>
-        <Typography>test content</Typography>
+        <span>test content</span>
       </ValueItem>,
     );
   };
