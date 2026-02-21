@@ -14,6 +14,7 @@ export default defineConfig({
         index: "./src/index.ts",
         "tests/index": "./src/tests/index.ts",
       },
+      cssFileName: "global",
       formats: ["es"],
     },
     rollupOptions: {
