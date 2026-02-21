@@ -18,7 +18,7 @@ export function ValueCard({ children, className, ...rest }: ValueCardProps) {
   return (
     <div
       className={cn(
-        "rounded-lg border bg-card p-2 text-card-foreground",
+        "rounded-lg border border-border bg-card p-2 text-card-foreground shadow-sm",
         className,
       )}
       {...rest}

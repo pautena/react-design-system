@@ -1,5 +1,5 @@
 import Container from "@mui/material/Container";
-import SkeletonGrid from "../SkeletonGrid";
+import SkeletonGrid from "@/components/skeleton-grid";
 
 /**
  * Props for the ContentPlaceholder component.

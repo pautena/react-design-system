@@ -134,6 +134,106 @@
       "category": "Data Display"
     },
     {
+      "name": "value-card",
+      "type": "registry:ui",
+      "title": "ValueCard",
+      "description": "Container for grouped value content",
+      "registryDependencies": ["value-item"],
+      "files": [
+        {
+          "path": "src/components/value-card/value-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "value-item",
+      "type": "registry:ui",
+      "title": "ValueItem",
+      "description": "Responsive grid item for value components",
+      "files": [
+        {
+          "path": "src/components/value-item/value-item.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "group-value-card",
+      "type": "registry:ui",
+      "title": "GroupValueCard",
+      "description": "Card wrapper with heading for grouped value items",
+      "registryDependencies": ["value-card", "value-item"],
+      "files": [
+        {
+          "path": "src/components/group-value-card/group-value-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "board",
+      "type": "registry:ui",
+      "title": "Board",
+      "description": "Copy-friendly content surface",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/board/board.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "skeleton-card",
+      "type": "registry:ui",
+      "title": "SkeletonCard",
+      "description": "Card-shaped loading placeholder",
+      "files": [
+        {
+          "path": "src/components/skeleton-card/skeleton-card.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "skeleton-grid",
+      "type": "registry:ui",
+      "title": "SkeletonGrid",
+      "description": "Responsive grid of skeleton cards",
+      "registryDependencies": ["skeleton-card"],
+      "files": [
+        {
+          "path": "src/components/skeleton-grid/skeleton-grid.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Data Display"
+    },
+    {
+      "name": "tab-card",
+      "type": "registry:ui",
+      "title": "TabCard",
+      "description": "Card with tab navigation and panel composition",
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "src/components/tab-card/tab-card.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/tab-card/tab-card-panel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Navigation"
+    },
+    {
       "name": "markdown",
       "type": "registry:ui",
       "title": "Markdown",

@@ -1,9 +1,9 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import type { Meta, StoryObj } from "@storybook/react";
+import { SkeletonGrid } from "@/components/skeleton-grid";
 import type { HeaderTab } from "../Header";
 import { HeaderLayout } from "../HeaderLayout";
-import { SkeletonGrid } from "../SkeletonGrid";
 import { withFullHeight, withLocalizationProvider } from "../storybook";
 import { TabPanel } from "../TabPanel";
 import { TablePlaceholder } from "../tests/table-placeholder";

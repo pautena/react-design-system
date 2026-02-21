@@ -8,7 +8,7 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import type { SxProps, Theme } from "@mui/material/styles";
 import { forwardRef, type ReactElement, useState } from "react";
-import Board from "../Board";
+import Board from "@/components/board";
 
 /**
  * Props for the ExpandableAlert component

@@ -1,7 +1,7 @@
 # MUI → shadcn/ui Migration Plan v2.0.0
 ## AI-Ready Design System with MCP Integration
 
-**Status**: 🚧 Active (Phase 0 complete, Phase 1 next)  
+**Status**: 🚧 Active (Phase 3 complete, Phase 4 next)  
 **Created**: 2026-02-18  
 **Branch**: Feature branches from `main`  
 **Target Version**: 2.0.0 (released as 2.0.0-alpha.x tags)  
@@ -642,7 +642,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 3: Cards & Complex Display 🎴
+### ✓ Phase 3: Cards & Complex Display 🎴
 
 **Agent**: @react-developer  
 **Skills**: code-react-unit-testing, code-react-storybook
@@ -1015,7 +1015,7 @@ llms.txt                        # AI context file (root)
 | 0     | ✅ Complete | Foundation        | 2026-02-18 | 2026-02-18 | Base UI migration done, Tailwind fixed, shadcn moved to `src/components/ui` |
 | 1     | ✅ Complete | Bullet, Label        | 2026-02-20 | 2026-02-20 | Migrated to shadcn Badge + registry entries |
 | 2     | ✅ Complete | 8 components         | 2026-02-21 | 2026-02-21 | Migrated to shadcn/Tailwind wrappers + registry entries |
-| 3     | ⏳ Planned  | 7 components         | -          | -          | -     |
+| 3     | ✅ Complete | 7 components         | 2026-02-21 | 2026-02-21 | Migrated card/display set to shadcn/Tailwind wrappers + registry entries |
 | 4     | ⏳ Planned  | 3 components         | -          | -          | -     |
 | 5     | ⏳ Planned  | 13 components        | -          | -          | -     |
 | 6     | ⏳ Planned  | 6 components         | -          | -          | -     |
@@ -1039,6 +1039,12 @@ llms.txt                        # AI context file (root)
   - Full test suite passing (426 passed, 3 skipped)
 
 ### 2026-02-21
+- ✅ Phase 3 completed
+  - Migrated `ValueCard`, `ValueItem`, `GroupValueCard`, `SkeletonCard`, `SkeletonGrid`, `Board`, and `TabCard` to shadcn/Tailwind wrappers
+  - Added corresponding entries to `registry.json`
+  - Generated registry artifacts via `npm run build:registry`
+  - Full test suite passing (466 passed, 3 skipped)
+
 - ✅ Phase 2 completed
   - Migrated `ValueText`, `ValueBoolean`, `ValueDatetime`, `Markdown`, `ValueLabel`, `ValueRating`, `ValueContent`, and `ValueImage` from MUI to shadcn/Tailwind wrappers
   - Added corresponding entries to `registry.json`

@@ -1,8 +1,7 @@
-import { Box, Button, type SxProps, type Theme } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 /* eslint-disable react/display-name */
-import { type FunctionComponent, useState } from "react";
+import { type CSSProperties, type FunctionComponent, useState } from "react";
 import { action } from "storybook/actions";
 import { NotificationCenterProvider } from "./NotificationCenter";
 
@@ -18,9 +17,9 @@ export const withNotificationCenter = (Story: FunctionComponent) => {
 
 export const withFullHeight = (Story: FunctionComponent) => {
   return (
-    <Box height="100vh">
+    <div style={{ minHeight: "100vh" }}>
       <Story />
-    </Box>
+    </div>
   );
 };
 
@@ -39,20 +38,21 @@ export const withContainer =
     padding?: number;
   }) =>
   (Story: FunctionComponent) => {
-    let sx: SxProps<Theme> = {
+    const style: CSSProperties = {
+      width,
+      height,
       backgroundColor,
-      padding,
+      padding: typeof padding === "number" ? `${padding * 8}px` : undefined,
     };
+
     if (bordered) {
-      sx = {
-        ...sx,
-        border: "solid 1px black",
-      };
+      style.border = "1px solid #111";
     }
+
     return (
-      <Box width={width} height={height} sx={sx}>
+      <div style={style}>
         <Story />
-      </Box>
+      </div>
     );
   };
 
@@ -60,9 +60,9 @@ export const withPadding =
   (padding = 2) =>
   (Story: FunctionComponent) => {
     return (
-      <Box padding={padding}>
+      <div style={{ padding: `${padding * 8}px` }}>
         <Story />
-      </Box>
+      </div>
     );
   };
 
@@ -88,10 +88,14 @@ export const StoryDialogManager = ({
   };
 
   return (
-    <Box>
-      <Button variant="contained" onClick={() => setOpen(true)}>
+    <div>
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        className="inline-flex items-center rounded-md bg-primary px-3 py-2 text-sm font-medium text-primary-foreground"
+      >
         Open
-      </Button>
+      </button>
       <C
         {...args}
         open={open}
@@ -101,6 +105,6 @@ export const StoryDialogManager = ({
         onConfirm={() => handleClose("confirm")}
         onSubmit={() => handleClose("submit")}
       />
-    </Box>
+    </div>
   );
 };

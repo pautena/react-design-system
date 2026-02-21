@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SkeletonGrid } from "../SkeletonGrid";
+import { SkeletonGrid } from "@/components/skeleton-grid";
 import Content from "./Content";
 
 export default {
