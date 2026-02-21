@@ -36,7 +36,7 @@ import { Badge, DrawerLayout } from "@pautena/react-design-system";
 For shadcn/base-ui styles and CSS variables, import the package stylesheet once in your app entrypoint (for example `src/main.tsx` in Vite):
 
 ```javascript
-import "@pautena/react-design-system/styles.css";
+import "@pautena/react-design-system/global.css";
 ```
 
 ## Documentation

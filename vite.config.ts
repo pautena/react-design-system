@@ -12,9 +12,9 @@ export default defineConfig({
     lib: {
       entry: {
         index: "./src/index.ts",
-        styles: "./src/styles.ts",
         "tests/index": "./src/tests/index.ts",
       },
+      cssFileName: "global",
       formats: ["es"],
     },
     rollupOptions: {
