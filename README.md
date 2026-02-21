@@ -8,7 +8,7 @@ My custom design system on top of [MUI](https://mui.com/material-ui/), with a bu
 
 ## ⚠️ Important Notice
 
-**This is a personal design system** built for my own projects and experimentation. 
+**This is a personal design system** built for my own projects and experimentation.
 
 - **Breaking changes are expected** and may occur at any time without notice
 - **Not recommended for production use** in external projects
@@ -30,7 +30,13 @@ npm install @pautena/react-design-system @emotion/react @emotion/styled @mui/ico
 Now you are going to be able to import the components and use it in your React project.
 
 ```javascript
-import { DrawerLayout } from "@pautena/react-design-system";
+import { Badge, DrawerLayout } from "@pautena/react-design-system";
+```
+
+For shadcn/base-ui styles and CSS variables, import the package stylesheet once in your app entrypoint (for example `src/main.tsx` in Vite):
+
+```javascript
+import "@pautena/react-design-system/styles.css";
 ```
 
 ## Documentation

@@ -2,14 +2,16 @@
   "name": "@pautena/react-design-system",
   "version": "2.0.0-alpha.0",
   "description": "AI-ready design system built on shadcn/ui with MCP support",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
     },
+    "./styles.css": "./dist/react-design-system.css",
     "./testing": {
       "types": "./dist/tests/index.d.ts",
       "import": "./dist/tests/index.mjs"
