@@ -234,6 +234,49 @@
       "category": "Navigation"
     },
     {
+      "name": "text-field",
+      "type": "registry:ui",
+      "title": "TextField",
+      "description": "Input field with helper text and loading states",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/text-field/text-field.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Inputs"
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Native select wrapper with loading and fetching states",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/select/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Inputs"
+    },
+    {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "title": "Autocomplete",
+      "description": "Searchable combobox with local filtering",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["text-field"],
+      "files": [
+        {
+          "path": "src/components/autocomplete/autocomplete.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Inputs"
+    },
+    {
       "name": "markdown",
       "type": "registry:ui",
       "title": "Markdown",

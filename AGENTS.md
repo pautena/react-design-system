@@ -543,8 +543,14 @@ This is an auto-generated file that contains project context for AI agents.
 - Component folders and component file names must use kebab-case.
 - Preferred pattern: `src/components/<component-name>/<component-name>.tsx`.
 
+### Forms Components Location
+
+- Form wrappers/components are grouped under `src/components/forms/*`.
+- Current forms components include `autocomplete`, `select`, and `text-field`.
+
 ### shadcn/Base UI Parity Rule
 
+- To add any new primitive under `src/components/ui/*`, always run `npx shadcn@latest add <component>` (example: `npx shadcn@latest add field`) instead of manually creating/editing the file first.
 - For `src/components/ui/*`, use `shadcn` CLI as source of truth and regenerate via `npx shadcn@latest add --all --overwrite --yes` when syncing.
 - Keep `components.json` style set to Base UI variant (`base-vega`) unless explicitly changing design language.
 - Prefer exact generated shadcn/Base UI classes and structure; avoid manual visual drift from generated output.

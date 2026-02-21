@@ -138,9 +138,11 @@ react-design-system/
 ### Structure Rules (Non-Negotiable)
 
 - `src/components/ui/*` is the only location for shadcn-generated base components.
+- Never create files in `src/components/ui/*` manually; always generate primitives via `npx shadcn@latest add <component>` (example: `npx shadcn@latest add field`).
 - Treat `src/components/ui/*` as low-level primitives (shadcn-managed), not the primary public package API.
 - For consumer-facing/public APIs, create wrappers in `src/components/<component-name>/<component-name>.tsx` and export wrappers from `src/index.ts`.
 - All newly migrated/custom components must live under `src/components/*`.
+- After each component migration is validated, delete the original legacy component folder/files (for example `src/TextField/*`) in the same PR.
 - Component folder names and file names must be kebab-case (example: `src/components/value-card/value-card.tsx`).
 - `src/hooks/use-mobile.ts` is generated support code for sidebar patterns.
 - `src/lib/utils.ts` is the only `cn()` helper file.
@@ -451,7 +453,15 @@ export * from "./components/{component-name}"
 
 Required: if a component is meant to be used by package consumers, `src/index.ts` must be updated so it is importable from `@pautena/react-design-system`.
 
-#### **8. Build Registry**
+#### **8. Remove Legacy Source Files (Required)**
+
+After the new wrapper component is working and wired in exports/tests/stories:
+
+- Delete original legacy files/folders for that component (for example `src/TextField/*`, `src/Select/*`, `src/Autocomplete/*`).
+- Update all internal imports to the migrated path (`src/components/<component-name>/*`) or public package entrypoint.
+- Confirm no remaining references to deleted legacy paths.
+
+#### **9. Build Registry**
 ```bash
 yarn build:registry
 ```
@@ -466,7 +476,7 @@ yarn build:registry
 
 **Output:** `public/r/{component-name}.json` files (auto-generated, never manually edited)
 
-#### **9. Test & Validate**
+#### **10. Test & Validate**
 - [ ] Storybook stories render
 - [ ] All tests pass
 - [ ] Dark mode works
@@ -474,13 +484,13 @@ yarn build:registry
 - [ ] Build succeeds
 - [ ] Registry JSON generated
 
-#### **10. Document Migration**
+#### **11. Document Migration**
 Update `MIGRATION.md` with:
 - Component status → ✅ Complete
 - Breaking changes
 - Migration notes
 
-#### **11. Commit**
+#### **12. Commit**
 ```bash
 git add .
 git commit -m "feat(component-name): migrate from MUI to shadcn/ui
@@ -585,6 +595,7 @@ MIGRATION.md             # Migration documentation
 - [ ] Analyze current MUI implementation
 - [ ] Design shadcn-based implementation
 - [ ] Implement component with cva() variants
+- [ ] Delete original legacy files for the migrated component
 - [ ] Add entry to `registry.json` items array
 - [ ] Write/update tests
 - [ ] Create/update Storybook stories
@@ -665,7 +676,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 4: Form Components 📝
+### ✓ Phase 4: Form Components 📝
 
 **Agent**: @react-developer  
 **Skills**: code-react-unit-testing, code-react-storybook, code-react-tanstack-forms
@@ -1016,7 +1027,7 @@ llms.txt                        # AI context file (root)
 | 1     | ✅ Complete | Bullet, Label        | 2026-02-20 | 2026-02-20 | Migrated to shadcn Badge + registry entries |
 | 2     | ✅ Complete | 8 components         | 2026-02-21 | 2026-02-21 | Migrated to shadcn/Tailwind wrappers + registry entries |
 | 3     | ✅ Complete | 7 components         | 2026-02-21 | 2026-02-21 | Migrated card/display set to shadcn/Tailwind wrappers + registry entries |
-| 4     | ⏳ Planned  | 3 components         | -          | -          | -     |
+| 4     | ✅ Complete | 3 components         | 2026-02-21 | 2026-02-21 | Migrated TextField, Select, and Autocomplete to shadcn/Tailwind wrappers + registry entries |
 | 5     | ⏳ Planned  | 13 components        | -          | -          | -     |
 | 6     | ⏳ Planned  | 6 components         | -          | -          | -     |
 | 7     | ⏳ Planned  | 5 components         | -          | -          | -     |
@@ -1039,6 +1050,12 @@ llms.txt                        # AI context file (root)
   - Full test suite passing (426 passed, 3 skipped)
 
 ### 2026-02-21
+- ✅ Phase 4 completed
+  - Migrated `TextField`, `Select`, and `Autocomplete` to shadcn/Tailwind wrappers under `src/components/*`
+  - Added corresponding entries to `registry.json`
+  - Generated registry artifacts via `npm run build:registry`
+  - Full test suite passing (465 passed, 3 skipped)
+
 - ✅ Phase 3 completed
   - Migrated `ValueCard`, `ValueItem`, `GroupValueCard`, `SkeletonCard`, `SkeletonGrid`, `Board`, and `TabCard` to shadcn/Tailwind wrappers
   - Added corresponding entries to `registry.json`
