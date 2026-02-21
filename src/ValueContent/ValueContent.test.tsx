@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../tests/testing-library";
 import ValueContent from "./ValueContent";
@@ -7,7 +6,7 @@ describe("ValueContent", () => {
   const renderComponent = ({ tooltip }: { tooltip?: string } = {}) => {
     render(
       <ValueContent label="lorem ipsum" tooltip={tooltip} tooltipEnterDelay={0}>
-        <Typography>Test content</Typography>
+        <span>Test content</span>
       </ValueContent>,
     );
   };
@@ -19,22 +18,19 @@ describe("ValueContent", () => {
   });
 
   describe("tooltip", () => {
-    it("should render a tooltip if is defined and the user hovers the value", async () => {
+    it("should expose tooltip title if is defined", async () => {
+      const user = userEvent.setup();
       renderComponent({ tooltip: "dolor sit amet" });
 
-      await userEvent.hover(screen.getByText(/test content/i));
+      await user.hover(screen.getByText(/test content/i));
 
-      expect(
-        await screen.findByRole("tooltip", { name: /dolor sit amet/i }),
-      ).toBeVisible();
+      expect(screen.getByTitle(/dolor sit amet/i)).toBeVisible();
     });
 
-    it("shouldn't render a tooltip if it's not defined", () => {
+    it("shouldn't render tooltip title if it's not defined", () => {
       renderComponent({ tooltip: undefined });
 
-      expect(
-        screen.queryByRole("tooltip", { name: /dolor sit amet/i }),
-      ).not.toBeInTheDocument();
+      expect(screen.queryByTitle(/dolor sit amet/i)).not.toBeInTheDocument();
     });
   });
 
