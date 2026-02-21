@@ -1,0 +1,1 @@
+import{o as t}from"./useSlot-EiJaCkM0.js";function a(o){return t(o).defaultView||window}function i(o){let e=o.activeElement;for(;e?.shadowRoot?.activeElement!=null;)e=e.shadowRoot.activeElement;return e}export{i as a,a as o};

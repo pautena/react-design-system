@@ -8,198 +8,6 @@ AI-ready design system built on shadcn/ui with MCP support
 
 [View Documentation](./?path=/docs/shadcn-introduction--docs)
 
-## Inputs
-
-### Autocomplete
-
-Autocomplete component that wraps the MUI Autocomplete component with additional props. Supports extensive customization through slots and slotProps.
-
-**Example:**
-
-```tsx
-// Basic usage
-<Autocomplete
-  label="Country"
-  options={countries}
-  onChangeValue={handleChange}
-/>
-
-// With slot customization
-<Autocomplete
-  label="Country"
-  options={countries}
-  slots={{
-    textField: CustomTextField
-  }}
-  slotProps={{
-    autocomplete: { size: "small" },
-    textField: { variant: "filled" }
-  }}
-/>
-```
-
-**Props:**
-- `autocomplete`: `Partial<
-    Omit<MuiAutocompleteProps<any, any, any, any>, "onChange" | "renderInput">
-  >` - Props for the autocomplete component (onChange is managed by the component)
-- `textField`: `Partial<TextFieldProps>` - Props for the text field
-
-**Stories:**
-- [Default](./?path=/story/inputs-autocomplete--default)
-- [Helper Text](./?path=/story/inputs-autocomplete--helper-text)
-- [Loading](./?path=/story/inputs-autocomplete--loading)
-- [Loading With Value](./?path=/story/inputs-autocomplete--loading-with-value)
-- [Fetching](./?path=/story/inputs-autocomplete--fetching)
-- [Loading And Fetching](./?path=/story/inputs-autocomplete--loading-and-fetching)
-- [Size Small](./?path=/story/inputs-autocomplete--size-small)
-- [Size Small Loading](./?path=/story/inputs-autocomplete--size-small-loading)
-- [Size Small Fetching](./?path=/story/inputs-autocomplete--size-small-fetching)
-- [With Background](./?path=/story/inputs-autocomplete--with-background)
-- [With Slot Props Customization](./?path=/story/inputs-autocomplete--with-slot-props-customization)
-
-[View Documentation](./?path=/docs/inputs-autocomplete--docs)
-
-### DateRangeCalendar
-
-A Date Range Calendar component that allows users to select a range of dates.
-
-**Props:**
-- `defaultValue`: `DateRange` (required) - The default date range value.
-
-**Stories:**
-- [Default](./?path=/story/inputs-daterangecalendar--default)
-
-[View Documentation](./?path=/docs/inputs-daterangecalendar--docs)
-
-### DateRangePicker
-
-DateRangePicker component allows users to select a date range.
-
-**Props:**
-- `label`: `string` (required) - The label for the date range picker.
-- `defaultValue`: `DateRange` (required) - The default value for the date range picker.
-- `format`: `string` (required) - The format in which the date range should be displayed.
-
-**Stories:**
-- [Default](./?path=/story/inputs-daterangepicker--default)
-- [Small](./?path=/story/inputs-daterangepicker--small)
-
-[View Documentation](./?path=/docs/inputs-daterangepicker--docs)
-
-### Select
-
-A custom Select component that extends the functionality of the Material-UI Select component. This component supports additional features such as loading and fetching states, custom colors, and full-width display. Supports extensive customization through slots and slotProps.
-
-**Example:**
-
-```tsx
-// Basic usage
-<Select label="Country" value={country} onChange={handleChange}>
-  <MenuItem value="us">United States</MenuItem>
-  <MenuItem value="uk">United Kingdom</MenuItem>
-</Select>
-
-// With custom loading indicator
-<Select
-  label="Status"
-  value={status}
-  loading
-  slotProps={{
-    loadingIndicator: { size: 24 }
-  }}
-/>
-```
-
-**Props:**
-- `formControl`: `Partial<FormControlProps>` - Props for the form control
-- `inputLabel`: `Partial<InputLabelProps>` - Props for the input label
-- `select`: `Partial<Omit<MuiSelectProps<any>, "onChange">>` - Props for the select (onChange is managed by the component)
-- `renderValueContainer`: `Partial<BoxProps>` - Props for the render value container
-- `loadingIndicator`: `Partial<CircularProgressProps>` - Props for the loading indicator
-- `fetchingIndicator`: `Partial<LinearProgressProps>` - Props for the fetching indicator
-
-**Stories:**
-- [Default](./?path=/story/inputs-select--default)
-- [Without Full Width](./?path=/story/inputs-select--without-full-width)
-- [Select Loaded](./?path=/story/inputs-select--select-loaded)
-- [Loading](./?path=/story/inputs-select--loading)
-- [Fetching](./?path=/story/inputs-select--fetching)
-- [Size Small](./?path=/story/inputs-select--size-small)
-- [With Background](./?path=/story/inputs-select--with-background)
-- [With Slot Props Customization](./?path=/story/inputs-select--with-slot-props-customization)
-
-[View Documentation](./?path=/docs/inputs-select--docs)
-
-### TextField
-
-A customizable TextField component that extends the functionality of the Material-UI TextField component and supports various props for styling and functionality. Supports extensive customization through slots and slotProps.
-
-**Example:**
-
-```tsx
-// Basic usage
-<TextField label="Email" />
-
-// With loading state
-<TextField label="Search" loading />
-
-// Custom loading indicator size
-<TextField
-  label="Username"
-  loading
-  slotProps={{
-    loadingIndicator: { size: 24 }
-  }}
-/>
-```
-
-**Props:**
-- `formControl`: `Partial<FormControlProps>` - Props for the form control
-- `inputLabel`: `Partial<MuiInputLabelProps>` - Props for the input label
-- `input`: `Partial<OutlinedInputProps>` - Props for the input
-- `inputAdornment`: `Partial<InputAdornmentProps>` - Props for the input adornment
-- `loadingIndicator`: `Partial<CircularProgressProps>` - Props for the loading indicator
-- `fetchingIndicator`: `Partial<LinearProgressProps>` - Props for the fetching indicator
-- `helperText`: `Partial<FormHelperTextProps>` - Props for the helper text
-
-**Stories:**
-- [Default](./?path=/story/inputs-textfield--default)
-- [Helper Text](./?path=/story/inputs-textfield--helper-text)
-- [Loading](./?path=/story/inputs-textfield--loading)
-- [Loading With Value](./?path=/story/inputs-textfield--loading-with-value)
-- [Fetching](./?path=/story/inputs-textfield--fetching)
-- [Loading And Fetching](./?path=/story/inputs-textfield--loading-and-fetching)
-- [Fetching With End Adornment](./?path=/story/inputs-textfield--fetching-with-end-adornment)
-- [Size Small](./?path=/story/inputs-textfield--size-small)
-- [Size Small Fetching](./?path=/story/inputs-textfield--size-small-fetching)
-- [Disabled](./?path=/story/inputs-textfield--disabled)
-- [Size Small Loading](./?path=/story/inputs-textfield--size-small-loading)
-- [With Background](./?path=/story/inputs-textfield--with-background)
-- [With Slot Props Customization](./?path=/story/inputs-textfield--with-slot-props-customization)
-
-[View Documentation](./?path=/docs/inputs-textfield--docs)
-
-### Button
-
-**Stories:**
-- [Default](./?path=/story/inputs-button--default)
-- [Primary](./?path=/story/inputs-button--primary)
-- [Secondary](./?path=/story/inputs-button--secondary)
-- [Info](./?path=/story/inputs-button--info)
-- [Warning](./?path=/story/inputs-button--warning)
-- [Error](./?path=/story/inputs-button--error)
-- [Success](./?path=/story/inputs-button--success)
-- [Outline](./?path=/story/inputs-button--outline)
-- [Ghost](./?path=/story/inputs-button--ghost)
-- [Destructive](./?path=/story/inputs-button--destructive)
-- [Link](./?path=/story/inputs-button--link)
-- [Size Extra Small](./?path=/story/inputs-button--size-extra-small)
-- [Size Small](./?path=/story/inputs-button--size-small)
-- [Size Large](./?path=/story/inputs-button--size-large)
-- [Size Icon](./?path=/story/inputs-button--size-icon)
-
-[View Documentation](./?path=/docs/inputs-button--docs)
-
 ## Dialogs
 
 ### BootstrapDialog
@@ -343,6 +151,56 @@ Empty state placeholder with optional icon and actions
 - [Compact](./?path=/story/placeholders-skeletongrid--compact)
 
 [View Documentation](./?path=/docs/placeholders-skeletongrid--docs)
+
+## Inputs
+
+### DateRangeCalendar
+
+A Date Range Calendar component that allows users to select a range of dates.
+
+**Props:**
+- `defaultValue`: `DateRange` (required) - The default date range value.
+
+**Stories:**
+- [Default](./?path=/story/inputs-daterangecalendar--default)
+
+[View Documentation](./?path=/docs/inputs-daterangecalendar--docs)
+
+### DateRangePicker
+
+DateRangePicker component allows users to select a date range.
+
+**Props:**
+- `label`: `string` (required) - The label for the date range picker.
+- `defaultValue`: `DateRange` (required) - The default value for the date range picker.
+- `format`: `string` (required) - The format in which the date range should be displayed.
+
+**Stories:**
+- [Default](./?path=/story/inputs-daterangepicker--default)
+- [Small](./?path=/story/inputs-daterangepicker--small)
+
+[View Documentation](./?path=/docs/inputs-daterangepicker--docs)
+
+### Button
+
+**Stories:**
+- [Default](./?path=/story/inputs-button--default)
+- [Primary](./?path=/story/inputs-button--primary)
+- [Secondary](./?path=/story/inputs-button--secondary)
+- [Info](./?path=/story/inputs-button--info)
+- [Warning](./?path=/story/inputs-button--warning)
+- [Error](./?path=/story/inputs-button--error)
+- [Success](./?path=/story/inputs-button--success)
+- [Outline](./?path=/story/inputs-button--outline)
+- [Ghost](./?path=/story/inputs-button--ghost)
+- [Destructive](./?path=/story/inputs-button--destructive)
+- [Link](./?path=/story/inputs-button--link)
+- [Size Extra Small](./?path=/story/inputs-button--size-extra-small)
+- [Size Small](./?path=/story/inputs-button--size-small)
+- [Size Large](./?path=/story/inputs-button--size-large)
+- [Size Icon](./?path=/story/inputs-button--size-icon)
+
+[View Documentation](./?path=/docs/inputs-button--docs)
 
 ## Navigation
 
@@ -727,4 +585,67 @@ const tableState = useRemoteDataTable({
 - [Using Hook](./?path=/story/tables-remotedatatable--using-hook)
 
 [View Documentation](./?path=/docs/tables-remotedatatable--docs)
+
+## forms
+
+### Autocomplete
+
+**Stories:**
+- [Default](./?path=/story/forms-autocomplete--default)
+- [Helper Text](./?path=/story/forms-autocomplete--helper-text)
+- [Loading](./?path=/story/forms-autocomplete--loading)
+- [Error](./?path=/story/forms-autocomplete--error)
+- [Disabled](./?path=/story/forms-autocomplete--disabled)
+- [Placeholder](./?path=/story/forms-autocomplete--placeholder)
+- [Small](./?path=/story/forms-autocomplete--small)
+
+[View Documentation](./?path=/docs/forms-autocomplete--docs)
+
+### CheckboxField
+
+**Stories:**
+- [Default](./?path=/story/forms-checkboxfield--default)
+- [Helper Text](./?path=/story/forms-checkboxfield--helper-text)
+- [Error](./?path=/story/forms-checkboxfield--error)
+- [Disabled](./?path=/story/forms-checkboxfield--disabled)
+- [Checked](./?path=/story/forms-checkboxfield--checked)
+
+[View Documentation](./?path=/docs/forms-checkboxfield--docs)
+
+### Select
+
+**Stories:**
+- [Default](./?path=/story/forms-select--default)
+- [Loading](./?path=/story/forms-select--loading)
+- [Fetching](./?path=/story/forms-select--fetching)
+- [Error](./?path=/story/forms-select--error)
+- [Small](./?path=/story/forms-select--small)
+
+[View Documentation](./?path=/docs/forms-select--docs)
+
+### TextField
+
+**Stories:**
+- [Default](./?path=/story/forms-textfield--default)
+- [Helper Text](./?path=/story/forms-textfield--helper-text)
+- [Error](./?path=/story/forms-textfield--error)
+- [Loading](./?path=/story/forms-textfield--loading)
+- [Disabled](./?path=/story/forms-textfield--disabled)
+- [Placeholder](./?path=/story/forms-textfield--placeholder)
+- [Small](./?path=/story/forms-textfield--small)
+
+[View Documentation](./?path=/docs/forms-textfield--docs)
+
+### TextareaField
+
+**Stories:**
+- [Default](./?path=/story/forms-textareafield--default)
+- [Helper Text](./?path=/story/forms-textareafield--helper-text)
+- [Error](./?path=/story/forms-textareafield--error)
+- [Loading](./?path=/story/forms-textareafield--loading)
+- [Disabled](./?path=/story/forms-textareafield--disabled)
+- [Placeholder](./?path=/story/forms-textareafield--placeholder)
+- [Row Count](./?path=/story/forms-textareafield--row-count)
+
+[View Documentation](./?path=/docs/forms-textareafield--docs)
 

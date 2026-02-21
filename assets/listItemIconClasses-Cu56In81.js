@@ -1,0 +1,1 @@
+import{g as s}from"./styled-DS6LlOMU.js";import{g as e}from"./Typography-Dj8pBh4O.js";function a(t){return s("MuiListItemIcon",t)}const l=e("MuiListItemIcon",["root","alignItemsFlexStart"]);export{a as g,l};

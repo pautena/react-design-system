@@ -1,1 +1,0 @@
-import{g as t}from"./styled-CxtL0g1W.js";import{g as e}from"./Typography-CCBxMdr1.js";function s(i){return t("MuiDivider",i)}const a=e("MuiDivider",["root","absolute","fullWidth","inset","middle","flexItem","light","vertical","withChildren","withChildrenVertical","textAlignRight","textAlignLeft","wrapper","wrapperVertical"]);export{a as d,s as g};

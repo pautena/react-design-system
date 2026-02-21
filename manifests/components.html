@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">41 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/41 info</a><span class="filter-pill ok" aria-disabled="true">214 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">43 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/43 info</a><span class="filter-pill ok" aria-disabled="true">213 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -527,22 +527,22 @@
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Autocomplete</h2>
       <div class="badges">
-        <label for="c-0-inputs-autocomplete-props" class="badge ok as-toggle">7 prop types</label>
+        <label for="c-0-forms-autocomplete-props" class="badge ok as-toggle">10 prop types</label>
         
-        <label for="c-0-inputs-autocomplete-stories" class="badge ok as-toggle">11 stories</label>
+        <label for="c-0-forms-autocomplete-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Autocomplete/Autocomplete.stories.tsx">inputs-autocomplete · ./src/Autocomplete/Autocomplete.stories.tsx</div>
+    <div class="meta" title="./src/components/forms/autocomplete/autocomplete.stories.tsx">forms-autocomplete · ./src/components/forms/autocomplete/autocomplete.stories.tsx</div>
     
-    <div class="hint">Autocomplete component that wraps the MUI Autocomplete component with additional props. Supports extensive customization through slots and slotProps.</div>
-    <div class="kv"><span class="chip">example:  ```tsx // Basic usage &lt;Autocomplete label=&quot;Country&quot; options={countries} onChangeValue={handleChange} /&gt; // With slot customization &lt;Autocomplete label=&quot;Country&quot; options={countries} slots={{ textField: CustomTextField }} slotProps={{ autocomplete: { size: &quot;small&quot; }, textField: { variant: &quot;filled&quot; } }} /&gt; ```</span></div>
+    <div class="hint">Searchable combobox with local option filtering.</div>
+    <div class="kv"><span class="chip">template: T - Option type.</span></div>
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-0-inputs-autocomplete-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-0-inputs-autocomplete-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-0-forms-autocomplete-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-0-forms-autocomplete-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -552,44 +552,66 @@
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">7 prop types</span>
+              <span class="badge ok">10 prop types</span>
             </div>
-            <pre><code>Component: src/Autocomplete/Autocomplete.tsx::Autocomplete</code></pre>
+            <pre><code>Component: src/components/forms/autocomplete/autocomplete.tsx::Autocomplete</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Optional color for the autocomplete component.
+ * Optional accent color used for border and text.
  */
 color?: string
 
 /**
- * If `true`, indicates that data is being fetched.
+ * Error text rendered below the field.
  */
-fetching?: boolean
+error?: ReactNode
 
 /**
- * Optional helper text to display below the input.
+ * Converts options into labels.
  */
-helperText?: string
+getOptionLabel?: (option: T) =&gt; string
 
 /**
- * The label for the autocomplete input.
+ * Helper text rendered below the field.
+ */
+helperText?: ReactNode
+
+/**
+ * Label shown above the combobox.
  */
 label: string
 
 /**
- * Optional callback function that is called when the value changes.
+ * Shows a spinner while options are loading.
+ * @default false
  */
-onChangeValue?: (value: T) =&gt; void
+loading?: boolean = false
 
 /**
- * Optional props for the slots
+ * Called when user selects a value.
+ * @param e - Input or option interaction event.
+ * @param value - Trimmed selected value label.
  */
-slotProps?: AutocompleteSlotProps
+onChangeValue?: (
+  e: ChangeEvent&lt;HTMLInputElement&gt; | MouseEvent&lt;HTMLButtonElement&gt;,
+  value: string,
+) =&gt; void
 
 /**
- * Optional slots for custom rendering
+ * Available options.
  */
-slots?: AutocompleteSlots</code></pre>
+options: T[]
+
+/**
+ * Input size variant.
+ * @default &quot;medium&quot;
+ */
+size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;
+
+/**
+ * Current selected option.
+ */
+value?: T</code></pre>
           </div>
         </div>
     
@@ -601,8 +623,7 @@ slots?: AutocompleteSlots</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Autocomplete } from "@pautena/react-design-system";
-import Box from "@mui/material/Box";</code></pre>
+                <pre><code>import { Autocomplete } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -622,7 +643,7 @@ import Box from "@mui/material/Box";</code></pre>
               </div>
               
               
-              <pre><code>const HelperText = () =&gt; &lt;Autocomplete helperText=&quot;This is a helper text&quot; /&gt;;</code></pre>
+              <pre><code>const HelperText = () =&gt; &lt;Autocomplete helperText=&quot;Search by partial model name&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -635,146 +656,41 @@ import Box from "@mui/material/Box";</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">LoadingWithValue</span>
+                <span class="ex-name">Error</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const LoadingWithValue = () =&gt; &lt;Autocomplete loading value={options[0]} /&gt;;</code></pre>
+              <pre><code>const Error = () =&gt; &lt;Autocomplete
+    helperText=&quot;Select your vehicle model&quot;
+    error=&quot;A model selection is required&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Fetching</span>
+                <span class="ex-name">Disabled</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Fetching = () =&gt; &lt;Autocomplete fetching /&gt;;</code></pre>
+              <pre><code>const Disabled = () =&gt; &lt;Autocomplete disabled /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">LoadingAndFetching</span>
+                <span class="ex-name">Placeholder</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const LoadingAndFetching = () =&gt; &lt;Autocomplete loading fetching /&gt;;</code></pre>
+              <pre><code>const Placeholder = () =&gt; &lt;Autocomplete placeholder=&quot;Type a car model...&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">SizeSmall</span>
+                <span class="ex-name">Small</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const SizeSmall = () =&gt; &lt;Autocomplete size=&quot;small&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">SizeSmallLoading</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const SizeSmallLoading = () =&gt; &lt;Autocomplete size=&quot;small&quot; value={options[0]} loading /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">SizeSmallFetching</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const SizeSmallFetching = () =&gt; &lt;Autocomplete size=&quot;small&quot; fetching value={options[0]} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithBackground</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithBackground = ({
-  bgcolor: bgcolorProp,
-  loading,
-  fetching,
-}: WithBackgroundProps) =&gt; {
-  const { palette } = useTheme();
-  const BackgroundColors: Record&lt;&quot;primary&quot; | &quot;secondary&quot;, string&gt; = {
-    primary: palette.primary.main,
-    secondary: palette.secondary.main,
-  };
-  const bgcolor = BackgroundColors[bgcolorProp];
-  const selectColor = palette.getContrastText(bgcolor);
-
-  return (
-    &lt;Box bgcolor={bgcolor} padding={3}&gt;
-      &lt;Autocomplete
-        label=&quot;Car model&quot;
-        options={options}
-        color={selectColor}
-        loading={loading}
-        fetching={fetching}
-      /&gt;
-    &lt;/Box&gt;
-  );
-};</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithSlotPropsCustomization</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              <div class="hint">Example demonstrating slot props customization. Both autocomplete and text field components can be customized.</div>
-              <pre><code>const WithSlotPropsCustomization = () =&gt; {
-    // Custom styled text field wrapper
-    const CustomFieldWrapper = styled(Box)(({ theme }) =&gt; ({
-      &quot;&amp; .MuiTextField-root&quot;: {
-        &quot;&amp; .MuiOutlinedInput-root&quot;: {
-          backgroundColor: theme.palette.primary.light,
-          borderRadius: 16,
-          &quot;&amp; fieldset&quot;: {
-            borderColor: theme.palette.primary.main,
-            borderWidth: 2,
-          },
-          &quot;&amp;:hover fieldset&quot;: {
-            borderColor: theme.palette.primary.dark,
-          },
-          &quot;&amp;.Mui-focused fieldset&quot;: {
-            borderColor: theme.palette.primary.dark,
-          },
-        },
-        &quot;&amp; .MuiInputLabel-root&quot;: {
-          color: theme.palette.primary.main,
-          fontWeight: 600,
-        },
-      },
-    }));
-
-    return (
-        &lt;CustomFieldWrapper&gt;
-            &lt;Autocomplete
-                label=&quot;Car model&quot;
-                options={options}
-                slotProps={{
-                  autocomplete: {
-                    sx: {
-                      &quot;&amp; .MuiAutocomplete-popupIndicator&quot;: {
-                        color: &quot;primary.main&quot;,
-                      },
-                      &quot;&amp; .MuiAutocomplete-clearIndicator&quot;: {
-                        color: &quot;primary.main&quot;,
-                      },
-                    },
-                  },
-                  textField: {
-                    helperText: &quot;Customized autocomplete with styled components&quot;,
-                  },
-                }} /&gt;
-        &lt;/CustomFieldWrapper&gt;
-    );
-};</code></pre>
+              <pre><code>const Small = () =&gt; &lt;Autocomplete size=&quot;small&quot; /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -1674,14 +1590,147 @@ variant?: | &quot;primary&quot;
   no-info 
   no-story-error"
   role="listitem"
+  aria-label="CheckboxField">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> CheckboxField</h2>
+      <div class="badges">
+        <label for="c-6-forms-checkboxfield-props" class="badge ok as-toggle">6 prop types</label>
+        
+        <label for="c-6-forms-checkboxfield-stories" class="badge ok as-toggle">5 stories</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/forms/checkbox-field/checkbox-field.stories.tsx">forms-checkboxfield · ./src/components/forms/checkbox-field/checkbox-field.stories.tsx</div>
+    
+    <div class="hint">Checkbox form wrapper with helper and error states.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-6-forms-checkboxfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-6-forms-checkboxfield-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types</span>
+              <span class="badge ok">6 prop types</span>
+            </div>
+            <pre><code>Component: src/components/forms/checkbox-field/checkbox-field.tsx::CheckboxField</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Additional CSS classes for the field wrapper.
+ */
+className?: string
+
+/**
+ * Error text rendered below the control.
+ */
+error?: ReactNode
+
+/**
+ * Makes the field span the container width.
+ * @default false
+ */
+fullWidth?: boolean = false
+
+/**
+ * Helper text rendered below the control.
+ */
+helperText?: ReactNode
+
+/**
+ * Field id used to connect label and checkbox.
+ */
+id?: string
+
+/**
+ * Label shown next to the checkbox.
+ */
+label: string</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { CheckboxField } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;CheckboxField label=&quot;Accept terms&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">HelperText</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const HelperText = () =&gt; &lt;CheckboxField helperText=&quot;Required to continue&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Error</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Error = () =&gt; &lt;CheckboxField helperText=&quot;Required to continue&quot; error=&quot;You must accept terms&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Disabled</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Disabled = () =&gt; &lt;CheckboxField disabled /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Checked</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Checked = () =&gt; &lt;CheckboxField defaultChecked /&gt;;</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error"
+  role="listitem"
   aria-label="ConfirmDialog">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ConfirmDialog</h2>
       <div class="badges">
-        <label for="c-6-dialogs-confirmdialog-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-7-dialogs-confirmdialog-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-6-dialogs-confirmdialog-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-7-dialogs-confirmdialog-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ConfirmDialog/ConfirmDialog.stories.tsx">dialogs-confirmdialog · ./src/ConfirmDialog/ConfirmDialog.stories.tsx</div>
@@ -1693,8 +1742,8 @@ variant?: | &quot;primary&quot;
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-6-dialogs-confirmdialog-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-6-dialogs-confirmdialog-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-7-dialogs-confirmdialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-7-dialogs-confirmdialog-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1819,9 +1868,9 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Content</h2>
       <div class="badges">
-        <label for="c-7-containers-content-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-8-containers-content-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-7-containers-content-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-8-containers-content-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/Content/Content.stories.tsx">containers-content · ./src/Content/Content.stories.tsx</div>
@@ -1833,8 +1882,8 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-7-containers-content-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-7-containers-content-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-8-containers-content-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-8-containers-content-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1890,9 +1939,9 @@ children?: React.ReactNode</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ContentPlaceholder</h2>
       <div class="badges">
-        <label for="c-8-placeholders-contentplaceholder-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-9-placeholders-contentplaceholder-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-8-placeholders-contentplaceholder-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-9-placeholders-contentplaceholder-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/ContentPlaceholder/ContentPlaceholder.stories.tsx">placeholders-contentplaceholder · ./src/ContentPlaceholder/ContentPlaceholder.stories.tsx</div>
@@ -1904,8 +1953,8 @@ children?: React.ReactNode</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-8-placeholders-contentplaceholder-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-8-placeholders-contentplaceholder-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-9-placeholders-contentplaceholder-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-9-placeholders-contentplaceholder-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1971,9 +2020,9 @@ size?: number = 20</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ContentPlaceholder</h2>
       <div class="badges">
-        <label for="c-9-feedback-notificationcenter-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-10-feedback-notificationcenter-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-9-feedback-notificationcenter-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-10-feedback-notificationcenter-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/NotificationCenter/NotificationCenter.stories.tsx">feedback-notificationcenter · ./src/NotificationCenter/NotificationCenter.stories.tsx</div>
@@ -1985,8 +2034,8 @@ size?: number = 20</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-9-feedback-notificationcenter-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-9-feedback-notificationcenter-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-10-feedback-notificationcenter-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-10-feedback-notificationcenter-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2090,9 +2139,9 @@ import { ContentPlaceholder, NotificationCenterProvider } from "@pautena/react-d
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateRangeCalendar</h2>
       <div class="badges">
-        <label for="c-10-inputs-daterangecalendar-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-11-inputs-daterangecalendar-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-10-inputs-daterangecalendar-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-11-inputs-daterangecalendar-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/DateRangeCalendar/DateRangeCalendar.stories.tsx">inputs-daterangecalendar · ./src/DateRangeCalendar/DateRangeCalendar.stories.tsx</div>
@@ -2104,8 +2153,8 @@ import { ContentPlaceholder, NotificationCenterProvider } from "@pautena/react-d
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-10-inputs-daterangecalendar-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-10-inputs-daterangecalendar-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-11-inputs-daterangecalendar-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-11-inputs-daterangecalendar-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2169,9 +2218,9 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateRangePicker</h2>
       <div class="badges">
-        <label for="c-11-inputs-daterangepicker-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-12-inputs-daterangepicker-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-11-inputs-daterangepicker-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-12-inputs-daterangepicker-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/DateRangePicker/DateRangePicker.stories.tsx">inputs-daterangepicker · ./src/DateRangePicker/DateRangePicker.stories.tsx</div>
@@ -2183,8 +2232,8 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-11-inputs-daterangepicker-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-11-inputs-daterangepicker-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-12-inputs-daterangepicker-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-12-inputs-daterangepicker-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2289,7 +2338,7 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
       <div class="badges">
         
         
-        <label for="c-12-navigation-drawer-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-13-navigation-drawer-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/Drawerx/Drawer/Drawer.stories.tsx">navigation-drawer · ./src/Drawerx/Drawer/Drawer.stories.tsx</div>
@@ -2301,7 +2350,7 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-12-navigation-drawer-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-13-navigation-drawer-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -2354,9 +2403,9 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerAppBar</h2>
       <div class="badges">
-        <label for="c-13-navigation-drawerappbar-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-14-navigation-drawerappbar-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-13-navigation-drawerappbar-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-14-navigation-drawerappbar-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Drawerx/DrawerAppBar/DrawerAppBar.stories.tsx">navigation-drawerappbar · ./src/Drawerx/DrawerAppBar/DrawerAppBar.stories.tsx</div>
@@ -2368,8 +2417,8 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-13-navigation-drawerappbar-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-13-navigation-drawerappbar-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-14-navigation-drawerappbar-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-14-navigation-drawerappbar-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2438,9 +2487,9 @@ title?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerContent</h2>
       <div class="badges">
-        <label for="c-14-navigation-drawercontent-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-15-navigation-drawercontent-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-14-navigation-drawercontent-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-15-navigation-drawercontent-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Drawerx/DrawerContent/DrawerContent.stories.tsx">navigation-drawercontent · ./src/Drawerx/DrawerContent/DrawerContent.stories.tsx</div>
@@ -2452,8 +2501,8 @@ title?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-14-navigation-drawercontent-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-14-navigation-drawercontent-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-15-navigation-drawercontent-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-15-navigation-drawercontent-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2535,7 +2584,7 @@ navigation: DrawerNavigationItem[]</code></pre>
       <div class="badges">
         
         
-        <label for="c-15-navigation-drawer-demo-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-16-navigation-drawer-demo-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Drawerx/Drawer/DrawerDemo.stories.tsx">navigation-drawer-demo · ./src/Drawerx/Drawer/DrawerDemo.stories.tsx</div>
@@ -2547,7 +2596,7 @@ navigation: DrawerNavigationItem[]</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-15-navigation-drawer-demo-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-16-navigation-drawer-demo-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -2708,9 +2757,9 @@ navigation: DrawerNavigationItem[]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerItem</h2>
       <div class="badges">
-        <label for="c-16-navigation-draweritem-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-17-navigation-draweritem-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-16-navigation-draweritem-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-17-navigation-draweritem-stories" class="badge ok as-toggle">13 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Drawerx/DrawerItem/DrawerItem.stories.tsx">navigation-draweritem · ./src/Drawerx/DrawerItem/DrawerItem.stories.tsx</div>
@@ -2722,8 +2771,8 @@ navigation: DrawerNavigationItem[]</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-16-navigation-draweritem-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-16-navigation-draweritem-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-17-navigation-draweritem-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-17-navigation-draweritem-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2947,9 +2996,9 @@ import { DrawerItem, DrawerProvider } from "@pautena/react-design-system";</code
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerLayout</h2>
       <div class="badges">
-        <label for="c-17-layouts-drawerlayout-props" class="badge ok as-toggle">12 prop types</label>
+        <label for="c-18-layouts-drawerlayout-props" class="badge ok as-toggle">12 prop types</label>
         
-        <label for="c-17-layouts-drawerlayout-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-18-layouts-drawerlayout-stories" class="badge ok as-toggle">6 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Drawerx/DrawerLayout/DrawerLayout.stories.tsx">layouts-drawerlayout · ./src/Drawerx/DrawerLayout/DrawerLayout.stories.tsx</div>
@@ -2961,8 +3010,8 @@ import { DrawerItem, DrawerProvider } from "@pautena/react-design-system";</code
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-17-layouts-drawerlayout-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-17-layouts-drawerlayout-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-18-layouts-drawerlayout-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-18-layouts-drawerlayout-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -3140,7 +3189,7 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
       <div class="badges">
         
         
-        <label for="c-18-navigation-drawersubheader-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-19-navigation-drawersubheader-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Drawerx/DrawerSubheader/DrawerSubheader.stories.tsx">navigation-drawersubheader · ./src/Drawerx/DrawerSubheader/DrawerSubheader.stories.tsx</div>
@@ -3152,7 +3201,7 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-18-navigation-drawersubheader-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-19-navigation-drawersubheader-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -3208,9 +3257,9 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ExpandableAlert</h2>
       <div class="badges">
-        <label for="c-19-alerts-expandablealert-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-20-alerts-expandablealert-props" class="badge ok as-toggle">8 prop types</label>
         
-        <label for="c-19-alerts-expandablealert-stories" class="badge ok as-toggle">7 stories</label>
+        <label for="c-20-alerts-expandablealert-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ExpandableAlert/ExpandableAlert.stories.tsx">alerts-expandablealert · ./src/ExpandableAlert/ExpandableAlert.stories.tsx</div>
@@ -3222,8 +3271,8 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-19-alerts-expandablealert-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-19-alerts-expandablealert-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-20-alerts-expandablealert-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-20-alerts-expandablealert-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -3420,9 +3469,9 @@ import Typography from "@mui/material/Typography";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> FormDialog</h2>
       <div class="badges">
-        <label for="c-20-dialogs-formdialog-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-21-dialogs-formdialog-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-20-dialogs-formdialog-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-21-dialogs-formdialog-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/FormDialog/FormDialog.stories.tsx">dialogs-formdialog · ./src/FormDialog/FormDialog.stories.tsx</div>
@@ -3434,8 +3483,8 @@ import Typography from "@mui/material/Typography";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-20-dialogs-formdialog-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-20-dialogs-formdialog-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-21-dialogs-formdialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-21-dialogs-formdialog-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -3538,9 +3587,9 @@ import TextField from "@mui/material/TextField";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> GroupValueCard</h2>
       <div class="badges">
-        <label for="c-21-data-display-groupvaluecard-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-22-data-display-groupvaluecard-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-21-data-display-groupvaluecard-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-22-data-display-groupvaluecard-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/group-value-card/group-value-card.stories.tsx">data-display-groupvaluecard · ./src/components/group-value-card/group-value-card.stories.tsx</div>
@@ -3552,8 +3601,8 @@ import TextField from "@mui/material/TextField";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-21-data-display-groupvaluecard-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-21-data-display-groupvaluecard-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-22-data-display-groupvaluecard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-22-data-display-groupvaluecard-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -3650,9 +3699,9 @@ title: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Header</h2>
       <div class="badges">
-        <label for="c-22-data-display-header-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-23-data-display-header-props" class="badge ok as-toggle">14 prop types</label>
         
-        <label for="c-22-data-display-header-stories" class="badge ok as-toggle">20 stories</label>
+        <label for="c-23-data-display-header-stories" class="badge ok as-toggle">20 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Header/Header.stories.tsx">data-display-header · ./src/Header/Header.stories.tsx</div>
@@ -3664,8 +3713,8 @@ title: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-22-data-display-header-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-22-data-display-header-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-23-data-display-header-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-23-data-display-header-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4113,9 +4162,9 @@ import Typography from "@mui/material/Typography";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> HeaderLayout</h2>
       <div class="badges">
-        <label for="c-23-layouts-headerlayout-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-24-layouts-headerlayout-props" class="badge ok as-toggle">8 prop types</label>
         
-        <label for="c-23-layouts-headerlayout-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-24-layouts-headerlayout-stories" class="badge ok as-toggle">6 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/HeaderLayout/HeaderLayout.stories.tsx">layouts-headerlayout · ./src/HeaderLayout/HeaderLayout.stories.tsx</div>
@@ -4127,8 +4176,8 @@ import Typography from "@mui/material/Typography";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-23-layouts-headerlayout-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-23-layouts-headerlayout-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-24-layouts-headerlayout-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-24-layouts-headerlayout-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4330,9 +4379,9 @@ import Typography from "@mui/material/Typography";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ListPanel</h2>
       <div class="badges">
-        <label for="c-24-containers-listpanel-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-25-containers-listpanel-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-24-containers-listpanel-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-25-containers-listpanel-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ListPanel/ListPanel.stories.tsx">containers-listpanel · ./src/ListPanel/ListPanel.stories.tsx</div>
@@ -4344,8 +4393,8 @@ import Typography from "@mui/material/Typography";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-24-containers-listpanel-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-24-containers-listpanel-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-25-containers-listpanel-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-25-containers-listpanel-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4446,9 +4495,9 @@ import { ListPanel, ListPanelDemoContent, ListPanelPanel } from "@pautena/react-
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Placeholder</h2>
       <div class="badges">
-        <label for="c-25-placeholders-placeholder-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-26-placeholders-placeholder-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-25-placeholders-placeholder-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-26-placeholders-placeholder-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/Placeholder/Placeholder.stories.tsx">placeholders-placeholder · ./src/Placeholder/Placeholder.stories.tsx</div>
@@ -4460,8 +4509,8 @@ import { ListPanel, ListPanelDemoContent, ListPanelPanel } from "@pautena/react-
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-25-placeholders-placeholder-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-25-placeholders-placeholder-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-26-placeholders-placeholder-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-26-placeholders-placeholder-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4573,9 +4622,9 @@ import SearchIcon from "@mui/icons-material/Search";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> QueryContainer</h2>
       <div class="badges">
-        <label for="c-26-feedback-querycontainer-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-27-feedback-querycontainer-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-26-feedback-querycontainer-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-27-feedback-querycontainer-stories" class="badge ok as-toggle">8 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/QueryContainer/QueryContainer.stories.tsx">feedback-querycontainer · ./src/QueryContainer/QueryContainer.stories.tsx</div>
@@ -4587,8 +4636,8 @@ import SearchIcon from "@mui/icons-material/Search";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-26-feedback-querycontainer-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-26-feedback-querycontainer-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-27-feedback-querycontainer-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-27-feedback-querycontainer-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4811,9 +4860,9 @@ import Typography from "@mui/material/Typography";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> RemoteDataTable</h2>
       <div class="badges">
-        <label for="c-27-tables-remotedatatable-props" class="badge ok as-toggle">13 prop types</label>
+        <label for="c-28-tables-remotedatatable-props" class="badge ok as-toggle">13 prop types</label>
         
-        <label for="c-27-tables-remotedatatable-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-28-tables-remotedatatable-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/RemoteDataTable/RemoteDataTable.stories.tsx">tables-remotedatatable · ./src/RemoteDataTable/RemoteDataTable.stories.tsx</div>
@@ -4825,8 +4874,8 @@ import Typography from "@mui/material/Typography";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-27-tables-remotedatatable-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-27-tables-remotedatatable-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-28-tables-remotedatatable-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-28-tables-remotedatatable-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5055,22 +5104,22 @@ sorting?: Array&lt;{
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Select</h2>
       <div class="badges">
-        <label for="c-28-inputs-select-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-29-forms-select-props" class="badge ok as-toggle">12 prop types</label>
         
-        <label for="c-28-inputs-select-stories" class="badge ok as-toggle">8 stories</label>
+        <label for="c-29-forms-select-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Select/Select.stories.tsx">inputs-select · ./src/Select/Select.stories.tsx</div>
+    <div class="meta" title="./src/components/forms/select/select.stories.tsx">forms-select · ./src/components/forms/select/select.stories.tsx</div>
     
-    <div class="hint">A custom Select component that extends the functionality of the Material-UI Select component. This component supports additional features such as loading and fetching states, custom colors, and full-width display. Supports extensive customization through slots and slotProps.</div>
-    <div class="kv"><span class="chip">example:  ```tsx // Basic usage &lt;Select label=&quot;Country&quot; value={country} onChange={handleChange}&gt; &lt;MenuItem value=&quot;us&quot;&gt;United States&lt;/MenuItem&gt; &lt;MenuItem value=&quot;uk&quot;&gt;United Kingdom&lt;/MenuItem&gt; &lt;/Select&gt; // With custom loading indicator &lt;Select label=&quot;Status&quot; value={status} loading slotProps={{ loadingIndicator: { size: 24 } }} /&gt; ```</span></div>
+    <div class="hint">Native select wrapper with loading and fetching states.</div>
+    
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-28-inputs-select-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-28-inputs-select-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-29-forms-select-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-29-forms-select-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5080,64 +5129,75 @@ sorting?: Array&lt;{
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">11 prop types</span>
+              <span class="badge ok">12 prop types</span>
             </div>
-            <pre><code>Component: src/Select/Select.tsx::Select</code></pre>
+            <pre><code>Component: src/components/forms/select/select.tsx::Select</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * The child elements to be rendered within the select input.
+ * Optional option children for compatibility.
  */
 children?: ReactNode
 
 /**
- * The color of the select input.
+ * Optional accent color used for border and text.
  */
 color?: string
 
 /**
- * If true, the select input is in a fetching state.
+ * Error text rendered below the select.
+ */
+error?: ReactNode
+
+/**
+ * Shows a progress state while options are being fetched.
+ * @default false
  */
 fetching?: boolean = false
 
 /**
- * If true, the select input takes up the full width of its container.
+ * Makes the select span the container width.
+ * @default false
  */
 fullWidth?: boolean = false
 
 /**
- * The label for the select input.
+ * Helper text rendered below the select.
+ */
+helperText?: ReactNode
+
+/**
+ * Label shown above the select.
  */
 label: string
 
 /**
- * If true, the select input is in a loading state.
+ * Shows a spinner while value is loading.
+ * @default false
  */
 loading?: boolean = false
 
 /**
- * The callback function to handle changes to the select input.
+ * Called when the select value changes.
+ * @param e - Native select change event.
+ * @param value - Trimmed selected value.
  */
-onChange?: MuiSelectProps&lt;T&gt;[&quot;onChange&quot;]
+onChangeValue?: (e: ChangeEvent&lt;HTMLSelectElement&gt;, value: string) =&gt; void
 
 /**
- * The size of the select input.
+ * Select options for native rendering.
+ */
+options?: SelectOption[]
+
+/**
+ * Input size variant.
+ * @default &quot;medium&quot;
  */
 size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;
 
 /**
- * Optional props for the slots
+ * Selected value.
  */
-slotProps?: SelectSlotProps
-
-/**
- * Optional slots for custom rendering within the select
- */
-slots?: SelectSlots
-
-/**
- * The selected value.
- */
-value: T</code></pre>
+value: string</code></pre>
           </div>
         </div>
     
@@ -5149,9 +5209,7 @@ value: T</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import Box from "@mui/material/Box";
-import MenuItem from "@mui/material/MenuItem";
-import { Select } from "@pautena/react-design-system";</code></pre>
+                <pre><code>import { Select } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -5162,58 +5220,7 @@ import { Select } from "@pautena/react-design-system";</code></pre>
               </div>
               
               
-              <pre><code>const Default = (args) =&gt; {
-  const { options, ...rest } = args as TemplateProps&lt;string&gt;;
-  return (
-    &lt;Select {...rest}&gt;
-      {options.map((option) =&gt; (
-        &lt;MenuItem key={option} value={option}&gt;
-          {option}
-        &lt;/MenuItem&gt;
-      ))}
-    &lt;/Select&gt;
-  );
-};</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithoutFullWidth</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithoutFullWidth = (args) =&gt; {
-  const { options, ...rest } = args as TemplateProps&lt;string&gt;;
-  return (
-    &lt;Select {...rest}&gt;
-      {options.map((option) =&gt; (
-        &lt;MenuItem key={option} value={option}&gt;
-          {option}
-        &lt;/MenuItem&gt;
-      ))}
-    &lt;/Select&gt;
-  );
-};</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">SelectLoaded</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const SelectLoaded = (args) =&gt; {
-  const { options, ...rest } = args as TemplateProps&lt;string&gt;;
-  return (
-    &lt;Select {...rest}&gt;
-      {options.map((option) =&gt; (
-        &lt;MenuItem key={option} value={option}&gt;
-          {option}
-        &lt;/MenuItem&gt;
-      ))}
-    &lt;/Select&gt;
-  );
-};</code></pre>
+              <pre><code>const Default = () =&gt; &lt;Select label=&quot;Car model&quot; value={options[0].value} options={options} fullWidth /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -5222,18 +5229,7 @@ import { Select } from "@pautena/react-design-system";</code></pre>
               </div>
               
               
-              <pre><code>const Loading = (args) =&gt; {
-  const { options, ...rest } = args as TemplateProps&lt;string&gt;;
-  return (
-    &lt;Select {...rest}&gt;
-      {options.map((option) =&gt; (
-        &lt;MenuItem key={option} value={option}&gt;
-          {option}
-        &lt;/MenuItem&gt;
-      ))}
-    &lt;/Select&gt;
-  );
-};</code></pre>
+              <pre><code>const Loading = () =&gt; &lt;Select loading /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -5242,123 +5238,27 @@ import { Select } from "@pautena/react-design-system";</code></pre>
               </div>
               
               
-              <pre><code>const Fetching = (args) =&gt; {
-  const { options, ...rest } = args as TemplateProps&lt;string&gt;;
-  return (
-    &lt;Select {...rest}&gt;
-      {options.map((option) =&gt; (
-        &lt;MenuItem key={option} value={option}&gt;
-          {option}
-        &lt;/MenuItem&gt;
-      ))}
-    &lt;/Select&gt;
-  );
-};</code></pre>
+              <pre><code>const Fetching = () =&gt; &lt;Select fetching /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">SizeSmall</span>
+                <span class="ex-name">Error</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const SizeSmall = (args) =&gt; {
-  const { options, ...rest } = args as TemplateProps&lt;string&gt;;
-  return (
-    &lt;Select {...rest}&gt;
-      {options.map((option) =&gt; (
-        &lt;MenuItem key={option} value={option}&gt;
-          {option}
-        &lt;/MenuItem&gt;
-      ))}
-    &lt;/Select&gt;
-  );
-};</code></pre>
+              <pre><code>const Error = () =&gt; &lt;Select
+    helperText=&quot;Select your vehicle model&quot;
+    error=&quot;A model selection is required&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">WithBackground</span>
+                <span class="ex-name">Small</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const WithBackground = ({ options, bgcolor: bgcolorProp, ...rest }: WithBackgroundProps) =&gt; {
-  const { palette } = useTheme();
-  const BackgroundColors: Record&lt;&quot;primary&quot; | &quot;secondary&quot;, string&gt; = {
-    primary: palette.primary.main,
-    secondary: palette.secondary.main,
-  };
-  const bgcolor = BackgroundColors[bgcolorProp];
-  const selectColor = palette.getContrastText(bgcolor);
-
-  return (
-    &lt;Box bgcolor={bgcolor} padding={3}&gt;
-      &lt;Select {...rest} color={selectColor}&gt;
-        {options.map((option) =&gt; (
-          &lt;MenuItem key={option} value={option}&gt;
-            {option}
-          &lt;/MenuItem&gt;
-        ))}
-      &lt;/Select&gt;
-    &lt;/Box&gt;
-  );
-};</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithSlotPropsCustomization</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              <div class="hint">Example demonstrating slot props customization. All internal elements can be replaced with custom components and styled.</div>
-              <pre><code>const WithSlotPropsCustomization = (args) =&gt; {
-  // Custom styled components
-  const CustomFormControl = styled(Box)(({ theme }) =&gt; ({
-    display: &quot;flex&quot;,
-    flexDirection: &quot;column&quot;,
-    gap: theme.spacing(1),
-    padding: theme.spacing(2),
-    border: `2px dashed ${theme.palette.primary.main}`,
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.background.paper,
-  }));
-
-  const CustomLabel = styled(Box)(({ theme }) =&gt; ({
-    fontSize: &quot;0.875rem&quot;,
-    fontWeight: 600,
-    color: theme.palette.primary.main,
-    textTransform: &quot;uppercase&quot;,
-    letterSpacing: &quot;0.5px&quot;,
-  }));
-
-  const { options, ...rest } = args as TemplateProps&lt;string&gt;;
-
-  return (
-    &lt;Select
-      {...rest}
-      slots={{
-        formControl: CustomFormControl as any,
-        inputLabel: CustomLabel as any,
-      }}
-      slotProps={{
-        select: {
-          sx: {
-            backgroundColor: &quot;primary.light&quot;,
-            &quot;&amp; .MuiOutlinedInput-notchedOutline&quot;: {
-              borderColor: &quot;primary.main&quot;,
-            },
-          },
-        },
-      }}
-    &gt;
-      {options.map((option) =&gt; (
-        &lt;MenuItem key={option} value={option}&gt;
-          {option}
-        &lt;/MenuItem&gt;
-      ))}
-    &lt;/Select&gt;
-  );
-};</code></pre>
+              <pre><code>const Small = () =&gt; &lt;Select size=&quot;small&quot; /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -5374,9 +5274,9 @@ import { Select } from "@pautena/react-design-system";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SkeletonCard</h2>
       <div class="badges">
-        <label for="c-29-placeholders-skeletoncard-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-30-placeholders-skeletoncard-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-29-placeholders-skeletoncard-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-30-placeholders-skeletoncard-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/skeleton-card/skeleton-card.stories.tsx">placeholders-skeletoncard · ./src/components/skeleton-card/skeleton-card.stories.tsx</div>
@@ -5388,8 +5288,8 @@ import { Select } from "@pautena/react-design-system";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-29-placeholders-skeletoncard-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-29-placeholders-skeletoncard-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-30-placeholders-skeletoncard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-30-placeholders-skeletoncard-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5461,9 +5361,9 @@ width?: number | string = &quot;100%&quot;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> SkeletonGrid</h2>
       <div class="badges">
-        <label for="c-30-placeholders-skeletongrid-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-31-placeholders-skeletongrid-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-30-placeholders-skeletongrid-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-31-placeholders-skeletongrid-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/skeleton-grid/skeleton-grid.stories.tsx">placeholders-skeletongrid · ./src/components/skeleton-grid/skeleton-grid.stories.tsx</div>
@@ -5475,8 +5375,8 @@ width?: number | string = &quot;100%&quot;</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-30-placeholders-skeletongrid-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-30-placeholders-skeletongrid-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-31-placeholders-skeletongrid-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-31-placeholders-skeletongrid-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5542,9 +5442,9 @@ size?: number = 20</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> TabCardDummy</h2>
       <div class="badges">
-        <label for="c-31-navigation-tabcard-props" class="badge ok as-toggle">3 prop types</label>
-        <label for="c-31-navigation-tabcard-info" class="badge info as-toggle">1 info</label>
-        <label for="c-31-navigation-tabcard-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-32-navigation-tabcard-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-32-navigation-tabcard-info" class="badge info as-toggle">1 info</label>
+        <label for="c-32-navigation-tabcard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/tab-card/tab-card.stories.tsx">navigation-tabcard · ./src/components/tab-card/tab-card.stories.tsx</div>
@@ -5555,9 +5455,9 @@ size?: number = 20</code></pre>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
-  <input id="c-31-navigation-tabcard-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-31-navigation-tabcard-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-31-navigation-tabcard-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-32-navigation-tabcard-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-32-navigation-tabcard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-32-navigation-tabcard-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5618,27 +5518,27 @@ tabs: TabData[]</code></pre>
   no-info 
   no-story-error"
   role="listitem"
-  aria-label="TextField">
+  aria-label="TextareaField">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-ok"></span> TextField</h2>
+      <h2><span class="status-dot dot-ok"></span> TextareaField</h2>
       <div class="badges">
-        <label for="c-32-inputs-textfield-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-33-forms-textareafield-props" class="badge ok as-toggle">9 prop types</label>
         
-        <label for="c-32-inputs-textfield-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-33-forms-textareafield-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/TextField/TextField.stories.tsx">inputs-textfield · ./src/TextField/TextField.stories.tsx</div>
+    <div class="meta" title="./src/components/forms/textarea-field/textarea-field.stories.tsx">forms-textareafield · ./src/components/forms/textarea-field/textarea-field.stories.tsx</div>
     
-    <div class="hint">A customizable TextField component that extends the functionality of the Material-UI TextField component and supports various props for styling and functionality. Supports extensive customization through slots and slotProps.</div>
-    <div class="kv"><span class="chip">example:  ```tsx // Basic usage &lt;TextField label=&quot;Email&quot; /&gt; // With loading state &lt;TextField label=&quot;Search&quot; loading /&gt; // Custom loading indicator size &lt;TextField label=&quot;Username&quot; loading slotProps={{ loadingIndicator: { size: 24 } }} /&gt; ```</span></div>
+    <div class="hint">Multiline text input with loading state.</div>
+    
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-32-inputs-textfield-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-32-inputs-textfield-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-33-forms-textareafield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-33-forms-textareafield-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5648,34 +5548,59 @@ tabs: TabData[]</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">5 prop types</span>
+              <span class="badge ok">9 prop types</span>
             </div>
-            <pre><code>Component: src/TextField/TextField.tsx::TextField</code></pre>
+            <pre><code>Component: src/components/forms/textarea-field/textarea-field.tsx::TextareaField</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Indicates if the field is in a fetching state.
+ * Error text rendered below the textarea.
  */
-fetching?: boolean
+error?: ReactNode
 
 /**
- * Optional hex color code for the text field.
+ * Makes the field span the container width.
+ * @default false
+ */
+fullWidth?: boolean = false
+
+/**
+ * Helper text rendered below the textarea.
+ */
+helperText?: ReactNode
+
+/**
+ * Optional accent color used for border and text.
  */
 hexColor?: string
 
 /**
- * Indicates if the field is in a loading state.
+ * Additional props for the textarea content area.
  */
-loading?: boolean
+InputProps?: TextareaFieldInputProps
 
 /**
- * Optional props for the slots
+ * Label shown above the textarea.
  */
-slotProps?: TextFieldSlotProps
+label?: string
 
 /**
- * Optional slots for custom rendering within the text field
+ * Shows a spinner inside the field.
+ * @default false
  */
-slots?: TextFieldSlots</code></pre>
+loading?: boolean = false
+
+/**
+ * Called when the textarea value changes.
+ * @param e - Native textarea change event.
+ * @param value - Trimmed textarea value.
+ */
+onChangeValue?: (e: ChangeEvent&lt;HTMLTextAreaElement&gt;, value: string) =&gt; void
+
+/**
+ * Number of visible text rows.
+ * @default 4
+ */
+rowCount?: number = 4</code></pre>
           </div>
         </div>
     
@@ -5687,10 +5612,177 @@ slots?: TextFieldSlots</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import Box from "@mui/material/Box";
-import ClearIcon from "@mui/icons-material/Clear";
-import IconButton from "@mui/material/IconButton";
-import { TextField } from "@pautena/react-design-system";</code></pre>
+                <pre><code>import { TextareaField } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;TextareaField label=&quot;Vehicle notes&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">HelperText</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const HelperText = () =&gt; &lt;TextareaField helperText=&quot;Describe relevant vehicle details&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Error</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Error = () =&gt; &lt;TextareaField helperText=&quot;Describe relevant vehicle details&quot; error=&quot;Notes are required&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Loading</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Loading = () =&gt; &lt;TextareaField loading /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Disabled</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Disabled = () =&gt; &lt;TextareaField disabled /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Placeholder</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Placeholder = () =&gt; &lt;TextareaField placeholder=&quot;Type additional context...&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">RowCount</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const RowCount = () =&gt; &lt;TextareaField rowCount={8} /&gt;;</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error"
+  role="listitem"
+  aria-label="TextField">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> TextField</h2>
+      <div class="badges">
+        <label for="c-34-forms-textfield-props" class="badge ok as-toggle">9 prop types</label>
+        
+        <label for="c-34-forms-textfield-stories" class="badge ok as-toggle">7 stories</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/forms/text-field/text-field.stories.tsx">forms-textfield · ./src/components/forms/text-field/text-field.stories.tsx</div>
+    
+    <div class="hint">Text input with loading state.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-34-forms-textfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-34-forms-textfield-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types</span>
+              <span class="badge ok">9 prop types</span>
+            </div>
+            <pre><code>Component: src/components/forms/text-field/text-field.tsx::TextField</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Error text rendered below the input.
+ */
+error?: ReactNode
+
+/**
+ * Makes the field span the container width.
+ * @default false
+ */
+fullWidth?: boolean = false
+
+/**
+ * Helper text rendered below the input.
+ */
+helperText?: ReactNode
+
+/**
+ * Optional accent color used for border and text.
+ */
+hexColor?: string
+
+/**
+ * Additional props for the input content area.
+ */
+InputProps?: TextFieldInputProps
+
+/**
+ * Label shown above the input.
+ */
+label?: string
+
+/**
+ * Shows a spinner inside the field.
+ * @default false
+ */
+loading?: boolean = false
+
+/**
+ * Called when the input value changes.
+ * @param e - Native input change event.
+ * @param value - Trimmed input value.
+ */
+onChangeValue?: (e: ChangeEvent&lt;HTMLInputElement&gt;, value: string) =&gt; void
+
+/**
+ * Input size variant.
+ * @default &quot;medium&quot;
+ */
+size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { TextField } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -5710,7 +5802,16 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
               </div>
               
               
-              <pre><code>const HelperText = () =&gt; &lt;TextField helperText=&quot;This is a helper text&quot; /&gt;;</code></pre>
+              <pre><code>const HelperText = () =&gt; &lt;TextField helperText=&quot;Use the official model name&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Error</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Error = () =&gt; &lt;TextField helperText=&quot;Use the official model name&quot; error=&quot;Model is required&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -5723,68 +5824,6 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">LoadingWithValue</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const LoadingWithValue = () =&gt; &lt;TextField loading value={options[0]} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Fetching</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Fetching = () =&gt; &lt;TextField fetching /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">LoadingAndFetching</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const LoadingAndFetching = () =&gt; &lt;TextField fetching loading /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">FetchingWithEndAdornment</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const FetchingWithEndAdornment = () =&gt; &lt;TextField
-    fetching
-    InputProps={{
-      endAdornment: (
-        &lt;IconButton&gt;
-          &lt;ClearIcon /&gt;
-        &lt;/IconButton&gt;
-      ),
-    }} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">SizeSmall</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const SizeSmall = () =&gt; &lt;TextField size=&quot;small&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">SizeSmallFetching</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const SizeSmallFetching = () =&gt; &lt;TextField size=&quot;small&quot; fetching /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
                 <span class="ex-name">Disabled</span>
                 <span class="badge ok">story ok</span>
               </div>
@@ -5794,65 +5833,21 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">SizeSmallLoading</span>
+                <span class="ex-name">Placeholder</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const SizeSmallLoading = () =&gt; &lt;TextField size=&quot;small&quot; loading /&gt;;</code></pre>
+              <pre><code>const Placeholder = () =&gt; &lt;TextField placeholder=&quot;Type a car model...&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">WithBackground</span>
+                <span class="ex-name">Small</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const WithBackground = ({
-  bgcolor: bgcolorProp,
-  fetching,
-  loading,
-}: WithBackgroundProps) =&gt; {
-  const { palette } = useTheme();
-  const BackgroundColors: Record&lt;&quot;primary&quot; | &quot;secondary&quot;, string&gt; = {
-    primary: palette.primary.main,
-    secondary: palette.secondary.main,
-  };
-  const bgcolor = BackgroundColors[bgcolorProp];
-  const color = palette.getContrastText(bgcolor);
-
-  return (
-    &lt;Box bgcolor={bgcolor} padding={3}&gt;
-      &lt;TextField
-        label=&quot;Car model&quot;
-        hexColor={color}
-        fetching={fetching}
-        loading={loading}
-      /&gt;
-    &lt;/Box&gt;
-  );
-};</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithSlotPropsCustomization</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithSlotPropsCustomization = () =&gt; &lt;TextField
-    label=&quot;Username&quot;
-    loading
-    helperText=&quot;Enter your username&quot;
-    slotProps={{
-      loadingIndicator: {
-        size: 24,
-        color: &quot;primary&quot;,
-      },
-      helperText: {
-        sx: { fontWeight: &quot;bold&quot; },
-      },
-    }} /&gt;;</code></pre>
+              <pre><code>const Small = () =&gt; &lt;TextField size=&quot;small&quot; /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -5868,9 +5863,9 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueBoolean</h2>
       <div class="badges">
-        <label for="c-33-data-display-valueboolean-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-35-data-display-valueboolean-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-33-data-display-valueboolean-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-35-data-display-valueboolean-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-boolean/value-boolean.stories.tsx">data-display-valueboolean · ./src/components/value-boolean/value-boolean.stories.tsx</div>
@@ -5882,8 +5877,8 @@ import { TextField } from "@pautena/react-design-system";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-33-data-display-valueboolean-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-33-data-display-valueboolean-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-35-data-display-valueboolean-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-35-data-display-valueboolean-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -5982,9 +5977,9 @@ value?: T</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueCard</h2>
       <div class="badges">
-        <label for="c-34-data-display-valuecard-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-36-data-display-valuecard-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-34-data-display-valuecard-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-36-data-display-valuecard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-card/value-card.stories.tsx">data-display-valuecard · ./src/components/value-card/value-card.stories.tsx</div>
@@ -5996,8 +5991,8 @@ value?: T</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-34-data-display-valuecard-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-34-data-display-valuecard-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-36-data-display-valuecard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-36-data-display-valuecard-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6055,9 +6050,9 @@ children?: ReactNode</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueDatetime</h2>
       <div class="badges">
-        <label for="c-35-data-display-valuedatetime-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-37-data-display-valuedatetime-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-35-data-display-valuedatetime-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-37-data-display-valuedatetime-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-datetime/value-datetime.stories.tsx">data-display-valuedatetime · ./src/components/value-datetime/value-datetime.stories.tsx</div>
@@ -6069,8 +6064,8 @@ children?: ReactNode</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-35-data-display-valuedatetime-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-35-data-display-valuedatetime-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-37-data-display-valuedatetime-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-37-data-display-valuedatetime-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6174,9 +6169,9 @@ value?: Date</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueImage</h2>
       <div class="badges">
-        <label for="c-36-data-display-valueimage-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-38-data-display-valueimage-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-36-data-display-valueimage-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-38-data-display-valueimage-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-image/value-image.stories.tsx">data-display-valueimage · ./src/components/value-image/value-image.stories.tsx</div>
@@ -6188,8 +6183,8 @@ value?: Date</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-36-data-display-valueimage-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-36-data-display-valueimage-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-38-data-display-valueimage-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-38-data-display-valueimage-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6284,9 +6279,9 @@ value?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueItem</h2>
       <div class="badges">
-        <label for="c-37-data-display-valueitem-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-39-data-display-valueitem-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-37-data-display-valueitem-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-39-data-display-valueitem-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-item/value-item.stories.tsx">data-display-valueitem · ./src/components/value-item/value-item.stories.tsx</div>
@@ -6298,8 +6293,8 @@ value?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-37-data-display-valueitem-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-37-data-display-valueitem-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-39-data-display-valueitem-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-39-data-display-valueitem-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6393,9 +6388,9 @@ value?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueLabel</h2>
       <div class="badges">
-        <label for="c-38-data-display-valuelabel-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-40-data-display-valuelabel-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-38-data-display-valuelabel-stories" class="badge ok as-toggle">9 stories</label>
+        <label for="c-40-data-display-valuelabel-stories" class="badge ok as-toggle">9 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-label/value-label.stories.tsx">data-display-valuelabel · ./src/components/value-label/value-label.stories.tsx</div>
@@ -6407,8 +6402,8 @@ value?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-38-data-display-valuelabel-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-38-data-display-valuelabel-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-40-data-display-valuelabel-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-40-data-display-valuelabel-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6560,9 +6555,9 @@ variant?: BadgeVariant | BadgeVariant[]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueRating</h2>
       <div class="badges">
-        <label for="c-39-data-display-valuerating-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-41-data-display-valuerating-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-39-data-display-valuerating-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-41-data-display-valuerating-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-rating/value-rating.stories.tsx">data-display-valuerating · ./src/components/value-rating/value-rating.stories.tsx</div>
@@ -6574,8 +6569,8 @@ variant?: BadgeVariant | BadgeVariant[]</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-39-data-display-valuerating-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-39-data-display-valuerating-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-41-data-display-valuerating-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-41-data-display-valuerating-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -6671,9 +6666,9 @@ value?: T = 0</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ValueText</h2>
       <div class="badges">
-        <label for="c-40-data-display-valuetext-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-42-data-display-valuetext-props" class="badge ok as-toggle">4 prop types</label>
         
-        <label for="c-40-data-display-valuetext-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-42-data-display-valuetext-stories" class="badge ok as-toggle">6 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/value-text/value-text.stories.tsx">data-display-valuetext · ./src/components/value-text/value-text.stories.tsx</div>
@@ -6685,8 +6680,8 @@ value?: T = 0</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-40-data-display-valuetext-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-40-data-display-valuetext-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-42-data-display-valuetext-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-42-data-display-valuetext-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
