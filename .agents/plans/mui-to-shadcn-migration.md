@@ -709,7 +709,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 5: Layout & Navigation 🏗️
+### ✓ Phase 5: Layout & Navigation 🏗️
 
 **Agent**: @react-developer  
 **Skills**: code-react-unit-testing, code-react-storybook, code-react-tanstack-router
@@ -1028,7 +1028,7 @@ llms.txt                        # AI context file (root)
 | 2     | ✅ Complete | 8 components         | 2026-02-21 | 2026-02-21 | Migrated to shadcn/Tailwind wrappers + registry entries |
 | 3     | ✅ Complete | 7 components         | 2026-02-21 | 2026-02-21 | Migrated card/display set to shadcn/Tailwind wrappers + registry entries |
 | 4     | ✅ Complete | 3 components         | 2026-02-21 | 2026-02-21 | Migrated TextField, Select, and Autocomplete to shadcn/Tailwind wrappers + registry entries |
-| 5     | ⏳ Planned  | 13 components        | -          | -          | -     |
+| 5     | ✅ Complete | 13 components        | 2026-02-22 | 2026-02-22 | Migrated content/header/placeholder + Drawerx system to `src/components/*` wrappers |
 | 6     | ⏳ Planned  | 6 components         | -          | -          | -     |
 | 7     | ⏳ Planned  | 5 components         | -          | -          | -     |
 | 8     | ⏸️ Deferred | 2 components         | -          | -          | -     |
@@ -1067,6 +1067,15 @@ llms.txt                        # AI context file (root)
   - Added corresponding entries to `registry.json`
   - Generated registry artifacts via `npm run build:registry`
   - Full test suite passing (446 passed, 3 skipped)
+
+### 2026-02-22
+- ✅ Phase 5 completed
+  - Migrated `Content`, `ContentPlaceholder`, `Header`, `HeaderLayout`, and `Placeholder` to wrappers under `src/components/*`
+  - Migrated Drawerx system (`DrawerContext`, `Drawer`, `DrawerLayout`, `DrawerMain`, `DrawerContent`, `DrawerAppBar`, `DrawerItem`, `DrawerSubheader`) under `src/components/*`
+  - Deleted legacy folders under `src/Content*`, `src/Header*`, `src/Placeholder`, and `src/Drawerx`
+  - Updated `src/index.ts` exports and docs/story imports to new paths
+  - Added phase-5 registry entries (`content`, `content-placeholder`, `header`, `header-layout`, `placeholder`, `drawer-layout`)
+  - Full test suite passing (422 passed)
 
 ### 2026-02-18
 - ✅ Migration plan created
