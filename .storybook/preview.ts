@@ -4,10 +4,17 @@ import type { Preview } from "@storybook/react";
 import type { Renderer } from "storybook/internal/csf";
 import "../src/styles/globals.css";
 
-const lightTheme = createTheme();
+const lightTheme = createTheme({
+  typography: {
+    fontFamily: '"Geist", "Geist Fallback", sans-serif',
+  },
+});
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+  },
+  typography: {
+    fontFamily: '"Geist", "Geist Fallback", sans-serif',
   },
 });
 

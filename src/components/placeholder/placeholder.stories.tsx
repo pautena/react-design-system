@@ -1,7 +1,7 @@
-import SearchIcon from "@mui/icons-material/Search";
 import type { Meta, StoryObj } from "@storybook/react";
-import Placeholder, { type PlaceholderIconArgs } from "./Placeholder";
-import { actions } from "./Placeholder.mock";
+import { Search } from "lucide-react";
+import Placeholder, { type PlaceholderIconArgs } from "./placeholder";
+import { actions } from "./placeholder.mock";
 
 export default {
   title: "Placeholders/Placeholder",
@@ -10,6 +10,7 @@ export default {
     layout: "fullscreen",
   },
 } satisfies Meta<typeof Placeholder>;
+
 type Story = StoryObj<typeof Placeholder>;
 
 export const Default: Story = {
@@ -22,9 +23,7 @@ export const Default: Story = {
 
 export const WithIcon: Story = {
   args: {
-    icon: ({ size, color }: PlaceholderIconArgs) => (
-      <SearchIcon color={color} sx={{ fontSize: size }} />
-    ),
+    icon: ({ size }: PlaceholderIconArgs) => <Search size={size} />,
     title: "Lorem ipsum dolor sit amet",
     subtitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",
@@ -33,9 +32,7 @@ export const WithIcon: Story = {
 
 export const WithActions: Story = {
   args: {
-    icon: ({ size, color }: PlaceholderIconArgs) => (
-      <SearchIcon color={color} sx={{ fontSize: size }} />
-    ),
+    icon: ({ size }: PlaceholderIconArgs) => <Search size={size} />,
     title: "Lorem ipsum dolor sit amet",
     subtitle:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor",

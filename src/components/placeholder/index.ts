@@ -3,5 +3,5 @@ export type {
   PlaceholderIcon,
   PlaceholderIconArgs,
   PlaceholderProps,
-} from "./Placeholder";
-export { default, default as Placeholder } from "./Placeholder";
+} from "./placeholder";
+export { default, default as Placeholder } from "./placeholder";

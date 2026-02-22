@@ -1,10 +1,10 @@
-import SearchIcon from "@mui/icons-material/Search";
 import userEvent from "@testing-library/user-event";
+import { Search } from "lucide-react";
 import type { ReactElement } from "react";
 import { vi } from "vitest";
-import { render, screen } from "../tests/testing-library";
-import Placeholder, { type PlaceholderAction } from "./Placeholder";
-import { actions as actionData } from "./Placeholder.mock";
+import { render, screen } from "../../tests/testing-library";
+import Placeholder, { type PlaceholderAction } from "./placeholder";
+import { actions as actionData } from "./placeholder.mock";
 
 const actions = actionData.map((a) => ({ ...a, onClick: vi.fn() }));
 
@@ -51,7 +51,7 @@ describe("Placeholder", () => {
     });
 
     it("would render an icon if it's set", () => {
-      renderComponent({ icon: <SearchIcon /> });
+      renderComponent({ icon: <Search data-testid="SearchIcon" /> });
 
       expect(screen.queryByTestId("SearchIcon")).toBeInTheDocument();
     });
@@ -77,9 +77,10 @@ describe("Placeholder", () => {
     });
 
     it("would call onClick if a button is clicked", async () => {
+      const user = userEvent.setup();
       renderComponent({ actions });
 
-      await userEvent.click(screen.getByRole("button", { name: /edit/i }));
+      await user.click(screen.getByRole("button", { name: /edit/i }));
 
       expect(actions[1].onClick).toHaveBeenCalledTimes(1);
     });
