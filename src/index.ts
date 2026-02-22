@@ -8,6 +8,8 @@ export * from "./components/badge";
 export { default as Badge } from "./components/badge";
 export * from "./components/board";
 export { default as Board } from "./components/board";
+export * from "./components/breadcrumbs";
+export { default as Breadcrumbs } from "./components/breadcrumbs";
 export * from "./components/bullet";
 export { default as Bullet } from "./components/bullet";
 export * from "./components/button";
