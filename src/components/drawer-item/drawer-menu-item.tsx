@@ -122,7 +122,9 @@ export const DrawerMenuItem = ({
 }: DrawerMenuItemProps) => {
   const { state, size, selectedItemId, LinkComponent } = useDrawer();
   const mini = state === "close";
-  const [collapsibleOpen, setCollapsibleOpen] = useState(() => Boolean(selected));
+  const [collapsibleOpen, setCollapsibleOpen] = useState(() =>
+    Boolean(selected),
+  );
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
@@ -154,7 +156,11 @@ export const DrawerMenuItem = ({
         <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger
             render={
-              <SidebarMenuButton tooltip={text} size={buttonSize} isActive={selected} />
+              <SidebarMenuButton
+                tooltip={text}
+                size={buttonSize}
+                isActive={selected}
+              />
             }
           >
             {icon}
@@ -190,10 +196,7 @@ export const DrawerMenuItem = ({
             {icon}
             <span>{text}</span>
             {collapsibleOpen ? (
-              <ChevronDown
-                data-testid="ExpandMoreIcon"
-                className="ml-auto"
-              />
+              <ChevronDown data-testid="ExpandMoreIcon" className="ml-auto" />
             ) : (
               <ChevronRight
                 data-testid="ChevronRightIcon"
@@ -222,10 +225,7 @@ export const DrawerMenuItem = ({
             {!mini ? <span>{text}</span> : null}
             {!mini ? (
               collapsibleOpen ? (
-                <ChevronDown
-                  data-testid="ExpandMoreIcon"
-                  className="ml-auto"
-                />
+                <ChevronDown data-testid="ExpandMoreIcon" className="ml-auto" />
               ) : (
                 <ChevronRight
                   data-testid="ChevronRightIcon"

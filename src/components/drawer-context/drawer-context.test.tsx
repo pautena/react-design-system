@@ -3,7 +3,6 @@ import DrawerContent from "@/components/drawer-content";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
 import { mockConsoleError } from "../../tests/mocks";
 import { render } from "../../tests/testing-library";
-import { UndefinedProvider } from "./drawer-context";
 
 describe("DrawerContext", () => {
   mockConsoleError();

@@ -19,8 +19,6 @@ import {
   SidebarGroup,
   SidebarMenu,
   SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
 
