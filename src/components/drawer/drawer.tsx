@@ -3,29 +3,6 @@ import { Sidebar, SidebarRail } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
 /**
- * Header spacer for drawer and main content.
- */
-export function DrawerHeader({
-  children,
-  className,
-}: {
-  /**
-   * Header content.
-   */
-  children?: React.ReactNode;
-  /**
-   * Additional classes.
-   */
-  className?: string;
-}) {
-  return (
-    <div className={cn("flex h-14 items-center justify-end px-2", className)}>
-      {children}
-    </div>
-  );
-}
-
-/**
  * Drawer navigation container.
  */
 export default function Drawer({ children, className, ...rest }: DrawerProps) {

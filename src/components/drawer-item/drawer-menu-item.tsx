@@ -122,13 +122,19 @@ export const DrawerMenuItem = ({
 }: DrawerMenuItemProps) => {
   const { state, size, selectedItemId, LinkComponent } = useDrawer();
   const mini = state === "close";
-  const [menuOpen, setMenuOpen] = useState(() => !mini && Boolean(selected));
+  const [collapsibleOpen, setCollapsibleOpen] = useState(() => Boolean(selected));
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     if (mini) {
-      setMenuOpen(false);
+      setDropdownOpen(false);
+      return;
     }
-  }, [mini]);
+
+    if (selected) {
+      setCollapsibleOpen(true);
+    }
+  }, [mini, selected]);
   const buttonSize = size === "small" ? "sm" : "default";
 
   const submenu = useMemo(
@@ -145,7 +151,7 @@ export const DrawerMenuItem = ({
   if (mini && level === 0) {
     return (
       <SidebarMenuItem className={className}>
-        <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
+        <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
           <DropdownMenuTrigger
             render={
               <SidebarMenuButton tooltip={text} size={buttonSize} isActive={selected} />
@@ -176,16 +182,16 @@ export const DrawerMenuItem = ({
 
   return (
     <Collapsible
-      defaultOpen={selected}
+      open={collapsibleOpen}
       className="group/collapsible"
-      onOpenChange={setMenuOpen}
+      onOpenChange={setCollapsibleOpen}
     >
       {level > 0 ? (
         <SidebarMenuSubItem className={className}>
           <CollapsibleTrigger render={<TriggerComponent {...triggerProps} />}>
             {icon}
             <span>{text}</span>
-            {menuOpen ? (
+            {collapsibleOpen ? (
               <ChevronDown
                 data-testid="ExpandMoreIcon"
                 className="ml-auto"
@@ -209,7 +215,7 @@ export const DrawerMenuItem = ({
             {icon}
             {!mini ? <span>{text}</span> : null}
             {!mini ? (
-              menuOpen ? (
+              collapsibleOpen ? (
                 <ChevronDown
                   data-testid="ExpandMoreIcon"
                   className="ml-auto"

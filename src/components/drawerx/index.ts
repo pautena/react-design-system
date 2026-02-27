@@ -1,4 +1,4 @@
-export { DrawerHeader, default as Drawer } from "@/components/drawer";
+export { default as Drawer } from "@/components/drawer";
 export type { DrawerAppBarProps } from "@/components/drawer-app-bar";
 export { default as DrawerAppBar } from "@/components/drawer-app-bar";
 export { default as DrawerContent } from "@/components/drawer-content";

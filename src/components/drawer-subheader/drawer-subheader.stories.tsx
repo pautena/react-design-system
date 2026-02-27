@@ -31,20 +31,5 @@ type Story = StoryObj<DrawerSubheaderStoryArgs>;
 export const Default: Story = {
   args: {
     children: "Lorem ipsum",
-    size: "medium",
-  },
-};
-
-export const Small: Story = {
-  args: {
-    children: "Lorem ipsum",
-    size: "small",
-  },
-};
-
-export const MiniClosed: Story = {
-  args: {
-    children: "Lorem ipsum",
-    initialState: "close",
   },
 };
