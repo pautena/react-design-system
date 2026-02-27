@@ -22,7 +22,7 @@ describe("DrawerLayout", () => {
     renderComponent();
 
     await user.click(screen.getByRole("button", { name: /open drawer/i }));
-    expect(screen.getByRole("link", { name: /item 1.1/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /item 1.1/i })).toBeInTheDocument();
   });
 
   it("would render an appbar", () => {

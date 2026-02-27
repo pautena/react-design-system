@@ -17,6 +17,6 @@ describe("DrawerContext", () => {
           </Drawer>
         </div>,
       ),
-    ).toThrow(UndefinedProvider);
+    ).toThrow(/useSidebar must be used within a SidebarProvider\./i);
   });
 });

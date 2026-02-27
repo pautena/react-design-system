@@ -52,7 +52,7 @@ describe("Drawer", () => {
       clipped: false,
     });
 
-    await user.click(screen.getByRole("button", { name: /toggle/i }));
+    await user.click(screen.getByRole("button", { name: "toggle" }));
     expect(screen.getByText("state: close")).toBeVisible();
   });
 });

@@ -36,7 +36,7 @@ describe("DrawerContent", () => {
   ])("would render item %s", (itemText: RegExp) => {
     renderComponent();
 
-    expect(screen.getByRole("link", { name: itemText })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: itemText })).toBeInTheDocument();
   });
 
   it("should render item 2.3 as a button", () => {
