@@ -1,0 +1,5 @@
+import{w as r}from"./storybook-BmI9ftC1.js";import{D as e}from"./DateRangeCalendar-Dy2QG6ZM.js";import"./iframe-VMkoG4ZL.js";import"./preload-helper-PPVm8Dsz.js";import"./sidebar-DueH6Hjh.js";import"./index-Bo7bF0-3.js";import"./button-BA4CVbS1.js";import"./utils-n6qbTURJ.js";import"./useRenderElement-CHfU-5zq.js";import"./DirectionContext-DiP8kbVn.js";import"./index-6A0628O0.js";import"./index-BgY_nV53.js";import"./x-Df1iV-Zj.js";import"./createLucideIcon-BzgSrC6K.js";import"./index-B3Z8Ou6R.js";import"./useRender-CNg8ByML.js";import"./NotificationCenter.provider-Csm6e6JQ.js";import"./generateUtilityClasses-DGi4yQgU.js";import"./Fade-Du0QGdTH.js";import"./useSlotProps-DQo5DINc.js";import"./Box-JY1TTY9I.js";const v={title:"Inputs/DateRangeCalendar",component:e,decorators:[r],parameters:{layout:"centered"}},t={args:{defaultValue:[new Date(2023,4,2),new Date(2023,4,24)]}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    defaultValue: [new Date(2023, 4, 2), new Date(2023, 4, 24)]
+  }
+}`,...t.parameters?.docs?.source}}};const y=["Default"];export{t as Default,y as __namedExportsOrder,v as default};

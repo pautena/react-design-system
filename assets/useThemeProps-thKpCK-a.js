@@ -1,1 +1,0 @@
-import{t as r,u as p}from"./iframe-OKrkvHog.js";function m(n){const{theme:e,name:o,props:s}=n;return!e||!e.components||!e.components[o]||!e.components[o].defaultProps?s:r(e.components[o].defaultProps,s)}function a({props:n,name:e,defaultTheme:o,themeId:s}){let t=p(o);return s&&(t=t[s]||t),m({theme:t,name:e,props:n})}export{m as g,a as u};

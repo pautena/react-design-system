@@ -74,84 +74,6 @@ A generic form dialog component that wraps a BootstrapDialog and handles form su
 
 [View Documentation](./?path=/docs/dialogs-formdialog--docs)
 
-## Containers
-
-### Content
-
-A functional component that renders its children inside a main container.
-
-**Stories:**
-- [Default](./?path=/story/containers-content--default)
-
-[View Documentation](./?path=/docs/containers-content--docs)
-
-### ListPanel
-
-ListPanel component renders a panel with a list of items and a content area.
-
-**Props:**
-- `defaultSelectedItem`: `string` - The ID of the item that should be selected by default.
-- `items`: `ListPanelItem[]` (required) - The list of items to be displayed in the panel.
-- `listMode`: `"panel" | "navigation"` - The mode of the list, either "panel" or "navigation".
-- `colBreakpoint`: `number` - The breakpoint for column layout.
-- `onSelectedItemChange`: `(id: string) => void` - Callback function that is called when the selected item changes.
-- `children`: `React.ReactNode` - Content to display in the panel area
-
-**Stories:**
-- [Default](./?path=/story/containers-listpanel--default)
-- [Long](./?path=/story/containers-listpanel--long)
-
-[View Documentation](./?path=/docs/containers-listpanel--docs)
-
-## Placeholders
-
-### ContentPlaceholder
-
-A component that serves as a placeholder for content, displaying a skeleton grid.
-
-**Props:**
-- `size`: `number` - Optional size of the placeholder.
-- `p`: `number` - Optional padding for the placeholder.
-- `children`: `React.ReactNode` - Content to display before the skeleton grid
-
-**Stories:**
-- [Default](./?path=/story/placeholders-contentplaceholder--default)
-
-[View Documentation](./?path=/docs/placeholders-contentplaceholder--docs)
-
-### Placeholder
-
-Empty state placeholder with optional icon and actions
-
-**Props:**
-- `title`: `string` (required) - Main title text
-- `subtitle`: `string` (required) - Subtitle or description text
-- `icon`: `PlaceholderIcon` - Custom icon render function
-- `actions`: `PlaceholderAction[]` - Action buttons to display
-
-**Stories:**
-- [Default](./?path=/story/placeholders-placeholder--default)
-- [With Icon](./?path=/story/placeholders-placeholder--with-icon)
-- [With Actions](./?path=/story/placeholders-placeholder--with-actions)
-
-[View Documentation](./?path=/docs/placeholders-placeholder--docs)
-
-### SkeletonCard
-
-**Stories:**
-- [Default](./?path=/story/placeholders-skeletoncard--default)
-- [Animated](./?path=/story/placeholders-skeletoncard--animated)
-
-[View Documentation](./?path=/docs/placeholders-skeletoncard--docs)
-
-### SkeletonGrid
-
-**Stories:**
-- [Default](./?path=/story/placeholders-skeletongrid--default)
-- [Compact](./?path=/story/placeholders-skeletongrid--compact)
-
-[View Documentation](./?path=/docs/placeholders-skeletongrid--docs)
-
 ## Inputs
 
 ### DateRangeCalendar
@@ -202,109 +124,6 @@ DateRangePicker component allows users to select a date range.
 
 [View Documentation](./?path=/docs/inputs-button--docs)
 
-## Navigation
-
-### Drawer
-
-**Stories:**
-- [Default](./?path=/story/navigation-drawer--default)
-
-[View Documentation](./?path=/docs/navigation-drawer--docs)
-
-### Drawer demo
-
-**Stories:**
-- [Temporary](./?path=/story/navigation-drawer-demo--temporary)
-- [Temporary Clipped](./?path=/story/navigation-drawer-demo--temporary-clipped)
-- [Persistent](./?path=/story/navigation-drawer-demo--persistent)
-- [Persistent Clipped](./?path=/story/navigation-drawer-demo--persistent-clipped)
-- [Mini Drawer](./?path=/story/navigation-drawer-demo--mini-drawer)
-
-[View Documentation](./?path=/docs/navigation-drawer-demo--docs)
-
-### DrawerAppBar
-
-**Stories:**
-- [Default](./?path=/story/navigation-drawerappbar--default)
-- [Without Title](./?path=/story/navigation-drawerappbar--without-title)
-
-[View Documentation](./?path=/docs/navigation-drawerappbar--docs)
-
-### DrawerContent
-
-**Stories:**
-- [Default](./?path=/story/navigation-drawercontent--default)
-- [Small](./?path=/story/navigation-drawercontent--small)
-- [Collapsed](./?path=/story/navigation-drawercontent--collapsed)
-
-[View Documentation](./?path=/docs/navigation-drawercontent--docs)
-
-### DrawerItem
-
-**Stories:**
-- [Item (open)](./?path=/story/navigation-draweritem--default)
-- [Item (icon,open)](./?path=/story/navigation-draweritem--item-with-icon)
-- [Item (avatar,open)](./?path=/story/navigation-draweritem--item-with-avatar)
-- [Item (icon,label,open)](./?path=/story/navigation-draweritem--item-with-label)
-- [Item (icon,bullet,open)](./?path=/story/navigation-draweritem--item-with-bullet)
-- [Item (icon,label,selected,open)](./?path=/story/navigation-draweritem--item-selected)
-- [Item (icon,label,small,open)](./?path=/story/navigation-draweritem--item-size-small-with-icon)
-- [Item (avatar,small,open)](./?path=/story/navigation-draweritem--item-size-small-with-avatar)
-- [Item (icon,label,selected,small,open)](./?path=/story/navigation-draweritem--item-size-small-selected)
-- [Menu (open)](./?path=/story/navigation-draweritem--menu-not-selected)
-- [Menu (selected,open)](./?path=/story/navigation-draweritem--menu-selected)
-- [Menu (small,open)](./?path=/story/navigation-draweritem--menu-no-selected-small)
-- [Menu (small,selected,open)](./?path=/story/navigation-draweritem--menu-selected-small)
-
-[View Documentation](./?path=/docs/navigation-draweritem--docs)
-
-### DrawerSubheader
-
-**Stories:**
-- [Default](./?path=/story/navigation-drawersubheader--default)
-- [Small](./?path=/story/navigation-drawersubheader--small)
-
-[View Documentation](./?path=/docs/navigation-drawersubheader--docs)
-
-### TabCard
-
-**Stories:**
-- [Default](./?path=/story/navigation-tabcard--default)
-
-[View Documentation](./?path=/docs/navigation-tabcard--docs)
-
-## Layouts
-
-### DrawerLayout
-
-**Stories:**
-- [Temporary](./?path=/story/layouts-drawerlayout--temporary)
-- [Persistent](./?path=/story/layouts-drawerlayout--persistent)
-- [No Clipped](./?path=/story/layouts-drawerlayout--no-clipped)
-- [Mini](./?path=/story/layouts-drawerlayout--mini)
-- [Mini Small](./?path=/story/layouts-drawerlayout--mini-small)
-- [Custom Link Component](./?path=/story/layouts-drawerlayout--custom-link-component)
-
-[View Documentation](./?path=/docs/layouts-drawerlayout--docs)
-
-### HeaderLayout
-
-A layout component that provides a header and content area with optional loading, fetching, and error states.
-
-**Props:**
-- `header`: `HeaderProps` - Props for the header slot.
-- `content`: `ContentProps` - Props for the content slot.
-
-**Stories:**
-- [Skeleton](./?path=/story/layouts-headerlayout--skeleton)
-- [Data Table](./?path=/story/layouts-headerlayout--data-table)
-- [Tabs](./?path=/story/layouts-headerlayout--tabs)
-- [Loading](./?path=/story/layouts-headerlayout--loading)
-- [Fetching](./?path=/story/layouts-headerlayout--fetching)
-- [Error](./?path=/story/layouts-headerlayout--error)
-
-[View Documentation](./?path=/docs/layouts-headerlayout--docs)
-
 ## Alerts
 
 ### ExpandableAlert
@@ -332,65 +151,99 @@ Alert component with expandable metadata section
 
 [View Documentation](./?path=/docs/alerts-expandablealert--docs)
 
-## Data Display
+## Containers
 
-### Header
+### ListPanel
 
-Section used to provide basic information about the page and display main actions Supports extensive customization through slots and slotProps. Each internal element (breadcrumbs, title, actions, tabs) can be customized or replaced.
+ListPanel component renders a panel with a list of items and a content area.
+
+**Props:**
+- `defaultSelectedItem`: `string` - The ID of the item that should be selected by default.
+- `items`: `ListPanelItem[]` (required) - The list of items to be displayed in the panel.
+- `listMode`: `"panel" | "navigation"` - The mode of the list, either "panel" or "navigation".
+- `colBreakpoint`: `number` - The breakpoint for column layout.
+- `onSelectedItemChange`: `(id: string) => void` - Callback function that is called when the selected item changes.
+- `children`: `React.ReactNode` - Content to display in the panel area
+
+**Stories:**
+- [Default](./?path=/story/containers-listpanel--default)
+- [Long](./?path=/story/containers-listpanel--long)
+
+[View Documentation](./?path=/docs/containers-listpanel--docs)
+
+### Content
+
+**Stories:**
+- [Default](./?path=/story/containers-content--default)
+
+[View Documentation](./?path=/docs/containers-content--docs)
+
+## Feedback
+
+### NotificationCenter
+
+**Stories:**
+- [Default](./?path=/story/feedback-notificationcenter--default)
+
+[View Documentation](./?path=/docs/feedback-notificationcenter--docs)
+
+### QueryContainer
+
+Component to show different indicators based on the usual api query statuses
+
+**Props:**
+- `fetching`: `boolean | boolean[]` - There is a query in progress and we have available data
+- `loading`: `boolean | boolean[]` - There is a query in progress and we don't have available data
+- `error`: `QueryContainerError` - The query has returned an error
+- `success`: `QueryContainerSuccess` - The query has finished successfully
+- `children`: `React.ReactNode` - Content to display when not in loading/error/success state
+
+**Stories:**
+- [Default](./?path=/story/feedback-querycontainer--default)
+- [Fetching](./?path=/story/feedback-querycontainer--fetching)
+- [Fetching And Loading](./?path=/story/feedback-querycontainer--fetching-and-loading)
+- [Error](./?path=/story/feedback-querycontainer--error)
+- [Error With Only Message](./?path=/story/feedback-querycontainer--error-with-only-message)
+- [Success](./?path=/story/feedback-querycontainer--success)
+- [Success With Only Message](./?path=/story/feedback-querycontainer--success-with-only-message)
+- [Content](./?path=/story/feedback-querycontainer--content)
+
+[View Documentation](./?path=/docs/feedback-querycontainer--docs)
+
+## Tables
+
+### RemoteDataTable
+
+A table component designed for displaying remote/server-side data with built-in pagination, sorting, and filtering capabilities. This component is fully controlled - all state (pagination, sorting, filters) must be managed by the parent component. For convenience, use the `useRemoteDataTable` hook to manage this state.
 
 **Example:**
 
 ```tsx
-// Basic usage
-<Header
-  title="Dashboard"
-  subtitle="Welcome back"
-  breadcrumbs={[{id: '1', text: 'Home', link: '/'}]}
-  actions={[{id: 'add', text: 'Add', onClick: handleAdd}]}
-/>
+const tableState = useRemoteDataTable({
+  initialPagination: { pageSize: 25 }
+});
 
-// Custom breadcrumb separator
-<Header
-  title="Settings"
-  breadcrumbs={breadcrumbs}
-  slotProps={{
-    breadcrumbs: { separator: '/' }
-  }}
-/>
-
-// Custom action button styling
-<Header
-  title="Users"
-  actions={actions}
-  slotProps={{
-    actionButton: { size: 'large', variant: 'contained' }
+<RemoteDataTable
+  data={items}
+  columns={columns}
+  {...tableState}
+  query={{
+    fields: queryFields,
+    filters: tableState.filters,
+    onFiltersChange: tableState.onFiltersChange
   }}
 />
 ```
 
 **Stories:**
-- [Default](./?path=/story/data-display-header--default)
-- [Only Title](./?path=/story/data-display-header--only-title)
-- [Custom Title](./?path=/story/data-display-header--custom-title)
-- [Title Loading](./?path=/story/data-display-header--title-loading)
-- [Custom Subtitle](./?path=/story/data-display-header--custom-subtitle)
-- [Subtitle Loading](./?path=/story/data-display-header--subtitle-loading)
-- [Color Inherit](./?path=/story/data-display-header--color-inherit)
-- [Color Primary](./?path=/story/data-display-header--color-primary)
-- [Color Secondary](./?path=/story/data-display-header--color-secondary)
-- [Color Default](./?path=/story/data-display-header--color-default)
-- [Color Transparent](./?path=/story/data-display-header--color-transparent)
-- [With Subheader](./?path=/story/data-display-header--with-subheader)
-- [With Breadcumbs](./?path=/story/data-display-header--with-breadcumbs)
-- [With Actions](./?path=/story/data-display-header--with-actions)
-- [With Panel Tabs](./?path=/story/data-display-header--with-panel-tabs)
-- [Navigation Button](./?path=/story/data-display-header--navigation-button)
-- [With Border](./?path=/story/data-display-header--with-border)
-- [Color Paper](./?path=/story/data-display-header--color-paper)
-- [Custom Action Styles](./?path=/story/data-display-header--custom-action-styles)
-- [With Slot Props Customization](./?path=/story/data-display-header--with-slot-props-customization)
+- [Default](./?path=/story/tables-remotedatatable--default)
+- [Sorted By Created Date](./?path=/story/tables-remotedatatable--sorted-by-created-date)
+- [With Query Builder](./?path=/story/tables-remotedatatable--with-query-builder)
+- [Using Hook](./?path=/story/tables-remotedatatable--using-hook)
 
-[View Documentation](./?path=/docs/data-display-header--docs)
+[View Documentation](./?path=/docs/tables-remotedatatable--docs)
+
+## Data Display
 
 ### Badge
 
@@ -418,6 +271,15 @@ Section used to provide basic information about the page and display main action
 
 [View Documentation](./?path=/docs/data-display-board--docs)
 
+### Breadcrumbs
+
+**Stories:**
+- [Default](./?path=/story/data-display-breadcrumbs--default)
+- [Custom Separator](./?path=/story/data-display-breadcrumbs--custom-separator)
+- [Single Item](./?path=/story/data-display-breadcrumbs--single-item)
+
+[View Documentation](./?path=/docs/data-display-breadcrumbs--docs)
+
 ### Bullet
 
 **Stories:**
@@ -438,6 +300,21 @@ Section used to provide basic information about the page and display main action
 - [Dense](./?path=/story/data-display-groupvaluecard--dense)
 
 [View Documentation](./?path=/docs/data-display-groupvaluecard--docs)
+
+### Header
+
+**Stories:**
+- [Default](./?path=/story/data-display-header--default)
+- [With Panel Tabs](./?path=/story/data-display-header--with-panel-tabs)
+- [Navigation Button](./?path=/story/data-display-header--navigation-button)
+- [Custom Title](./?path=/story/data-display-header--custom-title)
+- [Primary Preset](./?path=/story/data-display-header--primary-preset)
+- [Secondary Preset](./?path=/story/data-display-header--secondary-preset)
+- [Paper Preset With Border](./?path=/story/data-display-header--paper-preset-with-border)
+- [Transparent With Tabs](./?path=/story/data-display-header--transparent-with-tabs)
+- [Mixed Action Variants And Colors](./?path=/story/data-display-header--mixed-action-variants-and-colors)
+
+[View Documentation](./?path=/docs/data-display-header--docs)
 
 ### ValueBoolean
 
@@ -521,70 +398,86 @@ Section used to provide basic information about the page and display main action
 
 [View Documentation](./?path=/docs/data-display-valuetext--docs)
 
-## Feedback
+## Navigation
 
-### NotificationCenter
-
-**Stories:**
-- [Default](./?path=/story/feedback-notificationcenter--default)
-
-[View Documentation](./?path=/docs/feedback-notificationcenter--docs)
-
-### QueryContainer
-
-Component to show different indicators based on the usual api query statuses
-
-**Props:**
-- `fetching`: `boolean | boolean[]` - There is a query in progress and we have available data
-- `loading`: `boolean | boolean[]` - There is a query in progress and we don't have available data
-- `error`: `QueryContainerError` - The query has returned an error
-- `success`: `QueryContainerSuccess` - The query has finished successfully
-- `children`: `React.ReactNode` - Content to display when not in loading/error/success state
+### DrawerAppBar
 
 **Stories:**
-- [Default](./?path=/story/feedback-querycontainer--default)
-- [Fetching](./?path=/story/feedback-querycontainer--fetching)
-- [Fetching And Loading](./?path=/story/feedback-querycontainer--fetching-and-loading)
-- [Error](./?path=/story/feedback-querycontainer--error)
-- [Error With Only Message](./?path=/story/feedback-querycontainer--error-with-only-message)
-- [Success](./?path=/story/feedback-querycontainer--success)
-- [Success With Only Message](./?path=/story/feedback-querycontainer--success-with-only-message)
-- [Content](./?path=/story/feedback-querycontainer--content)
+- [Default](./?path=/story/navigation-drawerappbar--default)
+- [Without Title](./?path=/story/navigation-drawerappbar--without-title)
 
-[View Documentation](./?path=/docs/feedback-querycontainer--docs)
+[View Documentation](./?path=/docs/navigation-drawerappbar--docs)
 
-## Tables
-
-### RemoteDataTable
-
-A table component designed for displaying remote/server-side data with built-in pagination, sorting, and filtering capabilities. This component is fully controlled - all state (pagination, sorting, filters) must be managed by the parent component. For convenience, use the `useRemoteDataTable` hook to manage this state.
-
-**Example:**
-
-```tsx
-const tableState = useRemoteDataTable({
-  initialPagination: { pageSize: 25 }
-});
-
-<RemoteDataTable
-  data={items}
-  columns={columns}
-  {...tableState}
-  query={{
-    fields: queryFields,
-    filters: tableState.filters,
-    onFiltersChange: tableState.onFiltersChange
-  }}
-/>
-```
+### DrawerContent
 
 **Stories:**
-- [Default](./?path=/story/tables-remotedatatable--default)
-- [Sorted By Created Date](./?path=/story/tables-remotedatatable--sorted-by-created-date)
-- [With Query Builder](./?path=/story/tables-remotedatatable--with-query-builder)
-- [Using Hook](./?path=/story/tables-remotedatatable--using-hook)
+- [Default](./?path=/story/navigation-drawercontent--default)
+- [Small](./?path=/story/navigation-drawercontent--small)
+- [Mini Closed](./?path=/story/navigation-drawercontent--mini-closed)
 
-[View Documentation](./?path=/docs/tables-remotedatatable--docs)
+[View Documentation](./?path=/docs/navigation-drawercontent--docs)
+
+### DrawerItem
+
+**Stories:**
+- [Item (open)](./?path=/story/navigation-draweritem--default)
+- [Item (icon,open)](./?path=/story/navigation-draweritem--item-with-icon)
+
+[View Documentation](./?path=/docs/navigation-draweritem--docs)
+
+### DrawerSubheader
+
+**Stories:**
+- [Default](./?path=/story/navigation-drawersubheader--default)
+
+[View Documentation](./?path=/docs/navigation-drawersubheader--docs)
+
+### Drawer demo
+
+**Stories:**
+- [Open By Default](./?path=/story/navigation-drawer-demo--open-by-default)
+- [Closed By Default](./?path=/story/navigation-drawer-demo--closed-by-default)
+
+[View Documentation](./?path=/docs/navigation-drawer-demo--docs)
+
+### Drawer
+
+**Stories:**
+- [Default](./?path=/story/navigation-drawer--default)
+
+[View Documentation](./?path=/docs/navigation-drawer--docs)
+
+### TabCard
+
+**Stories:**
+- [Default](./?path=/story/navigation-tabcard--default)
+
+[View Documentation](./?path=/docs/navigation-tabcard--docs)
+
+## Layouts
+
+### DrawerLayout
+
+**Stories:**
+- [Mini Closed](./?path=/story/layouts-drawerlayout--mini-closed)
+- [Open](./?path=/story/layouts-drawerlayout--open)
+- [No Clipped](./?path=/story/layouts-drawerlayout--no-clipped)
+- [Small](./?path=/story/layouts-drawerlayout--small)
+- [Custom Link Component](./?path=/story/layouts-drawerlayout--custom-link-component)
+
+[View Documentation](./?path=/docs/layouts-drawerlayout--docs)
+
+### HeaderLayout
+
+**Stories:**
+- [Skeleton](./?path=/story/layouts-headerlayout--skeleton)
+- [Data Table](./?path=/story/layouts-headerlayout--data-table)
+- [Tabs](./?path=/story/layouts-headerlayout--tabs)
+- [Loading](./?path=/story/layouts-headerlayout--loading)
+- [Fetching](./?path=/story/layouts-headerlayout--fetching)
+- [Error](./?path=/story/layouts-headerlayout--error)
+
+[View Documentation](./?path=/docs/layouts-headerlayout--docs)
 
 ## forms
 
@@ -648,4 +541,31 @@ const tableState = useRemoteDataTable({
 - [Row Count](./?path=/story/forms-textareafield--row-count)
 
 [View Documentation](./?path=/docs/forms-textareafield--docs)
+
+## Placeholders
+
+### Placeholder
+
+**Stories:**
+- [Default](./?path=/story/placeholders-placeholder--default)
+- [With Icon](./?path=/story/placeholders-placeholder--with-icon)
+- [With Actions](./?path=/story/placeholders-placeholder--with-actions)
+
+[View Documentation](./?path=/docs/placeholders-placeholder--docs)
+
+### SkeletonCard
+
+**Stories:**
+- [Default](./?path=/story/placeholders-skeletoncard--default)
+- [Animated](./?path=/story/placeholders-skeletoncard--animated)
+
+[View Documentation](./?path=/docs/placeholders-skeletoncard--docs)
+
+### SkeletonGrid
+
+**Stories:**
+- [Default](./?path=/story/placeholders-skeletongrid--default)
+- [Compact](./?path=/story/placeholders-skeletongrid--compact)
+
+[View Documentation](./?path=/docs/placeholders-skeletongrid--docs)
 

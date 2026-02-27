@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">43 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/43 info</a><span class="filter-pill ok" aria-disabled="true">213 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">43 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/43 info</a><span class="filter-pill ok" aria-disabled="true">188 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -1247,14 +1247,113 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
   no-info 
   no-story-error"
   role="listitem"
+  aria-label="Breadcrumbs">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Breadcrumbs</h2>
+      <div class="badges">
+        <label for="c-4-data-display-breadcrumbs-props" class="badge ok as-toggle">3 prop types</label>
+        
+        <label for="c-4-data-display-breadcrumbs-stories" class="badge ok as-toggle">3 stories</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/breadcrumbs/breadcrumbs.stories.tsx">data-display-breadcrumbs · ./src/components/breadcrumbs/breadcrumbs.stories.tsx</div>
+    
+    <div class="hint">Reusable breadcrumb navigation wrapper built on shadcn Base primitives.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-4-data-display-breadcrumbs-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-4-data-display-breadcrumbs-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types</span>
+              <span class="badge ok">3 prop types</span>
+            </div>
+            <pre><code>Component: src/components/breadcrumbs/breadcrumbs.tsx::Breadcrumbs</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Ordered breadcrumb entries.
+ */
+items?: BreadcrumbsItem[]
+
+/**
+ * Props forwarded to each breadcrumb link item.
+ */
+linkProps?: Omit&lt;ComponentProps&lt;typeof BreadcrumbLink&gt;, &quot;children&quot; | &quot;href&quot;&gt;
+
+/**
+ * Optional custom separator rendered between items.
+ */
+separator?: ReactNode</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Breadcrumbs } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Breadcrumbs items={items} /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">CustomSeparator</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const CustomSeparator = () =&gt; &lt;Breadcrumbs items={items} separator=&quot;/&quot; /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">SingleItem</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const SingleItem = () =&gt; &lt;Breadcrumbs items={[{ id: &quot;details&quot;, text: &quot;Details&quot;, link: &quot;/items/1/details&quot; }]} /&gt;;</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error"
+  role="listitem"
   aria-label="Bullet">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Bullet</h2>
       <div class="badges">
-        <label for="c-4-data-display-bullet-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-5-data-display-bullet-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-4-data-display-bullet-stories" class="badge ok as-toggle">7 stories</label>
+        <label for="c-5-data-display-bullet-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/bullet/bullet.stories.tsx">data-display-bullet · ./src/components/bullet/bullet.stories.tsx</div>
@@ -1266,8 +1365,8 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-4-data-display-bullet-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-4-data-display-bullet-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-5-data-display-bullet-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-5-data-display-bullet-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1387,9 +1486,9 @@ variant?: | &quot;primary&quot;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Button</h2>
       <div class="badges">
-        <label for="c-5-inputs-button-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-6-inputs-button-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-5-inputs-button-stories" class="badge ok as-toggle">15 stories</label>
+        <label for="c-6-inputs-button-stories" class="badge ok as-toggle">15 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/button/button.stories.tsx">inputs-button · ./src/components/button/button.stories.tsx</div>
@@ -1401,8 +1500,8 @@ variant?: | &quot;primary&quot;
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-5-inputs-button-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-5-inputs-button-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-6-inputs-button-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-6-inputs-button-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1595,9 +1694,9 @@ variant?: | &quot;primary&quot;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> CheckboxField</h2>
       <div class="badges">
-        <label for="c-6-forms-checkboxfield-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-7-forms-checkboxfield-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-6-forms-checkboxfield-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-7-forms-checkboxfield-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/forms/checkbox-field/checkbox-field.stories.tsx">forms-checkboxfield · ./src/components/forms/checkbox-field/checkbox-field.stories.tsx</div>
@@ -1609,8 +1708,8 @@ variant?: | &quot;primary&quot;
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-6-forms-checkboxfield-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-6-forms-checkboxfield-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-7-forms-checkboxfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-7-forms-checkboxfield-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1728,9 +1827,9 @@ label: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ConfirmDialog</h2>
       <div class="badges">
-        <label for="c-7-dialogs-confirmdialog-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-8-dialogs-confirmdialog-props" class="badge ok as-toggle">5 prop types</label>
         
-        <label for="c-7-dialogs-confirmdialog-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-8-dialogs-confirmdialog-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/ConfirmDialog/ConfirmDialog.stories.tsx">dialogs-confirmdialog · ./src/ConfirmDialog/ConfirmDialog.stories.tsx</div>
@@ -1742,8 +1841,8 @@ label: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-7-dialogs-confirmdialog-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-7-dialogs-confirmdialog-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-8-dialogs-confirmdialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-8-dialogs-confirmdialog-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1868,22 +1967,22 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Content</h2>
       <div class="badges">
-        <label for="c-8-containers-content-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-9-feedback-notificationcenter-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-8-containers-content-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-9-feedback-notificationcenter-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
-    <div class="meta" title="./src/Content/Content.stories.tsx">containers-content · ./src/Content/Content.stories.tsx</div>
+    <div class="meta" title="./src/NotificationCenter/NotificationCenter.stories.tsx">feedback-notificationcenter · ./src/NotificationCenter/NotificationCenter.stories.tsx</div>
     
-    <div class="hint">A functional component that renders its children inside a main container.</div>
+    <div class="hint">Main page content container.</div>
     
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-8-containers-content-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-8-containers-content-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-9-feedback-notificationcenter-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-9-feedback-notificationcenter-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1895,10 +1994,10 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/Content/Content.tsx::Content</code></pre>
+            <pre><code>Component: src/components/content/content.tsx::Content</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Content to display
+ * Content rendered inside the main container.
  */
 children?: React.ReactNode</code></pre>
           </div>
@@ -1912,171 +2011,9 @@ children?: React.ReactNode</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { Content, SkeletonGrid } from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Default = () =&gt; &lt;Content&gt;&lt;SkeletonGrid /&gt;&lt;/Content&gt;;</code></pre>
-            </div>
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  no-error 
-  no-info 
-  no-story-error"
-  role="listitem"
-  aria-label="ContentPlaceholder">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-ok"></span> ContentPlaceholder</h2>
-      <div class="badges">
-        <label for="c-9-placeholders-contentplaceholder-props" class="badge ok as-toggle">3 prop types</label>
-        
-        <label for="c-9-placeholders-contentplaceholder-stories" class="badge ok as-toggle">1 story</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/ContentPlaceholder/ContentPlaceholder.stories.tsx">placeholders-contentplaceholder · ./src/ContentPlaceholder/ContentPlaceholder.stories.tsx</div>
-    
-    <div class="hint">A component that serves as a placeholder for content, displaying a skeleton grid.</div>
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  
-  
-  <input id="c-9-placeholders-contentplaceholder-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-9-placeholders-contentplaceholder-props" class="tg tg-props" type="checkbox" hidden />
-
-  <div class="panels">
-    
-    
-    
-        <div class="panel panel-props">
-          <div class="note ok">
-            <div class="row">
-              <span class="ex-name">Prop types</span>
-              <span class="badge ok">3 prop types</span>
-            </div>
-            <pre><code>Component: src/ContentPlaceholder/ContentPlaceholder.tsx::ContentPlaceholder</code></pre>
-            <pre><code>Props:</code></pre>
-            <pre><code>/**
- * Content to display before the skeleton grid
- */
-children?: React.ReactNode
-
-/**
- * Optional padding for the placeholder.
- */
-p?: number
-
-/**
- * Optional size of the placeholder.
- */
-size?: number = 20</code></pre>
-          </div>
-        </div>
-    
-        <div class="panel panel-stories">
-          
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import { ContentPlaceholder } from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Default = () =&gt; &lt;ContentPlaceholder /&gt;;</code></pre>
-            </div>
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  no-error 
-  no-info 
-  no-story-error"
-  role="listitem"
-  aria-label="ContentPlaceholder">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-ok"></span> ContentPlaceholder</h2>
-      <div class="badges">
-        <label for="c-10-feedback-notificationcenter-props" class="badge ok as-toggle">3 prop types</label>
-        
-        <label for="c-10-feedback-notificationcenter-stories" class="badge ok as-toggle">1 story</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/NotificationCenter/NotificationCenter.stories.tsx">feedback-notificationcenter · ./src/NotificationCenter/NotificationCenter.stories.tsx</div>
-    
-    <div class="hint">A component that serves as a placeholder for content, displaying a skeleton grid.</div>
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  
-  
-  <input id="c-10-feedback-notificationcenter-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-10-feedback-notificationcenter-props" class="tg tg-props" type="checkbox" hidden />
-
-  <div class="panels">
-    
-    
-    
-        <div class="panel panel-props">
-          <div class="note ok">
-            <div class="row">
-              <span class="ex-name">Prop types</span>
-              <span class="badge ok">3 prop types</span>
-            </div>
-            <pre><code>Component: src/ContentPlaceholder/ContentPlaceholder.tsx::ContentPlaceholder</code></pre>
-            <pre><code>Props:</code></pre>
-            <pre><code>/**
- * Content to display before the skeleton grid
- */
-children?: React.ReactNode
-
-/**
- * Optional padding for the placeholder.
- */
-p?: number
-
-/**
- * Optional size of the placeholder.
- */
-size?: number = 20</code></pre>
-          </div>
-        </div>
-    
-        <div class="panel panel-stories">
-          
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
                 <pre><code>import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { ContentPlaceholder, NotificationCenterProvider } from "@pautena/react-design-system";</code></pre>
+import { Content, NotificationCenterProvider, SkeletonGrid } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -2091,7 +2028,7 @@ import { ContentPlaceholder, NotificationCenterProvider } from "@pautena/react-d
   const { show, hide } = useNotificationCenter();
 
   return (
-    &lt;ContentPlaceholder size={3} p={2}&gt;
+    &lt;Content className=&quot;p-2&quot;&gt;
       &lt;Box pb={2}&gt;
         &lt;Button
           onClick={() =&gt; show({ ...DummyError, severity: &quot;info&quot; })}
@@ -2121,9 +2058,81 @@ import { ContentPlaceholder, NotificationCenterProvider } from "@pautena/react-d
           hide
         &lt;/Button&gt;
       &lt;/Box&gt;
-    &lt;/ContentPlaceholder&gt;
+      &lt;SkeletonGrid size={3} /&gt;
+    &lt;/Content&gt;
   );
 };</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error"
+  role="listitem"
+  aria-label="Content">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Content</h2>
+      <div class="badges">
+        <label for="c-10-containers-content-props" class="badge ok as-toggle">1 prop type</label>
+        
+        <label for="c-10-containers-content-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/content/content.stories.tsx">containers-content · ./src/components/content/content.stories.tsx</div>
+    
+    <div class="hint">Main page content container.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-10-containers-content-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-10-containers-content-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types</span>
+              <span class="badge ok">1 prop type</span>
+            </div>
+            <pre><code>Component: src/components/content/content.tsx::Content</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Content rendered inside the main container.
+ */
+children?: React.ReactNode</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Content, SkeletonGrid } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;Content&gt;&lt;SkeletonGrid /&gt;&lt;/Content&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -2341,9 +2350,9 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
         <label for="c-13-navigation-drawer-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
-    <div class="meta" title="./src/Drawerx/Drawer/Drawer.stories.tsx">navigation-drawer · ./src/Drawerx/Drawer/Drawer.stories.tsx</div>
+    <div class="meta" title="./src/components/drawer/drawer.stories.tsx">navigation-drawer · ./src/components/drawer/drawer.stories.tsx</div>
     
-    <div class="hint">Drawer component that provides a customizable drawer interface.</div>
+    <div class="hint">Drawer navigation container.</div>
     
   </div>
 
@@ -2378,11 +2387,7 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
               
               
               <pre><code>const Default = ({ initialState, selectedItemId }) =&gt; (
-  &lt;DrawerProvider
-    initialState={initialState}
-    variant=&quot;mini&quot;
-    selectedItemId={selectedItemId}
-  &gt;
+  &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId}&gt;
     &lt;Drawer&gt;
       &lt;DrawerContent navigation={mockDrawerNavigation} /&gt;
     &lt;/Drawer&gt;
@@ -2408,9 +2413,9 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
         <label for="c-14-navigation-drawerappbar-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Drawerx/DrawerAppBar/DrawerAppBar.stories.tsx">navigation-drawerappbar · ./src/Drawerx/DrawerAppBar/DrawerAppBar.stories.tsx</div>
+    <div class="meta" title="./src/components/drawer-app-bar/drawer-app-bar.stories.tsx">navigation-drawerappbar · ./src/components/drawer-app-bar/drawer-app-bar.stories.tsx</div>
     
-    <div class="hint">DrawerAppBar component that renders an AppBar adapted to work inside a Drawer context.</div>
+    <div class="hint">Top app bar adapted for drawer layouts.</div>
     
   </div>
 
@@ -2430,10 +2435,10 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/Drawerx/DrawerAppBar/DrawerAppBar.tsx::default</code></pre>
+            <pre><code>Component: src/components/drawer-app-bar/drawer-app-bar.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Title to display in the AppBar.
+ * Title to display in the app bar.
  */
 title?: string</code></pre>
           </div>
@@ -2492,9 +2497,9 @@ title?: string</code></pre>
         <label for="c-15-navigation-drawercontent-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Drawerx/DrawerContent/DrawerContent.stories.tsx">navigation-drawercontent · ./src/Drawerx/DrawerContent/DrawerContent.stories.tsx</div>
+    <div class="meta" title="./src/components/drawer-content/drawer-content.stories.tsx">navigation-drawercontent · ./src/components/drawer-content/drawer-content.stories.tsx</div>
     
-    <div class="hint">Content to be shown inside a navigation</div>
+    <div class="hint">Content rendered inside drawer navigation.</div>
     
   </div>
 
@@ -2514,10 +2519,10 @@ title?: string</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">1 prop type</span>
             </div>
-            <pre><code>Component: src/Drawerx/DrawerContent/DrawerContent.tsx::default</code></pre>
+            <pre><code>Component: src/components/drawer-content/drawer-content.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Object with the content that has to be rendered
+ * Navigation items to render.
  */
 navigation: DrawerNavigationItem[]</code></pre>
           </div>
@@ -2559,13 +2564,13 @@ navigation: DrawerNavigationItem[]</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Collapsed</span>
+                <span class="ex-name">MiniClosed</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Collapsed = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerContent initialState=&quot;collapse&quot; /&gt;
+              <pre><code>const MiniClosed = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
+    &lt;DrawerContent initialState=&quot;close&quot; /&gt;
 &lt;/DrawerProvider&gt;;</code></pre>
             </div>
         </div>
@@ -2584,12 +2589,12 @@ navigation: DrawerNavigationItem[]</code></pre>
       <div class="badges">
         
         
-        <label for="c-16-navigation-drawer-demo-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-16-navigation-drawer-demo-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Drawerx/Drawer/DrawerDemo.stories.tsx">navigation-drawer-demo · ./src/Drawerx/Drawer/DrawerDemo.stories.tsx</div>
+    <div class="meta" title="./src/components/drawer/drawer-demo.stories.tsx">navigation-drawer-demo · ./src/components/drawer/drawer-demo.stories.tsx</div>
     
-    <div class="hint">Drawer component that provides a customizable drawer interface.</div>
+    <div class="hint">Drawer navigation container.</div>
     
   </div>
 
@@ -2613,132 +2618,55 @@ navigation: DrawerNavigationItem[]</code></pre>
                   <span class="ex-name">Imports</span>
                 </div>
                 <pre><code>import {
-    ContentPlaceholder,
+    Button,
+    Content,
     Drawer,
-    DrawerAppBar,
     DrawerContent,
     DrawerMain,
     DrawerProvider,
+    SkeletonGrid,
 } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Temporary</span>
+                <span class="ex-name">OpenByDefault</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Temporary = ({ initialState, variant, selectedItemId, clipped }) =&gt; (
-  &lt;DrawerProvider
-    initialState={initialState}
-    variant={variant}
-    selectedItemId={selectedItemId}
-    clipped={clipped}
-  &gt;
-    &lt;DrawerAppBar title=&quot;Drawer demo&quot; /&gt;
+              <pre><code>const OpenByDefault = ({ initialState, selectedItemId }) =&gt; (
+  &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId}&gt;
     &lt;Drawer&gt;
       &lt;DrawerContent navigation={mockDrawerNavigation} /&gt;
     &lt;/Drawer&gt;
     &lt;DrawerMain&gt;
-      &lt;ContentPlaceholder p={3} /&gt;
+      &lt;Content className=&quot;space-y-3 p-3&quot;&gt;
+        &lt;DrawerToggleButton /&gt;
+        &lt;SkeletonGrid /&gt;
+      &lt;/Content&gt;
     &lt;/DrawerMain&gt;
   &lt;/DrawerProvider&gt;
 );</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">TemporaryClipped</span>
+                <span class="ex-name">ClosedByDefault</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const TemporaryClipped = ({ initialState, variant, selectedItemId, clipped }) =&gt; (
-  &lt;DrawerProvider
-    initialState={initialState}
-    variant={variant}
-    selectedItemId={selectedItemId}
-    clipped={clipped}
-  &gt;
-    &lt;DrawerAppBar title=&quot;Drawer demo&quot; /&gt;
+              <pre><code>const ClosedByDefault = ({ initialState, selectedItemId }) =&gt; (
+  &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId}&gt;
     &lt;Drawer&gt;
       &lt;DrawerContent navigation={mockDrawerNavigation} /&gt;
     &lt;/Drawer&gt;
     &lt;DrawerMain&gt;
-      &lt;ContentPlaceholder p={3} /&gt;
-    &lt;/DrawerMain&gt;
-  &lt;/DrawerProvider&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Persistent</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Persistent = ({ initialState, variant, selectedItemId, clipped }) =&gt; (
-  &lt;DrawerProvider
-    initialState={initialState}
-    variant={variant}
-    selectedItemId={selectedItemId}
-    clipped={clipped}
-  &gt;
-    &lt;DrawerAppBar title=&quot;Drawer demo&quot; /&gt;
-    &lt;Drawer&gt;
-      &lt;DrawerContent navigation={mockDrawerNavigation} /&gt;
-    &lt;/Drawer&gt;
-    &lt;DrawerMain&gt;
-      &lt;ContentPlaceholder p={3} /&gt;
-    &lt;/DrawerMain&gt;
-  &lt;/DrawerProvider&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">PersistentClipped</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const PersistentClipped = ({ initialState, variant, selectedItemId, clipped }) =&gt; (
-  &lt;DrawerProvider
-    initialState={initialState}
-    variant={variant}
-    selectedItemId={selectedItemId}
-    clipped={clipped}
-  &gt;
-    &lt;DrawerAppBar title=&quot;Drawer demo&quot; /&gt;
-    &lt;Drawer&gt;
-      &lt;DrawerContent navigation={mockDrawerNavigation} /&gt;
-    &lt;/Drawer&gt;
-    &lt;DrawerMain&gt;
-      &lt;ContentPlaceholder p={3} /&gt;
-    &lt;/DrawerMain&gt;
-  &lt;/DrawerProvider&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">MiniDrawer</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const MiniDrawer = ({ initialState, variant, selectedItemId, clipped }) =&gt; (
-  &lt;DrawerProvider
-    initialState={initialState}
-    variant={variant}
-    selectedItemId={selectedItemId}
-    clipped={clipped}
-  &gt;
-    &lt;DrawerAppBar title=&quot;Drawer demo&quot; /&gt;
-    &lt;Drawer&gt;
-      &lt;DrawerContent navigation={mockDrawerNavigation} /&gt;
-    &lt;/Drawer&gt;
-    &lt;DrawerMain&gt;
-      &lt;ContentPlaceholder p={3} /&gt;
+      &lt;Content className=&quot;space-y-3 p-3&quot;&gt;
+        &lt;DrawerToggleButton /&gt;
+        &lt;SkeletonGrid /&gt;
+      &lt;/Content&gt;
     &lt;/DrawerMain&gt;
   &lt;/DrawerProvider&gt;
 );</code></pre>
@@ -2757,14 +2685,14 @@ navigation: DrawerNavigationItem[]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerItem</h2>
       <div class="badges">
-        <label for="c-17-navigation-draweritem-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-17-navigation-draweritem-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-17-navigation-draweritem-stories" class="badge ok as-toggle">13 stories</label>
+        <label for="c-17-navigation-draweritem-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Drawerx/DrawerItem/DrawerItem.stories.tsx">navigation-draweritem · ./src/Drawerx/DrawerItem/DrawerItem.stories.tsx</div>
+    <div class="meta" title="./src/components/drawer-item/drawer-item.stories.tsx">navigation-draweritem · ./src/components/drawer-item/drawer-item.stories.tsx</div>
     
-    <div class="hint">Component representing a drawer item in the navigation drawer.</div>
+    <div class="hint">Drawer navigation item renderer.</div>
     
   </div>
 
@@ -2782,19 +2710,24 @@ navigation: DrawerNavigationItem[]</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">2 prop types</span>
+              <span class="badge ok">3 prop types</span>
             </div>
-            <pre><code>Component: src/Drawerx/DrawerItem/DrawerItem.tsx::default</code></pre>
+            <pre><code>Component: src/components/drawer-item/drawer-item.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Data to be rendered
+ * Optional action element displayed alongside the item.
+ */
+action?: ReactNode
+
+/**
+ * Data to render.
  */
 item: | DrawerNavigationLink
 | DrawerNavigationCollapsable
 | DrawerNavigationHeader
 
 /**
- * Deep level of this item inside the submenus
+ * Nesting level inside submenus.
  */
 level?: number = 0</code></pre>
           </div>
@@ -2808,8 +2741,8 @@ level?: number = 0</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import DiamondIcon from "@mui/icons-material/Diamond";
-import { DrawerItem, DrawerProvider } from "@pautena/react-design-system";</code></pre>
+                <pre><code>import { DrawerItem, DrawerProvider } from "@pautena/react-design-system";
+import { Folder } from "lucide-react";</code></pre>
               </div>
           
           
@@ -2835,151 +2768,8 @@ import { DrawerItem, DrawerProvider } from "@pautena/react-design-system";</code
     &lt;DrawerItem
         item={{
           ...mockLinkNoIconDrawerNavigationItem,
-          icon: &lt;DiamondIcon /&gt;,
+          icon: &lt;Folder /&gt;,
         }} /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ItemWithAvatar</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ItemWithAvatar = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem
-        item={{
-          ...mockLinkNoIconDrawerNavigationItem,
-          avatar: {
-            src: &quot;https://c.pxhere.com/images/f6/e0/022ab77c391925931fe227c97ab4-1447675.jpg!d&quot;,
-            alt: &quot;Avatar 1&quot;,
-          },
-        }} /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ItemWithLabel</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ItemWithLabel = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem
-        item={{
-          ...mockLinkNoIconDrawerNavigationItem,
-          icon: &lt;DiamondIcon /&gt;,
-          label: {
-            text: &quot;new&quot;,
-            variant: &quot;info&quot;,
-          },
-        }} /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ItemWithBullet</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ItemWithBullet = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem
-        item={{
-          ...mockLinkNoIconDrawerNavigationItem,
-          icon: &lt;DiamondIcon /&gt;,
-          bullet: {
-            variant: &quot;error&quot;,
-          },
-        }} /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ItemSelected</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ItemSelected = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem selectedItemId={mockLinkNoIconDrawerNavigationItem.id} /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ItemSizeSmallWithIcon</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ItemSizeSmallWithIcon = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem size=&quot;small&quot; /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ItemSizeSmallWithAvatar</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ItemSizeSmallWithAvatar = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem size=&quot;small&quot; /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ItemSizeSmallSelected</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ItemSizeSmallSelected = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem size=&quot;small&quot; /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">MenuNotSelected</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const MenuNotSelected = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem item={mockMenuDrawerNavigationItem} /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">MenuSelected</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const MenuSelected = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem selectedItemId={mockMenuDrawerNavigationItem.id} /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">MenuNoSelectedSmall</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const MenuNoSelectedSmall = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem size=&quot;small&quot; /&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">MenuSelectedSmall</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const MenuSelectedSmall = () =&gt; &lt;DrawerProvider initialState={initialState} selectedItemId={selectedItemId} size={size}&gt;
-    &lt;DrawerItem size=&quot;small&quot; /&gt;
 &lt;/DrawerProvider&gt;;</code></pre>
             </div>
         </div>
@@ -2996,14 +2786,14 @@ import { DrawerItem, DrawerProvider } from "@pautena/react-design-system";</code
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerLayout</h2>
       <div class="badges">
-        <label for="c-18-layouts-drawerlayout-props" class="badge ok as-toggle">12 prop types</label>
+        <label for="c-18-layouts-drawerlayout-props" class="badge ok as-toggle">11 prop types</label>
         
-        <label for="c-18-layouts-drawerlayout-stories" class="badge ok as-toggle">6 stories</label>
+        <label for="c-18-layouts-drawerlayout-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Drawerx/DrawerLayout/DrawerLayout.stories.tsx">layouts-drawerlayout · ./src/Drawerx/DrawerLayout/DrawerLayout.stories.tsx</div>
+    <div class="meta" title="./src/components/drawer-layout/drawer-layout.stories.tsx">layouts-drawerlayout · ./src/components/drawer-layout/drawer-layout.stories.tsx</div>
     
-    <div class="hint">DrawerLayout component provides a layout structure with a drawer and an app bar. It allows customization of the drawer, app bar, and drawer content through slots and slot properties.</div>
+    <div class="hint">Layout structure with drawer and app bar.</div>
     
   </div>
 
@@ -3021,77 +2811,68 @@ import { DrawerItem, DrawerProvider } from "@pautena/react-design-system";</code
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">12 prop types</span>
+              <span class="badge ok">11 prop types</span>
             </div>
-            <pre><code>Component: src/Drawerx/DrawerLayout/DrawerLayout.tsx::default</code></pre>
+            <pre><code>Component: src/components/drawer-layout/drawer-layout.tsx::default</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Whether the drawer is clipped under the app bar
+ * Whether the drawer is clipped under the app bar.
  * @default true
  */
 clipped?: boolean
 
 /**
- * Width of the drawer in pixels
+ * Width of the drawer in pixels.
  */
 drawerWidth?: number
 
 /**
- * Initial state of the drawer
+ * Initial state of the drawer.
  */
-initialState?: &quot;open&quot; | &quot;collapse&quot; | &quot;close&quot;
+initialState?: &quot;open&quot; | &quot;close&quot;
 
 /**
- * The component used to render a link when the `href` prop is provided.
- * @default &#39;a&#39;
+ * Component used to render links.
+ * @default &quot;a&quot;
  */
-LinkComponent?: ElementType
+LinkComponent?: ComponentType&lt;any&gt; | string
 
 /**
- * The navigation configuration for the drawer.
+ * Navigation tree.
  */
 navigation: DrawerNavigationItem[]
 
 /**
- * Callback fired when the drawer state changes
- * @param newState - The new drawer state
+ * Callback fired when drawer state changes.
+ * @param newState - The new drawer state.
  */
 onStateChange?: (newState: DrawerState) =&gt; void
 
 /**
- * ID of the currently selected navigation item
+ * ID of currently selected navigation item.
  */
 selectedItemId?: string
 
 /**
- * Size of the drawer
+ * Size of the drawer.
  * @default &quot;medium&quot;
  */
 size?: &quot;small&quot; | &quot;medium&quot;
 
 /**
- * Optional slots for custom rendering within the drawer layout.
+ * Optional slots.
  */
 slots?: DrawerLayoutSlots
 
 /**
- * Optional props for the slots.
+ * Optional slot props.
  */
 slotsProps?: DrawerLayoutSlotProps
 
 /**
- * The title of the drawer layout.
+ * Title of the drawer layout.
  */
-title: string
-
-/**
- * Variant of the drawer behavior
- * - temporary: slides over content, closes on backdrop click
- * - persistent: pushes content when open
- * - mini: shows icons only when collapsed
- * @default &quot;temporary&quot;
- */
-variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</code></pre>
+title: string</code></pre>
           </div>
         </div>
     
@@ -3103,30 +2884,34 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { ContentPlaceholder, DrawerLayout } from "@pautena/react-design-system";</code></pre>
+                <pre><code>import { Content, DrawerLayout, SkeletonGrid } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Temporary</span>
+                <span class="ex-name">MiniClosed</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Temporary = () =&gt; &lt;DrawerLayout variant=&quot;temporary&quot;&gt;
-    &lt;ContentPlaceholder p={3} /&gt;
+              <pre><code>const MiniClosed = () =&gt; &lt;DrawerLayout initialState=&quot;close&quot;&gt;
+    &lt;Content data-testid=&quot;content-placeholder-test&quot; className=&quot;p-3&quot;&gt;
+        &lt;SkeletonGrid /&gt;
+    &lt;/Content&gt;
 &lt;/DrawerLayout&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Persistent</span>
+                <span class="ex-name">Open</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Persistent = () =&gt; &lt;DrawerLayout variant=&quot;persistent&quot;&gt;
-    &lt;ContentPlaceholder p={3} /&gt;
+              <pre><code>const Open = () =&gt; &lt;DrawerLayout initialState=&quot;open&quot;&gt;
+    &lt;Content data-testid=&quot;content-placeholder-test&quot; className=&quot;p-3&quot;&gt;
+        &lt;SkeletonGrid /&gt;
+    &lt;/Content&gt;
 &lt;/DrawerLayout&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -3136,30 +2921,23 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
               </div>
               
               
-              <pre><code>const NoClipped = () =&gt; &lt;DrawerLayout variant=&quot;mini&quot; clipped={false}&gt;
-    &lt;ContentPlaceholder p={3} /&gt;
+              <pre><code>const NoClipped = () =&gt; &lt;DrawerLayout clipped={false}&gt;
+    &lt;Content data-testid=&quot;content-placeholder-test&quot; className=&quot;p-3&quot;&gt;
+        &lt;SkeletonGrid /&gt;
+    &lt;/Content&gt;
 &lt;/DrawerLayout&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">Mini</span>
+                <span class="ex-name">Small</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const Mini = () =&gt; &lt;DrawerLayout variant=&quot;mini&quot;&gt;
-    &lt;ContentPlaceholder p={3} /&gt;
-&lt;/DrawerLayout&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">MiniSmall</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const MiniSmall = () =&gt; &lt;DrawerLayout variant=&quot;mini&quot; size=&quot;small&quot;&gt;
-    &lt;ContentPlaceholder p={3} /&gt;
+              <pre><code>const Small = () =&gt; &lt;DrawerLayout size=&quot;small&quot;&gt;
+    &lt;Content data-testid=&quot;content-placeholder-test&quot; className=&quot;p-3&quot;&gt;
+        &lt;SkeletonGrid /&gt;
+    &lt;/Content&gt;
 &lt;/DrawerLayout&gt;;</code></pre>
             </div>
             <div class="note ok">
@@ -3170,7 +2948,9 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
               
               
               <pre><code>const CustomLinkComponent = () =&gt; &lt;DrawerLayout LinkComponent=&quot;b&quot;&gt;
-    &lt;ContentPlaceholder p={3} /&gt;
+    &lt;Content data-testid=&quot;content-placeholder-test&quot; className=&quot;p-3&quot;&gt;
+        &lt;SkeletonGrid /&gt;
+    &lt;/Content&gt;
 &lt;/DrawerLayout&gt;;</code></pre>
             </div>
         </div>
@@ -3189,12 +2969,12 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
       <div class="badges">
         
         
-        <label for="c-19-navigation-drawersubheader-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-19-navigation-drawersubheader-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
-    <div class="meta" title="./src/Drawerx/DrawerSubheader/DrawerSubheader.stories.tsx">navigation-drawersubheader · ./src/Drawerx/DrawerSubheader/DrawerSubheader.stories.tsx</div>
+    <div class="meta" title="./src/components/drawer-subheader/drawer-subheader.stories.tsx">navigation-drawersubheader · ./src/components/drawer-subheader/drawer-subheader.stories.tsx</div>
     
-    <div class="hint">A functional component that renders a `ListSubheader` with custom styles.</div>
+    <div class="hint">Section subheader rendered inside drawer navigation.</div>
     
   </div>
 
@@ -3228,19 +3008,8 @@ variant?: &quot;temporary&quot; | &quot;mini&quot; | &quot;persistent&quot;</cod
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;DrawerProvider size={size}&gt;
-    &lt;DrawerSubheader size=&quot;medium&quot;&gt;Lorem ipsum&lt;/DrawerSubheader&gt;
-&lt;/DrawerProvider&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Small</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Small = () =&gt; &lt;DrawerProvider size={size}&gt;
-    &lt;DrawerSubheader size=&quot;small&quot;&gt;Lorem ipsum&lt;/DrawerSubheader&gt;
+              <pre><code>const Default = () =&gt; &lt;DrawerProvider size={size} initialState={initialState}&gt;
+    &lt;DrawerSubheader&gt;Lorem ipsum&lt;/DrawerSubheader&gt;
 &lt;/DrawerProvider&gt;;</code></pre>
             </div>
         </div>
@@ -3699,15 +3468,15 @@ title: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Header</h2>
       <div class="badges">
-        <label for="c-23-data-display-header-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-23-data-display-header-props" class="badge ok as-toggle">11 prop types</label>
         
-        <label for="c-23-data-display-header-stories" class="badge ok as-toggle">20 stories</label>
+        <label for="c-23-data-display-header-stories" class="badge ok as-toggle">9 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Header/Header.stories.tsx">data-display-header · ./src/Header/Header.stories.tsx</div>
+    <div class="meta" title="./src/components/header/header.stories.tsx">data-display-header · ./src/components/header/header.stories.tsx</div>
     
-    <div class="hint">Section used to provide basic information about the page and display main actions Supports extensive customization through slots and slotProps. Each internal element (breadcrumbs, title, actions, tabs) can be customized or replaced.</div>
-    <div class="kv"><span class="chip">example:  ```tsx // Basic usage &lt;Header title=&quot;Dashboard&quot; subtitle=&quot;Welcome back&quot; breadcrumbs={[{id: &#39;1&#39;, text: &#39;Home&#39;, link: &#39;/&#39;}]} actions={[{id: &#39;add&#39;, text: &#39;Add&#39;, onClick: handleAdd}]} /&gt; // Custom breadcrumb separator &lt;Header title=&quot;Settings&quot; breadcrumbs={breadcrumbs} slotProps={{ breadcrumbs: { separator: &#39;/&#39; } }} /&gt; // Custom action button styling &lt;Header title=&quot;Users&quot; actions={actions} slotProps={{ actionButton: { size: &#39;large&#39;, variant: &#39;contained&#39; } }} /&gt; ```</span></div>
+    <div class="hint">Section used to provide basic information about the page and display main actions.</div>
+    
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
@@ -3724,82 +3493,68 @@ title: string</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">14 prop types</span>
+              <span class="badge ok">11 prop types</span>
             </div>
-            <pre><code>Component: src/Header/Header.tsx::Header</code></pre>
+            <pre><code>Component: src/components/header/header.tsx::Header</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * List of actions that can be performed by the user.
- * Each action will be a button in the header.
  */
 actions?: HeaderAction[]
 
 /**
- * Variant used to render the actions
+ * Variant used to render actions.
+ * @default &quot;outlined&quot;
  */
 actionsVariant?: &quot;text&quot; | &quot;outlined&quot; | &quot;contained&quot; = &quot;outlined&quot;
 
 /**
- * Whether to display a border at the bottom of the header
+ * Whether to display a border at the bottom.
  */
 border?: boolean = false
 
 /**
- * List of breadcumbs to represent the path to reach
- * the page that we are
+ * List of breadcrumbs.
  */
 breadcrumbs?: HeaderBreadcrumb[]
 
 /**
- * Show a loading indicator in the subtitle position
+ * Separator rendered between breadcrumb items.
  */
-loadingSubtitle?: boolean
+breadcrumbSeparator?: string
 
 /**
- * Show a loading indicator in the title position
- */
-loadingTitle?: boolean
-
-/**
- * A single button that helps the user to navigate to
- * a screen related to the current screen
+ * Optional navigation button.
  */
 navigationButton?: HeaderNavigationButton
 
 /**
- * Color palete used to render the component
+ * Color preset used by the component.
  */
-preset?: PropTypes.Color | &quot;transparent&quot; | &quot;paper&quot; = &quot;default&quot;
+preset?: | &quot;default&quot;
+| &quot;inherit&quot;
+| &quot;primary&quot;
+| &quot;secondary&quot;
+| &quot;transparent&quot;
+| &quot;paper&quot; = &quot;default&quot;
 
 /**
- * Optional props for the slots
- */
-slotProps?: HeaderSlotProps
-
-/**
- * Optional slots for custom rendering within the header
- */
-slots?: HeaderSlots
-
-/**
- * Subtitle of the header
+ * Subtitle of the header.
  */
 subtitle?: string | ReactElement
 
 /**
- * If is set, a list of tabs is dispayed at the bottom
+ * Tabs rendered at the bottom.
  */
 tabs?: HeaderTab[]
 
 /**
- * The tabs will work using
- * - a panel container (panel)
- * - using a the navigation system (navigation).
+ * Tabs mode.
  */
 tabsMode?: &quot;panel&quot; | &quot;navigation&quot; = &quot;navigation&quot;
 
 /**
- * Title of the header
+ * Title of the header.
  */
 title?: string | ReactElement = &quot;&quot;</code></pre>
           </div>
@@ -3813,10 +3568,8 @@ title?: string | ReactElement = &quot;&quot;</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { Badge, Content, Header, TabPanel, TabProvider } from "@pautena/react-design-system";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";</code></pre>
+                <pre><code>import { ArrowLeft } from "lucide-react";
+import { Badge, Content, Header, TabPanel, TabProvider } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -3836,167 +3589,6 @@ import Typography from "@mui/material/Typography";</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">OnlyTitle</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const OnlyTitle = () =&gt; &lt;Header title=&quot;Lorem ipsum&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">CustomTitle</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const CustomTitle = () =&gt; &lt;Header
-    title={(&lt;Box display=&quot;flex&quot; flexDirection=&quot;row&quot; alignItems=&quot;center&quot;&gt;
-      &lt;Typography variant=&quot;h6&quot;&gt;Lorem ipsum&lt;/Typography&gt;
-      &lt;Badge variant=&quot;primary&quot; text=&quot;4 items&quot; className=&quot;ml-2&quot; /&gt;
-    &lt;/Box&gt;)} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">TitleLoading</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const TitleLoading = () =&gt; &lt;Header loadingTitle /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">CustomSubtitle</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const CustomSubtitle = () =&gt; &lt;Header
-    subtitle={(&lt;Box display=&quot;flex&quot; flexDirection=&quot;row&quot; alignItems=&quot;center&quot;&gt;
-      &lt;Typography variant=&quot;body2&quot;&gt;Dolor sit amet&lt;/Typography&gt;
-      &lt;Badge variant=&quot;error&quot; text=&quot;since yesterday&quot; className=&quot;ml-2&quot; /&gt;
-    &lt;/Box&gt;)} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">SubtitleLoading</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const SubtitleLoading = () =&gt; &lt;Header loadingSubtitle /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ColorInherit</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ColorInherit = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;inherit&quot;
-    breadcrumbs={breadcrumbs}
-    tabs={tabs}
-    actions={actions} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ColorPrimary</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ColorPrimary = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;primary&quot;
-    breadcrumbs={breadcrumbs}
-    tabs={tabs}
-    actions={actions} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ColorSecondary</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ColorSecondary = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;secondary&quot;
-    breadcrumbs={breadcrumbs}
-    tabs={tabs}
-    actions={actions} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ColorDefault</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ColorDefault = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;default&quot;
-    breadcrumbs={breadcrumbs}
-    tabs={tabs}
-    actions={actions} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">ColorTransparent</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const ColorTransparent = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;transparent&quot;
-    breadcrumbs={breadcrumbs}
-    tabs={tabs}
-    actions={actions} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithSubheader</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithSubheader = () =&gt; &lt;Header title=&quot;Lorem ipsum&quot; subtitle=&quot;Dolor sit amet&quot; /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithBreadcumbs</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithBreadcumbs = () =&gt; &lt;Header title=&quot;Lorem ipsum&quot; breadcrumbs={breadcrumbs} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithActions</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithActions = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;default&quot;
-    tabsMode=&quot;panel&quot;
-    breadcrumbs={breadcrumbs}
-    actions={actions} /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
                 <span class="ex-name">WithPanelTabs</span>
                 <span class="badge ok">story ok</span>
               </div>
@@ -4007,19 +3599,15 @@ import Typography from "@mui/material/Typography";</code></pre>
     &lt;Header
       title=&quot;Lorem ipsum&quot;
       subtitle=&quot;Dolor sit amet&quot;
+      preset=&quot;paper&quot;
+      border
       tabsMode=&quot;panel&quot;
       tabs={tabs}
     /&gt;
     &lt;Content&gt;
-      &lt;TabPanel index={0}&gt;
-        &lt;Typography&gt;Panel Tab 1&lt;/Typography&gt;
-      &lt;/TabPanel&gt;
-      &lt;TabPanel index={1}&gt;
-        &lt;Typography&gt;Panel Tab 2&lt;/Typography&gt;
-      &lt;/TabPanel&gt;
-      &lt;TabPanel index={2}&gt;
-        &lt;Typography&gt;Panel Tab 3&lt;/Typography&gt;
-      &lt;/TabPanel&gt;
+      &lt;TabPanel index={0}&gt;Panel Tab 1&lt;/TabPanel&gt;
+      &lt;TabPanel index={1}&gt;Panel Tab 2&lt;/TabPanel&gt;
+      &lt;TabPanel index={2}&gt;Panel Tab 3&lt;/TabPanel&gt;
     &lt;/Content&gt;
   &lt;/TabProvider&gt;
 );</code></pre>
@@ -4038,115 +3626,66 @@ import Typography from "@mui/material/Typography";</code></pre>
     navigationButton={{
       text: &quot;Go back&quot;,
       href: &quot;/back&quot;,
-      icon: &lt;ArrowBackIcon /&gt;,
+      icon: &lt;ArrowLeft size={16} /&gt;,
     }} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">WithBorder</span>
+                <span class="ex-name">CustomTitle</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const WithBorder = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;default&quot;
-    breadcrumbs={breadcrumbs}
-    actions={actions}
-    border /&gt;;</code></pre>
+              <pre><code>const CustomTitle = () =&gt; &lt;Header
+    title={(&lt;div className=&quot;flex items-center&quot;&gt;
+      &lt;h6 className=&quot;text-lg font-medium&quot;&gt;custom title&lt;/h6&gt;
+      &lt;Badge variant=&quot;primary&quot; text=&quot;4 items&quot; className=&quot;ml-2&quot; /&gt;
+    &lt;/div&gt;)} /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">ColorPaper</span>
+                <span class="ex-name">PrimaryPreset</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const ColorPaper = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;paper&quot;
-    breadcrumbs={breadcrumbs}
-    tabs={tabs}
-    actions={actions}
-    border /&gt;;</code></pre>
+              <pre><code>const PrimaryPreset = () =&gt; &lt;Header preset=&quot;primary&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">CustomActionStyles</span>
+                <span class="ex-name">SecondaryPreset</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const CustomActionStyles = () =&gt; &lt;Header
-    title=&quot;Lorem ipsum&quot;
-    subtitle=&quot;Dolor sit amet&quot;
-    preset=&quot;default&quot;
-    breadcrumbs={breadcrumbs}
-    actions={[
-      {
-        id: &quot;view&quot;,
-        text: &quot;View&quot;,
-        variant: &quot;text&quot;,
-        color: &quot;primary&quot;,
-      },
-      {
-        id: &quot;edit&quot;,
-        text: &quot;Edit&quot;,
-        variant: &quot;outlined&quot;,
-        color: &quot;secondary&quot;,
-      },
-      {
-        id: &quot;save&quot;,
-        text: &quot;Save&quot;,
-        variant: &quot;contained&quot;,
-        color: &quot;primary&quot;,
-      },
-      {
-        id: &quot;delete&quot;,
-        text: &quot;Delete&quot;,
-        variant: &quot;contained&quot;,
-        color: &quot;error&quot;,
-      },
-    ]} /&gt;;</code></pre>
+              <pre><code>const SecondaryPreset = () =&gt; &lt;Header preset=&quot;secondary&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">WithSlotPropsCustomization</span>
+                <span class="ex-name">PaperPresetWithBorder</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const WithSlotPropsCustomization = () =&gt; &lt;Header
-    title=&quot;Slot Props Demo&quot;
-    subtitle=&quot;Multiple customizations&quot;
-    breadcrumbs={breadcrumbs}
-    actions={actions}
-    tabs={tabs}
-    tabsMode=&quot;panel&quot;
-    slotProps={{
-      root: {
-        sx: {
-          background: &quot;linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)&quot;,
-          color: &quot;white&quot;,
-        },
-      },
-      breadcrumbs: {
-        separator: &quot;/&quot;,
-      },
-      actionButton: {
-        size: &quot;large&quot;,
-      },
-      tabs: {
-        TabIndicatorProps: {
-          style: {
-            backgroundColor: &quot;#fff&quot;,
-            height: 4,
-          },
-        },
-      },
-    }} /&gt;;</code></pre>
+              <pre><code>const PaperPresetWithBorder = () =&gt; &lt;Header preset=&quot;paper&quot; border /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">TransparentWithTabs</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const TransparentWithTabs = () =&gt; &lt;Header preset=&quot;transparent&quot; tabs={linkedTabs} border /&gt;;</code></pre>
+            </div>
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">MixedActionVariantsAndColors</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const MixedActionVariantsAndColors = () =&gt; &lt;Header actionsVariant=&quot;contained&quot; actions={mixedActions} /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -4167,9 +3706,9 @@ import Typography from "@mui/material/Typography";</code></pre>
         <label for="c-24-layouts-headerlayout-stories" class="badge ok as-toggle">6 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/HeaderLayout/HeaderLayout.stories.tsx">layouts-headerlayout · ./src/HeaderLayout/HeaderLayout.stories.tsx</div>
+    <div class="meta" title="./src/components/header-layout/header-layout.stories.tsx">layouts-headerlayout · ./src/components/header-layout/header-layout.stories.tsx</div>
     
-    <div class="hint">A layout component that provides a header and content area with optional loading, fetching, and error states.</div>
+    <div class="hint">Layout component with header and content area plus loading/fetching/error states.</div>
     
   </div>
 
@@ -4189,45 +3728,45 @@ import Typography from "@mui/material/Typography";</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">8 prop types</span>
             </div>
-            <pre><code>Component: src/HeaderLayout/HeaderLayout.tsx::HeaderLayout</code></pre>
+            <pre><code>Component: src/components/header-layout/header-layout.tsx::HeaderLayout</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Content to display in the layout area
+ * Content rendered in layout.
  */
 children?: React.ReactNode
 
 /**
- * Optional error object to be displayed in the header layout.
+ * Optional error state.
  */
 error?: HeaderLayoutError
 
 /**
- * Optional flag to indicate if the header layout is in a fetching state.
+ * Optional fetching flag.
  */
 fetching?: boolean
 
 /**
- * Optional flag to indicate if the header layout is in a loading state.
+ * Optional loading flag.
  */
 loading?: boolean
 
 /**
- * Optional props for the custom slots.
+ * Optional slot props.
  */
 slotProps?: HeaderLayoutSlotProps
 
 /**
- * Optional slots for custom components within the header layout.
+ * Optional slots.
  */
 slots?: HeaderLayoutSlots
 
 /**
- * An optional subtitle to be displayed in the header.
+ * Optional subtitle.
  */
 subtitle?: string | ReactElement
 
 /**
- * The title to be displayed in the header.
+ * Header title.
  */
 title: string | ReactElement</code></pre>
           </div>
@@ -4241,9 +3780,7 @@ title: string | ReactElement</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import Box from "@mui/material/Box";
-import { HeaderLayout, SkeletonGrid, TablePlaceholder, TabPanel } from "@pautena/react-design-system";
-import Typography from "@mui/material/Typography";</code></pre>
+                <pre><code>import { HeaderLayout, SkeletonGrid, TablePlaceholder, TabPanel } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -4297,17 +3834,11 @@ import Typography from "@mui/material/Typography";</code></pre>
         actions,
         tabs,
       },
-    }}&gt;(&lt;Box&gt;
-      &lt;TabPanel index={0}&gt;
-        &lt;Typography&gt;Panel 1&lt;/Typography&gt;
-      &lt;/TabPanel&gt;
-      &lt;TabPanel index={[1, 2]}&gt;
-        &lt;Typography&gt;Panel 2&lt;/Typography&gt;
-      &lt;/TabPanel&gt;
-      &lt;TabPanel index={3}&gt;
-        &lt;Typography&gt;Panel 3&lt;/Typography&gt;
-      &lt;/TabPanel&gt;
-    &lt;/Box&gt;)&lt;/HeaderLayout&gt;;</code></pre>
+    }}&gt;(&lt;div&gt;
+      &lt;TabPanel index={0}&gt;Panel 1&lt;/TabPanel&gt;
+      &lt;TabPanel index={[1, 2]}&gt;Panel 2&lt;/TabPanel&gt;
+      &lt;TabPanel index={3}&gt;Panel 3&lt;/TabPanel&gt;
+    &lt;/div&gt;)&lt;/HeaderLayout&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -4495,14 +4026,14 @@ import { ListPanel, ListPanelDemoContent, ListPanelPanel } from "@pautena/react-
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Placeholder</h2>
       <div class="badges">
-        <label for="c-26-placeholders-placeholder-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-26-placeholders-placeholder-props" class="badge ok as-toggle">6 prop types</label>
         
         <label for="c-26-placeholders-placeholder-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/Placeholder/Placeholder.stories.tsx">placeholders-placeholder · ./src/Placeholder/Placeholder.stories.tsx</div>
+    <div class="meta" title="./src/components/placeholder/placeholder.stories.tsx">placeholders-placeholder · ./src/components/placeholder/placeholder.stories.tsx</div>
     
-    <div class="hint">Empty state placeholder with optional icon and actions</div>
+    <div class="hint">Empty state placeholder with optional icon and actions.</div>
     
   </div>
 
@@ -4520,17 +4051,22 @@ import { ListPanel, ListPanelDemoContent, ListPanelPanel } from "@pautena/react-
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">5 prop types</span>
+              <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/Placeholder/Placeholder.tsx::Placeholder</code></pre>
+            <pre><code>Component: src/components/placeholder/placeholder.tsx::Placeholder</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Action buttons to display
+ * Action buttons to display.
  */
 actions?: PlaceholderAction[]
 
 /**
- * Custom icon render function
+ * Additional CSS classes.
+ */
+className?: string
+
+/**
+ * Custom icon render function.
  */
 icon?: ({
   size,
@@ -4538,18 +4074,18 @@ icon?: ({
 }: PlaceholderIconArgs) =&gt; ReactElement
 
 /**
- * Icon size in pixels
- * @default 200
+ * Icon size in pixels.
+ * @default 120
  */
-iconSize?: number = 200
+iconSize?: number = 120
 
 /**
- * Subtitle or description text
+ * Subtitle or description text.
  */
 subtitle: string
 
 /**
- * Main title text
+ * Main title text.
  */
 title: string</code></pre>
           </div>
@@ -4564,7 +4100,7 @@ title: string</code></pre>
                   <span class="ex-name">Imports</span>
                 </div>
                 <pre><code>import { Placeholder } from "@pautena/react-design-system";
-import SearchIcon from "@mui/icons-material/Search";</code></pre>
+import { Search } from "lucide-react";</code></pre>
               </div>
           
           
@@ -4587,9 +4123,7 @@ import SearchIcon from "@mui/icons-material/Search";</code></pre>
               
               
               <pre><code>const WithIcon = () =&gt; &lt;Placeholder
-    icon={({ size, color }: PlaceholderIconArgs) =&gt; (
-      &lt;SearchIcon color={color} sx={{ fontSize: size }} /&gt;
-    )}
+    icon={({ size }: PlaceholderIconArgs) =&gt; &lt;Search size={size} /&gt;}
     title=&quot;Lorem ipsum dolor sit amet&quot;
     subtitle=&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor&quot; /&gt;;</code></pre>
             </div>
@@ -4601,9 +4135,7 @@ import SearchIcon from "@mui/icons-material/Search";</code></pre>
               
               
               <pre><code>const WithActions = () =&gt; &lt;Placeholder
-    icon={({ size, color }: PlaceholderIconArgs) =&gt; (
-      &lt;SearchIcon color={color} sx={{ fontSize: size }} /&gt;
-    )}
+    icon={({ size }: PlaceholderIconArgs) =&gt; &lt;Search size={size} /&gt;}
     title=&quot;Lorem ipsum dolor sit amet&quot;
     subtitle=&quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi eleifend at libero in tristique. Pellentesque bibendum arcu eget augue commodo, non convallis eros porttitor&quot;
     actions={actions} /&gt;;</code></pre>
