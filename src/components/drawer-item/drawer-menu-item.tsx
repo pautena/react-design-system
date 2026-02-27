@@ -170,16 +170,6 @@ export const DrawerMenuItem = ({
     );
   }
 
-  const TriggerComponent = level > 0 ? SidebarMenuSubButton : SidebarMenuButton;
-  const triggerProps =
-    level > 0
-      ? {
-          render: <button type="button" />,
-          size: buttonSize === "sm" ? "sm" : "md",
-          isActive: selected,
-        }
-      : { tooltip: text, size: buttonSize, isActive: selected };
-
   return (
     <Collapsible
       open={collapsibleOpen}
@@ -188,7 +178,15 @@ export const DrawerMenuItem = ({
     >
       {level > 0 ? (
         <SidebarMenuSubItem className={className}>
-          <CollapsibleTrigger render={<TriggerComponent {...triggerProps} />}>
+          <CollapsibleTrigger
+            render={
+              <SidebarMenuSubButton
+                render={<button type="button" />}
+                size={buttonSize === "sm" ? "sm" : "md"}
+                isActive={selected}
+              />
+            }
+          >
             {icon}
             <span>{text}</span>
             {collapsibleOpen ? (
@@ -211,7 +209,15 @@ export const DrawerMenuItem = ({
         </SidebarMenuSubItem>
       ) : (
         <SidebarMenuItem className={className}>
-          <CollapsibleTrigger render={<TriggerComponent {...triggerProps} />}>
+          <CollapsibleTrigger
+            render={
+              <SidebarMenuButton
+                tooltip={text}
+                size={buttonSize}
+                isActive={selected}
+              />
+            }
+          >
             {icon}
             {!mini ? <span>{text}</span> : null}
             {!mini ? (
