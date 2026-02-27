@@ -52,9 +52,9 @@ export const Small: Story = {
   },
 };
 
-export const Collapsed: Story = {
+export const MiniClosed: Story = {
   args: {
     ...Default.args,
-    initialState: "collapse",
+    initialState: "close",
   },
 };

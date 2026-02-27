@@ -1,22 +1,26 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DrawerProvider } from "@/components/drawer-context";
-import type { DrawerSize } from "@/components/drawerx/drawer.types";
-import { withContainer } from "../../storybook";
+import type {
+  DrawerSize,
+  DrawerState,
+} from "@/components/drawerx/drawer.types";
+import { withDrawerMenu } from "../../storybook";
 import DrawerSubheader, { type DrawerSubheaderProps } from "./drawer-subheader";
 
 type DrawerSubheaderStoryArgs = DrawerSubheaderProps & {
   size?: DrawerSize;
+  initialState?: DrawerState;
 };
 
 export default {
   title: "Navigation/DrawerSubheader",
   component: DrawerSubheader,
-  decorators: [withContainer({ width: 250 })],
+  decorators: [withDrawerMenu],
   parameters: {
     layout: "centered",
   },
-  render: ({ size = "medium", ...args }) => (
-    <DrawerProvider size={size}>
+  render: ({ size = "medium", initialState = "open", ...args }) => (
+    <DrawerProvider size={size} initialState={initialState}>
       <DrawerSubheader {...args} />
     </DrawerProvider>
   ),
@@ -35,5 +39,12 @@ export const Small: Story = {
   args: {
     children: "Lorem ipsum",
     size: "small",
+  },
+};
+
+export const MiniClosed: Story = {
+  args: {
+    children: "Lorem ipsum",
+    initialState: "close",
   },
 };

@@ -31,14 +31,14 @@ describe("DrawerItem", () => {
     );
   };
 
-  it("should render icon in collapsed state", () => {
+  it("should render icon", () => {
     renderComponent({
-      initialState: "collapse",
+      initialState: "open",
       item: mockMenuDrawerNavigationItem,
     });
 
     expect(screen.getByTestId("ConnectingAirportsIcon")).toBeVisible();
-    expect(screen.getByText(/item 2.3.4.2/i)).not.toBeVisible();
+    expect(screen.getByText(/item 2.3.4.2/i)).toBeVisible();
   });
 
   it("should render chevron right for closed menu", () => {
@@ -61,22 +61,34 @@ describe("DrawerItem", () => {
     expect(screen.getByTestId("ExpandMoreIcon")).toBeVisible();
   });
 
-  it.each([
-    ["Item 2.3.4.2 popover submenu", "collapse" as DrawerState],
-    ["Item 2.3.4.2 collapse submenu", "open" as DrawerState],
-  ])("should render '%s' when state is '%s'", async (label, initialState) => {
+  it("should render collapse submenu region", async () => {
     const user = userEvent.setup();
-    renderComponent({ initialState, item: mockMenuDrawerNavigationItem });
+    renderComponent({
+      initialState: "open",
+      item: mockMenuDrawerNavigationItem,
+    });
 
     await user.click(
       screen.getByRole("button", { name: /^item 2\.3\.4\.2$/i }),
     );
-    expect(screen.getByRole("region", { name: label })).toBeVisible();
+    expect(
+      screen.getByRole("region", { name: /item 2\.3\.4\.2 collapse submenu/i }),
+    ).toBeVisible();
   });
 
   it("should render item text", () => {
     renderComponent({ item: mockLinkNoIconDrawerNavigationItem });
     expect(screen.getByText(/item 1.1/i)).toBeVisible();
+  });
+
+  it("should hide item text in mini closed state", () => {
+    renderComponent({
+      initialState: "close",
+      item: mockLinkDrawerNavigationItem,
+    });
+
+    expect(screen.queryByText(/item 1.2/i)).not.toBeInTheDocument();
+    expect(screen.getByTestId("DiamondIcon")).toBeVisible();
   });
 
   it("should render icon", () => {
@@ -117,5 +129,21 @@ describe("DrawerItem", () => {
 
     const button = screen.getByRole("button", { name: /^item 2\.3\.4\.2$/i });
     expect(within(button).getByTestId("ExpandMoreIcon")).toBeVisible();
+  });
+
+  it("should render popover submenu in mini closed state", async () => {
+    const user = userEvent.setup();
+    renderComponent({
+      initialState: "close",
+      item: mockMenuDrawerNavigationItem,
+    });
+
+    await user.click(
+      screen.getByRole("button", { name: /^item 2\.3\.4\.2$/i }),
+    );
+
+    expect(
+      screen.getByRole("region", { name: /item 2\.3\.4\.2 popover submenu/i }),
+    ).toBeVisible();
   });
 });

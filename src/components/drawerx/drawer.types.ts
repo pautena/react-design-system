@@ -9,14 +9,11 @@ import type { BadgeVariant } from "@/components/badge";
 import type { BulletVariant } from "@/components/bullet";
 
 /**
- * Drawer display variants.
+ * Drawer states.
+ * - open: expanded drawer with labels
+ * - close: mini drawer with icons only
  */
-export type DrawerVariant = "temporary" | "mini" | "persistent";
-
-/**
- * Drawer open/close states.
- */
-export type DrawerState = "open" | "collapse" | "close";
+export type DrawerState = "open" | "close";
 
 /**
  * Drawer size variants.
@@ -208,11 +205,6 @@ export interface DrawerProviderProps extends PropsWithChildren {
    * Width of the drawer in pixels.
    */
   drawerWidth?: number;
-  /**
-   * Variant of the drawer behavior.
-   * @default "temporary"
-   */
-  variant?: DrawerVariant;
   /**
    * ID of currently selected navigation item.
    */

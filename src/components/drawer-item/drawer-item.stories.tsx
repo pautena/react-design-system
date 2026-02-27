@@ -1,14 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Diamond } from "lucide-react";
+import { Folder } from "lucide-react";
 import { DrawerProvider } from "@/components/drawer-context";
-import {
-  mockLinkNoIconDrawerNavigationItem,
-  mockMenuDrawerNavigationItem,
-} from "@/components/drawerx/drawer.mock";
+import { mockLinkNoIconDrawerNavigationItem } from "@/components/drawerx/drawer.mock";
 import type {
   DrawerSize,
   DrawerState,
 } from "@/components/drawerx/drawer.types";
+import { withDrawerMenu } from "../../storybook";
 import DrawerItem, { type DrawerItemProps } from "./drawer-item";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
@@ -23,6 +21,7 @@ export default {
   parameters: {
     layout: "centered",
   },
+  decorators: [withDrawerMenu],
   render: ({
     initialState = "open",
     size = "medium",
@@ -53,14 +52,8 @@ export const ItemWithIcon: Story = {
   args: {
     item: {
       ...mockLinkNoIconDrawerNavigationItem,
-      icon: <Diamond />,
+      icon: <Folder />,
     },
   },
 };
 
-export const MenuNotSelected: Story = {
-  name: "Menu (open)",
-  args: {
-    item: mockMenuDrawerNavigationItem,
-  },
-};

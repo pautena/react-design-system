@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from "react";
 import { useDrawer } from "@/components/drawer-context";
+import { SidebarGroupLabel } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
 export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement>;
@@ -12,18 +13,15 @@ export default function DrawerSubheader({
   children,
   ...rest
 }: DrawerSubheaderProps) {
-  const { size } = useDrawer();
+  const { state } = useDrawer();
+
+  if (state === "close") {
+    return null;
+  }
 
   return (
-    <div
-      className={cn(
-        "px-3 text-xs font-semibold uppercase text-muted-foreground",
-        size === "small" ? "py-2" : "py-3",
-        className,
-      )}
-      {...rest}
-    >
+    <SidebarGroupLabel className={cn("uppercase", className)} {...rest}>
       {children}
-    </div>
+    </SidebarGroupLabel>
   );
 }

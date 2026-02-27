@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 import { useDrawer } from "@/components/drawer-context";
-import DrawerSubheader from "@/components/drawer-subheader";
 import type { DrawerNavigationItem } from "@/components/drawerx/drawer.types";
+import { SidebarGroupLabel } from "@/components/ui/sidebar";
 import { DrawerItemLink } from "./drawer-item-link";
 import { DrawerMenuItem } from "./drawer-menu-item";
 
@@ -13,12 +14,20 @@ export interface DrawerItemProps {
    * Nesting level inside submenus.
    */
   level?: number;
+  /**
+   * Optional action element displayed alongside the item.
+   */
+  action?: ReactNode;
 }
 
 /**
  * Drawer navigation item renderer.
  */
-export default function DrawerItem({ item, level = 0 }: DrawerItemProps) {
+export default function DrawerItem({
+  item,
+  level = 0,
+  action,
+}: DrawerItemProps) {
   const { selectedItemId, state } = useDrawer();
   if (item.kind === "collapsable") {
     const { id, text, icon, items } = item;
@@ -44,11 +53,11 @@ export default function DrawerItem({ item, level = 0 }: DrawerItemProps) {
   }
 
   if (item.kind === "header") {
-    return (
-      state === "open" && (
-        <DrawerSubheader role="heading">{item.text}</DrawerSubheader>
-      )
-    );
+    return state === "open" ? (
+      <SidebarGroupLabel role="heading" aria-level={2}>
+        {item.text}
+      </SidebarGroupLabel>
+    ) : null;
   }
 
   const { id, text, icon, avatar, label, bullet, href } = item;
@@ -62,6 +71,7 @@ export default function DrawerItem({ item, level = 0 }: DrawerItemProps) {
       bullet={bullet}
       href={href}
       level={level}
+      action={action}
     />
   );
 }

@@ -2,23 +2,11 @@ import { useState } from "react";
 import type {
   DrawerProviderProps,
   DrawerState,
-  DrawerVariant,
 } from "@/components/drawerx/drawer.types";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { DrawerContext } from "./drawer-context";
 
 export const drawerWidth = 240;
-
-const initialStateByVariant: Record<DrawerVariant, DrawerState> = {
-  temporary: "close",
-  mini: "collapse",
-  persistent: "close",
-};
-
-const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
-  temporary: ["close", "open"],
-  mini: ["collapse", "open"],
-  persistent: ["close", "open"],
-};
 
 /**
  * Provider for drawer state and interactions.
@@ -26,7 +14,6 @@ const targetStates: Record<DrawerVariant, [DrawerState, DrawerState]> = {
 export const DrawerProvider = ({
   children,
   initialState,
-  variant = "temporary",
   size = "medium",
   drawerWidth: drawerWidthProp = drawerWidth,
   clipped = true,
@@ -34,34 +21,33 @@ export const DrawerProvider = ({
   LinkComponent = "a",
   onStateChange = () => null,
 }: DrawerProviderProps) => {
-  const [state, setState] = useState<DrawerState>(
-    initialState || initialStateByVariant[variant],
-  );
+  const [isOpen, setIsOpen] = useState<boolean>(initialState === "open");
+  const state: DrawerState = isOpen ? "open" : "close";
 
-  const handleChangeState = (newState: DrawerState) => {
+  const handleChangeState = (open: boolean) => {
+    const newState: DrawerState = open ? "open" : "close";
     onStateChange(newState);
-    setState(newState);
+    setIsOpen(open);
   };
 
   return (
-    <DrawerContext.Provider
-      value={{
-        state,
-        size,
-        variant,
-        selectedItemId,
-        clipped,
-        drawerWidth: drawerWidthProp,
-        LinkComponent,
-        switchState: () =>
-          handleChangeState(targetStates[variant][state === "open" ? 0 : 1]),
-        collapse: () => handleChangeState("collapse"),
-        close: () => handleChangeState("close"),
-        open: () => handleChangeState("open"),
-        setState,
-      }}
-    >
-      {children}
-    </DrawerContext.Provider>
+    <SidebarProvider open={isOpen} onOpenChange={handleChangeState}>
+      <DrawerContext.Provider
+        value={{
+          state,
+          size,
+          selectedItemId,
+          clipped,
+          drawerWidth: drawerWidthProp,
+          LinkComponent,
+          switchState: () => handleChangeState(!isOpen),
+          close: () => handleChangeState(false),
+          open: () => handleChangeState(true),
+          setState: (newState) => handleChangeState(newState === "open"),
+        }}
+      >
+        {children}
+      </DrawerContext.Provider>
+    </SidebarProvider>
   );
 };

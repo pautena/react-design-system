@@ -1,13 +1,18 @@
-import type { ReactElement } from "react";
+import type { ReactElement, ReactNode } from "react";
 import Badge from "@/components/badge";
 import Bullet from "@/components/bullet";
 import { useDrawer } from "@/components/drawer-context";
-import {
-  type DrawerItemAvatar,
-  type DrawerItemBullet,
-  type DrawerItemLabel,
-  getDrawerItemColors,
+import type {
+  DrawerItemAvatar,
+  DrawerItemBullet,
+  DrawerItemLabel,
 } from "@/components/drawerx/drawer.types";
+import {
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+} from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
 export interface DrawerItemLinkProps {
@@ -47,6 +52,10 @@ export interface DrawerItemLinkProps {
    * Additional classes.
    */
   className?: string;
+  /**
+   * Optional action element displayed alongside the item.
+   */
+  action?: ReactNode;
 }
 
 /**
@@ -62,52 +71,72 @@ export const DrawerItemLink = ({
   selected,
   level,
   className,
+  action,
 }: DrawerItemLinkProps) => {
   const { state, size, LinkComponent } = useDrawer();
-  const { colorClass, fontWeight } = getDrawerItemColors(selected);
   const LinkTag = (LinkComponent ?? "a") as any;
+  const mini = state === "close";
+  const buttonSize = size === "small" ? "sm" : "default";
+
+  if (level > 0) {
+    return (
+      <SidebarMenuSubItem>
+        <SidebarMenuSubButton
+          render={<LinkTag href={href} aria-label={text} />}
+          isActive={selected}
+          className={className}
+          size={buttonSize === "sm" ? "sm" : "md"}
+        >
+          {icon}
+          {avatar ? (
+            <img
+              alt={avatar.alt}
+              src={avatar.src}
+              className={cn(
+                "rounded-full object-cover",
+                size === "small" ? "h-5 w-5" : "h-6 w-6",
+              )}
+            />
+          ) : null}
+          <span>{text}</span>
+          {label ? (
+            <Badge text={label.text} variant={label.variant} className="ml-2" />
+          ) : null}
+          {bullet ? <Bullet variant={bullet.variant} className="ml-2" /> : null}
+        </SidebarMenuSubButton>
+      </SidebarMenuSubItem>
+    );
+  }
 
   return (
-    <LinkTag
-      aria-label={text}
-      href={href}
-      className={cn(
-        "flex items-center rounded-md",
-        size === "small" ? "min-h-8" : "min-h-9",
-        state === "open" ? "px-3" : "justify-center px-2",
-        selected && "bg-muted",
-        className,
-      )}
-      style={{ paddingLeft: state === "open" ? 16 + level * 12 : undefined }}
-    >
-      {icon ? (
-        <span className={cn("mr-2 inline-flex", colorClass)}>{icon}</span>
-      ) : null}
-      {avatar ? (
-        <img
-          alt={avatar.alt}
-          src={avatar.src}
-          className={cn(
-            "mr-2 rounded-full object-cover",
-            size === "small" ? "h-6 w-6" : "h-8 w-8",
-          )}
-        />
-      ) : null}
-      <span
-        className={colorClass}
-        style={{
-          fontWeight,
-          opacity: state === "collapse" && level === 0 ? 0 : undefined,
-        }}
+    <SidebarMenuItem>
+      <SidebarMenuButton
+        render={<LinkTag href={href} aria-label={text} />}
+        isActive={selected}
+        tooltip={text}
+        size={buttonSize}
+        className={className}
       >
-        {text}
-      </span>
-      {label && state === "open" ? (
-        <Badge text={label.text} variant={label.variant} className="ml-2" />
-      ) : null}
-      {bullet && state === "open" ? (
-        <Bullet variant={bullet.variant} className="ml-4" />
-      ) : null}
-    </LinkTag>
+        {icon}
+        {avatar ? (
+          <img
+            alt={avatar.alt}
+            src={avatar.src}
+            className={cn(
+              "rounded-full object-cover",
+              size === "small" ? "h-6 w-6" : "h-7 w-7",
+            )}
+          />
+        ) : null}
+        {!mini ? <span>{text}</span> : null}
+        {!mini && label ? (
+          <Badge text={label.text} variant={label.variant} className="ml-2" />
+        ) : null}
+        {!mini && bullet ? (
+          <Bullet variant={bullet.variant} className="ml-2" />
+        ) : null}
+      </SidebarMenuButton>
+      {action}
+    </SidebarMenuItem>
   );
 };

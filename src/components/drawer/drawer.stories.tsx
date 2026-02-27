@@ -16,11 +16,7 @@ export default {
     layout: "fullscreen",
   },
   render: ({ initialState, selectedItemId }) => (
-    <DrawerProvider
-      initialState={initialState}
-      variant="mini"
-      selectedItemId={selectedItemId}
-    >
+    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
       <Drawer>
         <DrawerContent navigation={mockDrawerNavigation} />
       </Drawer>

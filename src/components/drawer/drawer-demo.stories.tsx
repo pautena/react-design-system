@@ -1,22 +1,27 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Content from "@/components/content";
-import { DrawerAppBar } from "@/components/drawer-app-bar";
 import { DrawerContent } from "@/components/drawer-content";
-import { DrawerProvider } from "@/components/drawer-context";
+import { DrawerProvider, useDrawer } from "@/components/drawer-context";
 import { DrawerMain } from "@/components/drawer-main";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
-import type {
-  DrawerState,
-  DrawerVariant,
-} from "@/components/drawerx/drawer.types";
+import type { DrawerState } from "@/components/drawerx/drawer.types";
 import SkeletonGrid from "@/components/skeleton-grid";
+import { Button } from "@/components/ui/button";
 import Drawer from "./drawer";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;
-  variant: DrawerVariant;
   selectedItemId?: string;
-  clipped?: boolean;
+}
+
+function DrawerToggleButton() {
+  const { state, switchState } = useDrawer();
+
+  return (
+    <Button type="button" variant="outline" size="sm" onClick={switchState}>
+      {state === "open" ? "Collapse drawer" : "Expand drawer"}
+    </Button>
+  );
 }
 
 export default {
@@ -24,19 +29,14 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-  render: ({ initialState, variant, selectedItemId, clipped }) => (
-    <DrawerProvider
-      initialState={initialState}
-      variant={variant}
-      selectedItemId={selectedItemId}
-      clipped={clipped}
-    >
-      <DrawerAppBar title="Drawer demo" />
+  render: ({ initialState, selectedItemId }) => (
+    <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>
       <Drawer>
         <DrawerContent navigation={mockDrawerNavigation} />
       </Drawer>
       <DrawerMain>
-        <Content className="p-3">
+        <Content className="space-y-3 p-3">
+          <DrawerToggleButton />
           <SkeletonGrid />
         </Content>
       </DrawerMain>
@@ -46,39 +46,16 @@ export default {
 
 type Story = StoryObj<DrawerDemoArgs>;
 
-export const Temporary: Story = {
+export const OpenByDefault: Story = {
   args: {
-    variant: "temporary",
+    initialState: "open",
     selectedItemId: "item2.3.2",
   },
 };
 
-export const TemporaryClipped: Story = {
+export const ClosedByDefault: Story = {
   args: {
-    ...Temporary.args,
-    variant: "temporary",
-    clipped: true,
-  },
-};
-
-export const Persistent: Story = {
-  args: {
-    ...Temporary.args,
-    variant: "persistent",
-  },
-};
-
-export const PersistentClipped: Story = {
-  args: {
-    ...Temporary.args,
-    variant: "persistent",
-    clipped: true,
-  },
-};
-
-export const MiniDrawer: Story = {
-  args: {
-    ...Temporary.args,
-    variant: "mini",
+    initialState: "close",
+    selectedItemId: "item2.3.2",
   },
 };

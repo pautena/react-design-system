@@ -21,7 +21,7 @@ describe("DrawerLayout", () => {
     const user = userEvent.setup();
     renderComponent();
 
-    await user.click(screen.getByTestId("MenuIcon"));
+    await user.click(screen.getByRole("button", { name: /open drawer/i }));
     expect(screen.getByRole("link", { name: /item 1.1/i })).toBeInTheDocument();
   });
 

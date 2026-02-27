@@ -5,13 +5,13 @@ import {
   Brush,
   Cable,
   CheckCheck,
-  Diamond,
   FileWarning,
   FolderTree,
   Link2Off,
   PlaneLanding,
   PlaneTakeoff,
   Puzzle,
+  SquareTerminal,
   SquareUser,
   Waypoints,
 } from "lucide-react";
@@ -26,7 +26,7 @@ export const mockLinkDrawerNavigationItem: DrawerNavigationLink = {
   id: "item1.1",
   kind: "link",
   text: "Item 1.1",
-  icon: <Diamond data-testid="DiamondIcon" />,
+  icon: <SquareTerminal data-testid="DiamondIcon" />,
   href: "/items/1-1",
 };
 

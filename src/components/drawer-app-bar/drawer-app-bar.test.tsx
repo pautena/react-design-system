@@ -1,9 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { DrawerProvider, useDrawer } from "@/components/drawer-context";
-import type {
-  DrawerState,
-  DrawerVariant,
-} from "@/components/drawerx/drawer.types";
+import type { DrawerState } from "@/components/drawerx/drawer.types";
 import { render, screen } from "../../tests/testing-library";
 import DrawerAppBar from "./drawer-app-bar";
 
@@ -11,12 +8,10 @@ describe("DrawerAppBar", () => {
   const renderComponent = ({
     title,
     initialState,
-    variant = "temporary",
     clipped,
   }: {
     title?: string;
     initialState?: DrawerState;
-    variant?: DrawerVariant;
     clipped?: boolean;
   } = {}) => {
     const TestContent = () => {
@@ -25,11 +20,7 @@ describe("DrawerAppBar", () => {
     };
 
     render(
-      <DrawerProvider
-        initialState={initialState}
-        variant={variant}
-        clipped={clipped}
-      >
+      <DrawerProvider initialState={initialState} clipped={clipped}>
         <DrawerAppBar title={title}>test content</DrawerAppBar>
         <TestContent />
       </DrawerProvider>,
@@ -37,31 +28,20 @@ describe("DrawerAppBar", () => {
   };
 
   it.each([
-    ["temporary" as DrawerVariant, "open" as DrawerState],
-    ["temporary" as DrawerVariant, "close" as DrawerState],
-    ["persistent" as DrawerVariant, "open" as DrawerState],
-    ["persistent" as DrawerVariant, "close" as DrawerState],
-    ["mini" as DrawerVariant, "collapse" as DrawerState],
-  ])("should render menu button for variant %s", (variant, initialState) => {
-    renderComponent({ variant, initialState });
+    "open",
+    "close",
+  ] as const)("should render menu button for state %s", (initialState) => {
+    renderComponent({ initialState });
 
     expect(screen.getByRole("button", { name: /open drawer/i })).toBeVisible();
   });
 
   it("should switch drawer state when menu button is clicked", async () => {
     const user = userEvent.setup();
-    renderComponent({ initialState: "open", variant: "temporary" });
+    renderComponent({ initialState: "open" });
 
     await user.click(screen.getByRole("button", { name: /open drawer/i }));
     expect(screen.getByText("state: close")).toBeVisible();
-  });
-
-  it("should hide menu button for mini open when not clipped", () => {
-    renderComponent({ variant: "mini", initialState: "open", clipped: false });
-
-    expect(
-      screen.queryByRole("button", { name: /open drawer/i }),
-    ).not.toBeInTheDocument();
   });
 
   it("should render children", () => {

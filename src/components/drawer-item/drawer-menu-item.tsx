@@ -1,11 +1,30 @@
 import { ChevronDown, ChevronRight } from "lucide-react";
-import { type ReactElement, useRef, useState } from "react";
+import { type ReactElement, useEffect, useMemo, useState } from "react";
+import Badge from "@/components/badge";
+import Bullet from "@/components/bullet";
 import { useDrawer } from "@/components/drawer-context";
+import type { DrawerNavigationItem } from "@/components/drawerx/drawer.types";
 import {
-  type DrawerNavigationItem,
-  getDrawerItemColors,
-} from "@/components/drawerx/drawer.types";
-import { cn } from "@/lib/utils";
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import {
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubButton,
+  SidebarMenuSubItem,
+} from "@/components/ui/sidebar";
 import DrawerItem from "./drawer-item";
 
 export interface DrawerMenuItemProps {
@@ -35,6 +54,61 @@ export interface DrawerMenuItemProps {
   className?: string;
 }
 
+const renderDropdownItems = (
+  items: DrawerNavigationItem[],
+  selectedItemId?: string,
+  LinkComponent?: React.ComponentType<any> | string,
+) =>
+  items
+    .filter((item) => item.kind !== "header")
+    .map((item) => {
+      if (item.kind === "collapsable") {
+        return (
+          <DropdownMenuSub key={item.id}>
+            <DropdownMenuSubTrigger>
+              {item.icon}
+              <span>{item.text}</span>
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              {renderDropdownItems(item.items, selectedItemId, LinkComponent)}
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+        );
+      }
+
+      const LinkTag = (LinkComponent ?? "a") as any;
+      const isActive = item.id === selectedItemId;
+
+      return (
+        <DropdownMenuItem
+          key={item.id}
+          className={isActive ? "font-medium text-primary" : undefined}
+        >
+          <LinkTag href={item.href} className="flex w-full items-center gap-2">
+            {item.icon}
+            {item.avatar ? (
+              <img
+                alt={item.avatar.alt}
+                src={item.avatar.src}
+                className="h-5 w-5 rounded-full object-cover"
+              />
+            ) : null}
+            <span>{item.text}</span>
+            {item.label ? (
+              <Badge
+                text={item.label.text}
+                variant={item.label.variant}
+                className="ml-auto"
+              />
+            ) : null}
+            {item.bullet ? (
+              <Bullet variant={item.bullet.variant} className="ml-auto" />
+            ) : null}
+          </LinkTag>
+        </DropdownMenuItem>
+      );
+    });
+
 /**
  * Collapsible drawer menu item.
  */
@@ -46,70 +120,115 @@ export const DrawerMenuItem = ({
   level,
   className,
 }: DrawerMenuItemProps) => {
-  const { state, size } = useDrawer();
-  const anchorEl = useRef<HTMLButtonElement | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const { colorClass, fontWeight } = getDrawerItemColors(selected);
+  const { state, size, selectedItemId, LinkComponent } = useDrawer();
+  const mini = state === "close";
+  const [menuOpen, setMenuOpen] = useState(() => !mini && Boolean(selected));
 
-  const submenu = (
-    <div>
-      {items.map((item) => (
-        <DrawerItem key={item.id} level={level + 1} item={item} />
-      ))}
-    </div>
+  useEffect(() => {
+    if (mini) {
+      setMenuOpen(false);
+    }
+  }, [mini]);
+  const buttonSize = size === "small" ? "sm" : "default";
+
+  const submenu = useMemo(
+    () => (
+      <SidebarMenuSub>
+        {items.map((item) => (
+          <DrawerItem key={item.id} level={level + 1} item={item} />
+        ))}
+      </SidebarMenuSub>
+    ),
+    [items, level],
   );
 
-  return (
-    <>
-      <button
-        ref={anchorEl}
-        type="button"
-        aria-label={text}
-        onClick={() => setMenuOpen((o) => !o)}
-        className={cn(
-          "flex w-full items-center rounded-md",
-          size === "small" ? "min-h-8" : "min-h-9",
-          state === "open" ? "px-3" : "justify-center px-2",
-          menuOpen && "bg-muted",
-          className,
-        )}
-        style={{ paddingLeft: state === "open" ? 16 + level * 12 : undefined }}
-      >
-        {icon ? (
-          <span className={cn("mr-2 inline-flex", colorClass)}>{icon}</span>
-        ) : null}
-        <span
-          className={colorClass}
-          style={{
-            fontWeight,
-            opacity: state === "collapse" && level === 0 ? 0 : undefined,
-          }}
-        >
-          {text}
-        </span>
-        {menuOpen && state === "open" ? (
-          <ChevronDown data-testid="ExpandMoreIcon" className="ml-2 h-5 w-5" />
-        ) : (
-          <ChevronRight
-            data-testid="ChevronRightIcon"
-            className="ml-2 h-5 w-5"
-          />
-        )}
-      </button>
+  if (mini && level === 0) {
+    return (
+      <SidebarMenuItem className={className}>
+        <DropdownMenu open={menuOpen} onOpenChange={setMenuOpen}>
+          <DropdownMenuTrigger
+            render={
+              <SidebarMenuButton tooltip={text} size={buttonSize} isActive={selected} />
+            }
+          >
+            {icon}
+            <span className="sr-only">{text}</span>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side="right" align="start" className="w-56">
+            <div role="region" aria-label={`${text} popover submenu`}>
+              {renderDropdownItems(items, selectedItemId, LinkComponent)}
+            </div>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </SidebarMenuItem>
+    );
+  }
 
-      {state === "open" && menuOpen ? (
-        <div role="region" aria-label={`${text} collapse submenu`}>
-          {submenu}
-        </div>
-      ) : menuOpen ? (
-        <div
-          role="region"
-          aria-label={`${text} popover submenu`}
-          className="absolute left-full top-0 z-50 min-w-56 rounded-md border bg-popover p-1 shadow"
-        >
-          {submenu}
-        </div>
-      ) : null}
-    </>
+  const TriggerComponent = level > 0 ? SidebarMenuSubButton : SidebarMenuButton;
+  const triggerProps =
+    level > 0
+      ? {
+          render: <button type="button" />,
+          size: buttonSize === "sm" ? "sm" : "md",
+          isActive: selected,
+        }
+      : { tooltip: text, size: buttonSize, isActive: selected };
+
+  return (
+    <Collapsible
+      defaultOpen={selected}
+      className="group/collapsible"
+      onOpenChange={setMenuOpen}
+    >
+      {level > 0 ? (
+        <SidebarMenuSubItem className={className}>
+          <CollapsibleTrigger render={<TriggerComponent {...triggerProps} />}>
+            {icon}
+            <span>{text}</span>
+            {menuOpen ? (
+              <ChevronDown
+                data-testid="ExpandMoreIcon"
+                className="ml-auto"
+              />
+            ) : (
+              <ChevronRight
+                data-testid="ChevronRightIcon"
+                className="ml-auto"
+              />
+            )}
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div role="region" aria-label={`${text} collapse submenu`}>
+              {submenu}
+            </div>
+          </CollapsibleContent>
+        </SidebarMenuSubItem>
+      ) : (
+        <SidebarMenuItem className={className}>
+          <CollapsibleTrigger render={<TriggerComponent {...triggerProps} />}>
+            {icon}
+            {!mini ? <span>{text}</span> : null}
+            {!mini ? (
+              menuOpen ? (
+                <ChevronDown
+                  data-testid="ExpandMoreIcon"
+                  className="ml-auto"
+                />
+              ) : (
+                <ChevronRight
+                  data-testid="ChevronRightIcon"
+                  className="ml-auto"
+                />
+              )
+            ) : null}
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div role="region" aria-label={`${text} collapse submenu`}>
+              {submenu}
+            </div>
+          </CollapsibleContent>
+        </SidebarMenuItem>
+      )}
+    </Collapsible>
   );
 };

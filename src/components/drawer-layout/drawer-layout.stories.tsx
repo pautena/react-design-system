@@ -26,39 +26,30 @@ export default {
 
 type Story = StoryObj<typeof DrawerLayout>;
 
-export const Temporary: Story = {
+export const MiniClosed: Story = {
   args: {
     ...baseProps,
-    variant: "temporary",
+    initialState: "close",
   },
 };
 
-export const Persistent: Story = {
+export const Open: Story = {
   args: {
-    ...baseProps,
-    variant: "persistent",
+    ...MiniClosed.args,
+    initialState: "open",
   },
 };
 
 export const NoClipped: Story = {
   args: {
     ...baseProps,
-    variant: "mini",
     clipped: false,
   },
 };
 
-export const Mini: Story = {
+export const Small: Story = {
   args: {
     ...baseProps,
-    variant: "mini",
-  },
-};
-
-export const MiniSmall: Story = {
-  args: {
-    ...baseProps,
-    variant: "mini",
     size: "small",
   },
 };

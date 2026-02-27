@@ -3,7 +3,6 @@ import type {
   DrawerProviderProps,
   DrawerSize,
   DrawerState,
-  DrawerVariant,
 } from "@/components/drawerx/drawer.types";
 
 export interface DrawerContextProps {
@@ -19,10 +18,6 @@ export interface DrawerContextProps {
    * Current drawer state.
    */
   state: DrawerState;
-  /**
-   * Drawer variant.
-   */
-  variant: DrawerVariant;
   /**
    * Drawer width in pixels.
    */
@@ -43,10 +38,6 @@ export interface DrawerContextProps {
    * Close drawer.
    */
   close(): void;
-  /**
-   * Collapse drawer.
-   */
-  collapse(): void;
   /**
    * Open drawer.
    */
