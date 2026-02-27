@@ -31,5 +31,8 @@ lerna-debug.log*
 # NPM
 .npmrc
 
-
+# Storybook
 *storybook.log
+
+# Agents
+.agents/tmp
