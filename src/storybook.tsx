@@ -3,6 +3,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 /* eslint-disable react/display-name */
 import { type CSSProperties, type FunctionComponent, useState } from "react";
 import { action } from "storybook/actions";
+import { SidebarMenu } from "@/components/ui/sidebar";
 import { NotificationCenterProvider } from "./NotificationCenter";
 
 const closeDialogAction = action("dialog/close");
@@ -65,6 +66,16 @@ export const withPadding =
       </div>
     );
   };
+
+export const withDrawerMenu = (Story: FunctionComponent) => {
+  return (
+    <div className="bg-sidebar text-sidebar-foreground [&_[data-slot=sidebar-wrapper]]:min-h-0 [&_[data-slot=sidebar-wrapper]]:h-auto">
+      <SidebarMenu className="list-none m-0 p-2">
+        <Story />
+      </SidebarMenu>
+    </div>
+  );
+};
 
 export const withLocalizationProvider = (Story: FunctionComponent) => {
   return (

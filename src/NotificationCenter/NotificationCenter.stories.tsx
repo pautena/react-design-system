@@ -1,7 +1,8 @@
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import type { Meta } from "@storybook/react";
-import { ContentPlaceholder } from "../ContentPlaceholder";
+import { Content } from "@/components/content";
+import { SkeletonGrid } from "@/components/skeleton-grid";
 import { useNotificationCenter } from "./NotificationCenter.context";
 import { NotificationCenterProvider } from "./NotificationCenter.provider";
 
@@ -12,7 +13,7 @@ const DummyError = {
 
 export default {
   title: "Feedback/NotificationCenter",
-  component: ContentPlaceholder,
+  component: Content,
   decorators: [
     (Story) => (
       <NotificationCenterProvider>
@@ -23,13 +24,13 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
-} satisfies Meta<typeof ContentPlaceholder>;
+} satisfies Meta<typeof Content>;
 
 export const Default = () => {
   const { show, hide } = useNotificationCenter();
 
   return (
-    <ContentPlaceholder size={3} p={2}>
+    <Content className="p-2">
       <Box pb={2}>
         <Button
           onClick={() => show({ ...DummyError, severity: "info" })}
@@ -59,7 +60,8 @@ export const Default = () => {
           hide
         </Button>
       </Box>
-    </ContentPlaceholder>
+      <SkeletonGrid size={3} />
+    </Content>
   );
 };
 

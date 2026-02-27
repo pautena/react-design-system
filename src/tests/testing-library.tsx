@@ -18,6 +18,9 @@ function createMockTheme(mode: PaletteMode) {
     palette: {
       mode,
     },
+    typography: {
+      fontFamily: '"Geist", "Geist Fallback", sans-serif',
+    },
   });
 }
 

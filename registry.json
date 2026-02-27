@@ -241,7 +241,7 @@
       "dependencies": ["lucide-react"],
       "files": [
         {
-          "path": "src/components/text-field/text-field.tsx",
+          "path": "src/components/forms/text-field/text-field.tsx",
           "type": "registry:ui"
         }
       ],
@@ -255,7 +255,7 @@
       "dependencies": ["lucide-react"],
       "files": [
         {
-          "path": "src/components/select/select.tsx",
+          "path": "src/components/forms/select/select.tsx",
           "type": "registry:ui"
         }
       ],
@@ -270,7 +270,7 @@
       "registryDependencies": ["text-field"],
       "files": [
         {
-          "path": "src/components/autocomplete/autocomplete.tsx",
+          "path": "src/components/forms/autocomplete/autocomplete.tsx",
           "type": "registry:ui"
         }
       ],
@@ -288,6 +288,88 @@
         }
       ],
       "category": "Data Display"
+    },
+    {
+      "name": "content",
+      "type": "registry:ui",
+      "title": "Content",
+      "description": "Main page content container",
+      "files": [
+        {
+          "path": "src/components/content/content.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Layout"
+    },
+    {
+      "name": "placeholder",
+      "type": "registry:ui",
+      "title": "Placeholder",
+      "description": "Empty state placeholder with optional actions",
+      "files": [
+        {
+          "path": "src/components/placeholder/placeholder.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Layout"
+    },
+    {
+      "name": "header",
+      "type": "registry:ui",
+      "title": "Header",
+      "description": "Page header with breadcrumbs, actions, and tabs",
+      "registryDependencies": ["badge"],
+      "files": [
+        {
+          "path": "src/components/header/header.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Layout"
+    },
+    {
+      "name": "header-layout",
+      "type": "registry:ui",
+      "title": "HeaderLayout",
+      "description": "Layout composition for header and content states",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["header", "content", "placeholder"],
+      "files": [
+        {
+          "path": "src/components/header-layout/header-layout.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Layout"
+    },
+    {
+      "name": "drawer-layout",
+      "type": "registry:ui",
+      "title": "DrawerLayout",
+      "description": "Composable drawer layout with app bar and content",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["content", "skeleton-grid", "badge", "bullet"],
+      "files": [
+        {
+          "path": "src/components/drawer-layout/drawer-layout.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/drawer/drawer.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/drawer-content/drawer-content.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/drawer-app-bar/drawer-app-bar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Navigation"
     }
   ]
 }

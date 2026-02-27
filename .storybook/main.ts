@@ -13,7 +13,6 @@ const config: StorybookConfig = {
   ],
   addons: [
     "@storybook/addon-actions",
-    "@storybook/addon-onboarding",
     "@storybook/addon-links",
     "@storybook/addon-docs",
     "@storybook/addon-themes",
@@ -34,6 +33,7 @@ const config: StorybookConfig = {
   },
   features: {
     experimentalComponentsManifest: true,
+    sidebarOnboardingChecklist: false,
   },
   async viteFinal(config) {
     // Ensure Base UI package exports are properly resolved
