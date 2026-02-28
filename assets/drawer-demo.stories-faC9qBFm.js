@@ -1,0 +1,11 @@
+import{j as r}from"./iframe-pW5QL-bD.js";import{C as i}from"./content-xMYH1AUC.js";import{D as s}from"./drawer-content-RoQfXPbP.js";import{D as m,u as n}from"./drawer-provider-CJX8P2Tm.js";import{D as p}from"./drawer-main-BPhkSgcw.js";import{m as c}from"./drawer.mock-BPUenoJx.js";import{S as l}from"./skeleton-grid-C4qbwhQj.js";import{B as d}from"./button-D2Ijx_X0.js";import{D as u}from"./drawer-CxRzG-0q.js";import"./preload-helper-PPVm8Dsz.js";import"./utils-BUhL_YVU.js";import"./drawer-item-Cmy0s2rR.js";import"./createLucideIcon-FVDiqrjk.js";import"./sidebar-Dl8gHgQ3.js";import"./index-C7NSALCi.js";import"./DirectionContext-BxUIMOF1.js";import"./composite-cFlvVe3B.js";import"./useRenderElement-CVdh77Wx.js";import"./index-TlASSgMk.js";import"./index-DfVoCZUp.js";import"./x-DzjZg6q4.js";import"./DialogTitle-BmELqlVB.js";import"./index-CqolCm2N.js";import"./useRender-WM4sSGP3.js";import"./badge-BleUqD6a.js";import"./badge-B4p9ZSGV.js";import"./bullet-P3IBetFq.js";import"./collapsible-CYS3q2uN.js";import"./chevron-right-B0-1CzWy.js";import"./useCompositeItem-DdT-xsSS.js";import"./drawer-subheader-0QlLbJR6.js";import"./skeleton-card-CsE5izHS.js";function D(){const{state:o,switchState:a}=n();return r.jsx(d,{type:"button",variant:"outline",size:"sm",onClick:a,children:o==="open"?"Collapse drawer":"Expand drawer"})}const U={title:"Navigation/Drawer demo",parameters:{layout:"fullscreen"},render:({initialState:o,selectedItemId:a})=>r.jsxs(m,{initialState:o,selectedItemId:a,children:[r.jsx(u,{children:r.jsx(s,{navigation:c})}),r.jsx(p,{children:r.jsxs(i,{className:"space-y-3 p-3",children:[r.jsx(D,{}),r.jsx(l,{})]})})]})},t={args:{initialState:"open",selectedItemId:"item2.3.2"}},e={args:{initialState:"close",selectedItemId:"item2.3.2"}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
+  args: {
+    initialState: "open",
+    selectedItemId: "item2.3.2"
+  }
+}`,...t.parameters?.docs?.source}}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    initialState: "close",
+    selectedItemId: "item2.3.2"
+  }
+}`,...e.parameters?.docs?.source}}};const V=["OpenByDefault","ClosedByDefault"];export{e as ClosedByDefault,t as OpenByDefault,V as __namedExportsOrder,U as default};

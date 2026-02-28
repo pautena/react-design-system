@@ -8,72 +8,6 @@ AI-ready design system built on shadcn/ui with MCP support
 
 [View Documentation](./?path=/docs/shadcn-introduction--docs)
 
-## Dialogs
-
-### BootstrapDialog
-
-A customizable dialog component. Use it as a base to create more dialogs Supports extensive customization through slots and slotProps. Each internal element can be customized or replaced.
-
-**Example:**
-
-```tsx
-// Basic usage
-<BootstrapDialog
-  open={true}
-  title="Confirm Action"
-  onClose={handleClose}
-  acceptable
-  cancelable
->
-  Are you sure?
-</BootstrapDialog>
-
-// Custom close button
-<BootstrapDialog
-  title="Settings"
-  slotProps={{
-    closeButton: { color: 'error' }
-  }}
-/>
-```
-
-**Stories:**
-- [Default](./?path=/story/dialogs-bootstrapdialog--default)
-- [Acceptable And Cancelable](./?path=/story/dialogs-bootstrapdialog--acceptable-and-cancelable)
-- [With Extra Actions](./?path=/story/dialogs-bootstrapdialog--with-extra-actions)
-- [Loading With Acceptable](./?path=/story/dialogs-bootstrapdialog--loading-with-acceptable)
-- [Loading](./?path=/story/dialogs-bootstrapdialog--loading)
-- [Disabled](./?path=/story/dialogs-bootstrapdialog--disabled)
-- [Custom Texts](./?path=/story/dialogs-bootstrapdialog--custom-texts)
-- [With Slot Props Customization](./?path=/story/dialogs-bootstrapdialog--with-slot-props-customization)
-
-[View Documentation](./?path=/docs/dialogs-bootstrapdialog--docs)
-
-### ConfirmDialog
-
-ConfirmDialog component renders a dialog to ask a user to confirm an action with customizable title, confirmation and cancellation actions. It optionally requires a passphrase to enable the confirmation action.
-
-**Stories:**
-- [Default](./?path=/story/dialogs-confirmdialog--default)
-- [Loading](./?path=/story/dialogs-confirmdialog--loading)
-- [Disabled](./?path=/story/dialogs-confirmdialog--disabled)
-- [Custom Button Text](./?path=/story/dialogs-confirmdialog--custom-button-text)
-- [Passphrase](./?path=/story/dialogs-confirmdialog--passphrase)
-
-[View Documentation](./?path=/docs/dialogs-confirmdialog--docs)
-
-### FormDialog
-
-A generic form dialog component that wraps a BootstrapDialog and handles form submission. Put your form inside and receive the data validated using the input name field.
-
-**Stories:**
-- [Default](./?path=/story/dialogs-formdialog--default)
-- [Loading](./?path=/story/dialogs-formdialog--loading)
-- [Disabled](./?path=/story/dialogs-formdialog--disabled)
-- [Custom Button Text](./?path=/story/dialogs-formdialog--custom-button-text)
-
-[View Documentation](./?path=/docs/dialogs-formdialog--docs)
-
 ## Inputs
 
 ### DateRangeCalendar
@@ -124,33 +58,6 @@ DateRangePicker component allows users to select a date range.
 
 [View Documentation](./?path=/docs/inputs-button--docs)
 
-## Alerts
-
-### ExpandableAlert
-
-Alert component with expandable metadata section
-
-**Props:**
-- `severity`: `AlertColor` (required) - Alert severity level
-- `iconMapping`: `Partial<Record<AlertColor, React.ReactNode>>` - Custom icon mapping for different severity levels
-- `title`: `string` - Alert title
-- `message`: `string` (required) - Alert message content
-- `metadata`: `string | string[]` - Additional metadata to display in expandable section
-- `metadataComponent`: `ReactElement` - Custom component to render in expandable section
-- `onClose`: `() => void` (required) - Callback when alert is closed
-- `sx`: `SxProps<Theme>` - Custom styles
-
-**Stories:**
-- [Default](./?path=/story/alerts-expandablealert--default)
-- [Success](./?path=/story/alerts-expandablealert--success)
-- [Error](./?path=/story/alerts-expandablealert--error)
-- [Warning](./?path=/story/alerts-expandablealert--warning)
-- [Wihtout Metadata](./?path=/story/alerts-expandablealert--wihtout-metadata)
-- [Metadata Custom Component](./?path=/story/alerts-expandablealert--metadata-custom-component)
-- [Snackbar Alert](./?path=/story/alerts-expandablealert--snackbar-alert)
-
-[View Documentation](./?path=/docs/alerts-expandablealert--docs)
-
 ## Containers
 
 ### ListPanel
@@ -180,13 +87,6 @@ ListPanel component renders a panel with a list of items and a content area.
 
 ## Feedback
 
-### NotificationCenter
-
-**Stories:**
-- [Default](./?path=/story/feedback-notificationcenter--default)
-
-[View Documentation](./?path=/docs/feedback-notificationcenter--docs)
-
 ### QueryContainer
 
 Component to show different indicators based on the usual api query statuses
@@ -209,6 +109,13 @@ Component to show different indicators based on the usual api query statuses
 - [Content](./?path=/story/feedback-querycontainer--content)
 
 [View Documentation](./?path=/docs/feedback-querycontainer--docs)
+
+### NotificationCenter
+
+**Stories:**
+- [Default](./?path=/story/feedback-notificationcenter--default)
+
+[View Documentation](./?path=/docs/feedback-notificationcenter--docs)
 
 ## Tables
 
@@ -398,6 +305,36 @@ const tableState = useRemoteDataTable({
 
 [View Documentation](./?path=/docs/data-display-valuetext--docs)
 
+## Dialogs
+
+### ConfirmDialog
+
+**Stories:**
+- [Default](./?path=/story/dialogs-confirmdialog--default)
+- [Loading](./?path=/story/dialogs-confirmdialog--loading)
+- [Disabled](./?path=/story/dialogs-confirmdialog--disabled)
+- [Custom Button Text](./?path=/story/dialogs-confirmdialog--custom-button-text)
+- [Passphrase](./?path=/story/dialogs-confirmdialog--passphrase)
+
+[View Documentation](./?path=/docs/dialogs-confirmdialog--docs)
+
+### Dialog
+
+**Stories:**
+- [Default](./?path=/story/dialogs-dialog--default)
+
+[View Documentation](./?path=/docs/dialogs-dialog--docs)
+
+### FormDialog
+
+**Stories:**
+- [Default](./?path=/story/dialogs-formdialog--default)
+- [Loading](./?path=/story/dialogs-formdialog--loading)
+- [Disabled](./?path=/story/dialogs-formdialog--disabled)
+- [Custom Button Text](./?path=/story/dialogs-formdialog--custom-button-text)
+
+[View Documentation](./?path=/docs/dialogs-formdialog--docs)
+
 ## Navigation
 
 ### DrawerAppBar
@@ -478,6 +415,21 @@ const tableState = useRemoteDataTable({
 - [Error](./?path=/story/layouts-headerlayout--error)
 
 [View Documentation](./?path=/docs/layouts-headerlayout--docs)
+
+## Alerts
+
+### ExpandableAlert
+
+**Stories:**
+- [Default](./?path=/story/alerts-expandablealert--default)
+- [Success](./?path=/story/alerts-expandablealert--success)
+- [Error](./?path=/story/alerts-expandablealert--error)
+- [Warning](./?path=/story/alerts-expandablealert--warning)
+- [Without Metadata](./?path=/story/alerts-expandablealert--without-metadata)
+- [Metadata Custom Component](./?path=/story/alerts-expandablealert--metadata-custom-component)
+- [Floating Alert](./?path=/story/alerts-expandablealert--floating-alert)
+
+[View Documentation](./?path=/docs/alerts-expandablealert--docs)
 
 ## forms
 

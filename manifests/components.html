@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><span class="filter-pill ok" aria-disabled="true">43 components ok</span><a class="filter-pill info" data-k="infos" href="#filter-infos">1/43 info</a><span class="filter-pill ok" aria-disabled="true">188 stories ok</span></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">1/43 prop type error</a><a class="filter-pill info" data-k="infos" href="#filter-infos">2/43 infos</a><span class="filter-pill ok" aria-disabled="true">181 stories ok</span></div>
   </div>
 </header>
 <main>
@@ -986,275 +986,14 @@ spacing?: 0 | 1 | 2 | 3 | 4 | 5 = 0</code></pre>
   no-info 
   no-story-error"
   role="listitem"
-  aria-label="BootstrapDialog">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-ok"></span> BootstrapDialog</h2>
-      <div class="badges">
-        <label for="c-3-dialogs-bootstrapdialog-props" class="badge ok as-toggle">21 prop types</label>
-        
-        <label for="c-3-dialogs-bootstrapdialog-stories" class="badge ok as-toggle">8 stories</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/BootstrapDialog/BootstrapDialog.stories.tsx">dialogs-bootstrapdialog · ./src/BootstrapDialog/BootstrapDialog.stories.tsx</div>
-    
-    <div class="hint">A customizable dialog component. Use it as a base to create more dialogs Supports extensive customization through slots and slotProps. Each internal element can be customized or replaced.</div>
-    <div class="kv"><span class="chip">example:  ```tsx // Basic usage &lt;BootstrapDialog open={true} title=&quot;Confirm Action&quot; onClose={handleClose} acceptable cancelable &gt; Are you sure? &lt;/BootstrapDialog&gt; // Custom close button &lt;BootstrapDialog title=&quot;Settings&quot; slotProps={{ closeButton: { color: &#39;error&#39; } }} /&gt; ```</span></div>
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  
-  
-  <input id="c-3-dialogs-bootstrapdialog-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-3-dialogs-bootstrapdialog-props" class="tg tg-props" type="checkbox" hidden />
-
-  <div class="panels">
-    
-    
-    
-        <div class="panel panel-props">
-          <div class="note ok">
-            <div class="row">
-              <span class="ex-name">Prop types</span>
-              <span class="badge ok">21 prop types</span>
-            </div>
-            <pre><code>Component: src/BootstrapDialog/BootstrapDialog.tsx::BootstrapDialog</code></pre>
-            <pre><code>Props:</code></pre>
-            <pre><code>/**
- * Whether the dialog is acceptable.
- * @default true
- */
-acceptable?: boolean
-
-/**
- * Text for the accept button.
- * @default &quot;Accept&quot;
- */
-acceptText?: string = &quot;Accept&quot;
-
-/**
- * Type of the accept button.
- * @default &quot;button&quot;
- */
-acceptType?: &quot;button&quot; | &quot;submit&quot; = &quot;button&quot;
-
-/**
- * Actions to be displayed in the dialog.
- */
-actions?: DialogAction[] = []
-
-/**
- * Whether to call the onClose function when the cancel button is clicked.
- * @default true
- */
-callCloseWhenCancel?: boolean = true
-
-/**
- * Whether the dialog is cancelable.
- * @default true
- */
-cancelable?: boolean
-
-/**
- * Text for the cancel button.
- * @default &quot;Cancel&quot;
- */
-cancelText?: string = &quot;Cancel&quot;
-
-/**
- * Children to be rendered inside the dialog.
- */
-children?: ReactNode | undefined
-
-/**
- * Component to be rendered inside the dialog.
- */
-component?: React.ElementType
-
-/**
- * Props to be passed to the component.
- */
-componentProps?: any = {}
-
-/**
- * Whether the accept button is disabled.
- * @default false
- */
-disableAccept?: boolean
-
-/**
- * Whether the cancel button is disabled.
- * @default false
- */
-disableCancel?: boolean
-
-/**
- * Whether the dialog is disabled.
- * @default false
- */
-disabled?: boolean
-
-/**
- * Whether the dialog is in a loading state.
- * @default false
- */
-loading?: boolean
-
-/**
- * Function to call when the accept button is clicked.
- */
-onAccept?: () =&gt; void
-
-/**
- * Function to call when the cancel button is clicked.
- */
-onCancel?: () =&gt; void = () =&gt; null
-
-/**
- * Function to call when the dialog is closed.
- */
-onClose: () =&gt; void
-
-/**
- * Whether the dialog is open.
- */
-open: boolean
-
-/**
- * Optional props for the slots
- */
-slotProps?: BootstrapDialogSlotProps
-
-/**
- * Optional slots for custom rendering within the dialog
- */
-slots?: BootstrapDialogSlots
-
-/**
- * The title of the dialog.
- */
-title: string</code></pre>
-          </div>
-        </div>
-    
-        <div class="panel panel-stories">
-          
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import { BootstrapDialog, StoryDialogManager } from "@pautena/react-design-system";
-import DialogContentText from "@mui/material/DialogContentText";</code></pre>
-              </div>
-          
-          
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Default = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">AcceptableAndCancelable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const AcceptableAndCancelable = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithExtraActions</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithExtraActions = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">LoadingWithAcceptable</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const LoadingWithAcceptable = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Loading</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Loading = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Disabled</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Disabled = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">CustomTexts</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const CustomTexts = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">WithSlotPropsCustomization</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const WithSlotPropsCustomization = (args) =&gt; (
-  &lt;StoryDialogManager component={BootstrapDialog} args={args} /&gt;
-);</code></pre>
-            </div>
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  no-error 
-  no-info 
-  no-story-error"
-  role="listitem"
   aria-label="Breadcrumbs">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Breadcrumbs</h2>
       <div class="badges">
-        <label for="c-4-data-display-breadcrumbs-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-3-data-display-breadcrumbs-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-4-data-display-breadcrumbs-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-3-data-display-breadcrumbs-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/breadcrumbs/breadcrumbs.stories.tsx">data-display-breadcrumbs · ./src/components/breadcrumbs/breadcrumbs.stories.tsx</div>
@@ -1266,8 +1005,8 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-4-data-display-breadcrumbs-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-4-data-display-breadcrumbs-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-3-data-display-breadcrumbs-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-3-data-display-breadcrumbs-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1351,9 +1090,9 @@ separator?: ReactNode</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Bullet</h2>
       <div class="badges">
-        <label for="c-5-data-display-bullet-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-4-data-display-bullet-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-5-data-display-bullet-stories" class="badge ok as-toggle">7 stories</label>
+        <label for="c-4-data-display-bullet-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/bullet/bullet.stories.tsx">data-display-bullet · ./src/components/bullet/bullet.stories.tsx</div>
@@ -1365,8 +1104,8 @@ separator?: ReactNode</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-5-data-display-bullet-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-5-data-display-bullet-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-4-data-display-bullet-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-4-data-display-bullet-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1486,9 +1225,9 @@ variant?: | &quot;primary&quot;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Button</h2>
       <div class="badges">
-        <label for="c-6-inputs-button-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-5-inputs-button-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-6-inputs-button-stories" class="badge ok as-toggle">15 stories</label>
+        <label for="c-5-inputs-button-stories" class="badge ok as-toggle">15 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/button/button.stories.tsx">inputs-button · ./src/components/button/button.stories.tsx</div>
@@ -1500,8 +1239,8 @@ variant?: | &quot;primary&quot;
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-6-inputs-button-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-6-inputs-button-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-5-inputs-button-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-5-inputs-button-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1694,9 +1433,9 @@ variant?: | &quot;primary&quot;
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> CheckboxField</h2>
       <div class="badges">
-        <label for="c-7-forms-checkboxfield-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-6-forms-checkboxfield-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-7-forms-checkboxfield-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-6-forms-checkboxfield-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/forms/checkbox-field/checkbox-field.stories.tsx">forms-checkboxfield · ./src/components/forms/checkbox-field/checkbox-field.stories.tsx</div>
@@ -1708,8 +1447,8 @@ variant?: | &quot;primary&quot;
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-7-forms-checkboxfield-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-7-forms-checkboxfield-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-6-forms-checkboxfield-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-6-forms-checkboxfield-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1827,22 +1566,22 @@ label: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ConfirmDialog</h2>
       <div class="badges">
-        <label for="c-8-dialogs-confirmdialog-props" class="badge ok as-toggle">5 prop types</label>
+        <label for="c-7-dialogs-confirmdialog-props" class="badge ok as-toggle">10 prop types</label>
         
-        <label for="c-8-dialogs-confirmdialog-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-7-dialogs-confirmdialog-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ConfirmDialog/ConfirmDialog.stories.tsx">dialogs-confirmdialog · ./src/ConfirmDialog/ConfirmDialog.stories.tsx</div>
+    <div class="meta" title="./src/components/confirm-dialog/confirm-dialog.stories.tsx">dialogs-confirmdialog · ./src/components/confirm-dialog/confirm-dialog.stories.tsx</div>
     
-    <div class="hint">ConfirmDialog component renders a dialog to ask a user to confirm an action with customizable title, confirmation and cancellation actions. It optionally requires a passphrase to enable the confirmation action.</div>
+    <div class="hint">Confirm dialog for destructive or critical actions.</div>
     
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-8-dialogs-confirmdialog-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-8-dialogs-confirmdialog-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-7-dialogs-confirmdialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-7-dialogs-confirmdialog-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -1852,9 +1591,9 @@ label: string</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">5 prop types</span>
+              <span class="badge ok">10 prop types</span>
             </div>
-            <pre><code>Component: src/ConfirmDialog/ConfirmDialog.tsx::ConfirmDialog</code></pre>
+            <pre><code>Component: src/components/confirm-dialog/confirm-dialog.tsx::ConfirmDialog</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * Text to display on the cancel button.
@@ -1863,10 +1602,27 @@ label: string</code></pre>
 cancelText?: string = &quot;Cancel&quot;
 
 /**
+ * Optional content rendered inside the dialog.
+ */
+children?: ReactNode
+
+/**
  * Text to display on the confirm button.
  * @default &quot;Confirm&quot;
  */
 confirmText?: string = &quot;Confirm&quot;
+
+/**
+ * Whether the dialog is disabled.
+ * @default false
+ */
+disabled?: boolean = false
+
+/**
+ * Whether the dialog is in a loading state.
+ * @default false
+ */
+loading?: boolean = false
 
 /**
  * Callback function to handle cancel action.
@@ -1879,9 +1635,19 @@ onCancel: () =&gt; void
 onConfirm: () =&gt; void
 
 /**
+ * Whether the dialog is open.
+ */
+open: boolean
+
+/**
  * Optional passphrase for additional confirmation.
  */
-passphrase?: string</code></pre>
+passphrase?: string
+
+/**
+ * Dialog title.
+ */
+title: string</code></pre>
           </div>
         </div>
     
@@ -1893,8 +1659,7 @@ passphrase?: string</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { ConfirmDialog, StoryDialogManager } from "@pautena/react-design-system";
-import DialogContentText from "@mui/material/DialogContentText";</code></pre>
+                <pre><code>import { ConfirmDialog, StoryDialogManager } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -1967,119 +1732,9 @@ import DialogContentText from "@mui/material/DialogContentText";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> Content</h2>
       <div class="badges">
-        <label for="c-9-feedback-notificationcenter-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-8-containers-content-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-9-feedback-notificationcenter-stories" class="badge ok as-toggle">1 story</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/NotificationCenter/NotificationCenter.stories.tsx">feedback-notificationcenter · ./src/NotificationCenter/NotificationCenter.stories.tsx</div>
-    
-    <div class="hint">Main page content container.</div>
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  
-  
-  <input id="c-9-feedback-notificationcenter-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-9-feedback-notificationcenter-props" class="tg tg-props" type="checkbox" hidden />
-
-  <div class="panels">
-    
-    
-    
-        <div class="panel panel-props">
-          <div class="note ok">
-            <div class="row">
-              <span class="ex-name">Prop types</span>
-              <span class="badge ok">1 prop type</span>
-            </div>
-            <pre><code>Component: src/components/content/content.tsx::Content</code></pre>
-            <pre><code>Props:</code></pre>
-            <pre><code>/**
- * Content rendered inside the main container.
- */
-children?: React.ReactNode</code></pre>
-          </div>
-        </div>
-    
-        <div class="panel panel-stories">
-          
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { Content, NotificationCenterProvider, SkeletonGrid } from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Default = () =&gt; {
-  const { show, hide } = useNotificationCenter();
-
-  return (
-    &lt;Content className=&quot;p-2&quot;&gt;
-      &lt;Box pb={2}&gt;
-        &lt;Button
-          onClick={() =&gt; show({ ...DummyError, severity: &quot;info&quot; })}
-          variant=&quot;contained&quot;
-        &gt;
-          Show info
-        &lt;/Button&gt;
-        &lt;Button
-          onClick={() =&gt; show({ ...DummyError, severity: &quot;success&quot; })}
-          variant=&quot;contained&quot;
-        &gt;
-          Show success
-        &lt;/Button&gt;
-        &lt;Button
-          onClick={() =&gt; show({ ...DummyError, severity: &quot;warning&quot; })}
-          variant=&quot;contained&quot;
-        &gt;
-          Show warning
-        &lt;/Button&gt;
-        &lt;Button
-          onClick={() =&gt; show({ ...DummyError, severity: &quot;error&quot; })}
-          variant=&quot;contained&quot;
-        &gt;
-          Show error
-        &lt;/Button&gt;
-        &lt;Button onClick={hide} variant=&quot;contained&quot;&gt;
-          hide
-        &lt;/Button&gt;
-      &lt;/Box&gt;
-      &lt;SkeletonGrid size={3} /&gt;
-    &lt;/Content&gt;
-  );
-};</code></pre>
-            </div>
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  no-error 
-  no-info 
-  no-story-error"
-  role="listitem"
-  aria-label="Content">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-ok"></span> Content</h2>
-      <div class="badges">
-        <label for="c-10-containers-content-props" class="badge ok as-toggle">1 prop type</label>
-        
-        <label for="c-10-containers-content-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-8-containers-content-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/content/content.stories.tsx">containers-content · ./src/components/content/content.stories.tsx</div>
@@ -2091,8 +1746,8 @@ import { Content, NotificationCenterProvider, SkeletonGrid } from "@pautena/reac
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-10-containers-content-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-10-containers-content-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-8-containers-content-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-8-containers-content-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2143,14 +1798,138 @@ children?: React.ReactNode</code></pre>
   no-info 
   no-story-error"
   role="listitem"
+  aria-label="Content">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-ok"></span> Content</h2>
+      <div class="badges">
+        <label for="c-9-feedback-notificationcenter-props" class="badge ok as-toggle">1 prop type</label>
+        
+        <label for="c-9-feedback-notificationcenter-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/notification-center/notification-center.stories.tsx">feedback-notificationcenter · ./src/components/notification-center/notification-center.stories.tsx</div>
+    
+    <div class="hint">Main page content container.</div>
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  
+  
+  <input id="c-9-feedback-notificationcenter-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-9-feedback-notificationcenter-props" class="tg tg-props" type="checkbox" hidden />
+
+  <div class="panels">
+    
+    
+    
+        <div class="panel panel-props">
+          <div class="note ok">
+            <div class="row">
+              <span class="ex-name">Prop types</span>
+              <span class="badge ok">1 prop type</span>
+            </div>
+            <pre><code>Component: src/components/content/content.tsx::Content</code></pre>
+            <pre><code>Props:</code></pre>
+            <pre><code>/**
+ * Content rendered inside the main container.
+ */
+children?: React.ReactNode</code></pre>
+          </div>
+        </div>
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Button, Content, NotificationCenterProvider, SkeletonGrid } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; {
+  const { toast } = useNotificationCenter();
+
+  return (
+    &lt;Content className=&quot;p-2&quot;&gt;
+      &lt;div className=&quot;flex flex-wrap gap-2 pb-2&quot;&gt;
+        &lt;Button
+          variant=&quot;info&quot;
+          onClick={() =&gt;
+            toast.info(Notifications.info.title, {
+              description: Notifications.info.message,
+            })
+          }
+        &gt;
+          Show info
+        &lt;/Button&gt;
+        &lt;Button
+          variant=&quot;success&quot;
+          onClick={() =&gt;
+            toast.success(Notifications.success.title, {
+              description: Notifications.success.message,
+            })
+          }
+        &gt;
+          Show success
+        &lt;/Button&gt;
+        &lt;Button
+          variant=&quot;warning&quot;
+          onClick={() =&gt;
+            toast.warning(Notifications.warning.title, {
+              description: Notifications.warning.message,
+            })
+          }
+        &gt;
+          Show warning
+        &lt;/Button&gt;
+        &lt;Button
+          variant=&quot;error&quot;
+          onClick={() =&gt;
+            toast.error(Notifications.error.title, {
+              description: Notifications.error.message,
+            })
+          }
+        &gt;
+          Show error
+        &lt;/Button&gt;
+        &lt;Button variant=&quot;outline&quot; onClick={() =&gt; toast.dismiss()}&gt;
+          hide
+        &lt;/Button&gt;
+      &lt;/div&gt;
+      &lt;SkeletonGrid size={3} /&gt;
+    &lt;/Content&gt;
+  );
+};</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  no-error 
+  no-info 
+  no-story-error"
+  role="listitem"
   aria-label="DateRangeCalendar">
   <div class="head">
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateRangeCalendar</h2>
       <div class="badges">
-        <label for="c-11-inputs-daterangecalendar-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-10-inputs-daterangecalendar-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-11-inputs-daterangecalendar-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-10-inputs-daterangecalendar-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/DateRangeCalendar/DateRangeCalendar.stories.tsx">inputs-daterangecalendar · ./src/DateRangeCalendar/DateRangeCalendar.stories.tsx</div>
@@ -2162,8 +1941,8 @@ children?: React.ReactNode</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-11-inputs-daterangecalendar-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-11-inputs-daterangecalendar-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-10-inputs-daterangecalendar-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-10-inputs-daterangecalendar-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2227,9 +2006,9 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateRangePicker</h2>
       <div class="badges">
-        <label for="c-12-inputs-daterangepicker-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-11-inputs-daterangepicker-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-12-inputs-daterangepicker-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-11-inputs-daterangepicker-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/DateRangePicker/DateRangePicker.stories.tsx">inputs-daterangepicker · ./src/DateRangePicker/DateRangePicker.stories.tsx</div>
@@ -2241,8 +2020,8 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-12-inputs-daterangepicker-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-12-inputs-daterangepicker-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-11-inputs-daterangepicker-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-11-inputs-daterangepicker-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2330,6 +2109,131 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
     format=&quot;yyyy/MM/dd&quot;
     fullWidth
     size=&quot;small&quot; /&gt;;</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  has-error 
+  has-info 
+  no-story-error"
+  role="listitem"
+  aria-label="DialogDemo">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> DialogDemo</h2>
+      <div class="badges">
+        <label for="c-12-dialogs-dialog-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-12-dialogs-dialog-info" class="badge info as-toggle">1 info</label>
+        <label for="c-12-dialogs-dialog-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/dialog/dialog.stories.tsx">dialogs-dialog · ./src/components/dialog/dialog.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-12-dialogs-dialog-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-12-dialogs-dialog-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-12-dialogs-dialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>No component file found for the &quot;DialogDemo&quot; component.
+  16 | };
+  17 |
+&gt; 18 | export default {
+     | ^
+  19 |   title: &quot;Dialogs/Dialog&quot;,
+  20 |   component: DialogDemo,
+  21 |   parameters: {
+
+./src/components/dialog/dialog.stories.tsx:
+import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
+import type { ComponentProps } from &quot;react&quot;;
+import { useState } from &quot;react&quot;;
+import Button from &quot;@/components/button&quot;;
+import Dialog from &quot;./dialog&quot;;
+
+const DialogDemo = (args: ComponentProps&lt;typeof Dialog&gt;) =&gt; {
+  const [open, setOpen] = useState(false);
+
+  return (
+    &lt;div&gt;
+      &lt;Button onClick={() =&gt; setOpen(true)}&gt;Open dialog&lt;/Button&gt;
+      &lt;Dialog {...args} open={open} onClose={() =&gt; setOpen(false)} /&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default {
+  title: &quot;Dialogs/Dialog&quot;,
+  component: DialogDemo,
+  parameters: {
+    layout: &quot;centered&quot;,
+  },
+  render: (args) =&gt; &lt;DialogDemo {...args} /&gt;,
+} satisfies Meta&lt;typeof DialogDemo&gt;;
+
+type Story = StoryObj&lt;typeof DialogDemo&gt;;
+
+export const Default: Story = {
+  args: {
+    title: &quot;Dialog title&quot;,
+    description: &quot;Short description for the dialog.&quot;,
+    children: (
+      &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+        Dialog body content goes here.
+      &lt;/p&gt;
+    ),
+    footer: &lt;Button&gt;Confirm&lt;/Button&gt;,
+  },
+};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Button, Dialog } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;DialogDemo
+    title=&quot;Dialog title&quot;
+    description=&quot;Short description for the dialog.&quot;
+    footer={&lt;Button&gt;Confirm&lt;/Button&gt;}&gt;&lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;Dialog body content goes here.
+              &lt;/p&gt;&lt;/DialogDemo&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -3031,9 +2935,9 @@ title: string</code></pre>
         <label for="c-20-alerts-expandablealert-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/ExpandableAlert/ExpandableAlert.stories.tsx">alerts-expandablealert · ./src/ExpandableAlert/ExpandableAlert.stories.tsx</div>
+    <div class="meta" title="./src/components/expandable-alert/expandable-alert.stories.tsx">alerts-expandablealert · ./src/components/expandable-alert/expandable-alert.stories.tsx</div>
     
-    <div class="hint">Alert component with expandable metadata section</div>
+    <div class="hint">Alert component with expandable metadata section.</div>
     
   </div>
 
@@ -3053,45 +2957,45 @@ title: string</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">8 prop types</span>
             </div>
-            <pre><code>Component: src/ExpandableAlert/ExpandableAlert.tsx::default</code></pre>
+            <pre><code>Component: src/components/expandable-alert/expandable-alert.tsx::ExpandableAlert</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
- * Custom icon mapping for different severity levels
+ * Additional class names for the alert container.
  */
-iconMapping?: Partial&lt;Record&lt;AlertColor, React.ReactNode&gt;&gt;
+className?: string
 
 /**
- * Alert message content
+ * Custom icon mapping for different severity levels.
+ */
+iconMapping?: Partial&lt;Record&lt;AlertSeverity, ReactNode&gt;&gt;
+
+/**
+ * Alert message content.
  */
 message: string
 
 /**
- * Additional metadata to display in expandable section
+ * Additional metadata to display in expandable section.
  */
 metadata?: string | string[]
 
 /**
- * Custom component to render in expandable section
+ * Custom component to render in expandable section.
  */
 metadataComponent?: ReactElement
 
 /**
- * Callback when alert is closed
+ * Callback when alert is closed.
  */
 onClose: () =&gt; void
 
 /**
- * Alert severity level
+ * Alert severity level.
  */
-severity: AlertColor
+severity: &quot;success&quot; | &quot;info&quot; | &quot;warning&quot; | &quot;error&quot;
 
 /**
- * Custom styles
- */
-sx?: SxProps&lt;Theme&gt; = {}
-
-/**
- * Alert title
+ * Alert title.
  */
 title?: string</code></pre>
           </div>
@@ -3105,11 +3009,7 @@ title?: string</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { ExpandableAlert } from "@pautena/react-design-system";
-import Snackbar from "@mui/material/Snackbar";
-import Typography from "@mui/material/Typography";</code></pre>
+                <pre><code>import { Button, ExpandableAlert } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -3155,12 +3055,12 @@ import Typography from "@mui/material/Typography";</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">WihtoutMetadata</span>
+                <span class="ex-name">WithoutMetadata</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const WihtoutMetadata = () =&gt; &lt;ExpandableAlert severity=&quot;info&quot; title=&quot;Lorem ipsum&quot; message=&quot;Lorem ipsum dolor sit amet&quot; /&gt;;</code></pre>
+              <pre><code>const WithoutMetadata = () =&gt; &lt;ExpandableAlert severity=&quot;info&quot; title=&quot;Lorem ipsum&quot; message=&quot;Lorem ipsum dolor sit amet&quot; /&gt;;</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
@@ -3177,50 +3077,48 @@ import Typography from "@mui/material/Typography";</code></pre>
     message=&quot;Lorem ipsum dolor sit amet&quot;
     metadata={[&quot;lorem: ipsum&quot;, &quot;foo: bar&quot;, &quot;header: this&quot;, &quot;host: localhost&quot;]}
     metadataComponent={
-      &lt;&gt;
-        &lt;Typography variant=&quot;h6&quot;&gt;lorem: ipsum&lt;/Typography&gt;
-        &lt;Typography variant=&quot;caption&quot;&gt;foo: bar&lt;/Typography&gt;
-        &lt;Typography variant=&quot;body2&quot; sx={{ textDecoration: &quot;line-through&quot; }}&gt;
-          header: this
-        &lt;/Typography&gt;
-        &lt;Typography variant=&quot;body2&quot; fontWeight={700}&gt;
-          host: localhost
-        &lt;/Typography&gt;
-      &lt;/&gt;
+      &lt;div className=&quot;space-y-1 text-sm&quot;&gt;
+        &lt;div className=&quot;font-semibold&quot;&gt;lorem: ipsum&lt;/div&gt;
+        &lt;div className=&quot;text-xs text-muted-foreground&quot;&gt;foo: bar&lt;/div&gt;
+        &lt;div className=&quot;line-through&quot;&gt;header: this&lt;/div&gt;
+        &lt;div className=&quot;font-bold&quot;&gt;host: localhost&lt;/div&gt;
+      &lt;/div&gt;
     }
   /&gt;
 );</code></pre>
             </div>
             <div class="note ok">
               <div class="row">
-                <span class="ex-name">SnackbarAlert</span>
+                <span class="ex-name">FloatingAlert</span>
                 <span class="badge ok">story ok</span>
               </div>
               
               
-              <pre><code>const SnackbarAlert = () =&gt; {
+              <pre><code>const FloatingAlert = () =&gt; {
   const [open, setOpen] = useState(false);
 
   return (
-    &lt;Box&gt;
-      &lt;Button variant=&quot;contained&quot; onClick={() =&gt; setOpen(true)}&gt;
-        Snackbar
+    &lt;div&gt;
+      &lt;Button variant=&quot;primary&quot; onClick={() =&gt; setOpen(true)}&gt;
+        Show alert
       &lt;/Button&gt;
-      &lt;Snackbar open={open}&gt;
-        &lt;ExpandableAlert
-          severity=&quot;info&quot;
-          onClose={() =&gt; setOpen(false)}
-          title=&quot;Lorem ipsum&quot;
-          message=&quot;Lorem ipsum dolor sit amet&quot;
-          metadata={[
-            &quot;lorem: ipsum&quot;,
-            &quot;foo: bar&quot;,
-            &quot;header: this&quot;,
-            &quot;host: localhost&quot;,
-          ]}
-        /&gt;
-      &lt;/Snackbar&gt;
-    &lt;/Box&gt;
+      {open ? (
+        &lt;div className=&quot;mt-3 max-w-md&quot;&gt;
+          &lt;ExpandableAlert
+            severity=&quot;info&quot;
+            onClose={() =&gt; setOpen(false)}
+            title=&quot;Lorem ipsum&quot;
+            message=&quot;Lorem ipsum dolor sit amet&quot;
+            metadata={[
+              &quot;lorem: ipsum&quot;,
+              &quot;foo: bar&quot;,
+              &quot;header: this&quot;,
+              &quot;host: localhost&quot;,
+            ]}
+          /&gt;
+        &lt;/div&gt;
+      ) : null}
+    &lt;/div&gt;
   );
 };</code></pre>
             </div>
@@ -3238,14 +3136,14 @@ import Typography from "@mui/material/Typography";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> FormDialog</h2>
       <div class="badges">
-        <label for="c-21-dialogs-formdialog-props" class="badge ok as-toggle">4 prop types</label>
+        <label for="c-21-dialogs-formdialog-props" class="badge ok as-toggle">14 prop types</label>
         
         <label for="c-21-dialogs-formdialog-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/FormDialog/FormDialog.stories.tsx">dialogs-formdialog · ./src/FormDialog/FormDialog.stories.tsx</div>
+    <div class="meta" title="./src/components/form-dialog/form-dialog.stories.tsx">dialogs-formdialog · ./src/components/form-dialog/form-dialog.stories.tsx</div>
     
-    <div class="hint">A generic form dialog component that wraps a BootstrapDialog and handles form submission. Put your form inside and receive the data validated using the input name field.</div>
+    <div class="hint">Form dialog wrapper with submit handling.</div>
     
   </div>
 
@@ -3263,15 +3161,54 @@ import Typography from "@mui/material/Typography";</code></pre>
           <div class="note ok">
             <div class="row">
               <span class="ex-name">Prop types</span>
-              <span class="badge ok">4 prop types</span>
+              <span class="badge ok">14 prop types</span>
             </div>
-            <pre><code>Component: src/FormDialog/FormDialog.tsx::FormDialog</code></pre>
+            <pre><code>Component: src/components/form-dialog/form-dialog.tsx::FormDialog</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * The text to display on the cancel button.
  * @default &quot;Cancel&quot;
  */
 cancelText?: string = &quot;Cancel&quot;
+
+/**
+ * Content rendered inside the form.
+ */
+children?: ReactNode
+
+/**
+ * Additional class names for the dialog content.
+ */
+className?: string
+
+/**
+ * Optional description rendered under the title.
+ */
+description?: ReactNode
+
+/**
+ * Whether the submit button is disabled.
+ * @default false
+ */
+disableAccept?: boolean = false
+
+/**
+ * Whether the cancel button is disabled.
+ * @default false
+ */
+disableCancel?: boolean = false
+
+/**
+ * Whether the dialog is disabled.
+ * @default false
+ */
+disabled?: boolean = false
+
+/**
+ * Whether the dialog is in a loading state.
+ * @default false
+ */
+loading?: boolean = false
 
 /**
  * Callback function to be called when the cancel button is clicked.
@@ -3285,10 +3222,26 @@ onCancel: () =&gt; void
 onSubmit: (data: T) =&gt; void
 
 /**
+ * Whether the dialog is open.
+ */
+open: boolean
+
+/**
+ * Size variant for the dialog content.
+ * @default &quot;md&quot;
+ */
+size?: &quot;sm&quot; | &quot;md&quot; | &quot;lg&quot; = &quot;md&quot;
+
+/**
  * The text to display on the submit button.
  * @default &quot;Submit&quot;
  */
-submitText?: string = &quot;Submit&quot;</code></pre>
+submitText?: string = &quot;Submit&quot;
+
+/**
+ * The title of the dialog.
+ */
+title: ReactNode</code></pre>
           </div>
         </div>
     
@@ -3300,9 +3253,7 @@ submitText?: string = &quot;Submit&quot;</code></pre>
                 <div class="row">
                   <span class="ex-name">Imports</span>
                 </div>
-                <pre><code>import { FormDialog, StoryDialogManager } from "@pautena/react-design-system";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";</code></pre>
+                <pre><code>import { FormDialog, StoryDialogManager, TextField } from "@pautena/react-design-system";</code></pre>
               </div>
           
           
@@ -6322,7 +6273,142 @@ value?: T</code></pre>
   </div>
 </article>
     </div>
+    <div class="error-groups" role="region" aria-label="Prop type error groups">
+        <section class="group">
+          <input id="no-component-import-found-toggle" class="group-tg" type="checkbox" hidden />
+          <label for="no-component-import-found-toggle" class="group-header">
+            <span class="caret">▸</span>
+            <span class="group-title">No component import found</span>
+            <span class="group-count">1</span>
+          </label>
+          <div class="group-cards">
+<article
+  class="card 
+  has-error 
+  has-info 
+  no-story-error"
+  role="listitem"
+  aria-label="DialogDemo">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> DialogDemo</h2>
+      <div class="badges">
+        <label for="c-error-0-dialogs-dialog-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-0-dialogs-dialog-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-0-dialogs-dialog-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/dialog/dialog.stories.tsx">dialogs-dialog · ./src/components/dialog/dialog.stories.tsx</div>
     
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-error-0-dialogs-dialog-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-0-dialogs-dialog-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-0-dialogs-dialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>No component file found for the &quot;DialogDemo&quot; component.
+  16 | };
+  17 |
+&gt; 18 | export default {
+     | ^
+  19 |   title: &quot;Dialogs/Dialog&quot;,
+  20 |   component: DialogDemo,
+  21 |   parameters: {
+
+./src/components/dialog/dialog.stories.tsx:
+import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
+import type { ComponentProps } from &quot;react&quot;;
+import { useState } from &quot;react&quot;;
+import Button from &quot;@/components/button&quot;;
+import Dialog from &quot;./dialog&quot;;
+
+const DialogDemo = (args: ComponentProps&lt;typeof Dialog&gt;) =&gt; {
+  const [open, setOpen] = useState(false);
+
+  return (
+    &lt;div&gt;
+      &lt;Button onClick={() =&gt; setOpen(true)}&gt;Open dialog&lt;/Button&gt;
+      &lt;Dialog {...args} open={open} onClose={() =&gt; setOpen(false)} /&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default {
+  title: &quot;Dialogs/Dialog&quot;,
+  component: DialogDemo,
+  parameters: {
+    layout: &quot;centered&quot;,
+  },
+  render: (args) =&gt; &lt;DialogDemo {...args} /&gt;,
+} satisfies Meta&lt;typeof DialogDemo&gt;;
+
+type Story = StoryObj&lt;typeof DialogDemo&gt;;
+
+export const Default: Story = {
+  args: {
+    title: &quot;Dialog title&quot;,
+    description: &quot;Short description for the dialog.&quot;,
+    children: (
+      &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+        Dialog body content goes here.
+      &lt;/p&gt;
+    ),
+    footer: &lt;Button&gt;Confirm&lt;/Button&gt;,
+  },
+};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Button, Dialog } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;DialogDemo
+    title=&quot;Dialog title&quot;
+    description=&quot;Short description for the dialog.&quot;
+    footer={&lt;Button&gt;Confirm&lt;/Button&gt;}&gt;&lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;Dialog body content goes here.
+              &lt;/p&gt;&lt;/DialogDemo&gt;;</code></pre>
+            </div>
+        </div>
+  </div>
+</article></div>
+        </section>
+      </div>
   </div>
 </main>
 </body>

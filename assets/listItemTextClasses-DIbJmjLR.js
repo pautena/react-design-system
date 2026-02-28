@@ -1,0 +1,1 @@
+import{c as e}from"./memoTheme-HUfg-dMU.js";import{g as s,a as i}from"./Box-DsJTfv6x.js";const l=e();function n(t){return s("MuiListItemText",t)}const o=i("MuiListItemText",["root","multiline","dense","inset","primary","secondary"]);export{n as g,o as l,l as s};
