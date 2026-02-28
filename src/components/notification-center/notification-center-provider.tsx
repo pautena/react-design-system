@@ -1,20 +1,11 @@
-import { useRef } from "react";
-import { toast, type ToastId } from "sonner";
+import { toast, type ToasterProps } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
-import {
-  type Notification,
-  NotificationCenterContext,
-} from "./notification-center-context";
+import { NotificationCenterContext } from "./notification-center-context";
 
 /**
  * Props for the NotificationCenterProvider component.
  */
-export interface NotificationCenterProviderProps {
-  /**
-   * Duration in milliseconds before auto-hiding notifications.
-   * @default 6000
-   */
-  autoHideDuration?: number;
+export interface NotificationCenterProviderProps extends ToasterProps {
   /**
    * Content to wrap with notification context.
    */
@@ -23,33 +14,19 @@ export interface NotificationCenterProviderProps {
 
 export const NotificationCenterProvider = ({
   children,
-  autoHideDuration = 6000,
+  ...toasterProps
 }: NotificationCenterProviderProps) => {
-  const lastToastId = useRef<ToastId | undefined>(undefined);
-
-  const show = (notification: Notification) => {
-    const { severity, title, message } = notification;
-    const toastFn = toast[severity] ?? toast;
-    lastToastId.current = title
-      ? toastFn(title, { description: message })
-      : toastFn(message);
-  };
-
-  const hide = () => {
-    toast.dismiss(lastToastId.current);
-  };
-
   return (
     <NotificationCenterContext.Provider
       value={{
-        show,
-        hide,
+        toast,
       }}
     >
       <Toaster
         position="top-right"
         closeButton
-        duration={autoHideDuration}
+        duration={6000}
+        {...toasterProps}
       />
       {children}
     </NotificationCenterContext.Provider>

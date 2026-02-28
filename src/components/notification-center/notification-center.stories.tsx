@@ -5,9 +5,23 @@ import SkeletonGrid from "@/components/skeleton-grid";
 import { useNotificationCenter } from "./notification-center-context";
 import { NotificationCenterProvider } from "./notification-center-provider";
 
-const DummyError = {
-  title: "Internal Server error",
-  message: "Unable to save the item",
+const Notifications = {
+  info: {
+    title: "Heads up",
+    message: "We are syncing your preferences in the background.",
+  },
+  success: {
+    title: "Saved",
+    message: "Your changes were stored successfully.",
+  },
+  warning: {
+    title: "Check details",
+    message: "Some fields need attention before continuing.",
+  },
+  error: {
+    title: "Internal Server error",
+    message: "Unable to save the item. Try again later.",
+  },
 };
 
 export default {
@@ -26,24 +40,54 @@ export default {
 } satisfies Meta<typeof Content>;
 
 export const Default = () => {
-  const { show, hide } = useNotificationCenter();
+  const { toast } = useNotificationCenter();
 
   return (
     <Content className="p-2">
       <div className="flex flex-wrap gap-2 pb-2">
-        <Button onClick={() => show({ ...DummyError, severity: "info" })}>
+        <Button
+          variant="info"
+          onClick={() =>
+            toast.info(Notifications.info.title, {
+              description: Notifications.info.message,
+            })
+          }
+        >
           Show info
         </Button>
-        <Button onClick={() => show({ ...DummyError, severity: "success" })}>
+        <Button
+          variant="success"
+          onClick={() =>
+            toast.success(Notifications.success.title, {
+              description: Notifications.success.message,
+            })
+          }
+        >
           Show success
         </Button>
-        <Button onClick={() => show({ ...DummyError, severity: "warning" })}>
+        <Button
+          variant="warning"
+          onClick={() =>
+            toast.warning(Notifications.warning.title, {
+              description: Notifications.warning.message,
+            })
+          }
+        >
           Show warning
         </Button>
-        <Button onClick={() => show({ ...DummyError, severity: "error" })}>
+        <Button
+          variant="error"
+          onClick={() =>
+            toast.error(Notifications.error.title, {
+              description: Notifications.error.message,
+            })
+          }
+        >
           Show error
         </Button>
-        <Button onClick={hide}>hide</Button>
+        <Button variant="outline" onClick={() => toast.dismiss()}>
+          hide
+        </Button>
       </div>
       <SkeletonGrid size={3} />
     </Content>
@@ -64,13 +108,11 @@ function App() {
 }
 
 function MyComponent() {
-  const { show, hide } = useNotificationCenter();
+  const { toast } = useNotificationCenter();
 
   const handleClick = () => {
-    show({
-      severity: "success",
-      title: "Success",
-      message: "Operation completed successfully"
+    toast.success("Success", {
+      description: "Operation completed successfully",
     });
   };
 

@@ -80,8 +80,8 @@ export function ConfirmDialog({
 }: ConfirmDialogProps) {
   const [inputPassphrase, setInputPassphrase] = useState("");
   const validPassphrase = !passphrase || inputPassphrase === passphrase;
-  const closeDisabled = loading;
-  const cancelDisabled = loading;
+  const closeDisabled = disabled || loading;
+  const cancelDisabled = disabled || loading;
   const confirmDisabled = disabled || loading || !validPassphrase;
 
   return (

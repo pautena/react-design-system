@@ -97,8 +97,8 @@ export function FormDialog<T>({
   onCancel,
 }: FormDialogProps<T>) {
   const formId = useId();
-  const closeDisabled = loading;
-  const cancelDisabled = loading;
+  const closeDisabled = disabled || loading;
+  const cancelDisabled = disabled || loading;
   const acceptDisabled = disabled || loading;
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
