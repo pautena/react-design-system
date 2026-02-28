@@ -1,11 +1,11 @@
-import DialogContentText from "@mui/material/DialogContentText";
 import type { Meta, StoryObj } from "@storybook/react";
-import { StoryDialogManager } from "../storybook";
-import ConfirmDialog from "./ConfirmDialog";
+import TextField from "@/components/forms/text-field";
+import { StoryDialogManager } from "@/storybook";
+import FormDialog from "./form-dialog";
 
 export default {
-  title: "Dialogs/ConfirmDialog",
-  component: ConfirmDialog,
+  title: "Dialogs/FormDialog",
+  component: FormDialog,
   parameters: {
     layout: "centered",
     docs: {
@@ -29,13 +29,7 @@ export default {
             .filter(Boolean)
             .join("\n  ");
 
-          return `<ConfirmDialog
-  ${props}
-  onConfirm={handleConfirm}
-  onCancel={handleCancel}
->
-  {children}
-</ConfirmDialog>`;
+          return `<FormDialog\n  ${props}\n  onSubmit={handleSubmit}\n  onCancel={handleCancel}\n>\n  {children}\n</FormDialog>`;
         },
       },
     },
@@ -57,21 +51,20 @@ export default {
       description: "Children to be rendered inside the dialog.",
     },
   },
-  render: (args) => (
-    <StoryDialogManager component={ConfirmDialog} args={args} />
-  ),
-} as Meta<typeof ConfirmDialog>;
-type Story = StoryObj<typeof ConfirmDialog>;
+  render: (args) => <StoryDialogManager component={FormDialog} args={args} />,
+} satisfies Meta<typeof FormDialog>;
+
+type Story = StoryObj<typeof FormDialog>;
 
 export const Default: Story = {
   args: {
     open: true,
     title: "Lorem ipsum",
     children: (
-      <DialogContentText>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </DialogContentText>
+      <div className="grid gap-3">
+        <TextField name="message" label="Message" fullWidth required />
+        <TextField name="amount" label="Amount" fullWidth required />
+      </div>
     ),
   },
 };
@@ -80,13 +73,13 @@ Default.parameters = {
   docs: {
     source: {
       code: `import { useState } from 'react';
-import { ConfirmDialog } from './ConfirmDialog';
+import { FormDialog } from '@pautena/react-design-system';
 
 function MyComponent() {
   const [open, setOpen] = useState(false);
 
-  const handleConfirm = () => {
-    // Handle confirmation
+  const handleSubmit = (data) => {
+    console.log(data);
     setOpen(false);
   };
 
@@ -96,17 +89,18 @@ function MyComponent() {
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>Open Confirm Dialog</button>
-      <ConfirmDialog
+      <button onClick={() => setOpen(true)}>Open Form Dialog</button>
+      <FormDialog
         open={open}
-        title="Lorem ipsum"
-        onConfirm={handleConfirm}
+        title="Create Item"
+        onSubmit={handleSubmit}
         onCancel={handleCancel}
       >
-        <DialogContentText>
-          Are you sure you want to proceed?
-        </DialogContentText>
-      </ConfirmDialog>
+        <div className="grid gap-3">
+          <TextField name="message" label="Message" fullWidth required />
+          <TextField name="amount" label="Amount" fullWidth required />
+        </div>
+      </FormDialog>
     </>
   );
 }`,
@@ -131,19 +125,7 @@ export const Disabled: Story = {
 export const CustomButtonText: Story = {
   args: {
     ...Default.args,
-    confirmText: "Create token",
+    submitText: "Create token",
     cancelText: "Don't create a token",
-  },
-};
-
-export const Passphrase: Story = {
-  args: {
-    title: "Lorem ipsum",
-    children: (
-      <DialogContentText sx={{ mb: 1 }}>
-        Write the passphrase to confirm your action
-      </DialogContentText>
-    ),
-    passphrase: "delete permanently",
   },
 };

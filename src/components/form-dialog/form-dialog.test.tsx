@@ -1,9 +1,8 @@
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import { render, screen } from "../tests/testing-library";
-import FormDialog from "./FormDialog";
+import TextField from "@/components/forms/text-field";
+import { render, screen } from "@/tests/testing-library";
+import FormDialog from "./form-dialog";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -11,7 +10,6 @@ interface DialogRenderArgs {
   submitText?: string;
   cancelText?: string;
   loading?: boolean;
-  content?: string | string[];
 }
 
 describe("FormDialog", () => {
@@ -36,26 +34,10 @@ describe("FormDialog", () => {
         cancelText={cancelText}
         submitText={submitText}
       >
-        <Grid container spacing={2}>
-          <Grid size={12}>
-            <TextField
-              name="message"
-              label="Message"
-              fullWidth
-              required
-              variant="outlined"
-            />
-          </Grid>
-          <Grid size={12}>
-            <TextField
-              name="amount"
-              label="Amount"
-              fullWidth
-              required
-              variant="outlined"
-            />
-          </Grid>
-        </Grid>
+        <div className="grid gap-3">
+          <TextField name="message" label="Message" fullWidth required />
+          <TextField name="amount" label="Amount" fullWidth required />
+        </div>
       </FormDialog>,
     );
 
@@ -88,33 +70,33 @@ describe("FormDialog", () => {
   });
 
   it("should call onCancel if the close button is clicked", async () => {
+    const user = userEvent.setup();
     const { onCancel } = renderComponent({ open: true });
 
-    await userEvent.click(screen.getByRole("button", { name: "close" }));
+    await user.click(screen.getByRole("button", { name: /close/i }));
 
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
   it("should call onCancel if the cancel button is clicked", async () => {
+    const user = userEvent.setup();
     const { onCancel } = renderComponent({ open: true });
 
-    await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+    await user.click(screen.getByRole("button", { name: /cancel/i }));
 
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
   it("should call onSubmit if the form is submited", async () => {
+    const user = userEvent.setup();
     const { onSubmit } = renderComponent({ open: true });
 
-    await userEvent.type(
+    await user.type(
       screen.getByRole("textbox", { name: /message/i }),
       "this is the message",
     );
-    await userEvent.type(
-      screen.getByRole("textbox", { name: /amount/i }),
-      "100",
-    );
-    await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+    await user.type(screen.getByRole("textbox", { name: /amount/i }), "100");
+    await user.click(screen.getByRole("button", { name: /submit/i }));
 
     expect(onSubmit).toHaveBeenCalledTimes(1);
     expect(onSubmit).toHaveBeenCalledWith({
@@ -127,7 +109,7 @@ describe("FormDialog", () => {
     it("should have the close button as disabled", () => {
       renderComponent({ open: true, disabled: true });
 
-      expect(screen.getByRole("button", { name: "close" })).toBeDisabled();
+      expect(screen.getByRole("button", { name: /close/i })).toBeDisabled();
     });
 
     it("should have the Cancel button as disabled", () => {
@@ -160,7 +142,7 @@ describe("FormDialog", () => {
   });
 
   describe("loading", () => {
-    it("should render a loading indicator if is true", async () => {
+    it("should render a loading indicator if is true", () => {
       renderComponent({ open: true, loading: true });
 
       expect(screen.getByRole("progressbar")).toBeVisible();
@@ -169,7 +151,7 @@ describe("FormDialog", () => {
     it("should have the close button as disabled", () => {
       renderComponent({ open: true, loading: true });
 
-      expect(screen.getByRole("button", { name: "close" })).toBeDisabled();
+      expect(screen.getByRole("button", { name: /close/i })).toBeDisabled();
     });
 
     it("should have the Cancel button as disabled", () => {

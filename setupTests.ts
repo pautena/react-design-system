@@ -20,24 +20,43 @@ beforeAll(() => {
   // MUI checks for this flag to skip getBoundingClientRect validation in tests
   // See: https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Popper/BasePopper.js
   globalThis.MUI_TEST_ENV = true;
+
+  const matchMediaMock = vi.fn().mockImplementation(() => ({
+    matches: false,
+    media: "",
+    onchange: null,
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
+  }));
+
+  Object.defineProperty(globalThis, "matchMedia", {
+    writable: true,
+    value: matchMediaMock,
+  });
+
+  Object.defineProperty(window, "matchMedia", {
+    writable: true,
+    value: matchMediaMock,
+  });
+
+  const elementPrototype =
+    HTMLElement.prototype as typeof HTMLElement.prototype & {
+      setPointerCapture?: (pointerId: number) => void;
+      releasePointerCapture?: (pointerId: number) => void;
+    };
+
+  if (!elementPrototype.setPointerCapture) {
+    elementPrototype.setPointerCapture = () => {};
+  }
+
+  if (!elementPrototype.releasePointerCapture) {
+    elementPrototype.releasePointerCapture = () => {};
+  }
 });
 
 beforeEach(() => {
-  vi.resetAllMocks();
-});
-
-beforeEach(() => {
-  vi.resetAllMocks();
-});
-
-beforeEach(() => {
-  vi.resetAllMocks();
-});
-
-beforeEach(() => {
-  vi.resetAllMocks();
-});
-
-beforeEach(() => {
-  vi.resetAllMocks();
+  vi.clearAllMocks();
 });

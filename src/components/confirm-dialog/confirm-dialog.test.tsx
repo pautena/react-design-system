@@ -1,8 +1,7 @@
-import DialogContentText from "@mui/material/DialogContentText";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import { render, screen } from "../tests/testing-library";
-import ConfirmDialog from "./ConfirmDialog";
+import { render, screen } from "@/tests/testing-library";
+import ConfirmDialog from "./confirm-dialog";
 
 interface DialogRenderArgs {
   open: boolean;
@@ -10,7 +9,6 @@ interface DialogRenderArgs {
   confirmText?: string;
   cancelText?: string;
   loading?: boolean;
-  content?: string | string[];
   passphrase?: string;
 }
 
@@ -38,7 +36,7 @@ describe("ConfirmDialog", () => {
         cancelText={cancelText}
         confirmText={confirmText}
       >
-        <DialogContentText>This is the content</DialogContentText>
+        This is the content
       </ConfirmDialog>,
     );
 
@@ -48,13 +46,13 @@ describe("ConfirmDialog", () => {
   it("should render the dialog if open is true", () => {
     renderComponent({ open: true });
 
-    expect(screen.getByRole("dialog")).toBeVisible();
+    expect(screen.getByRole("alertdialog")).toBeVisible();
   });
 
   it("shouldn't render the dialog if open is false", () => {
     renderComponent({ open: false });
 
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(screen.queryByRole("alertdialog")).not.toBeInTheDocument();
   });
 
   it("should render the title", () => {
@@ -70,25 +68,28 @@ describe("ConfirmDialog", () => {
   });
 
   it("should call onCancel if the close button is clicked", async () => {
+    const user = userEvent.setup();
     const { onCancel } = renderComponent({ open: true });
 
-    await userEvent.click(screen.getByRole("button", { name: "close" }));
+    await user.click(screen.getByRole("button", { name: /close/i }));
 
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
   it("should call onCancel if the cancel button is clicked", async () => {
+    const user = userEvent.setup();
     const { onCancel } = renderComponent({ open: true });
 
-    await userEvent.click(screen.getByRole("button", { name: /cancel/i }));
+    await user.click(screen.getByRole("button", { name: /cancel/i }));
 
     expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
   it("should call onConfirm if the confirm button is clicked", async () => {
+    const user = userEvent.setup();
     const { onConfirm } = renderComponent({ open: true });
 
-    await userEvent.click(screen.getByRole("button", { name: /confirm/i }));
+    await user.click(screen.getByRole("button", { name: /confirm/i }));
 
     expect(onConfirm).toHaveBeenCalledTimes(1);
   });
@@ -97,7 +98,7 @@ describe("ConfirmDialog", () => {
     it("should have the close button as disabled", () => {
       renderComponent({ open: true, disabled: true });
 
-      expect(screen.getByRole("button", { name: "close" })).toBeDisabled();
+      expect(screen.getByRole("button", { name: /close/i })).toBeDisabled();
     });
 
     it("should have the Cancel button as disabled", () => {
@@ -130,7 +131,7 @@ describe("ConfirmDialog", () => {
   });
 
   describe("loading", () => {
-    it("should render a loading indicator if is true", async () => {
+    it("should render a loading indicator if is true", () => {
       renderComponent({ open: true, loading: true });
 
       expect(screen.getByRole("progressbar")).toBeVisible();
@@ -139,7 +140,7 @@ describe("ConfirmDialog", () => {
     it("should have the close button as disabled", () => {
       renderComponent({ open: true, loading: true });
 
-      expect(screen.getByRole("button", { name: "close" })).toBeDisabled();
+      expect(screen.getByRole("button", { name: /close/i })).toBeDisabled();
     });
 
     it("should have the Cancel button as disabled", () => {
@@ -159,7 +160,7 @@ describe("ConfirmDialog", () => {
     it("should render an input to enter a passphrase", () => {
       renderComponent({ open: true, passphrase: "delete permanently" });
 
-      const input = screen.getByRole("textbox");
+      const input = screen.getByRole("textbox", { name: /passphrase/i });
       expect(input).toBeVisible();
       expect(input).toHaveAttribute("placeholder", "delete permanently");
     });
@@ -171,17 +172,25 @@ describe("ConfirmDialog", () => {
     });
 
     it("should have the confirm button disabled if the user writes a non valid passphrase", async () => {
+      const user = userEvent.setup();
       renderComponent({ open: true, passphrase: "delete permanently" });
 
-      await userEvent.type(screen.getByRole("textbox"), "invalid passphrase");
+      await user.type(
+        screen.getByRole("textbox", { name: /passphrase/i }),
+        "invalid passphrase",
+      );
 
       expect(screen.getByRole("button", { name: /confirm/i })).toBeDisabled();
     });
 
     it("should have the confirm button enabled if the user writes a valid passphrase", async () => {
+      const user = userEvent.setup();
       renderComponent({ open: true, passphrase: "delete permanently" });
 
-      await userEvent.type(screen.getByRole("textbox"), "delete permanently");
+      await user.type(
+        screen.getByRole("textbox", { name: /passphrase/i }),
+        "delete permanently",
+      );
 
       expect(
         screen.getByRole("button", { name: /confirm/i }),

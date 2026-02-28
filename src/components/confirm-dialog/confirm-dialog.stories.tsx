@@ -1,12 +1,10 @@
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
 import type { Meta, StoryObj } from "@storybook/react";
-import { StoryDialogManager } from "../storybook";
-import FormDialog from "./FormDialog";
+import { StoryDialogManager } from "@/storybook";
+import ConfirmDialog from "./confirm-dialog";
 
 export default {
-  title: "Dialogs/FormDialog",
-  component: FormDialog,
+  title: "Dialogs/ConfirmDialog",
+  component: ConfirmDialog,
   parameters: {
     layout: "centered",
     docs: {
@@ -30,13 +28,7 @@ export default {
             .filter(Boolean)
             .join("\n  ");
 
-          return `<FormDialog
-  ${props}
-  onSubmit={handleSubmit}
-  onCancel={handleCancel}
->
-  {children}
-</FormDialog>`;
+          return `<ConfirmDialog\n  ${props}\n  onConfirm={handleConfirm}\n  onCancel={handleCancel}\n>\n  {children}\n</ConfirmDialog>`;
         },
       },
     },
@@ -58,35 +50,22 @@ export default {
       description: "Children to be rendered inside the dialog.",
     },
   },
-  render: (args) => <StoryDialogManager component={FormDialog} args={args} />,
-} as Meta<typeof FormDialog>;
-type Story = StoryObj<typeof FormDialog>;
+  render: (args) => (
+    <StoryDialogManager component={ConfirmDialog} args={args} />
+  ),
+} satisfies Meta<typeof ConfirmDialog>;
+
+type Story = StoryObj<typeof ConfirmDialog>;
 
 export const Default: Story = {
   args: {
     open: true,
     title: "Lorem ipsum",
     children: (
-      <Grid container spacing={2}>
-        <Grid size={12}>
-          <TextField
-            name="message"
-            label="Message"
-            fullWidth
-            required
-            variant="outlined"
-          />
-        </Grid>
-        <Grid size={12}>
-          <TextField
-            name="amount"
-            label="Amount"
-            fullWidth
-            required
-            variant="outlined"
-          />
-        </Grid>
-      </Grid>
+      <span className="text-sm text-muted-foreground">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua.
+      </span>
     ),
   },
 };
@@ -95,18 +74,12 @@ Default.parameters = {
   docs: {
     source: {
       code: `import { useState } from 'react';
-import { FormDialog } from './FormDialog';
+import { ConfirmDialog } from '@pautena/react-design-system';
 
 function MyComponent() {
   const [open, setOpen] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    
-    // Handle form submission
-    console.log(data);
+  const handleConfirm = () => {
     setOpen(false);
   };
 
@@ -116,22 +89,15 @@ function MyComponent() {
 
   return (
     <>
-      <button onClick={() => setOpen(true)}>Open Form Dialog</button>
-      <FormDialog
+      <button onClick={() => setOpen(true)}>Open Confirm Dialog</button>
+      <ConfirmDialog
         open={open}
-        title="Create Item"
-        onSubmit={handleSubmit}
+        title="Lorem ipsum"
+        onConfirm={handleConfirm}
         onCancel={handleCancel}
       >
-        <Grid container spacing={2}>
-          <Grid size={12}>
-            <TextField name="message" label="Message" fullWidth required />
-          </Grid>
-          <Grid size={12}>
-            <TextField name="amount" label="Amount" fullWidth required />
-          </Grid>
-        </Grid>
-      </FormDialog>
+        <p>Are you sure you want to proceed?</p>
+      </ConfirmDialog>
     </>
   );
 }`,
@@ -156,7 +122,19 @@ export const Disabled: Story = {
 export const CustomButtonText: Story = {
   args: {
     ...Default.args,
-    submitText: "Create token",
+    confirmText: "Create token",
     cancelText: "Don't create a token",
+  },
+};
+
+export const Passphrase: Story = {
+  args: {
+    title: "Lorem ipsum",
+    children: (
+      <span className="text-sm text-muted-foreground">
+        Write the passphrase to confirm your action
+      </span>
+    ),
+    passphrase: "delete permanently",
   },
 };

@@ -1,19 +1,15 @@
-import type { AlertColor } from "@mui/material/Alert";
 import { createContext, useContext } from "react";
+import type { toast } from "sonner";
 
 export const NotificationCenterProviderUndefinedError = new Error(
   "NotificationCenterContext.Provider is required and was undefined",
 );
 
-export interface Notification {
-  severity: AlertColor;
-  title?: string;
-  message: string;
-}
-
 export interface NotificationCenterProps {
-  show(notification: Notification): void;
-  hide(): void;
+  /**
+   * Sonner toast API.
+   */
+  toast: typeof toast;
 }
 
 export const NotificationCenterContext = createContext<
