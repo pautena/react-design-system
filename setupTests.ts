@@ -20,6 +20,20 @@ beforeAll(() => {
   // MUI checks for this flag to skip getBoundingClientRect validation in tests
   // See: https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Popper/BasePopper.js
   globalThis.MUI_TEST_ENV = true;
+
+  Object.defineProperty(globalThis, "matchMedia", {
+    writable: true,
+    value: vi.fn().mockImplementation(() => ({
+      matches: false,
+      media: "",
+      onchange: null,
+      addListener: vi.fn(),
+      removeListener: vi.fn(),
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+      dispatchEvent: vi.fn(),
+    })),
+  });
 });
 
 beforeEach(() => {

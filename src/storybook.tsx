@@ -4,7 +4,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { type CSSProperties, type FunctionComponent, useState } from "react";
 import { action } from "storybook/actions";
 import { SidebarMenu } from "@/components/ui/sidebar";
-import { NotificationCenterProvider } from "./NotificationCenter";
+import { NotificationCenterProvider } from "@/components/notification-center";
 
 const closeDialogAction = action("dialog/close");
 

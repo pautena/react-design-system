@@ -1,0 +1,131 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import TextField from "@/components/forms/text-field";
+import { StoryDialogManager } from "@/storybook";
+import FormDialog from "./form-dialog";
+
+export default {
+  title: "Dialogs/FormDialog",
+  component: FormDialog,
+  parameters: {
+    layout: "centered",
+    docs: {
+      source: {
+        transform: (_code: string, storyContext: any) => {
+          const { args } = storyContext;
+          const props = Object.entries(args)
+            .filter(([key]) => key !== "children")
+            .map(([key, value]) => {
+              if (typeof value === "boolean" && value === true) {
+                return key;
+              }
+              if (typeof value === "string") {
+                return `${key}="${value}"`;
+              }
+              if (typeof value === "function") {
+                return `${key}={${key}}`;
+              }
+              return `${key}={${JSON.stringify(value)}}`;
+            })
+            .filter(Boolean)
+            .join("\n  ");
+
+          return `<FormDialog\n  ${props}\n  onSubmit={handleSubmit}\n  onCancel={handleCancel}\n>\n  {children}\n</FormDialog>`;
+        },
+      },
+    },
+  },
+  argTypes: {
+    open: {
+      description: "Whether the dialog is open.",
+    },
+    title: {
+      description: "The title of the dialog.",
+    },
+    loading: {
+      description: "Whether the dialog is in a loading state.",
+    },
+    disabled: {
+      description: "Whether the dialog is disabled.",
+    },
+    children: {
+      description: "Children to be rendered inside the dialog.",
+    },
+  },
+  render: (args) => <StoryDialogManager component={FormDialog} args={args} />,
+} satisfies Meta<typeof FormDialog>;
+
+type Story = StoryObj<typeof FormDialog>;
+
+export const Default: Story = {
+  args: {
+    open: true,
+    title: "Lorem ipsum",
+    children: (
+      <div className="grid gap-3">
+        <TextField name="message" label="Message" fullWidth required />
+        <TextField name="amount" label="Amount" fullWidth required />
+      </div>
+    ),
+  },
+};
+
+Default.parameters = {
+  docs: {
+    source: {
+      code: `import { useState } from 'react';
+import { FormDialog } from '@pautena/react-design-system';
+
+function MyComponent() {
+  const [open, setOpen] = useState(false);
+
+  const handleSubmit = (data) => {
+    console.log(data);
+    setOpen(false);
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  return (
+    <>
+      <button onClick={() => setOpen(true)}>Open Form Dialog</button>
+      <FormDialog
+        open={open}
+        title="Create Item"
+        onSubmit={handleSubmit}
+        onCancel={handleCancel}
+      >
+        <div className="grid gap-3">
+          <TextField name="message" label="Message" fullWidth required />
+          <TextField name="amount" label="Amount" fullWidth required />
+        </div>
+      </FormDialog>
+    </>
+  );
+}`,
+    },
+  },
+};
+
+export const Loading: Story = {
+  args: {
+    ...Default.args,
+    loading: true,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    ...Default.args,
+    disabled: true,
+  },
+};
+
+export const CustomButtonText: Story = {
+  args: {
+    ...Default.args,
+    submitText: "Create token",
+    cancelText: "Don't create a token",
+  },
+};
