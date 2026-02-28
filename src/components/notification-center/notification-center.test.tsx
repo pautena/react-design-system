@@ -1,12 +1,11 @@
 import userEvent from "@testing-library/user-event";
-import { vi } from "vitest";
 import Button from "@/components/button";
+import { mockConsoleError } from "@/tests/mocks";
 import {
   render,
   screen,
   waitForElementToBeRemoved,
 } from "@/tests/testing-library";
-import { mockConsoleError } from "@/tests/mocks";
 
 import {
   NotificationCenterProviderUndefinedError,
@@ -19,7 +18,9 @@ describe("NotificationCenterProvider", () => {
     const TestContent = () => {
       const { toast } = useNotificationCenter();
 
-      const showNotification = (severity: "success" | "info" | "warning" | "error") => {
+      const showNotification = (
+        severity: "success" | "info" | "warning" | "error",
+      ) => {
         switch (severity) {
           case "success":
             toast.success("An alert!", { description: "Lorem ipsum sit amet" });
@@ -61,7 +62,9 @@ describe("NotificationCenterProvider", () => {
     await user.click(screen.getByRole("button", { name: /info/i }));
 
     expect(await screen.findByText(/an alert/i)).toBeInTheDocument();
-    expect(await screen.findByText(/lorem ipsum sit amet/i)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/lorem ipsum sit amet/i),
+    ).toBeInTheDocument();
   });
 
   it("would hide the notification if close is called", async () => {

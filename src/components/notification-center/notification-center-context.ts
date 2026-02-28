@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { toast } from "sonner";
+import type { toast } from "sonner";
 
 export const NotificationCenterProviderUndefinedError = new Error(
   "NotificationCenterContext.Provider is required and was undefined",

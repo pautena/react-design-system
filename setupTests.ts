@@ -42,12 +42,18 @@ beforeAll(() => {
     value: matchMediaMock,
   });
 
-  if (!("setPointerCapture" in HTMLElement.prototype)) {
-    HTMLElement.prototype.setPointerCapture = () => {};
+  const elementPrototype =
+    HTMLElement.prototype as typeof HTMLElement.prototype & {
+      setPointerCapture?: (pointerId: number) => void;
+      releasePointerCapture?: (pointerId: number) => void;
+    };
+
+  if (!elementPrototype.setPointerCapture) {
+    elementPrototype.setPointerCapture = () => {};
   }
 
-  if (!("releasePointerCapture" in HTMLElement.prototype)) {
-    HTMLElement.prototype.releasePointerCapture = () => {};
+  if (!elementPrototype.releasePointerCapture) {
+    elementPrototype.releasePointerCapture = () => {};
   }
 });
 

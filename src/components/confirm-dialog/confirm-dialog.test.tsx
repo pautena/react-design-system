@@ -175,7 +175,10 @@ describe("ConfirmDialog", () => {
       const user = userEvent.setup();
       renderComponent({ open: true, passphrase: "delete permanently" });
 
-      await user.type(screen.getByRole("textbox", { name: /passphrase/i }), "invalid passphrase");
+      await user.type(
+        screen.getByRole("textbox", { name: /passphrase/i }),
+        "invalid passphrase",
+      );
 
       expect(screen.getByRole("button", { name: /confirm/i })).toBeDisabled();
     });
@@ -189,7 +192,9 @@ describe("ConfirmDialog", () => {
         "delete permanently",
       );
 
-      expect(screen.getByRole("button", { name: /confirm/i })).not.toBeDisabled();
+      expect(
+        screen.getByRole("button", { name: /confirm/i }),
+      ).not.toBeDisabled();
     });
   });
 });

@@ -1,6 +1,6 @@
+import { Loader2, X } from "lucide-react";
 import type { FormEvent, ReactNode } from "react";
 import { useId } from "react";
-import { Loader2, X } from "lucide-react";
 import Button from "@/components/button";
 import Dialog, { type DialogSize } from "@/components/dialog";
 import { getFormData } from "@/utils/forms";

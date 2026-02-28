@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import {
-  Dialog as DialogRoot,
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
+  Dialog as DialogRoot,
   DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";

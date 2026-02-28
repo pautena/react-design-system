@@ -119,7 +119,9 @@ describe("ExpandableAlert", () => {
     renderComponent({ metadata });
 
     await user.click(screen.getByRole("button", { name: /expand metadata/i }));
-    await user.click(screen.getByRole("button", { name: /collapse metadata/i }));
+    await user.click(
+      screen.getByRole("button", { name: /collapse metadata/i }),
+    );
 
     await waitFor(() =>
       expect(screen.queryByText(metadata)).not.toBeInTheDocument(),

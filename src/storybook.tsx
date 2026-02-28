@@ -3,8 +3,8 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 /* eslint-disable react/display-name */
 import { type CSSProperties, type FunctionComponent, useState } from "react";
 import { action } from "storybook/actions";
-import { SidebarMenu } from "@/components/ui/sidebar";
 import { NotificationCenterProvider } from "@/components/notification-center";
+import { SidebarMenu } from "@/components/ui/sidebar";
 
 const closeDialogAction = action("dialog/close");
 

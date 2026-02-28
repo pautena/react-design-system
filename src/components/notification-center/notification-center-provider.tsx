@@ -1,4 +1,4 @@
-import { toast, type ToasterProps } from "sonner";
+import { type ToasterProps, toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { NotificationCenterContext } from "./notification-center-context";
 
