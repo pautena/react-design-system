@@ -2,6 +2,41 @@
 
 AI-ready design system built on shadcn/ui with MCP support
 
+## Examples
+
+### AI Component Guide
+
+[View Documentation](./?path=/docs/examples-ai-component-guide--docs)
+
+### AI Composition Patterns
+
+[View Documentation](./?path=/docs/examples-ai-composition-patterns--docs)
+
+### AI MCP Usage
+
+[View Documentation](./?path=/docs/examples-ai-mcp-usage--docs)
+
+### Dashboard
+
+**Stories:**
+- [Default](./?path=/story/examples-dashboard--default)
+
+[View Documentation](./?path=/docs/examples-dashboard--docs)
+
+### Data Explorer
+
+**Stories:**
+- [Default](./?path=/story/examples-data-explorer--default)
+
+[View Documentation](./?path=/docs/examples-data-explorer--docs)
+
+### Form Wizard
+
+**Stories:**
+- [Default](./?path=/story/examples-form-wizard--default)
+
+[View Documentation](./?path=/docs/examples-form-wizard--docs)
+
 ## shadcn
 
 ### Introduction

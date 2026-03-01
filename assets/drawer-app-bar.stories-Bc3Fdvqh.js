@@ -1,0 +1,5 @@
+import{j as o}from"./iframe-lRwKKAeA.js";import{D as p}from"./drawer-provider-BLDG01ms.js";import{D as e}from"./drawer-app-bar-B4y5xcp9.js";import"./preload-helper-PPVm8Dsz.js";import"./sidebar-2ulj49hr.js";import"./index-BZl2Gm-o.js";import"./button-h5PM8KId.js";import"./utils-wLV4pmrJ.js";import"./useRenderElement-DXpJT6eM.js";import"./DirectionContext-D015V4zZ.js";import"./composite-CvqMpLXs.js";import"./index-aCLD_6gc.js";import"./index-so3LO3Cr.js";import"./x-Dvkqv4wB.js";import"./createLucideIcon-CW1mXz6K.js";import"./DialogTitle-DczUCJzh.js";import"./index-Ozf5NBs-.js";import"./useRender-BYihtJcv.js";const v={title:"Navigation/DrawerAppBar",component:e,parameters:{layout:"fullscreen"},render:a=>o.jsx(p,{children:o.jsx(e,{...a})})},r={args:{title:"Lorem ipsum"}},t={};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`{
+  args: {
+    title: "Lorem ipsum"
+  }
+}`,...r.parameters?.docs?.source}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:"{}",...t.parameters?.docs?.source}}};const E=["Default","WithoutTitle"];export{r as Default,t as WithoutTitle,E as __namedExportsOrder,v as default};
