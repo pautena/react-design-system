@@ -1,0 +1,8 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-Gyfd8-lq.js";import{M as n,D as p,C as m}from"./blocks-BMOuQcr_.js";import{Default as a}from"./expandable-alert.stories-eDY5uVdf.js";import{E as s}from"./expandable-alert-nsk2Way8.js";import"./iframe-C_7bLouK.js";import"./preload-helper-PPVm8Dsz.js";import"./index-CvzTXi8f.js";import"./index-ChAihCM8.js";import"./index-DnbYxgfW.js";import"./button-yGNfiGto.js";import"./button-q2sCJWC4.js";import"./index-C16iSc_-.js";import"./utils-CJxB-tWf.js";import"./useRenderElement-Bt1an2v0.js";import"./storybook-ZuKHGkgU.js";import"./notification-center-provider-C47Pv2Md.js";import"./loader-circle-9lhHWVhj.js";import"./createLucideIcon-CMKN0kEv.js";import"./triangle-alert-DfgpFmgS.js";import"./sidebar-B24UiDBi.js";import"./DirectionContext-BMrj8C2V.js";import"./composite-DdXnjXQf.js";import"./x-D8wlzAR-.js";import"./DialogTitle-DmEkRuXH.js";import"./useRender-CJLrCGuO.js";import"./board-DFsutPj1.js";import"./collapsible-CjZRfGWP.js";import"./chevron-up-Cu0on_I2.js";import"./chevron-down-DaHT1g3Z.js";function i(o){const r={a:"a",h1:"h1",h2:"h2",p:"p",...e(),...o.components};return t.jsxs(t.Fragment,{children:[`
+`,t.jsx(n,{title:"Alerts"}),`
+`,t.jsx(r.h1,{id:"alerts",children:"Alerts"}),`
+`,t.jsx(r.h2,{id:"expandablealert",children:"ExpandableAlert"}),`
+`,`
+`,t.jsx(p,{of:s}),`
+`,t.jsx(r.p,{children:t.jsx(r.a,{href:"?path=/docs/alerts-expandablealert--docs",children:"ExpandableAlert Stories"})}),`
+`,t.jsx(m,{of:a})]})}function I(o={}){const{wrapper:r}={...e(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(i,{...o})}):i(o)}export{I as default};

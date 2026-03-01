@@ -1,4 +1,13 @@
-import { ResponsiveStyleValue } from '@mui/system';
+/**
+ * Responsive style values for breakpoints.
+ */
+export type ResponsiveStyleValue<T> = T | {
+    xs?: T;
+    sm?: T;
+    md?: T;
+    lg?: T;
+    xl?: T;
+};
 interface Breakpoints {
     xs: number;
     sm: number;

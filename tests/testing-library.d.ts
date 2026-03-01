@@ -1,11 +1,7 @@
-import { PaletteMode } from '@mui/material';
 import { RenderOptions, RenderResult } from '@testing-library/react';
 import { default as React } from '../../node_modules/react';
-export type TestRouter = "router" | "memory";
 interface CustomRenderOptions {
     renderOptions?: RenderOptions;
-    mode?: PaletteMode;
-    router?: TestRouter;
 }
 declare const customRender: (ui: React.ReactElement, options?: CustomRenderOptions) => RenderResult;
 declare const customFireEvent: {

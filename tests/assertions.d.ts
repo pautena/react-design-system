@@ -1,4 +1,4 @@
-import { AlertColor } from '@mui/material';
+import { AlertSeverity } from '../components/expandable-alert';
 export declare const expectContentPlaceholder: () => Promise<void>;
 export declare const assertDatetimeInputValue: (element: HTMLElement, { value, fmt }: {
     value: Date;
@@ -10,7 +10,7 @@ export declare const waitForProgressFinish: () => Promise<void>;
 export declare const expectAlert: ({ title, message, severity, }: {
     title?: RegExp | string;
     message: RegExp | string;
-    severity: AlertColor;
+    severity: AlertSeverity;
 }) => Promise<void>;
 export declare enum AssertCloseDateUpTo {
     Year = 1,

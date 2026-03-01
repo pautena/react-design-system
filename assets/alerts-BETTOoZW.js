@@ -1,8 +1,0 @@
-import{j as t}from"./iframe-lRwKKAeA.js";import{useMDXComponents as e}from"./index-DYO3zhMT.js";import{M as n,D as p,C as m}from"./blocks-R_ftx0qN.js";import{Default as a}from"./expandable-alert.stories-DHum033w.js";import{E as s}from"./expandable-alert-DKYoU_jH.js";import"./preload-helper-PPVm8Dsz.js";import"./index-aCLD_6gc.js";import"./index-so3LO3Cr.js";import"./index-Ozf5NBs-.js";import"./button-OsMYNPhM.js";import"./button-h5PM8KId.js";import"./index-BZl2Gm-o.js";import"./utils-wLV4pmrJ.js";import"./useRenderElement-DXpJT6eM.js";import"./storybook-COLW6OeD.js";import"./notification-center-provider-CDSuuxjR.js";import"./loader-circle-D9QnFWM9.js";import"./createLucideIcon-CW1mXz6K.js";import"./triangle-alert-xAnxLRrM.js";import"./sidebar-2ulj49hr.js";import"./DirectionContext-D015V4zZ.js";import"./composite-CvqMpLXs.js";import"./x-Dvkqv4wB.js";import"./DialogTitle-DczUCJzh.js";import"./useRender-BYihtJcv.js";import"./isSameDay-BaBEc9bM.js";import"./board-DsPwuRop.js";import"./collapsible-DgW0LYXB.js";import"./chevron-up-CvAzd9Aw.js";import"./chevron-down-hKLTOZmu.js";function i(o){const r={a:"a",h1:"h1",h2:"h2",p:"p",...e(),...o.components};return t.jsxs(t.Fragment,{children:[`
-`,t.jsx(n,{title:"Alerts"}),`
-`,t.jsx(r.h1,{id:"alerts",children:"Alerts"}),`
-`,t.jsx(r.h2,{id:"expandablealert",children:"ExpandableAlert"}),`
-`,`
-`,t.jsx(p,{of:s}),`
-`,t.jsx(r.p,{children:t.jsx(r.a,{href:"?path=/docs/alerts-expandablealert--docs",children:"ExpandableAlert Stories"})}),`
-`,t.jsx(m,{of:a})]})}function I(o={}){const{wrapper:r}={...e(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(i,{...o})}):i(o)}export{I as default};

@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime-u17CrQMm.js";import{d as a}from"./sidebar-B24UiDBi.js";function e({children:t}){return r.jsx(a,{children:t})}e.__docgenInfo={description:"Main content area that shifts with drawer state.",methods:[],displayName:"DrawerMain"};export{e as D};

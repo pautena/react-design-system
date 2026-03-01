@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">5/46 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">6/46 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">5/178 story errors</a></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">5/46 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">6/46 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">5/177 story errors</a></div>
   </div>
 </header>
 <main>
@@ -1932,9 +1932,9 @@ children?: React.ReactNode</code></pre>
         <label for="c-10-inputs-daterangecalendar-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
-    <div class="meta" title="./src/DateRangeCalendar/DateRangeCalendar.stories.tsx">inputs-daterangecalendar · ./src/DateRangeCalendar/DateRangeCalendar.stories.tsx</div>
+    <div class="meta" title="./src/components/date-range-calendar/date-range-calendar.stories.tsx">inputs-daterangecalendar · ./src/components/date-range-calendar/date-range-calendar.stories.tsx</div>
     
-    <div class="hint">A Date Range Calendar component that allows users to select a range of dates.</div>
+    <div class="hint">A date range calendar component that allows users to select a range of dates.</div>
     
   </div>
 
@@ -1954,7 +1954,7 @@ children?: React.ReactNode</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">2 prop types</span>
             </div>
-            <pre><code>Component: src/DateRangeCalendar/DateRangeCalendar.tsx::DateRangeCalendar</code></pre>
+            <pre><code>Component: src/components/date-range-calendar/date-range-calendar.tsx::DateRangeCalendar</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * The default date range value.
@@ -1990,7 +1990,9 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
               </div>
               
               
-              <pre><code>const Default = () =&gt; &lt;DateRangeCalendar defaultValue={[new Date(2023, 4, 2), new Date(2023, 4, 24)]} /&gt;;</code></pre>
+              <pre><code>const Default = () =&gt; &lt;DateRangeCalendar
+    defaultValue={[new Date(2023, 4, 2), new Date(2023, 4, 24)]}
+    onValueChange={() =&gt; {}} /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -2008,10 +2010,10 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
       <div class="badges">
         <label for="c-11-inputs-daterangepicker-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-11-inputs-daterangepicker-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-11-inputs-daterangepicker-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
-    <div class="meta" title="./src/DateRangePicker/DateRangePicker.stories.tsx">inputs-daterangepicker · ./src/DateRangePicker/DateRangePicker.stories.tsx</div>
+    <div class="meta" title="./src/components/date-range-picker/date-range-picker.stories.tsx">inputs-daterangepicker · ./src/components/date-range-picker/date-range-picker.stories.tsx</div>
     
     <div class="hint">DateRangePicker component allows users to select a date range.</div>
     
@@ -2033,7 +2035,7 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
               <span class="ex-name">Prop types</span>
               <span class="badge ok">6 prop types</span>
             </div>
-            <pre><code>Component: src/DateRangePicker/DateRangePicker.tsx::DateRangePicker</code></pre>
+            <pre><code>Component: src/components/date-range-picker/date-range-picker.tsx::DateRangePicker</code></pre>
             <pre><code>Props:</code></pre>
             <pre><code>/**
  * The default value for the date range picker.
@@ -2091,24 +2093,10 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
               
               
               <pre><code>const Default = () =&gt; &lt;DateRangePicker
-    label=&quot;Select your date range&quot;
-    defaultValue={[new Date(2023, 4, 9), new Date(2023, 4, 18)]}
-    format=&quot;yyyy/MM/dd&quot;
-    fullWidth /&gt;;</code></pre>
-            </div>
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Small</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Small = () =&gt; &lt;DateRangePicker
-    label=&quot;Select your date range&quot;
-    defaultValue={[new Date(2023, 4, 9), new Date(2023, 4, 18)]}
-    format=&quot;yyyy/MM/dd&quot;
-    fullWidth
-    size=&quot;small&quot; /&gt;;</code></pre>
+    label=&quot;Select range&quot;
+    format=&quot;yyyy-MM-dd&quot;
+    defaultValue={[new Date(2023, 4, 2), new Date(2023, 4, 24)]}
+    onValueChange={() =&gt; {}} /&gt;;</code></pre>
             </div>
         </div>
   </div>

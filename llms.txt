@@ -43,56 +43,6 @@ AI-ready design system built on shadcn/ui with MCP support
 
 [View Documentation](./?path=/docs/shadcn-introduction--docs)
 
-## Inputs
-
-### DateRangeCalendar
-
-A Date Range Calendar component that allows users to select a range of dates.
-
-**Props:**
-- `defaultValue`: `DateRange` (required) - The default date range value.
-
-**Stories:**
-- [Default](./?path=/story/inputs-daterangecalendar--default)
-
-[View Documentation](./?path=/docs/inputs-daterangecalendar--docs)
-
-### DateRangePicker
-
-DateRangePicker component allows users to select a date range.
-
-**Props:**
-- `label`: `string` (required) - The label for the date range picker.
-- `defaultValue`: `DateRange` (required) - The default value for the date range picker.
-- `format`: `string` (required) - The format in which the date range should be displayed.
-
-**Stories:**
-- [Default](./?path=/story/inputs-daterangepicker--default)
-- [Small](./?path=/story/inputs-daterangepicker--small)
-
-[View Documentation](./?path=/docs/inputs-daterangepicker--docs)
-
-### Button
-
-**Stories:**
-- [Default](./?path=/story/inputs-button--default)
-- [Primary](./?path=/story/inputs-button--primary)
-- [Secondary](./?path=/story/inputs-button--secondary)
-- [Info](./?path=/story/inputs-button--info)
-- [Warning](./?path=/story/inputs-button--warning)
-- [Error](./?path=/story/inputs-button--error)
-- [Success](./?path=/story/inputs-button--success)
-- [Outline](./?path=/story/inputs-button--outline)
-- [Ghost](./?path=/story/inputs-button--ghost)
-- [Destructive](./?path=/story/inputs-button--destructive)
-- [Link](./?path=/story/inputs-button--link)
-- [Size Extra Small](./?path=/story/inputs-button--size-extra-small)
-- [Size Small](./?path=/story/inputs-button--size-small)
-- [Size Large](./?path=/story/inputs-button--size-large)
-- [Size Icon](./?path=/story/inputs-button--size-icon)
-
-[View Documentation](./?path=/docs/inputs-button--docs)
-
 ## Data Display
 
 ### Badge
@@ -247,6 +197,43 @@ DateRangePicker component allows users to select a date range.
 - [Custom Placeholder](./?path=/story/data-display-valuetext--custom-placeholder)
 
 [View Documentation](./?path=/docs/data-display-valuetext--docs)
+
+## Inputs
+
+### Button
+
+**Stories:**
+- [Default](./?path=/story/inputs-button--default)
+- [Primary](./?path=/story/inputs-button--primary)
+- [Secondary](./?path=/story/inputs-button--secondary)
+- [Info](./?path=/story/inputs-button--info)
+- [Warning](./?path=/story/inputs-button--warning)
+- [Error](./?path=/story/inputs-button--error)
+- [Success](./?path=/story/inputs-button--success)
+- [Outline](./?path=/story/inputs-button--outline)
+- [Ghost](./?path=/story/inputs-button--ghost)
+- [Destructive](./?path=/story/inputs-button--destructive)
+- [Link](./?path=/story/inputs-button--link)
+- [Size Extra Small](./?path=/story/inputs-button--size-extra-small)
+- [Size Small](./?path=/story/inputs-button--size-small)
+- [Size Large](./?path=/story/inputs-button--size-large)
+- [Size Icon](./?path=/story/inputs-button--size-icon)
+
+[View Documentation](./?path=/docs/inputs-button--docs)
+
+### DateRangeCalendar
+
+**Stories:**
+- [Default](./?path=/story/inputs-daterangecalendar--default)
+
+[View Documentation](./?path=/docs/inputs-daterangecalendar--docs)
+
+### DateRangePicker
+
+**Stories:**
+- [Default](./?path=/story/inputs-daterangepicker--default)
+
+[View Documentation](./?path=/docs/inputs-daterangepicker--docs)
 
 ## Dialogs
 
