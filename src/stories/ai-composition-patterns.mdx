@@ -1,0 +1,80 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Examples/AI Composition Patterns" />
+
+# AI Composition Patterns
+
+## Dashboard shell
+
+```tsx
+import {
+  DrawerLayout,
+  Header,
+  RemoteDataTable,
+  ValueCard,
+  ValueItem,
+  ValueText,
+} from "@pautena/react-design-system";
+
+<DrawerLayout title="Ops Console" navigation={navigation}>
+  <Header title="Operations" subtitle="Live metrics" />
+  <ValueCard>
+    <div className="grid grid-cols-12 gap-2">
+      <ValueItem size={4} bordered={false}>
+        <ValueText label="Users" value="1,240" />
+      </ValueItem>
+    </div>
+  </ValueCard>
+  <RemoteDataTable data={rows} columns={columns} {...tableState} />
+</DrawerLayout>;
+```
+
+## Form flow with dialogs
+
+```tsx
+import { FormDialog, ConfirmDialog, TextField } from "@pautena/react-design-system";
+
+<FormDialog open={open} title="Add team" onCancel={close} onSubmit={save}>
+  <TextField name="team" label="Team name" />
+</FormDialog>
+
+<ConfirmDialog
+  open={confirmOpen}
+  title="Submit request?"
+  onCancel={close}
+  onConfirm={submit}
+/>
+```
+
+## Data exploration layout
+
+```tsx
+import { ListPanel, RemoteDataTable, ExpandableAlert } from "@pautena/react-design-system";
+
+<ListPanel items={[{ id: "accounts", text: "Accounts" }]}>
+  <ExpandableAlert
+    severity="info"
+    title="Filters"
+    message="Use query builder for advanced filters."
+    onClose={() => setOpen(false)}
+  />
+  <RemoteDataTable data={rows} columns={columns} {...tableState} />
+</ListPanel>;
+```
+
+## Navigation + tabs
+
+```tsx
+import { TabCard, TabCardPanel } from "@pautena/react-design-system";
+
+<TabCard tabs={[{ text: "Summary" }, { text: "Details" }]}>
+  <TabCardPanel index={0}>Summary content</TabCardPanel>
+  <TabCardPanel index={1}>Detailed content</TabCardPanel>
+</TabCard>;
+```
+
+## AI prompt examples
+
+- "Create a dashboard with DrawerLayout, a header, 3 metric cards, and a RemoteDataTable."
+- "Build a form wizard using TabCard, TextField, Select, and ConfirmDialog."
+- "Show a data explorer with ListPanel navigation and an ExpandableAlert tip section."

@@ -1,0 +1,207 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Examples/AI Component Guide" />
+
+# AI Component Guide
+
+Concise patterns for the most common `@pautena/react-design-system` components. Use Storybook for the full catalog.
+
+## Header
+
+**Purpose**: Page-level context, breadcrumbs, and actions.
+
+```tsx
+import { Header } from "@pautena/react-design-system";
+
+<Header
+  title="Operations"
+  subtitle="Live metrics"
+  breadcrumbs={[{ id: "home", text: "Home", link: "/" }]}
+  actions={[{ id: "refresh", text: "Refresh", onClick: refresh }]}
+/>;
+```
+
+**Avoid**: Passing tabs without wrapping `TabProvider` when you need `TabPanel` synchronization.
+
+## DrawerLayout
+
+**Purpose**: App shell with navigation and app bar.
+
+```tsx
+import { DrawerLayout } from "@pautena/react-design-system";
+
+<DrawerLayout title="Ops Console" navigation={navigation}>
+  {children}
+</DrawerLayout>;
+```
+
+## ValueText + ValueCard
+
+**Purpose**: Labeled values and metric groups.
+
+```tsx
+import { ValueCard, ValueItem, ValueText } from "@pautena/react-design-system";
+
+<ValueCard>
+  <div className="grid grid-cols-12 gap-2">
+    <ValueItem size={4} bordered={false}>
+      <ValueText label="Users" value="1,240" />
+    </ValueItem>
+  </div>
+</ValueCard>;
+```
+
+## RemoteDataTable
+
+**Purpose**: Server-style tables with pagination, sorting, and filters.
+
+```tsx
+import { RemoteDataTable, useRemoteDataTable } from "@pautena/react-design-system";
+
+const table = useRemoteDataTable({ initialPagination: { pageSize: 25 } });
+
+<RemoteDataTable
+  data={rows}
+  columns={columns}
+  pagination={table.pagination}
+  onPaginationChange={table.onPaginationChange}
+  sorting={table.sorting}
+  onSortingChange={table.onSortingChange}
+  query={{ fields, filters: table.filters, onFiltersChange: table.onFiltersChange }}
+/>;
+```
+
+## TextField
+
+**Purpose**: Text input with helper and error states.
+
+```tsx
+import { TextField } from "@pautena/react-design-system";
+
+<TextField
+  label="Email"
+  value={email}
+  onChange={(event) => setEmail(event.target.value)}
+  helperText="We will send a confirmation email."
+/>;
+```
+
+## Select
+
+**Purpose**: Native select with loading and fetching states.
+
+```tsx
+import { Select } from "@pautena/react-design-system";
+
+<Select
+  label="Role"
+  value={role}
+  options={[{ label: "Admin", value: "admin" }]}
+  onChange={(event) => setRole(event.target.value)}
+/>;
+```
+
+## Autocomplete
+
+**Purpose**: Searchable combobox for small to medium lists.
+
+```tsx
+import { Autocomplete } from "@pautena/react-design-system";
+
+<Autocomplete
+  label="Team"
+  options={teams}
+  value={team}
+  onChangeValue={(_, value) => setTeam(value)}
+/>;
+```
+
+## TabCard + TabCardPanel
+
+**Purpose**: Simple tabbed cards.
+
+```tsx
+import { TabCard, TabCardPanel } from "@pautena/react-design-system";
+
+<TabCard tabs={[{ text: "Details" }, { text: "History" }]}>
+  <TabCardPanel index={0}>Details</TabCardPanel>
+  <TabCardPanel index={1}>History</TabCardPanel>
+</TabCard>;
+```
+
+## ConfirmDialog
+
+**Purpose**: Destructive action confirmation.
+
+```tsx
+import { ConfirmDialog } from "@pautena/react-design-system";
+
+<ConfirmDialog
+  open={open}
+  title="Delete record?"
+  onCancel={() => setOpen(false)}
+  onConfirm={handleDelete}
+>Content will be removed permanently.</ConfirmDialog>;
+```
+
+## FormDialog
+
+**Purpose**: Form submission dialog with loading support.
+
+```tsx
+import { FormDialog, TextField } from "@pautena/react-design-system";
+
+<FormDialog
+  open={open}
+  title="Add project"
+  onCancel={() => setOpen(false)}
+  onSubmit={(data) => createProject(data)}
+>
+  <TextField name="name" label="Project name" />
+</FormDialog>;
+```
+
+## NotificationCenter
+
+**Purpose**: Toast notifications powered by Sonner.
+
+```tsx
+import {
+  NotificationCenterProvider,
+  useNotificationCenter,
+} from "@pautena/react-design-system";
+
+const { toast } = useNotificationCenter();
+
+<NotificationCenterProvider>
+  <button onClick={() => toast.success("Saved")}>Notify</button>
+</NotificationCenterProvider>;
+```
+
+## ListPanel
+
+**Purpose**: Side navigation with content area.
+
+```tsx
+import { ListPanel } from "@pautena/react-design-system";
+
+<ListPanel items={[{ id: "one", text: "Section" }]}>
+  Content
+</ListPanel>;
+```
+
+## ExpandableAlert
+
+**Purpose**: Alert with expandable metadata.
+
+```tsx
+import { ExpandableAlert } from "@pautena/react-design-system";
+
+<ExpandableAlert
+  severity="warning"
+  title="Check configuration"
+  message="Something needs attention."
+  metadata={["Run audit", "Update tokens"]}
+  onClose={() => setOpen(false)}
+/>;
+```
