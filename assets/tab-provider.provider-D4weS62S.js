@@ -1,0 +1,2 @@
+import{r as e,j as r}from"./iframe-BOp0KoHw.js";const t=e.createContext([0,()=>null]),n=t.Provider,l=()=>e.useContext(t),i=({children:a,initialValue:o=0})=>{const s=e.useState(o);return r.jsx(n,{value:s,children:a})};i.__docgenInfo={description:"Provides tab selection state for TabPanel and Header components.",methods:[],displayName:"TabProvider",props:{initialValue:{required:!1,tsType:{name:"number"},description:`Initial active tab index.
+@default 0`,defaultValue:{value:"0",computed:!1}}},composes:["PropsWithChildren"]};export{i as T,l as u};

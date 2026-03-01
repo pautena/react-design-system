@@ -1,0 +1,5 @@
+import{j as o}from"./iframe-BOp0KoHw.js";import{V as l}from"./value-text-Dv_vDBWV.js";import{c as d}from"./utils-BFne8Zvq.js";function a({children:r,className:t,...s}){return o.jsx("div",{className:d("rounded-lg border border-border bg-card p-2 text-card-foreground shadow-sm",t),...s,children:r})}a.__docgenInfo={description:"Container to show labeled values.",methods:[],displayName:"ValueCard",props:{children:{required:!1,tsType:{name:"ReactNode"},description:"Content to display in the card."}},composes:["HTMLAttributes"]};const n={title:"Data Display/ValueCard",component:a,parameters:{layout:"centered"},render:({children:r})=>o.jsx(a,{children:r})},e={args:{children:o.jsx(l,{label:"Hello world",value:"Lorem ipsum sit amet"})}};e.parameters={...e.parameters,docs:{...e.parameters?.docs,source:{originalSource:`{
+  args: {
+    children: <ValueText label="Hello world" value="Lorem ipsum sit amet" />
+  }
+}`,...e.parameters?.docs?.source}}};const i=["Default"],p=Object.freeze(Object.defineProperty({__proto__:null,Default:e,__namedExportsOrder:i,default:n},Symbol.toStringTag,{value:"Module"}));export{e as D,a as V,p as v};

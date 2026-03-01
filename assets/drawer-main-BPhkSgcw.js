@@ -1,1 +1,0 @@
-import{j as r}from"./iframe-pW5QL-bD.js";import{c as a}from"./sidebar-Dl8gHgQ3.js";function e({children:t}){return r.jsx(a,{children:t})}e.__docgenInfo={description:"Main content area that shifts with drawer state.",methods:[],displayName:"DrawerMain"};export{e as D};
