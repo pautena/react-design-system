@@ -741,7 +741,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 6: Dialogs & Overlays 💬
+### ✓ Phase 6: Dialogs & Overlays 💬
 
 **Agent**: @react-developer  
 **Skills**: code-react-unit-testing, code-react-storybook
@@ -764,7 +764,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 7: Tables & Advanced 🗂️
+### ✓ Phase 7: Tables & Advanced 🗂️
 
 **Agent**: @react-developer  
 **Skills**: code-react-unit-testing, code-react-storybook, code-react-tanstack-query
@@ -1029,8 +1029,8 @@ llms.txt                        # AI context file (root)
 | 3     | ✅ Complete | 7 components         | 2026-02-21 | 2026-02-21 | Migrated card/display set to shadcn/Tailwind wrappers + registry entries |
 | 4     | ✅ Complete | 3 components         | 2026-02-21 | 2026-02-21 | Migrated TextField, Select, and Autocomplete to shadcn/Tailwind wrappers + registry entries |
 | 5     | ✅ Complete | 13 components        | 2026-02-22 | 2026-02-22 | Migrated content/header/placeholder + Drawerx system to `src/components/*` wrappers |
-| 6     | ⏳ Planned  | 6 components         | -          | -          | -     |
-| 7     | ⏳ Planned  | 5 components         | -          | -          | -     |
+| 6     | ✅ Complete | 6 components         | 2026-02-22 | 2026-02-22 | Dialogs/overlays migrated |
+| 7     | ✅ Complete | 5 components         | 2026-03-01 | 2026-03-01 | Tables + query components migrated |
 | 8     | ⏸️ Deferred | 2 components         | -          | -          | -     |
 | 9     | ⏳ Planned  | Examples & AI docs   | -          | -          | -     |
 | 10    | ⏳ Planned  | Polish, release      | -          | -          | -     |
@@ -1076,6 +1076,14 @@ llms.txt                        # AI context file (root)
   - Updated `src/index.ts` exports and docs/story imports to new paths
   - Added phase-5 registry entries (`content`, `content-placeholder`, `header`, `header-layout`, `placeholder`, `drawer-layout`)
   - Full test suite passing (422 passed)
+- ✅ Phase 6 completed
+
+### 2026-03-01
+- ✅ Phase 7 completed
+  - Migrated `RemoteDataTable`, `ListPanel`, `QueryContainer`, `TabPanel`, and `TabProvider` to `src/components/*`
+  - Reworked RemoteDataTable to shadcn Table/Popover + Tailwind pagination
+  - Updated registry entries and regenerated registry artifacts
+  - Full test suite passing (381 passed)
 
 ### 2026-02-18
 - ✅ Migration plan created

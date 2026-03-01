@@ -385,20 +385,6 @@
       "category": "Dialogs"
     },
     {
-      "name": "bootstrap-dialog",
-      "type": "registry:ui",
-      "title": "BootstrapDialog",
-      "description": "Action-driven dialog with accept/cancel buttons",
-      "dependencies": ["lucide-react"],
-      "files": [
-        {
-          "path": "src/components/bootstrap-dialog/bootstrap-dialog.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "category": "Dialogs"
-    },
-    {
       "name": "confirm-dialog",
       "type": "registry:ui",
       "title": "ConfirmDialog",
@@ -418,7 +404,7 @@
       "type": "registry:ui",
       "title": "FormDialog",
       "description": "Dialog wrapper for form submission flows",
-      "registryDependencies": ["bootstrap-dialog"],
+      "registryDependencies": ["dialog"],
       "files": [
         {
           "path": "src/components/form-dialog/form-dialog.tsx",
@@ -436,10 +422,6 @@
       "files": [
         {
           "path": "src/components/notification-center/notification-center-context.ts",
-          "type": "registry:ui"
-        },
-        {
-          "path": "src/components/notification-center/notification-center-hooks.ts",
           "type": "registry:ui"
         },
         {
@@ -463,6 +445,96 @@
         }
       ],
       "category": "Feedback"
+    },
+    {
+      "name": "remote-data-table",
+      "type": "registry:ui",
+      "title": "RemoteDataTable",
+      "description": "Controlled table for remote data with pagination and filters",
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "src/components/remote-data-table/remote-data-table.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/remote-data-table/remote-data-table-body.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/remote-data-table/remote-data-table-pagination.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/remote-data-table/remote-data-table-query-builder.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/remote-data-table/query-spec-utils.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/remote-data-table/remote-data-table.types.ts",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/remote-data-table/use-remote-data-table.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Tables"
+    },
+    {
+      "name": "list-panel",
+      "type": "registry:ui",
+      "title": "ListPanel",
+      "description": "Panel layout with selectable list navigation",
+      "files": [
+        {
+          "path": "src/components/list-panel/list-panel.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/list-panel/list-panel-panel.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/list-panel/list-panel.context.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Navigation"
+    },
+    {
+      "name": "tab-provider",
+      "type": "registry:ui",
+      "title": "TabProvider",
+      "description": "Context provider for tab selection state",
+      "files": [
+        {
+          "path": "src/components/tab-provider/tab-provider.provider.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "src/components/tab-provider/tab-provider.context.ts",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Navigation"
+    },
+    {
+      "name": "tab-panel",
+      "type": "registry:ui",
+      "title": "TabPanel",
+      "description": "Panel that renders when its associated tab is active",
+      "registryDependencies": ["tab-provider"],
+      "files": [
+        {
+          "path": "src/components/tab-panel/tab-panel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "category": "Navigation"
     }
   ]
 }
