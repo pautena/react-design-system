@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import type { HeaderTab } from "@/components/header";
 import SkeletonGrid from "@/components/skeleton-grid";
 import { withFullHeight, withLocalizationProvider } from "../../storybook";
-import { TabPanel } from "../../TabPanel";
 import { TablePlaceholder } from "../../tests/table-placeholder";
+import { TabPanel } from "../tab-panel";
 import HeaderLayout from "./header-layout";
 
 const breadcrumbs = [
