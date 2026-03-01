@@ -16,7 +16,10 @@ export interface SeparatorProps
 /**
  * Consumer-facing separator wrapper for public package API.
  */
-export function Separator({ orientation = "horizontal", ...props }: SeparatorProps) {
+export function Separator({
+  orientation = "horizontal",
+  ...props
+}: SeparatorProps) {
   return <UiSeparator orientation={orientation} {...props} />;
 }
 

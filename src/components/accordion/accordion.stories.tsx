@@ -19,7 +19,7 @@ type Story = StoryObj<typeof Accordion>;
 
 export const Default: Story = {
   render: () => (
-    <Accordion type="single" collapsible defaultValue="item-1">
+    <Accordion defaultValue={["item-1"]}>
       <AccordionItem value="item-1">
         <AccordionTrigger>What is included?</AccordionTrigger>
         <AccordionContent>
@@ -38,10 +38,12 @@ export const Default: Story = {
 
 export const Multiple: Story = {
   render: () => (
-    <Accordion type="multiple" defaultValue={["item-1", "item-2"]}>
+    <Accordion multiple defaultValue={["item-1", "item-2"]}>
       <AccordionItem value="item-1">
         <AccordionTrigger>Notifications</AccordionTrigger>
-        <AccordionContent>Email and in-app alerts are enabled.</AccordionContent>
+        <AccordionContent>
+          Email and in-app alerts are enabled.
+        </AccordionContent>
       </AccordionItem>
       <AccordionItem value="item-2">
         <AccordionTrigger>Security</AccordionTrigger>

@@ -9,7 +9,7 @@ import Accordion, {
 describe("Accordion", () => {
   const renderComponent = () => {
     return render(
-      <Accordion type="single" collapsible defaultValue="item-1">
+      <Accordion defaultValue={["item-1"]}>
         <AccordionItem value="item-1">
           <AccordionTrigger>Item one</AccordionTrigger>
           <AccordionContent>First panel</AccordionContent>
@@ -33,14 +33,18 @@ describe("Accordion", () => {
     const user = userEvent.setup();
     renderComponent();
 
-    expect(screen.getByText("First panel")).toBeVisible();
+    const itemOneTrigger = screen.getByRole("button", { name: "Item one" });
+    const itemTwoTrigger = screen.getByRole("button", { name: "Item two" });
 
-    await user.click(screen.getByRole("button", { name: "Item one" }));
+    expect(itemOneTrigger).toHaveAttribute("aria-expanded", "true");
 
-    expect(screen.getByText("First panel")).not.toBeVisible();
+    await user.click(itemOneTrigger);
 
-    await user.click(screen.getByRole("button", { name: "Item two" }));
+    expect(itemOneTrigger).toHaveAttribute("aria-expanded", "false");
 
+    await user.click(itemTwoTrigger);
+
+    expect(itemTwoTrigger).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByText("Second panel")).toBeVisible();
   });
 });
