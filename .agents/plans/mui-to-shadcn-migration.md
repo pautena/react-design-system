@@ -794,7 +794,7 @@ MIGRATION.md             # Migration documentation
 
 ---
 
-### Phase 8: Optional Components 🗓️
+### ✓ Phase 8: Optional Components 🗓️
 **Status**: Deferred to v2.1 or v3.0
 
 #### Components (2)
