@@ -1,5 +1,7 @@
 import "./styles/globals.css";
 
+export * from "./components/accordion";
+export { default as Accordion } from "./components/accordion";
 export * from "./components/badge";
 export { default as Badge } from "./components/badge";
 export * from "./components/board";
@@ -10,6 +12,8 @@ export * from "./components/bullet";
 export { default as Bullet } from "./components/bullet";
 export * from "./components/button";
 export { default as Button } from "./components/button";
+export * from "./components/card";
+export { default as Card } from "./components/card";
 export * from "./components/confirm-dialog";
 export { default as ConfirmDialog } from "./components/confirm-dialog";
 export * from "./components/content";
@@ -50,6 +54,8 @@ export * from "./components/placeholder";
 export { default as Placeholder } from "./components/placeholder";
 export * from "./components/remote-data-table";
 export { default as RemoteDataTable } from "./components/remote-data-table";
+export * from "./components/separator";
+export { default as Separator } from "./components/separator";
 export * from "./components/skeleton-card";
 export { default as SkeletonCard } from "./components/skeleton-card";
 export * from "./components/skeleton-grid";
@@ -58,6 +64,8 @@ export * from "./components/tab-card";
 export { default as TabCard } from "./components/tab-card";
 export * from "./components/tab-panel";
 export * from "./components/tab-provider";
+export * from "./components/tabs";
+export { default as Tabs } from "./components/tabs";
 // shadcn/ui base components
 export { Button as BaseButton, buttonVariants } from "./components/ui/button";
 export * from "./components/value-boolean";

@@ -1,6 +1,6 @@
 {
   "name": "@pautena/react-design-system",
-  "version": "2.0.0-alpha.4",
+  "version": "2.0.0-alpha.5",
   "description": "AI-ready design system built on shadcn/ui with MCP support",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
