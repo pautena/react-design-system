@@ -1,8 +1,0 @@
-import{j as t}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-BPUIJQr3.js";import{M as n,D as p,C as m}from"./blocks-DneFDNKN.js";import{Default as a}from"./expandable-alert.stories-DkxRT1oB.js";import{E as s}from"./expandable-alert-CzR0Rr-O.js";import"./iframe-8bOXTxPH.js";import"./preload-helper-PPVm8Dsz.js";import"./index-BJYu0083.js";import"./index-DFQHTOpI.js";import"./index-D1T7PVUv.js";import"./button-BN0p3BKv.js";import"./button-BR1Q4a2d.js";import"./index-C16iSc_-.js";import"./utils-CJxB-tWf.js";import"./useRenderElement-CRmWNaDK.js";import"./storybook-DGQC_J7b.js";import"./notification-center-provider-BTOpiPFL.js";import"./loader-circle-TGemnWQk.js";import"./createLucideIcon-DgNhUQau.js";import"./triangle-alert-BuqI-I4b.js";import"./sidebar-1j0daNYF.js";import"./DirectionContext-BttIP5WW.js";import"./inertValue-DJ3PUikA.js";import"./x-BwdVUwc8.js";import"./DialogTitle-hz5S8b6j.js";import"./useRender-CiORafEc.js";import"./board-B5rifS2n.js";import"./collapsible-Bau0DHPR.js";import"./useCollapsiblePanel-BevmaN1r.js";import"./chevron-up-D4uZGruR.js";import"./chevron-down-DGK8sTLC.js";function i(o){const r={a:"a",h1:"h1",h2:"h2",p:"p",...e(),...o.components};return t.jsxs(t.Fragment,{children:[`
-`,t.jsx(n,{title:"Alerts"}),`
-`,t.jsx(r.h1,{id:"alerts",children:"Alerts"}),`
-`,t.jsx(r.h2,{id:"expandablealert",children:"ExpandableAlert"}),`
-`,`
-`,t.jsx(p,{of:s}),`
-`,t.jsx(r.p,{children:t.jsx(r.a,{href:"?path=/docs/alerts-expandablealert--docs",children:"ExpandableAlert Stories"})}),`
-`,t.jsx(m,{of:a})]})}function J(o={}){const{wrapper:r}={...e(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(i,{...o})}):i(o)}export{J as default};

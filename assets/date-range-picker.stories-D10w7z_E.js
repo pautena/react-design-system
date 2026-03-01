@@ -1,8 +1,0 @@
-import{w as r}from"./storybook-DGQC_J7b.js";import{D as e}from"./date-range-picker-CRSJzxyT.js";import"./jsx-runtime-u17CrQMm.js";import"./iframe-8bOXTxPH.js";import"./preload-helper-PPVm8Dsz.js";import"./notification-center-provider-BTOpiPFL.js";import"./index-BJYu0083.js";import"./index-DFQHTOpI.js";import"./loader-circle-TGemnWQk.js";import"./createLucideIcon-DgNhUQau.js";import"./triangle-alert-BuqI-I4b.js";import"./sidebar-1j0daNYF.js";import"./index-C16iSc_-.js";import"./utils-CJxB-tWf.js";import"./button-BR1Q4a2d.js";import"./useRenderElement-CRmWNaDK.js";import"./DirectionContext-BttIP5WW.js";import"./inertValue-DJ3PUikA.js";import"./x-BwdVUwc8.js";import"./DialogTitle-hz5S8b6j.js";import"./index-D1T7PVUv.js";import"./useRender-CiORafEc.js";import"./button-BN0p3BKv.js";import"./text-field-CgVKxF9T.js";import"./field-6cWPVubB.js";import"./popover-CwL__neV.js";import"./ToolbarRootContext-CxI0rXan.js";import"./date-range-calendar-Bho0riFf.js";import"./format-BS8Ay9AX.js";import"./chevron-right-3A5XsFaq.js";import"./chevron-down-DGK8sTLC.js";const q={title:"Inputs/DateRangePicker",component:e,decorators:[r({width:300})],parameters:{layout:"centered"}},t={args:{label:"Select range",format:"yyyy-MM-dd",defaultValue:[new Date(2023,4,2),new Date(2023,4,24)],onValueChange:()=>{}}};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`{
-  args: {
-    label: "Select range",
-    format: "yyyy-MM-dd",
-    defaultValue: [new Date(2023, 4, 2), new Date(2023, 4, 24)],
-    onValueChange: () => {}
-  }
-}`,...t.parameters?.docs?.source}}};const v=["Default"];export{t as Default,v as __namedExportsOrder,q as default};
