@@ -1,0 +1,45 @@
+# @pautena/react-design-system
+
+AI-ready design system built on shadcn/ui and Base UI, with MCP registry support.
+
+## Installation
+
+```bash
+npm install @pautena/react-design-system
+```
+
+Import the stylesheet once:
+
+```ts
+import "@pautena/react-design-system/styles.css";
+```
+
+## Usage
+
+```tsx
+import { Header, ValueCard, ValueText } from "@pautena/react-design-system";
+
+<Header title="Operations" subtitle="Live metrics" />
+<ValueCard>
+  <ValueText label="Users" value="1,240" />
+</ValueCard>;
+```
+
+## Component catalog (high-level)
+
+- Layout: Header, HeaderLayout, DrawerLayout, Content
+- Data display: ValueText, ValueCard, ValueBoolean, ValueDatetime, Board
+- Forms: TextField, Select, Autocomplete
+- Navigation: TabCard, TabPanel, ListPanel
+- Dialogs: Dialog, ConfirmDialog, FormDialog
+- Feedback: NotificationCenter, ExpandableAlert, Skeletons
+- Tables: RemoteDataTable
+
+## MCP registry
+
+- Manifest: https://react-design-system.pautena.com/registry/index.json
+- Component JSON: https://react-design-system.pautena.com/registry/value-card.json
+
+## Examples
+
+- Storybook: Examples section

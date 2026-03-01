@@ -43,6 +43,16 @@ import "@pautena/react-design-system/global.css";
 
 If you want to know more about the components and the layouts availables in this project check our [documentation](https://pautena.com/react-design-system)
 
+## Examples
+
+See Storybook → Examples for full demos.
+
+## AI Documentation
+
+See Storybook → Examples for AI usage guides.
+
+- [llms.txt](./llms.txt)
+
 ## Contributing
 
 Read the [contribution guide](/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to build and test your changes.

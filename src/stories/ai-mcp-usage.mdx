@@ -1,0 +1,42 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Examples/AI MCP Usage" />
+
+# AI MCP Usage
+
+The design system publishes a registry for MCP-enabled tools.
+
+## Discover components
+
+- Registry manifest: `https://react-design-system.pautena.com/registry/index.json`
+- Component JSON: `https://react-design-system.pautena.com/registry/value-card.json`
+
+## Example AI workflow
+
+1. Search the registry for `remote-data-table`.
+2. Install the component via your MCP client.
+3. Generate code using the exported types and usage metadata.
+
+## Example prompts
+
+```
+"Show available components for data display in @pautena registry"
+"Install @pautena/remote-data-table and add it to a dashboard"
+"Generate a form wizard with TextField, Select, Autocomplete, and ConfirmDialog"
+```
+
+## Recommended prompts for code generation
+
+```
+Create a dashboard using @pautena components with:
+- DrawerLayout navigation
+- Header with actions
+- ValueCard metrics
+- RemoteDataTable with query filters
+```
+
+## MCP integration checklist
+
+- Registry JSON available in `public/r/`
+- Storybook addon-mcp configured
+- Components annotated with registry metadata
