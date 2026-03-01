@@ -1,5 +1,5 @@
-import { format } from "date-fns";
 import userEvent from "@testing-library/user-event";
+import { format } from "date-fns";
 import { vi } from "vitest";
 import { render, screen } from "../../tests/testing-library";
 import DateRangePicker from "./date-range-picker";
@@ -66,7 +66,9 @@ describe("DateRangePicker", () => {
         const { onValueChange } = renderComponent();
         const user = userEvent.setup();
 
-        await user.click(screen.getByRole("button", { name: /open calendar/i }));
+        await user.click(
+          screen.getByRole("button", { name: /open calendar/i }),
+        );
 
         await user.click(
           screen.getByRole("button", {
@@ -92,7 +94,9 @@ describe("DateRangePicker", () => {
         const { onValueChange } = renderComponent();
         const user = userEvent.setup();
 
-        await user.click(screen.getByRole("button", { name: /open calendar/i }));
+        await user.click(
+          screen.getByRole("button", { name: /open calendar/i }),
+        );
 
         await user.click(
           screen.getByRole("button", {
@@ -116,7 +120,9 @@ describe("DateRangePicker", () => {
         renderComponent();
         const user = userEvent.setup();
 
-        await user.click(screen.getByRole("button", { name: /open calendar/i }));
+        await user.click(
+          screen.getByRole("button", { name: /open calendar/i }),
+        );
 
         await user.click(
           screen.getByRole("button", {
@@ -140,7 +146,9 @@ describe("DateRangePicker", () => {
         const { onValueChange } = renderComponent();
         const user = userEvent.setup();
 
-        await user.click(screen.getByRole("button", { name: /open calendar/i }));
+        await user.click(
+          screen.getByRole("button", { name: /open calendar/i }),
+        );
 
         await user.click(
           screen.getByRole("button", {
@@ -159,7 +167,9 @@ describe("DateRangePicker", () => {
         renderComponent();
         const user = userEvent.setup();
 
-        await user.click(screen.getByRole("button", { name: /open calendar/i }));
+        await user.click(
+          screen.getByRole("button", { name: /open calendar/i }),
+        );
 
         await user.click(
           screen.getByRole("button", {

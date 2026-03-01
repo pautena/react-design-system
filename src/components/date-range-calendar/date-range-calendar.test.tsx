@@ -1,5 +1,5 @@
-import { addDays, differenceInCalendarDays, format, subDays } from "date-fns";
 import userEvent from "@testing-library/user-event";
+import { addDays, differenceInCalendarDays, format, subDays } from "date-fns";
 import { vi } from "vitest";
 import { render, screen } from "../../tests/testing-library";
 import DateRangeCalendar from "./date-range-calendar";

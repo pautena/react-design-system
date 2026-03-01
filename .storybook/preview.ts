@@ -1,22 +1,6 @@
-import { CssBaseline, createTheme, ThemeProvider } from "@mui/material";
-import { withThemeFromJSXProvider } from "@storybook/addon-themes";
+import { withThemeByClassName } from "@storybook/addon-themes";
 import type { Preview } from "@storybook/react";
-import type { Renderer } from "storybook/internal/csf";
 import "../src/styles/globals.css";
-
-const lightTheme = createTheme({
-  typography: {
-    fontFamily: '"Geist", "Geist Fallback", sans-serif',
-  },
-});
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-  typography: {
-    fontFamily: '"Geist", "Geist Fallback", sans-serif',
-  },
-});
 
 const preview: Preview = {
   parameters: {
@@ -44,27 +28,12 @@ const preview: Preview = {
     },
   },
   decorators: [
-    (Story, context) => {
-      const root = document.documentElement;
-      const selectedTheme = context.globals.theme;
-
-      root.classList.remove("light", "dark");
-      if (selectedTheme === "dark") {
-        root.classList.add("dark");
-      } else {
-        root.classList.add("light");
-      }
-
-      return Story();
-    },
-    withThemeFromJSXProvider<Renderer>({
+    withThemeByClassName({
       themes: {
-        light: lightTheme,
-        dark: darkTheme,
+        light: "light",
+        dark: "dark",
       },
       defaultTheme: "light",
-      Provider: ThemeProvider,
-      GlobalStyles: CssBaseline,
     }),
   ],
   tags: ["autodocs"],
