@@ -61,7 +61,7 @@ The core team is monitoring for Pull Requests. We will review your Pull Request 
 
 ### Trying changes on the documentation site
 
-The documentation site is built with MUI and contains examples of all the components.
+The documentation site is built with Storybook and contains examples of all the components.
 This is a great place to experiment with your changes.
 It's the local development environment used by the maintainers.
 
@@ -109,7 +109,7 @@ Make sure that you add the proper stories to the component Storybook to generate
 
 ### Coding style
 
-Please follow the coding style of the project. MUI uses BiomeJS, so if possible, enable linting in your editor to get real-time feedback.
+Please follow the coding style of the project. This repository uses BiomeJS, so if possible, enable linting in your editor to get real-time feedback.
 
 - `npm run format` reformats the code.
 - `npm run lint` runs manually the linting rules.

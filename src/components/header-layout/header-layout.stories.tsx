@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "storybook/test";
 import type { HeaderTab } from "@/components/header";
 import SkeletonGrid from "@/components/skeleton-grid";
-import { withFullHeight, withLocalizationProvider } from "../../storybook";
+import { withFullHeight } from "../../storybook";
 import { TablePlaceholder } from "../../tests/table-placeholder";
 import { TabPanel } from "../tab-panel";
 import HeaderLayout from "./header-layout";
@@ -46,7 +46,7 @@ const tabs: HeaderTab[] = [
 export default {
   title: "Layouts/HeaderLayout",
   component: HeaderLayout,
-  decorators: [withFullHeight, withLocalizationProvider],
+  decorators: [withFullHeight],
   parameters: {
     layout: "fullscreen",
   },

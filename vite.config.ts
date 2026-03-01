@@ -21,8 +21,6 @@ export default defineConfig({
       external: [
         ...Object.keys(peerDependencies),
         /^@testing-library\//,
-        /^@mui\//,
-        /^@emotion\//,
         /^react/,
         /^date-fns/,
         /^aria-query/,

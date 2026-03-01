@@ -16,11 +16,6 @@ beforeAll(() => {
     originalError(...data);
   };
 
-  // Set MUI test environment flag to disable layout-related warnings in JSDOM
-  // MUI checks for this flag to skip getBoundingClientRect validation in tests
-  // See: https://github.com/mui/material-ui/blob/master/packages/mui-material/src/Popper/BasePopper.js
-  globalThis.MUI_TEST_ENV = true;
-
   const matchMediaMock = vi.fn().mockImplementation(() => ({
     matches: false,
     media: "",

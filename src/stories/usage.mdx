@@ -13,26 +13,12 @@ Import components from the main package:
 import { DrawerLayout, Header, Label, ValueCard } from "@pautena/react-design-system";
 ```
 
-## Setup with MUI ThemeProvider
+## Styles
 
-All components require MUI's ThemeProvider:
+Import the shared stylesheet once in your app entrypoint:
 
 ```jsx
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import { Header } from "@pautena/react-design-system";
-
-const theme = createTheme();
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Header title="My App" subtitle="Dashboard" />
-      {/* Your components */}
-    </ThemeProvider>
-  );
-}
+import "@pautena/react-design-system/global.css";
 ```
 
 ## Component Examples
@@ -88,7 +74,7 @@ test("renders label", () => {
 ```
 
 The testing export includes:
-- Pre-configured render with MUI ThemeProvider
+- Pre-configured render for design system components
 - All exports from `@testing-library/react`
 - Custom testing utilities
 

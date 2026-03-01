@@ -1,12 +1,14 @@
-import EventIcon from "@mui/icons-material/Event";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import Paper from "@mui/material/Paper";
-import TextField from "@mui/material/TextField";
 import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 import { useState } from "react";
-import DateRangeCalendar from "../DateRangeCalendar";
+import Button from "@/components/button";
+import TextField from "@/components/forms/text-field";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import DateRangeCalendar from "../date-range-calendar";
 
 type DateRange = [Date, Date | undefined];
 
@@ -70,34 +72,38 @@ export function DateRangePicker({
   };
 
   return (
-    <>
+    <Popover open={isPopoverOpened} onOpenChange={setIsPopoverOpened}>
       <TextField
         label={label}
         fullWidth={fullWidth}
         size={size}
+        readOnly
         value={`${format(value[0], fmt)} - ${value[1] ? format(value[1], fmt) : fmt.toUpperCase()}`}
         InputProps={{
           endAdornment: (
-            <InputAdornment position="end">
-              <IconButton
-                onClick={() => setIsPopoverOpened((o) => !o)}
-                aria-label="open calendar"
-              >
-                <EventIcon />
-              </IconButton>
-            </InputAdornment>
+            <PopoverTrigger
+              render={(triggerProps) => (
+                <Button
+                  {...triggerProps}
+                  type="button"
+                  variant="ghost"
+                  size="icon-sm"
+                  aria-label="open calendar"
+                >
+                  <CalendarIcon className="h-4 w-4" aria-hidden="true" />
+                </Button>
+              )}
+            />
           ),
         }}
       />
-      <Paper>
-        <Collapse in={isPopoverOpened} aria-label="calendar collapse">
-          <DateRangeCalendar
-            defaultValue={defaultValue}
-            onValueChange={handleValueChange}
-          />
-        </Collapse>
-      </Paper>
-    </>
+      <PopoverContent className="w-auto p-0" align="end">
+        <DateRangeCalendar
+          defaultValue={value}
+          onValueChange={handleValueChange}
+        />
+      </PopoverContent>
+    </Popover>
   );
 }
 
