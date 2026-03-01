@@ -45,6 +45,14 @@ AI-ready design system built on shadcn/ui with MCP support
 
 ## Data Display
 
+### Accordion
+
+**Stories:**
+- [Default](./?path=/story/data-display-accordion--default)
+- [Multiple](./?path=/story/data-display-accordion--multiple)
+
+[View Documentation](./?path=/docs/data-display-accordion--docs)
+
 ### Badge
 
 **Stories:**
@@ -92,6 +100,15 @@ AI-ready design system built on shadcn/ui with MCP support
 - [Error Variant](./?path=/story/data-display-bullet--error-variant)
 
 [View Documentation](./?path=/docs/data-display-bullet--docs)
+
+### Card
+
+**Stories:**
+- [Default](./?path=/story/data-display-card--default)
+- [With Action](./?path=/story/data-display-card--with-action)
+- [Small](./?path=/story/data-display-card--small)
+
+[View Documentation](./?path=/docs/data-display-card--docs)
 
 ### GroupValueCard
 
@@ -346,6 +363,14 @@ AI-ready design system built on shadcn/ui with MCP support
 
 [View Documentation](./?path=/docs/navigation-tabpanel--docs)
 
+### Tabs
+
+**Stories:**
+- [Default](./?path=/story/navigation-tabs--default)
+- [Line Variant](./?path=/story/navigation-tabs--line-variant)
+
+[View Documentation](./?path=/docs/navigation-tabs--docs)
+
 ## Layouts
 
 ### DrawerLayout
@@ -496,4 +521,14 @@ AI-ready design system built on shadcn/ui with MCP support
 - [Using Hook](./?path=/story/tables-remotedatatable--using-hook)
 
 [View Documentation](./?path=/docs/tables-remotedatatable--docs)
+
+## Layout
+
+### Separator
+
+**Stories:**
+- [Horizontal](./?path=/story/layout-separator--horizontal)
+- [Vertical](./?path=/story/layout-separator--vertical)
+
+[View Documentation](./?path=/docs/layout-separator--docs)
 
