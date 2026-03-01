@@ -506,20 +506,6 @@
       "category": "Navigation"
     },
     {
-      "name": "query-container",
-      "type": "registry:ui",
-      "title": "QueryContainer",
-      "description": "Status wrapper for loading, error, and success UI",
-      "dependencies": ["lucide-react"],
-      "files": [
-        {
-          "path": "src/components/query-container/query-container.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "category": "Feedback"
-    },
-    {
       "name": "tab-provider",
       "type": "registry:ui",
       "title": "TabProvider",

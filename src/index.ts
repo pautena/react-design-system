@@ -44,8 +44,6 @@ export * from "./components/markdown";
 export * from "./components/notification-center";
 export * from "./components/placeholder";
 export { default as Placeholder } from "./components/placeholder";
-export * from "./components/query-container";
-export { default as QueryContainer } from "./components/query-container";
 export * from "./components/remote-data-table";
 export { default as RemoteDataTable } from "./components/remote-data-table";
 export * from "./components/skeleton-card";
