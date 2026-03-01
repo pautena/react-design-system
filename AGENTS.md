@@ -4,7 +4,7 @@
 
 ## Project Overview
 
-My custom design system on top of MUI, with a bunch of components to be able to fast prototype new pages and products
+My custom design system on top of shadcn/ui + Base UI, with a bunch of components to be able to fast prototype new pages and products
 
 ## Installation
 
@@ -92,7 +92,7 @@ npm run check:ts # Run TypeScript checks
 
 ## Architecture
 
-**Tech Stack**: TypeScript | React | MUI | Storybook
+**Tech Stack**: TypeScript | React | shadcn/ui | Base UI | Storybook
 
 **Structure**:
 
@@ -377,7 +377,7 @@ interface ComponentProps<T> { ... }
 - `@default` - For optional props with default values
 - `@template` - For generic type parameters
 - `@example` - Only for complex components with non-obvious usage
-- `@extends` - When extending MUI or other types
+- `@extends` - When extending Base UI or other types
 
 ### MDX Documentation
 
@@ -460,8 +460,8 @@ export interface ButtonProps {
 
 **Key Libraries**:
 
-- Framework: React, MUI (Material-UI), Storybook
-- UI: MUI components, React components
+- Framework: React, Base UI, Storybook
+- UI: shadcn/ui components, React components
 - State: Not applicable (UI Component Library)
 - Testing: Vitest, React Testing Library, JSDOM
 - Formatting: BiomeJS

@@ -1,5 +1,5 @@
-import type { AlertColor } from "@mui/material";
 import { format } from "date-fns";
+import type { AlertSeverity } from "@/components/expandable-alert";
 import { screen, waitForElementToBeRemoved } from "./testing-library";
 
 export const expectContentPlaceholder = async () => {
@@ -37,7 +37,7 @@ export const expectAlert = async ({
 }: {
   title?: RegExp | string;
   message: RegExp | string;
-  severity: AlertColor;
+  severity: AlertSeverity;
 }) => {
   const alertElement = await screen.findByRole("alert");
   expect(alertElement).toBeInTheDocument();

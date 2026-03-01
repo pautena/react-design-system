@@ -21,7 +21,7 @@ export const DEFAULT_VALUES = {
   projectName: "React Design System",
   version: "unknown",
   description:
-    "Custom design system built on top of MUI with React components for rapid prototyping",
+    "Custom design system built on top of shadcn/ui and Base UI with React components for rapid prototyping",
   baseUrl: "./",
   storybookVersion: "unknown",
 } as const;

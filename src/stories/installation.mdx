@@ -26,52 +26,10 @@ Using yarn:
 yarn add @pautena/react-design-system
 ```
 
-## Install Peer Dependencies
+## Styles
 
-This library requires MUI and its dependencies:
-
-Using npm:
-
-```bash
-npm install @emotion/react @emotion/styled @mui/material @mui/icons-material @mui/x-date-pickers date-fns
-```
-
-Using yarn:
-
-```bash
-yarn add @emotion/react @emotion/styled @mui/material @mui/icons-material @mui/x-date-pickers date-fns
-```
-
-### Optional Dependencies
-
-If you plan to use data grid components:
-
-```bash
-npm install @mui/x-data-grid
-# or
-yarn add @mui/x-data-grid
-```
-
-## Setup MUI Theme
-
-Wrap your app with MUI's `ThemeProvider`:
+Import the library stylesheet once in your app entrypoint:
 
 ```jsx
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-
-const theme = createTheme({
-  // Your theme customization
-});
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {/* Your app */}
-    </ThemeProvider>
-  );
-}
+import "@pautena/react-design-system/global.css";
 ```
-
-For more MUI theme configuration, see [MUI theming docs](https://mui.com/material-ui/customization/theming/).

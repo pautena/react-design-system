@@ -4,7 +4,7 @@
 
 <img src="src/stories/assets/work-in-progress.jpg" width="200" height="180"/>
 
-My custom design system on top of [MUI](https://mui.com/material-ui/), with a bunch of components to be able to fast prototype new pages and products
+My custom design system on top of shadcn/ui + Base UI, with a bunch of components to be able to fast prototype new pages and products
 
 ## ⚠️ Important Notice
 
@@ -24,7 +24,7 @@ This project is available as an [npm package](https://www.npmjs.com/package/@pau
 npm:
 
 ```bash
-npm install @pautena/react-design-system @emotion/react @emotion/styled @mui/icons-material @mui/material @mui/x-data-grid
+npm install @pautena/react-design-system
 ```
 
 Now you are going to be able to import the components and use it in your React project.

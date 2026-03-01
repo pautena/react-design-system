@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { withContainer, withLocalizationProvider } from "../../storybook";
+import { withContainer } from "../../storybook";
 import ValueDatetime from "./value-datetime";
 
 export default {
   title: "Data Display/ValueDatetime",
   component: ValueDatetime,
-  decorators: [withContainer({ width: 600 }), withLocalizationProvider],
+  decorators: [withContainer({ width: 600 })],
   parameters: {
     layout: "centered",
   },
