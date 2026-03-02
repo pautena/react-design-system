@@ -5,9 +5,8 @@ export type {
   AccordionTriggerProps,
 } from "./accordion";
 export {
+  Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-  default,
-  default as Accordion,
 } from "./accordion";

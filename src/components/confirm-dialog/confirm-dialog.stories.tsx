@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { StoryDialogManager } from "@/storybook";
-import ConfirmDialog from "./confirm-dialog";
+import { ConfirmDialog } from "./confirm-dialog";
 
 export default {
   title: "Dialogs/ConfirmDialog",

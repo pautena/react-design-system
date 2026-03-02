@@ -187,5 +187,3 @@ export function Select({
     </Field>
   );
 }
-
-export default Select;

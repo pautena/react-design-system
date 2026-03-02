@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { ComponentProps } from "react";
 import { useState } from "react";
-import Button from "@/components/button";
-import Dialog from "./dialog";
+import { Button } from "@/components/button";
+import { Dialog } from "./dialog";
 
 const DialogDemo = (args: ComponentProps<typeof Dialog>) => {
   const [open, setOpen] = useState(false);

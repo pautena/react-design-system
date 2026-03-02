@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import Separator from "./separator";
+import { Separator } from "./separator";
 
 describe("Separator", () => {
   it("renders a horizontal separator by default", () => {

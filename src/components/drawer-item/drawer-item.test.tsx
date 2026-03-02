@@ -14,7 +14,7 @@ import type {
   DrawerState,
 } from "@/components/drawerx/drawer.types";
 import { render, screen, within } from "../../tests/testing-library";
-import DrawerItem from "./drawer-item";
+import { DrawerItem } from "./drawer-item";
 
 describe("DrawerItem", () => {
   const renderComponent = ({

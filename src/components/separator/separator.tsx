@@ -22,5 +22,3 @@ export function Separator({
 }: SeparatorProps) {
   return <UiSeparator orientation={orientation} {...props} />;
 }
-
-export default Separator;

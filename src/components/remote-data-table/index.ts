@@ -12,9 +12,5 @@ export type {
   RemoteDataTableQueryBuilderProps,
   SortingState,
 } from "./remote-data-table";
-export {
-  buildQuerySpecParams,
-  default,
-  default as RemoteDataTable,
-} from "./remote-data-table";
+export { buildQuerySpecParams, RemoteDataTable } from "./remote-data-table";
 export * from "./use-remote-data-table";

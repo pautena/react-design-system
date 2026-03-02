@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import ValueDatetime from "./value-datetime";
+import { ValueDatetime } from "./value-datetime";
 
 const DummyValue = new Date(2022, 7, 10, 0, 0);
 const datetimeFormat = "dd-MM-yyyy HH:mm";

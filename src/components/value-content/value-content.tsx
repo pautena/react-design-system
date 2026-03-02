@@ -68,5 +68,3 @@ export function ValueContent({
     </div>
   );
 }
-
-export default ValueContent;

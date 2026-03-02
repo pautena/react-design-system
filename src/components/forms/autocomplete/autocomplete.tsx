@@ -216,5 +216,3 @@ export function Autocomplete<T>({
     </Field>
   );
 }
-
-export default Autocomplete;

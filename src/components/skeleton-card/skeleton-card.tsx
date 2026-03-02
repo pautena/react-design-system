@@ -38,5 +38,3 @@ export function SkeletonCard({
     </div>
   );
 }
-
-export default SkeletonCard;

@@ -4,4 +4,4 @@ export type {
   HeaderLayoutSlotProps,
   HeaderLayoutSlots,
 } from "./header-layout";
-export { default, default as HeaderLayout } from "./header-layout";
+export { HeaderLayout } from "./header-layout";

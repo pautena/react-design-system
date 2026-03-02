@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import TabProvider from "../tab-provider";
+import { TabProvider } from "../tab-provider";
 import { TabPanel } from "./tab-panel";
 
 const TabPanelDemo = ({ initialValue = 0 }: { initialValue?: number }) => {

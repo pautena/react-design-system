@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Search } from "lucide-react";
-import Placeholder, { type PlaceholderIconArgs } from "./placeholder";
+import { Placeholder, type PlaceholderIconArgs } from "./placeholder";
 import { actions } from "./placeholder.mock";
 
 export default {

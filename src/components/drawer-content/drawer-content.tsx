@@ -1,7 +1,7 @@
 import { Folder, Forward, MoreHorizontal, Trash2 } from "lucide-react";
 import * as React from "react";
-import DrawerItem from "@/components/drawer-item";
-import DrawerSubheader from "@/components/drawer-subheader";
+import { DrawerItem } from "@/components/drawer-item";
+import { DrawerSubheader } from "@/components/drawer-subheader";
 import type {
   DrawerContentProps,
   DrawerNavigation,
@@ -85,7 +85,7 @@ const buildActionMenu = (isMobile: boolean) => (
 /**
  * Content rendered inside drawer navigation.
  */
-export default function DrawerContent({ navigation }: DrawerContentProps) {
+export function DrawerContent({ navigation }: DrawerContentProps) {
   const { isMobile } = useSidebar();
   const sections = React.useMemo(
     () => splitByHeaders(navigation),

@@ -1,9 +1,9 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "../../tests/testing-library";
-import ListPanel, { type ListPanelItem } from "./list-panel";
+import { ListPanel, type ListPanelItem } from "./list-panel";
 import { ListPanelDemoContent, mockItemsShort } from "./list-panel.mocks";
-import ListPanelPanel from "./list-panel-panel";
+import { ListPanelPanel } from "./list-panel-panel";
 
 describe("ListPanel", () => {
   const renderComponent = ({

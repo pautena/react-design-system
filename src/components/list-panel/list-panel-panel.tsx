@@ -18,7 +18,7 @@ export interface ListPanelPanelProps {
 /**
  * Content panel for ListPanel that displays when a matching item is selected
  */
-export default function ListPanelPanel({ ids, children }: ListPanelPanelProps) {
+export function ListPanelPanel({ ids, children }: ListPanelPanelProps) {
   const selectedId = useListPanel();
 
   if (selectedId && !ids.includes(selectedId)) {

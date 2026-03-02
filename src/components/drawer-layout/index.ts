@@ -3,4 +3,4 @@ export type {
   DrawerLayoutSlotProps,
   DrawerLayoutSlots,
 } from "./drawer-layout";
-export { default, default as DrawerLayout } from "./drawer-layout";
+export { DrawerLayout } from "./drawer-layout";

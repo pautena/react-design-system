@@ -1,8 +1,8 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import TextField from "@/components/forms/text-field";
+import { TextField } from "@/components/forms/text-field";
 import { render, screen } from "@/tests/testing-library";
-import FormDialog from "./form-dialog";
+import { FormDialog } from "./form-dialog";
 
 interface DialogRenderArgs {
   open: boolean;

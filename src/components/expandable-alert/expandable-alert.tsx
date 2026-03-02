@@ -9,8 +9,8 @@ import {
 } from "lucide-react";
 import type { ReactElement, ReactNode } from "react";
 import { useState } from "react";
-import Board from "@/components/board";
-import Button from "@/components/button";
+import { Board } from "@/components/board";
+import { Button } from "@/components/button";
 import {
   Alert,
   AlertAction,
@@ -135,5 +135,3 @@ export function ExpandableAlert({
     </Alert>
   );
 }
-
-export default ExpandableAlert;

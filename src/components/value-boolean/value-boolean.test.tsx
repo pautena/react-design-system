@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import ValueBoolean from "./value-boolean";
+import { ValueBoolean } from "./value-boolean";
 
 describe("ValueBoolean", () => {
   const renderComponent = ({

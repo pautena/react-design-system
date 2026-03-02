@@ -1,7 +1,7 @@
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { type ReactElement, useEffect, useMemo, useState } from "react";
-import Badge from "@/components/badge";
-import Bullet from "@/components/bullet";
+import { Badge } from "@/components/badge";
+import { Bullet } from "@/components/bullet";
 import { useDrawer } from "@/components/drawer-context";
 import type { DrawerNavigationItem } from "@/components/drawerx/drawer.types";
 import {
@@ -25,7 +25,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
-import DrawerItem from "./drawer-item";
+import { DrawerItem } from "./drawer-item";
 
 export interface DrawerMenuItemProps {
   /**

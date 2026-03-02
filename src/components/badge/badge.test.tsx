@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import Badge, { type BadgeVariant } from "./badge";
+import { Badge, type BadgeVariant } from "./badge";
 
 describe("Badge", () => {
   const renderComponent = (variant: BadgeVariant | undefined = undefined) => {

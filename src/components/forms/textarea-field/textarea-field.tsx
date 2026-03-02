@@ -146,5 +146,3 @@ export function TextareaField({
     </Field>
   );
 }
-
-export default TextareaField;

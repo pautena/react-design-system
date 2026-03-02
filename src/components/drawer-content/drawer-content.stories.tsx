@@ -6,7 +6,7 @@ import type {
   DrawerSize,
   DrawerState,
 } from "@/components/drawerx/drawer.types";
-import DrawerContent from "./drawer-content";
+import { DrawerContent } from "./drawer-content";
 
 type DrawerContentArgs = DrawerContentProps & {
   initialState?: DrawerState;

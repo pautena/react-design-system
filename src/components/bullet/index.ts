@@ -1,2 +1,2 @@
 export * from "./bullet";
-export { default, default as Bullet } from "./bullet";
+export { Bullet } from "./bullet";

@@ -1,6 +1,7 @@
 import { Check, X } from "lucide-react";
-import ValueContent, {
+import {
   getValueContentLabelId,
+  ValueContent,
 } from "@/components/value-content";
 import { type BaseValueProps, DefaultPlaceholder } from "@/types/value-base";
 
@@ -48,5 +49,3 @@ export function ValueBoolean({
     </ValueContent>
   );
 }
-
-export default ValueBoolean;

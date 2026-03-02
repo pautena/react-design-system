@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../storybook";
-import Separator from "./separator";
+import { Separator } from "./separator";
 
 export default {
   title: "Layout/Separator",

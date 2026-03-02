@@ -2,8 +2,9 @@ import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { vi } from "vitest";
 import { render, screen } from "../../tests/testing-library";
-import RemoteDataTable, {
+import {
   type QuerySpecFilter,
+  RemoteDataTable,
   type SortingState,
 } from "./remote-data-table";
 import {

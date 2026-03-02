@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "../../tests/testing-library";
-import Board from "./board";
+import { Board } from "./board";
 
 const content = "This is the content";
 const arrayContent = ["This is the content 1", "This is the content 2"];

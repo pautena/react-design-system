@@ -1,6 +1,6 @@
 import { Badge } from "@/components/badge";
-import TabCard, { type TabData } from "./tab-card";
-import TabCardPanel from "./tab-card-panel";
+import { TabCard, type TabData } from "./tab-card";
+import { TabCardPanel } from "./tab-card-panel";
 
 export const DummyTabs = [
   { text: "tab 1" },

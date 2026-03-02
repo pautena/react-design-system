@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../../storybook";
-import Select, { type SelectOption } from "./select";
+import { Select, type SelectOption } from "./select";
 
 const options: SelectOption[] = faker.definitions.vehicle.model
   .slice(0, 12)

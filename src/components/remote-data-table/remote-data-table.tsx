@@ -142,5 +142,3 @@ export function RemoteDataTable<TData>({
     </div>
   );
 }
-
-export default RemoteDataTable;

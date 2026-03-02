@@ -3,7 +3,7 @@ import { withContainer } from "../../storybook";
 import { ValueBoolean } from "../value-boolean";
 import { ValueItem } from "../value-item";
 import { ValueText } from "../value-text";
-import GroupValueCard from "./group-value-card";
+import { GroupValueCard } from "./group-value-card";
 
 export default {
   title: "Data Display/GroupValueCard",

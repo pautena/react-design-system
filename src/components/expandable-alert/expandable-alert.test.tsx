@@ -1,9 +1,9 @@
 import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { vi } from "vitest";
-import Button from "@/components/button";
+import { Button } from "@/components/button";
 import { render, screen, waitFor } from "@/tests/testing-library";
-import ExpandableAlert from "./expandable-alert";
+import { ExpandableAlert } from "./expandable-alert";
 
 const message = "Lorem ipsum dolor sit amet";
 const metadata =

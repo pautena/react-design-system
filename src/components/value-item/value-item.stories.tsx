@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ValueText } from "../value-text";
-import ValueItem from "./value-item";
+import { ValueItem } from "./value-item";
 
 export default {
   title: "Data Display/ValueItem",

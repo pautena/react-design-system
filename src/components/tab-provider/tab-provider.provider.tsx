@@ -23,5 +23,3 @@ export const TabProvider = ({
 
   return <TabContextProvider value={tabState}>{children}</TabContextProvider>;
 };
-
-export default TabProvider;

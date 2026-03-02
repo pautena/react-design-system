@@ -3,7 +3,7 @@ import { DrawerContent } from "@/components/drawer-content";
 import { DrawerProvider } from "@/components/drawer-context";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
 import type { DrawerState } from "@/components/drawerx/drawer.types";
-import Drawer from "./drawer";
+import { Drawer } from "./drawer";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;

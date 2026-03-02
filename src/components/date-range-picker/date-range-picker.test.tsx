@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { format } from "date-fns";
 import { vi } from "vitest";
 import { render, screen } from "../../tests/testing-library";
-import DateRangePicker from "./date-range-picker";
+import { DateRangePicker } from "./date-range-picker";
 
 describe("DateRangePicker", () => {
   const renderComponent = () => {

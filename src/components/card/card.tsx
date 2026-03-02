@@ -129,5 +129,3 @@ export function CardContent(props: CardContentProps) {
 export function CardFooter(props: CardFooterProps) {
   return <UiCardFooter {...props} />;
 }
-
-export default Card;

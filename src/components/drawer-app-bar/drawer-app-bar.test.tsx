@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { DrawerProvider, useDrawer } from "@/components/drawer-context";
 import type { DrawerState } from "@/components/drawerx/drawer.types";
 import { render, screen } from "../../tests/testing-library";
-import DrawerAppBar from "./drawer-app-bar";
+import { DrawerAppBar } from "./drawer-app-bar";
 
 describe("DrawerAppBar", () => {
   const renderComponent = ({

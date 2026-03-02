@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ValueText from "./value-text";
+import { ValueText } from "./value-text";
 
 export default {
   title: "Data Display/ValueText",

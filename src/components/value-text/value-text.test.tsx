@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import ValueText from "./value-text";
+import { ValueText } from "./value-text";
 
 const DummyValue = "Lorem ipsum sit amet";
 

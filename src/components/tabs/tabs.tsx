@@ -83,5 +83,3 @@ export function TabsTrigger(props: TabsTriggerProps) {
 export function TabsContent(props: TabsContentProps) {
   return <UiTabsContent {...props} />;
 }
-
-export default Tabs;

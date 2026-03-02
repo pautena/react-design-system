@@ -85,5 +85,3 @@ export function Breadcrumbs({
     </UiBreadcrumb>
   );
 }
-
-export default Breadcrumbs;

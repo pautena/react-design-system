@@ -74,5 +74,3 @@ export function DateRangeCalendar({
     />
   );
 }
-
-export default DateRangeCalendar;

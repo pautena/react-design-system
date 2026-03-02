@@ -2,7 +2,7 @@ import { render, screen } from "../../tests/testing-library";
 import { ValueBoolean } from "../value-boolean";
 import { ValueItem } from "../value-item";
 import { ValueText } from "../value-text";
-import GroupValueCard from "./group-value-card";
+import { GroupValueCard } from "./group-value-card";
 
 describe("GroupValueCard", () => {
   const renderComponent = ({ subtitle }: { subtitle?: string } = {}) => {

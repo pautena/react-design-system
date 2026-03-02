@@ -1,6 +1,6 @@
 import { expectProgressIndicator } from "../../tests/assertions";
 import { render, screen } from "../../tests/testing-library";
-import HeaderLayout, { type HeaderLayoutError } from "./header-layout";
+import { HeaderLayout, type HeaderLayoutError } from "./header-layout";
 
 describe("HeaderLayout", () => {
   const renderComponent = ({

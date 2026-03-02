@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import ValueRating from "./value-rating";
+import { ValueRating } from "./value-rating";
 
 describe("ValueRating", () => {
   const renderComponent = ({

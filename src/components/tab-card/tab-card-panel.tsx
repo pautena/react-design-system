@@ -22,11 +22,7 @@ export interface TabCardPanelProps {
 /**
  * Content panel rendered only when linked tab is selected.
  */
-export default function TabCardPanel({
-  index,
-  sx,
-  children,
-}: TabCardPanelProps) {
+export function TabCardPanel({ index, sx, children }: TabCardPanelProps) {
   const [value] = useContext(TabCardContext);
   const isActive = Array.isArray(index)
     ? index.includes(value)

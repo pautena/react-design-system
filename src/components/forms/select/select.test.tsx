@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { useState } from "react";
 import { vi } from "vitest";
 import { render, screen } from "../../../tests/testing-library";
-import Select from "./select";
+import { Select } from "./select";
 
 describe("Select", () => {
   const renderComponent = ({

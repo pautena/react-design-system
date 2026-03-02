@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import type { PropsWithChildren } from "react";
 import { ValueText } from "../value-text";
-import ValueCard from "./value-card";
+import { ValueCard } from "./value-card";
 
 export default {
   title: "Data Display/ValueCard",

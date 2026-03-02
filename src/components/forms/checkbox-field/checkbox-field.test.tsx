@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "../../../tests/testing-library";
-import CheckboxField from "./checkbox-field";
+import { CheckboxField } from "./checkbox-field";
 
 describe("CheckboxField", () => {
   const renderComponent = ({

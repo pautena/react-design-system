@@ -1,7 +1,7 @@
 import { Loader2, X } from "lucide-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
-import TextField from "@/components/forms/text-field";
+import { TextField } from "@/components/forms/text-field";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -145,5 +145,3 @@ export function ConfirmDialog({
     </AlertDialog>
   );
 }
-
-export default ConfirmDialog;

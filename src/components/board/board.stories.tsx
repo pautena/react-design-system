@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Board from "./board";
+import { Board } from "./board";
 
 export default {
   title: "Data Display/Board",

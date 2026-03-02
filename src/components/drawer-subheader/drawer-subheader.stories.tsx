@@ -5,7 +5,7 @@ import type {
   DrawerState,
 } from "@/components/drawerx/drawer.types";
 import { withDrawerMenu } from "../../storybook";
-import DrawerSubheader, { type DrawerSubheaderProps } from "./drawer-subheader";
+import { DrawerSubheader, type DrawerSubheaderProps } from "./drawer-subheader";
 
 type DrawerSubheaderStoryArgs = DrawerSubheaderProps & {
   size?: DrawerSize;

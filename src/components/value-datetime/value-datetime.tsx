@@ -1,6 +1,7 @@
 import { format } from "date-fns";
-import ValueContent, {
+import {
   getValueContentLabelId,
+  ValueContent,
 } from "@/components/value-content";
 import { type BaseValueProps, DefaultPlaceholder } from "@/types/value-base";
 
@@ -42,5 +43,3 @@ export function ValueDatetime({
     </ValueContent>
   );
 }
-
-export default ValueDatetime;

@@ -27,5 +27,3 @@ export function ValueCard({ children, className, ...rest }: ValueCardProps) {
     </div>
   );
 }
-
-export default ValueCard;

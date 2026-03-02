@@ -7,7 +7,7 @@ import type {
   DrawerState,
 } from "@/components/drawerx/drawer.types";
 import { withDrawerMenu } from "../../storybook";
-import DrawerItem, { type DrawerItemProps } from "./drawer-item";
+import { DrawerItem, type DrawerItemProps } from "./drawer-item";
 
 type DrawerItemStoryArgs = DrawerItemProps & {
   initialState?: DrawerState;

@@ -176,5 +176,3 @@ export const ValueItem: ValueItemComponent = ({
     </div>
   );
 };
-
-export default ValueItem;

@@ -1,8 +1,9 @@
 import type { Decorator, Meta, StoryObj } from "@storybook/react";
 import { useMemo, useState } from "react";
 import { withPadding } from "../../storybook";
-import RemoteDataTable, {
+import {
   type QuerySpecFilter,
+  RemoteDataTable,
   type SortingState,
 } from "./remote-data-table";
 import {

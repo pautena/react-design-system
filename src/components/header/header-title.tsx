@@ -18,11 +18,7 @@ export interface HeaderTitleProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Header title component with optional loading state.
  */
-export default function HeaderTitle({
-  loading,
-  children,
-  ...props
-}: HeaderTitleProps) {
+export function HeaderTitle({ loading, children, ...props }: HeaderTitleProps) {
   if (loading) {
     return (
       <Loader2

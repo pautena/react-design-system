@@ -1,11 +1,12 @@
 import type { JSXElementConstructor } from "react";
-import Drawer from "@/components/drawer";
-import DrawerAppBar, {
+import { Drawer } from "@/components/drawer";
+import {
+  DrawerAppBar,
   type DrawerAppBarProps,
 } from "@/components/drawer-app-bar";
-import DrawerContent from "@/components/drawer-content";
+import { DrawerContent } from "@/components/drawer-content";
 import { DrawerProvider } from "@/components/drawer-context";
-import DrawerMain from "@/components/drawer-main";
+import { DrawerMain } from "@/components/drawer-main";
 import type {
   DrawerContentProps,
   DrawerNavigation,
@@ -74,7 +75,7 @@ export interface DrawerLayoutProps extends DrawerProviderProps {
 /**
  * Layout structure with drawer and app bar.
  */
-export default function DrawerLayout({
+export function DrawerLayout({
   children,
   navigation,
   title,

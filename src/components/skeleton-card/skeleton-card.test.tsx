@@ -1,5 +1,5 @@
 import { render } from "../../tests/testing-library";
-import SkeletonCard from "./skeleton-card";
+import { SkeletonCard } from "./skeleton-card";
 
 describe("SkeletonCard", () => {
   it("renders three placeholder bars", () => {

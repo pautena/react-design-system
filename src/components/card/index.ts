@@ -8,12 +8,11 @@ export type {
   CardTitleProps,
 } from "./card";
 export {
+  Card,
   CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
-  default,
-  default as Card,
 } from "./card";

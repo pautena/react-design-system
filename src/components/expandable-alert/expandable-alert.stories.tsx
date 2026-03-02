@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
-import Button from "@/components/button";
+import { Button } from "@/components/button";
 import { withContainer } from "@/storybook";
-import ExpandableAlert from "./expandable-alert";
+import { ExpandableAlert } from "./expandable-alert";
 
 export default {
   title: "Alerts/ExpandableAlert",

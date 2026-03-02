@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../../storybook";
-import CheckboxField from "./checkbox-field";
+import { CheckboxField } from "./checkbox-field";
 
 export default {
   title: "forms/CheckboxField",

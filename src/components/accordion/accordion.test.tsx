@@ -1,10 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
-import Accordion, {
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
 
 describe("Accordion", () => {
   const renderComponent = () => {

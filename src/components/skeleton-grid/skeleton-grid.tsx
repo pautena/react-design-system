@@ -1,4 +1,4 @@
-import SkeletonCard from "@/components/skeleton-card";
+import { SkeletonCard } from "@/components/skeleton-card";
 
 /**
  * Props for the SkeletonGrid component.
@@ -23,5 +23,3 @@ export function SkeletonGrid({ size = 20 }: SkeletonGridProps) {
     </div>
   );
 }
-
-export default SkeletonGrid;

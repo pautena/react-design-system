@@ -8,7 +8,7 @@ export type DrawerSubheaderProps = HTMLAttributes<HTMLDivElement>;
 /**
  * Section subheader rendered inside drawer navigation.
  */
-export default function DrawerSubheader({
+export function DrawerSubheader({
   className,
   children,
   ...rest

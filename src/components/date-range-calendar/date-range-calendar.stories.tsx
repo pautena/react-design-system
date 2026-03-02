@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import DateRangeCalendar from "./date-range-calendar";
+import { DateRangeCalendar } from "./date-range-calendar";
 
 export default {
   title: "Inputs/DateRangeCalendar",

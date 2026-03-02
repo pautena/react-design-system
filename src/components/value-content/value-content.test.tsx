@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
-import ValueContent from "./value-content";
+import { ValueContent } from "./value-content";
 
 describe("ValueContent", () => {
   const renderComponent = ({ tooltip }: { tooltip?: string } = {}) => {

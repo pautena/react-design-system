@@ -1,10 +1,10 @@
 import userEvent from "@testing-library/user-event";
-import Content from "@/components/content";
+import { Content } from "@/components/content";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
-import SkeletonGrid from "@/components/skeleton-grid";
+import { SkeletonGrid } from "@/components/skeleton-grid";
 import { expectContentPlaceholder } from "../../tests/assertions";
 import { render, screen } from "../../tests/testing-library";
-import DrawerLayout from "./drawer-layout";
+import { DrawerLayout } from "./drawer-layout";
 
 describe("DrawerLayout", () => {
   const renderComponent = () => {

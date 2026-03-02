@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import Content from "./content";
+import { Content } from "./content";
 
 describe("Content", () => {
   it("would render children", () => {

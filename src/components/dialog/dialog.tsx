@@ -107,5 +107,3 @@ export function Dialog({
     </DialogRoot>
   );
 }
-
-export default Dialog;

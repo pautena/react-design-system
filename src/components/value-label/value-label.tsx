@@ -1,6 +1,7 @@
-import Badge, { type BadgeVariant } from "@/components/badge";
-import ValueContent, {
+import { Badge, type BadgeVariant } from "@/components/badge";
+import {
   getValueContentLabelId,
+  ValueContent,
 } from "@/components/value-content";
 import { type BaseValueProps, DefaultPlaceholder } from "@/types/value-base";
 
@@ -42,5 +43,3 @@ export function ValueLabel({
     </ValueContent>
   );
 }
-
-export default ValueLabel;

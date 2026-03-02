@@ -1,5 +1,5 @@
-import Drawer from "@/components/drawer";
-import DrawerContent from "@/components/drawer-content";
+import { Drawer } from "@/components/drawer";
+import { DrawerContent } from "@/components/drawer-content";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
 import { mockConsoleError } from "../../tests/mocks";
 import { render } from "../../tests/testing-library";

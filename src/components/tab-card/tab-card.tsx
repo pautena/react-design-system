@@ -90,5 +90,3 @@ export function TabCard({
     </TabCardContextProvider>
   );
 }
-
-export default TabCard;

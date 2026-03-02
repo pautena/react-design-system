@@ -3,7 +3,7 @@ import { Search } from "lucide-react";
 import type { ReactElement } from "react";
 import { vi } from "vitest";
 import { render, screen } from "../../tests/testing-library";
-import Placeholder, { type PlaceholderAction } from "./placeholder";
+import { Placeholder, type PlaceholderAction } from "./placeholder";
 import { actions as actionData } from "./placeholder.mock";
 
 const actions = actionData.map((a) => ({ ...a, onClick: vi.fn() }));

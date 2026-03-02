@@ -150,5 +150,3 @@ export function TextField({
     </Field>
   );
 }
-
-export default TextField;

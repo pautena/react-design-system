@@ -1,5 +1,6 @@
-import ValueContent, {
+import {
   getValueContentLabelId,
+  ValueContent,
 } from "@/components/value-content";
 import { type BaseValueProps, DefaultPlaceholder } from "@/types/value-base";
 
@@ -30,5 +31,3 @@ export function ValueText({
     </ValueContent>
   );
 }
-
-export default ValueText;

@@ -27,5 +27,3 @@ export function Content({ children, className, ...props }: ContentProps) {
     </main>
   );
 }
-
-export default Content;

@@ -1,4 +1,4 @@
-import ValueContent from "@/components/value-content";
+import { ValueContent } from "@/components/value-content";
 import type { BaseValueProps } from "@/types/value-base";
 
 /**
@@ -31,5 +31,3 @@ export function ValueImage({
     </ValueContent>
   );
 }
-
-export default ValueImage;

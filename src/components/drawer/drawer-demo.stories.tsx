@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Content from "@/components/content";
+import { Content } from "@/components/content";
 import { DrawerContent } from "@/components/drawer-content";
 import { DrawerProvider, useDrawer } from "@/components/drawer-context";
 import { DrawerMain } from "@/components/drawer-main";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
 import type { DrawerState } from "@/components/drawerx/drawer.types";
-import SkeletonGrid from "@/components/skeleton-grid";
+import { SkeletonGrid } from "@/components/skeleton-grid";
 import { Button } from "@/components/ui/button";
-import Drawer from "./drawer";
+import { Drawer } from "./drawer";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;

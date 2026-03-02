@@ -23,11 +23,7 @@ export interface DrawerItemProps {
 /**
  * Drawer navigation item renderer.
  */
-export default function DrawerItem({
-  item,
-  level = 0,
-  action,
-}: DrawerItemProps) {
+export function DrawerItem({ item, level = 0, action }: DrawerItemProps) {
   const { selectedItemId, state } = useDrawer();
   if (item.kind === "collapsable") {
     const { id, text, icon, items } = item;

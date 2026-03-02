@@ -6,6 +6,6 @@ export type DrawerMainProps = PropsWithChildren;
 /**
  * Main content area that shifts with drawer state.
  */
-export default function DrawerMain({ children }: DrawerMainProps) {
+export function DrawerMain({ children }: DrawerMainProps) {
   return <SidebarInset>{children}</SidebarInset>;
 }

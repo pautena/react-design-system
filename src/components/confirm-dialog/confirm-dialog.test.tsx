@@ -1,7 +1,7 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { render, screen } from "@/tests/testing-library";
-import ConfirmDialog from "./confirm-dialog";
+import { ConfirmDialog } from "./confirm-dialog";
 
 interface DialogRenderArgs {
   open: boolean;

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 /**
  * Drawer navigation container.
  */
-export default function Drawer({ children, className, ...rest }: DrawerProps) {
+export function Drawer({ children, className, ...rest }: DrawerProps) {
   return (
     <Sidebar
       collapsible="icon"

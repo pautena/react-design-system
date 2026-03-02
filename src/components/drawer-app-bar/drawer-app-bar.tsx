@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 /**
  * Top app bar adapted for drawer layouts.
  */
-export default function DrawerAppBar({
+export function DrawerAppBar({
   title,
   className,
   children,

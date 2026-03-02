@@ -1,8 +1,8 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import Button from "@/components/button";
+import { Button } from "@/components/button";
 import { render, screen } from "@/tests/testing-library";
-import Dialog from "./dialog";
+import { Dialog } from "./dialog";
 
 describe("Dialog", () => {
   const renderComponent = ({ open = true } = {}) => {

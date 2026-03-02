@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
-import Button, { type ButtonVariant } from "./button";
+import { Button, type ButtonVariant } from "./button";
 
 describe("Button", () => {
   const renderComponent = (variant: ButtonVariant | undefined = undefined) => {

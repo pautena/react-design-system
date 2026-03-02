@@ -1,6 +1,6 @@
 import { render, screen } from "../../tests/testing-library";
 import type { BadgeVariant } from "../badge";
-import ValueLabel from "./value-label";
+import { ValueLabel } from "./value-label";
 
 const DummyValueText = "Lorem ipsum sit amet";
 const DummyValueNumber = 1000;

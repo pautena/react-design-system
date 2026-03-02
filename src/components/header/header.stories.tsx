@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ArrowLeft } from "lucide-react";
-import Badge from "@/components/badge";
-import Content from "@/components/content";
+import { Badge } from "@/components/badge";
+import { Content } from "@/components/content";
 import { TabPanel } from "../tab-panel";
 import { TabProvider } from "../tab-provider";
-import Header from "./header";
+import { Header } from "./header";
 import { actions, breadcrumbs, linkedTabs, tabs } from "./header.dummy";
 import type { HeaderAction } from "./header.types";
 

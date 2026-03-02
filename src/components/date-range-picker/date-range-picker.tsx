@@ -1,14 +1,14 @@
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useState } from "react";
-import Button from "@/components/button";
-import TextField from "@/components/forms/text-field";
+import { Button } from "@/components/button";
+import { TextField } from "@/components/forms/text-field";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import DateRangeCalendar from "../date-range-calendar";
+import { DateRangeCalendar } from "../date-range-calendar";
 
 type DateRange = [Date, Date | undefined];
 
@@ -106,5 +106,3 @@ export function DateRangePicker({
     </Popover>
   );
 }
-
-export default DateRangePicker;

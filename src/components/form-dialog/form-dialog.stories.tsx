@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import TextField from "@/components/forms/text-field";
+import { TextField } from "@/components/forms/text-field";
 import { StoryDialogManager } from "@/storybook";
-import FormDialog from "./form-dialog";
+import { FormDialog } from "./form-dialog";
 
 export default {
   title: "Dialogs/FormDialog",

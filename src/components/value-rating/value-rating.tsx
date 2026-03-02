@@ -1,6 +1,7 @@
 import { Star } from "lucide-react";
-import ValueContent, {
+import {
   getValueContentLabelId,
+  ValueContent,
 } from "@/components/value-content";
 import { cn } from "@/lib/utils";
 import type { BaseValueProps } from "@/types/value-base";
@@ -54,5 +55,3 @@ export function ValueRating({
     </ValueContent>
   );
 }
-
-export default ValueRating;

@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../../storybook";
-import Autocomplete from "./autocomplete";
+import { Autocomplete } from "./autocomplete";
 
 const options: string[] = [...faker.definitions.vehicle.model];
 

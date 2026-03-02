@@ -63,5 +63,3 @@ export function Bullet({ variant = "primary", className }: BulletProps) {
     />
   );
 }
-
-export default Bullet;

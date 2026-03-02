@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Content from "@/components/content";
+import { Content } from "@/components/content";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
-import SkeletonGrid from "@/components/skeleton-grid";
-import DrawerLayout from "./drawer-layout";
+import { SkeletonGrid } from "@/components/skeleton-grid";
+import { DrawerLayout } from "./drawer-layout";
 
 const baseProps = {
   title: "Lorem ipsum",

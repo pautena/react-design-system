@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../../storybook";
-import TextareaField from "./textarea-field";
+import { TextareaField } from "./textarea-field";
 
 export default {
   title: "forms/TextareaField",

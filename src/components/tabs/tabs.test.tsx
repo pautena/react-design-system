@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event";
 import { render, screen } from "../../tests/testing-library";
-import Tabs, { TabsContent, TabsList, TabsTrigger } from "./tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
 
 describe("Tabs", () => {
   const renderComponent = () => {

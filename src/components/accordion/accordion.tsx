@@ -76,5 +76,3 @@ export function AccordionTrigger(props: AccordionTriggerProps) {
 export function AccordionContent(props: AccordionContentProps) {
   return <UiAccordionContent {...props} />;
 }
-
-export default Accordion;

@@ -1,2 +1,2 @@
 export type { ValueCardProps } from "./value-card";
-export { default, default as ValueCard } from "./value-card";
+export { ValueCard } from "./value-card";

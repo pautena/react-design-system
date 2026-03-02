@@ -1,10 +1,10 @@
 import userEvent from "@testing-library/user-event";
-import DrawerContent from "@/components/drawer-content";
+import { DrawerContent } from "@/components/drawer-content";
 import { DrawerProvider, useDrawer } from "@/components/drawer-context";
 import { mockDrawerNavigation } from "@/components/drawerx/drawer.mock";
 import type { DrawerState } from "@/components/drawerx/drawer.types";
 import { render, screen } from "../../tests/testing-library";
-import Drawer from "./drawer";
+import { Drawer } from "./drawer";
 
 describe("Drawer", () => {
   const renderComponent = ({

@@ -1,12 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import Card, {
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./card";
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "./card";
 
 describe("Card", () => {
   const renderComponent = (size?: "default" | "sm") => {

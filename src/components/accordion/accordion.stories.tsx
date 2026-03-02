@@ -1,10 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../storybook";
-import Accordion, {
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "./accordion";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./accordion";
 
 export default {
   title: "Data Display/Accordion",

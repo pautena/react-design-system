@@ -1,5 +1,5 @@
 import { render, screen } from "../../tests/testing-library";
-import Breadcrumbs from "./breadcrumbs";
+import { Breadcrumbs } from "./breadcrumbs";
 
 describe("Breadcrumbs", () => {
   const items = [

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../storybook";
-import SkeletonCard from "./skeleton-card";
+import { SkeletonCard } from "./skeleton-card";
 
 export default {
   title: "Placeholders/SkeletonCard",

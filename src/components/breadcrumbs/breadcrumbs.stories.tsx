@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import Breadcrumbs from "./breadcrumbs";
+import { Breadcrumbs } from "./breadcrumbs";
 
 const items = [
   { id: "items", text: "Items", link: "/items" },

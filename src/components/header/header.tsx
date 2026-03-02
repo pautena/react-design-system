@@ -1,5 +1,5 @@
-import Breadcrumbs from "@/components/breadcrumbs";
-import Button, { type ButtonVariant } from "@/components/button";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { Button, type ButtonVariant } from "@/components/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
 import { useTab } from "../tab-provider";
@@ -9,7 +9,7 @@ import type {
   HeaderPreset,
   HeaderProps,
 } from "./header.types";
-import HeaderTitle, { HeaderSubtitle } from "./header-title";
+import { HeaderSubtitle, HeaderTitle } from "./header-title";
 
 const bgColorPresets: Record<HeaderPreset, string> = {
   default: "bg-muted",
@@ -171,5 +171,3 @@ export function Header({
     </section>
   );
 }
-
-export default Header;

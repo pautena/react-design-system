@@ -2,7 +2,7 @@ import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { expectProgressIndicator } from "../../../tests/assertions";
 import { render, screen } from "../../../tests/testing-library";
-import TextareaField from "./textarea-field";
+import { TextareaField } from "./textarea-field";
 
 describe("TextareaField", () => {
   const renderComponent = ({

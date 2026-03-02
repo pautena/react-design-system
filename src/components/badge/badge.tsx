@@ -48,5 +48,3 @@ export function Badge({ text, variant = "default", ...props }: BadgeProps) {
     </UiBadge>
   );
 }
-
-export default Badge;

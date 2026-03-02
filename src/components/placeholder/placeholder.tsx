@@ -149,5 +149,3 @@ export function Placeholder({
     </div>
   );
 }
-
-export default Placeholder;

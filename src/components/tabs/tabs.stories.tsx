@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { withContainer } from "../../storybook";
-import Tabs, { TabsContent, TabsList, TabsTrigger } from "./tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";
 
 export default {
   title: "Navigation/Tabs",

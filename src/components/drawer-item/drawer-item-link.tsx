@@ -1,6 +1,6 @@
 import type { ReactElement, ReactNode } from "react";
-import Badge from "@/components/badge";
-import Bullet from "@/components/bullet";
+import { Badge } from "@/components/badge";
+import { Bullet } from "@/components/bullet";
 import { useDrawer } from "@/components/drawer-context";
 import type {
   DrawerItemAvatar,

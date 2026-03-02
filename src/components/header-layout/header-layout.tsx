@@ -1,8 +1,8 @@
 import { AlertTriangle, Loader2 } from "lucide-react";
 import type { JSXElementConstructor, ReactElement } from "react";
-import Content, { type ContentProps } from "@/components/content";
-import Header, { type HeaderProps } from "@/components/header";
-import Placeholder, { type PlaceholderIcon } from "@/components/placeholder";
+import { Content, type ContentProps } from "@/components/content";
+import { Header, type HeaderProps } from "@/components/header";
+import { Placeholder, type PlaceholderIcon } from "@/components/placeholder";
 import { TabProvider } from "../tab-provider";
 
 /**
@@ -145,5 +145,3 @@ export function HeaderLayout({
     </TabProvider>
   );
 }
-
-export default HeaderLayout;

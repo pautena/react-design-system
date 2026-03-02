@@ -1,5 +1,5 @@
 import { render } from "../../tests/testing-library";
-import SkeletonGrid from "./skeleton-grid";
+import { SkeletonGrid } from "./skeleton-grid";
 
 describe("SkeletonGrid", () => {
   it("renders default amount of skeleton cards", () => {

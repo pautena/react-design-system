@@ -123,5 +123,3 @@ export function ListPanel({
     </ListPanelContextProvider>
   );
 }
-
-export default ListPanel;

@@ -1,7 +1,7 @@
 import type { Meta } from "@storybook/react";
-import Button from "@/components/button";
-import Content from "@/components/content";
-import SkeletonGrid from "@/components/skeleton-grid";
+import { Button } from "@/components/button";
+import { Content } from "@/components/content";
+import { SkeletonGrid } from "@/components/skeleton-grid";
 import { useNotificationCenter } from "./notification-center-context";
 import { NotificationCenterProvider } from "./notification-center-provider";
 

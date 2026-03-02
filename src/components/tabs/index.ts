@@ -4,10 +4,4 @@ export type {
   TabsProps,
   TabsTriggerProps,
 } from "./tabs";
-export {
-  default,
-  default as Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "./tabs";
+export { Tabs, TabsContent, TabsList, TabsTrigger } from "./tabs";

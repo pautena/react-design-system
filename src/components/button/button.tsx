@@ -49,5 +49,3 @@ export interface ButtonProps
 export function Button({ variant = "default", ...props }: ButtonProps) {
   return <UiButton variant={variantMap[variant]} {...props} />;
 }
-
-export default Button;
