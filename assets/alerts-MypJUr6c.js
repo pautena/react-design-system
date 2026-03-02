@@ -1,8 +1,0 @@
-import{j as t}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-CJJPg1vX.js";import{M as n,D as p,C as m}from"./blocks-BHdD6w0n.js";import{Default as a}from"./expandable-alert.stories-CCRh7dNb.js";import{E as s}from"./expandable-alert-BdCijBFF.js";import"./iframe-BbA-wopx.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DqHivdvk.js";import"./index-Pvbw17Wo.js";import"./index-CfKeI9Pd.js";import"./button-Cp_yuWGP.js";import"./button-y8UJw2AW.js";import"./index-CIF9E9WT.js";import"./utils-DDt1maD9.js";import"./useRenderElement-SQgKJxjE.js";import"./storybook-CxXwq-E5.js";import"./notification-center-provider-Dlt_oZp3.js";import"./loader-circle-DhJ-wMWs.js";import"./createLucideIcon-FAJFlL9b.js";import"./triangle-alert-COhhum2C.js";import"./sidebar-DoXfl7gx.js";import"./DirectionContext-CaYKzn7y.js";import"./inertValue-B1tfPk2D.js";import"./x-DhU6w5cI.js";import"./DialogTitle-Bj_sAikw.js";import"./useRender-C9crks1o.js";import"./board-55xARVAr.js";import"./collapsible-CA63Hmc1.js";import"./useCollapsiblePanel-C9kQDfqV.js";import"./chevron-up-CXwHfMBK.js";import"./chevron-down-CxFUI7rf.js";function i(o){const r={a:"a",h1:"h1",h2:"h2",p:"p",...e(),...o.components};return t.jsxs(t.Fragment,{children:[`
-`,t.jsx(n,{title:"Alerts"}),`
-`,t.jsx(r.h1,{id:"alerts",children:"Alerts"}),`
-`,t.jsx(r.h2,{id:"expandablealert",children:"ExpandableAlert"}),`
-`,`
-`,t.jsx(p,{of:s}),`
-`,t.jsx(r.p,{children:t.jsx(r.a,{href:"?path=/docs/alerts-expandablealert--docs",children:"ExpandableAlert Stories"})}),`
-`,t.jsx(m,{of:a})]})}function J(o={}){const{wrapper:r}={...e(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(i,{...o})}):i(o)}export{J as default};
