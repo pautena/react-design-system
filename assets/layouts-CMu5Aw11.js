@@ -1,0 +1,14 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as n}from"./index-BiRoDYKe.js";import{M as a,D as e}from"./blocks-lbhpUcWe.js";import{D as m}from"./drawer-layout-BvJX29OC.js";import{H as p}from"./header-layout-BoctHE8A.js";import"./iframe-DjNR3noO.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DGu2xCH2.js";import"./index-1dl8K88b.js";import"./index-H7cNYfax.js";import"./drawer-CoFb6Xu4.js";import"./sidebar-DLeqGO7I.js";import"./index-CIF9E9WT.js";import"./utils-DDt1maD9.js";import"./button-CVa2x62j.js";import"./useRenderElement-BfrHwLfV.js";import"./DirectionContext-DwSgawHI.js";import"./inertValue-BmGVNhPt.js";import"./x-B9eiKsOU.js";import"./createLucideIcon-bDYX1VuN.js";import"./DialogTitle-CqVhzr_H.js";import"./useRender-DeG8RxDK.js";import"./drawer-app-bar-DdAef2ia.js";import"./drawer-provider-BEHlscJt.js";import"./drawer-content-3PQ8KWs0.js";import"./drawer-item-BXJT_sXq.js";import"./badge-zQJg4_ZP.js";import"./badge-DhCFI0N7.js";import"./bullet-Bi3znS5-.js";import"./collapsible-CfZLKPzz.js";import"./useCollapsiblePanel-Zr7BoPnB.js";import"./chevron-right-CqUv58C0.js";import"./useCompositeItem-4cIMAqa4.js";import"./useCompositeListItem-DacZiuYW.js";import"./ToolbarRootContext-B1CcOSQ4.js";import"./chevron-down-9NDnu9Kz.js";import"./drawer-subheader-BwqnQYB-.js";import"./trash-2-CgXe6RYQ.js";import"./drawer-main-7kNoNIC6.js";import"./content-CMmzQxpa.js";import"./header-BGC4cDgv.js";import"./breadcrumbs-DKD8iAu_.js";import"./button-D4VIYb2m.js";import"./tabs-CvsfqMsb.js";import"./isElementDisabled-CwHw_lZC.js";import"./tab-provider.provider-CGA9V91d.js";import"./loader-circle-CkoGHPVG.js";import"./placeholder-CssebVmR.js";import"./triangle-alert-DLC7vTPZ.js";function i(r){const o={a:"a",h1:"h1",h2:"h2",p:"p",...n(),...r.components};return t.jsxs(t.Fragment,{children:[`
+`,t.jsx(a,{title:"Layouts"}),`
+`,t.jsx(o.h1,{id:"layouts",children:"Layouts"}),`
+`,t.jsx(o.p,{children:`The layouts are components used to define the structure and organization of the user interface.
+They are reusable components that help in creating consistent layouts across different pages or sections of the application.
+These components typically handle the arrangement of headers, footers, sidebars, content areas, and other common UI elements.`}),`
+`,t.jsx(o.h2,{id:"drawerlayout",children:"DrawerLayout"}),`
+`,`
+`,t.jsx(e,{of:m}),`
+`,t.jsx(o.p,{children:t.jsx(o.a,{href:"?path=/docs/layouts-drawerlayout--docs",children:"Drawer Layout Stories"})}),`
+`,t.jsx(o.h2,{id:"headerlayout",children:"HeaderLayout"}),`
+`,`
+`,t.jsx(e,{of:p}),`
+`,t.jsx(o.p,{children:t.jsx(o.a,{href:"?path=/docs/layouts-headerlayout--docs",children:"Header Layout Stories"})})]})}function it(r={}){const{wrapper:o}={...n(),...r.components};return o?t.jsx(o,{...r,children:t.jsx(i,{...r})}):i(r)}export{it as default};
