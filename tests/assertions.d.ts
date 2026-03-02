@@ -1,4 +1,4 @@
-import { AlertSeverity } from '../components/expandable-alert';
+import { AlertSeverity } from '../components/feedback/expandable-alert/expandable-alert';
 export declare const expectContentPlaceholder: () => Promise<void>;
 export declare const assertDatetimeInputValue: (element: HTMLElement, { value, fmt }: {
     value: Date;

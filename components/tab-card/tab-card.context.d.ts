@@ -1,3 +1,0 @@
-import { Dispatch, SetStateAction } from '../../../node_modules/react';
-export declare const TabCardContext: import('../../../node_modules/react').Context<[number, Dispatch<SetStateAction<number>>]>;
-export declare const TabCardContextProvider: import('../../../node_modules/react').Provider<[number, Dispatch<SetStateAction<number>>]>;
