@@ -1,0 +1,8 @@
+import{j as t}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-v82YO9zQ.js";import{M as n,D as p,C as m}from"./blocks-9o3peB1u.js";import{Default as a}from"./expandable-alert.stories-CaeP9rQ2.js";import{E as s}from"./expandable-alert-BaIC_SSh.js";import"./iframe-BUoLcRFZ.js";import"./preload-helper-PPVm8Dsz.js";import"./index-Czfq41qP.js";import"./index-Dn6J4qQc.js";import"./index-BvTyi-sf.js";import"./button-CNNT9c9F.js";import"./button-CgCp4AR3.js";import"./index-CIF9E9WT.js";import"./utils-DDt1maD9.js";import"./useRenderElement-C_oI-Jrc.js";import"./storybook-Qwde9KDA.js";import"./notification-center-provider-siVUna95.js";import"./loader-circle-CtsW-Z-T.js";import"./createLucideIcon-jdL4qkm0.js";import"./triangle-alert-CFFrJzWJ.js";import"./sidebar-0n8gutjy.js";import"./DirectionContext-3nhws9jF.js";import"./inertValue-Dy29vbmF.js";import"./x-B87yB-Eo.js";import"./DialogTitle-DC96w9zJ.js";import"./useRender-DGVZ3xZk.js";import"./board-DEUdqEAX.js";import"./collapsible-YhBYJ01u.js";import"./useCollapsiblePanel-BRuqCmRQ.js";import"./chevron-up-LeWLCuFh.js";import"./chevron-down-CVU7b9sP.js";function i(o){const r={a:"a",h1:"h1",h2:"h2",p:"p",...e(),...o.components};return t.jsxs(t.Fragment,{children:[`
+`,t.jsx(n,{title:"Alerts"}),`
+`,t.jsx(r.h1,{id:"alerts",children:"Alerts"}),`
+`,t.jsx(r.h2,{id:"expandablealert",children:"ExpandableAlert"}),`
+`,`
+`,t.jsx(p,{of:s}),`
+`,t.jsx(r.p,{children:t.jsx(r.a,{href:"?path=/docs/alerts-expandablealert--docs",children:"ExpandableAlert Stories"})}),`
+`,t.jsx(m,{of:a})]})}function J(o={}){const{wrapper:r}={...e(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(i,{...o})}):i(o)}export{J as default};

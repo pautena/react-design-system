@@ -1,8 +1,0 @@
-import{j as t}from"./jsx-runtime-u17CrQMm.js";import{useMDXComponents as e}from"./index-BiRoDYKe.js";import{M as n,D as p,C as m}from"./blocks-lbhpUcWe.js";import{Default as a}from"./expandable-alert.stories-DiPs3Edt.js";import{E as s}from"./expandable-alert-DcQS0PDX.js";import"./iframe-DjNR3noO.js";import"./preload-helper-PPVm8Dsz.js";import"./index-DGu2xCH2.js";import"./index-1dl8K88b.js";import"./index-H7cNYfax.js";import"./button-D4VIYb2m.js";import"./button-CVa2x62j.js";import"./index-CIF9E9WT.js";import"./utils-DDt1maD9.js";import"./useRenderElement-BfrHwLfV.js";import"./storybook-DIaZG6Gr.js";import"./notification-center-provider-CXXFg195.js";import"./loader-circle-CkoGHPVG.js";import"./createLucideIcon-bDYX1VuN.js";import"./triangle-alert-DLC7vTPZ.js";import"./sidebar-DLeqGO7I.js";import"./DirectionContext-DwSgawHI.js";import"./inertValue-BmGVNhPt.js";import"./x-B9eiKsOU.js";import"./DialogTitle-CqVhzr_H.js";import"./useRender-DeG8RxDK.js";import"./board-BCYiNB28.js";import"./collapsible-CfZLKPzz.js";import"./useCollapsiblePanel-Zr7BoPnB.js";import"./chevron-up-CYjwbCgy.js";import"./chevron-down-9NDnu9Kz.js";function i(o){const r={a:"a",h1:"h1",h2:"h2",p:"p",...e(),...o.components};return t.jsxs(t.Fragment,{children:[`
-`,t.jsx(n,{title:"Alerts"}),`
-`,t.jsx(r.h1,{id:"alerts",children:"Alerts"}),`
-`,t.jsx(r.h2,{id:"expandablealert",children:"ExpandableAlert"}),`
-`,`
-`,t.jsx(p,{of:s}),`
-`,t.jsx(r.p,{children:t.jsx(r.a,{href:"?path=/docs/alerts-expandablealert--docs",children:"ExpandableAlert Stories"})}),`
-`,t.jsx(m,{of:a})]})}function J(o={}){const{wrapper:r}={...e(),...o.components};return r?t.jsx(r,{...o,children:t.jsx(i,{...o})}):i(o)}export{J as default};
