@@ -1,8 +1,8 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { Badge } from "@/components/data-display/badge/badge";
+import { TabProvider } from "@/components/navigation/tab-provider/tab-provider.provider";
 import { render, screen } from "@/tests/testing-library";
-import { TabProvider } from "../../navigation/tab-provider/tab-provider.provider";
 import { Header } from "./header";
 import { actions as actionsData, breadcrumbs, tabs } from "./header.dummy";
 import { WithPanelTabs } from "./header.stories";

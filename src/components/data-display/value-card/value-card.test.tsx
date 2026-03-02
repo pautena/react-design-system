@@ -1,6 +1,6 @@
 import type { ReactElement } from "react";
+import { ValueText } from "@/components/data-display/value-text/value-text";
 import { render, screen } from "@/tests/testing-library";
-import { ValueText } from "../value-text/value-text";
 import { ValueCard } from "./value-card";
 
 describe("ValueCard", () => {

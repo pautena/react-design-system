@@ -1,5 +1,5 @@
+import { TabProvider } from "@/components/navigation/tab-provider/tab-provider.provider";
 import { render, screen } from "@/tests/testing-library";
-import { TabProvider } from "../tab-provider/tab-provider.provider";
 import { TabPanel } from "./tab-panel";
 
 describe("TabPanel", () => {
