@@ -1,4 +1,4 @@
-import type { ButtonVariant } from "@/components/button";
+import type { ButtonVariant } from "@/components/inputs/button/button";
 
 /**
  * Variant options for dialog action buttons.

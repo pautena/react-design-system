@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import type { AlertSeverity } from "@/components/expandable-alert";
+import type { AlertSeverity } from "@/components/feedback/expandable-alert/expandable-alert";
 import { screen, waitForElementToBeRemoved } from "./testing-library";
 
 export const expectContentPlaceholder = async () => {

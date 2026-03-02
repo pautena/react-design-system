@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 import { type CSSProperties, type FunctionComponent, useState } from "react";
 import { action } from "storybook/actions";
-import { NotificationCenterProvider } from "@/components/notification-center";
+import { NotificationCenterProvider } from "@/components/feedback/notification-center/notification-center-provider";
 import { SidebarMenu } from "@/components/ui/sidebar";
 
 const closeDialogAction = action("dialog/close");

@@ -99,52 +99,21 @@ npm run check:ts # Run TypeScript checks
 ```
 .
 ├── src
-│   ├── action
-│   ├── autocomplete
-│   ├── board
-│   ├── bootstrap-dialog
-│   ├── bullet
-│   ├── center-container
-│   ├── confirm-dialog
-│   ├── content
-│   ├── content-placeholder
-│   ├── date-range-calendar
-│   ├── date-range-picker
-│   ├── dialog
-│   ├── drawerx
-│   ├── expandable-alert
-│   ├── form-dialog
-│   ├── generators
-│   ├── group-value-card
-│   ├── header
-│   ├── header-layout
-│   ├── label
-│   ├── list-panel
-│   ├── loading-area
-│   ├── markdown
-│   ├── model-form
-│   ├── notification-center
-│   ├── object-details
-│   ├── placeholder
-│   ├── query-container
-│   ├── select
-│   ├── skeleton-card
-│   ├── skeleton-grid
-│   ├── tab-card
-│   ├── tab-panel
-│   ├── tab-provider
-│   ├── table-list
-│   ├── text-field
-│   ├── utils
-│   ├── value-base
-│   ├── value-boolean
-│   ├── value-card
-│   ├── value-datetime
-│   ├── value-item
-│   ├── value-label
-│   ├── value-rating
-│   ├── value-text
-│   └── stories
+│   ├── components
+│   │   ├── containers
+│   │   ├── data-display
+│   │   ├── dialogs
+│   │   ├── feedback
+│   │   ├── inputs
+│   │   ├── layouts
+│   │   ├── navigation
+│   │   ├── placeholders
+│   │   ├── tables
+│   │   └── ui
+│   ├── stories
+│   ├── tests
+│   ├── types
+│   └── utils
 ├── .storybook
 ├── .github
 │   └── workflows
@@ -209,36 +178,32 @@ npm run format
 
 ### Component Structure Patterns
 
-**Standard Component (4-file minimum):**
+**Standard Component (3-file minimum):**
 ```
-ComponentName/
-├── ComponentName.tsx          # Main component
-├── ComponentName.stories.tsx  # Storybook stories
-├── ComponentName.test.tsx     # Tests
-└── index.ts                   # Exports
+component-name/
+├── component-name.tsx          # Main component
+├── component-name.stories.tsx  # Storybook stories
+└── component-name.test.tsx     # Tests
 ```
 
 **Extended Component (with types/mocks):**
 ```
-ComponentName/
-├── ComponentName.tsx
-├── ComponentName.types.ts     # Type definitions
-├── ComponentName.dummy.ts     # Mock data
-├── ComponentName.stories.tsx
-├── ComponentName.test.tsx
-└── index.ts
+component-name/
+├── component-name.tsx
+├── component-name.types.ts     # Type definitions
+├── component-name.dummy.ts     # Mock data
+├── component-name.stories.tsx
+└── component-name.test.tsx
 ```
 
 **Nested Multi-component:**
 ```
-ComponentName/
-├── ComponentName.types.ts     # Shared types
-├── SubComponent1/
-│   ├── SubComponent1.tsx
-│   ├── SubComponent1.stories.tsx
-│   ├── SubComponent1.test.tsx
-│   └── index.ts
-└── index.ts                   # Aggregates exports
+component-name/
+├── component-name.types.ts     # Shared types
+├── sub-component
+│   ├── sub-component.tsx
+│   ├── sub-component.stories.tsx
+│   └── sub-component.test.tsx
 ```
 
 ### Naming Conventions
