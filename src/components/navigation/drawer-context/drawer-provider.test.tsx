@@ -1,0 +1,101 @@
+import userEvent from "@testing-library/user-event";
+import { vi } from "vitest";
+import type { DrawerState } from "@/types/drawer.types";
+import { render, screen } from "@/tests/testing-library";
+import { DrawerProvider } from "./drawer-provider";
+import { useDrawer } from "./drawer-context";
+
+const TestContent = () => {
+  const {
+    selectedItemId,
+    state,
+    drawerWidth,
+    clipped,
+    switchState,
+    close,
+    open,
+    setState,
+  } = useDrawer();
+
+  return (
+    <div>
+      <p>selectedItemId: ${selectedItemId}</p>
+      <p>state: {state}</p>
+      <p>drawerWidth: {drawerWidth}</p>
+      <p>clipped: {clipped.toString()}</p>
+      <button type="button" onClick={switchState}>
+        switch
+      </button>
+      <button type="button" onClick={open}>
+        open
+      </button>
+      <button type="button" onClick={close}>
+        close
+      </button>
+      <button type="button" onClick={() => setState("close")}>
+        set state
+      </button>
+    </div>
+  );
+};
+
+describe("DrawerProvider", () => {
+  const renderComponent = ({
+    initialState,
+    clipped,
+  }: {
+    initialState?: DrawerState;
+    clipped?: boolean;
+  } = {}) => {
+    const onStateChange = vi.fn();
+
+    render(
+      <DrawerProvider
+        initialState={initialState}
+        drawerWidth={400}
+        clipped={clipped}
+        onStateChange={onStateChange}
+      >
+        <TestContent />
+      </DrawerProvider>,
+    );
+
+    return { onStateChange };
+  };
+
+  it("should pass drawerWidth", () => {
+    renderComponent();
+
+    expect(screen.getByText("drawerWidth: 400")).toBeVisible();
+  });
+
+  it.each([[true], [false]])("should pass clipped=%s", (clipped) => {
+    renderComponent({ clipped });
+
+    expect(screen.getByText(`clipped: ${clipped.toString()}`)).toBeVisible();
+  });
+
+  it.each([
+    "open",
+    "close",
+  ] as const)("should render with state=%s", (initialState) => {
+    renderComponent({ initialState });
+    expect(screen.getByText(`state: ${initialState}`)).toBeVisible();
+  });
+
+  it("should change state to open if open is called", async () => {
+    const user = userEvent.setup();
+    renderComponent({ initialState: "close" });
+
+    await user.click(screen.getByRole("button", { name: /open/i }));
+    expect(screen.getByText("state: open")).toBeVisible();
+  });
+
+  it("should call onStateChange when state changes", async () => {
+    const user = userEvent.setup();
+    const { onStateChange } = renderComponent({ initialState: "close" });
+
+    await user.click(screen.getByRole("button", { name: /open/i }));
+    expect(onStateChange).toHaveBeenCalledWith("open");
+  });
+});
