@@ -6,11 +6,11 @@ import {
 } from "@/components/containers/content/content";
 import { Header } from "@/components/data-display/header/header";
 import type { HeaderProps } from "@/components/data-display/header/header.types";
+import { TabProvider } from "@/components/navigation/tab-provider/tab-provider.provider";
 import {
   Placeholder,
   type PlaceholderIcon,
 } from "@/components/placeholders/placeholder/placeholder";
-import { TabProvider } from "../../navigation/tab-provider/tab-provider.provider";
 
 /**
  * Slots for HeaderLayout.

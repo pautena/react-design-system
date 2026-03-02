@@ -533,6 +533,11 @@ This is an auto-generated file that contains project context for AI agents.
 - Do not place type-only modules in `src/components/*`.
 - Prefer imports like `@/types/<name>` (for example, `@/types/value-base`).
 
+### Import Alias Rule
+
+- If an import would traverse to a parent directory (`../`), use the `@/` alias instead.
+- If importing from the same directory or a child directory, use relative `./` imports.
+
 ### Test Interaction Rule
 
 - In React unit tests, click interactions must use `@testing-library/user-event` (for example, `await user.click(...)`) instead of calling DOM `.click()` directly.

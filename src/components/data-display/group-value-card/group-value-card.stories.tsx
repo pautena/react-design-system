@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ValueBoolean } from "@/components/data-display/value-boolean/value-boolean";
+import { ValueItem } from "@/components/data-display/value-item/value-item";
+import { ValueText } from "@/components/data-display/value-text/value-text";
 import { withContainer } from "@/storybook";
-import { ValueBoolean } from "../value-boolean/value-boolean";
-import { ValueItem } from "../value-item/value-item";
-import { ValueText } from "../value-text/value-text";
 import { GroupValueCard } from "./group-value-card";
 
 export default {

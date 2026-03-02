@@ -1,8 +1,8 @@
 import { Breadcrumbs } from "@/components/data-display/breadcrumbs/breadcrumbs";
 import { Button, type ButtonVariant } from "@/components/inputs/button/button";
+import { useTab } from "@/components/navigation/tab-provider/tab-provider.context";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { cn } from "@/lib/utils";
-import { useTab } from "../../navigation/tab-provider/tab-provider.context";
 import type {
   HeaderActionColor,
   HeaderActionVariant,

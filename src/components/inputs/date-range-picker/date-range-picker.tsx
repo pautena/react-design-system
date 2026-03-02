@@ -2,13 +2,13 @@ import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/inputs/button/button";
+import { DateRangeCalendar } from "@/components/inputs/date-range-calendar/date-range-calendar";
 import { TextField } from "@/components/inputs/text-field/text-field";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { DateRangeCalendar } from "../date-range-calendar/date-range-calendar";
 
 type DateRange = [Date, Date | undefined];
 

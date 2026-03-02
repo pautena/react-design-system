@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
+import { useTab } from "@/components/navigation/tab-provider/tab-provider.context";
 import { cn } from "@/lib/utils";
-import { useTab } from "../tab-provider/tab-provider.context";
 
 /**
  * Props for the TabPanel component

@@ -1,5 +1,5 @@
+import type { BadgeVariant } from "@/components/data-display/badge/badge";
 import { render, screen } from "@/tests/testing-library";
-import type { BadgeVariant } from "../badge/badge";
 import { ValueLabel } from "./value-label";
 
 const DummyValueText = "Lorem ipsum sit amet";
