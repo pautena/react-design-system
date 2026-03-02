@@ -2,8 +2,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Folder } from "lucide-react";
 import { mockLinkNoIconDrawerNavigationItem } from "@/components/navigation/drawer/drawer.mock";
 import { DrawerProvider } from "@/components/navigation/drawer-context/drawer-provider";
-import type { DrawerSize, DrawerState } from "@/types/drawer.types";
 import { withDrawerMenu } from "@/storybook";
+import type { DrawerSize, DrawerState } from "@/types/drawer.types";
 import { DrawerItem, type DrawerItemProps } from "./drawer-item";
 
 type DrawerItemStoryArgs = DrawerItemProps & {

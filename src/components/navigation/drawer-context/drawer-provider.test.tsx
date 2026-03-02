@@ -1,9 +1,9 @@
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
-import type { DrawerState } from "@/types/drawer.types";
 import { render, screen } from "@/tests/testing-library";
-import { DrawerProvider } from "./drawer-provider";
+import type { DrawerState } from "@/types/drawer.types";
 import { useDrawer } from "./drawer-context";
+import { DrawerProvider } from "./drawer-provider";
 
 const TestContent = () => {
   const {

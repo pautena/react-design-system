@@ -1,11 +1,11 @@
 import type { JSXElementConstructor } from "react";
 import { Drawer } from "@/components/navigation/drawer/drawer";
 import { DrawerAppBar } from "@/components/navigation/drawer-app-bar/drawer-app-bar";
-import type { DrawerAppBarProps } from "@/types/drawer.types";
 import { DrawerContent } from "@/components/navigation/drawer-content/drawer-content";
 import { DrawerProvider } from "@/components/navigation/drawer-context/drawer-provider";
 import { DrawerMain } from "@/components/navigation/drawer-main/drawer-main";
 import type {
+  DrawerAppBarProps,
   DrawerContentProps,
   DrawerNavigation,
   DrawerProps,

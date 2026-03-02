@@ -9,8 +9,8 @@ import {
   mockMenuInsideMenuDrawerNavigationItem,
 } from "@/components/navigation/drawer/drawer.mock";
 import { DrawerProvider } from "@/components/navigation/drawer-context/drawer-provider";
-import type { DrawerNavigationItem, DrawerState } from "@/types/drawer.types";
 import { render, screen, within } from "@/tests/testing-library";
+import type { DrawerNavigationItem, DrawerState } from "@/types/drawer.types";
 import { DrawerItem } from "./drawer-item";
 
 describe("DrawerItem", () => {

@@ -1,8 +1,8 @@
 import userEvent from "@testing-library/user-event";
-import { DrawerProvider } from "@/components/navigation/drawer-context/drawer-provider";
 import { useDrawer } from "@/components/navigation/drawer-context/drawer-context";
-import type { DrawerState } from "@/types/drawer.types";
+import { DrawerProvider } from "@/components/navigation/drawer-context/drawer-provider";
 import { render, screen } from "@/tests/testing-library";
+import type { DrawerState } from "@/types/drawer.types";
 import { DrawerAppBar } from "./drawer-app-bar";
 
 describe("DrawerAppBar", () => {
