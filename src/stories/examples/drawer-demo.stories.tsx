@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Content } from "@/components/containers/content/content";
+import { Drawer } from "@/components/navigation/drawer/drawer";
 import { mockDrawerNavigation } from "@/components/navigation/drawer/drawer.mock";
 import { DrawerContent } from "@/components/navigation/drawer-content/drawer-content";
 import { useDrawer } from "@/components/navigation/drawer-context/drawer-context";
@@ -8,7 +9,6 @@ import { DrawerMain } from "@/components/navigation/drawer-main/drawer-main";
 import { SkeletonGrid } from "@/components/placeholders/skeleton-grid/skeleton-grid";
 import { Button } from "@/components/ui/button";
 import type { DrawerState } from "@/types/drawer.types";
-import { Drawer } from "./drawer";
 
 interface DrawerDemoArgs {
   initialState: DrawerState;
@@ -26,7 +26,7 @@ function DrawerToggleButton() {
 }
 
 export default {
-  title: "Navigation/Drawer demo",
+  title: "Examples/Drawer demo",
   parameters: {
     layout: "fullscreen",
   },
