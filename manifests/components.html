@@ -509,7 +509,7 @@
 <header>
   <div class="wrap">
     <h1>Components Manifest</h1>
-    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">5/50 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">6/50 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">5/186 story errors</a></div>
+    <div class="summary"><a class="filter-pill all" data-k="all" href="#filter-all">All</a><a class="filter-pill err" data-k="errors" href="#filter-errors">5/50 prop type errors</a><a class="filter-pill info" data-k="infos" href="#filter-infos">6/50 infos</a><a class="filter-pill err" data-k="story-errors" href="#filter-story-errors">2/186 story errors</a></div>
   </div>
 </header>
 <main>
@@ -2166,6 +2166,889 @@ children?: React.ReactNode</code></pre>
 </article>
 <article
   class="card 
+  has-error 
+  has-info 
+  no-story-error"
+  role="listitem"
+  aria-label="Dashboard">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> Dashboard</h2>
+      <div class="badges">
+        <label for="c-12-examples-dashboard-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-12-examples-dashboard-info" class="badge info as-toggle">1 info</label>
+        <label for="c-12-examples-dashboard-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/stories/examples/dashboard.stories.tsx">examples-dashboard · ./src/stories/examples/dashboard.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-12-examples-dashboard-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-12-examples-dashboard-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-12-examples-dashboard-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  352 | }
+  353 |
+&gt; 354 | export default {
+      | ^
+  355 |   title: &quot;Examples/Dashboard&quot;,
+  356 |   parameters: {
+  357 |     layout: &quot;fullscreen&quot;,
+
+./src/stories/examples/dashboard.stories.tsx:
+import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
+import { BarChart3, LayoutDashboard, Users } from &quot;lucide-react&quot;;
+import { useMemo } from &quot;react&quot;;
+import {
+  Board,
+  Button,
+  DrawerLayout,
+  type DrawerNavigation,
+  Header,
+  NotificationCenterProvider,
+  type QuerySpecField,
+  RemoteDataTable,
+  type RemoteDataTableColumn,
+  useNotificationCenter,
+  useRemoteDataTable,
+  ValueCard,
+  ValueItem,
+  ValueText,
+} from &quot;@/index&quot;;
+
+type UserRow = {
+  id: string;
+  name: string;
+  role: string;
+  status: &quot;Active&quot; | &quot;Pending&quot; | &quot;Disabled&quot;;
+  lastActive: string;
+};
+
+const users: UserRow[] = [
+  {
+    id: &quot;u-1&quot;,
+    name: &quot;Ava Torres&quot;,
+    role: &quot;Admin&quot;,
+    status: &quot;Active&quot;,
+    lastActive: &quot;2h ago&quot;,
+  },
+  {
+    id: &quot;u-2&quot;,
+    name: &quot;Noah Rivera&quot;,
+    role: &quot;Analyst&quot;,
+    status: &quot;Pending&quot;,
+    lastActive: &quot;6h ago&quot;,
+  },
+  {
+    id: &quot;u-3&quot;,
+    name: &quot;Liam Chen&quot;,
+    role: &quot;Manager&quot;,
+    status: &quot;Active&quot;,
+    lastActive: &quot;1d ago&quot;,
+  },
+  {
+    id: &quot;u-4&quot;,
+    name: &quot;Sofia Patel&quot;,
+    role: &quot;Developer&quot;,
+    status: &quot;Disabled&quot;,
+    lastActive: &quot;5d ago&quot;,
+  },
+  {
+    id: &quot;u-5&quot;,
+    name: &quot;Mia García&quot;,
+    role: &quot;Support&quot;,
+    status: &quot;Active&quot;,
+    lastActive: &quot;12h ago&quot;,
+  },
+];
+
+const navigation: DrawerNavigation = [
+  { kind: &quot;header&quot;, id: &quot;main&quot;, text: &quot;Overview&quot; },
+  {
+    kind: &quot;link&quot;,
+    id: &quot;dashboard&quot;,
+    text: &quot;Dashboard&quot;,
+    href: &quot;#&quot;,
+    icon: &lt;LayoutDashboard className=&quot;h-4 w-4&quot; /&gt;,
+  },
+  {
+    kind: &quot;link&quot;,
+    id: &quot;users&quot;,
+    text: &quot;Users&quot;,
+    href: &quot;#&quot;,
+    icon: &lt;Users className=&quot;h-4 w-4&quot; /&gt;,
+  },
+  {
+    kind: &quot;collapsable&quot;,
+    id: &quot;reports&quot;,
+    text: &quot;Reports&quot;,
+    icon: &lt;BarChart3 className=&quot;h-4 w-4&quot; /&gt;,
+    items: [
+      { kind: &quot;link&quot;, id: &quot;sales&quot;, text: &quot;Sales&quot;, href: &quot;#&quot; },
+      { kind: &quot;link&quot;, id: &quot;retention&quot;, text: &quot;Retention&quot;, href: &quot;#&quot; },
+    ],
+  },
+];
+
+const queryFields: QuerySpecField[] = [
+  {
+    name: &quot;name&quot;,
+    label: &quot;Name&quot;,
+    type: &quot;string&quot;,
+    ops: [&quot;ilike&quot;],
+    placeholder: &quot;Search by name&quot;,
+  },
+  {
+    name: &quot;status&quot;,
+    label: &quot;Status&quot;,
+    type: &quot;string&quot;,
+    ops: [&quot;eq&quot;],
+    options: [
+      { label: &quot;Active&quot;, value: &quot;Active&quot; },
+      { label: &quot;Pending&quot;, value: &quot;Pending&quot; },
+      { label: &quot;Disabled&quot;, value: &quot;Disabled&quot; },
+    ],
+  },
+];
+
+const columns: RemoteDataTableColumn&lt;UserRow&gt;[] = [
+  { id: &quot;name&quot;, header: &quot;Name&quot;, accessorKey: &quot;name&quot; },
+  { id: &quot;role&quot;, header: &quot;Role&quot;, accessorKey: &quot;role&quot; },
+  {
+    id: &quot;status&quot;,
+    header: &quot;Status&quot;,
+    cell: (row) =&gt; (
+      &lt;span className=&quot;inline-flex rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-foreground&quot;&gt;
+        {row.status}
+      &lt;/span&gt;
+    ),
+  },
+  { id: &quot;lastActive&quot;, header: &quot;Last active&quot;, accessorKey: &quot;lastActive&quot; },
+];
+
+const code = `import { BarChart3, LayoutDashboard, Users } from &quot;lucide-react&quot;;
+import { useMemo } from &quot;react&quot;;
+import {
+  Board,
+  Button,
+  DrawerLayout,
+  Header,
+  NotificationCenterProvider,
+  RemoteDataTable,
+  useNotificationCenter,
+  useRemoteDataTable,
+  ValueCard,
+  ValueItem,
+  ValueText,
+} from &quot;@pautena/react-design-system&quot;;
+import type { DrawerNavigation, QuerySpecField, RemoteDataTableColumn } from &quot;@pautena/react-design-system&quot;;
+
+const users = [
+  { id: &quot;u-1&quot;, name: &quot;Ava Torres&quot;, role: &quot;Admin&quot;, status: &quot;Active&quot;, lastActive: &quot;2h ago&quot; },
+  { id: &quot;u-2&quot;, name: &quot;Noah Rivera&quot;, role: &quot;Analyst&quot;, status: &quot;Pending&quot;, lastActive: &quot;6h ago&quot; },
+  { id: &quot;u-3&quot;, name: &quot;Liam Chen&quot;, role: &quot;Manager&quot;, status: &quot;Active&quot;, lastActive: &quot;1d ago&quot; },
+  { id: &quot;u-4&quot;, name: &quot;Sofia Patel&quot;, role: &quot;Developer&quot;, status: &quot;Disabled&quot;, lastActive: &quot;5d ago&quot; },
+  { id: &quot;u-5&quot;, name: &quot;Mia García&quot;, role: &quot;Support&quot;, status: &quot;Active&quot;, lastActive: &quot;12h ago&quot; },
+];
+
+const navigation: DrawerNavigation = [
+  { kind: &quot;header&quot;, id: &quot;main&quot;, text: &quot;Overview&quot; },
+  { kind: &quot;link&quot;, id: &quot;dashboard&quot;, text: &quot;Dashboard&quot;, href: &quot;#&quot;, icon: &lt;LayoutDashboard className=&quot;h-4 w-4&quot; /&gt; },
+  { kind: &quot;link&quot;, id: &quot;users&quot;, text: &quot;Users&quot;, href: &quot;#&quot;, icon: &lt;Users className=&quot;h-4 w-4&quot; /&gt; },
+  {
+    kind: &quot;collapsable&quot;,
+    id: &quot;reports&quot;,
+    text: &quot;Reports&quot;,
+    icon: &lt;BarChart3 className=&quot;h-4 w-4&quot; /&gt;,
+    items: [
+      { kind: &quot;link&quot;, id: &quot;sales&quot;, text: &quot;Sales&quot;, href: &quot;#&quot; },
+      { kind: &quot;link&quot;, id: &quot;retention&quot;, text: &quot;Retention&quot;, href: &quot;#&quot; },
+    ],
+  },
+];
+
+const queryFields: QuerySpecField[] = [
+  { name: &quot;name&quot;, label: &quot;Name&quot;, type: &quot;string&quot;, ops: [&quot;ilike&quot;], placeholder: &quot;Search by name&quot; },
+  { name: &quot;status&quot;, label: &quot;Status&quot;, type: &quot;string&quot;, ops: [&quot;eq&quot;], options: [...] },
+];
+
+function DashboardContent() {
+  const tableState = useRemoteDataTable({ initialPagination: { pageSize: 5 } });
+  const { toast } = useNotificationCenter();
+
+  const metrics = useMemo(() =&gt; [
+    { label: &quot;Active users&quot;, value: &quot;1,284&quot; },
+    { label: &quot;Open tickets&quot;, value: &quot;32&quot; },
+    { label: &quot;Deployments&quot;, value: &quot;14&quot; },
+  ], []);
+
+  return (
+    &lt;div className=&quot;space-y-6 p-6&quot;&gt;
+      &lt;Header
+        title=&quot;Operations dashboard&quot;
+        subtitle=&quot;Monitor usage, incidents, and activity&quot;
+        actions={[{ id: &quot;notify&quot;, text: &quot;Send update&quot;, onClick: () =&gt; toast.success(&quot;Update sent&quot;), color: &quot;primary&quot;, variant: &quot;contained&quot; }]}
+        breadcrumbs={[{ id: &quot;home&quot;, text: &quot;Home&quot;, link: &quot;#&quot; }, { id: &quot;ops&quot;, text: &quot;Operations&quot;, link: &quot;#&quot; }]}
+        border
+      /&gt;
+
+      &lt;div className=&quot;grid gap-6 lg:grid-cols-[2fr_1fr]&quot;&gt;
+        &lt;div className=&quot;space-y-6&quot;&gt;
+          &lt;ValueCard&gt;
+            &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
+              {metrics.map((metric, index) =&gt; (
+                &lt;ValueItem key={metric.label} size={4} bordered={index !== 0}&gt;
+                  &lt;ValueText label={metric.label} value={metric.value} /&gt;
+                &lt;/ValueItem&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/ValueCard&gt;
+
+          &lt;RemoteDataTable
+            data={users}
+            columns={columns}
+            pagination={tableState.pagination}
+            onPaginationChange={tableState.onPaginationChange}
+            sorting={tableState.sorting}
+            onSortingChange={tableState.onSortingChange}
+            query={{ fields: queryFields, filters: tableState.filters, onFiltersChange: tableState.onFiltersChange }}
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;space-y-4&quot;&gt;
+          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
+            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;Automation&lt;/h3&gt;
+            &lt;p className=&quot;mt-2 text-base font-semibold&quot;&gt;Deployment key&lt;/p&gt;
+            &lt;Board content={[&quot;ops_live_9fcd2b&quot;, &quot;Rotate every 30 days&quot;]} spacing={1} /&gt;
+            &lt;Button variant=&quot;outline&quot; className=&quot;mt-3 w-full&quot; onClick={() =&gt; toast(&quot;Key copied to clipboard&quot;)}&gt;
+              Copy key
+            &lt;/Button&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
+            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;Activity&lt;/h3&gt;
+            &lt;p className=&quot;mt-2 text-sm text-muted-foreground&quot;&gt;3 alerts resolved · 2 incidents open&lt;/p&gt;
+            &lt;Button variant=&quot;ghost&quot; className=&quot;mt-3 w-full justify-start&quot; onClick={() =&gt; toast(&quot;Opening incidents&quot;)}&gt;
+              View incidents
+            &lt;/Button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default function Dashboard() {
+  return (
+    &lt;NotificationCenterProvider&gt;
+      &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
+        &lt;DashboardContent /&gt;
+      &lt;/DrawerLayout&gt;
+    &lt;/NotificationCenterProvider&gt;
+  );
+}`;
+
+function DashboardContent() {
+  const tableState = useRemoteDataTable({ initialPagination: { pageSize: 5 } });
+  const { toast } = useNotificationCenter();
+
+  const metrics = useMemo(
+    () =&gt; [
+      { label: &quot;Active users&quot;, value: &quot;1,284&quot; },
+      { label: &quot;Open tickets&quot;, value: &quot;32&quot; },
+      { label: &quot;Deployments&quot;, value: &quot;14&quot; },
+    ],
+    [],
+  );
+
+  return (
+    &lt;div className=&quot;space-y-6 p-6&quot;&gt;
+      &lt;Header
+        title=&quot;Operations dashboard&quot;
+        subtitle=&quot;Monitor usage, incidents, and activity&quot;
+        actions={[
+          {
+            id: &quot;notify&quot;,
+            text: &quot;Send update&quot;,
+            onClick: () =&gt; toast.success(&quot;Update sent to your team.&quot;),
+            color: &quot;primary&quot;,
+            variant: &quot;contained&quot;,
+          },
+        ]}
+        breadcrumbs={[
+          { id: &quot;home&quot;, text: &quot;Home&quot;, link: &quot;#&quot; },
+          { id: &quot;ops&quot;, text: &quot;Operations&quot;, link: &quot;#&quot; },
+        ]}
+        border
+      /&gt;
+
+      &lt;div className=&quot;grid gap-6 lg:grid-cols-[2fr_1fr]&quot;&gt;
+        &lt;div className=&quot;space-y-6&quot;&gt;
+          &lt;ValueCard&gt;
+            &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
+              {metrics.map((metric, index) =&gt; (
+                &lt;ValueItem key={metric.label} size={4} bordered={index !== 0}&gt;
+                  &lt;ValueText label={metric.label} value={metric.value} /&gt;
+                &lt;/ValueItem&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/ValueCard&gt;
+
+          &lt;RemoteDataTable
+            data={users}
+            columns={columns}
+            pagination={tableState.pagination}
+            onPaginationChange={tableState.onPaginationChange}
+            sorting={tableState.sorting}
+            onSortingChange={tableState.onSortingChange}
+            query={{
+              fields: queryFields,
+              filters: tableState.filters,
+              onFiltersChange: tableState.onFiltersChange,
+            }}
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;space-y-4&quot;&gt;
+          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
+            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;
+              Automation
+            &lt;/h3&gt;
+            &lt;p className=&quot;mt-2 text-base font-semibold&quot;&gt;Deployment key&lt;/p&gt;
+            &lt;Board
+              content={[&quot;ops_live_9fcd2b&quot;, &quot;Rotate every 30 days&quot;]}
+              spacing={1}
+            /&gt;
+            &lt;Button
+              variant=&quot;outline&quot;
+              className=&quot;mt-3 w-full&quot;
+              onClick={() =&gt; toast(&quot;Key copied to clipboard&quot;)}
+            &gt;
+              Copy key
+            &lt;/Button&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
+            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;
+              Activity
+            &lt;/h3&gt;
+            &lt;p className=&quot;mt-2 text-sm text-muted-foreground&quot;&gt;
+              3 alerts resolved · 2 incidents open
+            &lt;/p&gt;
+            &lt;Button
+              variant=&quot;ghost&quot;
+              className=&quot;mt-3 w-full justify-start&quot;
+              onClick={() =&gt; toast(&quot;Opening incidents queue&quot;)}
+            &gt;
+              View incidents
+            &lt;/Button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default {
+  title: &quot;Examples/Dashboard&quot;,
+  parameters: {
+    layout: &quot;fullscreen&quot;,
+    docs: {
+      source: { code },
+    },
+  },
+  render: () =&gt; (
+    &lt;NotificationCenterProvider&gt;
+      &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
+        &lt;DashboardContent /&gt;
+      &lt;/DrawerLayout&gt;
+    &lt;/NotificationCenterProvider&gt;
+  ),
+} satisfies Meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { BarChart3, LayoutDashboard, Users } from "lucide-react";
+import {
+    Board,
+    Button,
+    DrawerLayout,
+    Header,
+    NotificationCenterProvider,
+    RemoteDataTable,
+    ValueCard,
+    ValueItem,
+    ValueText,
+} from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; (
+  &lt;NotificationCenterProvider&gt;
+    &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
+      &lt;DashboardContent /&gt;
+    &lt;/DrawerLayout&gt;
+  &lt;/NotificationCenterProvider&gt;
+);</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  has-error 
+  has-info 
+  no-story-error"
+  role="listitem"
+  aria-label="DataExplorer">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> DataExplorer</h2>
+      <div class="badges">
+        <label for="c-13-examples-data-explorer-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-13-examples-data-explorer-info" class="badge info as-toggle">1 info</label>
+        <label for="c-13-examples-data-explorer-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/stories/examples/data-explorer.stories.tsx">examples-data-explorer · ./src/stories/examples/data-explorer.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-13-examples-data-explorer-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-13-examples-data-explorer-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-13-examples-data-explorer-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  259 | }
+  260 |
+&gt; 261 | export default {
+      | ^
+  262 |   title: &quot;Examples/Data Explorer&quot;,
+  263 |   parameters: {
+  264 |     layout: &quot;fullscreen&quot;,
+
+./src/stories/examples/data-explorer.stories.tsx:
+import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
+import { useMemo, useState } from &quot;react&quot;;
+import {
+  ExpandableAlert,
+  ListPanel,
+  type QuerySpecField,
+  RemoteDataTable,
+  type RemoteDataTableColumn,
+  useListPanel,
+  useRemoteDataTable,
+  ValueCard,
+  ValueItem,
+  ValueText,
+} from &quot;@/index&quot;;
+
+type ExplorerRow = {
+  id: string;
+  name: string;
+  status: &quot;Healthy&quot; | &quot;Warning&quot; | &quot;Critical&quot;;
+  updated: string;
+};
+
+const dataSets: Record&lt;string, ExplorerRow[]&gt; = {
+  accounts: [
+    { id: &quot;acc-1&quot;, name: &quot;Northwind&quot;, status: &quot;Healthy&quot;, updated: &quot;2h ago&quot; },
+    { id: &quot;acc-2&quot;, name: &quot;Umbrella&quot;, status: &quot;Warning&quot;, updated: &quot;1d ago&quot; },
+    {
+      id: &quot;acc-3&quot;,
+      name: &quot;Wayne Enterprises&quot;,
+      status: &quot;Critical&quot;,
+      updated: &quot;3d ago&quot;,
+    },
+  ],
+  sessions: [
+    { id: &quot;ses-1&quot;, name: &quot;Mobile SDK&quot;, status: &quot;Healthy&quot;, updated: &quot;20m ago&quot; },
+    { id: &quot;ses-2&quot;, name: &quot;Edge Proxy&quot;, status: &quot;Warning&quot;, updated: &quot;6h ago&quot; },
+  ],
+  audits: [
+    { id: &quot;aud-1&quot;, name: &quot;Login policy&quot;, status: &quot;Healthy&quot;, updated: &quot;5h ago&quot; },
+    {
+      id: &quot;aud-2&quot;,
+      name: &quot;Billing sync&quot;,
+      status: &quot;Critical&quot;,
+      updated: &quot;2d ago&quot;,
+    },
+  ],
+};
+
+const queryFields: QuerySpecField[] = [
+  {
+    name: &quot;name&quot;,
+    label: &quot;Name&quot;,
+    type: &quot;string&quot;,
+    ops: [&quot;ilike&quot;],
+    placeholder: &quot;Filter by name&quot;,
+  },
+  {
+    name: &quot;status&quot;,
+    label: &quot;Status&quot;,
+    type: &quot;string&quot;,
+    ops: [&quot;eq&quot;],
+    options: [
+      { label: &quot;Healthy&quot;, value: &quot;Healthy&quot; },
+      { label: &quot;Warning&quot;, value: &quot;Warning&quot; },
+      { label: &quot;Critical&quot;, value: &quot;Critical&quot; },
+    ],
+  },
+];
+
+const columns: RemoteDataTableColumn&lt;ExplorerRow&gt;[] = [
+  { id: &quot;name&quot;, header: &quot;Name&quot;, accessorKey: &quot;name&quot; },
+  {
+    id: &quot;status&quot;,
+    header: &quot;Status&quot;,
+    cell: (row) =&gt; (
+      &lt;span className=&quot;inline-flex rounded-full bg-muted px-2 py-0.5 text-xs font-semibold&quot;&gt;
+        {row.status}
+      &lt;/span&gt;
+    ),
+  },
+  { id: &quot;updated&quot;, header: &quot;Last update&quot;, accessorKey: &quot;updated&quot; },
+];
+
+const code = `import { useState, useMemo } from &quot;react&quot;;
+import {
+  ExpandableAlert,
+  ListPanel,
+  RemoteDataTable,
+  useListPanel,
+  useRemoteDataTable,
+  ValueCard,
+  ValueItem,
+  ValueText,
+} from &quot;@pautena/react-design-system&quot;;
+import type { QuerySpecField, RemoteDataTableColumn } from &quot;@pautena/react-design-system&quot;;
+
+const dataSets = {
+  accounts: [
+    { id: &quot;acc-1&quot;, name: &quot;Northwind&quot;, status: &quot;Healthy&quot;, updated: &quot;2h ago&quot; },
+    { id: &quot;acc-2&quot;, name: &quot;Umbrella&quot;, status: &quot;Warning&quot;, updated: &quot;1d ago&quot; },
+  ],
+  sessions: [
+    { id: &quot;ses-1&quot;, name: &quot;Mobile SDK&quot;, status: &quot;Healthy&quot;, updated: &quot;20m ago&quot; },
+  ],
+  audits: [
+    { id: &quot;aud-1&quot;, name: &quot;Login policy&quot;, status: &quot;Healthy&quot;, updated: &quot;5h ago&quot; },
+  ],
+};
+
+const queryFields: QuerySpecField[] = [
+  { name: &quot;name&quot;, label: &quot;Name&quot;, type: &quot;string&quot;, ops: [&quot;ilike&quot;], placeholder: &quot;Filter by name&quot; },
+  { name: &quot;status&quot;, label: &quot;Status&quot;, type: &quot;string&quot;, ops: [&quot;eq&quot;], options: [...] },
+];
+
+const columns: RemoteDataTableColumn[] = [
+  { id: &quot;name&quot;, header: &quot;Name&quot;, accessorKey: &quot;name&quot; },
+  { id: &quot;status&quot;, header: &quot;Status&quot;, cell: (row) =&gt; &lt;span&gt;{row.status}&lt;/span&gt; },
+  { id: &quot;updated&quot;, header: &quot;Last update&quot;, accessorKey: &quot;updated&quot; },
+];
+
+function PanelContent() {
+  const selectedItem = useListPanel() ?? &quot;accounts&quot;;
+  const tableState = useRemoteDataTable();
+  const rows = dataSets[selectedItem] ?? dataSets.accounts;
+  const [showAlert, setShowAlert] = useState(true);
+
+  const stats = useMemo(() =&gt; {
+    const healthy = rows.filter((row) =&gt; row.status === &quot;Healthy&quot;).length;
+    const warning = rows.filter((row) =&gt; row.status === &quot;Warning&quot;).length;
+    const critical = rows.filter((row) =&gt; row.status === &quot;Critical&quot;).length;
+    return [
+      { label: &quot;Healthy&quot;, value: healthy },
+      { label: &quot;Warning&quot;, value: warning },
+      { label: &quot;Critical&quot;, value: critical },
+    ];
+  }, [rows]);
+
+  return (
+    &lt;div className=&quot;space-y-4&quot;&gt;
+      {showAlert ? (
+        &lt;ExpandableAlert
+          severity=&quot;info&quot;
+          title=&quot;Query tips&quot;
+          message=&quot;Use the query builder to filter entities before exporting data.&quot;
+          metadata={[&quot;Try status = Warning&quot;, &quot;Combine multiple filters for drill-downs&quot;]}
+          onClose={() =&gt; setShowAlert(false)}
+        /&gt;
+      ) : null}
+
+      &lt;ValueCard&gt;
+        &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
+          {stats.map((stat, index) =&gt; (
+            &lt;ValueItem key={stat.label} size={4} bordered={index !== 0}&gt;
+              &lt;ValueText label={stat.label} value={String(stat.value)} /&gt;
+            &lt;/ValueItem&gt;
+          ))}
+        &lt;/div&gt;
+      &lt;/ValueCard&gt;
+
+      &lt;RemoteDataTable
+        data={rows}
+        columns={columns}
+        pagination={tableState.pagination}
+        onPaginationChange={tableState.onPaginationChange}
+        sorting={tableState.sorting}
+        onSortingChange={tableState.onSortingChange}
+        query={{ fields: queryFields, filters: tableState.filters, onFiltersChange: tableState.onFiltersChange }}
+      /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default function DataExplorer() {
+  return (
+    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+      &lt;div className=&quot;mx-auto w-full max-w-5xl space-y-4&quot;&gt;
+        &lt;header&gt;
+          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+            Data explorer
+          &lt;/p&gt;
+          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;Environment signals&lt;/h1&gt;
+          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+            Browse accounts, sessions, and audit checks with filters.
+          &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;ListPanel
+          items={[
+            { id: &quot;accounts&quot;, text: &quot;Accounts&quot; },
+            { id: &quot;sessions&quot;, text: &quot;Sessions&quot; },
+            { id: &quot;audits&quot;, text: &quot;Audit checks&quot; },
+          ]}
+          defaultSelectedItem=&quot;accounts&quot;
+        &gt;
+          &lt;PanelContent /&gt;
+        &lt;/ListPanel&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}`;
+
+function PanelContent() {
+  const selectedItem = useListPanel() ?? &quot;accounts&quot;;
+  const tableState = useRemoteDataTable();
+  const rows = dataSets[selectedItem] ?? dataSets.accounts;
+  const [showAlert, setShowAlert] = useState(true);
+
+  const stats = useMemo(() =&gt; {
+    const healthy = rows.filter((row) =&gt; row.status === &quot;Healthy&quot;).length;
+    const warning = rows.filter((row) =&gt; row.status === &quot;Warning&quot;).length;
+    const critical = rows.filter((row) =&gt; row.status === &quot;Critical&quot;).length;
+    return [
+      { label: &quot;Healthy&quot;, value: healthy },
+      { label: &quot;Warning&quot;, value: warning },
+      { label: &quot;Critical&quot;, value: critical },
+    ];
+  }, [rows]);
+
+  return (
+    &lt;div className=&quot;space-y-4&quot;&gt;
+      {showAlert ? (
+        &lt;ExpandableAlert
+          severity=&quot;info&quot;
+          title=&quot;Query tips&quot;
+          message=&quot;Use the query builder to filter entities before exporting data.&quot;
+          metadata={[
+            &quot;Try status = Warning&quot;,
+            &quot;Combine multiple filters for drill-downs&quot;,
+          ]}
+          onClose={() =&gt; setShowAlert(false)}
+        /&gt;
+      ) : null}
+
+      &lt;ValueCard&gt;
+        &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
+          {stats.map((stat, index) =&gt; (
+            &lt;ValueItem key={stat.label} size={4} bordered={index !== 0}&gt;
+              &lt;ValueText label={stat.label} value={String(stat.value)} /&gt;
+            &lt;/ValueItem&gt;
+          ))}
+        &lt;/div&gt;
+      &lt;/ValueCard&gt;
+
+      &lt;RemoteDataTable
+        data={rows}
+        columns={columns}
+        pagination={tableState.pagination}
+        onPaginationChange={tableState.onPaginationChange}
+        sorting={tableState.sorting}
+        onSortingChange={tableState.onSortingChange}
+        query={{
+          fields: queryFields,
+          filters: tableState.filters,
+          onFiltersChange: tableState.onFiltersChange,
+        }}
+      /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default {
+  title: &quot;Examples/Data Explorer&quot;,
+  parameters: {
+    layout: &quot;fullscreen&quot;,
+    docs: {
+      source: { code },
+    },
+  },
+  render: () =&gt; (
+    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+      &lt;div className=&quot;mx-auto w-full max-w-5xl space-y-4&quot;&gt;
+        &lt;header&gt;
+          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+            Data explorer
+          &lt;/p&gt;
+          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;Environment signals&lt;/h1&gt;
+          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+            Browse accounts, sessions, and audit checks with filters.
+          &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;ListPanel
+          items={[
+            { id: &quot;accounts&quot;, text: &quot;Accounts&quot; },
+            { id: &quot;sessions&quot;, text: &quot;Sessions&quot; },
+            { id: &quot;audits&quot;, text: &quot;Audit checks&quot; },
+          ]}
+          defaultSelectedItem=&quot;accounts&quot;
+        &gt;
+          &lt;PanelContent /&gt;
+        &lt;/ListPanel&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  ),
+} satisfies Meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import {
+    ExpandableAlert,
+    ListPanel,
+    RemoteDataTable,
+    ValueCard,
+    ValueItem,
+    ValueText,
+} from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; (
+  &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+    &lt;div className=&quot;mx-auto w-full max-w-5xl space-y-4&quot;&gt;
+      &lt;header&gt;
+        &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+          Data explorer
+        &lt;/p&gt;
+        &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;Environment signals&lt;/h1&gt;
+        &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+          Browse accounts, sessions, and audit checks with filters.
+        &lt;/p&gt;
+      &lt;/header&gt;
+
+      &lt;ListPanel
+        items={[
+          { id: &quot;accounts&quot;, text: &quot;Accounts&quot; },
+          { id: &quot;sessions&quot;, text: &quot;Sessions&quot; },
+          { id: &quot;audits&quot;, text: &quot;Audit checks&quot; },
+        ]}
+        defaultSelectedItem=&quot;accounts&quot;
+      &gt;
+        &lt;PanelContent /&gt;
+      &lt;/ListPanel&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+);</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
   no-error 
   no-info 
   no-story-error"
@@ -2175,9 +3058,9 @@ children?: React.ReactNode</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateRangeCalendar</h2>
       <div class="badges">
-        <label for="c-12-inputs-daterangecalendar-props" class="badge ok as-toggle">2 prop types</label>
+        <label for="c-14-inputs-daterangecalendar-props" class="badge ok as-toggle">2 prop types</label>
         
-        <label for="c-12-inputs-daterangecalendar-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-14-inputs-daterangecalendar-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/inputs/date-range-calendar/date-range-calendar.stories.tsx">inputs-daterangecalendar · ./src/components/inputs/date-range-calendar/date-range-calendar.stories.tsx</div>
@@ -2189,8 +3072,8 @@ children?: React.ReactNode</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-12-inputs-daterangecalendar-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-12-inputs-daterangecalendar-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-14-inputs-daterangecalendar-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-14-inputs-daterangecalendar-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2256,9 +3139,9 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DateRangePicker</h2>
       <div class="badges">
-        <label for="c-13-inputs-daterangepicker-props" class="badge ok as-toggle">6 prop types</label>
+        <label for="c-15-inputs-daterangepicker-props" class="badge ok as-toggle">6 prop types</label>
         
-        <label for="c-13-inputs-daterangepicker-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-15-inputs-daterangepicker-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/inputs/date-range-picker/date-range-picker.stories.tsx">inputs-daterangepicker · ./src/components/inputs/date-range-picker/date-range-picker.stories.tsx</div>
@@ -2270,8 +3153,8 @@ onValueChange: (value: DateRange, updatedIndex: number) =&gt; void</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-13-inputs-daterangepicker-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-13-inputs-daterangepicker-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-15-inputs-daterangepicker-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-15-inputs-daterangepicker-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2360,9 +3243,9 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-err"></span> DialogDemo</h2>
       <div class="badges">
-        <label for="c-14-dialogs-dialog-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-14-dialogs-dialog-info" class="badge info as-toggle">1 info</label>
-        <label for="c-14-dialogs-dialog-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-16-dialogs-dialog-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-16-dialogs-dialog-info" class="badge info as-toggle">1 info</label>
+        <label for="c-16-dialogs-dialog-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/dialogs/dialog/dialog.stories.tsx">dialogs-dialog · ./src/components/dialogs/dialog/dialog.stories.tsx</div>
@@ -2372,9 +3255,9 @@ size?: &quot;small&quot; | &quot;medium&quot; = &quot;medium&quot;</code></pre>
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-14-dialogs-dialog-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-14-dialogs-dialog-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-14-dialogs-dialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-16-dialogs-dialog-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-16-dialogs-dialog-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-16-dialogs-dialog-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -2487,7 +3370,7 @@ export const Default: Story = {
       <div class="badges">
         
         
-        <label for="c-15-navigation-drawer-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-17-navigation-drawer-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/navigation/drawer/drawer.stories.tsx">navigation-drawer · ./src/components/navigation/drawer/drawer.stories.tsx</div>
@@ -2499,7 +3382,7 @@ export const Default: Story = {
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-15-navigation-drawer-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-17-navigation-drawer-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -2548,9 +3431,9 @@ export const Default: Story = {
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerAppBar</h2>
       <div class="badges">
-        <label for="c-16-navigation-drawerappbar-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-18-navigation-drawerappbar-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-16-navigation-drawerappbar-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-18-navigation-drawerappbar-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/navigation/drawer-app-bar/drawer-app-bar.stories.tsx">navigation-drawerappbar · ./src/components/navigation/drawer-app-bar/drawer-app-bar.stories.tsx</div>
@@ -2562,8 +3445,8 @@ export const Default: Story = {
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-16-navigation-drawerappbar-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-16-navigation-drawerappbar-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-18-navigation-drawerappbar-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-18-navigation-drawerappbar-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2632,9 +3515,9 @@ title?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerContent</h2>
       <div class="badges">
-        <label for="c-17-navigation-drawercontent-props" class="badge ok as-toggle">1 prop type</label>
+        <label for="c-19-navigation-drawercontent-props" class="badge ok as-toggle">1 prop type</label>
         
-        <label for="c-17-navigation-drawercontent-stories" class="badge ok as-toggle">3 stories</label>
+        <label for="c-19-navigation-drawercontent-stories" class="badge ok as-toggle">3 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/navigation/drawer-content/drawer-content.stories.tsx">navigation-drawercontent · ./src/components/navigation/drawer-content/drawer-content.stories.tsx</div>
@@ -2646,8 +3529,8 @@ title?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-17-navigation-drawercontent-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-17-navigation-drawercontent-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-19-navigation-drawercontent-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-19-navigation-drawercontent-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2729,10 +3612,10 @@ navigation: DrawerNavigationItem[]</code></pre>
       <div class="badges">
         
         
-        <label for="c-18-navigation-drawer-demo-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-20-examples-drawer-demo-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
-    <div class="meta" title="./src/components/navigation/drawer/drawer-demo.stories.tsx">navigation-drawer-demo · ./src/components/navigation/drawer/drawer-demo.stories.tsx</div>
+    <div class="meta" title="./src/stories/examples/drawer-demo.stories.tsx">examples-drawer-demo · ./src/stories/examples/drawer-demo.stories.tsx</div>
     
     <div class="hint">Drawer navigation container.</div>
     
@@ -2741,7 +3624,7 @@ navigation: DrawerNavigationItem[]</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-18-navigation-drawer-demo-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-20-examples-drawer-demo-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -2825,9 +3708,9 @@ navigation: DrawerNavigationItem[]</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerItem</h2>
       <div class="badges">
-        <label for="c-19-navigation-draweritem-props" class="badge ok as-toggle">3 prop types</label>
+        <label for="c-21-navigation-draweritem-props" class="badge ok as-toggle">3 prop types</label>
         
-        <label for="c-19-navigation-draweritem-stories" class="badge ok as-toggle">2 stories</label>
+        <label for="c-21-navigation-draweritem-stories" class="badge ok as-toggle">2 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/navigation/drawer-item/drawer-item.stories.tsx">navigation-draweritem · ./src/components/navigation/drawer-item/drawer-item.stories.tsx</div>
@@ -2839,8 +3722,8 @@ navigation: DrawerNavigationItem[]</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-19-navigation-draweritem-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-19-navigation-draweritem-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-21-navigation-draweritem-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-21-navigation-draweritem-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -2926,9 +3809,9 @@ import { Folder } from "lucide-react";</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> DrawerLayout</h2>
       <div class="badges">
-        <label for="c-20-layouts-drawerlayout-props" class="badge ok as-toggle">11 prop types</label>
+        <label for="c-22-layouts-drawerlayout-props" class="badge ok as-toggle">11 prop types</label>
         
-        <label for="c-20-layouts-drawerlayout-stories" class="badge ok as-toggle">5 stories</label>
+        <label for="c-22-layouts-drawerlayout-stories" class="badge ok as-toggle">5 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/layouts/drawer-layout/drawer-layout.stories.tsx">layouts-drawerlayout · ./src/components/layouts/drawer-layout/drawer-layout.stories.tsx</div>
@@ -2940,8 +3823,8 @@ import { Folder } from "lucide-react";</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-20-layouts-drawerlayout-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-20-layouts-drawerlayout-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-22-layouts-drawerlayout-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-22-layouts-drawerlayout-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -3109,7 +3992,7 @@ title: string</code></pre>
       <div class="badges">
         
         
-        <label for="c-21-navigation-drawersubheader-stories" class="badge ok as-toggle">1 story</label>
+        <label for="c-23-navigation-drawersubheader-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/components/navigation/drawer-subheader/drawer-subheader.stories.tsx">navigation-drawersubheader · ./src/components/navigation/drawer-subheader/drawer-subheader.stories.tsx</div>
@@ -3121,7 +4004,7 @@ title: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-21-navigation-drawersubheader-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-23-navigation-drawersubheader-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -3157,957 +4040,6 @@ title: string</code></pre>
 </article>
 <article
   class="card 
-  has-error 
-  has-info 
-  has-story-error"
-  role="listitem"
-  aria-label="Example">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-err"></span> Example</h2>
-      <div class="badges">
-        <label for="c-22-examples-dashboard-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-22-examples-dashboard-info" class="badge info as-toggle">1 info</label>
-        <label for="c-22-examples-dashboard-stories" class="badge err as-toggle">1/1 story errors</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/stories/examples/dashboard.stories.tsx">examples-dashboard · ./src/stories/examples/dashboard.stories.tsx</div>
-    
-    
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-22-examples-dashboard-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-22-examples-dashboard-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-22-examples-dashboard-stories" class="tg tg-stories" type="checkbox" hidden />
-  
-
-  <div class="panels">
-    
-        <div class="panel panel-err">
-          
-    <div class="note err">
-      <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>No component file found for the &quot;Example&quot; component.
-  240 | );
-  241 |
-&gt; 242 | export default {
-      | ^
-  243 |   title: &quot;Examples/Dashboard&quot;,
-  244 |   component: Example,
-  245 |   parameters: {
-
-./src/stories/examples/dashboard.stories.tsx:
-import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
-import { BarChart3, LayoutDashboard, Users } from &quot;lucide-react&quot;;
-import { useMemo } from &quot;react&quot;;
-import {
-  Board,
-  Button,
-  DrawerLayout,
-  type DrawerNavigation,
-  Header,
-  NotificationCenterProvider,
-  type QuerySpecField,
-  RemoteDataTable,
-  type RemoteDataTableColumn,
-  useNotificationCenter,
-  useRemoteDataTable,
-  ValueCard,
-  ValueItem,
-  ValueText,
-} from &quot;@/index&quot;;
-
-type UserRow = {
-  id: string;
-  name: string;
-  role: string;
-  status: &quot;Active&quot; | &quot;Pending&quot; | &quot;Disabled&quot;;
-  lastActive: string;
-};
-
-const users: UserRow[] = [
-  {
-    id: &quot;u-1&quot;,
-    name: &quot;Ava Torres&quot;,
-    role: &quot;Admin&quot;,
-    status: &quot;Active&quot;,
-    lastActive: &quot;2h ago&quot;,
-  },
-  {
-    id: &quot;u-2&quot;,
-    name: &quot;Noah Rivera&quot;,
-    role: &quot;Analyst&quot;,
-    status: &quot;Pending&quot;,
-    lastActive: &quot;6h ago&quot;,
-  },
-  {
-    id: &quot;u-3&quot;,
-    name: &quot;Liam Chen&quot;,
-    role: &quot;Manager&quot;,
-    status: &quot;Active&quot;,
-    lastActive: &quot;1d ago&quot;,
-  },
-  {
-    id: &quot;u-4&quot;,
-    name: &quot;Sofia Patel&quot;,
-    role: &quot;Developer&quot;,
-    status: &quot;Disabled&quot;,
-    lastActive: &quot;5d ago&quot;,
-  },
-  {
-    id: &quot;u-5&quot;,
-    name: &quot;Mia García&quot;,
-    role: &quot;Support&quot;,
-    status: &quot;Active&quot;,
-    lastActive: &quot;12h ago&quot;,
-  },
-];
-
-const navigation: DrawerNavigation = [
-  { kind: &quot;header&quot;, id: &quot;main&quot;, text: &quot;Overview&quot; },
-  {
-    kind: &quot;link&quot;,
-    id: &quot;dashboard&quot;,
-    text: &quot;Dashboard&quot;,
-    href: &quot;#&quot;,
-    icon: &lt;LayoutDashboard className=&quot;h-4 w-4&quot; aria-hidden=&quot;true&quot; /&gt;,
-  },
-  {
-    kind: &quot;link&quot;,
-    id: &quot;users&quot;,
-    text: &quot;Users&quot;,
-    href: &quot;#&quot;,
-    icon: &lt;Users className=&quot;h-4 w-4&quot; aria-hidden=&quot;true&quot; /&gt;,
-  },
-  {
-    kind: &quot;collapsable&quot;,
-    id: &quot;reports&quot;,
-    text: &quot;Reports&quot;,
-    icon: &lt;BarChart3 className=&quot;h-4 w-4&quot; aria-hidden=&quot;true&quot; /&gt;,
-    items: [
-      { kind: &quot;link&quot;, id: &quot;sales&quot;, text: &quot;Sales&quot;, href: &quot;#&quot; },
-      { kind: &quot;link&quot;, id: &quot;retention&quot;, text: &quot;Retention&quot;, href: &quot;#&quot; },
-    ],
-  },
-];
-
-const queryFields: QuerySpecField[] = [
-  {
-    name: &quot;name&quot;,
-    label: &quot;Name&quot;,
-    type: &quot;string&quot;,
-    ops: [&quot;ilike&quot;],
-    placeholder: &quot;Search by name&quot;,
-  },
-  {
-    name: &quot;status&quot;,
-    label: &quot;Status&quot;,
-    type: &quot;string&quot;,
-    ops: [&quot;eq&quot;],
-    options: [
-      { label: &quot;Active&quot;, value: &quot;Active&quot; },
-      { label: &quot;Pending&quot;, value: &quot;Pending&quot; },
-      { label: &quot;Disabled&quot;, value: &quot;Disabled&quot; },
-    ],
-  },
-];
-
-const columns: RemoteDataTableColumn&lt;UserRow&gt;[] = [
-  { id: &quot;name&quot;, header: &quot;Name&quot;, accessorKey: &quot;name&quot; },
-  { id: &quot;role&quot;, header: &quot;Role&quot;, accessorKey: &quot;role&quot; },
-  {
-    id: &quot;status&quot;,
-    header: &quot;Status&quot;,
-    cell: (row) =&gt; (
-      &lt;span className=&quot;inline-flex rounded-full bg-muted px-2 py-0.5 text-xs font-semibold text-foreground&quot;&gt;
-        {row.status}
-      &lt;/span&gt;
-    ),
-  },
-  { id: &quot;lastActive&quot;, header: &quot;Last active&quot;, accessorKey: &quot;lastActive&quot; },
-];
-
-const DashboardContent = () =&gt; {
-  const tableState = useRemoteDataTable({
-    initialPagination: { pageSize: 5 },
-  });
-  const { toast } = useNotificationCenter();
-
-  const metrics = useMemo(
-    () =&gt; [
-      { label: &quot;Active users&quot;, value: &quot;1,284&quot; },
-      { label: &quot;Open tickets&quot;, value: &quot;32&quot; },
-      { label: &quot;Deployments&quot;, value: &quot;14&quot; },
-    ],
-    [],
-  );
-
-  return (
-    &lt;div className=&quot;space-y-6 p-6&quot;&gt;
-      &lt;Header
-        title=&quot;Operations dashboard&quot;
-        subtitle=&quot;Monitor usage, incidents, and activity&quot;
-        actions={[
-          {
-            id: &quot;notify&quot;,
-            text: &quot;Send update&quot;,
-            onClick: () =&gt; toast.success(&quot;Update sent to your team.&quot;),
-            color: &quot;primary&quot;,
-            variant: &quot;contained&quot;,
-          },
-        ]}
-        breadcrumbs={[
-          { id: &quot;home&quot;, text: &quot;Home&quot;, link: &quot;#&quot; },
-          { id: &quot;ops&quot;, text: &quot;Operations&quot;, link: &quot;#&quot; },
-        ]}
-        border
-      /&gt;
-
-      &lt;div className=&quot;grid gap-6 lg:grid-cols-[2fr_1fr]&quot;&gt;
-        &lt;div className=&quot;space-y-6&quot;&gt;
-          &lt;ValueCard&gt;
-            &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
-              {metrics.map((metric, index) =&gt; (
-                &lt;ValueItem key={metric.label} size={4} bordered={index !== 0}&gt;
-                  &lt;ValueText label={metric.label} value={metric.value} /&gt;
-                &lt;/ValueItem&gt;
-              ))}
-            &lt;/div&gt;
-          &lt;/ValueCard&gt;
-
-          &lt;RemoteDataTable
-            data={users}
-            columns={columns}
-            pagination={tableState.pagination}
-            onPaginationChange={tableState.onPaginationChange}
-            sorting={tableState.sorting}
-            onSortingChange={tableState.onSortingChange}
-            query={{
-              fields: queryFields,
-              filters: tableState.filters,
-              onFiltersChange: tableState.onFiltersChange,
-            }}
-          /&gt;
-        &lt;/div&gt;
-
-        &lt;div className=&quot;space-y-4&quot;&gt;
-          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
-            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;
-              Automation
-            &lt;/h3&gt;
-            &lt;p className=&quot;mt-2 text-base font-semibold&quot;&gt;Deployment key&lt;/p&gt;
-            &lt;Board
-              content={[&quot;ops_live_9fcd2b&quot;, &quot;Rotate every 30 days&quot;]}
-              spacing={1}
-            /&gt;
-            &lt;Button
-              variant=&quot;outline&quot;
-              className=&quot;mt-3 w-full&quot;
-              onClick={() =&gt; toast(&quot;Key copied to clipboard&quot;)}
-            &gt;
-              Copy key
-            &lt;/Button&gt;
-          &lt;/div&gt;
-
-          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
-            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;
-              Activity
-            &lt;/h3&gt;
-            &lt;p className=&quot;mt-2 text-sm text-muted-foreground&quot;&gt;
-              3 alerts resolved · 2 incidents open
-            &lt;/p&gt;
-            &lt;Button
-              variant=&quot;ghost&quot;
-              className=&quot;mt-3 w-full justify-start&quot;
-              onClick={() =&gt; toast(&quot;Opening incidents queue&quot;)}
-            &gt;
-              View incidents
-            &lt;/Button&gt;
-          &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;
-  );
-};
-
-const Example = () =&gt; (
-  &lt;NotificationCenterProvider&gt;
-    &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
-      &lt;DashboardContent /&gt;
-    &lt;/DrawerLayout&gt;
-  &lt;/NotificationCenterProvider&gt;
-);
-
-export default {
-  title: &quot;Examples/Dashboard&quot;,
-  component: Example,
-  parameters: {
-    layout: &quot;fullscreen&quot;,
-  },
-} satisfies Meta&lt;typeof Example&gt;;
-
-type Story = StoryObj&lt;typeof Example&gt;;
-
-export const Default: Story = {};
-</code></pre></div>
-    </div>
-        </div>
-    
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
-    
-    
-        <div class="panel panel-stories">
-          
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
-            </div>
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import { BarChart3, LayoutDashboard, Users } from "lucide-react";
-import {
-    Board,
-    Button,
-    DrawerLayout,
-    Header,
-    NotificationCenterProvider,
-    RemoteDataTable,
-    ValueCard,
-    ValueItem,
-    ValueText,
-} from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  has-error 
-  has-info 
-  has-story-error"
-  role="listitem"
-  aria-label="Example">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-err"></span> Example</h2>
-      <div class="badges">
-        <label for="c-23-examples-data-explorer-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-23-examples-data-explorer-info" class="badge info as-toggle">1 info</label>
-        <label for="c-23-examples-data-explorer-stories" class="badge err as-toggle">1/1 story errors</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/stories/examples/data-explorer.stories.tsx">examples-data-explorer · ./src/stories/examples/data-explorer.stories.tsx</div>
-    
-    
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-23-examples-data-explorer-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-23-examples-data-explorer-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-23-examples-data-explorer-stories" class="tg tg-stories" type="checkbox" hidden />
-  
-
-  <div class="panels">
-    
-        <div class="panel panel-err">
-          
-    <div class="note err">
-      <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>No component file found for the &quot;Example&quot; component.
-  194 | );
-  195 |
-&gt; 196 | export default {
-      | ^
-  197 |   title: &quot;Examples/Data Explorer&quot;,
-  198 |   component: Example,
-  199 |   parameters: {
-
-./src/stories/examples/data-explorer.stories.tsx:
-import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
-import { useMemo, useState } from &quot;react&quot;;
-import {
-  ExpandableAlert,
-  ListPanel,
-  type QuerySpecField,
-  RemoteDataTable,
-  type RemoteDataTableColumn,
-  useListPanel,
-  useRemoteDataTable,
-  ValueCard,
-  ValueItem,
-  ValueText,
-} from &quot;@/index&quot;;
-
-type ExplorerRow = {
-  id: string;
-  name: string;
-  status: &quot;Healthy&quot; | &quot;Warning&quot; | &quot;Critical&quot;;
-  updated: string;
-};
-
-const dataSets: Record&lt;string, ExplorerRow[]&gt; = {
-  accounts: [
-    {
-      id: &quot;acc-1&quot;,
-      name: &quot;Northwind&quot;,
-      status: &quot;Healthy&quot;,
-      updated: &quot;2h ago&quot;,
-    },
-    {
-      id: &quot;acc-2&quot;,
-      name: &quot;Umbrella&quot;,
-      status: &quot;Warning&quot;,
-      updated: &quot;1d ago&quot;,
-    },
-    {
-      id: &quot;acc-3&quot;,
-      name: &quot;Wayne Enterprises&quot;,
-      status: &quot;Critical&quot;,
-      updated: &quot;3d ago&quot;,
-    },
-  ],
-  sessions: [
-    {
-      id: &quot;ses-1&quot;,
-      name: &quot;Mobile SDK&quot;,
-      status: &quot;Healthy&quot;,
-      updated: &quot;20m ago&quot;,
-    },
-    {
-      id: &quot;ses-2&quot;,
-      name: &quot;Edge Proxy&quot;,
-      status: &quot;Warning&quot;,
-      updated: &quot;6h ago&quot;,
-    },
-  ],
-  audits: [
-    {
-      id: &quot;aud-1&quot;,
-      name: &quot;Login policy&quot;,
-      status: &quot;Healthy&quot;,
-      updated: &quot;5h ago&quot;,
-    },
-    {
-      id: &quot;aud-2&quot;,
-      name: &quot;Billing sync&quot;,
-      status: &quot;Critical&quot;,
-      updated: &quot;2d ago&quot;,
-    },
-  ],
-};
-
-const queryFields: QuerySpecField[] = [
-  {
-    name: &quot;name&quot;,
-    label: &quot;Name&quot;,
-    type: &quot;string&quot;,
-    ops: [&quot;ilike&quot;],
-    placeholder: &quot;Filter by name&quot;,
-  },
-  {
-    name: &quot;status&quot;,
-    label: &quot;Status&quot;,
-    type: &quot;string&quot;,
-    ops: [&quot;eq&quot;],
-    options: [
-      { label: &quot;Healthy&quot;, value: &quot;Healthy&quot; },
-      { label: &quot;Warning&quot;, value: &quot;Warning&quot; },
-      { label: &quot;Critical&quot;, value: &quot;Critical&quot; },
-    ],
-  },
-];
-
-const columns: RemoteDataTableColumn&lt;ExplorerRow&gt;[] = [
-  { id: &quot;name&quot;, header: &quot;Name&quot;, accessorKey: &quot;name&quot; },
-  {
-    id: &quot;status&quot;,
-    header: &quot;Status&quot;,
-    cell: (row) =&gt; (
-      &lt;span className=&quot;inline-flex rounded-full bg-muted px-2 py-0.5 text-xs font-semibold&quot;&gt;
-        {row.status}
-      &lt;/span&gt;
-    ),
-  },
-  { id: &quot;updated&quot;, header: &quot;Last update&quot;, accessorKey: &quot;updated&quot; },
-];
-
-const PanelContent = () =&gt; {
-  const selectedItem = useListPanel() ?? &quot;accounts&quot;;
-  const tableState = useRemoteDataTable();
-  const rows = dataSets[selectedItem] ?? dataSets.accounts;
-  const [showAlert, setShowAlert] = useState(true);
-
-  const stats = useMemo(() =&gt; {
-    const healthy = rows.filter((row) =&gt; row.status === &quot;Healthy&quot;).length;
-    const warning = rows.filter((row) =&gt; row.status === &quot;Warning&quot;).length;
-    const critical = rows.filter((row) =&gt; row.status === &quot;Critical&quot;).length;
-
-    return [
-      { label: &quot;Healthy&quot;, value: healthy },
-      { label: &quot;Warning&quot;, value: warning },
-      { label: &quot;Critical&quot;, value: critical },
-    ];
-  }, [rows]);
-
-  return (
-    &lt;div className=&quot;space-y-4&quot;&gt;
-      {showAlert ? (
-        &lt;ExpandableAlert
-          severity=&quot;info&quot;
-          title=&quot;Query tips&quot;
-          message=&quot;Use the query builder to filter entities before exporting data.&quot;
-          metadata={[
-            &quot;Try status = Warning&quot;,
-            &quot;Combine multiple filters for drill-downs&quot;,
-          ]}
-          onClose={() =&gt; setShowAlert(false)}
-        /&gt;
-      ) : null}
-
-      &lt;ValueCard&gt;
-        &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
-          {stats.map((stat, index) =&gt; (
-            &lt;ValueItem key={stat.label} size={4} bordered={index !== 0}&gt;
-              &lt;ValueText label={stat.label} value={String(stat.value)} /&gt;
-            &lt;/ValueItem&gt;
-          ))}
-        &lt;/div&gt;
-      &lt;/ValueCard&gt;
-
-      &lt;RemoteDataTable
-        data={rows}
-        columns={columns}
-        pagination={tableState.pagination}
-        onPaginationChange={tableState.onPaginationChange}
-        sorting={tableState.sorting}
-        onSortingChange={tableState.onSortingChange}
-        query={{
-          fields: queryFields,
-          filters: tableState.filters,
-          onFiltersChange: tableState.onFiltersChange,
-        }}
-      /&gt;
-    &lt;/div&gt;
-  );
-};
-
-const Example = () =&gt; (
-  &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
-    &lt;div className=&quot;mx-auto w-full max-w-5xl space-y-4&quot;&gt;
-      &lt;header&gt;
-        &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
-          Data explorer
-        &lt;/p&gt;
-        &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;Environment signals&lt;/h1&gt;
-        &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
-          Browse accounts, sessions, and audit checks with filters.
-        &lt;/p&gt;
-      &lt;/header&gt;
-
-      &lt;ListPanel
-        items={[
-          { id: &quot;accounts&quot;, text: &quot;Accounts&quot; },
-          { id: &quot;sessions&quot;, text: &quot;Sessions&quot; },
-          { id: &quot;audits&quot;, text: &quot;Audit checks&quot; },
-        ]}
-        defaultSelectedItem=&quot;accounts&quot;
-      &gt;
-        &lt;PanelContent /&gt;
-      &lt;/ListPanel&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-);
-
-export default {
-  title: &quot;Examples/Data Explorer&quot;,
-  component: Example,
-  parameters: {
-    layout: &quot;fullscreen&quot;,
-  },
-} satisfies Meta&lt;typeof Example&gt;;
-
-type Story = StoryObj&lt;typeof Example&gt;;
-
-export const Default: Story = {};
-</code></pre></div>
-    </div>
-        </div>
-    
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
-    
-    
-        <div class="panel panel-stories">
-          
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
-            </div>
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import {
-    ExpandableAlert,
-    ListPanel,
-    RemoteDataTable,
-    ValueCard,
-    ValueItem,
-    ValueText,
-} from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  has-error 
-  has-info 
-  has-story-error"
-  role="listitem"
-  aria-label="Example">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-err"></span> Example</h2>
-      <div class="badges">
-        <label for="c-24-examples-form-wizard-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-24-examples-form-wizard-info" class="badge info as-toggle">1 info</label>
-        <label for="c-24-examples-form-wizard-stories" class="badge err as-toggle">1/1 story errors</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/stories/examples/form-wizard.stories.tsx">examples-form-wizard · ./src/stories/examples/form-wizard.stories.tsx</div>
-    
-    
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-24-examples-form-wizard-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-24-examples-form-wizard-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-24-examples-form-wizard-stories" class="tg tg-stories" type="checkbox" hidden />
-  
-
-  <div class="panels">
-    
-        <div class="panel panel-err">
-          
-    <div class="note err">
-      <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>No component file found for the &quot;Example&quot; component.
-  208 | };
-  209 |
-&gt; 210 | export default {
-      | ^
-  211 |   title: &quot;Examples/Form Wizard&quot;,
-  212 |   component: Example,
-  213 |   parameters: {
-
-./src/stories/examples/form-wizard.stories.tsx:
-import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
-import { useMemo, useState } from &quot;react&quot;;
-import {
-  Autocomplete,
-  Button,
-  ConfirmDialog,
-  FormDialog,
-  Select,
-  TabCard,
-  TabCardPanel,
-  TextField,
-} from &quot;@/index&quot;;
-
-const tabs = [{ text: &quot;Profile&quot; }, { text: &quot;Assignment&quot; }, { text: &quot;Review&quot; }];
-
-const roleOptions = [
-  { label: &quot;Engineer&quot;, value: &quot;engineer&quot; },
-  { label: &quot;Designer&quot;, value: &quot;designer&quot; },
-  { label: &quot;Product&quot;, value: &quot;product&quot; },
-];
-
-const teamOptions = [&quot;Platform&quot;, &quot;Growth&quot;, &quot;Data&quot;, &quot;Support&quot;];
-
-const Example = () =&gt; {
-  const [formState, setFormState] = useState({
-    name: &quot;&quot;,
-    email: &quot;&quot;,
-    role: &quot;engineer&quot;,
-    team: &quot;Platform&quot;,
-    location: &quot;Remote&quot;,
-  });
-  const [locations, setLocations] = useState([&quot;Remote&quot;, &quot;Barcelona&quot;, &quot;Berlin&quot;]);
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [showLocationDialog, setShowLocationDialog] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-
-  const reviewRows = useMemo(
-    () =&gt; [
-      { label: &quot;Name&quot;, value: formState.name || &quot;—&quot; },
-      { label: &quot;Email&quot;, value: formState.email || &quot;—&quot; },
-      { label: &quot;Role&quot;, value: formState.role },
-      { label: &quot;Team&quot;, value: formState.team },
-      { label: &quot;Location&quot;, value: formState.location },
-    ],
-    [formState],
-  );
-
-  return (
-    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
-      &lt;div className=&quot;mx-auto flex w-full max-w-3xl flex-col gap-6&quot;&gt;
-        &lt;header className=&quot;space-y-2&quot;&gt;
-          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
-            Onboarding flow
-          &lt;/p&gt;
-          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;New employee wizard&lt;/h1&gt;
-          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
-            Collect profile details, team assignment, and confirm submission.
-          &lt;/p&gt;
-        &lt;/header&gt;
-
-        &lt;TabCard tabs={tabs}&gt;
-          &lt;TabCardPanel index={0}&gt;
-            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
-              &lt;TextField
-                label=&quot;Full name&quot;
-                placeholder=&quot;Jane Doe&quot;
-                value={formState.name}
-                onChange={(event) =&gt;
-                  setFormState((prev) =&gt; ({
-                    ...prev,
-                    name: event.target.value,
-                  }))
-                }
-                fullWidth
-              /&gt;
-              &lt;TextField
-                label=&quot;Email&quot;
-                placeholder=&quot;jane@company.com&quot;
-                value={formState.email}
-                onChange={(event) =&gt;
-                  setFormState((prev) =&gt; ({
-                    ...prev,
-                    email: event.target.value,
-                  }))
-                }
-                helperText=&quot;We&#39;ll send a welcome email with setup steps.&quot;
-                fullWidth
-              /&gt;
-            &lt;/div&gt;
-          &lt;/TabCardPanel&gt;
-
-          &lt;TabCardPanel index={1}&gt;
-            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
-              &lt;Select
-                label=&quot;Role&quot;
-                value={formState.role}
-                options={roleOptions}
-                onChange={(event) =&gt;
-                  setFormState((prev) =&gt; ({
-                    ...prev,
-                    role: event.target.value,
-                  }))
-                }
-                fullWidth
-              /&gt;
-              &lt;Autocomplete
-                label=&quot;Team&quot;
-                options={teamOptions}
-                value={formState.team}
-                onChangeValue={(_, value) =&gt;
-                  setFormState((prev) =&gt; ({ ...prev, team: value }))
-                }
-              /&gt;
-              &lt;Select
-                label=&quot;Location&quot;
-                value={formState.location}
-                options={locations.map((location) =&gt; ({
-                  label: location,
-                  value: location,
-                }))}
-                onChange={(event) =&gt;
-                  setFormState((prev) =&gt; ({
-                    ...prev,
-                    location: event.target.value,
-                  }))
-                }
-                fullWidth
-              /&gt;
-              &lt;Button
-                variant=&quot;outline&quot;
-                className=&quot;w-fit&quot;
-                onClick={() =&gt; setShowLocationDialog(true)}
-              &gt;
-                Add office
-              &lt;/Button&gt;
-            &lt;/div&gt;
-          &lt;/TabCardPanel&gt;
-
-          &lt;TabCardPanel index={2}&gt;
-            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
-              &lt;div className=&quot;rounded-lg border border-border bg-card p-4&quot;&gt;
-                &lt;h2 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;
-                  Review
-                &lt;/h2&gt;
-                &lt;dl className=&quot;mt-3 space-y-2&quot;&gt;
-                  {reviewRows.map((row) =&gt; (
-                    &lt;div
-                      key={row.label}
-                      className=&quot;flex items-center justify-between text-sm&quot;
-                    &gt;
-                      &lt;dt className=&quot;text-muted-foreground&quot;&gt;{row.label}&lt;/dt&gt;
-                      &lt;dd className=&quot;font-medium text-foreground&quot;&gt;
-                        {row.value}
-                      &lt;/dd&gt;
-                    &lt;/div&gt;
-                  ))}
-                &lt;/dl&gt;
-              &lt;/div&gt;
-
-              &lt;Button variant=&quot;primary&quot; onClick={() =&gt; setShowConfirm(true)}&gt;
-                Submit request
-              &lt;/Button&gt;
-              {submitted ? (
-                &lt;p className=&quot;text-sm text-green-600&quot;&gt;
-                  Request submitted successfully.
-                &lt;/p&gt;
-              ) : null}
-            &lt;/div&gt;
-          &lt;/TabCardPanel&gt;
-        &lt;/TabCard&gt;
-      &lt;/div&gt;
-
-      &lt;ConfirmDialog
-        open={showConfirm}
-        title=&quot;Send onboarding request?&quot;
-        onCancel={() =&gt; setShowConfirm(false)}
-        onConfirm={() =&gt; {
-          setShowConfirm(false);
-          setSubmitted(true);
-        }}
-      &gt;
-        The HR team will receive this request and create the new employee.
-      &lt;/ConfirmDialog&gt;
-
-      &lt;FormDialog&lt;{ location: string }&gt;
-        open={showLocationDialog}
-        title=&quot;Add office location&quot;
-        description=&quot;Create a new office entry for onboarding.&quot;
-        onCancel={() =&gt; setShowLocationDialog(false)}
-        onSubmit={(data) =&gt; {
-          if (!data.location) {
-            return;
-          }
-          setLocations((prev) =&gt; [...prev, data.location]);
-          setFormState((prev) =&gt; ({ ...prev, location: data.location }));
-          setShowLocationDialog(false);
-        }}
-      &gt;
-        &lt;TextField
-          name=&quot;location&quot;
-          label=&quot;Office name&quot;
-          placeholder=&quot;Lisbon&quot;
-          fullWidth
-        /&gt;
-      &lt;/FormDialog&gt;
-    &lt;/div&gt;
-  );
-};
-
-export default {
-  title: &quot;Examples/Form Wizard&quot;,
-  component: Example,
-  parameters: {
-    layout: &quot;fullscreen&quot;,
-  },
-} satisfies Meta&lt;typeof Example&gt;;
-
-type Story = StoryObj&lt;typeof Example&gt;;
-
-export const Default: Story = {};
-</code></pre></div>
-    </div>
-        </div>
-    
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
-    
-    
-        <div class="panel panel-stories">
-          
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
-            </div>
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import {
-    Autocomplete,
-    Button,
-    ConfirmDialog,
-    FormDialog,
-    Select,
-    TabCard,
-    TabCardPanel,
-    TextField,
-} from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-        </div>
-  </div>
-</article>
-<article
-  class="card 
   no-error 
   no-info 
   no-story-error"
@@ -4117,9 +4049,9 @@ export const Default: Story = {};
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> ExpandableAlert</h2>
       <div class="badges">
-        <label for="c-25-alerts-expandablealert-props" class="badge ok as-toggle">8 prop types</label>
+        <label for="c-24-alerts-expandablealert-props" class="badge ok as-toggle">8 prop types</label>
         
-        <label for="c-25-alerts-expandablealert-stories" class="badge ok as-toggle">7 stories</label>
+        <label for="c-24-alerts-expandablealert-stories" class="badge ok as-toggle">7 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/feedback/expandable-alert/expandable-alert.stories.tsx">alerts-expandablealert · ./src/components/feedback/expandable-alert/expandable-alert.stories.tsx</div>
@@ -4131,8 +4063,8 @@ export const Default: Story = {};
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-25-alerts-expandablealert-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-25-alerts-expandablealert-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-24-alerts-expandablealert-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-24-alerts-expandablealert-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4323,9 +4255,9 @@ title?: string</code></pre>
     <div class="title">
       <h2><span class="status-dot dot-ok"></span> FormDialog</h2>
       <div class="badges">
-        <label for="c-26-dialogs-formdialog-props" class="badge ok as-toggle">14 prop types</label>
+        <label for="c-25-dialogs-formdialog-props" class="badge ok as-toggle">14 prop types</label>
         
-        <label for="c-26-dialogs-formdialog-stories" class="badge ok as-toggle">4 stories</label>
+        <label for="c-25-dialogs-formdialog-stories" class="badge ok as-toggle">4 stories</label>
       </div>
     </div>
     <div class="meta" title="./src/components/dialogs/form-dialog/form-dialog.stories.tsx">dialogs-formdialog · ./src/components/dialogs/form-dialog/form-dialog.stories.tsx</div>
@@ -4337,8 +4269,8 @@ title?: string</code></pre>
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
   
   
-  <input id="c-26-dialogs-formdialog-stories" class="tg tg-stories" type="checkbox" hidden />
-  <input id="c-26-dialogs-formdialog-props" class="tg tg-props" type="checkbox" hidden />
+  <input id="c-25-dialogs-formdialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-25-dialogs-formdialog-props" class="tg tg-props" type="checkbox" hidden />
 
   <div class="panels">
     
@@ -4479,6 +4411,479 @@ title: ReactNode</code></pre>
               
               
               <pre><code>const CustomButtonText = (args) =&gt; &lt;StoryDialogManager component={FormDialog} args={args} /&gt;;</code></pre>
+            </div>
+        </div>
+  </div>
+</article>
+<article
+  class="card 
+  has-error 
+  has-info 
+  no-story-error"
+  role="listitem"
+  aria-label="FormWizard">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> FormWizard</h2>
+      <div class="badges">
+        <label for="c-26-examples-form-wizard-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-26-examples-form-wizard-info" class="badge info as-toggle">1 info</label>
+        <label for="c-26-examples-form-wizard-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/stories/examples/form-wizard.stories.tsx">examples-form-wizard · ./src/stories/examples/form-wizard.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-26-examples-form-wizard-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-26-examples-form-wizard-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-26-examples-form-wizard-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  368 | }
+  369 |
+&gt; 370 | export default {
+      | ^
+  371 |   title: &quot;Examples/Form Wizard&quot;,
+  372 |   parameters: {
+  373 |     layout: &quot;fullscreen&quot;,
+
+./src/stories/examples/form-wizard.stories.tsx:
+import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
+import { useMemo, useState } from &quot;react&quot;;
+import {
+  Autocomplete,
+  Button,
+  ConfirmDialog,
+  FormDialog,
+  Select,
+  TabCard,
+  TabCardPanel,
+  TextField,
+} from &quot;@/index&quot;;
+
+const tabs = [{ text: &quot;Profile&quot; }, { text: &quot;Assignment&quot; }, { text: &quot;Review&quot; }];
+
+const roleOptions = [
+  { label: &quot;Engineer&quot;, value: &quot;engineer&quot; },
+  { label: &quot;Designer&quot;, value: &quot;designer&quot; },
+  { label: &quot;Product&quot;, value: &quot;product&quot; },
+];
+
+const teamOptions = [&quot;Platform&quot;, &quot;Growth&quot;, &quot;Data&quot;, &quot;Support&quot;];
+
+const code = `import { useMemo, useState } from &quot;react&quot;;
+import {
+  Autocomplete,
+  Button,
+  ConfirmDialog,
+  FormDialog,
+  Select,
+  TabCard,
+  TabCardPanel,
+  TextField,
+} from &quot;@pautena/react-design-system&quot;;
+
+const tabs = [{ text: &quot;Profile&quot; }, { text: &quot;Assignment&quot; }, { text: &quot;Review&quot; }];
+const roleOptions = [
+  { label: &quot;Engineer&quot;, value: &quot;engineer&quot; },
+  { label: &quot;Designer&quot;, value: &quot;designer&quot; },
+  { label: &quot;Product&quot;, value: &quot;product&quot; },
+];
+const teamOptions = [&quot;Platform&quot;, &quot;Growth&quot;, &quot;Data&quot;, &quot;Support&quot;];
+
+function FormWizard() {
+  const [formState, setFormState] = useState({
+    name: &quot;&quot;,
+    email: &quot;&quot;,
+    role: &quot;engineer&quot;,
+    team: &quot;Platform&quot;,
+    location: &quot;Remote&quot;,
+  });
+  const [locations, setLocations] = useState([&quot;Remote&quot;, &quot;Barcelona&quot;, &quot;Berlin&quot;]);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showLocationDialog, setShowLocationDialog] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const reviewRows = useMemo(() =&gt; [
+    { label: &quot;Name&quot;, value: formState.name || &quot;—&quot; },
+    { label: &quot;Email&quot;, value: formState.email || &quot;—&quot; },
+    { label: &quot;Role&quot;, value: formState.role },
+    { label: &quot;Team&quot;, value: formState.team },
+    { label: &quot;Location&quot;, value: formState.location },
+  ], [formState]);
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+      &lt;div className=&quot;mx-auto flex w-full max-w-3xl flex-col gap-6&quot;&gt;
+        &lt;header className=&quot;space-y-2&quot;&gt;
+          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+            Onboarding flow
+          &lt;/p&gt;
+          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;New employee wizard&lt;/h1&gt;
+          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+            Collect profile details, team assignment, and confirm submission.
+          &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;TabCard tabs={tabs}&gt;
+          &lt;TabCardPanel index={0}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;TextField
+                label=&quot;Full name&quot;
+                placeholder=&quot;Jane Doe&quot;
+                value={formState.name}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, name: event.target.value }))}
+                fullWidth
+              /&gt;
+              &lt;TextField
+                label=&quot;Email&quot;
+                placeholder=&quot;jane@company.com&quot;
+                value={formState.email}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, email: event.target.value }))}
+                helperText=&quot;We&#39;ll send a welcome email with setup steps.&quot;
+                fullWidth
+              /&gt;
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+
+          &lt;TabCardPanel index={1}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;Select
+                label=&quot;Role&quot;
+                value={formState.role}
+                options={roleOptions}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, role: event.target.value }))}
+                fullWidth
+              /&gt;
+              &lt;Autocomplete
+                label=&quot;Team&quot;
+                options={teamOptions}
+                value={formState.team}
+                onChangeValue={(_, value) =&gt; setFormState((prev) =&gt; ({ ...prev, team: value }))}
+              /&gt;
+              &lt;Select
+                label=&quot;Location&quot;
+                value={formState.location}
+                options={locations.map((location) =&gt; ({ label: location, value: location }))}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, location: event.target.value }))}
+                fullWidth
+              /&gt;
+              &lt;Button variant=&quot;outline&quot; className=&quot;w-fit&quot; onClick={() =&gt; setShowLocationDialog(true)}&gt;
+                Add office
+              &lt;/Button&gt;
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+
+          &lt;TabCardPanel index={2}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;div className=&quot;rounded-lg border border-border bg-card p-4&quot;&gt;
+                &lt;h2 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;Review&lt;/h2&gt;
+                &lt;dl className=&quot;mt-3 space-y-2&quot;&gt;
+                  {reviewRows.map((row) =&gt; (
+                    &lt;div key={row.label} className=&quot;flex items-center justify-between text-sm&quot;&gt;
+                      &lt;dt className=&quot;text-muted-foreground&quot;&gt;{row.label}&lt;/dt&gt;
+                      &lt;dd className=&quot;font-medium text-foreground&quot;&gt;{row.value}&lt;/dd&gt;
+                    &lt;/div&gt;
+                  ))}
+                &lt;/dl&gt;
+              &lt;/div&gt;
+
+              &lt;Button variant=&quot;primary&quot; onClick={() =&gt; setShowConfirm(true)}&gt;
+                Submit request
+              &lt;/Button&gt;
+              {submitted ? (
+                &lt;p className=&quot;text-sm text-green-600&quot;&gt;Request submitted successfully.&lt;/p&gt;
+              ) : null}
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+        &lt;/TabCard&gt;
+      &lt;/div&gt;
+
+      &lt;ConfirmDialog
+        open={showConfirm}
+        title=&quot;Send onboarding request?&quot;
+        onCancel={() =&gt; setShowConfirm(false)}
+        onConfirm={() =&gt; {
+          setShowConfirm(false);
+          setSubmitted(true);
+        }}
+      &gt;
+        The HR team will receive this request and create the new employee.
+      &lt;/ConfirmDialog&gt;
+
+      &lt;FormDialog&lt;{ location: string }&gt;
+        open={showLocationDialog}
+        title=&quot;Add office location&quot;
+        description=&quot;Create a new office entry for onboarding.&quot;
+        onCancel={() =&gt; setShowLocationDialog(false)}
+        onSubmit={(data) =&gt; {
+          if (!data.location) return;
+          setLocations((prev) =&gt; [...prev, data.location]);
+          setFormState((prev) =&gt; ({ ...prev, location: data.location }));
+          setShowLocationDialog(false);
+        }}
+      &gt;
+        &lt;TextField name=&quot;location&quot; label=&quot;Office name&quot; placeholder=&quot;Lisbon&quot; fullWidth /&gt;
+      &lt;/FormDialog&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default FormWizard;`;
+
+function FormWizardContent() {
+  const [formState, setFormState] = useState({
+    name: &quot;&quot;,
+    email: &quot;&quot;,
+    role: &quot;engineer&quot;,
+    team: &quot;Platform&quot;,
+    location: &quot;Remote&quot;,
+  });
+  const [locations, setLocations] = useState([&quot;Remote&quot;, &quot;Barcelona&quot;, &quot;Berlin&quot;]);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showLocationDialog, setShowLocationDialog] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const reviewRows = useMemo(
+    () =&gt; [
+      { label: &quot;Name&quot;, value: formState.name || &quot;—&quot; },
+      { label: &quot;Email&quot;, value: formState.email || &quot;—&quot; },
+      { label: &quot;Role&quot;, value: formState.role },
+      { label: &quot;Team&quot;, value: formState.team },
+      { label: &quot;Location&quot;, value: formState.location },
+    ],
+    [formState],
+  );
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+      &lt;div className=&quot;mx-auto flex w-full max-w-3xl flex-col gap-6&quot;&gt;
+        &lt;header className=&quot;space-y-2&quot;&gt;
+          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+            Onboarding flow
+          &lt;/p&gt;
+          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;New employee wizard&lt;/h1&gt;
+          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+            Collect profile details, team assignment, and confirm submission.
+          &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;TabCard tabs={tabs}&gt;
+          &lt;TabCardPanel index={0}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;TextField
+                label=&quot;Full name&quot;
+                placeholder=&quot;Jane Doe&quot;
+                value={formState.name}
+                onChange={(event) =&gt;
+                  setFormState((prev) =&gt; ({
+                    ...prev,
+                    name: event.target.value,
+                  }))
+                }
+                fullWidth
+              /&gt;
+              &lt;TextField
+                label=&quot;Email&quot;
+                placeholder=&quot;jane@company.com&quot;
+                value={formState.email}
+                onChange={(event) =&gt;
+                  setFormState((prev) =&gt; ({
+                    ...prev,
+                    email: event.target.value,
+                  }))
+                }
+                helperText=&quot;We&#39;ll send a welcome email with setup steps.&quot;
+                fullWidth
+              /&gt;
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+
+          &lt;TabCardPanel index={1}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;Select
+                label=&quot;Role&quot;
+                value={formState.role}
+                options={roleOptions}
+                onChange={(event) =&gt;
+                  setFormState((prev) =&gt; ({
+                    ...prev,
+                    role: event.target.value,
+                  }))
+                }
+                fullWidth
+              /&gt;
+              &lt;Autocomplete
+                label=&quot;Team&quot;
+                options={teamOptions}
+                value={formState.team}
+                onChangeValue={(_, value) =&gt;
+                  setFormState((prev) =&gt; ({ ...prev, team: value }))
+                }
+              /&gt;
+              &lt;Select
+                label=&quot;Location&quot;
+                value={formState.location}
+                options={locations.map((location) =&gt; ({
+                  label: location,
+                  value: location,
+                }))}
+                onChange={(event) =&gt;
+                  setFormState((prev) =&gt; ({
+                    ...prev,
+                    location: event.target.value,
+                  }))
+                }
+                fullWidth
+              /&gt;
+              &lt;Button
+                variant=&quot;outline&quot;
+                className=&quot;w-fit&quot;
+                onClick={() =&gt; setShowLocationDialog(true)}
+              &gt;
+                Add office
+              &lt;/Button&gt;
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+
+          &lt;TabCardPanel index={2}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;div className=&quot;rounded-lg border border-border bg-card p-4&quot;&gt;
+                &lt;h2 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;
+                  Review
+                &lt;/h2&gt;
+                &lt;dl className=&quot;mt-3 space-y-2&quot;&gt;
+                  {reviewRows.map((row) =&gt; (
+                    &lt;div
+                      key={row.label}
+                      className=&quot;flex items-center justify-between text-sm&quot;
+                    &gt;
+                      &lt;dt className=&quot;text-muted-foreground&quot;&gt;{row.label}&lt;/dt&gt;
+                      &lt;dd className=&quot;font-medium text-foreground&quot;&gt;
+                        {row.value}
+                      &lt;/dd&gt;
+                    &lt;/div&gt;
+                  ))}
+                &lt;/dl&gt;
+              &lt;/div&gt;
+
+              &lt;Button variant=&quot;primary&quot; onClick={() =&gt; setShowConfirm(true)}&gt;
+                Submit request
+              &lt;/Button&gt;
+              {submitted ? (
+                &lt;p className=&quot;text-sm text-green-600&quot;&gt;
+                  Request submitted successfully.
+                &lt;/p&gt;
+              ) : null}
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+        &lt;/TabCard&gt;
+      &lt;/div&gt;
+
+      &lt;ConfirmDialog
+        open={showConfirm}
+        title=&quot;Send onboarding request?&quot;
+        onCancel={() =&gt; setShowConfirm(false)}
+        onConfirm={() =&gt; {
+          setShowConfirm(false);
+          setSubmitted(true);
+        }}
+      &gt;
+        The HR team will receive this request and create the new employee.
+      &lt;/ConfirmDialog&gt;
+
+      &lt;FormDialog&lt;{ location: string }&gt;
+        open={showLocationDialog}
+        title=&quot;Add office location&quot;
+        description=&quot;Create a new office entry for onboarding.&quot;
+        onCancel={() =&gt; setShowLocationDialog(false)}
+        onSubmit={(data) =&gt; {
+          if (!data.location) {
+            return;
+          }
+          setLocations((prev) =&gt; [...prev, data.location]);
+          setFormState((prev) =&gt; ({ ...prev, location: data.location }));
+          setShowLocationDialog(false);
+        }}
+      &gt;
+        &lt;TextField
+          name=&quot;location&quot;
+          label=&quot;Office name&quot;
+          placeholder=&quot;Lisbon&quot;
+          fullWidth
+        /&gt;
+      &lt;/FormDialog&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default {
+  title: &quot;Examples/Form Wizard&quot;,
+  parameters: {
+    layout: &quot;fullscreen&quot;,
+    docs: {
+      source: { code },
+    },
+  },
+  render: () =&gt; &lt;FormWizardContent /&gt;,
+} satisfies Meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import {
+    Autocomplete,
+    Button,
+    ConfirmDialog,
+    FormDialog,
+    Select,
+    TabCard,
+    TabCardPanel,
+    TextField,
+} from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;FormWizardContent /&gt;;</code></pre>
             </div>
         </div>
   </div>
@@ -7553,11 +7958,11 @@ value?: T</code></pre>
     </div>
     <div class="error-groups" role="region" aria-label="Prop type error groups">
         <section class="group">
-          <input id="no-component-import-found-toggle" class="group-tg" type="checkbox" hidden />
-          <label for="no-component-import-found-toggle" class="group-header">
+          <input id="no-component-found-toggle" class="group-tg" type="checkbox" hidden />
+          <label for="no-component-found-toggle" class="group-header">
             <span class="caret">▸</span>
-            <span class="group-title">No component import found</span>
-            <span class="group-count">5</span>
+            <span class="group-title">No component found</span>
+            <span class="group-count">3</span>
           </label>
           <div class="group-cards">
 <article
@@ -7566,139 +7971,14 @@ value?: T</code></pre>
   has-info 
   no-story-error"
   role="listitem"
-  aria-label="DialogDemo">
+  aria-label="Dashboard">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-err"></span> DialogDemo</h2>
+      <h2><span class="status-dot dot-err"></span> Dashboard</h2>
       <div class="badges">
-        <label for="c-error-0-dialogs-dialog-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-error-0-dialogs-dialog-info" class="badge info as-toggle">1 info</label>
-        <label for="c-error-0-dialogs-dialog-stories" class="badge ok as-toggle">1 story</label>
-      </div>
-    </div>
-    <div class="meta" title="./src/components/dialogs/dialog/dialog.stories.tsx">dialogs-dialog · ./src/components/dialogs/dialog/dialog.stories.tsx</div>
-    
-    
-    
-  </div>
-
-  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-error-0-dialogs-dialog-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-error-0-dialogs-dialog-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-error-0-dialogs-dialog-stories" class="tg tg-stories" type="checkbox" hidden />
-  
-
-  <div class="panels">
-    
-        <div class="panel panel-err">
-          
-    <div class="note err">
-      <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>No component file found for the &quot;DialogDemo&quot; component.
-  16 | };
-  17 |
-&gt; 18 | export default {
-     | ^
-  19 |   title: &quot;Dialogs/Dialog&quot;,
-  20 |   component: DialogDemo,
-  21 |   parameters: {
-
-./src/components/dialogs/dialog/dialog.stories.tsx:
-import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
-import type { ComponentProps } from &quot;react&quot;;
-import { useState } from &quot;react&quot;;
-import { Button } from &quot;@/components/inputs/button/button&quot;;
-import { Dialog } from &quot;./dialog&quot;;
-
-const DialogDemo = (args: ComponentProps&lt;typeof Dialog&gt;) =&gt; {
-  const [open, setOpen] = useState(false);
-
-  return (
-    &lt;div&gt;
-      &lt;Button onClick={() =&gt; setOpen(true)}&gt;Open dialog&lt;/Button&gt;
-      &lt;Dialog {...args} open={open} onClose={() =&gt; setOpen(false)} /&gt;
-    &lt;/div&gt;
-  );
-};
-
-export default {
-  title: &quot;Dialogs/Dialog&quot;,
-  component: DialogDemo,
-  parameters: {
-    layout: &quot;centered&quot;,
-  },
-  render: (args) =&gt; &lt;DialogDemo {...args} /&gt;,
-} satisfies Meta&lt;typeof DialogDemo&gt;;
-
-type Story = StoryObj&lt;typeof DialogDemo&gt;;
-
-export const Default: Story = {
-  args: {
-    title: &quot;Dialog title&quot;,
-    description: &quot;Short description for the dialog.&quot;,
-    children: (
-      &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
-        Dialog body content goes here.
-      &lt;/p&gt;
-    ),
-    footer: &lt;Button&gt;Confirm&lt;/Button&gt;,
-  },
-};
-</code></pre></div>
-    </div>
-        </div>
-    
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
-    
-    
-        <div class="panel panel-stories">
-          
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import { Button, Dialog } from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
-            <div class="note ok">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge ok">story ok</span>
-              </div>
-              
-              
-              <pre><code>const Default = () =&gt; &lt;DialogDemo
-    title=&quot;Dialog title&quot;
-    description=&quot;Short description for the dialog.&quot;
-    footer={&lt;Button&gt;Confirm&lt;/Button&gt;}&gt;&lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;Dialog body content goes here.
-              &lt;/p&gt;&lt;/DialogDemo&gt;;</code></pre>
-            </div>
-        </div>
-  </div>
-</article>
-<article
-  class="card 
-  has-error 
-  has-info 
-  has-story-error"
-  role="listitem"
-  aria-label="Example">
-  <div class="head">
-    <div class="title">
-      <h2><span class="status-dot dot-err"></span> Example</h2>
-      <div class="badges">
-        <label for="c-error-1-examples-dashboard-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-error-1-examples-dashboard-info" class="badge info as-toggle">1 info</label>
-        <label for="c-error-1-examples-dashboard-stories" class="badge err as-toggle">1/1 story errors</label>
+        <label for="c-error-0-examples-dashboard-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-0-examples-dashboard-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-0-examples-dashboard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/stories/examples/dashboard.stories.tsx">examples-dashboard · ./src/stories/examples/dashboard.stories.tsx</div>
@@ -7708,9 +7988,9 @@ export const Default: Story = {
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-error-1-examples-dashboard-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-error-1-examples-dashboard-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-error-1-examples-dashboard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-error-0-examples-dashboard-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-0-examples-dashboard-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-0-examples-dashboard-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -7719,14 +7999,14 @@ export const Default: Story = {
           
     <div class="note err">
       <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>No component file found for the &quot;Example&quot; component.
-  240 | );
-  241 |
-&gt; 242 | export default {
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  352 | }
+  353 |
+&gt; 354 | export default {
       | ^
-  243 |   title: &quot;Examples/Dashboard&quot;,
-  244 |   component: Example,
-  245 |   parameters: {
+  355 |   title: &quot;Examples/Dashboard&quot;,
+  356 |   parameters: {
+  357 |     layout: &quot;fullscreen&quot;,
 
 ./src/stories/examples/dashboard.stories.tsx:
 import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
@@ -7802,20 +8082,20 @@ const navigation: DrawerNavigation = [
     id: &quot;dashboard&quot;,
     text: &quot;Dashboard&quot;,
     href: &quot;#&quot;,
-    icon: &lt;LayoutDashboard className=&quot;h-4 w-4&quot; aria-hidden=&quot;true&quot; /&gt;,
+    icon: &lt;LayoutDashboard className=&quot;h-4 w-4&quot; /&gt;,
   },
   {
     kind: &quot;link&quot;,
     id: &quot;users&quot;,
     text: &quot;Users&quot;,
     href: &quot;#&quot;,
-    icon: &lt;Users className=&quot;h-4 w-4&quot; aria-hidden=&quot;true&quot; /&gt;,
+    icon: &lt;Users className=&quot;h-4 w-4&quot; /&gt;,
   },
   {
     kind: &quot;collapsable&quot;,
     id: &quot;reports&quot;,
     text: &quot;Reports&quot;,
-    icon: &lt;BarChart3 className=&quot;h-4 w-4&quot; aria-hidden=&quot;true&quot; /&gt;,
+    icon: &lt;BarChart3 className=&quot;h-4 w-4&quot; /&gt;,
     items: [
       { kind: &quot;link&quot;, id: &quot;sales&quot;, text: &quot;Sales&quot;, href: &quot;#&quot; },
       { kind: &quot;link&quot;, id: &quot;retention&quot;, text: &quot;Retention&quot;, href: &quot;#&quot; },
@@ -7859,10 +8139,130 @@ const columns: RemoteDataTableColumn&lt;UserRow&gt;[] = [
   { id: &quot;lastActive&quot;, header: &quot;Last active&quot;, accessorKey: &quot;lastActive&quot; },
 ];
 
-const DashboardContent = () =&gt; {
-  const tableState = useRemoteDataTable({
-    initialPagination: { pageSize: 5 },
-  });
+const code = `import { BarChart3, LayoutDashboard, Users } from &quot;lucide-react&quot;;
+import { useMemo } from &quot;react&quot;;
+import {
+  Board,
+  Button,
+  DrawerLayout,
+  Header,
+  NotificationCenterProvider,
+  RemoteDataTable,
+  useNotificationCenter,
+  useRemoteDataTable,
+  ValueCard,
+  ValueItem,
+  ValueText,
+} from &quot;@pautena/react-design-system&quot;;
+import type { DrawerNavigation, QuerySpecField, RemoteDataTableColumn } from &quot;@pautena/react-design-system&quot;;
+
+const users = [
+  { id: &quot;u-1&quot;, name: &quot;Ava Torres&quot;, role: &quot;Admin&quot;, status: &quot;Active&quot;, lastActive: &quot;2h ago&quot; },
+  { id: &quot;u-2&quot;, name: &quot;Noah Rivera&quot;, role: &quot;Analyst&quot;, status: &quot;Pending&quot;, lastActive: &quot;6h ago&quot; },
+  { id: &quot;u-3&quot;, name: &quot;Liam Chen&quot;, role: &quot;Manager&quot;, status: &quot;Active&quot;, lastActive: &quot;1d ago&quot; },
+  { id: &quot;u-4&quot;, name: &quot;Sofia Patel&quot;, role: &quot;Developer&quot;, status: &quot;Disabled&quot;, lastActive: &quot;5d ago&quot; },
+  { id: &quot;u-5&quot;, name: &quot;Mia García&quot;, role: &quot;Support&quot;, status: &quot;Active&quot;, lastActive: &quot;12h ago&quot; },
+];
+
+const navigation: DrawerNavigation = [
+  { kind: &quot;header&quot;, id: &quot;main&quot;, text: &quot;Overview&quot; },
+  { kind: &quot;link&quot;, id: &quot;dashboard&quot;, text: &quot;Dashboard&quot;, href: &quot;#&quot;, icon: &lt;LayoutDashboard className=&quot;h-4 w-4&quot; /&gt; },
+  { kind: &quot;link&quot;, id: &quot;users&quot;, text: &quot;Users&quot;, href: &quot;#&quot;, icon: &lt;Users className=&quot;h-4 w-4&quot; /&gt; },
+  {
+    kind: &quot;collapsable&quot;,
+    id: &quot;reports&quot;,
+    text: &quot;Reports&quot;,
+    icon: &lt;BarChart3 className=&quot;h-4 w-4&quot; /&gt;,
+    items: [
+      { kind: &quot;link&quot;, id: &quot;sales&quot;, text: &quot;Sales&quot;, href: &quot;#&quot; },
+      { kind: &quot;link&quot;, id: &quot;retention&quot;, text: &quot;Retention&quot;, href: &quot;#&quot; },
+    ],
+  },
+];
+
+const queryFields: QuerySpecField[] = [
+  { name: &quot;name&quot;, label: &quot;Name&quot;, type: &quot;string&quot;, ops: [&quot;ilike&quot;], placeholder: &quot;Search by name&quot; },
+  { name: &quot;status&quot;, label: &quot;Status&quot;, type: &quot;string&quot;, ops: [&quot;eq&quot;], options: [...] },
+];
+
+function DashboardContent() {
+  const tableState = useRemoteDataTable({ initialPagination: { pageSize: 5 } });
+  const { toast } = useNotificationCenter();
+
+  const metrics = useMemo(() =&gt; [
+    { label: &quot;Active users&quot;, value: &quot;1,284&quot; },
+    { label: &quot;Open tickets&quot;, value: &quot;32&quot; },
+    { label: &quot;Deployments&quot;, value: &quot;14&quot; },
+  ], []);
+
+  return (
+    &lt;div className=&quot;space-y-6 p-6&quot;&gt;
+      &lt;Header
+        title=&quot;Operations dashboard&quot;
+        subtitle=&quot;Monitor usage, incidents, and activity&quot;
+        actions={[{ id: &quot;notify&quot;, text: &quot;Send update&quot;, onClick: () =&gt; toast.success(&quot;Update sent&quot;), color: &quot;primary&quot;, variant: &quot;contained&quot; }]}
+        breadcrumbs={[{ id: &quot;home&quot;, text: &quot;Home&quot;, link: &quot;#&quot; }, { id: &quot;ops&quot;, text: &quot;Operations&quot;, link: &quot;#&quot; }]}
+        border
+      /&gt;
+
+      &lt;div className=&quot;grid gap-6 lg:grid-cols-[2fr_1fr]&quot;&gt;
+        &lt;div className=&quot;space-y-6&quot;&gt;
+          &lt;ValueCard&gt;
+            &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
+              {metrics.map((metric, index) =&gt; (
+                &lt;ValueItem key={metric.label} size={4} bordered={index !== 0}&gt;
+                  &lt;ValueText label={metric.label} value={metric.value} /&gt;
+                &lt;/ValueItem&gt;
+              ))}
+            &lt;/div&gt;
+          &lt;/ValueCard&gt;
+
+          &lt;RemoteDataTable
+            data={users}
+            columns={columns}
+            pagination={tableState.pagination}
+            onPaginationChange={tableState.onPaginationChange}
+            sorting={tableState.sorting}
+            onSortingChange={tableState.onSortingChange}
+            query={{ fields: queryFields, filters: tableState.filters, onFiltersChange: tableState.onFiltersChange }}
+          /&gt;
+        &lt;/div&gt;
+
+        &lt;div className=&quot;space-y-4&quot;&gt;
+          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
+            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;Automation&lt;/h3&gt;
+            &lt;p className=&quot;mt-2 text-base font-semibold&quot;&gt;Deployment key&lt;/p&gt;
+            &lt;Board content={[&quot;ops_live_9fcd2b&quot;, &quot;Rotate every 30 days&quot;]} spacing={1} /&gt;
+            &lt;Button variant=&quot;outline&quot; className=&quot;mt-3 w-full&quot; onClick={() =&gt; toast(&quot;Key copied to clipboard&quot;)}&gt;
+              Copy key
+            &lt;/Button&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;rounded-lg border border-border bg-card p-4 shadow-sm&quot;&gt;
+            &lt;h3 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;Activity&lt;/h3&gt;
+            &lt;p className=&quot;mt-2 text-sm text-muted-foreground&quot;&gt;3 alerts resolved · 2 incidents open&lt;/p&gt;
+            &lt;Button variant=&quot;ghost&quot; className=&quot;mt-3 w-full justify-start&quot; onClick={() =&gt; toast(&quot;Opening incidents&quot;)}&gt;
+              View incidents
+            &lt;/Button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default function Dashboard() {
+  return (
+    &lt;NotificationCenterProvider&gt;
+      &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
+        &lt;DashboardContent /&gt;
+      &lt;/DrawerLayout&gt;
+    &lt;/NotificationCenterProvider&gt;
+  );
+}`;
+
+function DashboardContent() {
+  const tableState = useRemoteDataTable({ initialPagination: { pageSize: 5 } });
   const { toast } = useNotificationCenter();
 
   const metrics = useMemo(
@@ -7960,25 +8360,26 @@ const DashboardContent = () =&gt; {
       &lt;/div&gt;
     &lt;/div&gt;
   );
-};
-
-const Example = () =&gt; (
-  &lt;NotificationCenterProvider&gt;
-    &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
-      &lt;DashboardContent /&gt;
-    &lt;/DrawerLayout&gt;
-  &lt;/NotificationCenterProvider&gt;
-);
+}
 
 export default {
   title: &quot;Examples/Dashboard&quot;,
-  component: Example,
   parameters: {
     layout: &quot;fullscreen&quot;,
+    docs: {
+      source: { code },
+    },
   },
-} satisfies Meta&lt;typeof Example&gt;;
+  render: () =&gt; (
+    &lt;NotificationCenterProvider&gt;
+      &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
+        &lt;DashboardContent /&gt;
+      &lt;/DrawerLayout&gt;
+    &lt;/NotificationCenterProvider&gt;
+  ),
+} satisfies Meta;
 
-type Story = StoryObj&lt;typeof Example&gt;;
+type Story = StoryObj;
 
 export const Default: Story = {};
 </code></pre></div>
@@ -7996,16 +8397,6 @@ export const Default: Story = {};
     
         <div class="panel panel-stories">
           
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
-            </div>
           
           
           <div class="note ok">
@@ -8027,6 +8418,21 @@ import {
               </div>
           
           
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; (
+  &lt;NotificationCenterProvider&gt;
+    &lt;DrawerLayout title=&quot;Ops Console&quot; navigation={navigation} clipped&gt;
+      &lt;DashboardContent /&gt;
+    &lt;/DrawerLayout&gt;
+  &lt;/NotificationCenterProvider&gt;
+);</code></pre>
+            </div>
         </div>
   </div>
 </article>
@@ -8034,16 +8440,16 @@ import {
   class="card 
   has-error 
   has-info 
-  has-story-error"
+  no-story-error"
   role="listitem"
-  aria-label="Example">
+  aria-label="DataExplorer">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-err"></span> Example</h2>
+      <h2><span class="status-dot dot-err"></span> DataExplorer</h2>
       <div class="badges">
-        <label for="c-error-2-examples-data-explorer-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-error-2-examples-data-explorer-info" class="badge info as-toggle">1 info</label>
-        <label for="c-error-2-examples-data-explorer-stories" class="badge err as-toggle">1/1 story errors</label>
+        <label for="c-error-1-examples-data-explorer-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-1-examples-data-explorer-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-1-examples-data-explorer-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/stories/examples/data-explorer.stories.tsx">examples-data-explorer · ./src/stories/examples/data-explorer.stories.tsx</div>
@@ -8053,9 +8459,9 @@ import {
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-error-2-examples-data-explorer-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-error-2-examples-data-explorer-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-error-2-examples-data-explorer-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-error-1-examples-data-explorer-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-1-examples-data-explorer-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-1-examples-data-explorer-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -8064,14 +8470,14 @@ import {
           
     <div class="note err">
       <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>No component file found for the &quot;Example&quot; component.
-  194 | );
-  195 |
-&gt; 196 | export default {
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  259 | }
+  260 |
+&gt; 261 | export default {
       | ^
-  197 |   title: &quot;Examples/Data Explorer&quot;,
-  198 |   component: Example,
-  199 |   parameters: {
+  262 |   title: &quot;Examples/Data Explorer&quot;,
+  263 |   parameters: {
+  264 |     layout: &quot;fullscreen&quot;,
 
 ./src/stories/examples/data-explorer.stories.tsx:
 import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
@@ -8098,18 +8504,8 @@ type ExplorerRow = {
 
 const dataSets: Record&lt;string, ExplorerRow[]&gt; = {
   accounts: [
-    {
-      id: &quot;acc-1&quot;,
-      name: &quot;Northwind&quot;,
-      status: &quot;Healthy&quot;,
-      updated: &quot;2h ago&quot;,
-    },
-    {
-      id: &quot;acc-2&quot;,
-      name: &quot;Umbrella&quot;,
-      status: &quot;Warning&quot;,
-      updated: &quot;1d ago&quot;,
-    },
+    { id: &quot;acc-1&quot;, name: &quot;Northwind&quot;, status: &quot;Healthy&quot;, updated: &quot;2h ago&quot; },
+    { id: &quot;acc-2&quot;, name: &quot;Umbrella&quot;, status: &quot;Warning&quot;, updated: &quot;1d ago&quot; },
     {
       id: &quot;acc-3&quot;,
       name: &quot;Wayne Enterprises&quot;,
@@ -8118,26 +8514,11 @@ const dataSets: Record&lt;string, ExplorerRow[]&gt; = {
     },
   ],
   sessions: [
-    {
-      id: &quot;ses-1&quot;,
-      name: &quot;Mobile SDK&quot;,
-      status: &quot;Healthy&quot;,
-      updated: &quot;20m ago&quot;,
-    },
-    {
-      id: &quot;ses-2&quot;,
-      name: &quot;Edge Proxy&quot;,
-      status: &quot;Warning&quot;,
-      updated: &quot;6h ago&quot;,
-    },
+    { id: &quot;ses-1&quot;, name: &quot;Mobile SDK&quot;, status: &quot;Healthy&quot;, updated: &quot;20m ago&quot; },
+    { id: &quot;ses-2&quot;, name: &quot;Edge Proxy&quot;, status: &quot;Warning&quot;, updated: &quot;6h ago&quot; },
   ],
   audits: [
-    {
-      id: &quot;aud-1&quot;,
-      name: &quot;Login policy&quot;,
-      status: &quot;Healthy&quot;,
-      updated: &quot;5h ago&quot;,
-    },
+    { id: &quot;aud-1&quot;, name: &quot;Login policy&quot;, status: &quot;Healthy&quot;, updated: &quot;5h ago&quot; },
     {
       id: &quot;aud-2&quot;,
       name: &quot;Billing sync&quot;,
@@ -8182,7 +8563,44 @@ const columns: RemoteDataTableColumn&lt;ExplorerRow&gt;[] = [
   { id: &quot;updated&quot;, header: &quot;Last update&quot;, accessorKey: &quot;updated&quot; },
 ];
 
-const PanelContent = () =&gt; {
+const code = `import { useState, useMemo } from &quot;react&quot;;
+import {
+  ExpandableAlert,
+  ListPanel,
+  RemoteDataTable,
+  useListPanel,
+  useRemoteDataTable,
+  ValueCard,
+  ValueItem,
+  ValueText,
+} from &quot;@pautena/react-design-system&quot;;
+import type { QuerySpecField, RemoteDataTableColumn } from &quot;@pautena/react-design-system&quot;;
+
+const dataSets = {
+  accounts: [
+    { id: &quot;acc-1&quot;, name: &quot;Northwind&quot;, status: &quot;Healthy&quot;, updated: &quot;2h ago&quot; },
+    { id: &quot;acc-2&quot;, name: &quot;Umbrella&quot;, status: &quot;Warning&quot;, updated: &quot;1d ago&quot; },
+  ],
+  sessions: [
+    { id: &quot;ses-1&quot;, name: &quot;Mobile SDK&quot;, status: &quot;Healthy&quot;, updated: &quot;20m ago&quot; },
+  ],
+  audits: [
+    { id: &quot;aud-1&quot;, name: &quot;Login policy&quot;, status: &quot;Healthy&quot;, updated: &quot;5h ago&quot; },
+  ],
+};
+
+const queryFields: QuerySpecField[] = [
+  { name: &quot;name&quot;, label: &quot;Name&quot;, type: &quot;string&quot;, ops: [&quot;ilike&quot;], placeholder: &quot;Filter by name&quot; },
+  { name: &quot;status&quot;, label: &quot;Status&quot;, type: &quot;string&quot;, ops: [&quot;eq&quot;], options: [...] },
+];
+
+const columns: RemoteDataTableColumn[] = [
+  { id: &quot;name&quot;, header: &quot;Name&quot;, accessorKey: &quot;name&quot; },
+  { id: &quot;status&quot;, header: &quot;Status&quot;, cell: (row) =&gt; &lt;span&gt;{row.status}&lt;/span&gt; },
+  { id: &quot;updated&quot;, header: &quot;Last update&quot;, accessorKey: &quot;updated&quot; },
+];
+
+function PanelContent() {
   const selectedItem = useListPanel() ?? &quot;accounts&quot;;
   const tableState = useRemoteDataTable();
   const rows = dataSets[selectedItem] ?? dataSets.accounts;
@@ -8192,7 +8610,87 @@ const PanelContent = () =&gt; {
     const healthy = rows.filter((row) =&gt; row.status === &quot;Healthy&quot;).length;
     const warning = rows.filter((row) =&gt; row.status === &quot;Warning&quot;).length;
     const critical = rows.filter((row) =&gt; row.status === &quot;Critical&quot;).length;
+    return [
+      { label: &quot;Healthy&quot;, value: healthy },
+      { label: &quot;Warning&quot;, value: warning },
+      { label: &quot;Critical&quot;, value: critical },
+    ];
+  }, [rows]);
 
+  return (
+    &lt;div className=&quot;space-y-4&quot;&gt;
+      {showAlert ? (
+        &lt;ExpandableAlert
+          severity=&quot;info&quot;
+          title=&quot;Query tips&quot;
+          message=&quot;Use the query builder to filter entities before exporting data.&quot;
+          metadata={[&quot;Try status = Warning&quot;, &quot;Combine multiple filters for drill-downs&quot;]}
+          onClose={() =&gt; setShowAlert(false)}
+        /&gt;
+      ) : null}
+
+      &lt;ValueCard&gt;
+        &lt;div className=&quot;grid grid-cols-12 gap-2&quot;&gt;
+          {stats.map((stat, index) =&gt; (
+            &lt;ValueItem key={stat.label} size={4} bordered={index !== 0}&gt;
+              &lt;ValueText label={stat.label} value={String(stat.value)} /&gt;
+            &lt;/ValueItem&gt;
+          ))}
+        &lt;/div&gt;
+      &lt;/ValueCard&gt;
+
+      &lt;RemoteDataTable
+        data={rows}
+        columns={columns}
+        pagination={tableState.pagination}
+        onPaginationChange={tableState.onPaginationChange}
+        sorting={tableState.sorting}
+        onSortingChange={tableState.onSortingChange}
+        query={{ fields: queryFields, filters: tableState.filters, onFiltersChange: tableState.onFiltersChange }}
+      /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default function DataExplorer() {
+  return (
+    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+      &lt;div className=&quot;mx-auto w-full max-w-5xl space-y-4&quot;&gt;
+        &lt;header&gt;
+          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+            Data explorer
+          &lt;/p&gt;
+          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;Environment signals&lt;/h1&gt;
+          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+            Browse accounts, sessions, and audit checks with filters.
+          &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;ListPanel
+          items={[
+            { id: &quot;accounts&quot;, text: &quot;Accounts&quot; },
+            { id: &quot;sessions&quot;, text: &quot;Sessions&quot; },
+            { id: &quot;audits&quot;, text: &quot;Audit checks&quot; },
+          ]}
+          defaultSelectedItem=&quot;accounts&quot;
+        &gt;
+          &lt;PanelContent /&gt;
+        &lt;/ListPanel&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}`;
+
+function PanelContent() {
+  const selectedItem = useListPanel() ?? &quot;accounts&quot;;
+  const tableState = useRemoteDataTable();
+  const rows = dataSets[selectedItem] ?? dataSets.accounts;
+  const [showAlert, setShowAlert] = useState(true);
+
+  const stats = useMemo(() =&gt; {
+    const healthy = rows.filter((row) =&gt; row.status === &quot;Healthy&quot;).length;
+    const warning = rows.filter((row) =&gt; row.status === &quot;Warning&quot;).length;
+    const critical = rows.filter((row) =&gt; row.status === &quot;Critical&quot;).length;
     return [
       { label: &quot;Healthy&quot;, value: healthy },
       { label: &quot;Warning&quot;, value: warning },
@@ -8240,9 +8738,87 @@ const PanelContent = () =&gt; {
       /&gt;
     &lt;/div&gt;
   );
-};
+}
 
-const Example = () =&gt; (
+export default {
+  title: &quot;Examples/Data Explorer&quot;,
+  parameters: {
+    layout: &quot;fullscreen&quot;,
+    docs: {
+      source: { code },
+    },
+  },
+  render: () =&gt; (
+    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+      &lt;div className=&quot;mx-auto w-full max-w-5xl space-y-4&quot;&gt;
+        &lt;header&gt;
+          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+            Data explorer
+          &lt;/p&gt;
+          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;Environment signals&lt;/h1&gt;
+          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+            Browse accounts, sessions, and audit checks with filters.
+          &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;ListPanel
+          items={[
+            { id: &quot;accounts&quot;, text: &quot;Accounts&quot; },
+            { id: &quot;sessions&quot;, text: &quot;Sessions&quot; },
+            { id: &quot;audits&quot;, text: &quot;Audit checks&quot; },
+          ]}
+          defaultSelectedItem=&quot;accounts&quot;
+        &gt;
+          &lt;PanelContent /&gt;
+        &lt;/ListPanel&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  ),
+} satisfies Meta;
+
+type Story = StoryObj;
+
+export const Default: Story = {};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import {
+    ExpandableAlert,
+    ListPanel,
+    RemoteDataTable,
+    ValueCard,
+    ValueItem,
+    ValueText,
+} from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; (
   &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
     &lt;div className=&quot;mx-auto w-full max-w-5xl space-y-4&quot;&gt;
       &lt;header&gt;
@@ -8267,61 +8843,8 @@ const Example = () =&gt; (
       &lt;/ListPanel&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-);
-
-export default {
-  title: &quot;Examples/Data Explorer&quot;,
-  component: Example,
-  parameters: {
-    layout: &quot;fullscreen&quot;,
-  },
-} satisfies Meta&lt;typeof Example&gt;;
-
-type Story = StoryObj&lt;typeof Example&gt;;
-
-export const Default: Story = {};
-</code></pre></div>
-    </div>
-        </div>
-    
-        <div class="panel panel-info">
-          
-    <div class="note info">
-      <div class="note-title">Info</div>
-      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
-    </div>
-        </div>
-    
-    
-        <div class="panel panel-stories">
-          
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
+);</code></pre>
             </div>
-          
-          
-          <div class="note ok">
-                <div class="row">
-                  <span class="ex-name">Imports</span>
-                </div>
-                <pre><code>import {
-    ExpandableAlert,
-    ListPanel,
-    RemoteDataTable,
-    ValueCard,
-    ValueItem,
-    ValueText,
-} from "@pautena/react-design-system";</code></pre>
-              </div>
-          
-          
         </div>
   </div>
 </article>
@@ -8329,16 +8852,16 @@ export const Default: Story = {};
   class="card 
   has-error 
   has-info 
-  has-story-error"
+  no-story-error"
   role="listitem"
-  aria-label="Example">
+  aria-label="FormWizard">
   <div class="head">
     <div class="title">
-      <h2><span class="status-dot dot-err"></span> Example</h2>
+      <h2><span class="status-dot dot-err"></span> FormWizard</h2>
       <div class="badges">
-        <label for="c-error-3-examples-form-wizard-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-error-3-examples-form-wizard-info" class="badge info as-toggle">1 info</label>
-        <label for="c-error-3-examples-form-wizard-stories" class="badge err as-toggle">1/1 story errors</label>
+        <label for="c-error-2-examples-form-wizard-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-2-examples-form-wizard-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-2-examples-form-wizard-stories" class="badge ok as-toggle">1 story</label>
       </div>
     </div>
     <div class="meta" title="./src/stories/examples/form-wizard.stories.tsx">examples-form-wizard · ./src/stories/examples/form-wizard.stories.tsx</div>
@@ -8348,9 +8871,9 @@ export const Default: Story = {};
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-error-3-examples-form-wizard-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-error-3-examples-form-wizard-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-error-3-examples-form-wizard-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-error-2-examples-form-wizard-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-2-examples-form-wizard-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-2-examples-form-wizard-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">
@@ -8359,14 +8882,14 @@ export const Default: Story = {};
           
     <div class="note err">
       <div class="note-title">Prop type error</div>
-      <div class="note-body"><pre><code>No component file found for the &quot;Example&quot; component.
-  208 | };
-  209 |
-&gt; 210 | export default {
+      <div class="note-body"><pre><code>We could not detect the component from your story file. Specify meta.component.
+  368 | }
+  369 |
+&gt; 370 | export default {
       | ^
-  211 |   title: &quot;Examples/Form Wizard&quot;,
-  212 |   component: Example,
-  213 |   parameters: {
+  371 |   title: &quot;Examples/Form Wizard&quot;,
+  372 |   parameters: {
+  373 |     layout: &quot;fullscreen&quot;,
 
 ./src/stories/examples/form-wizard.stories.tsx:
 import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
@@ -8392,7 +8915,167 @@ const roleOptions = [
 
 const teamOptions = [&quot;Platform&quot;, &quot;Growth&quot;, &quot;Data&quot;, &quot;Support&quot;];
 
-const Example = () =&gt; {
+const code = `import { useMemo, useState } from &quot;react&quot;;
+import {
+  Autocomplete,
+  Button,
+  ConfirmDialog,
+  FormDialog,
+  Select,
+  TabCard,
+  TabCardPanel,
+  TextField,
+} from &quot;@pautena/react-design-system&quot;;
+
+const tabs = [{ text: &quot;Profile&quot; }, { text: &quot;Assignment&quot; }, { text: &quot;Review&quot; }];
+const roleOptions = [
+  { label: &quot;Engineer&quot;, value: &quot;engineer&quot; },
+  { label: &quot;Designer&quot;, value: &quot;designer&quot; },
+  { label: &quot;Product&quot;, value: &quot;product&quot; },
+];
+const teamOptions = [&quot;Platform&quot;, &quot;Growth&quot;, &quot;Data&quot;, &quot;Support&quot;];
+
+function FormWizard() {
+  const [formState, setFormState] = useState({
+    name: &quot;&quot;,
+    email: &quot;&quot;,
+    role: &quot;engineer&quot;,
+    team: &quot;Platform&quot;,
+    location: &quot;Remote&quot;,
+  });
+  const [locations, setLocations] = useState([&quot;Remote&quot;, &quot;Barcelona&quot;, &quot;Berlin&quot;]);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [showLocationDialog, setShowLocationDialog] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  const reviewRows = useMemo(() =&gt; [
+    { label: &quot;Name&quot;, value: formState.name || &quot;—&quot; },
+    { label: &quot;Email&quot;, value: formState.email || &quot;—&quot; },
+    { label: &quot;Role&quot;, value: formState.role },
+    { label: &quot;Team&quot;, value: formState.team },
+    { label: &quot;Location&quot;, value: formState.location },
+  ], [formState]);
+
+  return (
+    &lt;div className=&quot;min-h-screen bg-muted/40 p-6&quot;&gt;
+      &lt;div className=&quot;mx-auto flex w-full max-w-3xl flex-col gap-6&quot;&gt;
+        &lt;header className=&quot;space-y-2&quot;&gt;
+          &lt;p className=&quot;text-xs font-semibold uppercase tracking-wide text-muted-foreground&quot;&gt;
+            Onboarding flow
+          &lt;/p&gt;
+          &lt;h1 className=&quot;text-2xl font-semibold&quot;&gt;New employee wizard&lt;/h1&gt;
+          &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+            Collect profile details, team assignment, and confirm submission.
+          &lt;/p&gt;
+        &lt;/header&gt;
+
+        &lt;TabCard tabs={tabs}&gt;
+          &lt;TabCardPanel index={0}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;TextField
+                label=&quot;Full name&quot;
+                placeholder=&quot;Jane Doe&quot;
+                value={formState.name}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, name: event.target.value }))}
+                fullWidth
+              /&gt;
+              &lt;TextField
+                label=&quot;Email&quot;
+                placeholder=&quot;jane@company.com&quot;
+                value={formState.email}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, email: event.target.value }))}
+                helperText=&quot;We&#39;ll send a welcome email with setup steps.&quot;
+                fullWidth
+              /&gt;
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+
+          &lt;TabCardPanel index={1}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;Select
+                label=&quot;Role&quot;
+                value={formState.role}
+                options={roleOptions}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, role: event.target.value }))}
+                fullWidth
+              /&gt;
+              &lt;Autocomplete
+                label=&quot;Team&quot;
+                options={teamOptions}
+                value={formState.team}
+                onChangeValue={(_, value) =&gt; setFormState((prev) =&gt; ({ ...prev, team: value }))}
+              /&gt;
+              &lt;Select
+                label=&quot;Location&quot;
+                value={formState.location}
+                options={locations.map((location) =&gt; ({ label: location, value: location }))}
+                onChange={(event) =&gt; setFormState((prev) =&gt; ({ ...prev, location: event.target.value }))}
+                fullWidth
+              /&gt;
+              &lt;Button variant=&quot;outline&quot; className=&quot;w-fit&quot; onClick={() =&gt; setShowLocationDialog(true)}&gt;
+                Add office
+              &lt;/Button&gt;
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+
+          &lt;TabCardPanel index={2}&gt;
+            &lt;div className=&quot;space-y-4 p-4&quot;&gt;
+              &lt;div className=&quot;rounded-lg border border-border bg-card p-4&quot;&gt;
+                &lt;h2 className=&quot;text-sm font-semibold text-muted-foreground&quot;&gt;Review&lt;/h2&gt;
+                &lt;dl className=&quot;mt-3 space-y-2&quot;&gt;
+                  {reviewRows.map((row) =&gt; (
+                    &lt;div key={row.label} className=&quot;flex items-center justify-between text-sm&quot;&gt;
+                      &lt;dt className=&quot;text-muted-foreground&quot;&gt;{row.label}&lt;/dt&gt;
+                      &lt;dd className=&quot;font-medium text-foreground&quot;&gt;{row.value}&lt;/dd&gt;
+                    &lt;/div&gt;
+                  ))}
+                &lt;/dl&gt;
+              &lt;/div&gt;
+
+              &lt;Button variant=&quot;primary&quot; onClick={() =&gt; setShowConfirm(true)}&gt;
+                Submit request
+              &lt;/Button&gt;
+              {submitted ? (
+                &lt;p className=&quot;text-sm text-green-600&quot;&gt;Request submitted successfully.&lt;/p&gt;
+              ) : null}
+            &lt;/div&gt;
+          &lt;/TabCardPanel&gt;
+        &lt;/TabCard&gt;
+      &lt;/div&gt;
+
+      &lt;ConfirmDialog
+        open={showConfirm}
+        title=&quot;Send onboarding request?&quot;
+        onCancel={() =&gt; setShowConfirm(false)}
+        onConfirm={() =&gt; {
+          setShowConfirm(false);
+          setSubmitted(true);
+        }}
+      &gt;
+        The HR team will receive this request and create the new employee.
+      &lt;/ConfirmDialog&gt;
+
+      &lt;FormDialog&lt;{ location: string }&gt;
+        open={showLocationDialog}
+        title=&quot;Add office location&quot;
+        description=&quot;Create a new office entry for onboarding.&quot;
+        onCancel={() =&gt; setShowLocationDialog(false)}
+        onSubmit={(data) =&gt; {
+          if (!data.location) return;
+          setLocations((prev) =&gt; [...prev, data.location]);
+          setFormState((prev) =&gt; ({ ...prev, location: data.location }));
+          setShowLocationDialog(false);
+        }}
+      &gt;
+        &lt;TextField name=&quot;location&quot; label=&quot;Office name&quot; placeholder=&quot;Lisbon&quot; fullWidth /&gt;
+      &lt;/FormDialog&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default FormWizard;`;
+
+function FormWizardContent() {
   const [formState, setFormState] = useState({
     name: &quot;&quot;,
     email: &quot;&quot;,
@@ -8576,17 +9259,20 @@ const Example = () =&gt; {
       &lt;/FormDialog&gt;
     &lt;/div&gt;
   );
-};
+}
 
 export default {
   title: &quot;Examples/Form Wizard&quot;,
-  component: Example,
   parameters: {
     layout: &quot;fullscreen&quot;,
+    docs: {
+      source: { code },
+    },
   },
-} satisfies Meta&lt;typeof Example&gt;;
+  render: () =&gt; &lt;FormWizardContent /&gt;,
+} satisfies Meta;
 
-type Story = StoryObj&lt;typeof Example&gt;;
+type Story = StoryObj;
 
 export const Default: Story = {};
 </code></pre></div>
@@ -8604,16 +9290,6 @@ export const Default: Story = {};
     
         <div class="panel panel-stories">
           
-            <div class="note err">
-              <div class="row">
-                <span class="ex-name">Default</span>
-                <span class="badge err">story error</span>
-              </div>
-              
-              
-              
-              <pre><code>Could not generate snippet without component name.</code></pre>
-            </div>
           
           
           <div class="note ok">
@@ -8633,6 +9309,150 @@ export const Default: Story = {};
               </div>
           
           
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;FormWizardContent /&gt;;</code></pre>
+            </div>
+        </div>
+  </div>
+</article></div>
+        </section>
+      
+        <section class="group">
+          <input id="no-component-import-found-toggle" class="group-tg" type="checkbox" hidden />
+          <label for="no-component-import-found-toggle" class="group-header">
+            <span class="caret">▸</span>
+            <span class="group-title">No component import found</span>
+            <span class="group-count">2</span>
+          </label>
+          <div class="group-cards">
+<article
+  class="card 
+  has-error 
+  has-info 
+  no-story-error"
+  role="listitem"
+  aria-label="DialogDemo">
+  <div class="head">
+    <div class="title">
+      <h2><span class="status-dot dot-err"></span> DialogDemo</h2>
+      <div class="badges">
+        <label for="c-error-0-dialogs-dialog-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-0-dialogs-dialog-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-0-dialogs-dialog-stories" class="badge ok as-toggle">1 story</label>
+      </div>
+    </div>
+    <div class="meta" title="./src/components/dialogs/dialog/dialog.stories.tsx">dialogs-dialog · ./src/components/dialogs/dialog/dialog.stories.tsx</div>
+    
+    
+    
+  </div>
+
+  <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
+  <input id="c-error-0-dialogs-dialog-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-0-dialogs-dialog-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-0-dialogs-dialog-stories" class="tg tg-stories" type="checkbox" hidden />
+  
+
+  <div class="panels">
+    
+        <div class="panel panel-err">
+          
+    <div class="note err">
+      <div class="note-title">Prop type error</div>
+      <div class="note-body"><pre><code>No component file found for the &quot;DialogDemo&quot; component.
+  16 | };
+  17 |
+&gt; 18 | export default {
+     | ^
+  19 |   title: &quot;Dialogs/Dialog&quot;,
+  20 |   component: DialogDemo,
+  21 |   parameters: {
+
+./src/components/dialogs/dialog/dialog.stories.tsx:
+import type { Meta, StoryObj } from &quot;@storybook/react&quot;;
+import type { ComponentProps } from &quot;react&quot;;
+import { useState } from &quot;react&quot;;
+import { Button } from &quot;@/components/inputs/button/button&quot;;
+import { Dialog } from &quot;./dialog&quot;;
+
+const DialogDemo = (args: ComponentProps&lt;typeof Dialog&gt;) =&gt; {
+  const [open, setOpen] = useState(false);
+
+  return (
+    &lt;div&gt;
+      &lt;Button onClick={() =&gt; setOpen(true)}&gt;Open dialog&lt;/Button&gt;
+      &lt;Dialog {...args} open={open} onClose={() =&gt; setOpen(false)} /&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default {
+  title: &quot;Dialogs/Dialog&quot;,
+  component: DialogDemo,
+  parameters: {
+    layout: &quot;centered&quot;,
+  },
+  render: (args) =&gt; &lt;DialogDemo {...args} /&gt;,
+} satisfies Meta&lt;typeof DialogDemo&gt;;
+
+type Story = StoryObj&lt;typeof DialogDemo&gt;;
+
+export const Default: Story = {
+  args: {
+    title: &quot;Dialog title&quot;,
+    description: &quot;Short description for the dialog.&quot;,
+    children: (
+      &lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;
+        Dialog body content goes here.
+      &lt;/p&gt;
+    ),
+    footer: &lt;Button&gt;Confirm&lt;/Button&gt;,
+  },
+};
+</code></pre></div>
+    </div>
+        </div>
+    
+        <div class="panel panel-info">
+          
+    <div class="note info">
+      <div class="note-title">Info</div>
+      <div class="note-body">No description found. Write a jsdoc comment such as /** Component description */.</div>
+    </div>
+        </div>
+    
+    
+        <div class="panel panel-stories">
+          
+          
+          
+          <div class="note ok">
+                <div class="row">
+                  <span class="ex-name">Imports</span>
+                </div>
+                <pre><code>import { Button, Dialog } from "@pautena/react-design-system";</code></pre>
+              </div>
+          
+          
+            <div class="note ok">
+              <div class="row">
+                <span class="ex-name">Default</span>
+                <span class="badge ok">story ok</span>
+              </div>
+              
+              
+              <pre><code>const Default = () =&gt; &lt;DialogDemo
+    title=&quot;Dialog title&quot;
+    description=&quot;Short description for the dialog.&quot;
+    footer={&lt;Button&gt;Confirm&lt;/Button&gt;}&gt;&lt;p className=&quot;text-sm text-muted-foreground&quot;&gt;Dialog body content goes here.
+              &lt;/p&gt;&lt;/DialogDemo&gt;;</code></pre>
+            </div>
         </div>
   </div>
 </article>
@@ -8647,9 +9467,9 @@ export const Default: Story = {};
     <div class="title">
       <h2><span class="status-dot dot-err"></span> TabPanelDemo</h2>
       <div class="badges">
-        <label for="c-error-4-navigation-tabpanel-err" class="badge err as-toggle">prop type error</label>
-        <label for="c-error-4-navigation-tabpanel-info" class="badge info as-toggle">1 info</label>
-        <label for="c-error-4-navigation-tabpanel-stories" class="badge err as-toggle">2/2 story errors</label>
+        <label for="c-error-1-navigation-tabpanel-err" class="badge err as-toggle">prop type error</label>
+        <label for="c-error-1-navigation-tabpanel-info" class="badge info as-toggle">1 info</label>
+        <label for="c-error-1-navigation-tabpanel-stories" class="badge err as-toggle">2/2 story errors</label>
       </div>
     </div>
     <div class="meta" title="./src/components/navigation/tab-panel/tab-panel.stories.tsx">navigation-tabpanel · ./src/components/navigation/tab-panel/tab-panel.stories.tsx</div>
@@ -8659,9 +9479,9 @@ export const Default: Story = {};
   </div>
 
   <!-- ⬇️ Hidden toggles must be siblings BEFORE .panels -->
-  <input id="c-error-4-navigation-tabpanel-err" class="tg tg-err" type="checkbox" hidden />
-  <input id="c-error-4-navigation-tabpanel-info" class="tg tg-info" type="checkbox" hidden />
-  <input id="c-error-4-navigation-tabpanel-stories" class="tg tg-stories" type="checkbox" hidden />
+  <input id="c-error-1-navigation-tabpanel-err" class="tg tg-err" type="checkbox" hidden />
+  <input id="c-error-1-navigation-tabpanel-info" class="tg tg-info" type="checkbox" hidden />
+  <input id="c-error-1-navigation-tabpanel-stories" class="tg tg-stories" type="checkbox" hidden />
   
 
   <div class="panels">

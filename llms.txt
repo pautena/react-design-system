@@ -30,6 +30,14 @@ AI-ready design system built on shadcn/ui with MCP support
 
 [View Documentation](./?path=/docs/examples-data-explorer--docs)
 
+### Drawer demo
+
+**Stories:**
+- [Open By Default](./?path=/story/examples-drawer-demo--open-by-default)
+- [Closed By Default](./?path=/story/examples-drawer-demo--closed-by-default)
+
+[View Documentation](./?path=/docs/examples-drawer-demo--docs)
+
 ### Form Wizard
 
 **Stories:**
@@ -454,14 +462,6 @@ AI-ready design system built on shadcn/ui with MCP support
 - [Default](./?path=/story/navigation-drawersubheader--default)
 
 [View Documentation](./?path=/docs/navigation-drawersubheader--docs)
-
-### Drawer demo
-
-**Stories:**
-- [Open By Default](./?path=/story/navigation-drawer-demo--open-by-default)
-- [Closed By Default](./?path=/story/navigation-drawer-demo--closed-by-default)
-
-[View Documentation](./?path=/docs/navigation-drawer-demo--docs)
 
 ### Drawer
 
