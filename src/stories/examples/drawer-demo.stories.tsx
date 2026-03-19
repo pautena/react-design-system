@@ -25,10 +25,50 @@ function DrawerToggleButton() {
   );
 }
 
+const code = `import {
+  Content,
+  Drawer,
+  DrawerContent,
+  DrawerMain,
+  DrawerProvider,
+  SkeletonGrid,
+  Button,
+} from "@pautena/react-design-system";
+import { useDrawer } from "@pautena/react-design-system";
+import { mockDrawerNavigation } from "@pautena/react-design-system";
+
+function DrawerToggleButton() {
+  const { state, switchState } = useDrawer();
+  return (
+    <Button type="button" variant="outline" size="sm" onClick={switchState}>
+      {state === "open" ? "Collapse drawer" : "Expand drawer"}
+    </Button>
+  );
+}
+
+function App() {
+  return (
+    <DrawerProvider initialState="open" selectedItemId="item2.3.2">
+      <Drawer>
+        <DrawerContent navigation={mockDrawerNavigation} />
+      </Drawer>
+      <DrawerMain>
+        <Content className="space-y-3 p-3">
+          <DrawerToggleButton />
+          <SkeletonGrid />
+        </Content>
+      </DrawerMain>
+    </DrawerProvider>
+  );
+}`;
+
 export default {
   title: "Examples/Drawer demo",
   parameters: {
     layout: "fullscreen",
+    docs: {
+      source: { code },
+    },
   },
   render: ({ initialState, selectedItemId }) => (
     <DrawerProvider initialState={initialState} selectedItemId={selectedItemId}>

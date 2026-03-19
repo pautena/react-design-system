@@ -541,3 +541,33 @@ This is an auto-generated file that contains project context for AI agents.
 ### Test Interaction Rule
 
 - In React unit tests, click interactions must use `@testing-library/user-event` (for example, `await user.click(...)`) instead of calling DOM `.click()` directly.
+
+### Example Stories Source Code Rule
+
+- Example stories are located in `src/stories/examples/*.stories.tsx`.
+- Each example story MUST define a `docs.source.code` parameter with the complete implementation code.
+- When updating an example story's implementation, ALWAYS update the corresponding `code` string variable to match.
+- The `code` string should show a realistic, copy-pasteable example of how to use the components.
+- Pattern for example stories:
+  ```typescript
+  const code = `import { Component1, Component2 } from "@pautena/react-design-system";
+  
+  function Example() {
+    // implementation code here
+  }
+  
+  export default Example;`;
+  
+  export default {
+    title: "Examples/ExampleName",
+    parameters: {
+      layout: "fullscreen",
+      docs: {
+        source: { code },
+      },
+    },
+    render: () => <ExampleContent />,
+  } satisfies Meta;
+  ```
+- The `code` string uses `@pautena/react-design-system` as the package name for imports.
+- Keep the `code` string in sync with the actual `render` function implementation.
